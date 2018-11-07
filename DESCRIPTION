@@ -1,0 +1,35 @@
+Package: pfgsea
+Title: Parameterized Fast GSEA
+Description: Perform parameterized gene set enrichment analysis on multiple
+    differential expression contrasts.
+Version: 0.0.1
+Date: 2018-11-07
+Authors@R: person(
+    "Michael", "Steinbaugh",
+    email = "mike@steinbaugh.com",
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0002-2403-2221"))
+URL: https://github.com/steinbaugh/pfgsea
+BugReports: https://github.com/steinbaugh/pfgsea/issues
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends:
+    R (>= 3.5),
+    fgsea (>= 1.8)
+Imports:
+    assertive.base,
+    assertive.files,
+    assertive.properties,
+    assertive.types,
+    basejump,
+    dplyr,
+    ggplot2,
+    knitr,
+    magrittr,
+    rlang,
+    tibble,
+    utils
+Suggests: rmarkdown
+biocViews: Infrastructure
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
