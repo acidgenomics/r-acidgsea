@@ -1,14 +1,17 @@
 Package: pfgsea
 Title: Parameterized Fast GSEA
-Description: Perform parameterized gene set enrichment analysis on multiple
-    differential expression contrasts.
+Description:
+    Perform parameterized gene set enrichment analysis on multiple differential
+    expression contrasts.
 Version: 0.0.2
 Date: 2018-11-26
-Authors@R: person(
-    "Michael", "Steinbaugh",
-    email = "mike@steinbaugh.com",
-    role = c("aut", "cre"),
-    comment = c(ORCID = "0000-0002-2403-2221"))
+Authors@R:
+    person(
+        "Michael", "Steinbaugh",
+        email = "mike@steinbaugh.com",
+        role = c("aut", "cre"),
+        comment = c(ORCID = "0000-0002-2403-2221")
+    )
 URL:
     https://steinbaugh.com/pfgsea/,
     https://github.com/steinbaugh/pfgsea/
@@ -31,10 +34,8 @@ Imports:
     rlang,
     tibble,
     utils
-Suggests:
-    rmarkdown
-Remotes:
-    steinbaugh/basejump@develop
+Suggests: rmarkdown
+Remotes: steinbaugh/basejump@develop
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
