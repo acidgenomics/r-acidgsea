@@ -10,8 +10,9 @@ expression contrasts.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/steinbaugh/pfgsea}
-  \item Report bugs at \url{https://github.com/steinbaugh/pfgsea/issues}
+  \item \url{https://steinbaugh.com/pfgsea/}
+  \item \url{https://github.com/steinbaugh/pfgsea/}
+  \item Report bugs at \url{https://github.com/steinbaugh/pfgsea/issues/}
 }
 
 }
