@@ -4,7 +4,7 @@ Description:
     Perform parameterized gene set enrichment analysis on multiple differential
     expression contrasts.
 Version: 0.0.2
-Date: 2018-11-26
+Date: 2018-11-30
 Authors@R:
     person(
         "Michael", "Steinbaugh",
@@ -18,24 +18,34 @@ URL:
 BugReports: https://github.com/steinbaugh/pfgsea/issues/
 License: MIT + file LICENSE
 Encoding: UTF-8
-Depends:
-    R (>= 3.5),
-    fgsea (>= 1.8)
+Depends: R (>= 3.5)
 Imports:
+    DOSE,
+    GSEABase,
     assertive.base,
     assertive.files,
     assertive.properties,
     assertive.types,
-    basejump (>= 0.8.3),
+    basejump (>= 0.8.5),
+    clusterProfiler (>= 3.10),
     dplyr,
+    enrichplot,
+    fgsea (>= 1.8)
     ggplot2,
     knitr,
+    liger,
     magrittr,
     rlang,
     tibble,
     utils
-Suggests: rmarkdown
-Remotes: steinbaugh/basejump@develop
+Suggests:
+    BiocStyle,
+    patrick,
+    rmarkdown,
+    testthat (>= 2.0)
+Remotes:
+    JEFworks/liger,
+    steinbaugh/basejump@develop
 biocViews: Infrastructure
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
