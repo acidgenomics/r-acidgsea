@@ -34,10 +34,10 @@ Top Table
 }
 \section{Functions}{
 \itemize{
-\item \code{topTable}: Return a top table of the most postiively associated
-processes, arranged by \code{NES}. Must pass the \code{alpha} level cutoff.
+\item \code{topTable}: Return a top table of the most postiively associated processes, arranged by
+\code{NES}. Must pass the \code{alpha} level cutoff.
 
-\item \code{topTables}: Parameterized. Supports looping across multiple DEG
-results, and adds a Markdown header for each contrast.
+\item \code{topTables}: Parameterized. Supports looping across multiple DEG results, and adds a
+Markdown header for each contrast.
 }}
 
