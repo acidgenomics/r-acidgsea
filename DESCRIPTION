@@ -20,7 +20,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 3.5)
 Imports:
-    basejump (>= 0.8.5),
+    basejump (>= 0.9),
     dplyr,
     fgsea (>= 1.8),
     ggplot2,

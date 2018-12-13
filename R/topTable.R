@@ -10,30 +10,35 @@ NULL
 
 
 
-#' @describeIn topTable Return a top table of the most postiively associated
-#'   processes, arranged by `NES`. Must pass the `alpha` level cutoff.
+#' @describeIn topTable
+#'   Return a top table of the most postiively associated processes, arranged by
+#'   `NES`. Must pass the `alpha` level cutoff.
 #' @export
 topTable <- function(
     results,
     alpha,
     n = 10L
 ) {
-    assert_is_data.frame(results)
-    assertIsAlpha(alpha)
-    assert_is_a_number(n)
-    cols <- syms(setdiff(colnames(results), c("leadingEdge", "nMoreExtreme")))
+    assert(
+        is.data.frame(results),
+        containsAlpha(alpha),
+        isInt(n)
+    )
     results %>%
         as_tibble() %>%
         arrange(desc(!!sym("NES")), !!sym("padj")) %>%
         filter(!!sym("padj") < !!alpha) %>%
         head(n = n) %>%
-        select(!!!cols)
+        select(!!!syms(
+            setdiff(colnames(results), c("leadingEdge", "nMoreExtreme"))
+        ))
 }
 
 
 
-#' @describeIn topTable Parameterized. Supports looping across multiple DEG
-#'   results, and adds a Markdown header for each contrast.
+#' @describeIn topTable
+#'   Parameterized. Supports looping across multiple DEG results, and adds a
+#'   Markdown header for each contrast.
 #' @export
 topTables <- function(
     resultsList,
@@ -41,10 +46,12 @@ topTables <- function(
     n = 10L,
     headerLevel = 3L
 ) {
-    assert_is_list(resultsList)
-    assertIsAlpha(alpha)
-    assert_is_a_number(n)
-    assertIsHeaderLevel(headerLevel)
+    assert(
+        is.list(resultsList),
+        containsAlpha(alpha),
+        isInt(n),
+        containsHeaderLevel(headerLevel)
+    )
     invisible(mapply(
         text = names(resultsList),
         results = resultsList,

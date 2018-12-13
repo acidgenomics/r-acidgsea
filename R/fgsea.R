@@ -3,6 +3,8 @@
 #' Wrapper for `fgsea::fgsea` that loads the pathways automatically from a
 #' GMT file, rather than requiring a separate call to `fgsea::gmtPathways`.
 #'
+#' @inherit fgsea::fgsea return
+#
 #' @name fgsea
 #' @inheritParams params
 NULL
