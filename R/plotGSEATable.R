@@ -79,7 +79,7 @@ plotGSEATables <- function(
         MoreArgs = list(gmtFile = gmtFile, n = n),
         FUN = function(name, results, stats, gmtFile, n) {
             markdownHeader(text = name, level = headerLevel, asis = TRUE)
-            fgsea::plotGSEATable(
+            plotGSEATable(
                 results = results,
                 stats = stats,
                 gmtFile = gmtFile,
