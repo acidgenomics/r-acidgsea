@@ -31,16 +31,10 @@ Imports:
     utils
 Suggests:
     BiocStyle,
-    DOSE,
-    GSEABase,
-    clusterProfiler (>= 3.10),
-    enrichplot,
-    liger,
     patrick,
     rmarkdown,
     testthat (>= 2.0)
 Remotes:
-    JEFworks/liger,
     steinbaugh/basejump@develop,
     steinbaugh/goalie@develop
 biocViews:
