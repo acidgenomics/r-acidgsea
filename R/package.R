@@ -4,6 +4,7 @@
 #' **a**nalysis on multiple differential expression contrasts.
 #'
 #' @aliases NULL
+#' @keywords internal
 #'
 #' @importFrom basejump as_tibble markdownHeader theme_paperwhite
 #' @importFrom dplyr arrange desc filter select
