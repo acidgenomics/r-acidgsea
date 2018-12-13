@@ -1,9 +1,10 @@
 #' pfgsea
 #'
-#' Perform parameterized gene set enrichment analysis on multiple differential
-#' expression contrasts.
+#' Perform **p**arameterized **fast** **g**ene **s**et **e**nrichment
+#' **a**nalysis on multiple differential expression contrasts.
 #'
 #' @aliases NULL
+#' @keywords internal
 #'
 #' @importFrom basejump as_tibble markdownHeader theme_paperwhite
 #' @importFrom dplyr arrange desc filter select

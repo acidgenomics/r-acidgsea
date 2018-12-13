@@ -4,8 +4,8 @@
 \name{pfgsea-package}
 \title{pfgsea}
 \description{
-Perform parameterized gene set enrichment analysis on multiple differential
-expression contrasts.
+Perform \strong{p}arameterized \strong{fast} \strong{g}ene \strong{s}et \strong{e}nrichment
+\strong{a}nalysis on multiple differential expression contrasts.
 }
 \seealso{
 Useful links:
