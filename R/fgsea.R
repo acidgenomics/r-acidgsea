@@ -9,7 +9,8 @@ NULL
 
 
 
-#' @describeIn fgsea Returns a `data.frame`/`data.table` of results.
+#' @describeIn fgsea
+#'   Returns a `data.frame`/`data.table` of results.
 #' @export
 fgsea <- function(stats, gmtFile, ...) {
     assert(
@@ -24,7 +25,8 @@ fgsea <- function(stats, gmtFile, ...) {
 
 
 
-#' @describeIn fgsea Parameterized variant. Returns a `list` of results.
+#' @describeIn fgsea
+#'   Parameterized variant. Returns a `list` of results.
 #' @export
 pfgsea <- function(gmtFiles, statsList, ...) {
     assert(
