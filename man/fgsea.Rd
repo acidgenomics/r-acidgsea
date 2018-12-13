@@ -10,21 +10,25 @@ fgsea(stats, gmtFile, ...)
 pfgsea(gmtFiles, statsList, ...)
 }
 \arguments{
-\item{stats}{\code{numeric}. Gene stats. Test statistic is recommended by default,
-but shrunken log2 fold changes are also acceptable. Don't input unshrunken
-LFC values without standard error correction.}
+\item{stats}{\code{numeric}.
+Gene stats. Test statistic is recommended by default, but shrunken log2
+fold changes are also acceptable. Don't input unshrunken LFC values without
+standard error correction.}
 
-\item{gmtFile}{\code{string}. MSigDB GMT file path.}
+\item{gmtFile}{\code{string}.
+MSigDB GMT file path.}
 
 \item{...}{Additional arguments.}
 
-\item{gmtFiles}{\code{character}. MSigDB GMT file paths.}
+\item{gmtFiles}{\code{character}.
+MSigDB GMT file paths.}
 
-\item{statsList}{\code{list}. Gene stats list.}
+\item{statsList}{\code{list}.
+Gene stats list.}
 }
 \description{
-Wrapper for \code{\link[fgsea:fgsea]{fgsea::fgsea()}} that loads the pathways automatically from a
-GMT file, rather than requiring a separate call to \code{\link[fgsea:gmtPathways]{fgsea::gmtPathways()}}.
+Wrapper for \code{fgsea::fgsea} that loads the pathways automatically from a
+GMT file, rather than requiring a separate call to \code{fgsea::gmtPathways}.
 }
 \section{Functions}{
 \itemize{

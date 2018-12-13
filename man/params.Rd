@@ -4,32 +4,43 @@
 \alias{params}
 \title{Parameters}
 \arguments{
-\item{alpha}{\code{scalar numeric}. Alpha level.}
+\item{alpha}{\code{scalar numeric}.
+Alpha level.}
 
-\item{gmtFile}{\code{string}. MSigDB GMT file path.}
+\item{gmtFile}{\code{string}.
+MSigDB GMT file path.}
 
-\item{gmtFiles}{\code{character}. MSigDB GMT file paths.}
+\item{gmtFiles}{\code{character}.
+MSigDB GMT file paths.}
 
-\item{headerLevel}{\code{scalar integer}. Markdown header level.}
+\item{headerLevel}{\code{scalar integer}.
+Markdown header level.}
 
-\item{n}{\code{scalar integer}. Number of significant processes to include.
+\item{n}{\code{scalar integer}.
+Number of significant processes to include.
 Bidirectional; will include \code{n} up- and down-regulated processes.}
 
 \item{object}{Object.}
 
-\item{pathways}{\code{character}. Pathways.}
+\item{pathways}{\code{character}.
+Pathways.}
 
-\item{results}{\code{data.frame}/\code{data.table}. Unmodified \code{\link[fgsea:fgsea]{fgsea::fgsea()}} return.}
+\item{results}{\code{data.frame}/\code{data.table}.
+Unmodified \code{fgsea::fgsea} return.}
 
-\item{resultsList}{\code{list}. Results list.}
+\item{resultsList}{\code{list}.
+Results list.}
 
-\item{stats}{\code{numeric}. Gene stats. Test statistic is recommended by default,
-but shrunken log2 fold changes are also acceptable. Don't input unshrunken
-LFC values without standard error correction.}
+\item{stats}{\code{numeric}.
+Gene stats. Test statistic is recommended by default, but shrunken log2
+fold changes are also acceptable. Don't input unshrunken LFC values without
+standard error correction.}
 
-\item{statsList}{\code{list}. Gene stats list.}
+\item{statsList}{\code{list}.
+Gene stats list.}
 
-\item{statsList}{\code{list}. Gene stats list.}
+\item{statsList}{\code{list}.
+Gene stats list.}
 
 \item{...}{Additional arguments.}
 }

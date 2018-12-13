@@ -11,24 +11,32 @@ plotGSEATables(resultsList, statsList, gmtFile, alpha, n = 5L,
   headerLevel = 3L)
 }
 \arguments{
-\item{results}{\code{data.frame}/\code{data.table}. Unmodified \code{\link[fgsea:fgsea]{fgsea::fgsea()}} return.}
+\item{results}{\code{data.frame}/\code{data.table}.
+Unmodified \code{fgsea::fgsea} return.}
 
-\item{stats}{\code{numeric}. Gene stats. Test statistic is recommended by default,
-but shrunken log2 fold changes are also acceptable. Don't input unshrunken
-LFC values without standard error correction.}
+\item{stats}{\code{numeric}.
+Gene stats. Test statistic is recommended by default, but shrunken log2
+fold changes are also acceptable. Don't input unshrunken LFC values without
+standard error correction.}
 
-\item{gmtFile}{\code{string}. MSigDB GMT file path.}
+\item{gmtFile}{\code{string}.
+MSigDB GMT file path.}
 
-\item{alpha}{\code{scalar numeric}. Alpha level.}
+\item{alpha}{\code{scalar numeric}.
+Alpha level.}
 
-\item{n}{\code{scalar integer}. Number of significant processes to include.
+\item{n}{\code{scalar integer}.
+Number of significant processes to include.
 Bidirectional; will include \code{n} up- and down-regulated processes.}
 
-\item{resultsList}{\code{list}. Results list.}
+\item{resultsList}{\code{list}.
+Results list.}
 
-\item{statsList}{\code{list}. Gene stats list.}
+\item{statsList}{\code{list}.
+Gene stats list.}
 
-\item{headerLevel}{\code{scalar integer}. Markdown header level.}
+\item{headerLevel}{\code{scalar integer}.
+Markdown header level.}
 }
 \value{
 \code{ggplot}.
