@@ -42,14 +42,13 @@ Markdown header level.}
 \code{ggplot}.
 }
 \description{
-Wrapper for \code{\link[fgsea:plotGseaTable]{fgsea::plotGseaTable()}}.
+Wrapper for \code{fgsea::plotGseaTable}.
 }
 \section{Functions}{
 \itemize{
-\item \code{plotGSEATable}: Plot a table of the top up- and down-regulated
-processes in the results returned from \code{\link[=fgsea]{fgsea()}}.
+\item \code{plotGSEATable}: Plot a table of the top up- and down-regulated processes in the results
+returned from \code{fgsea}.
 
-\item \code{plotGSEATables}: Parameterized. Loops across the result contrasts
-and adds a Markdown header.
+\item \code{plotGSEATables}: Parameterized. Loops across the result contrasts and adds Markdown header.
 }}
 

@@ -42,16 +42,15 @@ Bidirectional; will include \code{n} up- and down-regulated processes.}
 \code{ggplot}.
 }
 \description{
-Wrapper for \code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}} that enables easy plotting of multiple
+Wrapper for \code{fgsea::plotEnrichment} that enables easy plotting of multiple
 pathways of interest in a single call.
 }
 \section{Functions}{
 \itemize{
-\item \code{plotEnrichment}: Parameterized. Returns multiple \code{ggplot}s,
-with a Markdown header for each pathway.
+\item \code{plotEnrichment}: Parameterized. Returns multiple \code{ggplot} objects, with a Markdown header
+for each pathway.
 
-\item \code{plotEnrichments}: Parameterized. Loops across the contrasts and
-returns an additional Markdown header, on top of the \code{\link[=plotEnrichment]{plotEnrichment()}}
-return per pathway.
+\item \code{plotEnrichments}: Parameterized. Loops across the contrasts and returns an additional
+Markdown header, on top of the \code{plotEnrichment} return per pathway.
 }}
 
