@@ -10,7 +10,7 @@
 #' @importFrom fgsea fgsea gmtPathways plotEnrichment plotGseaTable
 #' @importFrom ggplot2 labs
 #' @importFrom goalie assert containsAlpha containsHeaderLevel hasNames isAFile
-#'   isFile
+#'   isCharacter isFile isInt
 #' @importFrom knitr kable
 #' @importFrom magrittr %>%
 #' @importFrom rlang !! !!! sym syms

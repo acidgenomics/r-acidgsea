@@ -1,6 +1,6 @@
 #' Plot GSEA Table
 #'
-#' Wrapper for [fgsea::plotGseaTable()].
+#' Wrapper for `fgsea::plotGseaTable`.
 #'
 #' @name plotGSEATable
 #' @inheritParams params
@@ -9,8 +9,9 @@ NULL
 
 
 
-#' @describeIn plotGSEATable Plot a table of the top up- and down-regulated
-#'   processes in the results returned from [fgsea()].
+#' @describeIn plotGSEATable
+#'   Plot a table of the top up- and down-regulated processes in the results
+#'   returned from `fgsea`.
 #' @export
 plotGSEATable <- function(
     results,
@@ -19,11 +20,12 @@ plotGSEATable <- function(
     alpha,
     n = 5L
 ) {
-    assert_is_data.frame(results)
-    assert_is_numeric(stats)
-    assert_is_a_string(gmtFile)
-    assert_all_are_existing_files(gmtFile)
-    assert_is_a_number(n)
+    assert(
+        is.data.frame(results),
+        is.numeric(stats),
+        isAFile(gmtFile),
+        isInt(n)
+    )
 
     results <- results %>%
         as_tibble() %>%
@@ -50,8 +52,8 @@ plotGSEATable <- function(
 
 
 
-#' @describeIn plotGSEATable Parameterized. Loops across the result contrasts
-#'   and adds a Markdown header.
+#' @describeIn plotGSEATable
+#'   Parameterized. Loops across the result contrasts and adds Markdown header.
 #' @export
 plotGSEATables <- function(
     resultsList,
@@ -61,15 +63,15 @@ plotGSEATables <- function(
     n = 5L,
     headerLevel = 3L
 ) {
-    assert_is_list(resultsList)
-    assert_is_list(statsList)
-    assert_are_identical(names(resultsList), names(statsList))
-    assert_is_a_string(gmtFile)
-    assert_all_are_existing_files(gmtFile)
-    assertIsAlpha(alpha)
-    assert_is_a_number(n)
-    assertIsHeaderLevel(headerLevel)
-
+    assert(
+        is.list(resultsList),
+        is.list(statsList),
+        identical(names(resultsList), names(statsList)),
+        isAFile(gmtFile),
+        containsAlpha(alpha),
+        isInt(n),
+        containsHeaderLevel(headerLevel)
+    )
     invisible(mapply(
         name = names(resultsList),
         results = resultsList,
