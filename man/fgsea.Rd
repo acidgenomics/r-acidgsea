@@ -15,7 +15,7 @@ Gene stats. Test statistic is recommended by default, but shrunken log2
 fold changes are also acceptable. Don't input unshrunken LFC values without
 standard error correction.}
 
-\item{gmtFile}{\code{string}.
+\item{gmtFile}{\code{character(1)}.
 MSigDB GMT file path.}
 
 \item{...}{Additional arguments.}
