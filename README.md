@@ -25,5 +25,5 @@ BiocManager::install("steinbaugh/pfgsea")
 [BiocManager]: https://cran.r-project.org/package=BiocManager
 [Bioconductor]: https://bioconductor.org
 [fgsea]: https://bioconductor.org/packages/fgsea/
-[pfgsea][]: https://steinbaugh.com/pfgsea/
+[pfgsea]: https://steinbaugh.com/pfgsea/
 [R]: https://www.r-project.org
