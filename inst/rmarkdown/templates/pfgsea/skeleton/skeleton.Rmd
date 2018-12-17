@@ -1,0 +1,362 @@
+---
+title: "Gene Set Enrichment Analysis"
+author: "`r getOption('author')`"
+date: "`r Sys.Date()`"
+bibliography: bibliography.bib
+params:
+  # Using DESeqAnalysis S4 object as input.
+  # object_file: "data/YYYY-MM-DD/object.rds"
+  object_file: "~/MCF7_analysis.rds"
+  # MSigDb GMT files downloaded from the Broad Institute.
+  # Email registration is required for these files.
+  gmt_dir: "~/msigdb/msigdb_v6.2_GMTs"
+  # Using Wald test statistic by default.
+  # Shrunken log2FoldChange also acceptable.
+  gsea_value: "stat"
+  n_perm: 1000
+  min_size: 15
+  max_size: 500
+  # GSE alpha cutoff.
+  # Doesn't have to match the alpha used for DESeqResults.
+  alpha: 0.05
+  data_dir: !r file.path("data", Sys.Date())
+  output_dir: !r file.path("results", Sys.Date(), "gsea")
+---
+
+```{r setup, message=FALSE}
+# Last modified 2018-12-14
+library(basejump)
+library(dplyr)
+library(stringr)
+library(pfgsea)
+prepareTemplate()
+source("_setup.R")
+```
+
+```{r header, child="_header.Rmd"}
+```
+
+```{r basename}
+basename <- basenameSansExt(params$object_file)
+print(basename)
+```
+
+Import the `DESeqAnalysis` S4 class object. This single object contains everything we need to perform GSEA.
+
+```{r object}
+object <- readRDS(params$object_file)
+stopifnot(is(object, "DESeqAnalysis"))
+invisible(validObject(object))
+print(object)
+```
+
+All genes can be used in [Gene Set Enrichment Analysis (GSEA)][GSEA]. GSEA aggregates the per gene statistics across genes within a gene set, therefore making it possible to detect situations where all genes in a predefined set change in a small but coordinated way. Since it is likely that many relevant phenotypic differences are manifested by small but consistent changes in a set of genes. [GSEA][] uses a ranked list of genes (here ranked by the test statistic), without applying a per-gene *P* value significance cutoff. This allows the analysis to use more information to identify enriched biological processes. The [GSEA introduction](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1239896) goes into more detail about some of the advantages of this approach.
+
+# Gene lists
+
+Prepare a `numeric vector` [gene list](https://github.com/GuangchuangYu/DOSE/wiki/how-to-prepare-your-own-geneList) for GSEA.
+
+It requires three features:
+
+1. numeric: test statistic (*preferred*) or log2 fold change. For [DESeq2][], the test statistic is generated using the Wald test by default (see `DESeq2::DESeq()`, `DESeq2::nbinomWaldTest()`).
+2. named: every number has a name, the corresponding gene ID.
+3. sorted: number should be sorted in decreasing order.
+
+Note that [MSigDb][] requires that the identifiers map either to HGNC names (gene symbols) or Entrez IDs. We prefer to map using the gene symbols, but these are not 1:1 for all Ensembl gene IDs (e.g. ENSG00000000003 = TSPAN6). In the event that there are Ensembl gene IDs per HGNC symbol, we're taking the average of the values here.
+
+```{r stats_list, message=FALSE, warning=FALSE}
+stats_list <- statsList(object)
+lapply(stats_list, summary)
+lapply(stats_list, head)
+saveData(stats_list, dir = params$data_dir)
+```
+
+# MSigDb GMT files
+
+Here we are using pathways from the [MSigDB][] database. GSEA requires a gene list containing names that match the gene names in the [MSigDb][] pathways list (i.e. gene symbols instead of Ensembl gene IDs).
+
+Before proceeding, first download the [MSigDb 6.2 release](http://software.broadinstitute.org/gsea/msigdb/download_file.jsp?filePath=/resources/msigdb/6.2/msigdb_v6.2_files_to_download_locally.zip) and extract the ZIP archive, which will contain GMT files. Note that e-mail registration is required to access resources at the Broad Institute.
+
+```{r gmt_files}
+gmt_files <- list.files(
+    path = params$gmt_dir,
+    pattern = "all.v6.2.symbols.gmt$",
+    full.names = TRUE
+)
+names(gmt_files) <- str_extract(
+    string = basename(gmt_files),
+    pattern = "^[[:alnum:]]+"
+)
+print(basename(gmt_files))
+```
+
+# Run GSEA (with fgsea)
+
+This section is a modified version of Stephen Turner's excellent [DESeq results to pathways in 60 Seconds with the fgsea package](https://stephenturner.github.io/deseq-to-fgsea/) vignette. The [fgsea vignette](https://bioconductor.org/packages/release/bioc/vignettes/fgsea/inst/doc/fgsea-tutorial.html) also has additional useful information.
+
+Each row corresponds to a tested pathway. The columns are the following:
+
+- `pathway`: name of the pathway.
+- `pval`: an enrichment *P* value.
+- `padj`: BH-adjusted *P* value.
+- `ES`: enrichment score, same as in Broad GSEA implementation.
+- `NES`: enrichment score normalized to mean enrichment of random samples of the same size.
+- `nMoreExtreme`: a number of times a random gene set had a more extreme enrichment score value.
+- `size`: size of the pathway after removing genes not present in 'names(stats)'.
+- `leadingEdge`: vector with indexes of leading edge genes that drive the enrichment.
+
+Here we are arranging the tables by normalized enrichment score (NES), positive to negative.
+
+```{r fgsea}
+fgsea <- pfgsea(statsList = stats_list, gmtFiles = gmt_files)
+saveData(fgsea, dir = params$data_dir)
+```
+
+```{r export_csv}
+# Naming system: fgsea_c1_mutant_vs_control.csv
+for (gmt in seq_len(length(fgsea))) {
+    contrasts <- fgsea[[gmt]]
+    for (contrast in seq_len(length(contrasts))) {
+        x <- fgsea[[gmt]][[contrast]]
+        name <- paste(
+            "fgsea",
+            names(fgsea)[[gmt]],
+            names(fgsea[[gmt]])[[contrast]],
+            sep = "_"
+        )
+        file <- file.path(params$output_dir, paste0(name, ".csv"))
+        export(x = x, file = file)
+    }
+}
+```
+
+# Hallmark
+
+First, let's use the *Homo sapiens* Hallmark collection from [MSigDB][]. Hallmark gene sets summarize and represent specific well-defined biological states or processes and display coherent expression. These gene sets were generated by a computational methodology based on identifying overlaps between gene sets in other [MSigDB][] collections and retaining genes that display coordinate expression.
+
+The `fgsea::gmtPathways()` function will take a GMT file from [MSigDB][] and turn it into a list. Each element in the list is a character vector of genes in the pathway.
+
+## Top tables {.tabset}
+
+```{r h_top_tables, results="asis"}
+topTables(fgsea[["h"]])
+```
+
+## Plot GSEA tables {.tabset}
+
+```{r h_plot_gsea_tables, results="asis"}
+plotGSEATables(
+    resultsList = fgsea[["h"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["h"]]
+)
+```
+
+## Plot enrichments {.tabset}
+
+```{r h_plot_enrichments, results="asis"}
+plotEnrichments(
+    resultsList = fgsea[["h"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["h"]]
+)
+```
+
+# C1
+
+## Top tables {.tabset}
+
+```{r c1_top_tables, results="asis"}
+topTables(fgsea[["c1"]])
+```
+
+## Plot GSEA tables {.tabset}
+
+```{r c1_plot_gsea_tables, results="asis"}
+plotGSEATables(
+    resultsList = fgsea[["c1"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c1"]]
+)
+```
+
+## Plot enrichments {.tabset}
+
+```{r c1_plot_enrichments, results="asis"}
+plotEnrichments(
+    resultsList = fgsea[["c1"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c1"]]
+)
+```
+
+# C2
+
+## Top tables {.tabset}
+
+```{r c2_top_tables, results="asis"}
+topTables(fgsea[["c2"]])
+```
+
+## Plot GSEA tables {.tabset}
+
+```{r c2_plot_gsea_tables, results="asis"}
+plotGSEATables(
+    resultsList = fgsea[["c2"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c2"]]
+)
+```
+
+## Plot enrichments {.tabset}
+
+```{r c2_plot_enrichments, results="asis"}
+plotEnrichments(
+    resultsList = fgsea[["c2"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c2"]]
+)
+```
+
+# C3
+
+## Top tables {.tabset}
+
+```{r c3_top_tables, results="asis"}
+topTables(fgsea[["c3"]])
+```
+
+## Plot GSEA tables {.tabset}
+
+```{r c3_plot_gsea_tables, results="asis"}
+plotGSEATables(
+    resultsList = fgsea[["c3"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c3"]]
+)
+```
+
+## Plot enrichments {.tabset}
+
+```{r c3_plot_enrichments, results="asis"}
+plotEnrichments(
+    resultsList = fgsea[["c3"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c3"]]
+)
+```
+
+# C4
+
+## Top tables {.tabset}
+
+```{r c4_top_tables, results="asis"}
+topTables(fgsea[["c4"]])
+```
+
+## Plot GSEA tables {.tabset}
+
+```{r c4_plot_gsea_tables, results="asis"}
+plotGSEATables(
+    resultsList = fgsea[["c4"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c4"]]
+)
+```
+
+## Plot enrichments {.tabset}
+
+```{r c4_plot_enrichments, results="asis"}
+plotEnrichments(
+    resultsList = fgsea[["c4"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c4"]]
+)
+```
+
+# C5
+
+## Top tables {.tabset}
+
+```{r c5_top_tables, results="asis"}
+topTables(fgsea[["c5"]])
+```
+
+## Plot GSEA tables {.tabset}
+
+```{r c5_plot_gsea_tables, results="asis"}
+plotGSEATables(
+    resultsList = fgsea[["c5"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c5"]]
+)
+```
+
+## Plot enrichments {.tabset}
+
+```{r c5_plot_enrichments, results="asis"}
+plotEnrichments(
+    resultsList = fgsea[["c5"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c5"]]
+)
+```
+
+# C6
+
+## Top tables {.tabset}
+
+```{r c6_top_table, results="asis"}
+topTables(fgsea[["c6"]])
+```
+
+## Plot GSEA tables {.tabset}
+
+```{r c6_plot_gsea_tables, results="asis"}
+plotGSEATables(
+    resultsList = fgsea[["c6"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c6"]]
+)
+```
+
+## Plot enrichments {.tabset}
+
+```{r c6_plot_enrichments, results="asis"}
+plotEnrichments(
+    resultsList = fgsea[["c6"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c6"]]
+)
+```
+
+# C7
+
+## Top tables {.tabset}
+
+```{r c7_top_tables, results="asis"}
+topTables(fgsea[["c7"]])
+```
+
+## Plot GSEA tables {.tabset}
+
+```{r c7_plot_gsea_tables, results="asis"}
+plotGSEATables(
+    resultsList = fgsea[["c7"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c7"]]
+)
+```
+
+## Plot enrichments {.tabset}
+
+```{r c7_plot_enrichments, results="asis"}
+plotEnrichments(
+    resultsList = fgsea[["c7"]],
+    statsList = stats_list,
+    gmtFile = gmt_files[["c7"]]
+)
+```
+
+```{r footer, child="_footer.Rmd"}
+```
