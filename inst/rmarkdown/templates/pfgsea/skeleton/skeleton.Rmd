@@ -131,7 +131,7 @@ for (gmt in seq_len(length(fgsea))) {
             sep = "_"
         )
         file <- file.path(params$output_dir, paste0(name, ".csv"))
-        basejump::export(x = x, file = file)
+        export(x = x, file = file)
     }
 }
 ```
