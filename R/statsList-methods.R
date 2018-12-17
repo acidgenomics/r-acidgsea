@@ -1,3 +1,8 @@
+# TODO Work toward returning as `List` instead, so we can stash metadata in the
+# `metadata()` slot. Particularly useful is including the value type here.
+
+
+
 #' Prepare stats list for GSEA
 #'
 #' @name statsList
@@ -56,7 +61,7 @@ statsList.DESeqAnalysis <- function(
                 select(!!!syms(c("geneName", value))) %>%
                 na.omit() %>%
                 distinct() %>%
-                group_by(geneName) %>%
+                group_by(!!sym("geneName")) %>%
                 summarize(!!value := mean(!!value)) %>%
                 arrange(desc(!!value)) %>%
                 deframe()
