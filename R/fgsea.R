@@ -11,6 +11,11 @@ NULL
 
 
 
+# TODO Look for preranked stats warning specifically and suppress this.
+# It's not an informative warning.
+
+
+
 #' @describeIn fgsea
 #'   Returns a `data.frame`/`data.table` of results.
 #' @export
@@ -23,14 +28,16 @@ fgsea <- function(stats, gmtFile) {
     message(paste0("GMT file: ", basename(gmtFile)))
     message(paste("Testing against", length(pathways), "pathways."))
     message(paste("Running using", nperm, "permutations."))
-    do.call(
-        what = fgsea::fgsea,
-        args = matchArgsToDoCall(
-            args = list(
-                stats = stats,
-                pathways = pathways
-            ),
-            removeFormals = "gmtFile"
+    suppressWarnings(
+        do.call(
+            what = fgsea::fgsea,
+            args = matchArgsToDoCall(
+                args = list(
+                    stats = stats,
+                    pathways = pathways
+                ),
+                removeFormals = "gmtFile"
+            )
         )
     )
 }
@@ -43,10 +50,12 @@ formals(fgsea) <- f
 
 
 
+# FIXME Switch to matchArgsToDoCall approach here too, so the formals are clear.
+
 #' @describeIn fgsea
 #'   Parameterized variant. Returns a `list` of results.
 #' @export
-pfgsea <- function(statsList, gmtFiles) {
+pfgsea <- function(statsList, gmtFiles, ...) {
     assert(
         is.list(statsList),
         hasNames(statsList),
@@ -62,12 +71,10 @@ pfgsea <- function(statsList, gmtFiles) {
                     assert(is.numeric(stats))
                     do.call(
                         what = fgsea,
-                        args = matchArgsToDoCall(
-                            args = list(
-                                stats = stats,
-                                gmtFile = gmtFile
-                            ),
-                            removeFormals = c("statsList", "gmtFiles")
+                        args = list(
+                            stats = stats,
+                            gmtFile = gmtFile,
+                            ...
                         )
                     )
                 }
@@ -75,9 +82,3 @@ pfgsea <- function(statsList, gmtFiles) {
         }
     )
 }
-
-f1 <- formals(pfgsea)
-f2 <- formals(fgsea)
-f2 <- f2[setdiff(names(f2), c("stats", "gmtFile"))]
-f <- c(f1, f2)
-formals(pfgsea) <- f
