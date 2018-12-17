@@ -5,9 +5,10 @@
 \alias{pfgsea}
 \title{Fast Gene Set Enrichment Analysis}
 \usage{
-fgsea(stats, gmtFile, ...)
+fgsea(stats, gmtFile, nperm, minSize = 1, maxSize = Inf, nproc = 0,
+  gseaParam = 1, BPPARAM = NULL)
 
-pfgsea(gmtFiles, statsList, ...)
+pfgsea(statsList, gmtFiles, ...)
 }
 \arguments{
 \item{stats}{\code{numeric}.
@@ -18,13 +19,13 @@ standard error correction.}
 \item{gmtFile}{\code{character(1)}.
 MSigDB GMT file path.}
 
-\item{...}{Additional arguments.}
+\item{statsList}{\code{list}.
+Gene stats list.}
 
 \item{gmtFiles}{\code{character}.
 MSigDB GMT file paths.}
 
-\item{statsList}{\code{list}.
-Gene stats list.}
+\item{...}{Additional arguments.}
 }
 \value{
 A table with GSEA results. Each row corresponds to a tested pathway.
