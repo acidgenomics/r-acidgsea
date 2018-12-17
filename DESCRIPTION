@@ -28,7 +28,10 @@ Imports:
     goalie (>= 0.2),
     knitr (>= 1.21),
     magrittr (>= 1.5),
+    methods,
     rlang (>= 0.3),
+    stats,
+    tibble,
     utils
 Suggests:
     BiocStyle,
