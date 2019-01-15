@@ -3,15 +3,15 @@
 #' @name params
 #' @keywords internal
 #'
-#' @param alpha `scalar numeric`.
+#' @param alpha `numeric(1)`.
 #'   Alpha level.
-#' @param gmtFile `string`.
+#' @param gmtFile `character(1)`.
 #'   MSigDB GMT file path.
 #' @param gmtFiles `character`.
 #'   MSigDB GMT file paths.
-#' @param headerLevel `scalar integer`.
+#' @param headerLevel `integer(1)`.
 #'   Markdown header level.
-#' @param n `scalar integer`.
+#' @param n `integer(1)`.
 #'   Number of significant processes to include.
 #'   Bidirectional; will include `n` up- and down-regulated processes.
 #' @param object Object.

@@ -3,7 +3,7 @@
 \name{topTable}
 \alias{topTable}
 \alias{topTables}
-\title{Top Table}
+\title{Top table}
 \usage{
 topTable(results, alpha, n = 10L)
 
@@ -13,24 +13,24 @@ topTables(resultsList, alpha, n = 10L, headerLevel = 3L)
 \item{results}{\code{data.frame}/\code{data.table}.
 Unmodified \code{fgsea::fgsea} return.}
 
-\item{alpha}{\code{scalar numeric}.
+\item{alpha}{\code{numeric(1)}.
 Alpha level.}
 
-\item{n}{\code{scalar integer}.
+\item{n}{\code{integer(1)}.
 Number of significant processes to include.
 Bidirectional; will include \code{n} up- and down-regulated processes.}
 
 \item{resultsList}{\code{list}.
 Results list.}
 
-\item{headerLevel}{\code{scalar integer}.
+\item{headerLevel}{\code{integer(1)}.
 Markdown header level.}
 }
 \value{
 \code{data.frame}.
 }
 \description{
-Top Table
+Top table
 }
 \section{Functions}{
 \itemize{

@@ -3,7 +3,7 @@
 \name{plotGSEATable}
 \alias{plotGSEATable}
 \alias{plotGSEATables}
-\title{Plot GSEA Table}
+\title{Plot GSEA table}
 \usage{
 plotGSEATable(results, stats, gmtFile, alpha, n = 5L)
 
@@ -19,13 +19,13 @@ Gene stats. Test statistic is recommended by default, but shrunken log2
 fold changes are also acceptable. Don't input unshrunken LFC values without
 standard error correction.}
 
-\item{gmtFile}{\code{string}.
+\item{gmtFile}{\code{character(1)}.
 MSigDB GMT file path.}
 
-\item{alpha}{\code{scalar numeric}.
+\item{alpha}{\code{numeric(1)}.
 Alpha level.}
 
-\item{n}{\code{scalar integer}.
+\item{n}{\code{integer(1)}.
 Number of significant processes to include.
 Bidirectional; will include \code{n} up- and down-regulated processes.}
 
@@ -35,14 +35,14 @@ Results list.}
 \item{statsList}{\code{list}.
 Gene stats list.}
 
-\item{headerLevel}{\code{scalar integer}.
+\item{headerLevel}{\code{integer(1)}.
 Markdown header level.}
 }
 \value{
 \code{ggplot}.
 }
 \description{
-Wrapper for \code{fgsea::plotGseaTable}.
+Wrapper for \code{\link[fgsea:plotGseaTable]{fgsea::plotGseaTable()}}.
 }
 \section{Functions}{
 \itemize{

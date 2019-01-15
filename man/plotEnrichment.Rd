@@ -3,7 +3,7 @@
 \name{plotEnrichment}
 \alias{plotEnrichment}
 \alias{plotEnrichments}
-\title{Plot Enrichment}
+\title{Plot enrichment}
 \usage{
 plotEnrichment(pathways, stats, gmtFile, headerLevel = 3L)
 
@@ -19,10 +19,10 @@ Gene stats. Test statistic is recommended by default, but shrunken log2
 fold changes are also acceptable. Don't input unshrunken LFC values without
 standard error correction.}
 
-\item{gmtFile}{\code{string}.
+\item{gmtFile}{\code{character(1)}.
 MSigDB GMT file path.}
 
-\item{headerLevel}{\code{scalar integer}.
+\item{headerLevel}{\code{integer(1)}.
 Markdown header level.}
 
 \item{resultsList}{\code{list}.
@@ -31,10 +31,10 @@ Results list.}
 \item{statsList}{\code{list}.
 Gene stats list.}
 
-\item{alpha}{\code{scalar numeric}.
+\item{alpha}{\code{numeric(1)}.
 Alpha level.}
 
-\item{n}{\code{scalar integer}.
+\item{n}{\code{integer(1)}.
 Number of significant processes to include.
 Bidirectional; will include \code{n} up- and down-regulated processes.}
 }
@@ -42,7 +42,7 @@ Bidirectional; will include \code{n} up- and down-regulated processes.}
 \code{ggplot}.
 }
 \description{
-Wrapper for \code{fgsea::plotEnrichment} that enables easy plotting of multiple
+Wrapper for \code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}} that enables easy plotting of multiple
 pathways of interest in a single call.
 }
 \section{Functions}{
@@ -51,6 +51,6 @@ pathways of interest in a single call.
 for each pathway.
 
 \item \code{plotEnrichments}: Parameterized. Loops across the contrasts and returns an additional
-Markdown header, on top of the \code{plotEnrichment} return per pathway.
+Markdown header, on top of the \code{\link[=plotEnrichment]{plotEnrichment()}} return per pathway.
 }}
 

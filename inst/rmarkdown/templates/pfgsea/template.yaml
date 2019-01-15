@@ -1,0 +1,5 @@
+name: Parameterized Fast GSEA
+description: >
+  Template for gene set enrichment analysis on multiple differential expression
+  contrasts.
+create_dir: false
