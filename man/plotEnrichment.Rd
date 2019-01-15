@@ -3,7 +3,7 @@
 \name{plotEnrichment}
 \alias{plotEnrichment}
 \alias{plotEnrichments}
-\title{Plot Enrichment}
+\title{Plot enrichment}
 \usage{
 plotEnrichment(pathways, stats, gmtFile, headerLevel = 3L)
 
@@ -42,7 +42,7 @@ Bidirectional; will include \code{n} up- and down-regulated processes.}
 \code{ggplot}.
 }
 \description{
-Wrapper for \code{fgsea::plotEnrichment} that enables easy plotting of multiple
+Wrapper for \code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}} that enables easy plotting of multiple
 pathways of interest in a single call.
 }
 \section{Functions}{
@@ -51,6 +51,6 @@ pathways of interest in a single call.
 for each pathway.
 
 \item \code{plotEnrichments}: Parameterized. Loops across the contrasts and returns an additional
-Markdown header, on top of the \code{plotEnrichment} return per pathway.
+Markdown header, on top of the \code{\link[=plotEnrichment]{plotEnrichment()}} return per pathway.
 }}
 

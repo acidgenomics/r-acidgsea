@@ -11,13 +11,25 @@ fgsea(stats, gmtFile, nperm, minSize = 1, maxSize = Inf, nproc = 0,
 pfgsea(statsList, gmtFiles, ...)
 }
 \arguments{
-\item{stats}{\code{numeric}.
-Gene stats. Test statistic is recommended by default, but shrunken log2
-fold changes are also acceptable. Don't input unshrunken LFC values without
-standard error correction.}
+\item{stats}{Named vector of gene-level stats. Names should be the same as in 'pathways'}
 
 \item{gmtFile}{\code{character(1)}.
 MSigDB GMT file path.}
+
+\item{nperm}{Number of permutations to do. Minimial possible nominal p-value is about 1/nperm}
+
+\item{minSize}{Minimal size of a gene set to test. All pathways below the threshold are excluded.}
+
+\item{maxSize}{Maximal size of a gene set to test. All pathways above the threshold are excluded.}
+
+\item{nproc}{If not equal to zero sets BPPARAM to use nproc workers (default = 0).}
+
+\item{gseaParam}{GSEA parameter value, all gene-level statis are raised to the power of `gseaParam`
+before calculation of GSEA enrichment scores.}
+
+\item{BPPARAM}{Parallelization parameter used in bplapply.
+Can be used to specify cluster to run. If not initialized explicitly or
+by setting `nproc` default value `bpparam()` is used.}
 
 \item{statsList}{\code{list}.
 Gene stats list.}
@@ -43,8 +55,8 @@ The columns are the following:
 }
 }
 \description{
-Wrapper for \code{fgsea::fgsea} that loads the pathways automatically from a
-GMT file, rather than requiring a separate call to \code{fgsea::gmtPathways}.
+Wrapper for \code{\link[fgsea:fgsea]{fgsea::fgsea()}} that loads the pathways automatically from a
+GMT file, rather than requiring a separate call to \code{\link[fgsea:gmtPathways]{fgsea::gmtPathways()}}.
 }
 \section{Functions}{
 \itemize{

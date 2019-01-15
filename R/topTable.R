@@ -2,7 +2,7 @@
 
 
 
-#' Top Table
+#' Top table
 #' @name topTable
 #' @inheritParams params
 #' @return `data.frame`.

@@ -3,7 +3,7 @@
 \name{topTable}
 \alias{topTable}
 \alias{topTables}
-\title{Top Table}
+\title{Top table}
 \usage{
 topTable(results, alpha, n = 10L)
 
@@ -30,7 +30,7 @@ Markdown header level.}
 \code{data.frame}.
 }
 \description{
-Top Table
+Top table
 }
 \section{Functions}{
 \itemize{

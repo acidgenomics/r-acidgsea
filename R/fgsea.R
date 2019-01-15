@@ -1,18 +1,12 @@
 #' Fast Gene Set Enrichment Analysis
 #'
-#' Wrapper for `fgsea::fgsea` that loads the pathways automatically from a
-#' GMT file, rather than requiring a separate call to `fgsea::gmtPathways`.
+#' Wrapper for [fgsea::fgsea()] that loads the pathways automatically from a
+#' GMT file, rather than requiring a separate call to [fgsea::gmtPathways()].
 #'
-#' @inherit fgsea::fgsea return
-#
 #' @name fgsea
+#' @inherit fgsea::fgsea params return
 #' @inheritParams params
 NULL
-
-
-
-# FIXME Look for preranked stats warning specifically and suppress this.
-# It's not an informative warning.
 
 
 
@@ -28,6 +22,7 @@ fgsea <- function(stats, gmtFile) {
     message(paste0("GMT file: ", basename(gmtFile)))
     message(paste("Testing against", length(pathways), "pathways."))
     message(paste("Running using", nperm, "permutations."))
+    # Suppressing the preranked stats warning here. It's not informative.
     suppressWarnings(
         do.call(
             what = fgsea::fgsea,
@@ -49,8 +44,6 @@ f <- c(f1, f2)
 formals(fgsea) <- f
 
 
-
-# FIXME Switch to matchArgsToDoCall approach here too, so the formals are clear.
 
 #' @describeIn fgsea
 #'   Parameterized variant. Returns a `list` of results.
