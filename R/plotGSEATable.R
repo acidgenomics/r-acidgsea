@@ -1,6 +1,6 @@
-#' Plot GSEA Table
+#' Plot GSEA table
 #'
-#' Wrapper for `fgsea::plotGseaTable`.
+#' Wrapper for [fgsea::plotGseaTable()].
 #'
 #' @name plotGSEATable
 #' @inheritParams params

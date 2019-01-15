@@ -1,6 +1,6 @@
-#' Plot Enrichment
+#' Plot enrichment
 #'
-#' Wrapper for `fgsea::plotEnrichment` that enables easy plotting of multiple
+#' Wrapper for [fgsea::plotEnrichment()] that enables easy plotting of multiple
 #' pathways of interest in a single call.
 #'
 #' @name plotEnrichment
@@ -46,7 +46,7 @@ plotEnrichment <- function(
 
 #' @describeIn plotEnrichment
 #'   Parameterized. Loops across the contrasts and returns an additional
-#'   Markdown header, on top of the `plotEnrichment` return per pathway.
+#'   Markdown header, on top of the [plotEnrichment()] return per pathway.
 #' @export
 plotEnrichments <- function(
     resultsList,

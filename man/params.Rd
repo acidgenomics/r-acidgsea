@@ -4,19 +4,19 @@
 \alias{params}
 \title{Parameters}
 \arguments{
-\item{alpha}{\code{scalar numeric}.
+\item{alpha}{\code{numeric(1)}.
 Alpha level.}
 
-\item{gmtFile}{\code{string}.
+\item{gmtFile}{\code{character(1)}.
 MSigDB GMT file path.}
 
 \item{gmtFiles}{\code{character}.
 MSigDB GMT file paths.}
 
-\item{headerLevel}{\code{scalar integer}.
+\item{headerLevel}{\code{integer(1)}.
 Markdown header level.}
 
-\item{n}{\code{scalar integer}.
+\item{n}{\code{integer(1)}.
 Number of significant processes to include.
 Bidirectional; will include \code{n} up- and down-regulated processes.}
 
