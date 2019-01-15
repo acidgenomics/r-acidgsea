@@ -1,4 +1,4 @@
-# TODO Work toward returning as `List` instead, so we can stash metadata in the
+# FIXME Work toward returning as `List` instead, so we can stash metadata in the
 # `metadata()` slot. Particularly useful is including the value type here.
 
 
