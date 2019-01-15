@@ -3,7 +3,7 @@
 \name{plotGSEATable}
 \alias{plotGSEATable}
 \alias{plotGSEATables}
-\title{Plot GSEA Table}
+\title{Plot GSEA table}
 \usage{
 plotGSEATable(results, stats, gmtFile, alpha, n = 5L)
 
@@ -42,7 +42,7 @@ Markdown header level.}
 \code{ggplot}.
 }
 \description{
-Wrapper for \code{fgsea::plotGseaTable}.
+Wrapper for \code{\link[fgsea:plotGseaTable]{fgsea::plotGseaTable()}}.
 }
 \section{Functions}{
 \itemize{

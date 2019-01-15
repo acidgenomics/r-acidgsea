@@ -3,8 +3,8 @@ Title: Parameterized Fast GSEA
 Description:
     Perform parameterized gene set enrichment analysis on multiple differential
     expression contrasts.
-Version: 0.0.3
-Date: 2018-12-17
+Version: 0.0.4
+Date: 2019-01-15
 Authors@R:
     person(
         "Michael", "Steinbaugh",
@@ -20,29 +20,20 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 3.5)
 Imports:
-    DESeqAnalysis (>= 0.1.3),
-    basejump (>= 0.9),
-    dplyr (>= 0.7.8),
+    DESeqAnalysis (>= 0.1.5), basejump (>= 0.9.4), goalie (>= 0.2.5),
     fgsea (>= 1.8),
-    ggplot2 (>= 3.1.0),
-    goalie (>= 0.2),
-    knitr (>= 1.21),
-    magrittr (>= 1.5),
-    methods,
-    rlang (>= 0.3),
-    stats,
-    tibble,
-    utils
+    dplyr (>= 0.7.8), ggplot2 (>= 3.1.0), knitr (>= 1.21), magrittr (>= 1.5),
+        rlang (>= 0.3), tibble (>= 2.0),
+    methods, stats, utils
 Suggests:
     BiocStyle,
-    patrick,
-    rmarkdown,
-    testthat (>= 2.0)
+    patrick, rmarkdown, testthat
 Remotes:
-    steinbaugh/DESeqAnalysis@develop,
-    steinbaugh/basejump@develop,
-    steinbaugh/goalie@develop
+    steinbaugh/DESeqAnalysis,
+    steinbaugh/basejump,
+    steinbaugh/goalie
 biocViews:
-    GeneSetEnrichment
+    GeneSetEnrichment,
+    Visualization
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
