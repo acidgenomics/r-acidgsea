@@ -86,7 +86,9 @@ rankedList.DESeqAnalysis <- function(
     names(list) <- names(results)
 
     out <- SimpleList(list)
+    metadata(out)[["version"]] <- .version
     metadata(out)[["value"]] <- value
+    metadata(out)[["gene2symbol"]] <- metadata(gene2symbol)
     new(Class = "RankedList", out)
 }
 
