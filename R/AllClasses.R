@@ -29,3 +29,20 @@ setClass(
         )
     }
 )
+
+
+
+#' Ranked list of genes
+#'
+#' Class containing parameterized ranked gene lists.
+#'
+#' @author Michael Steinbaugh
+#' @export
+#'
+#'
+setClass(
+    Class = "RankedList",
+    contains = "SimpleList",
+    validity = function(object) {
+    }
+)

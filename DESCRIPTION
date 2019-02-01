@@ -20,7 +20,8 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 3.5)
 Imports:
-    DESeqAnalysis (>= 0.1.7), basejump (>= 0.9.7), goalie (>= 0.2.6),
+    DESeqAnalysis (>= 0.1.7), basejump (>= 0.9.7), bioverbs (>= 0.1.5),
+        goalie (>= 0.2.6),
     S4Vectors, fgsea (>= 1.8),
     dplyr (>= 0.7), ggplot2 (>= 3.1), knitr (>= 1.21), magrittr (>= 1.5),
         rlang (>= 0.3), tibble (>= 2.0),
@@ -31,6 +32,7 @@ Suggests:
 Remotes:
     steinbaugh/DESeqAnalysis,
     steinbaugh/basejump,
+    steinbaugh/bioverbs,
     steinbaugh/goalie
 biocViews:
     GeneSetEnrichment,
