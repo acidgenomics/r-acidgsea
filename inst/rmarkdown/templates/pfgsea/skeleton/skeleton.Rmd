@@ -64,7 +64,7 @@ It requires three features:
 Note that [MSigDb][] requires that the identifiers map either to HGNC names (gene symbols) or Entrez IDs. We prefer to map using the gene symbols, but these are not 1:1 for all Ensembl gene IDs (e.g. ENSG00000000003 = TSPAN6). In the event that there are Ensembl gene IDs per HGNC symbol, we're taking the average of the values here.
 
 ```{r stats_list, message=FALSE, warning=FALSE}
-stats_list <- statsList(object)
+stats_list <- statsList(object, value = params$gsea_value)
 lapply(stats_list, summary)
 lapply(stats_list, head)
 saveData(stats_list, dir = params$data_dir)
@@ -89,7 +89,7 @@ names(gmt_files) <- str_extract(
 print(basename(gmt_files))
 ```
 
-# Run GSEA (with fgsea)
+# Run GSEA
 
 This section is a modified version of Stephen Turner's excellent [DESeq results to pathways in 60 Seconds with the fgsea package](https://stephenturner.github.io/deseq-to-fgsea/) vignette. The [fgsea vignette](https://bioconductor.org/packages/release/bioc/vignettes/fgsea/inst/doc/fgsea-tutorial.html) also has additional useful information.
 
@@ -106,26 +106,28 @@ Each row corresponds to a tested pathway. The columns are the following:
 
 Here we are arranging the tables by normalized enrichment score (NES), positive to negative.
 
-```{r fgsea}
-fgsea <- pfgsea(
+```{r gsea}
+gsea <- pfgsea(
     statsList = stats_list,
     gmtFiles = gmt_files,
     nperm = params$n_perm,
     minSize = params$min_size,
     maxSize = params$max_size
 )
-saveData(fgsea, dir = params$data_dir)
+saveData(gsea, dir = params$data_dir)
 ```
 
 ```{r export_csv}
+# FIXME Convert to S4 and add `export()` method support here.
+
 # Naming system: fgsea_c1_mutant_vs_control.csv
-for (gmt in seq_len(length(fgsea))) {
-    contrasts <- fgsea[[gmt]]
+for (gmt in seq_len(length(gsea))) {
+    contrasts <- gsea[[gmt]]
     for (contrast in seq_len(length(contrasts))) {
-        x <- fgsea[[gmt]][[contrast]]
+        x <- gsea[[gmt]][[contrast]]
         name <- paste(
-            "fgsea",
-            names(fgsea)[[gmt]],
+            "gsea",
+            names(gsea)[[gmt]],
             names(fgsea[[gmt]])[[contrast]],
             sep = "_"
         )
@@ -145,7 +147,7 @@ The `fgsea::gmtPathways()` function will take a GMT file from [MSigDB][] and tur
 
 ```{r h_top_tables, results="asis"}
 topTables(
-    resultsList = fgsea[["h"]],
+    resultsList = gsea[["h"]],
     alpha = params$alpha
 )
 ```
@@ -154,7 +156,7 @@ topTables(
 
 ```{r h_plot_gsea_tables, results="asis"}
 plotGSEATables(
-    resultsList = fgsea[["h"]],
+    resultsList = gsea[["h"]],
     statsList = stats_list,
     gmtFile = gmt_files[["h"]],
     alpha = params$alpha
@@ -165,7 +167,7 @@ plotGSEATables(
 
 ```{r h_plot_enrichments, results="asis"}
 plotEnrichments(
-    resultsList = fgsea[["h"]],
+    resultsList = gsea[["h"]],
     statsList = stats_list,
     gmtFile = gmt_files[["h"]],
     alpha = params$alpha
@@ -178,7 +180,7 @@ plotEnrichments(
 
 ```{r c1_top_tables, results="asis"}
 topTables(
-    resultsList = fgsea[["c1"]],
+    resultsList = gsea[["c1"]],
     alpha = params$alpha
 )
 ```
@@ -187,7 +189,7 @@ topTables(
 
 ```{r c1_plot_gsea_tables, results="asis"}
 plotGSEATables(
-    resultsList = fgsea[["c1"]],
+    resultsList = gsea[["c1"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c1"]],
     alpha = params$alpha
@@ -198,7 +200,7 @@ plotGSEATables(
 
 ```{r c1_plot_enrichments, results="asis"}
 plotEnrichments(
-    resultsList = fgsea[["c1"]],
+    resultsList = gsea[["c1"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c1"]],
     alpha = params$alpha
@@ -211,7 +213,7 @@ plotEnrichments(
 
 ```{r c2_top_tables, results="asis"}
 topTables(
-    resultsList = fgsea[["c2"]],
+    resultsList = gsea[["c2"]],
     alpha = params$alpha
 )
 ```
@@ -220,7 +222,7 @@ topTables(
 
 ```{r c2_plot_gsea_tables, results="asis"}
 plotGSEATables(
-    resultsList = fgsea[["c2"]],
+    resultsList = gsea[["c2"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c2"]],
     alpha = params$alpha
@@ -231,7 +233,7 @@ plotGSEATables(
 
 ```{r c2_plot_enrichments, results="asis"}
 plotEnrichments(
-    resultsList = fgsea[["c2"]],
+    resultsList = gsea[["c2"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c2"]],
     alpha = params$alpha
@@ -244,7 +246,7 @@ plotEnrichments(
 
 ```{r c3_top_tables, results="asis"}
 topTables(
-    resultsList = fgsea[["c3"]],
+    resultsList = gsea[["c3"]],
     alpha = params$alpha
 )
 ```
@@ -253,7 +255,7 @@ topTables(
 
 ```{r c3_plot_gsea_tables, results="asis"}
 plotGSEATables(
-    resultsList = fgsea[["c3"]],
+    resultsList = gsea[["c3"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c3"]],
     alpha = params$alpha
@@ -264,7 +266,7 @@ plotGSEATables(
 
 ```{r c3_plot_enrichments, results="asis"}
 plotEnrichments(
-    resultsList = fgsea[["c3"]],
+    resultsList = gsea[["c3"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c3"]],
     alpha = params$alpha
@@ -277,7 +279,7 @@ plotEnrichments(
 
 ```{r c4_top_tables, results="asis"}
 topTables(
-    resultsList = fgsea[["c4"]],
+    resultsList = gsea[["c4"]],
     alpha = params$alpha
 )
 ```
@@ -286,7 +288,7 @@ topTables(
 
 ```{r c4_plot_gsea_tables, results="asis"}
 plotGSEATables(
-    resultsList = fgsea[["c4"]],
+    resultsList = gsea[["c4"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c4"]],
     alpha = params$alpha
@@ -297,7 +299,7 @@ plotGSEATables(
 
 ```{r c4_plot_enrichments, results="asis"}
 plotEnrichments(
-    resultsList = fgsea[["c4"]],
+    resultsList = gsea[["c4"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c4"]],
     alpha = params$alpha
@@ -310,7 +312,7 @@ plotEnrichments(
 
 ```{r c5_top_tables, results="asis"}
 topTables(
-    resultsList = fgsea[["c5"]],
+    resultsList = gsea[["c5"]],
     alpha = params$alpha
 )
 ```
@@ -319,7 +321,7 @@ topTables(
 
 ```{r c5_plot_gsea_tables, results="asis"}
 plotGSEATables(
-    resultsList = fgsea[["c5"]],
+    resultsList = gsea[["c5"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c5"]],
     alpha = params$alpha
@@ -330,7 +332,7 @@ plotGSEATables(
 
 ```{r c5_plot_enrichments, results="asis"}
 plotEnrichments(
-    resultsList = fgsea[["c5"]],
+    resultsList = gsea[["c5"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c5"]],
     alpha = params$alpha
@@ -343,7 +345,7 @@ plotEnrichments(
 
 ```{r c6_top_table, results="asis"}
 topTables(
-    resultsList = fgsea[["c6"]],
+    resultsList = gsea[["c6"]],
     alpha = params$alpha
 )
 ```
@@ -352,7 +354,7 @@ topTables(
 
 ```{r c6_plot_gsea_tables, results="asis"}
 plotGSEATables(
-    resultsList = fgsea[["c6"]],
+    resultsList = gsea[["c6"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c6"]],
     alpha = params$alpha
@@ -363,7 +365,7 @@ plotGSEATables(
 
 ```{r c6_plot_enrichments, results="asis"}
 plotEnrichments(
-    resultsList = fgsea[["c6"]],
+    resultsList = gsea[["c6"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c6"]],
     alpha = params$alpha
@@ -376,7 +378,7 @@ plotEnrichments(
 
 ```{r c7_top_tables, results="asis"}
 topTables(
-    resultsList = fgsea[["c7"]],
+    resultsList = gsea[["c7"]],
     alpha = params$alpha
 )
 ```
@@ -385,7 +387,7 @@ topTables(
 
 ```{r c7_plot_gsea_tables, results="asis"}
 plotGSEATables(
-    resultsList = fgsea[["c7"]],
+    resultsList = gsea[["c7"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c7"]],
     alpha = params$alpha
@@ -396,7 +398,7 @@ plotGSEATables(
 
 ```{r c7_plot_enrichments, results="asis"}
 plotEnrichments(
-    resultsList = fgsea[["c7"]],
+    resultsList = gsea[["c7"]],
     statsList = stats_list,
     gmtFile = gmt_files[["c7"]],
     alpha = params$alpha
