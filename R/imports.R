@@ -3,6 +3,7 @@
 #' @importFrom S4Vectors SimpleList
 #' @importFrom basejump Gene2Symbol as_tibble markdownHeader matchArgsToDoCall
 #'   theme_paperwhite
+#' @importFrom bioverbs rankedList
 #' @importFrom dplyr arrange desc distinct filter group_by left_join select
 #'   summarize
 #' @importFrom fgsea fgsea gmtPathways plotEnrichment plotGseaTable
