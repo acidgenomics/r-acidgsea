@@ -1,0 +1,68 @@
+#' Parameterized fast gene set enrichment analysis (GSEA)
+#'
+#' Extends the functionality of [fgsea::fgsea()].
+#'
+#' @export
+#'
+#' @param rankedList `RankedList`.
+#'   Ranked gene list.
+#' @param gmtFiles `character`.
+#'   GMT file paths.
+#' @param nPerm `integer(1)`.
+#'   Number of permutations.
+#'   Minimial possible nominal *P* value is about 1/`nPerm`.
+#' @param minSize `integer(1)`.
+#'   Minimal size of a gene set to test.
+#'   All pathways below the threshold are excluded.
+#' @param maxSize `integer(1)`/`Inf`.
+#'   Maximal size of a gene set to test.
+#'   All pathways above the threshold are excluded.
+#' @param bpparam BiocParallel parallelization parameter.
+pfgsea <- function(
+    rankedList,
+    gmtFiles,
+    nPerm = 1000L,
+    minSize = 1L,
+    maxSize = Inf,
+    bpparam = BiocParallel::bpparam()
+) {
+    assert(
+        is(rankedList, "RankedList"),
+        all(isFile(gmtFiles)),
+        hasNames(gmtFiles),
+        isInt(nPerm)
+    )
+    validObject(rankedList)
+    list <- lapply(
+        X = gmtFiles,
+        FUN = function(gmtFile) {
+            lapply(
+                X = as.list(rankedList),
+                FUN = function(stats) {
+                    pathways <- gmtPathways(gmt.file = gmtFile)
+                    message(paste0(
+                        "GMT file: ", basename(gmtFile), "\n",
+                        "Testing against ", length(pathways), " pathways.\n",
+                        "Running using ", nPerm, " permutations."
+                    ))
+                    suppressWarnings(
+                        data <- fgsea::fgsea(
+                            pathways = pathways,
+                            stats = stats,
+                            nperm = nPerm,
+                            minSize = minSize,
+                            maxSize = maxSize,
+                            BPPARAM = bpparam
+                        )
+                    )
+                    assert(is(data, "data.table"))
+                    data
+                }
+            )
+        }
+    )
+    out <- SimpleList(list)
+    metadata(out)[["version"]] <- .version
+    metadata(out)[["gmtFiles"]] <- gmtFiles
+    new(Class = "FGSEAList", out)
+}
