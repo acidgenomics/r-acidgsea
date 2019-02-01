@@ -65,7 +65,7 @@ rankedList.DESeqAnalysis <- function(
     )
 
     # Get parameterized GSEA list values for each DESeqResults contrast.
-    value <- sym(value)
+    quovalue <- sym(value)
     list <- lapply(
         X = results,
         FUN = function(data) {
@@ -74,17 +74,20 @@ rankedList.DESeqAnalysis <- function(
                 y = as_tibble(gene2symbol, rownames = "rowname"),
                 by = "rowname"
             ) %>%
-                select(!!!syms(c("geneName", value))) %>%
+                select(!!!syms(c("geneName", quovalue))) %>%
                 na.omit() %>%
                 distinct() %>%
                 group_by(!!sym("geneName")) %>%
-                summarize(!!value := mean(!!value)) %>%
-                arrange(desc(!!value)) %>%
+                summarize(!!quovalue := mean(!!quovalue)) %>%
+                arrange(desc(!!quovalue)) %>%
                 deframe()
         }
     )
     names(list) <- names(results)
-    new(Class = "RankedList", SimpleList(list))
+
+    out <- SimpleList(list)
+    metadata(out)[["value"]] <- value
+    new(Class = "RankedList", out)
 }
 
 

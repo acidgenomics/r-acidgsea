@@ -38,11 +38,20 @@ setClass(
 #'
 #' @author Michael Steinbaugh
 #' @export
-#'
-#'
 setClass(
     Class = "RankedList",
     contains = "SimpleList",
     validity = function(object) {
+        vec <- object[[1L]]
+        validate(
+            is.numeric(vec),
+            # Check that this is sorted from high to low.
+            identical(vec, sort(vec, decreasing = TRUE)),
+            # Check that we have value type stashed in metadata.
+            isSubset(
+                x = metadata(object)[["value"]],
+                y = eval(formals(rankedList.DESeqAnalysis)[["value"]])
+            )
+        )
     }
 )
