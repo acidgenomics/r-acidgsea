@@ -1,5 +1,12 @@
 #' Prepare stats list for GSEA
 #'
+#' Return a stats list for each gene symbol.
+#'
+#' @section Gene symbol multi-mapping:
+#'
+#' Multiple gene IDs can map to a gene symbol (e.g. *Homo sapiens* HGNC names).
+#' In this event, we're averaging the stat values using `mean()` internally.
+#'
 #' @name statsList
 #' @inheritParams params
 #'
@@ -27,21 +34,21 @@ statsList.DESeqAnalysis <- function(
     dds <- as(object, "DESeqDataSet")
 
     # Extract the DESeqResults list.
-    # Using shrunken LFC with `lfcShrink()` applied.
-    results <- object@lfcShrink
-    stopifnot(is(results, "list"))
-    invisible(lapply(
-        X = results,
-        FUN = function(x) {
-            assert(
-                is(x, "DESeqResults"),
-                identical(rownames(dds), rownames(x))
-            )
-        }
-    ))
+    if (value == "log2FoldChange") {
+        # Note that we're requiring shrunken LFCs if the user wants to return
+        # those values instead of using Wald test statistic.
+        results <- object@lfcShrink
+    } else {
+        results <- object@results
+    }
+    assert(is(results, "list"))
 
-    # Note that we're averaging the value per gene symbol here.
-    gene2symbol <- Gene2Symbol(dds, format = "long")
+    # Get the gene-to-symbol mappings in long format.
+    # We're returning in long format so we can average the values for each
+    # gene symbol, since for some genomes gene IDs multi-map to symbols.
+    suppressMessages(
+        gene2symbol <- Gene2Symbol(dds, format = "long")
+    )
 
     # Get parameterized GSEA list values for each DESeqResults contrast.
     value <- sym(value)

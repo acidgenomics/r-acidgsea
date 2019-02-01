@@ -23,8 +23,15 @@ change (\code{"log2FoldChange"}) or BH-adjusted \emph{P} values ("padj") are als
 acceptible.}
 }
 \description{
-Prepare stats list for GSEA
+Return a stats list for each gene symbol.
 }
+\section{Gene symbol multi-mapping}{
+
+
+Multiple gene IDs can map to a gene symbol (e.g. \emph{Homo sapiens} HGNC names).
+In this event, we're averaging the stat values using \code{mean()} internally.
+}
+
 \examples{
 ## x <- statsList(object)
 ## names(x)
