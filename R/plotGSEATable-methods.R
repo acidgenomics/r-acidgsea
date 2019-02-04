@@ -25,7 +25,7 @@ plotGSEATable.FGSEAList <- function(
         isHeaderLevel(headerLevel)
     )
     data <- object[[geneSet]]
-    stats <- rankedList(object)
+    stats <- RankedList(object)
     gmtFile <- metadata(object)[["gmtFiles"]][[geneSet]]
     assert(
         identical(names(data), names(stats)),
