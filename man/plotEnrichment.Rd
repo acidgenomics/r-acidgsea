@@ -9,7 +9,7 @@
 plotEnrichment(object, ...)
 
 \S4method{plotEnrichment}{FGSEAList}(object, geneSet, alpha = 0.05,
-  n = 5L, headerLevel = 2L)
+  n = 5L, headerLevel = 2L, theme = basejump::theme_paperwhite())
 }
 \arguments{
 \item{object}{Object.}
@@ -33,8 +33,7 @@ Markdown header level.}
 \code{ggplot}.
 }
 \description{
-Wrapper for \code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}} that enables easy plotting of multiple
-pathways of interest in a single call.
+Plot enrichment
 }
 \seealso{
 \code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}}.

@@ -33,8 +33,7 @@ Markdown header level.}
 \code{ggplot}.
 }
 \description{
-Wrapper for \code{\link[fgsea:plotGseaTable]{fgsea::plotGseaTable()}} that enables easy plotting of multiple
-pathways of interest in a single call.
+Plot GSEA table
 }
 \seealso{
 \code{\link[fgsea:plotGseaTable]{fgsea::plotGseaTable()}}.
