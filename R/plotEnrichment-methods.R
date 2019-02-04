@@ -1,8 +1,5 @@
 #' Plot enrichment
 #'
-#' Wrapper for [fgsea::plotEnrichment()] that enables easy plotting of multiple
-#' pathways of interest in a single call.
-#'
 #' @name plotEnrichment
 #' @inheritParams params
 #' @return `ggplot`.
@@ -17,7 +14,8 @@ plotEnrichment.FGSEAList <- function(
     geneSet,
     alpha = 0.05,
     n = 5L,
-    headerLevel = 2L
+    headerLevel = 2L,
+    theme = basejump::theme_paperwhite()
 ) {
     validObject(object)
     assert(
@@ -50,24 +48,15 @@ plotEnrichment.FGSEAList <- function(
                 tabset = TRUE,
                 asis = TRUE
             )
-            data <- .filterResults(data, alpha = alpha)
 
             # Here we're getting the gene set vector for each pathway from the
             # GMT file. Then we're matching against the significant pathways
             # from our FGSEA analysis.
-            pathways <- unique(c(
-                head(data[["pathway"]], n = n),
-                tail(data[["pathway"]], n = n)
-            ))
-            # If nothing is significant, early return without plotting.
+            pathways <- .headtail(data, alpha = alpha, n = n)
             if (!hasLength(pathways)) {
-                message("No significant pathways.")
-                return(NULL)
+                return(invisible())
             }
-            gmtPathways <- gmtPathways(gmt.file = gmtFile)
-            assert(isSubset(pathways, names(gmtPathways)))
-            pathways <- gmtPathways[pathways]
-            assert(is.list(pathways))
+            pathways <- gmtPathways(gmt.file = gmtFile)[pathways]
 
             # Using an `mapply()` call here so we can pass the pathway names
             # in easily into the `markdownHeader()` call.
@@ -87,17 +76,13 @@ plotEnrichment.FGSEAList <- function(
                     contrast
                 ) {
                     markdownHeader(name, level = headerLevel, asis = TRUE)
-                    p <- fgsea::plotEnrichment(
-                        pathway = pathway,
-                        stats = stats
-                    )
-                    # Consider making these plot settings user definable.
-                    p <- p +
-                        labs(
-                            title = name,
-                            subtitle = contrast
-                        ) +
-                        theme_paperwhite()
+                    p <- fgsea::plotEnrichment(pathway = pathway, stats = stats)
+                    p <- p + labs(title = name, subtitle = contrast)
+                    # fgsea sets a theme that is too hard to read.
+                    if (isAll(theme, c("theme", "gg"))) {
+                        p <- p + theme
+                    }
+                    # Note that we need the `print()` call here for looping.
                     print(p)
                 }
             )
