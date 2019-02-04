@@ -7,7 +7,7 @@
 #' Multiple gene IDs can map to a gene symbol (e.g. *Homo sapiens* HGNC names).
 #' In this event, we're averaging the stat values using `mean()` internally.
 #'
-#' @name rankedList
+#' @name RankedList
 #' @inheritParams params
 #'
 #' @param value `character(1)`.
@@ -19,25 +19,13 @@
 #' @return `RankedList`.
 #'
 #' @examples
-#' ## x <- rankedList(object)
+#' ## x <- RankedList(object)
 #' ## names(x)
 NULL
 
 
 
-#' @importFrom bioverbs rankedList
-#' @aliases NULL
-#' @export
-NULL
-
-#' @rdname rankedList
-#' @usage NULL
-#' @export
-RankedList <- rankedList
-
-
-
-rankedList.DESeqAnalysis <- function(
+RankedList.DESeqAnalysis <- function(
     object,
     value = c("stat", "log2FoldChange", "padj")
 ) {
@@ -94,27 +82,27 @@ rankedList.DESeqAnalysis <- function(
 
 
 
-#' @rdname rankedList
+#' @rdname RankedList
 #' @export
 setMethod(
-    f = "rankedList",
+    f = "RankedList",
     signature = signature("DESeqAnalysis"),
-    definition = rankedList.DESeqAnalysis
+    definition = RankedList.DESeqAnalysis
 )
 
 
 
-rankedList.FGSEAList <- function(object) {
+RankedList.FGSEAList <- function(object) {
     validObject(object)
     metadata(object)[["rankedList"]]
 }
 
 
 
-#' @rdname rankedList
+#' @rdname RankedList
 #' @export
 setMethod(
-    f = "rankedList",
+    f = "RankedList",
     signature = signature("FGSEAList"),
-    definition = rankedList.FGSEAList
+    definition = RankedList.FGSEAList
 )
