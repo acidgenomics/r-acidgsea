@@ -36,18 +36,19 @@ plotEnrichment.FGSEAList <- function(
         name = names(data),
         data = data,
         stats = stats,
-        MoreArgs = list(gmtFile = gmtFile, n = n),
-        FUN = function(name, data, stats, gmtFile, n) {
+        MoreArgs = list(
+            gmtFile = gmtFile,
+            n = n,
+            alpha = alpha
+        ),
+        FUN = function(name, data, stats, gmtFile, n, alpha) {
             markdownHeader(
                 text = name,
                 level = headerLevel,
                 tabset = TRUE,
                 asis = TRUE
             )
-            data <- data %>%
-                as_tibble() %>%
-                filter(!!sym("padj") < !!alpha) %>%
-                arrange(desc(!!sym("NES")), !!sym("padj"))
+            data <- .filterResults(data, alpha = alpha)
 
             # Here we're getting the gene set vector for each pathway from the
             # GMT file. Then we're matching against the significant pathways
