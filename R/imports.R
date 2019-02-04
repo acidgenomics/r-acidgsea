@@ -9,8 +9,8 @@
 #' @importFrom basejump Gene2Symbol as_tibble export initDir markdownHeader
 #'   matchArgsToDoCall standardizeCall theme_paperwhite
 #' @importFrom bioverbs rankedList
-#' @importFrom dplyr arrange desc distinct filter group_by left_join select
-#'   summarize
+#' @importFrom dplyr arrange desc distinct everything filter group_by left_join
+#'   select summarise
 #' @importFrom fgsea fgsea gmtPathways plotGseaTable
 #' @importFrom ggplot2 labs
 #' @importFrom goalie assert hasNames hasLength isAFile isAlpha isCharacter
