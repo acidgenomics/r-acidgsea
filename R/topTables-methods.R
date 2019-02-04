@@ -38,16 +38,17 @@ topTables.FGSEAList <- function(
     invisible(mapply(
         header = names(data),
         data = data,
-        FUN = function(header, data) {
+        MoreArgs = list(
+            alpha = alpha,
+            n = n,
+            headerLevel = headerLevel
+        ),
+        FUN = function(header, data, alpha, n, headerLevel) {
             markdownHeader(text = header, level = headerLevel, asis = TRUE)
-            data <- data %>%
-                as_tibble() %>%
+            data <- .filterResults(data, alpha = alpha) %>%
                 # Drop the nested list columns (e.g. leadingEdge, nMoreExtreme).
                 select_if(is.atomic) %>%
-                # Filter and arrange by desired significance.
-                filter(!!sym("padj") < !!alpha) %>%
-                arrange(desc(!!sym("NES")), !!sym("padj")) %>%
-                # Drop uninformative columns.
+                # Drop additional uninformative columns.
                 # Note: dplyr `-UQS` approach doesn't work for SE drops.
                 select(!!!syms(
                     setdiff(colnames(.), c("ES", "nMoreExtreme", "pval"))
