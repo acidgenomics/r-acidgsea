@@ -24,6 +24,6 @@ plotGSEATables <- function(...) {
 #' @rdname deprecated
 #' @export
 statsList <- function(...) {
-    .Deprecated("rankedList")
-    rankedList(...)
+    .Deprecated("RankedList")
+    RankedList(...)
 }
