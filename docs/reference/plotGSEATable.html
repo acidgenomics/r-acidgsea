@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot GSEA Table — plotGSEATable • pfgsea</title>
+<title>Plot GSEA table — plotGSEATable • pfgsea</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plot GSEA Table — plotGSEATable" />
+<meta property="og:title" content="Plot GSEA table — plotGSEATable" />
 
-<meta property="og:description" content="Wrapper for fgsea::plotGseaTable." />
+<meta property="og:description" content="Plot GSEA table" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
       </span>
     </div>
 
@@ -79,6 +79,9 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -101,66 +104,53 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot GSEA Table</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pfgsea/blob/master/R/plotGSEATable.R'><code>R/plotGSEATable.R</code></a></small>
+    <h1>Plot GSEA table</h1>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pfgsea/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh/pfgsea/blob/master/R/plotGSEATable-methods.R'><code>R/plotGSEATable-methods.R</code></a></small>
     <div class="hidden name"><code>plotGSEATable.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Wrapper for <code><a href='https://www.rdocumentation.org/packages/fgsea/topics/plotGseaTable'>fgsea::plotGseaTable</a></code>.</p>
+    <p>Plot GSEA table</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plotGSEATable</span>(<span class='no'>results</span>, <span class='no'>stats</span>, <span class='no'>gmtFile</span>, <span class='no'>alpha</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5L</span>)
+    <pre class="usage"><span class='fu'>plotGSEATable</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-<span class='fu'>plotGSEATables</span>(<span class='no'>resultsList</span>, <span class='no'>statsList</span>, <span class='no'>gmtFile</span>, <span class='no'>alpha</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5L</span>,
-  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>3L</span>)</pre>
+<span class='co'># S4 method for FGSEAList</span>
+<span class='fu'>plotGSEATable</span>(<span class='no'>object</span>, <span class='no'>geneSet</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5L</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>results</th>
-      <td><p><code>data.frame</code>/<code>data.table</code>.
-Unmodified <code><a href='https://www.rdocumentation.org/packages/fgsea/topics/fgsea'>fgsea::fgsea</a></code> return.</p></td>
+      <th>object</th>
+      <td><p>Object.</p></td>
     </tr>
     <tr>
-      <th>stats</th>
-      <td><p><code>numeric</code>.
-Gene stats. Test statistic is recommended by default, but shrunken log2
-fold changes are also acceptable. Don't input unshrunken LFC values without
-standard error correction.</p></td>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     <tr>
-      <th>gmtFile</th>
-      <td><p><code>string</code>.
-MSigDB GMT file path.</p></td>
+      <th>geneSet</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
+Gene set name. Can obtain using <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names()</a></code> on <code>FGSEAList</code> object.</p></td>
     </tr>
     <tr>
       <th>alpha</th>
-      <td><p><code>scalar numeric</code>.
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric(1)</a></code>.
 Alpha level.</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p><code>scalar integer</code>.
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
 Number of significant processes to include.
 Bidirectional; will include <code>n</code> up- and down-regulated processes.</p></td>
     </tr>
     <tr>
-      <th>resultsList</th>
-      <td><p><code>list</code>.
-Results list.</p></td>
-    </tr>
-    <tr>
-      <th>statsList</th>
-      <td><p><code>list</code>.
-Gene stats list.</p></td>
-    </tr>
-    <tr>
       <th>headerLevel</th>
-      <td><p><code>scalar integer</code>.
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
 Markdown header level.</p></td>
     </tr>
     </table>
@@ -169,13 +159,9 @@ Markdown header level.</p></td>
 
     <p><code>ggplot</code>.</p>
     
-    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <ul>
-<li><p><code>plotGSEATable</code>: Plot a table of the top up- and down-regulated processes in the results
-returned from <code>fgsea</code>.</p></li>
-<li><p><code>plotGSEATables</code>: Parameterized. Loops across the result contrasts and adds Markdown header.</p></li>
-</ul>
+    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/fgsea/topics/plotGseaTable'>fgsea::plotGseaTable()</a></code>.</p></div>
     
 
   </div>
@@ -186,7 +172,7 @@ returned from <code>fgsea</code>.</p></li>
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#functions">Functions</a></li>
+      <li><a href="#see-also">See also</a></li>
           </ul>
 
   </div>

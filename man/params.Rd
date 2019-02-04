@@ -7,6 +7,9 @@
 \item{alpha}{\code{numeric(1)}.
 Alpha level.}
 
+\item{geneSet}{\code{character(1)}.
+Gene set name. Can obtain using \code{names()} on \code{FGSEAList} object.}
+
 \item{gmtFile}{\code{character(1)}.
 MSigDB GMT file path.}
 
@@ -41,6 +44,9 @@ Gene stats list.}
 
 \item{statsList}{\code{list}.
 Gene stats list.}
+
+\item{theme}{\code{theme}/\code{gg}.
+ggplot2 theme.}
 
 \item{...}{Additional arguments.}
 }

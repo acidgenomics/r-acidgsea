@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parameters — params • pfgsea</title>
+<title>Fast GSEA list — FGSEAList-class • pfgsea</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Parameters — params" />
+<meta property="og:title" content="Fast GSEA list — FGSEAList-class" />
 
-<meta property="og:description" content="Parameters" />
+<meta property="og:description" content="Class containing parameterized fast GSEA results." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -104,107 +104,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parameters</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pfgsea/blob/master/R/params.R'><code>R/params.R</code></a></small>
-    <div class="hidden name"><code>params.Rd</code></div>
+    <h1>Fast GSEA list</h1>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pfgsea/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a></small>
+    <div class="hidden name"><code>FGSEAList-class.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Parameters</p>
+    <p>Class containing parameterized fast GSEA results.</p>
     
     </div>
 
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>alpha</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric(1)</a></code>.
-Alpha level.</p></td>
-    </tr>
-    <tr>
-      <th>geneSet</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
-Gene set name. Can obtain using <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names()</a></code> on <code>FGSEAList</code> object.</p></td>
-    </tr>
-    <tr>
-      <th>gmtFile</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
-MSigDB GMT file path.</p></td>
-    </tr>
-    <tr>
-      <th>gmtFiles</th>
-      <td><p><code>character</code>.
-MSigDB GMT file paths.</p></td>
-    </tr>
-    <tr>
-      <th>headerLevel</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
-Markdown header level.</p></td>
-    </tr>
-    <tr>
-      <th>n</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
-Number of significant processes to include.
-Bidirectional; will include <code>n</code> up- and down-regulated processes.</p></td>
-    </tr>
-    <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
-    </tr>
-    <tr>
-      <th>pathways</th>
-      <td><p><code>character</code>.
-Pathways.</p></td>
-    </tr>
-    <tr>
-      <th>results</th>
-      <td><p><code>data.frame</code>/<code>data.table</code>.
-Unmodified <code><a href='https://www.rdocumentation.org/packages/fgsea/topics/fgsea'>fgsea::fgsea</a></code> return.</p></td>
-    </tr>
-    <tr>
-      <th>resultsList</th>
-      <td><p><code>list</code>.
-Results list.</p></td>
-    </tr>
-    <tr>
-      <th>stats</th>
-      <td><p><code>numeric</code>.
-Gene stats. Test statistic is recommended by default, but shrunken log2
-fold changes are also acceptable. Don't input unshrunken LFC values without
-standard error correction.</p></td>
-    </tr>
-    <tr>
-      <th>statsList</th>
-      <td><p><code>list</code>.
-Gene stats list.</p></td>
-    </tr>
-    <tr>
-      <th>statsList</th>
-      <td><p><code>list</code>.
-Gene stats list.</p></td>
-    </tr>
-    <tr>
-      <th>theme</th>
-      <td><p><code>theme</code>/<code>gg</code>.
-ggplot2 theme.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
-    </table>
+        
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='pfgsea.html'>pfgsea()</a></code>.</p></div>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#see-also">See also</a></li>
+          </ul>
 
+    <h2>Author</h2>
+    <p>Michael Steinbaugh</p>
   </div>
 </div>
 
