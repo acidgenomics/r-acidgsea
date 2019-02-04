@@ -34,10 +34,10 @@ topTables.FGSEAList <- function(
         isInt(n),
         isHeaderLevel(headerLevel)
     )
-    results <- object[[geneSet]]
+    data <- object[[geneSet]]
     invisible(mapply(
-        header = names(results),
-        data = results,
+        header = names(data),
+        data = data,
         FUN = function(header, data) {
             markdownHeader(text = header, level = headerLevel, asis = TRUE)
             data <- data %>%
