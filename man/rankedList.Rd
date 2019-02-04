@@ -5,10 +5,13 @@
 \alias{rankedList}
 \alias{RankedList}
 \alias{rankedList,DESeqAnalysis-method}
+\alias{rankedList,FGSEAList-method}
 \title{Prepare a ranked gene (stats) list for GSEA}
 \usage{
 \S4method{rankedList}{DESeqAnalysis}(object, value = c("stat",
   "log2FoldChange", "padj"))
+
+\S4method{rankedList}{FGSEAList}(object)
 }
 \arguments{
 \item{object}{Object.}
