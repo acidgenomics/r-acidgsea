@@ -1,13 +1,13 @@
-#' Prepare stats list for GSEA
+#' Prepare a ranked gene (stats) list for GSEA
 #'
-#' Return a stats list for each gene symbol.
+#' Return a parameterized ranked list for each differential expression contrast.
 #'
 #' @section Gene symbol multi-mapping:
 #'
 #' Multiple gene IDs can map to a gene symbol (e.g. *Homo sapiens* HGNC names).
 #' In this event, we're averaging the stat values using `mean()` internally.
 #'
-#' @name statsList
+#' @name rankedList
 #' @inheritParams params
 #'
 #' @param value `character(1)`.
@@ -16,14 +16,28 @@
 #'   change (`"log2FoldChange"`) or BH-adjusted *P* values ("padj") are also
 #'   acceptible.
 #'
+#' @return `RankedList`.
+#'
 #' @examples
-#' ## x <- statsList(object)
+#' ## x <- rankedList(object)
 #' ## names(x)
 NULL
 
 
 
-statsList.DESeqAnalysis <- function(
+#' @importFrom bioverbs rankedList
+#' @aliases NULL
+#' @export
+NULL
+
+#' @rdname rankedList
+#' @usage NULL
+#' @export
+RankedList <- rankedList
+
+
+
+rankedList.DESeqAnalysis <- function(
     object,
     value = c("stat", "log2FoldChange", "padj")
 ) {
@@ -51,8 +65,8 @@ statsList.DESeqAnalysis <- function(
     )
 
     # Get parameterized GSEA list values for each DESeqResults contrast.
-    value <- sym(value)
-    out <- lapply(
+    quovalue <- sym(value)
+    list <- lapply(
         X = results,
         FUN = function(data) {
             left_join(
@@ -60,25 +74,47 @@ statsList.DESeqAnalysis <- function(
                 y = as_tibble(gene2symbol, rownames = "rowname"),
                 by = "rowname"
             ) %>%
-                select(!!!syms(c("geneName", value))) %>%
+                select(!!!syms(c("geneName", quovalue))) %>%
                 na.omit() %>%
                 distinct() %>%
                 group_by(!!sym("geneName")) %>%
-                summarize(!!value := mean(!!value)) %>%
-                arrange(desc(!!value)) %>%
+                summarise(!!quovalue := mean(!!quovalue)) %>%
+                arrange(desc(!!quovalue)) %>%
                 deframe()
         }
     )
-    names(out) <- names(results)
-    out
+    names(list) <- names(results)
+
+    out <- SimpleList(list)
+    metadata(out)[["version"]] <- .version
+    metadata(out)[["value"]] <- value
+    metadata(out)[["gene2symbol"]] <- metadata(gene2symbol)
+    new(Class = "RankedList", out)
 }
 
 
 
-#' @rdname statsList
+#' @rdname rankedList
 #' @export
 setMethod(
-    f = "statsList",
+    f = "rankedList",
     signature = signature("DESeqAnalysis"),
-    definition = statsList.DESeqAnalysis
+    definition = rankedList.DESeqAnalysis
+)
+
+
+
+rankedList.FGSEAList <- function(object) {
+    validObject(object)
+    metadata(object)[["rankedList"]]
+}
+
+
+
+#' @rdname rankedList
+#' @export
+setMethod(
+    f = "rankedList",
+    signature = signature("FGSEAList"),
+    definition = rankedList.FGSEAList
 )

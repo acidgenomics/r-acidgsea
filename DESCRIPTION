@@ -4,7 +4,7 @@ Description:
     Perform parameterized gene set enrichment analysis on multiple differential
     expression contrasts.
 Version: 0.0.5
-Date: 2019-02-01
+Date: 2019-02-04
 Authors@R:
     person(
         "Michael", "Steinbaugh",
@@ -18,10 +18,13 @@ URL:
 BugReports: https://github.com/steinbaugh/pfgsea/issues/
 License: MIT + file LICENSE
 Encoding: UTF-8
-Depends: R (>= 3.5)
+Depends:
+    R (>= 3.5),
+    basejump (>= 0.9.7),
+    DESeqAnalysis (>= 0.1.7)
 Imports:
-    DESeqAnalysis (>= 0.1.7), basejump (>= 0.9.7), goalie (>= 0.2.6),
-        fgsea (>= 1.8),
+    bioverbs (>= 0.1.5), goalie (>= 0.2.6),
+    BiocParallel, S4Vectors, fgsea (>= 1.8),
     dplyr (>= 0.7), ggplot2 (>= 3.1), knitr (>= 1.21), magrittr (>= 1.5),
         rlang (>= 0.3), tibble (>= 2.0),
     methods, stats, utils
@@ -31,6 +34,7 @@ Suggests:
 Remotes:
     steinbaugh/DESeqAnalysis,
     steinbaugh/basejump,
+    steinbaugh/bioverbs,
     steinbaugh/goalie
 biocViews:
     GeneSetEnrichment,

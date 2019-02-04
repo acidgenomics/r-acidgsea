@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot Enrichment — plotEnrichment • pfgsea</title>
+<title>Plot enrichment — plotEnrichment • pfgsea</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,10 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Plot Enrichment — plotEnrichment" />
+<meta property="og:title" content="Plot enrichment — plotEnrichment" />
 
-<meta property="og:description" content="Wrapper for fgsea::plotEnrichment that enables easy plotting of multiple
-pathways of interest in a single call." />
+<meta property="og:description" content="Plot enrichment" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -66,7 +65,7 @@ pathways of interest in a single call." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
       </span>
     </div>
 
@@ -80,6 +79,9 @@ pathways of interest in a single call." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -102,68 +104,59 @@ pathways of interest in a single call." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot Enrichment</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pfgsea/blob/master/R/plotEnrichment.R'><code>R/plotEnrichment.R</code></a></small>
+    <h1>Plot enrichment</h1>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pfgsea/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/steinbaugh/pfgsea/blob/master/R/plotEnrichment-methods.R'><code>R/plotEnrichment-methods.R</code></a></small>
     <div class="hidden name"><code>plotEnrichment.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Wrapper for <code><a href='https://www.rdocumentation.org/packages/fgsea/topics/plotEnrichment'>fgsea::plotEnrichment</a></code> that enables easy plotting of multiple
-pathways of interest in a single call.</p>
+    <p>Plot enrichment</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plotEnrichment</span>(<span class='no'>pathways</span>, <span class='no'>stats</span>, <span class='no'>gmtFile</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>3L</span>)
+    <pre class="usage"><span class='fu'>plotEnrichment</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-<span class='fu'>plotEnrichments</span>(<span class='no'>resultsList</span>, <span class='no'>statsList</span>, <span class='no'>gmtFile</span>, <span class='no'>alpha</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5L</span>,
-  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>3L</span>)</pre>
+<span class='co'># S4 method for FGSEAList</span>
+<span class='fu'>plotEnrichment</span>(<span class='no'>object</span>, <span class='no'>geneSet</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5L</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='kw pkg'>basejump</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/basejump/topics/ggplot2-themes'>theme_paperwhite</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pathways</th>
-      <td><p><code>character</code>.
-Pathways.</p></td>
+      <th>object</th>
+      <td><p>Object.</p></td>
     </tr>
     <tr>
-      <th>stats</th>
-      <td><p><code>numeric</code>.
-Gene stats. Test statistic is recommended by default, but shrunken log2
-fold changes are also acceptable. Don't input unshrunken LFC values without
-standard error correction.</p></td>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     <tr>
-      <th>gmtFile</th>
-      <td><p><code>string</code>.
-MSigDB GMT file path.</p></td>
-    </tr>
-    <tr>
-      <th>headerLevel</th>
-      <td><p><code>scalar integer</code>.
-Markdown header level.</p></td>
-    </tr>
-    <tr>
-      <th>resultsList</th>
-      <td><p><code>list</code>.
-Results list.</p></td>
-    </tr>
-    <tr>
-      <th>statsList</th>
-      <td><p><code>list</code>.
-Gene stats list.</p></td>
+      <th>geneSet</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
+Gene set name. Can obtain using <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names()</a></code> on <code>FGSEAList</code> object.</p></td>
     </tr>
     <tr>
       <th>alpha</th>
-      <td><p><code>scalar numeric</code>.
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric(1)</a></code>.
 Alpha level.</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p><code>scalar integer</code>.
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
 Number of significant processes to include.
 Bidirectional; will include <code>n</code> up- and down-regulated processes.</p></td>
+    </tr>
+    <tr>
+      <th>headerLevel</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
+Markdown header level.</p></td>
+    </tr>
+    <tr>
+      <th>theme</th>
+      <td><p><code>theme</code>/<code>gg</code>.
+ggplot2 theme.</p></td>
     </tr>
     </table>
     
@@ -171,14 +164,9 @@ Bidirectional; will include <code>n</code> up- and down-regulated processes.</p>
 
     <p><code>ggplot</code>.</p>
     
-    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <ul>
-<li><p><code>plotEnrichment</code>: Parameterized. Returns multiple <code>ggplot</code> objects, with a Markdown header
-for each pathway.</p></li>
-<li><p><code>plotEnrichments</code>: Parameterized. Loops across the contrasts and returns an additional
-Markdown header, on top of the <code>plotEnrichment</code> return per pathway.</p></li>
-</ul>
+    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/fgsea/topics/plotEnrichment'>fgsea::plotEnrichment()</a></code>.</p></div>
     
 
   </div>
@@ -189,7 +177,7 @@ Markdown header, on top of the <code>plotEnrichment</code> return per pathway.</
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#functions">Functions</a></li>
+      <li><a href="#see-also">See also</a></li>
           </ul>
 
   </div>

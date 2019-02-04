@@ -9,30 +9,28 @@ params:
   # MSigDb GMT files downloaded from the Broad Institute.
   # Email registration is required for these files.
   gmt_dir: "~/msigdb/msigdb_v6.2_GMTs"
-  # Using Wald test statistic by default.
-  # Shrunken log2FoldChange also acceptable.
+  # Using Wald test statistic ("stat") by default.
+  # Shrunken LFC ("log2FoldChange") also acceptable.
   gsea_value: "stat"
   n_perm: 1000
   min_size: 15
   max_size: 500
-  # GSE alpha cutoff.
+  # GSEA alpha cutoff.
   # Doesn't have to match the alpha used for DESeqResults.
   alpha: 0.05
   data_dir: !r file.path("data", Sys.Date())
   output_dir: !r file.path("results", Sys.Date(), "gsea")
 ---
 
-```{r setup, message=FALSE}
-# Last modified 2019-02-01
-library(basejump)
-library(dplyr)
-library(stringr)
-library(pfgsea)
-prepareTemplate()
-source("_setup.R")
+```{r header, child="_header.Rmd"}
 ```
 
-```{r header, child="_header.Rmd"}
+```{r setup, message=FALSE}
+# Last modified 2019-02-04
+library(pfgsea)
+library(tidyverse)
+prepareTemplate()
+source("_setup.R")
 ```
 
 ```{r basename}
@@ -51,9 +49,9 @@ print(object)
 
 All genes can be used in [Gene Set Enrichment Analysis (GSEA)][GSEA]. GSEA aggregates the per gene statistics across genes within a gene set, therefore making it possible to detect situations where all genes in a predefined set change in a small but coordinated way. Since it is likely that many relevant phenotypic differences are manifested by small but consistent changes in a set of genes. [GSEA][] uses a ranked list of genes (here ranked by the test statistic), without applying a per-gene *P* value significance cutoff. This allows the analysis to use more information to identify enriched biological processes. The [GSEA introduction](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1239896) goes into more detail about some of the advantages of this approach.
 
-# Gene lists
+# Ranked gene list
 
-Prepare a `numeric vector` [gene list](https://github.com/GuangchuangYu/DOSE/wiki/how-to-prepare-your-own-geneList) for GSEA.
+Prepare a ranked `numeric vector` [gene list](https://github.com/GuangchuangYu/DOSE/wiki/how-to-prepare-your-own-geneList) for GSEA.
 
 It requires three features:
 
@@ -63,11 +61,11 @@ It requires three features:
 
 Note that [MSigDb][] requires that the identifiers map either to HGNC names (gene symbols) or Entrez IDs. We prefer to map using the gene symbols, but these are not 1:1 for all Ensembl gene IDs (e.g. ENSG00000000003 = TSPAN6). In the event that there are Ensembl gene IDs per HGNC symbol, we're taking the average of the values here.
 
-```{r stats_list, message=FALSE, warning=FALSE}
-stats_list <- statsList(object)
-lapply(stats_list, summary)
-lapply(stats_list, head)
-saveData(stats_list, dir = params$data_dir)
+```{r ranked_list, message=FALSE, warning=FALSE}
+ranked_list <- RankedList(object, value = params$gsea_value)
+lapply(ranked_list, head)
+lapply(ranked_list, summary)
+saveData(ranked_list, dir = params$data_dir)
 ```
 
 # MSigDb GMT files
@@ -89,7 +87,7 @@ names(gmt_files) <- str_extract(
 print(basename(gmt_files))
 ```
 
-# Run GSEA (with fgsea)
+# Run GSEA
 
 This section is a modified version of Stephen Turner's excellent [DESeq results to pathways in 60 Seconds with the fgsea package](https://stephenturner.github.io/deseq-to-fgsea/) vignette. The [fgsea vignette](https://bioconductor.org/packages/release/bioc/vignettes/fgsea/inst/doc/fgsea-tutorial.html) also has additional useful information.
 
@@ -106,33 +104,19 @@ Each row corresponds to a tested pathway. The columns are the following:
 
 Here we are arranging the tables by normalized enrichment score (NES), positive to negative.
 
-```{r fgsea}
-fgsea <- pfgsea(
-    statsList = stats_list,
+```{r gsea}
+gsea <- pfgsea(
+    rankedList = ranked_list,
     gmtFiles = gmt_files,
-    nperm = params$n_perm,
+    nPerm = params$n_perm,
     minSize = params$min_size,
     maxSize = params$max_size
 )
-saveData(fgsea, dir = params$data_dir)
+saveData(gsea, dir = params$data_dir)
 ```
 
-```{r export_csv}
-# Naming system: fgsea_c1_mutant_vs_control.csv
-for (gmt in seq_len(length(fgsea))) {
-    contrasts <- fgsea[[gmt]]
-    for (contrast in seq_len(length(contrasts))) {
-        x <- fgsea[[gmt]][[contrast]]
-        name <- paste(
-            "fgsea",
-            names(fgsea)[[gmt]],
-            names(fgsea[[gmt]])[[contrast]],
-            sep = "_"
-        )
-        file <- file.path(params$output_dir, paste0(name, ".csv"))
-        export(x = x, file = file)
-    }
-}
+```{r export}
+export(gsea, dir = params$output_dir)
 ```
 
 # Hallmark
@@ -144,32 +128,19 @@ The `fgsea::gmtPathways()` function will take a GMT file from [MSigDB][] and tur
 ## Top tables {.tabset}
 
 ```{r h_top_tables, results="asis"}
-topTables(
-    resultsList = fgsea[["h"]],
-    alpha = params$alpha
-)
+topTables(gsea, geneSet = "h", alpha = params$alpha)
 ```
 
-## Plot GSEA tables {.tabset}
+## Plot GSEA table {.tabset}
 
-```{r h_plot_gsea_tables, results="asis"}
-plotGSEATables(
-    resultsList = fgsea[["h"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["h"]],
-    alpha = params$alpha
-)
+```{r h_plot_gsea_table, results="asis"}
+plotGSEATable(gsea, geneSet = "h", alpha = params$alpha)
 ```
 
-## Plot enrichments {.tabset}
+## Plot enrichment {.tabset}
 
-```{r h_plot_enrichments, results="asis"}
-plotEnrichments(
-    resultsList = fgsea[["h"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["h"]],
-    alpha = params$alpha
-)
+```{r h_plot_enrichment, results="asis"}
+plotEnrichment(gsea, geneSet = "h", alpha = params$alpha)
 ```
 
 # C1
@@ -177,32 +148,19 @@ plotEnrichments(
 ## Top tables {.tabset}
 
 ```{r c1_top_tables, results="asis"}
-topTables(
-    resultsList = fgsea[["c1"]],
-    alpha = params$alpha
-)
+topTables(gsea, geneSet = "c1", alpha = params$alpha)
 ```
 
-## Plot GSEA tables {.tabset}
+## Plot GSEA table {.tabset}
 
-```{r c1_plot_gsea_tables, results="asis"}
-plotGSEATables(
-    resultsList = fgsea[["c1"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c1"]],
-    alpha = params$alpha
-)
+```{r c1_plot_gsea_table, results="asis"}
+plotGSEATable(gsea, geneSet = "c1", alpha = params$alpha)
 ```
 
-## Plot enrichments {.tabset}
+## Plot enrichment {.tabset}
 
-```{r c1_plot_enrichments, results="asis"}
-plotEnrichments(
-    resultsList = fgsea[["c1"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c1"]],
-    alpha = params$alpha
-)
+```{r c1_plot_enrichment, results="asis"}
+plotEnrichment(gsea, geneSet = "c1", alpha = params$alpha)
 ```
 
 # C2
@@ -210,32 +168,19 @@ plotEnrichments(
 ## Top tables {.tabset}
 
 ```{r c2_top_tables, results="asis"}
-topTables(
-    resultsList = fgsea[["c2"]],
-    alpha = params$alpha
-)
+topTables(gsea, geneSet = "c2", alpha = params$alpha)
 ```
 
-## Plot GSEA tables {.tabset}
+## Plot GSEA table {.tabset}
 
-```{r c2_plot_gsea_tables, results="asis"}
-plotGSEATables(
-    resultsList = fgsea[["c2"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c2"]],
-    alpha = params$alpha
-)
+```{r c2_plot_gsea_table, results="asis"}
+plotGSEATable(gsea, geneSet = "c2", alpha = params$alpha)
 ```
 
 ## Plot enrichments {.tabset}
 
-```{r c2_plot_enrichments, results="asis"}
-plotEnrichments(
-    resultsList = fgsea[["c2"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c2"]],
-    alpha = params$alpha
-)
+```{r c2_plot_enrichment, results="asis"}
+plotEnrichment(gsea, geneSet = "c2", alpha = params$alpha)
 ```
 
 # C3
@@ -243,32 +188,19 @@ plotEnrichments(
 ## Top tables {.tabset}
 
 ```{r c3_top_tables, results="asis"}
-topTables(
-    resultsList = fgsea[["c3"]],
-    alpha = params$alpha
-)
+topTables(gsea, geneSet = "c3", alpha = params$alpha)
 ```
 
-## Plot GSEA tables {.tabset}
+## Plot GSEA table {.tabset}
 
-```{r c3_plot_gsea_tables, results="asis"}
-plotGSEATables(
-    resultsList = fgsea[["c3"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c3"]],
-    alpha = params$alpha
-)
+```{r c3_plot_gsea_table, results="asis"}
+plotGSEATable(gsea, geneSet = "c3", alpha = params$alpha)
 ```
 
 ## Plot enrichments {.tabset}
 
-```{r c3_plot_enrichments, results="asis"}
-plotEnrichments(
-    resultsList = fgsea[["c3"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c3"]],
-    alpha = params$alpha
-)
+```{r c3_plot_enrichment, results="asis"}
+plotEnrichment(gsea, geneSet = "c3", alpha = params$alpha)
 ```
 
 # C4
@@ -276,32 +208,19 @@ plotEnrichments(
 ## Top tables {.tabset}
 
 ```{r c4_top_tables, results="asis"}
-topTables(
-    resultsList = fgsea[["c4"]],
-    alpha = params$alpha
-)
+topTables(gsea, geneSet = "c4", alpha = params$alpha)
 ```
 
-## Plot GSEA tables {.tabset}
+## Plot GSEA table {.tabset}
 
-```{r c4_plot_gsea_tables, results="asis"}
-plotGSEATables(
-    resultsList = fgsea[["c4"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c4"]],
-    alpha = params$alpha
-)
+```{r c4_plot_gsea_table, results="asis"}
+plotGSEATable(gsea, geneSet = "c4", alpha = params$alpha)
 ```
 
 ## Plot enrichments {.tabset}
 
-```{r c4_plot_enrichments, results="asis"}
-plotEnrichments(
-    resultsList = fgsea[["c4"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c4"]],
-    alpha = params$alpha
-)
+```{r c4_plot_enrichment, results="asis"}
+plotEnrichment(gsea, geneSet = "c4", alpha = params$alpha)
 ```
 
 # C5
@@ -309,65 +228,39 @@ plotEnrichments(
 ## Top tables {.tabset}
 
 ```{r c5_top_tables, results="asis"}
-topTables(
-    resultsList = fgsea[["c5"]],
-    alpha = params$alpha
-)
+topTables(gsea, geneSet = "c5", alpha = params$alpha)
 ```
 
-## Plot GSEA tables {.tabset}
+## Plot GSEA table {.tabset}
 
-```{r c5_plot_gsea_tables, results="asis"}
-plotGSEATables(
-    resultsList = fgsea[["c5"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c5"]],
-    alpha = params$alpha
-)
+```{r c5_plot_gsea_table, results="asis"}
+plotGSEATable(gsea, geneSet = "c5", alpha = params$alpha)
 ```
 
 ## Plot enrichments {.tabset}
 
-```{r c5_plot_enrichments, results="asis"}
-plotEnrichments(
-    resultsList = fgsea[["c5"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c5"]],
-    alpha = params$alpha
-)
+```{r c5_plot_enrichment, results="asis"}
+plotEnrichment(gsea, geneSet = "c5", alpha = params$alpha)
 ```
 
 # C6
 
 ## Top tables {.tabset}
 
-```{r c6_top_table, results="asis"}
-topTables(
-    resultsList = fgsea[["c6"]],
-    alpha = params$alpha
-)
+```{r c6_top_tables, results="asis"}
+topTables(gsea, geneSet = "c6", alpha = params$alpha)
 ```
 
-## Plot GSEA tables {.tabset}
+## Plot GSEA table {.tabset}
 
-```{r c6_plot_gsea_tables, results="asis"}
-plotGSEATables(
-    resultsList = fgsea[["c6"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c6"]],
-    alpha = params$alpha
-)
+```{r c6_plot_gsea_table, results="asis"}
+plotGSEATable(gsea, geneSet = "c6", alpha = params$alpha)
 ```
 
 ## Plot enrichments {.tabset}
 
-```{r c6_plot_enrichments, results="asis"}
-plotEnrichments(
-    resultsList = fgsea[["c6"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c6"]],
-    alpha = params$alpha
-)
+```{r c6_plot_enrichment, results="asis"}
+plotEnrichment(gsea, geneSet = "c6", alpha = params$alpha)
 ```
 
 # C7
@@ -375,32 +268,19 @@ plotEnrichments(
 ## Top tables {.tabset}
 
 ```{r c7_top_tables, results="asis"}
-topTables(
-    resultsList = fgsea[["c7"]],
-    alpha = params$alpha
-)
+topTables(gsea, geneSet = "c7", alpha = params$alpha)
 ```
 
-## Plot GSEA tables {.tabset}
+## Plot GSEA table {.tabset}
 
-```{r c7_plot_gsea_tables, results="asis"}
-plotGSEATables(
-    resultsList = fgsea[["c7"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c7"]],
-    alpha = params$alpha
-)
+```{r c7_plot_gsea_table, results="asis"}
+plotGSEATable(gsea, geneSet = "c7", alpha = params$alpha)
 ```
 
 ## Plot enrichments {.tabset}
 
-```{r c7_plot_enrichments, results="asis"}
-plotEnrichments(
-    resultsList = fgsea[["c7"]],
-    statsList = stats_list,
-    gmtFile = gmt_files[["c7"]],
-    alpha = params$alpha
-)
+```{r c7_plot_enrichment, results="asis"}
+plotEnrichment(gsea, geneSet = "c7", alpha = params$alpha)
 ```
 
 ```{r footer, child="_footer.Rmd"}

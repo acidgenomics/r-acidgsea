@@ -1,8 +1,19 @@
-#' @rdname statsList
+#' @rdname plotEnrichment
 #' @export
 setGeneric(
-    name = "statsList",
+    name = "plotEnrichment",
     def = function(object, ...) {
-        standardGeneric("statsList")
+        standardGeneric("plotEnrichment")
+    }
+)
+
+
+
+#' @rdname plotGSEATable
+#' @export
+setGeneric(
+    name = "plotGSEATable",
+    def = function(object, ...) {
+        standardGeneric("plotGSEATable")
     }
 )
