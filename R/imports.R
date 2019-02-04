@@ -13,8 +13,8 @@
 #'   select summarise
 #' @importFrom fgsea fgsea gmtPathways plotGseaTable
 #' @importFrom ggplot2 labs
-#' @importFrom goalie assert hasNames hasLength isAFile isAlpha isCharacter
-#'   isFile isHeaderLevel isInt isString isSubset validate
+#' @importFrom goalie assert hasNames hasLength hasRows isAFile isAlpha
+#'   isCharacter isFile isHeaderLevel isInt isString isSubset validate
 #' @importFrom knitr kable
 #' @importFrom magrittr %>%
 #' @importFrom methods as is new setAs setGeneric setMethod validObject
