@@ -81,14 +81,22 @@ topTables.FGSEAList <- function(
                 level = headerLevel + 1L,
                 asis = TRUE
             )
-            print(kable(up, digits = 3L))
+            if (hasRows(up)) {
+                print(kable(up, digits = 3L))
+            } else {
+                message("No upregulated sets.")
+            }
 
             markdownHeader(
                 text = "Downregulated",
                 level = headerLevel + 1L,
                 asis = TRUE
             )
-            print(kable(down, digits = 3L))
+            if (hasRows(down)) {
+                print(kable(down, digits = 3L))
+            } else {
+                message("No downregulated sets.")
+            }
         },
         SIMPLIFY = FALSE,
         USE.NAMES = FALSE
