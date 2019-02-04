@@ -62,7 +62,7 @@ It requires three features:
 Note that [MSigDb][] requires that the identifiers map either to HGNC names (gene symbols) or Entrez IDs. We prefer to map using the gene symbols, but these are not 1:1 for all Ensembl gene IDs (e.g. ENSG00000000003 = TSPAN6). In the event that there are Ensembl gene IDs per HGNC symbol, we're taking the average of the values here.
 
 ```{r ranked_list, message=FALSE, warning=FALSE}
-ranked_list <- RankedList(object, value = params$gsea_value)
+ranked_list <- rankedList(object, value = params$gsea_value)
 lapply(ranked_list, head)
 lapply(ranked_list, summary)
 saveData(ranked_list, dir = params$data_dir)

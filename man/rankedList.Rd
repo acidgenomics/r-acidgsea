@@ -14,9 +14,9 @@
 \S4method{rankedList}{FGSEAList}(object)
 }
 \arguments{
-\item{object}{Object.}
-
 \item{...}{Additional arguments.}
+
+\item{object}{Object.}
 
 \item{value}{\code{character(1)}.
 Value type to use for GSEA. Recommending \code{"stat"} by default, which

@@ -30,10 +30,13 @@ NULL
 #' @export
 NULL
 
+# Ensure we're exporting an alias that matches the S4 class name exactly.
 #' @rdname rankedList
 #' @usage NULL
 #' @export
-RankedList <- rankedList
+RankedList <- function(...) {
+    rankedList(...)
+}
 
 
 
