@@ -7,7 +7,7 @@
         # Prioritize the first columns.
         select(!!!syms(c("pathway", "padj", "NES")), everything())
     if (!hasRows(data)) {
-        message(paste("No significant pathways at alpha < ", alpha, "."))
+        message(paste0("No significant pathways at alpha < ", alpha, "."))
     }
     data
 }
