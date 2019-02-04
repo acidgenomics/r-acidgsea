@@ -1,3 +1,14 @@
+#' @rdname RankedList
+#' @export
+setGeneric(
+    name = "RankedList",
+    def = function(object, ...) {
+        standardGeneric("RankedList")
+    }
+)
+
+
+
 #' @rdname plotEnrichment
 #' @export
 setGeneric(
