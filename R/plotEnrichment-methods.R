@@ -35,7 +35,7 @@ plotEnrichment.FGSEAList <- function(
         isAFile(gmtFile)
     )
     invisible(mapply(
-        name = names(data),
+        contrast = names(data),
         data = data,
         stats = stats,
         MoreArgs = list(
@@ -43,9 +43,9 @@ plotEnrichment.FGSEAList <- function(
             n = n,
             alpha = alpha
         ),
-        FUN = function(name, data, stats, gmtFile, n, alpha) {
+        FUN = function(contrast, data, stats, gmtFile, n, alpha) {
             markdownHeader(
-                text = name,
+                text = contrast,
                 level = headerLevel,
                 tabset = TRUE,
                 asis = TRUE
@@ -76,9 +76,16 @@ plotEnrichment.FGSEAList <- function(
                 pathway = pathways,
                 MoreArgs = list(
                     stats = stats,
-                    headerLevel = headerLevel + 1L
+                    headerLevel = headerLevel + 1L,
+                    contrast = contrast
                 ),
-                FUN = function(name, pathway, stats, headerLevel) {
+                FUN = function(
+                    name,
+                    pathway,
+                    stats,
+                    headerLevel,
+                    contrast
+                ) {
                     markdownHeader(name, level = headerLevel, asis = TRUE)
                     p <- fgsea::plotEnrichment(
                         pathway = pathway,
@@ -86,7 +93,10 @@ plotEnrichment.FGSEAList <- function(
                     )
                     # Consider making these plot settings user definable.
                     p <- p +
-                        labs(title = name) +
+                        labs(
+                            title = name,
+                            subtitle = contrast
+                        ) +
                         theme_paperwhite()
                     print(p)
                 }
