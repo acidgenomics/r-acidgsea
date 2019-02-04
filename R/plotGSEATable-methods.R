@@ -1,8 +1,5 @@
 #' Plot GSEA table
 #'
-#' Wrapper for [fgsea::plotGseaTable()] that enables easy plotting of multiple
-#' pathways of interest in a single call.
-#'
 #' @name plotGSEATable
 #' @inheritParams params
 #' @return `ggplot`.
@@ -35,7 +32,7 @@ plotGSEATable.FGSEAList <- function(
         isAFile(gmtFile)
     )
     invisible(mapply(
-        name = names(data),
+        contrast = names(data),
         data = data,
         stats = stats,
         MoreArgs = list(
@@ -43,32 +40,25 @@ plotGSEATable.FGSEAList <- function(
             alpha = alpha,
             n = n
         ),
-        FUN = function(name, data, stats, gmtFile, alpha, n) {
+        FUN = function(contrast, data, stats, gmtFile, alpha, n) {
             # Stash the unmodified FGSEA results table.
             # We need this for the `plotGseaTable()` call below.
             fgseaRes <- data
 
-            markdownHeader(text = name, level = headerLevel, asis = TRUE)
-            data <- .filterResults(data, alpha = alpha)
+            markdownHeader(text = contrast, level = headerLevel, asis = TRUE)
 
             # Here we're getting the gene set vector for each pathway from the
             # GMT file. Then we're matching against the significant pathways
             # from our FGSEA analysis.
-            pathways <- unique(c(
-                head(data[["pathway"]], n = n),
-                tail(data[["pathway"]], n = n)
-            ))
-            # If nothing is significant, early return without plotting.
-            if (length(pathways) == 0L) {
-                message("No significant pathways.")
-                return(NULL)
+            pathways <- .headtail(data, alpha = alpha, n = n)
+            if (!hasLength(pathways)) {
+                return(invisible())
             }
-            gmtPathways <- gmtPathways(gmt.file = gmtFile)
-            assert(isSubset(pathways, names(gmtPathways)))
-            pathways <- gmtPathways[pathways]
-            assert(is.list(pathways))
+            pathways <- gmtPathways(gmt.file = gmtFile)[pathways]
 
-            p <- fgsea::plotGseaTable(
+            # This returns a gtable plot object, which is hard to customize.
+            # Note that we can't set title or subtitle here.
+            fgsea::plotGseaTable(
                 pathways = pathways,
                 stats = stats,
                 fgseaRes = fgseaRes,
@@ -78,9 +68,6 @@ plotGSEATable.FGSEAList <- function(
                 # 0.5 generally looks better than 1L.
                 gseaParam = 0.5
             )
-            # Consider making the theme user definable in a future update.
-            p <- p + theme_paperwhite()
-            p
         }
     ))
 }
