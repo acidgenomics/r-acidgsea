@@ -101,3 +101,20 @@ setMethod(
     signature = signature("DESeqAnalysis"),
     definition = rankedList.DESeqAnalysis
 )
+
+
+
+rankedList.FGSEAList <- function(object) {
+    validObject(object)
+    metadata(object)[["rankedList"]]
+}
+
+
+
+#' @rdname rankedList
+#' @export
+setMethod(
+    f = "rankedList",
+    signature = signature("FGSEAList"),
+    definition = rankedList.FGSEAList
+)
