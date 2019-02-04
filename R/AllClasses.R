@@ -27,11 +27,19 @@ setClass(
                 )
             ),
             isSubset(
-                x = c("version", "rankedList", "gmtFiles"),
+                x = c("gmtFiles", "rankedList", "version"),
                 y = names(metadata(object))
             ),
+            isCharacter(metadata(object)[["gmtFiles"]]),
+            identical(
+                names(object),
+                names(metadata(object)[["gmtFiles"]])
+            ),
             is(metadata(object)[["rankedList"]], "RankedList"),
-            isCharacter(metadata(object)[["gmtFiles"]])
+            identical(
+                names(object[[1L]]),
+                names(metadata(object)[["rankedList"]])
+            )
         )
     }
 )
