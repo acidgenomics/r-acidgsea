@@ -37,7 +37,7 @@ pfgsea <- function(
         X = gmtFiles,
         FUN = function(gmtFile) {
             lapply(
-                X = as.list(rankedList),
+                X = rankedList,
                 FUN = function(stats) {
                     pathways <- gmtPathways(gmt.file = gmtFile)
                     message(paste0(
