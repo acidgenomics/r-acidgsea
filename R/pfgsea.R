@@ -22,8 +22,8 @@ pfgsea <- function(
     rankedList,
     gmtFiles,
     nPerm = 1000L,
-    minSize = 1L,
-    maxSize = Inf,
+    minSize = 15L,
+    maxSize = 500L,
     bpparam = BiocParallel::bpparam()
 ) {
     assert(
