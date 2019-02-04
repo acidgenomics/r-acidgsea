@@ -31,5 +31,7 @@
 #'   Gene stats list.
 #' @param statsList `list`.
 #'   Gene stats list.
+#' @param theme `theme`/`gg`.
+#'   ggplot2 theme.
 #' @param ... Additional arguments.
 NULL

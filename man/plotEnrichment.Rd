@@ -28,6 +28,9 @@ Bidirectional; will include \code{n} up- and down-regulated processes.}
 
 \item{headerLevel}{\code{integer(1)}.
 Markdown header level.}
+
+\item{theme}{\code{theme}/\code{gg}.
+ggplot2 theme.}
 }
 \value{
 \code{ggplot}.
