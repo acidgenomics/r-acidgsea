@@ -47,24 +47,8 @@ Coerce an object to a given class.
 }
 
 \examples{
-# DESeqDataSet ====
-x <- as(bcb_small, "DESeqDataSet")
-names(S4Vectors::mcols(x))
-class(x)
-show(x)
-
-# RangedSummarizedExperiment ====
-x <- as(bcb_small, "RangedSummarizedExperiment")
-slotNames(x)
-show(x)
-
-# SummarizedExperiment ====
-# Coerce to RangedSummarizedExperiment first.
-x <- as(bcb_small, "RangedSummarizedExperiment")
-x <- as(x, "SummarizedExperiment")
-class(x)
-slotNames(x)
-show(x)
+## Show all the existing methods for as()
+showMethods("coerce")
 }
 \references{
 Chambers, John M. (2016)
