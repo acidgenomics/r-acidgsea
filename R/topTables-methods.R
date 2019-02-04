@@ -23,8 +23,8 @@ topTables.FGSEAList <- function(
     object,
     geneSet,
     alpha = 0.05,
-    n = 5L,
-    headerLevel = 2L
+    n = 10L,
+    headerLevel = 3L
 ) {
     validObject(object)
     assert(
