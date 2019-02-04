@@ -25,7 +25,13 @@ setClass(
                     "size",
                     "leadingEdge"
                 )
-            )
+            ),
+            isSubset(
+                x = c("version", "rankedList", "gmtFiles"),
+                y = names(metadata(object))
+            ),
+            is(metadata(object)[["rankedList"]], "RankedList"),
+            isCharacter(metadata(object)[["gmtFiles"]])
         )
     }
 )

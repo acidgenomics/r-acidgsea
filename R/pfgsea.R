@@ -33,6 +33,11 @@ pfgsea <- function(
         isInt(nPerm)
     )
     validObject(rankedList)
+    message(paste0(
+        "Running parameterized fast GSEA...", "\n",
+        "GMT files: ", toString(names(gmtFiles)), "\n",
+        "Contrasts: ", toString(names(rankedList))
+    ))
     list <- lapply(
         X = gmtFiles,
         FUN = function(gmtFile) {
@@ -63,6 +68,7 @@ pfgsea <- function(
     )
     out <- SimpleList(list)
     metadata(out)[["version"]] <- .version
+    metadata(out)[["rankedList"]] <- rankedList
     metadata(out)[["gmtFiles"]] <- gmtFiles
     new(Class = "FGSEAList", out)
 }
