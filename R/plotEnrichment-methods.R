@@ -6,6 +6,8 @@
 #' @name plotEnrichment
 #' @inheritParams params
 #' @return `ggplot`.
+#'
+#' @seealso [fgsea::plotEnrichment()].
 NULL
 
 
