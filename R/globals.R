@@ -1,1 +1,5 @@
+globalVariables(".")
+
+
+
 .version <- packageVersion("pfgsea")
