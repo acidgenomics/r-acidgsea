@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parameters — params • pfgsea</title>
+<title>Changelog • pfgsea</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,10 +32,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Parameters — params" />
-
-<meta property="og:description" content="Parameters" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -52,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -104,108 +101,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parameters</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pfgsea/blob/master/R/params.R'><code>R/params.R</code></a></small>
-    <div class="hidden name"><code>params.Rd</code></div>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/steinbaugh/pfgsea/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    
-    <p>Parameters</p>
-    
-    </div>
-
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>alpha</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric(1)</a></code>.
-Alpha level.</p></td>
-    </tr>
-    <tr>
-      <th>geneSet</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
-Gene set name. Can obtain using <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names()</a></code> on <code>FGSEAList</code> object.</p></td>
-    </tr>
-    <tr>
-      <th>gmtFile</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
-MSigDB GMT file path.</p></td>
-    </tr>
-    <tr>
-      <th>gmtFiles</th>
-      <td><p><code>character</code>.
-MSigDB GMT file paths.</p></td>
-    </tr>
-    <tr>
-      <th>headerLevel</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
-Markdown header level.</p></td>
-    </tr>
-    <tr>
-      <th>n</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
-Number of significant processes to include.
-Bidirectional; will include <code>n</code> up- and down-regulated processes.</p></td>
-    </tr>
-    <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
-    </tr>
-    <tr>
-      <th>pathways</th>
-      <td><p><code>character</code>.
-Pathways.</p></td>
-    </tr>
-    <tr>
-      <th>results</th>
-      <td><p><code>data.frame</code>/<code>data.table</code>.
-Unmodified <code><a href='https://www.rdocumentation.org/packages/fgsea/topics/fgsea'>fgsea::fgsea</a></code> return.</p></td>
-    </tr>
-    <tr>
-      <th>resultsList</th>
-      <td><p><code>list</code>.
-Results list.</p></td>
-    </tr>
-    <tr>
-      <th>stats</th>
-      <td><p><code>numeric</code>.
-Gene stats. Test statistic is recommended by default, but shrunken log2
-fold changes are also acceptable. Don't input unshrunken LFC values without
-standard error correction.</p></td>
-    </tr>
-    <tr>
-      <th>statsList</th>
-      <td><p><code>list</code>.
-Gene stats list.</p></td>
-    </tr>
-    <tr>
-      <th>statsList</th>
-      <td><p><code>list</code>.
-Gene stats list.</p></td>
-    </tr>
-    <tr>
-      <th>theme</th>
-      <td><p><code>theme</code>/<code>gg</code>.
-ggplot2 theme.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
-    </table>
-    
-
+    <div id="pfgsea-0-0-5-2019-02-04" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pfgsea-0-0-5-2019-02-04" class="anchor"></a>pfgsea 0.0.5 (2019-02-04)</h2>
+<div id="major-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<ul>
+<li>Now exporting <code>FGSEAList</code> and <code>RankedList</code> S4 classes.</li>
+<li>Reworked <code><a href="../reference/plotEnrichment.html">plotEnrichment()</a></code>, <code><a href="../reference/plotGSEATable.html">plotGSEATable()</a></code>, and <code><a href="../reference/topTables.html">topTables()</a></code> to use <code>FGSEAList</code> object.</li>
+<li>Renamed <code><a href="../reference/deprecated.html">statsList()</a></code> to <code><a href="../reference/rankedList.html">rankedList()</a></code>, and switched to S4 method approach.</li>
+<li>Updated R Markdown template to reflect these function reworkings.</li>
+</ul>
+</div>
+</div>
+    <div id="pfgsea-0-0-4-2019-01-15" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pfgsea-0-0-4-2019-01-15" class="anchor"></a>pfgsea 0.0.4 (2019-01-15)</h2>
+</div>
+    <div id="pfgsea-0-0-3-2018-12-17" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pfgsea-0-0-3-2018-12-17" class="anchor"></a>pfgsea 0.0.3 (2018-12-17)</h2>
+</div>
+    <div id="pfgsea-0-0-2-2018-12-14" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pfgsea-0-0-2-2018-12-14" class="anchor"></a>pfgsea 0.0.2 (2018-12-14)</h2>
+</div>
+    <div id="pfgsea-0-0-1-2018-11-26" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pfgsea-0-0-1-2018-11-26" class="anchor"></a>pfgsea 0.0.1 (2018-11-26)</h2>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-                </ul>
-
+    <div id="tocnav">
+      <h2>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#pfgsea-0-0-5-2019-02-04">0.0.5</a></li>
+        <li><a href="#pfgsea-0-0-4-2019-01-15">0.0.4</a></li>
+        <li><a href="#pfgsea-0-0-3-2018-12-17">0.0.3</a></li>
+        <li><a href="#pfgsea-0-0-2-2018-12-14">0.0.2</a></li>
+        <li><a href="#pfgsea-0-0-1-2018-11-26">0.0.1</a></li>
+      </ul>
+    </div>
   </div>
+
 </div>
 
       <footer>

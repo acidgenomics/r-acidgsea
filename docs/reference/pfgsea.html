@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parameters — params • pfgsea</title>
+<title>Parameterized fast gene set enrichment analysis (GSEA) — pfgsea • pfgsea</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Parameters — params" />
+<meta property="og:title" content="Parameterized fast gene set enrichment analysis (GSEA) — pfgsea" />
 
-<meta property="og:description" content="Parameters" />
+<meta property="og:description" content="Extends the functionality of fgsea::fgsea()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -104,96 +104,54 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parameters</h1>
-    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pfgsea/blob/master/R/params.R'><code>R/params.R</code></a></small>
-    <div class="hidden name"><code>params.Rd</code></div>
+    <h1>Parameterized fast gene set enrichment analysis (GSEA)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pfgsea/blob/master/R/pfgsea.R'><code>R/pfgsea.R</code></a></small>
+    <div class="hidden name"><code>pfgsea.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Parameters</p>
+    <p>Extends the functionality of <code><a href='https://www.rdocumentation.org/packages/fgsea/topics/fgsea'>fgsea::fgsea()</a></code>.</p>
     
     </div>
 
+    <pre class="usage"><span class='fu'>pfgsea</span>(<span class='no'>rankedList</span>, <span class='no'>gmtFiles</span>, <span class='kw'>nPerm</span> <span class='kw'>=</span> <span class='fl'>1000L</span>, <span class='kw'>minSize</span> <span class='kw'>=</span> <span class='fl'>15L</span>,
+  <span class='kw'>maxSize</span> <span class='kw'>=</span> <span class='fl'>500L</span>, <span class='kw'>bpparam</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/register'>bpparam</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>alpha</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric(1)</a></code>.
-Alpha level.</p></td>
-    </tr>
-    <tr>
-      <th>geneSet</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
-Gene set name. Can obtain using <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names()</a></code> on <code>FGSEAList</code> object.</p></td>
-    </tr>
-    <tr>
-      <th>gmtFile</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
-MSigDB GMT file path.</p></td>
+      <th>rankedList</th>
+      <td><p><code>RankedList</code>.
+Ranked gene list.</p></td>
     </tr>
     <tr>
       <th>gmtFiles</th>
       <td><p><code>character</code>.
-MSigDB GMT file paths.</p></td>
+GMT file paths.</p></td>
     </tr>
     <tr>
-      <th>headerLevel</th>
+      <th>nPerm</th>
       <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
-Markdown header level.</p></td>
+Number of permutations.
+Minimial possible nominal <em>P</em> value is about 1/<code>nPerm</code>.</p></td>
     </tr>
     <tr>
-      <th>n</th>
+      <th>minSize</th>
       <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
-Number of significant processes to include.
-Bidirectional; will include <code>n</code> up- and down-regulated processes.</p></td>
+Minimal size of a gene set to test.
+All pathways below the threshold are excluded.</p></td>
     </tr>
     <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
+      <th>maxSize</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>/<code>Inf</code>.
+Maximal size of a gene set to test.
+All pathways above the threshold are excluded.</p></td>
     </tr>
     <tr>
-      <th>pathways</th>
-      <td><p><code>character</code>.
-Pathways.</p></td>
-    </tr>
-    <tr>
-      <th>results</th>
-      <td><p><code>data.frame</code>/<code>data.table</code>.
-Unmodified <code><a href='https://www.rdocumentation.org/packages/fgsea/topics/fgsea'>fgsea::fgsea</a></code> return.</p></td>
-    </tr>
-    <tr>
-      <th>resultsList</th>
-      <td><p><code>list</code>.
-Results list.</p></td>
-    </tr>
-    <tr>
-      <th>stats</th>
-      <td><p><code>numeric</code>.
-Gene stats. Test statistic is recommended by default, but shrunken log2
-fold changes are also acceptable. Don't input unshrunken LFC values without
-standard error correction.</p></td>
-    </tr>
-    <tr>
-      <th>statsList</th>
-      <td><p><code>list</code>.
-Gene stats list.</p></td>
-    </tr>
-    <tr>
-      <th>statsList</th>
-      <td><p><code>list</code>.
-Gene stats list.</p></td>
-    </tr>
-    <tr>
-      <th>theme</th>
-      <td><p><code>theme</code>/<code>gg</code>.
-ggplot2 theme.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
+      <th>bpparam</th>
+      <td><p>BiocParallel parallelization parameter.</p></td>
     </tr>
     </table>
     
