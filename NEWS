@@ -5,7 +5,7 @@
 - Now exporting `FGSEAList` and `RankedList` S4 classes.
 - Reworked `plotEnrichment()`, `plotGSEATable()`, and `topTables()` to use
   `FGSEAList` object.
-- Renamed `statsList()` to `rankedList()`, and switched to S4 method approach.
+- Renamed `statsList()` to `RankedList()`, and switched to S4 method approach.
 - Updated R Markdown template to reflect these function reworkings.
 
 ## pfgsea 0.0.4 (2019-01-15)
