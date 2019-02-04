@@ -10,7 +10,7 @@
 #'   matchArgsToDoCall standardizeCall theme_paperwhite
 #' @importFrom bioverbs rankedList
 #' @importFrom dplyr arrange desc distinct everything filter group_by left_join
-#'   pull select summarise
+#'   pull select select_if summarise
 #' @importFrom fgsea fgsea gmtPathways plotGseaTable
 #' @importFrom ggplot2 labs
 #' @importFrom goalie assert hasNames hasLength hasRows isAFile isAll isAlpha
@@ -21,5 +21,5 @@
 #' @importFrom rlang !! !!! := sym syms
 #' @importFrom stats na.omit
 #' @importFrom tibble deframe
-#' @importFrom utils head tail
+#' @importFrom utils globalVariables head tail
 NULL
