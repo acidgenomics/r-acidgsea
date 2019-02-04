@@ -78,7 +78,7 @@ rankedList.DESeqAnalysis <- function(
                 na.omit() %>%
                 distinct() %>%
                 group_by(!!sym("geneName")) %>%
-                summarize(!!quovalue := mean(!!quovalue)) %>%
+                summarise(!!quovalue := mean(!!quovalue)) %>%
                 arrange(desc(!!quovalue)) %>%
                 deframe()
         }
