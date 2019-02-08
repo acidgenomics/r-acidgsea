@@ -1,10 +1,7 @@
 ---
-title: "Gene Set Enrichment Analysis"
-author: "`r getOption('author')`"
-date: "`r Sys.Date()`"
-bibliography: bibliography.bib
 params:
-  # Using DESeqAnalysis S4 object as input.
+  title: "Gene Set Enrichment Analysis"
+  # Use DESeqAnalysis S4 object as input.
   object_file: "data/YYYY-MM-DD/object.rds"
   # MSigDb GMT files downloaded from the Broad Institute.
   # Email registration is required for these files.
@@ -19,15 +16,20 @@ params:
   # Doesn't have to match the alpha used for DESeqResults.
   alpha: 0.05
   n_pathways: 10
+  n_pathways: 10
   data_dir: !r file.path("data", Sys.Date())
   output_dir: !r file.path("results", Sys.Date(), "pfgsea")
+title: "`r params$title`"
+author: "`r getOption('author')`"
+date: "`r Sys.Date()`"
+bibliography: bibliography.bib
 ---
 
 ```{r header, child="_header.Rmd"}
 ```
 
 ```{r setup, message=FALSE}
-# Last modified 2019-02-04
+# Last modified 2019-02-08
 library(pfgsea)
 library(tidyverse)
 prepareTemplate()
@@ -62,11 +64,15 @@ It requires three features:
 
 Note that [MSigDb][] requires that the identifiers map either to HGNC names (gene symbols) or Entrez IDs. We prefer to map using the gene symbols, but these are not 1:1 for all Ensembl gene IDs (e.g. ENSG00000000003 = TSPAN6). In the event that there are Ensembl gene IDs per HGNC symbol, we're taking the average of the values here.
 
-```{r ranked_list, message=FALSE, warning=FALSE}
+```{r ranked_list}
 ranked_list <- RankedList(object, value = params$gsea_value)
 lapply(ranked_list, head)
 lapply(ranked_list, summary)
-saveData(ranked_list, dir = params$data_dir)
+assignAndSaveData(
+    name = paste(basename, "ranked_list", sep = "_"),
+    object = ranked_list,
+    dir = params$data_dir
+)
 ```
 
 # MSigDb GMT files
@@ -113,7 +119,11 @@ gsea <- pfgsea(
     minSize = params$min_size,
     maxSize = params$max_size
 )
-saveData(gsea, dir = params$data_dir)
+assignAndSaveData(
+    name = paste(basename, "gsea", sep = "_"),
+    object = gsea,
+    dir = params$data_dir
+)
 ```
 
 ```{r export}
