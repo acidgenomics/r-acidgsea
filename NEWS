@@ -3,6 +3,7 @@
 ### Minor changes
 
 - Improved parameterized object passthrough in R Markdown template.
+- Added Travis CI and AppVeyor CI coverage.
 
 
 
