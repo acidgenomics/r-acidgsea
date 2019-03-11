@@ -1,36 +1,48 @@
 ---
-title: "Gene Set Enrichment Analysis"
-author: "`r getOption('author')`"
-date: "`r Sys.Date()`"
-bibliography: bibliography.bib
 params:
-  # Using DESeqAnalysis S4 object as input.
-  object_file: "data/YYYY-MM-DD/object.rds"
+  title: "Gene set enrichment analysis using fgsea"
+  
+  # Use DESeqAnalysis object as input.
+  # Basic: Load from file on disk, either RDS or RDA.
+  # Advanced: Loop across multiple objects using `rmarkdown::render()`.
+  object: "rds/YYYY-MM-DD/DESeqAnalysis.rds"
+  # `name` param is only necessary when passing in object directly.
+  name: !r NULL
+  
   # MSigDb GMT files downloaded from the Broad Institute.
   # Email registration is required for these files.
   gmt_dir: "~/msigdb/msigdb_v6.2_GMTs"
+  
   # Using Wald test statistic ("stat") by default.
   # Shrunken LFC ("log2FoldChange") also acceptable.
   gsea_value: "stat"
-  n_perm: 1000
-  min_size: 15
-  max_size: 500
+  
   # GSEA alpha cutoff.
   # Doesn't have to match the alpha used for DESeqResults.
   alpha: 0.05
-  data_dir: !r file.path("data", Sys.Date())
+  
+  min_size: 15
+  max_size: 500
+  n_perm: 1000
+  
+  data_dir: !r file.path("rds", Sys.Date())
   output_dir: !r file.path("results", Sys.Date(), "gsea")
+
+title: "`r params$title`"
+author: "`r getOption('author')`"
+date: "`r Sys.Date()`"
+bibliography: bibliography.bib
 ---
 
-```{r header, child="_header.Rmd"}
-```
-
 ```{r setup, message=FALSE}
-# Last modified 2019-02-04
+# Last modified 2019-03-11
 library(pfgsea)
 library(tidyverse)
 prepareTemplate()
 source("_setup.R")
+```
+
+```{r header, child="_header.Rmd"}
 ```
 
 ```{r basename}
@@ -41,8 +53,22 @@ print(basename)
 Import the `DESeqAnalysis` S4 class object. This single object contains everything we need to perform GSEA.
 
 ```{r object}
-object <- readRDS(params$object_file)
-stopifnot(is(object, "DESeqAnalysis"))
+if (is.character(params$object)) {
+    if (fileExt(object) == "rds") {
+        object <- readRDS(file = params$object)
+        name <- basenameSansExt(params$object)
+    } else if (fileExt(object) == "rda") {
+        name <- load(params$object)
+        object <- get(name, inherits = FALSE)
+    }
+} else {
+    object <- params$object
+    name <- params$name
+}
+stopifnot(
+    is(object, "DESeqAnalysis"),
+    is.character(name)
+)
 invisible(validObject(object))
 print(object)
 ```
