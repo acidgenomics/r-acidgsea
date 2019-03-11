@@ -1,6 +1,8 @@
-^.*\.Rproj$
-^\.Rproj\.user$
-^\.lintr$
 ^_pkgdown\.yml$
+^.*\.Rproj$
+^\.lintr$
+^\.Rproj\.user$
+^\.travis\.yml$
+^appveyor\.yml$
 ^docs$
 ^pkgdown$
