@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Top tables of differentially expressed genes — topTables • pfgsea</title>
+<title>Top tables — topTables • pfgsea</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Top tables of differentially expressed genes — topTables" />
+<meta property="og:title" content="Top tables — topTables" />
 
 <meta property="og:description" content="Top tables of significantly enriched pathways." />
 <meta name="twitter:card" content="summary" />
@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.6</span>
       </span>
     </div>
 
@@ -104,7 +104,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Top tables of differentially expressed genes</h1>
+    <h1>Top tables</h1>
     <small class="dont-index">Source: <a href='https://github.com/steinbaugh/pfgsea/blob/master/R/topTables-methods.R'><code>R/topTables-methods.R</code></a></small>
     <div class="hidden name"><code>topTables.Rd</code></div>
     </div>
@@ -116,8 +116,8 @@
     </div>
 
     <pre class="usage"><span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>topTables</span>(<span class='no'>object</span>, <span class='no'>geneSet</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5L</span>,
-  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>2L</span>)</pre>
+<span class='fu'>topTables</span>(<span class='no'>object</span>, <span class='no'>geneSet</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
+  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>3L</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

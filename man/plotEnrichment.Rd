@@ -9,7 +9,7 @@
 plotEnrichment(object, ...)
 
 \S4method{plotEnrichment}{FGSEAList}(object, geneSet, alpha = 0.05,
-  n = 5L, headerLevel = 2L, theme = basejump::theme_paperwhite())
+  n = 10L, headerLevel = 3L, theme = basejump::theme_paperwhite())
 }
 \arguments{
 \item{object}{Object.}
