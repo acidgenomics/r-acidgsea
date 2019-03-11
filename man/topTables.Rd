@@ -4,7 +4,7 @@
 \name{topTables}
 \alias{topTables}
 \alias{topTables,FGSEAList-method}
-\title{Top tables of differentially expressed genes}
+\title{Top tables}
 \usage{
 \S4method{topTables}{FGSEAList}(object, geneSet, alpha = 0.05, n = 5L,
   headerLevel = 2L)
