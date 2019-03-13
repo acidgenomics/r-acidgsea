@@ -12,9 +12,10 @@ params:
   # Email registration is required for these files.
   gmt_dir: "~/msigdb/msigdb_v6.2_GMTs"
   
-  # Using Wald test statistic ("stat") by default.
-  # Shrunken LFC ("log2FoldChange") also acceptable.
-  gsea_value: "stat"
+  # Either values are acceptable:
+  # 1. Shrunken LFC ("log2FoldChange").
+  # 2. Wald test statistic ("stat").
+  gsea_value: "log2FoldChange"
   
   # GSEA alpha cutoff.
   # Doesn't have to match the alpha used for DESeqResults.
