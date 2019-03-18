@@ -11,10 +11,14 @@
 #' @inheritParams params
 #'
 #' @param value `character(1)`.
-#'   Value type to use for GSEA. Recommending `"stat"` by default, which
-#'   corresponds to the Wald test statistic for DESeq2. Shrunken log2 fold
-#'   change (`"log2FoldChange"`) or BH-adjusted *P* values ("padj") are also
-#'   acceptible.
+#'   Value type to use for GSEA. Currently supported:
+#'
+#'   1. `log2FoldChange`: **Shrunken** log2 fold change.
+#'      Note that this option requires `lfcShrink()` return to be slotted.
+#'   2. `stat`: Wald test statistic. This column is returned by `results()`
+#'      but is removed in `lfcShrink()` return currently.
+#'   3. `padj`: Adjusted *P* value. This don't provide directional ranks, but
+#'      is offered as a legacy option. Not generally recommended.
 #'
 #' @return `RankedList`.
 #'
@@ -27,7 +31,7 @@ NULL
 
 RankedList.DESeqAnalysis <- function(
     object,
-    value = c("stat", "log2FoldChange", "padj")
+    value = c("log2FoldChange", "stat", "padj")
 ) {
     validObject(object)
     value <- match.arg(value)
