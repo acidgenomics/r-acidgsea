@@ -16,21 +16,34 @@ bioverbs::export
 
 
 
-# @seealso DESeqAnalysis:::export.DESeqAnalysis
+# On-disk structure: fgsea/mutant_vs_control/c1.csv
+#
+# S4 object is currently structured by:
+# 1. Gene set (c1-c8, h).
+# 2. Contrast.
+#
+# The object was structured in this manner to flow with the R Markdown template.
+#
+# However, when writing to disk, I think it makes more sense to organize by:
+# 1. Contrast
+# 2. Gene set.
+#
+# I'm considering restructuring the object to match this approach, and may apply
+# this approach in a future update.
 export.FGSEAList <- function(x, name = NULL, dir = ".") {
     validObject(x)
-    # The `getNameInParent()` method used in goalie doesn't work well inside
-    # of an S4 method.
+
     call <- standardizeCall()
     assert(isString(name, nullOK = TRUE))
     if (is.null(name)) {
         name <- as.character(call[["x"]])
     }
-    # Note that we're combining the dir with name, so we can set
-    # subdirectories for each slotted data type (e.g. DESeqDataSet).
+
+    # Note that we're combining the dir with name, so we can set subdirectories
+    # for each slotted data type (e.g. `DESeqDataSet`).
     dir <- initDir(file.path(dir, name))
     message(paste0("Exporting to ", dir, "."))
-    # Naming system: fgsea_c1_mutant_vs_control.csv
+
     files <- lapply(
         X = seq_len(length(x)),
         FUN = function(gmt) {
@@ -39,13 +52,11 @@ export.FGSEAList <- function(x, name = NULL, dir = ".") {
                 X = seq_len(length(contrasts)),
                 FUN = function(contrast) {
                     data <- x[[gmt]][[contrast]]
-                    name <- paste(
-                        "gsea",
-                        names(x)[[gmt]],
+                    file <- file.path(
+                        dir,
                         names(x[[gmt]])[[contrast]],
-                        sep = "_"
+                        paste0(names(x)[[gmt]], ".csv")
                     )
-                    file <- file.path(dir, paste0(name, ".csv"))
                     export(x = data, file = file)
                 }
             )
@@ -53,6 +64,7 @@ export.FGSEAList <- function(x, name = NULL, dir = ".") {
         }
     )
     names(files) <- names(x)
+
     files
 }
 
