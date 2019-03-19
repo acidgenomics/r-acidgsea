@@ -13,10 +13,10 @@
 #' @param value `character(1)`.
 #'   Value type to use for GSEA. Currently supported:
 #'
-#'   1. `log2FoldChange`: **Shrunken** log2 fold change.
-#'      Note that this option requires `lfcShrink()` return to be slotted.
-#'   2. `stat`: Wald test statistic. This column is returned by `results()`
+#'   1. `stat`: Wald test statistic. This column is returned by `results()`
 #'      but is removed in `lfcShrink()` return currently.
+#'   2. `log2FoldChange`: **Shrunken** log2 fold change.
+#'      Note that this option requires `lfcShrink()` return to be slotted.
 #'   3. `padj`: Adjusted *P* value. This don't provide directional ranks, but
 #'      is offered as a legacy option. Not generally recommended.
 #'
@@ -31,7 +31,7 @@ NULL
 
 RankedList.DESeqAnalysis <- function(
     object,
-    value = c("log2FoldChange", "stat", "padj")
+    value = c("stat", "log2FoldChange", "padj")
 ) {
     validObject(object)
     value <- match.arg(value)
