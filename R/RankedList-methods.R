@@ -14,9 +14,9 @@
 #'   Value type to use for GSEA. Currently supported:
 #'
 #'   1. `stat`: Wald test statistic. This column is returned by `results()`
-#'      but is removed in `lfcShrink()` return currently.
-#'   2. `log2FoldChange`: **Shrunken** log2 fold change.
-#'      Note that this option requires `lfcShrink()` return to be slotted.
+#'      but is removed in [DESeq2::lfcShrink()] return, currently.
+#'   2. `log2FoldChange`: Shrunken log2 fold change. Note that this option
+#'      requires `[DESeq2::lfcShrink()] return to be slotted.
 #'   3. `padj`: Adjusted *P* value. This don't provide directional ranks, but
 #'      is offered as a legacy option. Not generally recommended.
 #'
