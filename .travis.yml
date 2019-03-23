@@ -12,6 +12,7 @@ matrix:
   allow_failures:
     - os: osx
     - r: bioc-devel
+  fast_finish: true
 
 branches:
   only:
@@ -26,7 +27,7 @@ r_packages:
 bioc_packages:
   - BiocCheck
 github_packages:
-  - steinbaugh/lintr
+  - acidgenomics/lintr
 
 after_success:
   - R CMD BiocCheck .
