@@ -9,8 +9,8 @@
 \usage{
 RankedList(object, ...)
 
-\S4method{RankedList}{DESeqAnalysis}(object, value = c("log2FoldChange",
-  "stat", "padj"))
+\S4method{RankedList}{DESeqAnalysis}(object, value = c("stat",
+  "log2FoldChange", "padj"))
 
 \S4method{RankedList}{FGSEAList}(object)
 }
@@ -22,10 +22,10 @@ RankedList(object, ...)
 \item{value}{\code{character(1)}.
 Value type to use for GSEA. Currently supported:
 \enumerate{
-\item \code{log2FoldChange}: \strong{Shrunken} log2 fold change.
-Note that this option requires \code{lfcShrink()} return to be slotted.
 \item \code{stat}: Wald test statistic. This column is returned by \code{results()}
-but is removed in \code{lfcShrink()} return currently.
+but is removed in \code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} return, currently.
+\item \code{log2FoldChange}: Shrunken log2 fold change. Note that this option
+requires `\code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} return to be slotted.
 \item \code{padj}: Adjusted \emph{P} value. This don't provide directional ranks, but
 is offered as a legacy option. Not generally recommended.
 }}

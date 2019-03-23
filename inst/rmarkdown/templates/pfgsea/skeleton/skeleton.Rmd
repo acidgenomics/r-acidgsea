@@ -6,16 +6,19 @@ params:
   # Basic: Load from file on disk, either RDS or RDA.
   # Advanced: Loop across multiple objects using `rmarkdown::render()`.
   object: "rds/YYYY-MM-DD/DESeqAnalysis.rds"
-  name: "object_name"
+  
+  # The `name` param is only necessary when passing in object directly, during
+  # an `rmarkdown::render()` call. See `object` param.
+  # name: "object_name"
   
   # MSigDb GMT files downloaded from the Broad Institute.
   # Email registration is required for these files.
   gmt_dir: "~/msigdb/msigdb_v6.2_GMTs"
   
   # Either values are acceptable:
-  # 1. Shrunken LFC ("log2FoldChange").
-  # 2. Wald test statistic ("stat").
-  gsea_value: "log2FoldChange"
+  # 1. Wald test statistic ("stat").
+  # 2. Shrunken LFC ("log2FoldChange").
+  gsea_value: "stat"
   
   # GSEA alpha cutoff.
   # Doesn't have to match the alpha used for DESeqResults.
@@ -25,7 +28,10 @@ params:
   max_size: 500
   n_perm: 1000
   
-  data_dir: !r file.path("rds", Sys.Date())
+  # Number of pathways (both directions) to include in plots.
+  n_pathways: 10
+  
+  rdata_dir: !r file.path("rds", Sys.Date())
   output_dir: !r file.path("results", Sys.Date(), "gsea")
 
 title: "`r params$title`"
@@ -35,7 +41,8 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, message=FALSE}
-# Last modified 2019-03-11
+# Last modified 2019-03-19
+library(DESeqAnalysis)
 library(pfgsea)
 library(tidyverse)
 prepareTemplate()
@@ -45,19 +52,14 @@ source("_setup.R")
 ```{r header, child="_header.Rmd"}
 ```
 
-```{r basename}
-basename <- basenameSansExt(params$object_file)
-print(basename)
-```
-
 Import the `DESeqAnalysis` S4 class object. This single object contains everything we need to perform GSEA.
 
 ```{r object}
 if (is.character(params$object)) {
-    if (fileExt(object) == "rds") {
+    if (fileExt(params$object) == "rds") {
         object <- readRDS(file = params$object)
         name <- basenameSansExt(params$object)
-    } else if (fileExt(object) == "rda") {
+    } else if (fileExt(params$object) == "rda") {
         name <- load(params$object)
         object <- get(name, inherits = FALSE)
     }
@@ -74,29 +76,6 @@ print(object)
 ```
 
 All genes can be used in Gene Set Enrichment Analysis (GSEA). GSEA aggregates the per gene statistics across genes within a gene set, therefore making it possible to detect situations where all genes in a predefined set change in a small but coordinated way. Since it is likely that many relevant phenotypic differences are manifested by small but consistent changes in a set of genes. GSEA uses a ranked list of genes (here ranked by the test statistic), without applying a per-gene *P* value significance cutoff. This allows the analysis to use more information to identify enriched biological processes. The [GSEA introduction](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1239896) goes into more detail about some of the advantages of this approach.
-
-# Ranked gene list
-
-Prepare a ranked `numeric vector` [gene list](https://github.com/GuangchuangYu/DOSE/wiki/how-to-prepare-your-own-geneList) for GSEA.
-
-It requires three features:
-
-1. numeric: test statistic (*preferred*) or log2 fold change. For [DESeq2][], the test statistic is generated using the Wald test by default (see `DESeq2::DESeq()`, `DESeq2::nbinomWaldTest()`).
-2. named: every number has a name, the corresponding gene ID.
-3. sorted: number should be sorted in decreasing order.
-
-Note that [MSigDb][] requires that the identifiers map either to HGNC names (gene symbols) or Entrez IDs. We prefer to map using the gene symbols, but these are not 1:1 for all Ensembl gene IDs (e.g. ENSG00000000003 = TSPAN6). In the event that there are Ensembl gene IDs per HGNC symbol, we're taking the average of the values here.
-
-```{r ranked_list}
-ranked_list <- RankedList(object, value = params$gsea_value)
-lapply(ranked_list, head)
-lapply(ranked_list, summary)
-assignAndSaveData(
-    name = paste(basename, "ranked_list", sep = "_"),
-    object = ranked_list,
-    dir = params$data_dir
-)
-```
 
 # MSigDb GMT files
 
@@ -117,6 +96,29 @@ names(gmt_files) <- str_extract(
 print(basename(gmt_files))
 ```
 
+# Ranked gene list
+
+Prepare a ranked `numeric vector` [gene list](https://github.com/GuangchuangYu/DOSE/wiki/how-to-prepare-your-own-geneList) for GSEA.
+
+It requires three features:
+
+1. numeric: test statistic (*preferred*) or log2 fold change. For [DESeq2][], the test statistic is generated using the Wald test by default (see `DESeq2::DESeq()`, `DESeq2::nbinomWaldTest()`).
+2. named: every number has a name, the corresponding gene ID.
+3. sorted: number should be sorted in decreasing order.
+
+Note that [MSigDb][] requires that the identifiers map either to HGNC names (gene symbols) or Entrez IDs. We prefer to map using the gene symbols, but these are not 1:1 for all Ensembl gene IDs (e.g. ENSG00000000003 = TSPAN6). In the event that there are Ensembl gene IDs per HGNC symbol, we're taking the average of the values here.
+
+```{r ranked_list}
+ranked_list <- RankedList(object, value = params$gsea_value)
+lapply(ranked_list, head)
+lapply(ranked_list, summary)
+assignAndSaveData(
+    name = paste(name, "ranked_list", sep = "_"),
+    object = ranked_list,
+    dir = params$rdata_dir
+)
+```
+
 # Run GSEA
 
 This section is a modified version of Stephen Turner's excellent [DESeq results to pathways in 60 Seconds with the fgsea package](https://stephenturner.github.io/deseq-to-fgsea/) vignette. The [fgsea vignette](https://bioconductor.org/packages/release/bioc/vignettes/fgsea/inst/doc/fgsea-tutorial.html) also has additional useful information.
@@ -134,8 +136,8 @@ Each row corresponds to a tested pathway. The columns are the following:
 
 Here we are arranging the tables by normalized enrichment score (NES), positive to negative.
 
-```{r gsea}
-gsea <- pfgsea(
+```{r pfgsea}
+fgsea <- pfgsea(
     rankedList = ranked_list,
     gmtFiles = gmt_files,
     nPerm = params$n_perm,
@@ -143,14 +145,14 @@ gsea <- pfgsea(
     maxSize = params$max_size
 )
 assignAndSaveData(
-    name = paste(basename, "gsea", sep = "_"),
-    object = gsea,
-    dir = params$data_dir
+    name = paste(name, "fgsea", sep = "_"),
+    object = fgsea,
+    dir = params$rdata_dir
 )
 ```
 
 ```{r export}
-export(gsea, dir = params$output_dir)
+export(fgsea, dir = params$output_dir)
 ```
 
 # Hallmark
@@ -163,7 +165,7 @@ The `fgsea::gmtPathways()` function will take a GMT file from MSigDb and turn it
 
 ```{r h_top_tables, results="asis"}
 topTables(
-    object = gsea,
+    object = fgsea,
     geneSet = "h",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -175,7 +177,7 @@ topTables(
 
 ```{r h_plot_gsea_table, results="asis"}
 plotGSEATable(
-    object = gsea,
+    object = fgsea,
     geneSet = "h",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -187,7 +189,7 @@ plotGSEATable(
 
 ```{r h_plot_enrichment, results="asis"}
 plotEnrichment(
-    object = gsea,
+    object = fgsea,
     geneSet = "h",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -201,7 +203,7 @@ plotEnrichment(
 
 ```{r c1_top_tables, results="asis"}
 topTables(
-    object = gsea,
+    object = fgsea,
     geneSet = "c1",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -213,7 +215,7 @@ topTables(
 
 ```{r c1_plot_gsea_table, results="asis"}
 plotGSEATable(
-    object = gsea,
+    object = fgsea,
     geneSet = "c1",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -225,7 +227,7 @@ plotGSEATable(
 
 ```{r c1_plot_enrichment, results="asis"}
 plotEnrichment(
-    object = gsea,
+    object = fgsea,
     geneSet = "c1",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -239,7 +241,7 @@ plotEnrichment(
 
 ```{r c2_top_tables, results="asis"}
 topTables(
-    object = gsea,
+    object = fgsea,
     geneSet = "c2",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -251,7 +253,7 @@ topTables(
 
 ```{r c2_plot_gsea_table, results="asis"}
 plotGSEATable(
-    object = gsea,
+    object = fgsea,
     geneSet = "c2",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -263,7 +265,7 @@ plotGSEATable(
 
 ```{r c2_plot_enrichment, results="asis"}
 plotEnrichment(
-    object = gsea,
+    object = fgsea,
     geneSet = "c2",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -277,7 +279,7 @@ plotEnrichment(
 
 ```{r c3_top_tables, results="asis"}
 topTables(
-    object = gsea,
+    object = fgsea,
     geneSet = "c3",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -289,7 +291,7 @@ topTables(
 
 ```{r c3_plot_gsea_table, results="asis"}
 plotGSEATable(
-    object = gsea,
+    object = fgsea,
     geneSet = "c3",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -301,7 +303,7 @@ plotGSEATable(
 
 ```{r c3_plot_enrichment, results="asis"}
 plotEnrichment(
-    object = gsea,
+    object = fgsea,
     geneSet = "c3",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -315,7 +317,7 @@ plotEnrichment(
 
 ```{r c4_top_tables, results="asis"}
 topTables(
-    object = gsea,
+    object = fgsea,
     geneSet = "c4",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -327,7 +329,7 @@ topTables(
 
 ```{r c4_plot_gsea_table, results="asis"}
 plotGSEATable(
-    object = gsea,
+    object = fgsea,
     geneSet = "c4",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -339,7 +341,7 @@ plotGSEATable(
 
 ```{r c4_plot_enrichment, results="asis"}
 plotEnrichment(
-    object = gsea,
+    object = fgsea,
     geneSet = "c4",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -353,7 +355,7 @@ plotEnrichment(
 
 ```{r c5_top_tables, results="asis"}
 topTables(
-    object = gsea,
+    object = fgsea,
     geneSet = "c5",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -365,7 +367,7 @@ topTables(
 
 ```{r c5_plot_gsea_table, results="asis"}
 plotGSEATable(
-    object = gsea,
+    object = fgsea,
     geneSet = "c5",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -377,7 +379,7 @@ plotGSEATable(
 
 ```{r c5_plot_enrichment, results="asis"}
 plotEnrichment(
-    object = gsea,
+    object = fgsea,
     geneSet = "c5",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -391,7 +393,7 @@ plotEnrichment(
 
 ```{r c6_top_tables, results="asis"}
 topTables(
-    object = gsea,
+    object = fgsea,
     geneSet = "c6",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -403,7 +405,7 @@ topTables(
 
 ```{r c6_plot_gsea_table, results="asis"}
 plotGSEATable(
-    object = gsea,
+    object = fgsea,
     geneSet = "c6",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -415,7 +417,7 @@ plotGSEATable(
 
 ```{r c6_plot_enrichment, results="asis"}
 plotEnrichment(
-    object = gsea,
+    object = fgsea,
     geneSet = "c6",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -429,7 +431,7 @@ plotEnrichment(
 
 ```{r c7_top_tables, results="asis"}
 topTables(
-    object = gsea,
+    object = fgsea,
     geneSet = "c7",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -441,7 +443,7 @@ topTables(
 
 ```{r c7_plot_gsea_table, results="asis"}
 plotGSEATable(
-    object = gsea,
+    object = fgsea,
     geneSet = "c7",
     alpha = params$alpha,
     n = params$n_pathways,
@@ -453,7 +455,7 @@ plotGSEATable(
 
 ```{r c7_plot_enrichment, results="asis"}
 plotEnrichment(
-    object = gsea,
+    object = fgsea,
     geneSet = "c7",
     alpha = params$alpha,
     n = params$n_pathways,

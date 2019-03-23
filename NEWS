@@ -1,3 +1,10 @@
+## pfgsea 0.1.0 (2019-03-23)
+
+- Initial stable release.
+- Moved code to [Acid Genomics][].
+
+
+
 ## pfgsea 0.0.7 (2019-03-18)
 
 ### Minor changes
@@ -65,3 +72,7 @@
 ## pfgsea 0.0.1 (2018-11-26)
 
 Initial release.
+
+
+
+[Acid Genomics]: https://acidgenomics.com/
