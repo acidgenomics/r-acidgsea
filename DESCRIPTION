@@ -5,17 +5,21 @@ Description:
     expression contrasts.
 Version: 0.1.0
 Date: 2019-03-23
-Authors@R:
+Authors@R: c(
     person(
         "Michael", "Steinbaugh",
         email = "mike@steinbaugh.com",
         role = c("aut", "cre"),
         comment = c(ORCID = "0000-0002-2403-2221")
-    )
+    ),
+    person(
+        given = "Acid Genomics",
+        role = c("cph", "fnd")
+    ))
 URL:
-    https://steinbaugh.com/pfgsea/,
-    https://github.com/steinbaugh/pfgsea/
-BugReports: https://github.com/steinbaugh/pfgsea/issues/
+    https://pfgsea.acidgenomics.com/pfgsea/,
+    https://github.com/acidgenomics/pfgsea/
+BugReports: https://github.com/acidgenomics/pfgsea/issues/
 License: MIT + file LICENSE
 Encoding: UTF-8
 Depends:
