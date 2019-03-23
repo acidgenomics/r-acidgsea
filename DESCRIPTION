@@ -3,8 +3,8 @@ Title: Parameterized Fast GSEA
 Description:
     Perform parameterized gene set enrichment analysis on multiple differential
     expression contrasts.
-Version: 0.0.7
-Date: 2019-03-18
+Version: 0.1.0
+Date: 2019-03-23
 Authors@R:
     person(
         "Michael", "Steinbaugh",
@@ -20,22 +20,22 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Depends:
     R (>= 3.5),
-    basejump (>= 0.9.14),
-    DESeqAnalysis (>= 0.1.12)
+    basejump (>= 0.9.16),
+    DESeqAnalysis (>= 0.1.13)
 Imports:
-    bioverbs (>= 0.1.8), goalie (>= 0.2.11),
+    bioverbs (>= 0.1.10), goalie (>= 0.2.12),
     BiocParallel, S4Vectors, fgsea (>= 1.8),
     dplyr (>= 0.8), ggplot2 (>= 3.1), knitr (>= 1.22), magrittr (>= 1.5),
-        rlang (>= 0.3), tibble (>= 2.0),
+        rlang (>= 0.3), tibble (>= 2.1),
     methods, stats, utils
 Suggests:
     BiocStyle,
     patrick, rmarkdown, testthat
 Remotes:
-    steinbaugh/DESeqAnalysis,
-    steinbaugh/basejump,
-    steinbaugh/bioverbs,
-    steinbaugh/goalie
+    acidgenomics/DESeqAnalysis,
+    acidgenomics/basejump,
+    acidgenomics/bioverbs,
+    acidgenomics/goalie
 biocViews:
     GeneSetEnrichment,
     Visualization

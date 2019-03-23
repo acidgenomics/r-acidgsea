@@ -1,8 +1,9 @@
-^_pkgdown\.yml$
 ^.*\.Rproj$
-^\.lintr$
 ^\.Rproj\.user$
+^\.git$
+^\.lintr$
 ^\.travis\.yml$
+^_pkgdown\.yml$
 ^appveyor\.yml$
 ^docs$
 ^pkgdown$
