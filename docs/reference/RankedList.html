@@ -140,9 +140,9 @@
       <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
 Value type to use for GSEA. Currently supported:</p><ol>
 <li><p><code>stat</code>: Wald test statistic. This column is returned by <code>results()</code>
-but is removed in <code>lfcShrink()</code> return currently.</p></li>
-<li><p><code>log2FoldChange</code>: <strong>Shrunken</strong> log2 fold change.
-Note that this option requires <code>lfcShrink()</code> return to be slotted.</p></li>
+but is removed in <code><a href='https://www.rdocumentation.org/packages/DESeq2/topics/lfcShrink'>DESeq2::lfcShrink()</a></code> return, currently.</p></li>
+<li><p><code>log2FoldChange</code>: Shrunken log2 fold change. Note that this option
+requires `<code><a href='https://www.rdocumentation.org/packages/DESeq2/topics/lfcShrink'>DESeq2::lfcShrink()</a></code> return to be slotted.</p></li>
 <li><p><code>padj</code>: Adjusted <em>P</em> value. This don't provide directional ranks, but
 is offered as a legacy option. Not generally recommended.</p></li>
 </ol></td>
