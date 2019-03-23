@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -118,8 +118,8 @@
     <pre class="usage"><span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for DESeqAnalysis</span>
-<span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"log2FoldChange"</span>,
-  <span class='st'>"stat"</span>, <span class='st'>"padj"</span>))
+<span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"stat"</span>,
+  <span class='st'>"log2FoldChange"</span>, <span class='st'>"padj"</span>))
 
 <span class='co'># S4 method for FGSEAList</span>
 <span class='fu'>RankedList</span>(<span class='no'>object</span>)</pre>
@@ -139,10 +139,10 @@
       <th>value</th>
       <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
 Value type to use for GSEA. Currently supported:</p><ol>
-<li><p><code>log2FoldChange</code>: <strong>Shrunken</strong> log2 fold change.
-Note that this option requires <code>lfcShrink()</code> return to be slotted.</p></li>
 <li><p><code>stat</code>: Wald test statistic. This column is returned by <code>results()</code>
 but is removed in <code>lfcShrink()</code> return currently.</p></li>
+<li><p><code>log2FoldChange</code>: <strong>Shrunken</strong> log2 fold change.
+Note that this option requires <code>lfcShrink()</code> return to be slotted.</p></li>
 <li><p><code>padj</code>: Adjusted <em>P</em> value. This don't provide directional ranks, but
 is offered as a legacy option. Not generally recommended.</p></li>
 </ol></td>
