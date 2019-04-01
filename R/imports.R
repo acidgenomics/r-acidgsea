@@ -7,7 +7,7 @@
 #'
 #' @importFrom S4Vectors SimpleList lapply metadata metadata<-
 #' @importFrom basejump Gene2Symbol as_tibble export initDir markdownHeader
-#'   matchArgsToDoCall standardizeCall theme_paperwhite
+#'   matchArgsToDoCall standardizeCall
 #' @importFrom dplyr arrange desc distinct everything filter group_by left_join
 #'   pull select select_if summarise
 #' @importFrom fgsea fgsea gmtPathways plotGseaTable
@@ -17,6 +17,7 @@
 #' @importFrom knitr kable
 #' @importFrom magrittr %>%
 #' @importFrom methods as is new setAs setGeneric setMethod validObject
+#' @importFrom minimalism theme_paperwhite
 #' @importFrom rlang !! !!! := sym syms
 #' @importFrom stats na.omit
 #' @importFrom tibble deframe
