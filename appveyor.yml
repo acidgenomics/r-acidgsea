@@ -27,6 +27,11 @@ environment:
     # - R_VERSION: devel
     #   BIOC_USE_DEVEL: "TRUE"
 
+matrix:
+  allow_failures:
+    - R_VERSION: devel
+  fast_finish: true
+
 build_script:
   - travis-tool.sh install_bioc_deps
 
