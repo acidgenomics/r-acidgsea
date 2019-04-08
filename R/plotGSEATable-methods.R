@@ -1,3 +1,11 @@
+# FIXME Need to fix this in working example.
+# Improve the error message!
+# metadata(gsea)[["gmtFiles"]]
+# h
+# "/home/michael.steinbaugh/msigdb/msigdb_v6.2_GMTs/h.all.v6.2.symbols.gmt"
+
+
+
 #' Plot GSEA table
 #'
 #' @name plotGSEATable
@@ -5,6 +13,10 @@
 #' @return `ggplot`.
 #'
 #' @seealso [fgsea::plotGseaTable()].
+#'
+#' @examples
+#' data(gsea)
+#' plotGSEATable(gsea, geneSet = "h")
 NULL
 
 
