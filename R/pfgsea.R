@@ -18,13 +18,21 @@
 #'   Maximal size of a gene set to test.
 #'   All pathways above the threshold are excluded.
 #' @param bpparam BiocParallel parallelization parameter.
+#'
+#' @examples
+#' data(gsea)
+#' rankedList <- metadata(gsea)[["rankedList"]]
+#' gmtFiles <- metadata(gsea)[["gmtFiles"]]
+#'
+#' x <- pfgsea(rankedList = rankedList, gmtFiles = gmtFiles)
+#' print(x)
 pfgsea <- function(
     rankedList,
     gmtFiles,
     nPerm = 1000L,
     minSize = 15L,
     maxSize = 500L,
-    bpparam = BiocParallel::bpparam()
+    bpparam = bpparam()
 ) {
     assert(
         is(rankedList, "RankedList"),

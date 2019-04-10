@@ -5,7 +5,7 @@
 \title{Parameterized fast gene set enrichment analysis (GSEA)}
 \usage{
 pfgsea(rankedList, gmtFiles, nPerm = 1000L, minSize = 15L,
-  maxSize = 500L, bpparam = BiocParallel::bpparam())
+  maxSize = 500L, bpparam = bpparam())
 }
 \arguments{
 \item{rankedList}{\code{RankedList}.
@@ -30,4 +30,12 @@ All pathways above the threshold are excluded.}
 }
 \description{
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
+}
+\examples{
+data(gsea)
+rankedList <- metadata(gsea)[["rankedList"]]
+gmtFiles <- metadata(gsea)[["gmtFiles"]]
+
+x <- pfgsea(rankedList = rankedList, gmtFiles = gmtFiles)
+print(x)
 }
