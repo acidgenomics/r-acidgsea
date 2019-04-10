@@ -5,6 +5,10 @@
 #' @return `ggplot`.
 #'
 #' @seealso [fgsea::plotGseaTable()].
+#'
+#' @examples
+#' data(gsea)
+#' plotGSEATable(gsea, geneSet = "h")
 NULL
 
 

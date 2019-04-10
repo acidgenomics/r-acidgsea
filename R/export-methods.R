@@ -5,6 +5,12 @@
 #' @param x Object.
 #' @param name Name.
 #' @param dir Directory.
+#'
+#' @examples
+#' data(gsea)
+#' export(gsea, dir = "example")
+#' list.files(file.path("example", "gsea"))
+#' unlink("example", recursive = TRUE)
 NULL
 
 
@@ -61,6 +67,7 @@ export.FGSEAList <- function(x, name = NULL, dir = ".") {
                 }
             )
             names(files) <- names(contrasts)
+            files
         }
     )
     names(files) <- names(x)

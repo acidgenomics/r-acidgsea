@@ -35,6 +35,10 @@ Markdown header level.}
 \description{
 Plot GSEA table
 }
+\examples{
+data(gsea)
+plotGSEATable(gsea, geneSet = "h")
+}
 \seealso{
 \code{\link[fgsea:plotGseaTable]{fgsea::plotGseaTable()}}.
 }

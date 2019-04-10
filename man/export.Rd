@@ -18,3 +18,9 @@
 \description{
 Export data out of R and write to disk.
 }
+\examples{
+data(gsea)
+export(gsea, dir = "example")
+list.files(file.path("example", "gsea"))
+unlink("example", recursive = TRUE)
+}
