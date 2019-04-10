@@ -4,6 +4,7 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
+\alias{bpparam}
 \alias{theme_paperwhite}
 \title{Objects exported from other packages}
 \keyword{internal}
@@ -12,6 +13,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{BiocParallel}{\code{\link[BiocParallel]{bpparam}}}
+
   \item{bioverbs}{\code{\link[bioverbs]{export}}, \code{\link[bioverbs]{topTables}}}
 
   \item{minimalism}{\code{\link[minimalism]{theme_paperwhite}}}
