@@ -35,3 +35,6 @@ Top tables of significantly enriched pathways.
 Supports looping across multiple DEG results, and adds a Markdown header for
 each contrast.
 }
+\examples{
+topTables(gsea, geneSet = "h")
+}
