@@ -17,7 +17,7 @@
 #' @param maxSize `integer(1)`/`Inf`.
 #'   Maximal size of a gene set to test.
 #'   All pathways above the threshold are excluded.
-#' @param bpparam BiocParallel parallelization parameter.
+#' @param BPPARAM BiocParallel parallelization parameter.
 #'
 #' @examples
 #' data(gsea)
@@ -32,7 +32,7 @@ pfgsea <- function(
     nPerm = 1000L,
     minSize = 15L,
     maxSize = 500L,
-    bpparam = bpparam()
+    BPPARAM = bpparam()
 ) {
     assert(
         is(rankedList, "RankedList"),
@@ -65,7 +65,7 @@ pfgsea <- function(
                             nperm = nPerm,
                             minSize = minSize,
                             maxSize = maxSize,
-                            BPPARAM = bpparam
+                            BPPARAM = BPPARAM
                         )
                     )
                     assert(is(data, "data.table"))

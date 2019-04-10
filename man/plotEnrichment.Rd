@@ -39,6 +39,7 @@ ggplot2 theme.}
 Plot enrichment
 }
 \examples{
+data(gsea)
 plotEnrichment(gsea, geneSet = "h", n = 1L)
 }
 \seealso{
