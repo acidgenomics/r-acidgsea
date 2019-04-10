@@ -1,13 +1,3 @@
-# FIXME Need to fix this in working example.
-# Improve the error message!
-# metadata(gsea)[["gmtFiles"]]
-# h
-# "/home/michael.steinbaugh/msigdb/msigdb_v6.2_GMTs/h.all.v6.2.symbols.gmt"
-
-# FIXME Consider storing the geneSet in the object instead...for posterity.
-
-
-
 #' Plot GSEA table
 #'
 #' @name plotGSEATable
