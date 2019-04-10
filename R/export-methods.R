@@ -67,6 +67,7 @@ export.FGSEAList <- function(x, name = NULL, dir = ".") {
                 }
             )
             names(files) <- names(contrasts)
+            files
         }
     )
     names(files) <- names(x)
