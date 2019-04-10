@@ -1,3 +1,19 @@
+## pfgsea 0.1.2 (2019-04-10)
+
+### Major changes
+
+- Deleted `list` to `FGSEAList` coercion method.
+
+### Minor changes
+
+- `pfgsea`: Renamed `bpparam` argument to `BPPARAM`, to match Bioconductor.
+  Also now reexporting `BiocParallel::bpparam`.
+- Added `gsea` minimal working example dataset, for unit testing.
+- Added documentation working examples, using `gsea` data.
+- Updated NAMESPACE for `theme_paperwhite`. Now reexporting this function.
+
+
+
 ## pfgsea 0.1.1 (2019-04-01)
 
 ### Minor changes
