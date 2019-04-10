@@ -23,8 +23,9 @@
 #' @return `RankedList`.
 #'
 #' @examples
-#' ## x <- RankedList(object)
-#' ## names(x)
+#' data(deseq, package = "DESeqAnalysis")
+#' x <- RankedList(deseq)
+#' print(x)
 NULL
 
 
