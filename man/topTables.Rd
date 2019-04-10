@@ -36,5 +36,6 @@ Supports looping across multiple DEG results, and adds a Markdown header for
 each contrast.
 }
 \examples{
+data(gsea)
 topTables(gsea, geneSet = "h")
 }
