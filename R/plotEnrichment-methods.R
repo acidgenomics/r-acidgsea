@@ -7,6 +7,7 @@
 #' @seealso [fgsea::plotEnrichment()].
 #'
 #' @examples
+#' data(gsea)
 #' plotEnrichment(gsea, geneSet = "h", n = 1L)
 NULL
 
