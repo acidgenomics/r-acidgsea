@@ -44,6 +44,7 @@ In this event, we're averaging the stat values using \code{mean()} internally.
 }
 
 \examples{
-## x <- RankedList(object)
-## names(x)
+data(deseq, package = "DESeqAnalysis")
+x <- RankedList(deseq)
+print(x)
 }

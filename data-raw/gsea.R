@@ -10,9 +10,7 @@ dataset <- file.path(
 stopifnot(dir.exists(dataset))
 
 # FGSEAList
-gsea <- readRDS(
-    file.path(dataset, "rds", "2019-02-04", "gsea.rds")
-)
+gsea <- readRDS(file.path(dataset, "rds", "2019-02-04", "gsea.rds"))
 validObject(gsea)
 
 object_size(gsea)
@@ -44,8 +42,7 @@ object_size(gsea)
 #
 # nolint end
 
-gsea@listData[["h"]] <-
-    gsea[["h"]]["dmso_r1881_vs_etoh"]
+gsea@listData[["h"]] <- gsea[["h"]]["dmso_r1881_vs_etoh"]
 
 # validObject(gsea)
 # Error in validObject(gsea) :
@@ -54,8 +51,7 @@ gsea@listData[["h"]] <-
 # identical(names(object[[1L]]), names(metadata(object)[["rankedList"]])) is not TRUE.
 
 # Fix gmtFiles metadata.
-metadata(gsea)[["gmtFiles"]] <-
-    metadata(gsea)[["gmtFiles"]]["h"]
+metadata(gsea)[["gmtFiles"]] <- metadata(gsea)[["gmtFiles"]]["h"]
 
 # validObject(gsea)
 # Error in validObject(gsea) :
@@ -64,36 +60,17 @@ metadata(gsea)[["gmtFiles"]] <-
 metadata(gsea)[["rankedList"]] <-
     metadata(gsea)[["rankedList"]]["dmso_r1881_vs_etoh"]
 
+# Convert the example gmtFile path to relative path, so we can run on CI.
+metadata(gsea)[["gmtFiles"]][["h"]] <-
+    sub(
+        pattern = "/home/[a-z.]+/",
+        replacement = "~/",
+        x = metadata(gsea)[["gmtFiles"]][["h"]]
+    )
+
 validObject(gsea)
 
 object_size(gsea)
 # 2.66 MB
 
-ranked_list <- metadata(gsea)[["rankedList"]]
-
-object_size(ranked_list)
-# 2.62 MB
-
-# nolint start
-#
-# ranked_list[[1]] <- head(ranked_list[[1]], n = 100L)
-#
-# Error in .wrap_in_length_one_list_like_object(value, names(x)[[i]], x) :
-#   failed to coerce 'list(value)' to a RankedList
-#   object of length 1
-# Calls: [[<- ... .replace_list_element -> .wrap_in_length_one_list_like_object
-#
-# nolint end
-
-ranked_list@listData[[1L]] <-
-    head(ranked_list[[1]], n = 100L)
-
-object_size(ranked_list)
-# 11.5 kB
-
-metadata(gsea)[["rankedList"]] <- ranked_list
-
-object_size(gsea)
-# 121 kB
-
-use_data(gsea, ranked_list)
+use_data(gsea)
