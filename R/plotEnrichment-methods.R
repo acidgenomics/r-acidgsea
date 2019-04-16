@@ -5,6 +5,10 @@
 #' @return `ggplot`.
 #'
 #' @seealso [fgsea::plotEnrichment()].
+#'
+#' @examples
+#' data(gsea)
+#' plotEnrichment(gsea, geneSet = "h", n = 1L)
 NULL
 
 
@@ -15,7 +19,7 @@ plotEnrichment.FGSEAList <- function(
     alpha = 0.05,
     n = 10L,
     headerLevel = 3L,
-    theme = basejump::theme_paperwhite()
+    theme = theme_paperwhite()
 ) {
     validObject(object)
     assert(
@@ -76,14 +80,22 @@ plotEnrichment.FGSEAList <- function(
                     contrast
                 ) {
                     markdownHeader(name, level = headerLevel, asis = TRUE)
-                    p <- fgsea::plotEnrichment(pathway = pathway, stats = stats)
+                    # Suppressing warnings here to for minimal example to work.
+                    # `min(bottoms)` and `max(tops)` failure can occur, causing
+                    # ggplot to fail.
+                    p <- suppressWarnings(
+                        fgsea::plotEnrichment(pathway = pathway, stats = stats)
+                    )
                     p <- p + labs(title = name, subtitle = contrast)
                     # fgsea sets a theme that is too hard to read.
                     if (isAll(theme, c("theme", "gg"))) {
                         p <- p + theme
                     }
                     # Note that we need the `print()` call here for looping.
-                    print(p)
+                    tryCatch(
+                        expr = print(p),
+                        error = function(e) invisible()
+                    )
                 }
             )
         }

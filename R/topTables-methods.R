@@ -8,6 +8,10 @@
 #' @inheritParams params
 #'
 #' @return Markdown output.
+#'
+#' @examples
+#' data(gsea)
+#' topTables(gsea, geneSet = "h")
 NULL
 
 
