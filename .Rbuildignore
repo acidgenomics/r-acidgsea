@@ -5,7 +5,9 @@
 ^\.travis\.yml$
 ^_pkgdown\.yml$
 ^appveyor\.yml$
+^copy-msigdb-files\.R$
 ^data-raw$
 ^docs$
 ^pkgdown$
 ^Rplots\.pdf$
+^travis-docker\.R$

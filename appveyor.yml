@@ -9,9 +9,6 @@ install:
 
 platform: x64
 
-# cache:
-#   - C:\RLibrary
-
 branches:
   only:
     - master
@@ -27,6 +24,9 @@ environment:
 build_script:
   - travis-tool.sh install_bioc_deps
 
+before_test:
+  - R -f "copy-msigdb-files.R"
+
 test_script:
   - travis-tool.sh run_tests
 
@@ -37,21 +37,18 @@ on_failure:
 artifacts:
   - path: '*.Rcheck\**\*.log'
     name: Logs
-
   - path: '*.Rcheck\**\*.out'
     name: Logs
-
   - path: '*.Rcheck\**\*.fail'
     name: Logs
-
   - path: '*.Rcheck\**\*.Rout'
     name: Logs
-
   - path: '\*_*.tar.gz'
     name: Bits
-
   - path: '\*_*.zip'
     name: Bits
+  - path: all-Rout.zip
+    name: AllRout
 
 notifications:
   - provider: Email
