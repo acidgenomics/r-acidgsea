@@ -4,8 +4,6 @@
 #'
 #' @author Michael Steinbaugh
 #' @export
-#'
-#' @seealso [pfgsea()].
 setClass(
     Class = "FGSEAList",
     contains = "SimpleList",

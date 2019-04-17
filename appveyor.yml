@@ -9,9 +9,6 @@ install:
 
 platform: x64
 
-cache:
-  - C:\RLibrary -> appveyor.yml
-
 branches:
   only:
     - master
@@ -24,8 +21,8 @@ environment:
   matrix:
     - R_VERSION: patched
       BIOC_USE_DEVEL: "FALSE"
-    # - R_VERSION: devel
-    #   BIOC_USE_DEVEL: "TRUE"
+    - R_VERSION: devel
+      BIOC_USE_DEVEL: "TRUE"
 
 matrix:
   allow_failures:
@@ -34,6 +31,9 @@ matrix:
 
 build_script:
   - travis-tool.sh install_bioc_deps
+
+before_test:
+  - R -f "msigdb.R"
 
 test_script:
   - travis-tool.sh run_tests

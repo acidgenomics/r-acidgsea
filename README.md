@@ -2,7 +2,6 @@
 
 [![Travis CI build status](https://travis-ci.com/acidgenomics/pfgsea.svg?branch=master)](https://travis-ci.com/acidgenomics/pfgsea)
 [![AppVeyor CI build status](https://ci.appveyor.com/api/projects/status/fa5hpl1hbf4memee/branch/master?svg=true)](https://ci.appveyor.com/project/mjsteinbaugh/pfgsea/branch/master)
-[![Codecov percent coverage](https://codecov.io/gh/acidgenomics/pfgsea/branch/master/graph/badge.svg)](https://codecov.io/gh/acidgenomics/pfgsea)
 [![Repo status: active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 Parameterized Fast GSEA
