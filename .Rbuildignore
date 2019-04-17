@@ -11,3 +11,5 @@
 ^pkgdown$
 ^Rplots\.pdf$
 ^travis-docker\.R$
+^doc$
+^Meta$
