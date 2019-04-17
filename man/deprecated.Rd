@@ -16,3 +16,4 @@ statsList(...)
 \description{
 Deprecated functions
 }
+\keyword{internal}

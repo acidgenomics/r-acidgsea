@@ -1,4 +1,6 @@
 ^.*\.Rproj$
+^Meta$
+^Rplots\.pdf$
 ^\.Rproj\.user$
 ^\.git$
 ^\.lintr$
@@ -6,6 +8,8 @@
 ^_pkgdown\.yml$
 ^appveyor\.yml$
 ^data-raw$
+^doc$
 ^docs$
+^msigdb\.R$
 ^pkgdown$
-^Rplots\.pdf$
+^travis-docker\.R$

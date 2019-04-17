@@ -7,9 +7,6 @@
 \description{
 Class containing parameterized fast GSEA results.
 }
-\seealso{
-\code{\link[=pfgsea]{pfgsea()}}.
-}
 \author{
 Michael Steinbaugh
 }

@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
       </span>
     </div>
 
@@ -76,6 +76,9 @@
     <span class="fa fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/pfgsea.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -161,6 +164,17 @@ All pathways above the threshold are excluded.</p></td>
 <span class='no'>rankedList</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata</span>(<span class='no'>gsea</span>)<span class='kw'>[[</span><span class='st'>"rankedList"</span>]]
 <span class='no'>gmtFiles</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata</span>(<span class='no'>gsea</span>)<span class='kw'>[[</span><span class='st'>"gmtFiles"</span>]]
 
+<span class='co'># Copy example MSigDb files to `$HOME`.</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/files'>file.copy</a></span>(
+    <span class='kw'>from</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(
+        <span class='st'>"extdata"</span>, <span class='st'>"msigdb"</span>,
+        <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"pfgsea"</span>,
+        <span class='kw'>mustWork</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+    ),
+    <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"~"</span>,
+    <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>pfgsea</span>(<span class='kw'>rankedList</span> <span class='kw'>=</span> <span class='no'>rankedList</span>, <span class='kw'>gmtFiles</span> <span class='kw'>=</span> <span class='no'>gmtFiles</span>)</div><div class='output co'>#&gt; <span class='message'>Running parameterized fast GSEA...</span>
 #&gt; <span class='message'>GMT files: h</span>
 #&gt; <span class='message'>Contrasts: dmso_r1881_vs_etoh</span></div><div class='output co'>#&gt; <span class='message'>GMT file: h.all.v6.2.symbols.gmt</span>

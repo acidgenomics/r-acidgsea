@@ -36,6 +36,18 @@ data(gsea)
 rankedList <- metadata(gsea)[["rankedList"]]
 gmtFiles <- metadata(gsea)[["gmtFiles"]]
 
+# Copy example MSigDb files to `$HOME`.
+file.copy(
+    from = system.file(
+        "extdata", "msigdb",
+        package = "pfgsea",
+        mustWork = TRUE
+    ),
+    to = "~",
+    overwrite = FALSE,
+    recursive = TRUE
+)
+
 x <- pfgsea(rankedList = rankedList, gmtFiles = gmtFiles)
 print(x)
 }
