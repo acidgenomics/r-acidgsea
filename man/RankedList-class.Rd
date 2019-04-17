@@ -7,6 +7,9 @@
 \description{
 Class containing parameterized ranked gene lists.
 }
+\seealso{
+\code{\link[=RankedList]{RankedList()}}.
+}
 \author{
 Michael Steinbaugh
 }

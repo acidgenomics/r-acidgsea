@@ -19,3 +19,4 @@ plotGSEATables(...)
 \description{
 Defunct functions
 }
+\keyword{internal}

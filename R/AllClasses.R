@@ -52,6 +52,8 @@ setClass(
 #'
 #' @author Michael Steinbaugh
 #' @export
+#'
+#' @seealso [RankedList()].
 setClass(
     Class = "RankedList",
     contains = "SimpleList",
