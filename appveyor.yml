@@ -33,7 +33,7 @@ build_script:
   - travis-tool.sh install_bioc_deps
 
 before_test:
-  - R -f "copy-msigdb-files.R"
+  - R -f "msigdb.R"
 
 test_script:
   - travis-tool.sh run_tests

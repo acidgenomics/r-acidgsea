@@ -6,10 +6,10 @@
 ^\.lintr$
 ^\.travis\.yml$
 ^_pkgdown\.yml$
-^appveyor\.R$
 ^appveyor\.yml$
 ^data-raw$
 ^doc$
 ^docs$
+^msigdb\.R$
 ^pkgdown$
 ^travis-docker\.R$
