@@ -12,7 +12,6 @@ abstract: >
 ---
 
 ```{r setup, include=FALSE, message=FALSE}
-ggplot2::theme_set(minimalism::theme_paperwhite())
 knitr::opts_chunk$set(message = FALSE)
 ```
 
