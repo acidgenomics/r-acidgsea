@@ -1,12 +1,15 @@
 ^.*\.Rproj$
+^Meta$
+^Rplots\.pdf$
 ^\.Rproj\.user$
 ^\.git$
 ^\.lintr$
 ^\.travis\.yml$
 ^_pkgdown\.yml$
+^appveyor\.R$
 ^appveyor\.yml$
 ^data-raw$
+^doc$
 ^docs$
 ^pkgdown$
-^Rplots\.pdf$
-^travis-docker\.sh$
+^travis-docker\.R$
