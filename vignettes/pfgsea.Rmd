@@ -1,0 +1,27 @@
+---
+title: "pfgsea"
+date: "`r BiocStyle::doc_date()`"
+output: BiocStyle::html_document
+bibliography: ../inst/rmarkdown/shared/bibliography.bib
+vignette: >
+  %\VignetteIndexEntry{pfgsea}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+abstract: >
+  Todo
+---
+
+```{r setup, include=FALSE, message=FALSE}
+ggplot2::theme_set(minimalism::theme_paperwhite())
+knitr::opts_chunk$set(message = FALSE)
+```
+
+# Introduction
+
+Todo
+
+# R session information
+
+```{r}
+utils::sessionInfo()
+```
