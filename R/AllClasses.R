@@ -4,8 +4,6 @@
 #'
 #' @author Michael Steinbaugh
 #' @export
-#'
-#' @seealso [pfgsea()].
 setClass(
     Class = "FGSEAList",
     contains = "SimpleList",
@@ -52,8 +50,6 @@ setClass(
 #'
 #' @author Michael Steinbaugh
 #' @export
-#'
-#' @seealso [RankedList()].
 setClass(
     Class = "RankedList",
     contains = "SimpleList",
