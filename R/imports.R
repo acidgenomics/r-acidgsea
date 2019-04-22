@@ -17,7 +17,7 @@
 #' @importFrom knitr kable
 #' @importFrom magrittr %>%
 #' @importFrom methods as is new setAs setGeneric setMethod validObject
-#' @importFrom minimalism theme_paperwhite
+#' @importFrom acidplots theme_paperwhite
 #' @importFrom rlang !! !!! := sym syms
 #' @importFrom stats na.omit
 #' @importFrom tibble deframe

@@ -28,7 +28,7 @@
 ### Minor changes
 
 - NAMESPACE updates to reflect changes in [basejump][] package.
-- Now importing `theme_paperwhite` from [minimalism][] package.
+- Now importing `theme_paperwhite` from minimalism package.
 
 
 
@@ -110,5 +110,5 @@ Initial release.
 
 
 [Acid Genomics]: https://acidgenomics.com/
+[acidplots]: https://acidplots.acidgenomics.com/
 [basejump]: https://basejump.acidgenomics.com/
-[minimalism]: https://minimalism.acidgenomics.com/
