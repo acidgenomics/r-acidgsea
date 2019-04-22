@@ -2,6 +2,6 @@
 #' @export
 BiocParallel::bpparam
 
-#' @importFrom minimalism theme_paperwhite
+#' @importFrom acidplots theme_paperwhite
 #' @export
-minimalism::theme_paperwhite
+acidplots::theme_paperwhite
