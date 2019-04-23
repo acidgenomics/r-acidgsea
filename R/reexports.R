@@ -2,6 +2,6 @@
 #' @export
 BiocParallel::bpparam
 
-#' @importFrom acidplots theme_paperwhite
+#' @importFrom acidplots acid_theme_light
 #' @export
-acidplots::theme_paperwhite
+acidplots::acid_theme_light
