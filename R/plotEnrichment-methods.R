@@ -19,7 +19,7 @@ plotEnrichment.FGSEAList <- function(
     alpha = 0.05,
     n = 10L,
     headerLevel = 3L,
-    theme = theme_paperwhite()
+    theme = acid_theme_light()
 ) {
     validObject(object)
     assert(
