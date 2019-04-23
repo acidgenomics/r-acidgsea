@@ -6,6 +6,7 @@
 #' @importMethodsFrom DESeqAnalysis coerce
 #'
 #' @importFrom S4Vectors SimpleList lapply metadata metadata<-
+#' @importFrom acidplots acid_theme_light
 #' @importFrom basejump Gene2Symbol as_tibble export initDir markdownHeader
 #'   matchArgsToDoCall standardizeCall
 #' @importFrom dplyr arrange desc distinct everything filter group_by left_join
@@ -17,7 +18,6 @@
 #' @importFrom knitr kable
 #' @importFrom magrittr %>%
 #' @importFrom methods as is new setAs setGeneric setMethod validObject
-#' @importFrom minimalism theme_paperwhite
 #' @importFrom rlang !! !!! := sym syms
 #' @importFrom stats na.omit
 #' @importFrom tibble deframe
