@@ -6,6 +6,8 @@
 \alias{topTables,FGSEAList-method}
 \title{Top tables}
 \usage{
+topTables(object, ...)
+
 \S4method{topTables}{FGSEAList}(object, geneSet, alpha = 0.05, n = 10L,
   headerLevel = 3L)
 }
@@ -24,6 +26,8 @@ Bidirectional; will include \code{n} up- and down-regulated processes.}
 
 \item{headerLevel}{\code{integer(1)}.
 Markdown header level.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 Markdown output.

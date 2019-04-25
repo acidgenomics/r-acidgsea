@@ -5,6 +5,7 @@
 #' @param x Object.
 #' @param name Name.
 #' @param dir Directory.
+#' @param ... Additional arguments.
 #'
 #' @examples
 #' data(gsea)
@@ -15,10 +16,12 @@ NULL
 
 
 
+#' @rdname export
+#' @name export
 #' @importFrom bioverbs export
-#' @aliases NULL
+#' @usage export(x, ...)
 #' @export
-bioverbs::export
+NULL
 
 
 
