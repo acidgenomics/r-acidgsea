@@ -8,8 +8,8 @@
 #' In this event, we're averaging the stat values using `mean()` internally.
 #'
 #' @name RankedList
-#' @inheritParams params
 #'
+#' @inheritParams params
 #' @param value `character(1)`.
 #'   Value type to use for GSEA. Currently supported:
 #'
