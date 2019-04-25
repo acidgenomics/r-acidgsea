@@ -1,11 +1,14 @@
 #' @name topTables
+#' @inherit bioverbs::topTables
+#'
 #' @description Top tables of significantly enriched pathways.
+#'
 #' @details
 #' Supports looping across multiple DEG results, and adds a Markdown header for
 #' each contrast.
 #'
-#' @inherit bioverbs::topTables
 #' @inheritParams params
+#' @param ... Additional arguments.
 #'
 #' @return Markdown output.
 #'
@@ -16,10 +19,12 @@ NULL
 
 
 
+#' @rdname topTables
+#' @name topTables
 #' @importFrom bioverbs topTables
-#' @aliases NULL
+#' @usage topTables(object, ...)
 #' @export
-bioverbs::topTables
+NULL
 
 
 

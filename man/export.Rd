@@ -6,6 +6,8 @@
 \alias{export,FGSEAList-method}
 \title{Export}
 \usage{
+export(x, ...)
+
 \S4method{export}{FGSEAList}(x, name = NULL, dir = ".")
 }
 \arguments{
@@ -14,6 +16,8 @@
 \item{name}{Name.}
 
 \item{dir}{Directory.}
+
+\item{...}{Additional arguments.}
 }
 \description{
 Export data out of R and write to disk.
