@@ -5,7 +5,7 @@ params:
   # Use DESeqAnalysis object as input.
   # Basic: Load from file on disk, either RDS or RDA.
   # Advanced: Loop across multiple objects using `rmarkdown::render()`.
-  object: "rds/YYYY-MM-DD/DESeqAnalysis.rds"
+  object: "rds/YYYY-MM-DD/deseqanalysis.rds"
   
   # The `name` param is only necessary when passing in object directly, during
   # an `rmarkdown::render()` call. See `object` param.
@@ -41,7 +41,7 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, message=FALSE}
-# Last modified 2019-03-19
+# Last modified 2019-04-26
 library(DESeqAnalysis)
 library(pfgsea)
 library(tidyverse)
