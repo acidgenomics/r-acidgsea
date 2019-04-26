@@ -74,8 +74,7 @@ export.FGSEAList <- function(x, name = NULL, dir = ".") {
         }
     )
     names(files) <- names(x)
-
-    files
+    invisible(files)
 }
 
 
