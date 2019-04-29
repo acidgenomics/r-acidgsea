@@ -14,8 +14,9 @@
 #'   pull select select_if summarise
 #' @importFrom fgsea fgsea gmtPathways plotGseaTable
 #' @importFrom ggplot2 labs
-#' @importFrom goalie assert hasNames hasLength hasRows isAFile isAll isAlpha
-#'   isCharacter isFile isHeaderLevel isInt isString isSubset validate
+#' @importFrom goalie areSameLength assert hasNames hasLength hasRows isAFile
+#'   isAll isAlpha isCharacter isFile isHeaderLevel isInt isString isSubset
+#'   validate
 #' @importFrom knitr kable
 #' @importFrom magrittr %>%
 #' @importFrom methods as is new setAs setGeneric setMethod validObject
