@@ -10,6 +10,17 @@
 - `plotEnrichedUpset`: Utility function that makes it easy to compare enrichment
   groups across contrasts, via an UpSet plot.
 
+### Major changes
+
+- Added `combine` method support for `FGSEAList`, allowing us to easily combine
+  GSEA results from multiple datasets. Primarily intended for downstream
+  visualization using an UpSet plot (see `plotEnrichedUpset`).
+
+### Minor changes
+
+- Improved `show` method support for `FGSEAList`, showing `pathwayNames` and
+  `contrastNames` more clearly.
+
 
 
 ## pfgsea 0.1.5 (2019-04-25)
