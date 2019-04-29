@@ -5,7 +5,7 @@ params:
   # Use DESeqAnalysis object as input.
   # Basic: Load from file on disk, either RDS or RDA.
   # Advanced: Loop across multiple objects using `rmarkdown::render()`.
-  object: "rds/YYYY-MM-DD/DESeqAnalysis.rds"
+  object: "rds/YYYY-MM-DD/deseqanalysis.rds"
   
   # The `name` param is only necessary when passing in object directly, during
   # an `rmarkdown::render()` call. See `object` param.
@@ -41,7 +41,7 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, message=FALSE}
-# Last modified 2019-03-19
+# Last modified 2019-04-26
 library(DESeqAnalysis)
 library(pfgsea)
 library(tidyverse)
@@ -52,9 +52,11 @@ source("_setup.R")
 ```{r header, child="_header.Rmd"}
 ```
 
+# Load DESeqAnalysis object
+
 Import the `DESeqAnalysis` S4 class object. This single object contains everything we need to perform GSEA.
 
-```{r object}
+```{r load-object}
 if (is.character(params$object)) {
     if (fileExt(params$object) == "rds") {
         object <- readRDS(file = params$object)
@@ -83,7 +85,7 @@ Here we are using pathways from the MSigDB database. GSEA requires a gene list c
 
 Before proceeding, first download the [MSigDb 6.2 release](http://software.broadinstitute.org/gsea/msigdb/download_file.jsp?filePath=/resources/msigdb/6.2/msigdb_v6.2_files_to_download_locally.zip) and extract the ZIP archive, which will contain GMT files. Note that e-mail registration is required to access resources at the Broad Institute.
 
-```{r gmt_files}
+```{r gmt-files}
 gmt_files <- list.files(
     path = params$gmt_dir,
     pattern = "all.v6.2.symbols.gmt$",
@@ -108,7 +110,7 @@ It requires three features:
 
 Note that [MSigDb][] requires that the identifiers map either to HGNC names (gene symbols) or Entrez IDs. We prefer to map using the gene symbols, but these are not 1:1 for all Ensembl gene IDs (e.g. ENSG00000000003 = TSPAN6). In the event that there are Ensembl gene IDs per HGNC symbol, we're taking the average of the values here.
 
-```{r ranked_list}
+```{r ranked-list}
 ranked_list <- RankedList(object, value = params$gsea_value)
 lapply(ranked_list, head)
 lapply(ranked_list, summary)
@@ -163,7 +165,7 @@ The `fgsea::gmtPathways()` function will take a GMT file from MSigDb and turn it
 
 ## Top tables {.tabset}
 
-```{r h_top_tables, results="asis"}
+```{r h-top-tables, results="asis"}
 topTables(
     object = fgsea,
     geneSet = "h",
@@ -175,7 +177,7 @@ topTables(
 
 ## Plot GSEA table {.tabset}
 
-```{r h_plot_gsea_table, results="asis"}
+```{r h-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
     geneSet = "h",
@@ -187,7 +189,7 @@ plotGSEATable(
 
 ## Plot enrichment {.tabset}
 
-```{r h_plot_enrichment, results="asis"}
+```{r h-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
     geneSet = "h",
@@ -201,7 +203,7 @@ plotEnrichment(
 
 ## Top tables {.tabset}
 
-```{r c1_top_tables, results="asis"}
+```{r c1-top-tables, results="asis"}
 topTables(
     object = fgsea,
     geneSet = "c1",
@@ -213,7 +215,7 @@ topTables(
 
 ## Plot GSEA table {.tabset}
 
-```{r c1_plot_gsea_table, results="asis"}
+```{r c1-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
     geneSet = "c1",
@@ -225,7 +227,7 @@ plotGSEATable(
 
 ## Plot enrichment {.tabset}
 
-```{r c1_plot_enrichment, results="asis"}
+```{r c1-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
     geneSet = "c1",
@@ -239,7 +241,7 @@ plotEnrichment(
 
 ## Top tables {.tabset}
 
-```{r c2_top_tables, results="asis"}
+```{r c2-top-tables, results="asis"}
 topTables(
     object = fgsea,
     geneSet = "c2",
@@ -251,7 +253,7 @@ topTables(
 
 ## Plot GSEA table {.tabset}
 
-```{r c2_plot_gsea_table, results="asis"}
+```{r c2-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
     geneSet = "c2",
@@ -263,7 +265,7 @@ plotGSEATable(
 
 ## Plot enrichment {.tabset}
 
-```{r c2_plot_enrichment, results="asis"}
+```{r c2-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
     geneSet = "c2",
@@ -277,7 +279,7 @@ plotEnrichment(
 
 ## Top tables {.tabset}
 
-```{r c3_top_tables, results="asis"}
+```{r c3-top-tables, results="asis"}
 topTables(
     object = fgsea,
     geneSet = "c3",
@@ -289,7 +291,7 @@ topTables(
 
 ## Plot GSEA table {.tabset}
 
-```{r c3_plot_gsea_table, results="asis"}
+```{r c3-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
     geneSet = "c3",
@@ -301,7 +303,7 @@ plotGSEATable(
 
 ## Plot enrichment {.tabset}
 
-```{r c3_plot_enrichment, results="asis"}
+```{r c3-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
     geneSet = "c3",
@@ -315,7 +317,7 @@ plotEnrichment(
 
 ## Top tables {.tabset}
 
-```{r c4_top_tables, results="asis"}
+```{r c4-top-tables, results="asis"}
 topTables(
     object = fgsea,
     geneSet = "c4",
@@ -327,7 +329,7 @@ topTables(
 
 ## Plot GSEA table {.tabset}
 
-```{r c4_plot_gsea_table, results="asis"}
+```{r c4-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
     geneSet = "c4",
@@ -339,7 +341,7 @@ plotGSEATable(
 
 ## Plot enrichment {.tabset}
 
-```{r c4_plot_enrichment, results="asis"}
+```{r c4-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
     geneSet = "c4",
@@ -353,7 +355,7 @@ plotEnrichment(
 
 ## Top tables {.tabset}
 
-```{r c5_top_tables, results="asis"}
+```{r c5-top-tables, results="asis"}
 topTables(
     object = fgsea,
     geneSet = "c5",
@@ -365,7 +367,7 @@ topTables(
 
 ## Plot GSEA table {.tabset}
 
-```{r c5_plot_gsea_table, results="asis"}
+```{r c5-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
     geneSet = "c5",
@@ -377,7 +379,7 @@ plotGSEATable(
 
 ## Plot enrichment {.tabset}
 
-```{r c5_plot_enrichment, results="asis"}
+```{r c5-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
     geneSet = "c5",
@@ -391,7 +393,7 @@ plotEnrichment(
 
 ## Top tables {.tabset}
 
-```{r c6_top_tables, results="asis"}
+```{r c6-top-tables, results="asis"}
 topTables(
     object = fgsea,
     geneSet = "c6",
@@ -403,7 +405,7 @@ topTables(
 
 ## Plot GSEA table {.tabset}
 
-```{r c6_plot_gsea_table, results="asis"}
+```{r c6-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
     geneSet = "c6",
@@ -415,7 +417,7 @@ plotGSEATable(
 
 ## Plot enrichment {.tabset}
 
-```{r c6_plot_enrichment, results="asis"}
+```{r c6-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
     geneSet = "c6",
@@ -429,7 +431,7 @@ plotEnrichment(
 
 ## Top tables {.tabset}
 
-```{r c7_top_tables, results="asis"}
+```{r c7-top-tables, results="asis"}
 topTables(
     object = fgsea,
     geneSet = "c7",
@@ -441,7 +443,7 @@ topTables(
 
 ## Plot GSEA table {.tabset}
 
-```{r c7_plot_gsea_table, results="asis"}
+```{r c7-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
     geneSet = "c7",
@@ -453,7 +455,7 @@ plotGSEATable(
 
 ## Plot enrichment {.tabset}
 
-```{r c7_plot_enrichment, results="asis"}
+```{r c7-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
     geneSet = "c7",
