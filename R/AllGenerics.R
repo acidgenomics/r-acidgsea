@@ -9,6 +9,28 @@ setGeneric(
 
 
 
+#' @rdname enriched
+#' @export
+setGeneric(
+    name = "enriched",
+    def = function(object, ...) {
+        standardGeneric("enriched")
+    }
+)
+
+
+
+#' @rdname plotEnrichedUpset
+#' @export
+setGeneric(
+    name = "plotEnrichedUpset",
+    def = function(object, ...) {
+        standardGeneric("plotEnrichedUpset")
+    }
+)
+
+
+
 #' @rdname plotEnrichment
 #' @export
 setGeneric(

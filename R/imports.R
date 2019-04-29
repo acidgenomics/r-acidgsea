@@ -6,7 +6,8 @@
 #' @importMethodsFrom DESeqAnalysis coerce
 #'
 #' @importFrom S4Vectors SimpleList lapply metadata metadata<-
-#' @importFrom acidplots acid_theme_light
+#' @importFrom UpSetR fromList
+#' @importFrom acidplots acid_theme_light upset
 #' @importFrom basejump Gene2Symbol as_tibble export initDir markdownHeader
 #'   matchArgsToDoCall standardizeCall
 #' @importFrom dplyr arrange desc distinct everything filter group_by left_join
