@@ -19,7 +19,7 @@
 #'   isString isSubset validate
 #' @importFrom knitr kable
 #' @importFrom magrittr %>%
-#' @importFrom methods as is new setAs setGeneric setMethod slot slot<-
+#' @importFrom methods as is new setAs setGeneric setMethod show slot slot<-
 #'   validObject
 #' @importFrom rlang !! !!! := sym syms
 #' @importFrom stats na.omit
