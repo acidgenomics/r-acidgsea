@@ -20,6 +20,8 @@ pathwayNames(object, ...) <- value
 \item{object}{Object.}
 
 \item{...}{Additional arguments.}
+
+\item{value}{Value to assign.}
 }
 \description{
 Pathway names
