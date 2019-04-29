@@ -34,8 +34,7 @@ Imports:
         magrittr (>= 1.5), rlang (>= 0.3), tibble (>= 2.1),
     methods, stats, utils
 Suggests:
-    BiocStyle,
-    rmarkdown, testthat
+    BiocStyle, rmarkdown, testthat
 Remotes:
     acidgenomics/acidplots,
     acidgenomics/DESeqAnalysis,
