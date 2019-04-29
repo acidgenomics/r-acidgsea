@@ -9,12 +9,56 @@ setGeneric(
 
 
 
+#' @rdname contrastNames
+#' @export
+setGeneric(
+    name = "contrastNames",
+    def = function(object, ...) {
+        standardGeneric("contrastNames")
+    }
+)
+
+
+
+#' @rdname contrastNames
+#' @export
+setGeneric(
+    name = "contrastNames<-",
+    def = function(object, ..., value) {
+        standardGeneric("contrastNames<-")
+    }
+)
+
+
+
 #' @rdname enriched
 #' @export
 setGeneric(
     name = "enriched",
     def = function(object, ...) {
         standardGeneric("enriched")
+    }
+)
+
+
+
+#' @rdname pathwayNames
+#' @export
+setGeneric(
+    name = "pathwayNames",
+    def = function(object, ...) {
+        standardGeneric("pathwayNames")
+    }
+)
+
+
+
+#' @rdname pathwayNames
+#' @export
+setGeneric(
+    name = "pathwayNames<-",
+    def = function(object, ..., value) {
+        standardGeneric("pathwayNames<-")
     }
 )
 
