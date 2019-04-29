@@ -141,14 +141,6 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>One of the values.</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>A second value.</p></td>
-    </tr>
-    <tr>
       <th>...</th>
       <td><p>Additional arguments</p></td>
     </tr>
@@ -156,7 +148,9 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Object of same class, containing elements of combined input objects.</p>
+    <p>A single value of the same class as the most specific common ancestor
+  (in class terms) of the input values. This will contain the
+  appropriate combination of the data in the input values.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -168,36 +162,6 @@
   missing values will need to be provided).</p>
 <p>These functions and methods are currently under construction. Please
   let us know if there are features that you require.</p>
-    
-    <h2 class="hasAnchor" id="methods"><a class="anchor" href="#methods"></a>Methods</h2>
-
-    
-    <p>The following methods are defined in the <span class="pkg">BiocGenerics</span> package:</p><dl class='dl-horizontal'>
-    <dt><code>combine(x=ANY, missing)</code></dt><dd><p>Return the first (x) argument
-      unchanged.</p></dd>
-    <dt><code>combine(data.frame, data.frame)</code></dt><dd><p>Combines two
-      <code>data.frame</code> objects so that the resulting <code>data.frame</code>
-      contains all rows and columns of the original objects. Rows and
-      columns in the returned value are unique, that is, a row or column
-      represented in both arguments is represented only once in the
-      result. To perform this operation, <code>combine</code> makes sure that data
-      in shared rows and columns are identical in the two
-      data.frames. Data differences in shared rows and columns usually cause an
-      error. <code>combine</code> issues a warning when a column is a
-      <code><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></code> and the levels of the factor in the two
-      data.frames are different.</p></dd>
-    <dt><code>combine(matrix, matrix)</code></dt><dd><p>Combined two <code>matrix</code>
-      objects so that the resulting <code>matrix</code> contains all rows and
-      columns of the original objects. Both matricies must have
-      <code>dimnames</code>. Rows and columns in the returned
-      value are unique, that is, a row or column represented in both
-      arguments is represented only once in the result. To perform this
-      operation, <code>combine</code> makes sure that data in shared rows and
-      columns are all equal in the two matricies.</p></dd>
-  </dl><p>Additional <code>combine</code> methods are defined in the <span class="pkg">Biobase</span> package
-  for <a href='https://www.rdocumentation.org/packages/Biobase/topics/class.AnnotatedDataFrame'>AnnotatedDataFrame</a>,
-  <a href='https://www.rdocumentation.org/packages/Biobase/topics/class.AssayData'>AssayData</a>, <a href='https://www.rdocumentation.org/packages/Biobase/topics/class.MIAME'>MIAME</a>,
-  and <a href='https://www.rdocumentation.org/packages/Biobase/topics/class.eSet'>eSet</a> objects.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -219,252 +183,15 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>combine</span></div><div class='output co'>#&gt; nonstandardGenericFunction for "combine" defined from package "BiocGenerics"
-#&gt; 
-#&gt; function (x, y, ...) 
-#&gt; {
-#&gt;     if (length(list(...)) &gt; 0L) {
-#&gt;         combine(x, do.call(combine, list(y, ...)))
-#&gt;     }
-#&gt;     else {
-#&gt;         standardGeneric("combine")
-#&gt;     }
-#&gt; }
-#&gt; &lt;bytecode: 0x71ea130&gt;
-#&gt; &lt;environment: 0x7162f10&gt;
-#&gt; Methods may be defined for arguments: x, y
-#&gt; Use  showMethods("combine")  for currently available ones.</div><div class='input'><span class='fu'>showMethods</span>(<span class='st'>"combine"</span>)</div><div class='output co'>#&gt; Function: combine (package BiocGenerics)
-#&gt; x="AnnotatedDataFrame", y="AnnotatedDataFrame"
-#&gt; x="ANY", y="missing"
-#&gt; x="AssayData", y="AssayData"
-#&gt; x="data.frame", y="data.frame"
-#&gt; x="eSet", y="eSet"
-#&gt; x="FGSEAList", y="FGSEAList"
-#&gt; x="matrix", y="matrix"
-#&gt; x="MIAME", y="MIAME"
-#&gt; x="SingleCellExperiment", y="SingleCellExperiment"
-#&gt; x="SummarizedExperiment", y="SummarizedExperiment"
-#&gt; </div><div class='input'><span class='fu'>selectMethod</span>(<span class='st'>"combine"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"ANY"</span>, <span class='st'>"missing"</span>))</div><div class='output co'>#&gt; Method Definition:
-#&gt; 
-#&gt; function (x, y, ...) 
-#&gt; x
-#&gt; &lt;bytecode: 0x71f16a8&gt;
-#&gt; &lt;environment: namespace:BiocGenerics&gt;
-#&gt; 
-#&gt; Signatures:
-#&gt;         x     y        
-#&gt; target  "ANY" "missing"
-#&gt; defined "ANY" "missing"</div><div class='input'><span class='fu'>selectMethod</span>(<span class='st'>"combine"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"data.frame"</span>, <span class='st'>"data.frame"</span>))</div><div class='output co'>#&gt; Method Definition:
-#&gt; 
-#&gt; function (x, y, ...) 
-#&gt; {
-#&gt;     if (all(dim(x) == 0L) &amp;&amp; all(dim(y) == 0L)) 
-#&gt;         return(x)
-#&gt;     else if (all(dim(x) == 0L)) 
-#&gt;         return(y)
-#&gt;     else if (all(dim(y) == 0L)) 
-#&gt;         return(x)
-#&gt;     uniqueRows &lt;- unique(c(row.names(x), row.names(y)))
-#&gt;     uniqueCols &lt;- unique(c(names(x), names(y)))
-#&gt;     sharedCols &lt;- intersect(names(x), names(y))
-#&gt;     alleq &lt;- function(x, y) {
-#&gt;         res &lt;- all.equal(x, y, check.attributes = FALSE)
-#&gt;         if (!is.logical(res)) {
-#&gt;             warning(res)
-#&gt;             FALSE
-#&gt;         }
-#&gt;         else TRUE
-#&gt;     }
-#&gt;     sharedRows &lt;- intersect(row.names(x), row.names(y))
-#&gt;     ok &lt;- sapply(sharedCols, function(nm) {
-#&gt;         if (!all(class(x[[nm]]) == class(y[[nm]]))) 
-#&gt;             return(FALSE)
-#&gt;         switch(class(x[[nm]])[[1L]], factor = {
-#&gt;             if (!alleq(levels(x[[nm]]), levels(y[[nm]]))) {
-#&gt;                 warning("data frame column '", nm, "' levels not all.equal", 
-#&gt;                   call. = FALSE)
-#&gt;                 TRUE
-#&gt;             } else if (!alleq(x[sharedRows, nm, drop = FALSE], 
-#&gt;                 y[sharedRows, nm, drop = FALSE])) {
-#&gt;                 warning("data frame column '", nm, "' shared rows not all equal", 
-#&gt;                   call. = FALSE)
-#&gt;                 FALSE
-#&gt;             } else TRUE
-#&gt;         }, ordered = , if (!alleq(x[sharedRows, nm, drop = FALSE], 
-#&gt;             y[sharedRows, nm, drop = FALSE])) {
-#&gt;             warning("data frame column '", nm, "' shared rows not all equal")
-#&gt;             FALSE
-#&gt;         } else TRUE)
-#&gt;     })
-#&gt;     if (!all(ok)) 
-#&gt;         stop("data.frames contain conflicting data:", "\n\tnon-conforming colname(s): ", 
-#&gt;             paste(sharedCols[!ok], collapse = ", "))
-#&gt;     if (length(uniqueRows) == 0L) {
-#&gt;         x &lt;- x["tmp", , drop = FALSE]
-#&gt;         y &lt;- y["tmp", , drop = FALSE]
-#&gt;     }
-#&gt;     else if (nrow(x) == 0L) {
-#&gt;         x &lt;- x[row.names(y), , drop = FALSE]
-#&gt;         row.names(x) &lt;- row.names(y)
-#&gt;     }
-#&gt;     else if (nrow(y) == 0L) {
-#&gt;         y &lt;- y[row.names(x), , drop = FALSE]
-#&gt;         row.names(y) &lt;- row.names(x)
-#&gt;     }
-#&gt;     if (length(uniqueCols) &gt; 0L) 
-#&gt;         extLength &lt;- max(nchar(sub(".*\\.", "", uniqueCols))) + 
-#&gt;             1L
-#&gt;     else extLength &lt;- 1L
-#&gt;     extX &lt;- paste(c(".", rep("x", extLength)), collapse = "")
-#&gt;     extY &lt;- paste(c(".", rep("y", extLength)), collapse = "")
-#&gt;     z &lt;- merge(x, y, by = "row.names", all = TRUE, suffixes = c(extX, 
-#&gt;         extY))
-#&gt;     for (nm in sharedCols) {
-#&gt;         nmx &lt;- paste(nm, extX, sep = "")
-#&gt;         nmy &lt;- paste(nm, extY, sep = "")
-#&gt;         z[[nm]] &lt;- switch(class(z[[nmx]])[[1]], AsIs = I(ifelse(is.na(z[[nmx]]), 
-#&gt;             z[[nmy]], z[[nmx]])), factor = {
-#&gt;             col &lt;- ifelse(is.na(z[[nmx]]), as.character(z[[nmy]]), 
-#&gt;                 as.character(z[[nmx]]))
-#&gt;             if (!identical(levels(z[[nmx]]), levels(z[[nmy]]))) factor(col) else factor(col, 
-#&gt;                 levels = levels(z[[nmx]]))
-#&gt;         }, {
-#&gt;             col &lt;- ifelse(is.na(z[[nmx]]), z[[nmy]], z[[nmx]])
-#&gt;             class(col) &lt;- class(z[[nmx]])
-#&gt;             col
-#&gt;         })
-#&gt;     }
-#&gt;     row.names(z) &lt;- if (is.integer(attr(x, "row.names")) &amp;&amp; is.integer(attr(y, 
-#&gt;         "row.names"))) 
-#&gt;         as.integer(z$Row.names)
-#&gt;     else z$Row.names
-#&gt;     z$Row.names &lt;- NULL
-#&gt;     z[uniqueRows, uniqueCols, drop = FALSE]
-#&gt; }
-#&gt; &lt;bytecode: 0x7210b08&gt;
-#&gt; &lt;environment: namespace:BiocGenerics&gt;
-#&gt; 
-#&gt; Signatures:
-#&gt;         x            y           
-#&gt; target  "data.frame" "data.frame"
-#&gt; defined "data.frame" "data.frame"</div><div class='input'><span class='fu'>selectMethod</span>(<span class='st'>"combine"</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"matrix"</span>, <span class='st'>"matrix"</span>))</div><div class='output co'>#&gt; Method Definition:
-#&gt; 
-#&gt; function (x, y, ...) 
-#&gt; {
-#&gt;     if (length(y) == 0L) 
-#&gt;         return(x)
-#&gt;     else if (length(x) == 0L) 
-#&gt;         return(y)
-#&gt;     if (mode(x) != mode(y)) 
-#&gt;         stop("matrix modes ", mode(x), ", ", mode(y), " differ")
-#&gt;     if (typeof(x) != typeof(y)) 
-#&gt;         warning("matrix typeof ", typeof(x), ", ", typeof(y), 
-#&gt;             " differ")
-#&gt;     xdim &lt;- dimnames(x)
-#&gt;     ydim &lt;- dimnames(y)
-#&gt;     if (is.null(xdim) || is.null(ydim) || any(sapply(xdim, is.null)) || 
-#&gt;         any(sapply(ydim, is.null))) 
-#&gt;         stop("matricies must have dimnames for 'combine'")
-#&gt;     sharedRows &lt;- intersect(xdim[[1L]], ydim[[1L]])
-#&gt;     sharedCols &lt;- intersect(xdim[[2L]], ydim[[2L]])
-#&gt;     ok &lt;- all.equal(x[sharedRows, sharedCols], y[sharedRows, 
-#&gt;         sharedCols])
-#&gt;     if (!isTRUE(ok)) 
-#&gt;         stop("matrix shared row and column elements differ: ", 
-#&gt;             ok)
-#&gt;     unionRows &lt;- union(xdim[[1L]], ydim[[1L]])
-#&gt;     unionCols &lt;- union(xdim[[2L]], ydim[[2L]])
-#&gt;     m &lt;- matrix(new(class(as.vector(x))), nrow = length(unionRows), 
-#&gt;         ncol = length(unionCols), dimnames = list(unionRows, 
-#&gt;             unionCols))
-#&gt;     m[rownames(x), colnames(x)] &lt;- x
-#&gt;     m[rownames(y), colnames(y)] &lt;- y
-#&gt;     m
-#&gt; }
-#&gt; &lt;bytecode: 0x7222c08&gt;
-#&gt; &lt;environment: namespace:BiocGenerics&gt;
-#&gt; 
-#&gt; Signatures:
-#&gt;         x        y       
-#&gt; target  "matrix" "matrix"
-#&gt; defined "matrix" "matrix"</div><div class='input'>
-<span class='co'>## ---------------------------------------------------------------------</span>
-<span class='co'>## COMBINING TWO DATA FRAMES</span>
-<span class='co'>## ---------------------------------------------------------------------</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>5</span>,
-        <span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>], <span class='kw'>levels</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>8</span>]),
-        <span class='kw'>row.names</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>])
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>z</span><span class='kw'>=</span><span class='fl'>3</span>:<span class='fl'>7</span>,
-        <span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>letters</span>[<span class='fl'>3</span>:<span class='fl'>7</span>], <span class='kw'>levels</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>8</span>]),
-        <span class='kw'>row.names</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>3</span>:<span class='fl'>7</span>])
-<span class='fu'>combine</span>(<span class='no'>x</span>,<span class='no'>y</span>)</div><div class='output co'>#&gt;    x y  z
-#&gt; a  1 a NA
-#&gt; b  2 b NA
-#&gt; c  3 c  3
-#&gt; d  4 d  4
-#&gt; e  5 e  5
-#&gt; f NA f  6
-#&gt; g NA g  7</div><div class='input'>
-<span class='no'>w</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>w</span><span class='kw'>=</span><span class='fl'>4</span>:<span class='fl'>8</span>,
-       <span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>letters</span>[<span class='fl'>4</span>:<span class='fl'>8</span>], <span class='kw'>levels</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>8</span>]),
-       <span class='kw'>row.names</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>4</span>:<span class='fl'>8</span>])
-<span class='fu'>combine</span>(<span class='no'>w</span>, <span class='no'>x</span>, <span class='no'>y</span>)</div><div class='output co'>#&gt;    w y  x  z
-#&gt; d  4 d  4  4
-#&gt; e  5 e  5  5
-#&gt; f  6 f NA  6
-#&gt; g  7 g NA  7
-#&gt; h  8 h NA NA
-#&gt; a NA a  1 NA
-#&gt; b NA b  2 NA
-#&gt; c NA c  3  3</div><div class='input'>
-<span class='co'># y is converted to 'factor' with different levels</span>
-<span class='no'>df1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>5</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>], <span class='kw'>row.names</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>])
-<span class='no'>df2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>z</span><span class='kw'>=</span><span class='fl'>3</span>:<span class='fl'>7</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>3</span>:<span class='fl'>7</span>], <span class='kw'>row.names</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>3</span>:<span class='fl'>7</span>])
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/try'>try</a></span>(<span class='fu'>combine</span>(<span class='no'>df1</span>, <span class='no'>df2</span>)) <span class='co'># fails</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 5 string mismatches</span></div><div class='output co'>#&gt; <span class='warning'>Warning: data frame column 'y' levels not all.equal</span></div><div class='output co'>#&gt;    x y  z
-#&gt; a  1 a NA
-#&gt; b  2 b NA
-#&gt; c  3 c  3
-#&gt; d  4 d  4
-#&gt; e  5 e  5
-#&gt; f NA f  6
-#&gt; g NA g  7</div><div class='input'><span class='co'># solution 1: ensure identical levels</span>
-<span class='no'>y1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>], <span class='kw'>levels</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>7</span>])
-<span class='no'>y2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>factor</a></span>(<span class='no'>letters</span>[<span class='fl'>3</span>:<span class='fl'>7</span>], <span class='kw'>levels</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>7</span>])
-<span class='no'>df1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>5</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='no'>y1</span>, <span class='kw'>row.names</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>])
-<span class='no'>df2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>z</span><span class='kw'>=</span><span class='fl'>3</span>:<span class='fl'>7</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='no'>y2</span>, <span class='kw'>row.names</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>3</span>:<span class='fl'>7</span>])
-<span class='fu'>combine</span>(<span class='no'>df1</span>, <span class='no'>df2</span>)</div><div class='output co'>#&gt;    x y  z
-#&gt; a  1 a NA
-#&gt; b  2 b NA
-#&gt; c  3 c  3
-#&gt; d  4 d  4
-#&gt; e  5 e  5
-#&gt; f NA f  6
-#&gt; g NA g  7</div><div class='input'><span class='co'># solution 2: force column to be 'character'</span>
-<span class='no'>df1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='fl'>1</span>:<span class='fl'>5</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/AsIs'>I</a></span>(<span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]), <span class='kw'>row.names</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>])
-<span class='no'>df2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>z</span><span class='kw'>=</span><span class='fl'>3</span>:<span class='fl'>7</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/AsIs'>I</a></span>(<span class='no'>letters</span>[<span class='fl'>3</span>:<span class='fl'>7</span>]), <span class='kw'>row.names</span><span class='kw'>=</span><span class='no'>letters</span>[<span class='fl'>3</span>:<span class='fl'>7</span>])
-<span class='fu'>combine</span>(<span class='no'>df1</span>, <span class='no'>df2</span>)</div><div class='output co'>#&gt;    x y  z
-#&gt; a  1 a NA
-#&gt; b  2 b NA
-#&gt; c  3 c  3
-#&gt; d  4 d  4
-#&gt; e  5 e  5
-#&gt; f NA f  6
-#&gt; g NA g  7</div><div class='input'>
-<span class='co'>## ---------------------------------------------------------------------</span>
-<span class='co'>## COMBINING TWO MATRICES</span>
-<span class='co'>## ---------------------------------------------------------------------</span>
-<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fl'>1</span>:<span class='fl'>20</span>, <span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>5</span>, <span class='kw'>dimnames</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>5</span>], <span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>4</span>]))
-<span class='fu'>combine</span>(<span class='no'>m</span>[<span class='fl'>1</span>:<span class='fl'>3</span>,], <span class='no'>m</span>[<span class='fl'>4</span>:<span class='fl'>5</span>,])</div><div class='output co'>#&gt;   a  b  c  d
-#&gt; A 1  6 11 16
-#&gt; B 2  7 12 17
-#&gt; C 3  8 13 18
-#&gt; D 4  9 14 19
-#&gt; E 5 10 15 20</div><div class='input'><span class='fu'>combine</span>(<span class='no'>m</span>[<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='fl'>1</span>:<span class='fl'>3</span>], <span class='no'>m</span>[<span class='fl'>3</span>:<span class='fl'>5</span>, <span class='fl'>3</span>:<span class='fl'>4</span>]) <span class='co'># overlap</span></div><div class='output co'>#&gt;    a  b  c  d
-#&gt; A  1  6 11 NA
-#&gt; B  2  7 12 NA
-#&gt; C  3  8 13 18
-#&gt; D NA NA 14 19
-#&gt; E NA NA 15 20</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>gsea</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>gsea</span>
+<span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"x_"</span>, <span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='no'>x</span>))
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>gsea</span>
+<span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='no'>y</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span>(<span class='st'>"y_"</span>, <span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='no'>y</span>))
+<span class='no'>c</span> <span class='kw'>&lt;-</span> <span class='fu'>combine</span>(<span class='no'>x</span>, <span class='no'>y</span>)
+<span class='no'>c</span></div><div class='output co'>#&gt; FGSEAList 0.0.5 of length 1
+#&gt; pathwayNames: h
+#&gt; contrastNames(2): x_dmso_r1881_vs_etoh y_dmso_r1881_vs_etoh</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -474,8 +201,6 @@
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-
-      <li><a href="#methods">Methods</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
