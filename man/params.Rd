@@ -48,6 +48,8 @@ Gene stats list.}
 \item{theme}{\code{theme}/\code{gg}.
 ggplot2 theme.}
 
+\item{value}{Value to assign.}
+
 \item{...}{Additional arguments.}
 }
 \description{
