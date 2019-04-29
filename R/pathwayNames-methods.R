@@ -10,9 +10,6 @@ NULL
 
 
 
-# FIXME This also needs to rename the gmtFile header...
-# FIXME Check that gmtFiles header matches.
-
 pathwayNames.FGSEAList <-  # nolint
     function(object) {
         names(object)
