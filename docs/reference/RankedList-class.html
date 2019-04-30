@@ -34,7 +34,9 @@
   
 <meta property="og:title" content="Ranked list of genes — RankedList-class" />
 
-<meta property="og:description" content="Class containing parameterized ranked gene lists." />
+<meta property="og:description" content="Class containing parameterized ranked gene lists.
+Return a parameterized ranked list for each differential
+expression contrast." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,35 +110,83 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Ranked list of genes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a>, <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/RankedList-methods.R'><code>R/RankedList-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a>, <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/RankedList-methods.R'><code>R/RankedList-methods.R</code></a></small>
     <div class="hidden name"><code>RankedList-class.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
     <p>Class containing parameterized ranked gene lists.</p>
+<p>Return a parameterized ranked list for each differential
+expression contrast.</p>
     
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for matrix</span>
-<span class='fu'><a href='RankedList.html'>RankedList</a></span>(<span class='no'>object</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"log2FoldChange"</span>)</pre>
-        
-    <h2 class="hasAnchor" id="methods-by-generic-"><a class="anchor" href="#methods-by-generic-"></a>Methods (by generic)</h2>
+    <pre class="usage"><span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-    <ul>
-<li><p><code>RankedList</code>: Contrast matrix, containing either log2 fold changes, or (Wald) test
-statistic values. Useful when aggregating reuslts from multiple differential
-expression analyses that can't be containerized into a DESeqAnalysis object.</p></li>
-</ul>
+<span class='co'># S4 method for matrix</span>
+<span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"log2FoldChange"</span>)
+
+<span class='co'># S4 method for DESeqAnalysis</span>
+<span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"stat"</span>,
+  <span class='st'>"log2FoldChange"</span>, <span class='st'>"padj"</span>))
+
+<span class='co'># S4 method for FGSEAList</span>
+<span class='fu'>RankedList</span>(<span class='no'>object</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>object</th>
+      <td><p>Object.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
+    </tr>
+    <tr>
+      <th>value</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
+Value type to use for GSEA. Currently supported:</p><ol>
+<li><p><code>stat</code>: Wald test statistic. This column is returned by <code>results()</code>
+but is removed in <code><a href='https://www.rdocumentation.org/packages/DESeq2/topics/lfcShrink'>DESeq2::lfcShrink()</a></code> return, currently.</p></li>
+<li><p><code>log2FoldChange</code>: Shrunken log2 fold change. Note that this option
+requires <code><a href='https://www.rdocumentation.org/packages/DESeq2/topics/lfcShrink'>DESeq2::lfcShrink()</a></code> return to be slotted.</p></li>
+<li><p><code>padj</code>: Adjusted <em>P</em> value. This don't provide directional ranks, but
+is offered as a legacy option. Not generally recommended.</p></li>
+</ol></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>RankedList</code>.</p>
+    
+    <h2 class="hasAnchor" id="gene-symbol-multi-mapping"><a class="anchor" href="#gene-symbol-multi-mapping"></a>Gene symbol multi-mapping</h2>
+
+    
+    <p>Multiple gene IDs can map to a gene symbol (e.g. <em>Homo sapiens</em> HGNC names).
+In this event, we're averaging the stat values using <code><a href='https://www.rdocumentation.org/packages/base/topics/mean'>mean()</a></code> internally.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>deseq</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DESeqAnalysis"</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>RankedList</span>(<span class='no'>deseq</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; RankedList of length 1
+#&gt; names(1): condition_B_vs_A</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#methods-by-generic-">Methods (by generic)</a></li>
-          </ul>
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#gene-symbol-multi-mapping">Gene symbol multi-mapping</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     <p>Michael Steinbaugh</p>
