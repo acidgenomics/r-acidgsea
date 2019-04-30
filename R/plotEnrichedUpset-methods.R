@@ -1,13 +1,21 @@
-#' UpSet plot of directional enriched pathway intersections across contrasts
-#'
 #' @name plotEnrichedUpset
-#' @inheritParams params
+#' @inherit bioverbs::plotEnrichedUpset
 #'
-#' @return Graphical output.
+#' @inheritParams params
+#' @param ... Additional arguments.
 #'
 #' @examples
 #' data(gsea)
 #' plotEnrichedUpset(gsea, collection = "h")
+NULL
+
+
+
+#' @rdname plotEnrichedUpset
+#' @name plotEnrichedUpset
+#' @importFrom bioverbs plotEnrichedUpset
+#' @usage plotEnrichedUpset(object, ...)
+#' @export
 NULL
 
 

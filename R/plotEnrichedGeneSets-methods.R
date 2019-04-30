@@ -1,19 +1,30 @@
-#' Plot enrichment
+#' @name plotEnrichedGeneSets
+#' @inherit bioverbs::plotEnrichedGeneSets
 #'
-#' @name plotEnrichment
 #' @inheritParams params
+#' @param ... Additional arguments.
+#'
 #' @return `ggplot`.
 #'
 #' @seealso [fgsea::plotEnrichment()].
 #'
 #' @examples
 #' data(gsea)
-#' plotEnrichment(gsea, collection = "h", n = 1L)
+#' plotEnrichedGeneSets(gsea, collection = "h", n = 1L)
 NULL
 
 
 
-plotEnrichment.FGSEAList <- function(
+#' @rdname plotEnrichedGeneSets
+#' @name plotEnrichedGeneSets
+#' @importFrom bioverbs plotEnrichedGeneSets
+#' @usage plotEnrichedGeneSets(object, ...)
+#' @export
+NULL
+
+
+
+plotEnrichedGeneSets.FGSEAList <- function(
     object,
     collection,
     alpha = 0.05,
@@ -104,10 +115,10 @@ plotEnrichment.FGSEAList <- function(
 
 
 
-#' @rdname plotEnrichment
+#' @rdname plotEnrichedGeneSets
 #' @export
 setMethod(
-    f = "plotEnrichment",
+    f = "plotEnrichedGeneSets",
     signature = signature("FGSEAList"),
-    definition = plotEnrichment.FGSEAList
+    definition = plotEnrichedGeneSets.FGSEAList
 )

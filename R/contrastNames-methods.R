@@ -1,12 +1,30 @@
-#' Contrast names
-#'
 #' @name contrastNames
+#' @inherit bioverbs::contrastNames
+#'
 #' @inheritParams params
+#' @param ... Additional arguments.
 #'
 #' @examples
 #' data(gsea)
 #' contrastNames(gsea)
 NULL
+
+
+
+#' @rdname contrastNames
+#' @name contrastNames
+#' @importFrom bioverbs contrastNames
+#' @usage contrastNames(object, ...)
+#' @export
+NULL
+
+#' @rdname contrastNames
+#' @name contrastNames<-
+#' @importFrom bioverbs contrastNames<-
+#' @usage contrastNames(object, ...) <- value
+#' @export
+NULL
+
 
 
 

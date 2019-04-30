@@ -1,11 +1,24 @@
-#' Gene set collection names
-#'
 #' @name collectionNames
-#' @inheritParams params
-#'
+#' @inherit bioverbs::collectionNames
 #' @examples
 #' data(gsea)
 #' collectionNames(gsea)
+NULL
+
+
+
+#' @rdname collectionNames
+#' @name collectionNames
+#' @importFrom bioverbs collectionNames
+#' @usage collectionNames(object, ...)
+#' @export
+NULL
+
+#' @rdname collectionNames
+#' @name collectionNames<-
+#' @importFrom bioverbs collectionNames<-
+#' @usage collectionNames(object, ...) <- value
+#' @export
 NULL
 
 
