@@ -3,8 +3,9 @@
 #' @importFrom S4Vectors SimpleList lapply metadata metadata<-
 #' @importFrom UpSetR fromList
 #' @importFrom acidplots acid_theme_light upset
-#' @importFrom basejump Gene2Symbol as_tibble export initDir makeNames
-#'   markdownHeader matchArgsToDoCall showHeader showSlotInfo standardizeCall
+#' @importFrom basejump Gene2Symbol alphaThreshold as_tibble export initDir
+#'   makeNames markdownHeader matchArgsToDoCall showHeader showSlotInfo
+#'   standardizeCall
 #' @importFrom dplyr arrange desc distinct everything filter group_by left_join
 #'   pull select select_if summarise
 #' @importFrom fgsea fgsea gmtPathways plotEnrichment plotGseaTable

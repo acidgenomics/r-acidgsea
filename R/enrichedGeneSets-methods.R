@@ -41,17 +41,19 @@ enrichedGeneSets.FGSEAList <-  # nolint
         flatten = TRUE
     ) {
         validObject(object)
-        alpha <- alpha(object)
+        alpha <- alphaThreshold(object)
         assert(
             isScalar(collection),
             isFlag(flatten),
             isAlpha(alpha)
         )
+
         collection <- object[[collection]]
         assert(
             is.list(collection),
             hasNames(collection)
         )
+
         perContrast <- mapply(
             contrastName = names(collection),
             contrast = collection,

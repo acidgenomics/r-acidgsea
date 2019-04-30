@@ -2,7 +2,7 @@ context("plotEnrichedGeneSets")
 
 test_that("FGSEAList", {
     output <- capture.output(
-        plotEnrichment(gsea, collection = "h", n = 1L)
+        plotEnrichedGeneSets(gsea, collection = "h", n = 1L)
     )
     expect_identical(
         object = output,

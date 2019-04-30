@@ -8,7 +8,7 @@
 \usage{
 plotEnrichedUpset(object, ...)
 
-\S4method{plotEnrichedUpset}{FGSEAList}(object, collection, alpha = 0.05)
+\S4method{plotEnrichedUpset}{FGSEAList}(object, collection)
 }
 \arguments{
 \item{object}{Object.}
@@ -17,9 +17,6 @@ plotEnrichedUpset(object, ...)
 Gene set collection name.
 Typically refers to \code{h}, \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
-
-\item{alpha}{\code{numeric(1)}.
-Alpha level.}
 
 \item{...}{Additional arguments.}
 }

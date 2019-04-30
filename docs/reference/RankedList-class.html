@@ -108,7 +108,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Ranked list of genes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a>, <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/RankedList-methods.R'><code>R/RankedList-methods.R</code></a></small>
     <div class="hidden name"><code>RankedList-class.Rd</code></div>
     </div>
 
@@ -118,13 +118,25 @@
     
     </div>
 
+    <pre class="usage"><span class='co'># S4 method for matrix</span>
+<span class='fu'><a href='RankedList.html'>RankedList</a></span>(<span class='no'>object</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"log2FoldChange"</span>)</pre>
         
+    <h2 class="hasAnchor" id="methods-by-generic-"><a class="anchor" href="#methods-by-generic-"></a>Methods (by generic)</h2>
+
+    <ul>
+<li><p><code>RankedList</code>: Contrast matrix, containing either log2 fold changes, or (Wald) test
+statistic values. Useful when aggregating reuslts from multiple differential
+expression analyses that can't be containerized into a DESeqAnalysis object.</p></li>
+</ul>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      
+      <li><a href="#methods-by-generic-">Methods (by generic)</a></li>
+          </ul>
 
     <h2>Author</h2>
     <p>Michael Steinbaugh</p>
