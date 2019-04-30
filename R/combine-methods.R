@@ -1,7 +1,17 @@
 #' @name combine
-#' @inherit BiocGenerics::combine
-#' @param ... Additional arguments
-#' @return Object of same class, containing elements of combined input objects.
+#' @inherit BiocGenerics::combine description details return seealso title
+#'
+#' @param x,y Object.
+#' @param ... Additional arguments.
+#'
+#' @examples
+#' data(gsea)
+#' x <- gsea
+#' contrastNames(x) <- paste0("x_", contrastNames(x))
+#' y <- gsea
+#' contrastNames(y) <- paste0("y_", contrastNames(y))
+#' c <- combine(x, y)
+#' c
 NULL
 
 
@@ -20,9 +30,9 @@ combine.FGSEAList <-  # nolint
         validObject(x)
         validObject(y)
 
-        # Require that pathway names are identical.
+        # Require that collection names are identical.
         assert(
-            identical(pathwayNames(x), pathwayNames(y)),
+            identical(collectionNames(x), collectionNames(y)),
             identical(
                 x = metadata(x)[["gmtFiles"]],
                 y = metadata(y)[["gmtFiles"]]

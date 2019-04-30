@@ -1,37 +1,47 @@
-#' Plot enrichment
+#' @name plotEnrichedGeneSets
+#' @inherit bioverbs::plotEnrichedGeneSets
 #'
-#' @name plotEnrichment
 #' @inheritParams params
+#' @param ... Additional arguments.
+#'
 #' @return `ggplot`.
 #'
 #' @seealso [fgsea::plotEnrichment()].
 #'
 #' @examples
 #' data(gsea)
-#' plotEnrichment(gsea, geneSet = "h", n = 1L)
+#' plotEnrichedGeneSets(gsea, collection = "h", n = 1L)
 NULL
 
 
 
-plotEnrichment.FGSEAList <- function(
+#' @rdname plotEnrichedGeneSets
+#' @name plotEnrichedGeneSets
+#' @importFrom bioverbs plotEnrichedGeneSets
+#' @usage plotEnrichedGeneSets(object, ...)
+#' @export
+NULL
+
+
+
+plotEnrichedGeneSets.FGSEAList <- function(
     object,
-    geneSet,
-    alpha = 0.05,
+    collection,
     n = 10L,
     headerLevel = 3L,
     theme = acid_theme_light()
 ) {
     validObject(object)
+    alpha <- alphaThreshold(object)
     assert(
-        isString(geneSet),
-        isSubset(geneSet, names(object)),
+        isScalar(collection),
         isAlpha(alpha),
         isInt(n),
         isHeaderLevel(headerLevel)
     )
-    data <- object[[geneSet]]
+    data <- object[[collection]]
     stats <- RankedList(object)
-    gmtFile <- metadata(object)[["gmtFiles"]][[geneSet]]
+    gmtFile <- metadata(object)[["gmtFiles"]][[collection]]
     assert(
         identical(names(data), names(stats)),
         isAFile(gmtFile)
@@ -83,6 +93,8 @@ plotEnrichment.FGSEAList <- function(
                     # Suppressing warnings here to for minimal example to work.
                     # `min(bottoms)` and `max(tops)` failure can occur, causing
                     # ggplot to fail.
+                    # Safe to remove `fgsea::` here once we remove now defunct
+                    # `plotEnrichment()` from export.
                     p <- suppressWarnings(
                         fgsea::plotEnrichment(pathway = pathway, stats = stats)
                     )
@@ -104,10 +116,10 @@ plotEnrichment.FGSEAList <- function(
 
 
 
-#' @rdname plotEnrichment
+#' @rdname plotEnrichedGeneSets
 #' @export
 setMethod(
-    f = "plotEnrichment",
+    f = "plotEnrichedGeneSets",
     signature = signature("FGSEAList"),
-    definition = plotEnrichment.FGSEAList
+    definition = plotEnrichedGeneSets.FGSEAList
 )

@@ -25,7 +25,7 @@ setClass(
                 )
             ),
             isSubset(
-                x = c("gmtFiles", "rankedList", "version"),
+                x = c("alpha", "gmtFiles", "rankedList", "version"),
                 y = names(metadata(object))
             ),
             isCharacter(metadata(object)[["gmtFiles"]]),
@@ -58,8 +58,12 @@ setClass(
             is.numeric(object[[1L]]),
             # Check that this is sorted from high to low.
             identical(object[[1L]], sort(object[[1L]], decreasing = TRUE)),
+            # Rank vector must be named.
+            hasNames(object[[1L]]),
+            # gene2symbol metadata is now optional, but still recommended.
+            # This check was removed to allow RankedList support for matrix.
             isSubset(
-                x = c("gene2symbol", "value", "version"),
+                x = c("value", "version"),
                 y = names(metadata(object))
             ),
             is(metadata(object)[["version"]], "package_version"),

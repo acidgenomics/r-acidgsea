@@ -13,7 +13,7 @@ show.FGSEAList <-  # nolint
     function(object) {
         showHeader(object)
         showSlotInfo(list(
-            pathwayNames = pathwayNames(object),
+            collectionNames = collectionNames(object),
             contrastNames = contrastNames(object)
         ))
     }

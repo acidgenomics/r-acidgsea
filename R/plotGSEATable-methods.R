@@ -1,36 +1,46 @@
-#' Plot GSEA table
-#'
 #' @name plotGSEATable
+#' @inherit bioverbs::plotGSEATable
+#'
 #' @inheritParams params
+#' @param ... Additional arguments.
+#'
 #' @return `ggplot`.
 #'
 #' @seealso [fgsea::plotGseaTable()].
 #'
 #' @examples
 #' data(gsea)
-#' plotGSEATable(gsea, geneSet = "h")
+#' plotGSEATable(gsea, collection = "h")
+NULL
+
+
+
+#' @rdname plotGSEATable
+#' @name plotGSEATable
+#' @importFrom bioverbs plotGSEATable
+#' @usage plotGSEATable(object, ...)
+#' @export
 NULL
 
 
 
 plotGSEATable.FGSEAList <- function(
     object,
-    geneSet,
-    alpha = 0.05,
+    collection,
     n = 10L,
     headerLevel = 3L
 ) {
     validObject(object)
+    alpha <- alphaThreshold(object)
     assert(
-        isString(geneSet),
-        isSubset(geneSet, names(object)),
+        isScalar(collection),
         isAlpha(alpha),
         isInt(n),
         isHeaderLevel(headerLevel)
     )
-    data <- object[[geneSet]]
+    data <- object[[collection]]
     stats <- RankedList(object)
-    gmtFile <- metadata(object)[["gmtFiles"]][[geneSet]]
+    gmtFile <- metadata(object)[["gmtFiles"]][[collection]]
     assert(
         identical(names(data), names(stats)),
         isAFile(gmtFile)

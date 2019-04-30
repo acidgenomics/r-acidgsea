@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' data(gsea)
-#' topTables(gsea, geneSet = "h")
+#' topTables(gsea, collection = "h")
 NULL
 
 
@@ -30,20 +30,19 @@ NULL
 
 topTables.FGSEAList <- function(
     object,
-    geneSet,
-    alpha = 0.05,
+    collection,
     n = 10L,
     headerLevel = 3L
 ) {
     validObject(object)
+    alpha <- alphaThreshold(object)
     assert(
-        isString(geneSet),
-        isSubset(geneSet, names(object)),
+        isScalar(collection),
         isAlpha(alpha),
         isInt(n),
         isHeaderLevel(headerLevel)
     )
-    data <- object[[geneSet]]
+    data <- object[[collection]]
     invisible(mapply(
         contrast = names(data),
         data = data,
