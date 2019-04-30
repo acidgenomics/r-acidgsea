@@ -35,8 +35,13 @@ NULL
 
 RankedList.matrix <-  # nolint
     function(object, value = "log2FoldChange") {
-        assert(is.numeric(object))
+        assert(
+            is.numeric(object),
+            hasColnames(object),
+            hasRownames(object)
+        )
         list <- as.list(as.data.frame(object))
+        list <- lapply(X = list, FUN = `names<-`, value = rownames(object))
         # Sort the vectors from positive to negative.
         sorted <- lapply(X = list, FUN = sort, decreasing = TRUE)
         out <- SimpleList(sorted)
