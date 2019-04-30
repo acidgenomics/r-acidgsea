@@ -1,7 +1,14 @@
 #' @name combine
-#' @inherit BiocGenerics::combine
+#' @inherit BiocGenerics::combine description details return seealso title
 #' @param ... Additional arguments
-#' @return Object of same class, containing elements of combined input objects.
+#' @examples
+#' data(gsea)
+#' x <- gsea
+#' contrastNames(x) <- paste0("x_", contrastNames(x))
+#' y <- gsea
+#' contrastNames(y) <- paste0("y_", contrastNames(y))
+#' c <- combine(x, y)
+#' c
 NULL
 
 
