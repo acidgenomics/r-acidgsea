@@ -25,7 +25,7 @@ setClass(
                 )
             ),
             isSubset(
-                x = c("gmtFiles", "rankedList", "version"),
+                x = c("alpha", "gmtFiles", "rankedList", "version"),
                 y = names(metadata(object))
             ),
             isCharacter(metadata(object)[["gmtFiles"]]),
