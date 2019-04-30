@@ -22,6 +22,7 @@
 #' @importFrom methods as is new setAs setGeneric setMethod show slot slot<-
 #'   validObject
 #' @importFrom rlang !! !!! := sym syms
+#' @importFrom sessioninfo session_info
 #' @importFrom stats na.omit
 #' @importFrom tibble deframe
 #' @importFrom utils globalVariables head tail
