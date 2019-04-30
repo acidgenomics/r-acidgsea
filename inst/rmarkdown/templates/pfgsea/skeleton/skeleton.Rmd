@@ -3,7 +3,7 @@ params:
   title: "Gene Set Enrichment Analysis"
   fgsealist_file: "rds/YYYY-MM-DD/object.rds"
   output_dir: !r file.path("results", Sys.Date(), "gsea")
-  n_pathways: 10
+  n_pathways: 5
 title: "`r params$title`"
 author: "`r getOption('author')`"
 date: "`r Sys.Date()`"
@@ -117,15 +117,23 @@ plotGSEATable(
 )
 ```
 
-## Plot enrichment {.tabset}
+## Plot enriched gene sets {.tabset}
 
-```{r h-plot-enrichment, results="asis"}
-plotEnrichment(
+```{r h-plot-enriched-gene-sets, results="asis"}
+plotEnrichedGeneSets(
     object = object,
     collection = "h",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
+)
+```
+
+## UpSet plot
+
+```{r h-plot-enriched-upset}
+plotEnrichedUpset(
+    object = object,
+    collection = "h"
 )
 ```
 
@@ -137,7 +145,6 @@ plotEnrichment(
 topTables(
     object = object,
     collection = "c1",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
@@ -149,21 +156,28 @@ topTables(
 plotGSEATable(
     object = object,
     collection = "c1",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
 ```
 
-## Plot enrichment {.tabset}
+## Plot enriched gene sets {.tabset}
 
-```{r c1-plot-enrichment, results="asis"}
-plotEnrichment(
+```{r c1-plot-enriched-gene-sets, results="asis"}
+plotEnrichedGeneSets(
     object = object,
     collection = "c1",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
+)
+```
+
+## UpSet plot
+
+```{r c1-plot-enriched-upset}
+plotEnrichedUpset(
+    object = object,
+    collection = "c1"
 )
 ```
 
@@ -175,7 +189,6 @@ plotEnrichment(
 topTables(
     object = object,
     collection = "c2",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
@@ -187,21 +200,28 @@ topTables(
 plotGSEATable(
     object = object,
     collection = "c2",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
 ```
 
-## Plot enrichment {.tabset}
+## Plot enriched gene sets {.tabset}
 
-```{r c2-plot-enrichment, results="asis"}
-plotEnrichment(
+```{r c2-plot-enriched-gene-sets, results="asis"}
+plotEnrichedGeneSets(
     object = object,
     collection = "c2",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
+)
+```
+
+## UpSet plot
+
+```{r c2-plot-enriched-upset}
+plotEnrichedUpset(
+    object = object,
+    collection = "c2"
 )
 ```
 
@@ -213,7 +233,6 @@ plotEnrichment(
 topTables(
     object = object,
     collection = "c3",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
@@ -225,21 +244,28 @@ topTables(
 plotGSEATable(
     object = object,
     collection = "c3",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
 ```
 
-## Plot enrichment {.tabset}
+## Plot enriched gene sets {.tabset}
 
-```{r c3-plot-enrichment, results="asis"}
-plotEnrichment(
+```{r c3-plot-enriched-gene-sets, results="asis"}
+plotEnrichedGeneSets(
     object = object,
     collection = "c3",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
+)
+```
+
+## UpSet plot
+
+```{r c3-plot-enriched-upset}
+plotEnrichedUpset(
+    object = object,
+    collection = "c3"
 )
 ```
 
@@ -251,7 +277,6 @@ plotEnrichment(
 topTables(
     object = object,
     collection = "c4",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
@@ -263,21 +288,28 @@ topTables(
 plotGSEATable(
     object = object,
     collection = "c4",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
 ```
 
-## Plot enrichment {.tabset}
+## Plot enriched gene sets {.tabset}
 
-```{r c4-plot-enrichment, results="asis"}
-plotEnrichment(
+```{r c4-plot-enriched-gene-sets, results="asis"}
+plotEnrichedGeneSets(
     object = object,
     collection = "c4",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
+)
+```
+
+## UpSet plot
+
+```{r c4-plot-enriched-upset}
+plotEnrichedUpset(
+    object = object,
+    collection = "c4"
 )
 ```
 
@@ -289,7 +321,6 @@ plotEnrichment(
 topTables(
     object = object,
     collection = "c5",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
@@ -301,21 +332,28 @@ topTables(
 plotGSEATable(
     object = object,
     collection = "c5",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
 ```
 
-## Plot enrichment {.tabset}
+## Plot enriched gene sets {.tabset}
 
-```{r c5-plot-enrichment, results="asis"}
-plotEnrichment(
+```{r c5-plot-enriched-gene-sets, results="asis"}
+plotEnrichedGeneSets(
     object = object,
     collection = "c5",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
+)
+```
+
+## UpSet plot
+
+```{r c5-plot-enriched-upset}
+plotEnrichedUpset(
+    object = object,
+    collection = "c5"
 )
 ```
 
@@ -327,7 +365,6 @@ plotEnrichment(
 topTables(
     object = object,
     collection = "c6",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
@@ -339,21 +376,28 @@ topTables(
 plotGSEATable(
     object = object,
     collection = "c6",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
 ```
 
-## Plot enrichment {.tabset}
+## Plot enriched gene sets {.tabset}
 
-```{r c6-plot-enrichment, results="asis"}
-plotEnrichment(
+```{r c6-plot-enriched-gene-sets, results="asis"}
+plotEnrichedGeneSets(
     object = object,
     collection = "c6",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
+)
+```
+
+## UpSet plot
+
+```{r c6-plot-enriched-upset}
+plotEnrichedUpset(
+    object = object,
+    collection = "c6"
 )
 ```
 
@@ -365,7 +409,6 @@ plotEnrichment(
 topTables(
     object = object,
     collection = "c7",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
@@ -377,21 +420,28 @@ topTables(
 plotGSEATable(
     object = object,
     collection = "c7",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
 )
 ```
 
-## Plot enrichment {.tabset}
+## Plot enriched gene sets {.tabset}
 
-```{r c7-plot-enrichment, results="asis"}
-plotEnrichment(
+```{r c7-plot-enriched-gene-sets, results="asis"}
+plotEnrichedGeneSets(
     object = object,
     collection = "c7",
-    alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
+)
+```
+
+## UpSet plot
+
+```{r c7-plot-enriched-upset}
+plotEnrichedUpset(
+    object = object,
+    collection = "c7"
 )
 ```
 
