@@ -5,7 +5,7 @@
 \title{Parameterized fast gene set enrichment analysis (GSEA)}
 \usage{
 pfgsea(rankedList, gmtFiles, nPerm = 1000L, minSize = 15L,
-  maxSize = 500L, BPPARAM = bpparam())
+  maxSize = 500L, alpha = 0.05, BPPARAM = bpparam())
 }
 \arguments{
 \item{rankedList}{\code{RankedList}.
@@ -25,6 +25,11 @@ All pathways below the threshold are excluded.}
 \item{maxSize}{\code{integer(1)}/\code{Inf}.
 Maximal size of a gene set to test.
 All pathways above the threshold are excluded.}
+
+\item{alpha}{\code{numeric(1)}.
+Alpha level cutoff. Stored internally in \code{metadata()}.
+Applied only to plots and enriched gene set exports, but does not affect
+the actual GSEA enrichment calculation.}
 
 \item{BPPARAM}{BiocParallel parallelization parameter.}
 }
