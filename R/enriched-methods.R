@@ -22,7 +22,7 @@ enriched.FGSEAList <-  # nolint
     function(object, alpha = 0.05) {
         validObject(object)
         assert(isAlpha(alpha))
-        perPathway <- mapply(
+        mapply(
             pathwayName = names(object),
             pathway = object,
             FUN = function(pathwayName, pathway) {
@@ -45,15 +45,14 @@ enriched.FGSEAList <-  # nolint
                     SIMPLIFY = FALSE,
                     USE.NAMES = TRUE
                 )
-                do.call(what = c, args = perContrast)
+                out <- do.call(what = c, args = perContrast)
+                # Using "_" instead of "." for name concatenation.
+                names(out) <- makeNames(names(out), unique = TRUE)
+                out
             },
             SIMPLIFY = FALSE,
             USE.NAMES = TRUE
         )
-        out <- do.call(what = c, args = perPathway)
-        # Using "_" instead of "." for name concatenation.
-        names(out) <- makeNames(names(out), unique = TRUE)
-        out
     }
 
 
