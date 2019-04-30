@@ -30,5 +30,6 @@ Graphical output.
 UpSet plot of directional enriched pathway intersections across contrasts
 }
 \examples{
+data(gsea)
 plotEnrichedUpset(gsea, collection = "h")
 }

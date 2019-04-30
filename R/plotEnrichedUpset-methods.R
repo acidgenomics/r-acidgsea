@@ -6,6 +6,7 @@
 #' @return Graphical output.
 #'
 #' @examples
+#' data(gsea)
 #' plotEnrichedUpset(gsea, collection = "h")
 NULL
 
