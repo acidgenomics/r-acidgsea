@@ -58,6 +58,8 @@ setClass(
             is.numeric(object[[1L]]),
             # Check that this is sorted from high to low.
             identical(object[[1L]], sort(object[[1L]], decreasing = TRUE)),
+            # Rank vector must be named.
+            hasNames(object[[1L]]),
             # gene2symbol metadata is now optional, but still recommended.
             # This check was removed to allow RankedList support for matrix.
             isSubset(
