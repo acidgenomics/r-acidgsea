@@ -58,8 +58,10 @@ setClass(
             is.numeric(object[[1L]]),
             # Check that this is sorted from high to low.
             identical(object[[1L]], sort(object[[1L]], decreasing = TRUE)),
+            # gene2symbol metadata is now optional, but still recommended.
+            # This check was removed to allow RankedList support for matrix.
             isSubset(
-                x = c("gene2symbol", "value", "version"),
+                x = c("value", "version"),
                 y = names(metadata(object))
             ),
             is(metadata(object)[["version"]], "package_version"),

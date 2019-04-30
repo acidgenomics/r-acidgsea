@@ -30,60 +30,91 @@ NULL
 
 
 
-RankedList.DESeqAnalysis <- function(
-    object,
-    value = c("stat", "log2FoldChange", "padj")
-) {
-    validObject(object)
-    value <- match.arg(value)
+# Other options instead of df/list coercion (check benchmarks).
+# https://stackoverflow.com/questions/6819804
 
-    # Extract the DESeqDataSet.
-    dds <- as(object, "DESeqDataSet")
-
-    # Extract the DESeqResults list.
-    if (value == "log2FoldChange") {
-        # Note that we're requiring shrunken LFCs if the user wants to return
-        # those values instead of using Wald test statistic.
-        results <- object@lfcShrink
-    } else {
-        results <- object@results
+RankedList.matrix <-  # nolint
+    function(object, value = "log2FoldChange") {
+        assert(is.numeric(object))
+        list <- as.list(as.data.frame(object))
+        # Sort the vectors from positive to negative.
+        sorted <- lapply(X = list, FUN = sort, decreasing = TRUE)
+        out <- SimpleList(sorted)
+        metadata(out)[["version"]] <- .version
+        metadata(out)[["value"]] <- value
+        new(Class = "RankedList", out)
     }
-    assert(is(results, "list"))
 
-    # Get the gene-to-symbol mappings in long format.
-    # We're returning in long format so we can average the values for each
-    # gene symbol, since for some genomes gene IDs multi-map to symbols.
-    suppressMessages(
-        gene2symbol <- Gene2Symbol(dds, format = "long")
-    )
 
-    # Get parameterized GSEA list values for each DESeqResults contrast.
-    quovalue <- sym(value)
-    list <- lapply(
-        X = results,
-        FUN = function(data) {
-            left_join(
-                x = as_tibble(data, rownames = "rowname"),
-                y = as_tibble(gene2symbol, rownames = "rowname"),
-                by = "rowname"
-            ) %>%
-                select(!!!syms(c("geneName", quovalue))) %>%
-                na.omit() %>%
-                distinct() %>%
-                group_by(!!sym("geneName")) %>%
-                summarise(!!quovalue := mean(!!quovalue)) %>%
-                arrange(desc(!!quovalue)) %>%
-                deframe()
+
+#' @describeIn RankedList
+#' Contrast matrix, containing either log2 fold changes, or (Wald) test
+#' statistic values. Useful when aggregating reuslts from multiple differential
+#' expression analyses that can't be containerized into a DESeqAnalysis object.
+#' @export
+setMethod(
+    f = "RankedList",
+    signature = signature("matrix"),
+    definition = RankedList.matrix
+)
+
+
+
+RankedList.DESeqAnalysis <-  # nolint
+    function(
+        object,
+        value = c("stat", "log2FoldChange", "padj")
+    ) {
+        validObject(object)
+        value <- match.arg(value)
+
+        # Extract the DESeqDataSet.
+        dds <- as(object, "DESeqDataSet")
+
+        # Extract the DESeqResults list.
+        if (value == "log2FoldChange") {
+            # Note that we're requiring shrunken LFCs if the user wants to
+            # return those values instead of using Wald test statistic.
+            results <- object@lfcShrink
+        } else {
+            results <- object@results
         }
-    )
-    names(list) <- names(results)
+        assert(is(results, "list"))
 
-    out <- SimpleList(list)
-    metadata(out)[["version"]] <- .version
-    metadata(out)[["value"]] <- value
-    metadata(out)[["gene2symbol"]] <- metadata(gene2symbol)
-    new(Class = "RankedList", out)
-}
+        # Get the gene-to-symbol mappings in long format.
+        # We're returning in long format so we can average the values for each
+        # gene symbol, since for some genomes gene IDs multi-map to symbols.
+        suppressMessages(
+            gene2symbol <- Gene2Symbol(dds, format = "long")
+        )
+
+        # Get parameterized GSEA list values for each DESeqResults contrast.
+        quovalue <- sym(value)
+        list <- lapply(
+            X = results,
+            FUN = function(data) {
+                left_join(
+                    x = as_tibble(data, rownames = "rowname"),
+                    y = as_tibble(gene2symbol, rownames = "rowname"),
+                    by = "rowname"
+                ) %>%
+                    select(!!!syms(c("geneName", quovalue))) %>%
+                    na.omit() %>%
+                    distinct() %>%
+                    group_by(!!sym("geneName")) %>%
+                    summarise(!!quovalue := mean(!!quovalue)) %>%
+                    arrange(desc(!!quovalue)) %>%
+                    deframe()
+            }
+        )
+        names(list) <- names(results)
+
+        out <- SimpleList(list)
+        metadata(out)[["version"]] <- .version
+        metadata(out)[["value"]] <- value
+        metadata(out)[["gene2symbol"]] <- metadata(gene2symbol)
+        new(Class = "RankedList", out)
+    }
 
 
 
@@ -97,10 +128,11 @@ setMethod(
 
 
 
-RankedList.FGSEAList <- function(object) {
-    validObject(object)
-    metadata(object)[["rankedList"]]
-}
+RankedList.FGSEAList <-  # nolint
+    function(object) {
+        validObject(object)
+        metadata(object)[["rankedList"]]
+    }
 
 
 
