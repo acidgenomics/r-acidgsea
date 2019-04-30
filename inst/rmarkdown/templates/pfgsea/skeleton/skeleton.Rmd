@@ -41,7 +41,7 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, message=FALSE}
-# Last modified 2019-04-26
+# Last modified 2019-04-30
 library(DESeqAnalysis)
 library(pfgsea)
 library(tidyverse)
@@ -168,7 +168,7 @@ The `fgsea::gmtPathways()` function will take a GMT file from MSigDb and turn it
 ```{r h-top-tables, results="asis"}
 topTables(
     object = fgsea,
-    geneSet = "h",
+    collection = "h",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -180,7 +180,7 @@ topTables(
 ```{r h-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
-    geneSet = "h",
+    collection = "h",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -192,7 +192,7 @@ plotGSEATable(
 ```{r h-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
-    geneSet = "h",
+    collection = "h",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -206,7 +206,7 @@ plotEnrichment(
 ```{r c1-top-tables, results="asis"}
 topTables(
     object = fgsea,
-    geneSet = "c1",
+    collection = "c1",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -218,7 +218,7 @@ topTables(
 ```{r c1-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
-    geneSet = "c1",
+    collection = "c1",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -230,7 +230,7 @@ plotGSEATable(
 ```{r c1-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
-    geneSet = "c1",
+    collection = "c1",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -244,7 +244,7 @@ plotEnrichment(
 ```{r c2-top-tables, results="asis"}
 topTables(
     object = fgsea,
-    geneSet = "c2",
+    collection = "c2",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -256,7 +256,7 @@ topTables(
 ```{r c2-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
-    geneSet = "c2",
+    collection = "c2",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -268,7 +268,7 @@ plotGSEATable(
 ```{r c2-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
-    geneSet = "c2",
+    collection = "c2",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -282,7 +282,7 @@ plotEnrichment(
 ```{r c3-top-tables, results="asis"}
 topTables(
     object = fgsea,
-    geneSet = "c3",
+    collection = "c3",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -294,7 +294,7 @@ topTables(
 ```{r c3-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
-    geneSet = "c3",
+    collection = "c3",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -306,7 +306,7 @@ plotGSEATable(
 ```{r c3-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
-    geneSet = "c3",
+    collection = "c3",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -320,7 +320,7 @@ plotEnrichment(
 ```{r c4-top-tables, results="asis"}
 topTables(
     object = fgsea,
-    geneSet = "c4",
+    collection = "c4",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -332,7 +332,7 @@ topTables(
 ```{r c4-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
-    geneSet = "c4",
+    collection = "c4",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -344,7 +344,7 @@ plotGSEATable(
 ```{r c4-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
-    geneSet = "c4",
+    collection = "c4",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -358,7 +358,7 @@ plotEnrichment(
 ```{r c5-top-tables, results="asis"}
 topTables(
     object = fgsea,
-    geneSet = "c5",
+    collection = "c5",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -370,7 +370,7 @@ topTables(
 ```{r c5-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
-    geneSet = "c5",
+    collection = "c5",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -382,7 +382,7 @@ plotGSEATable(
 ```{r c5-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
-    geneSet = "c5",
+    collection = "c5",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -396,7 +396,7 @@ plotEnrichment(
 ```{r c6-top-tables, results="asis"}
 topTables(
     object = fgsea,
-    geneSet = "c6",
+    collection = "c6",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -408,7 +408,7 @@ topTables(
 ```{r c6-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
-    geneSet = "c6",
+    collection = "c6",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -420,7 +420,7 @@ plotGSEATable(
 ```{r c6-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
-    geneSet = "c6",
+    collection = "c6",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -434,7 +434,7 @@ plotEnrichment(
 ```{r c7-top-tables, results="asis"}
 topTables(
     object = fgsea,
-    geneSet = "c7",
+    collection = "c7",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -446,7 +446,7 @@ topTables(
 ```{r c7-plot-gsea-table, results="asis"}
 plotGSEATable(
     object = fgsea,
-    geneSet = "c7",
+    collection = "c7",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
@@ -458,7 +458,7 @@ plotGSEATable(
 ```{r c7-plot-enrichment, results="asis"}
 plotEnrichment(
     object = fgsea,
-    geneSet = "c7",
+    collection = "c7",
     alpha = params$alpha,
     n = params$n_pathways,
     headerLevel = 3
