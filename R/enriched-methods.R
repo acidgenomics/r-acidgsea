@@ -32,7 +32,7 @@ enriched.FGSEAList <-  # nolint
         assert(
             isSubset(collection, collectionNames(object)),
             isAlpha(alpha),
-            isFlag(flat)
+            isFlag(flatten)
         )
         collection <- object[[collection]]
         perContrast <- mapply(

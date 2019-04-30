@@ -8,12 +8,17 @@
 \usage{
 plotEnrichedUpset(object, ...)
 
-\S4method{plotEnrichedUpset}{FGSEAList}(object, alpha = 0.05)
+\S4method{plotEnrichedUpset}{FGSEAList}(object, collection, alpha = 0.05)
 }
 \arguments{
 \item{object}{Object.}
 
 \item{...}{Additional arguments.}
+
+\item{collection}{\code{character(1)}.
+Gene set collection name.
+Typically refers to \code{h}, \code{c1}-\code{c7} collections from MSigDb.
+Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 
 \item{alpha}{\code{numeric(1)}.
 Alpha level.}
@@ -25,5 +30,5 @@ Graphical output.
 UpSet plot of directional enriched pathway intersections across contrasts
 }
 \examples{
-plotEnrichedUpset(gsea)
+plotEnrichedUpset(gsea, collection = "h")
 }

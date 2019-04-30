@@ -15,7 +15,7 @@
 #' @importFrom fgsea fgsea gmtPathways plotGseaTable
 #' @importFrom ggplot2 labs
 #' @importFrom goalie areDisjointSets areSameLength assert hasNames hasLength
-#'   hasRows isAFile isAll isAlpha isCharacter isFile isHeaderLevel isInt
+#'   hasRows isAFile isAll isAlpha isCharacter isFile isFlag isHeaderLevel isInt
 #'   isString isSubset validate
 #' @importFrom knitr kable
 #' @importFrom magrittr %>%
