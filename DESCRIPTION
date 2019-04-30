@@ -25,7 +25,7 @@ Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 3.5),
-    basejump (>= 0.10.6),
+    basejump (>= 0.10.7),
     DESeqAnalysis (>= 0.1.22)
 Imports:
     acidplots (>= 0.2.2), bioverbs (>= 0.1.16), goalie (>= 0.2.15),

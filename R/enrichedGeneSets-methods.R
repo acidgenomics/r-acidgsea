@@ -9,6 +9,7 @@
 #' @param flatten `logical(1)`.
 #'   Flatten nested "up"/"down" directional enrichment vector subsets.
 #'   Recomended by default for UpSet plots.
+#' @param ... Additional arguments.
 #'
 #' @return list.
 #' Named list formatted as:

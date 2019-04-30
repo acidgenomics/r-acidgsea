@@ -22,6 +22,8 @@ Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 \item{flatten}{\code{logical(1)}.
 Flatten nested "up"/"down" directional enrichment vector subsets.
 Recomended by default for UpSet plots.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 list.
