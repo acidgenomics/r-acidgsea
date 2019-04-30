@@ -32,7 +32,7 @@ plotEnrichedGeneSets.FGSEAList <- function(
     theme = acid_theme_light()
 ) {
     validObject(object)
-    alpha <- alpha(object)
+    alpha <- alphaThreshold(object)
     assert(
         isScalar(collection),
         isAlpha(alpha),

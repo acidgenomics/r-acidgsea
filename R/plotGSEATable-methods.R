@@ -31,7 +31,7 @@ plotGSEATable.FGSEAList <- function(
     headerLevel = 3L
 ) {
     validObject(object)
-    alpha <- alpha(object)
+    alpha <- alphaThreshold(object)
     assert(
         isScalar(collection),
         isAlpha(alpha),

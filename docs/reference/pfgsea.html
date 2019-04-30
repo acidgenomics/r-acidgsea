@@ -119,7 +119,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>pfgsea</span>(<span class='no'>rankedList</span>, <span class='no'>gmtFiles</span>, <span class='kw'>nPerm</span> <span class='kw'>=</span> <span class='fl'>1000L</span>, <span class='kw'>minSize</span> <span class='kw'>=</span> <span class='fl'>15L</span>,
-  <span class='kw'>maxSize</span> <span class='kw'>=</span> <span class='fl'>500L</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/register'>bpparam</a></span>())</pre>
+  <span class='kw'>maxSize</span> <span class='kw'>=</span> <span class='fl'>500L</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/BiocParallel/topics/register'>bpparam</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,6 +153,13 @@ Maximal size of a gene set to test.
 All pathways above the threshold are excluded.</p></td>
     </tr>
     <tr>
+      <th>alpha</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric(1)</a></code>.
+Alpha level cutoff. Stored internally in <code>metadata()</code>.
+Applied only to plots and enriched gene set exports, but does not affect
+the actual GSEA enrichment calculation.</p></td>
+    </tr>
+    <tr>
       <th>BPPARAM</th>
       <td><p>BiocParallel parallelization parameter.</p></td>
     </tr>
@@ -174,7 +181,7 @@ All pathways above the threshold are excluded.</p></td>
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"~"</span>,
     <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
     <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>pfgsea</span>(<span class='kw'>rankedList</span> <span class='kw'>=</span> <span class='no'>rankedList</span>, <span class='kw'>gmtFiles</span> <span class='kw'>=</span> <span class='no'>gmtFiles</span>)</div><div class='output co'>#&gt; <span class='message'>Running parameterized fast GSEA...</span>
 #&gt; <span class='message'>GMT files: h</span>
 #&gt; <span class='message'>Contrasts: dmso_r1881_vs_etoh</span></div><div class='output co'>#&gt; <span class='message'>GMT file: h.all.v6.2.symbols.gmt</span>
