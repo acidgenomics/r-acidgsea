@@ -1,6 +1,10 @@
+#' Enriched pathways
+#'
 #' Enriched pathways from gene set collections
 #'
-#' @name enriched
+#' @name enrichedGeneSets
+#' @inherit bioverbs::enrichedGeneSets
+#'
 #' @inheritParams params
 #' @param flatten `logical(1)`.
 #'   Flatten nested "up"/"down" directional enrichment vector subsets.
@@ -15,13 +19,22 @@
 #'
 #' @examples
 #' data(gsea)
-#' enriched(gsea, collection = "h")
+#' enrichedGeneSets(gsea, collection = "h")
+NULL
+
+
+
+#' @rdname enrichedGeneSets
+#' @name enrichedGeneSets
+#' @importFrom bioverbs enrichedGeneSets
+#' @usage enrichedGeneSets(object, ...)
+#' @export
 NULL
 
 
 
 # @seealso `DESeqAnalysis::plotDEGUpset()`, for looping inspiration.
-enriched.FGSEAList <-  # nolint
+enrichedGeneSets.FGSEAList <-  # nolint
     function(
         object,
         collection,
@@ -70,10 +83,10 @@ enriched.FGSEAList <-  # nolint
 
 
 
-#' @rdname enriched
+#' @rdname enrichedGeneSets
 #' @export
 setMethod(
-    f = "enriched",
+    f = "enrichedGeneSets",
     signature = signature("FGSEAList"),
-    definition = enriched.FGSEAList
+    definition = enrichedGeneSets.FGSEAList
 )

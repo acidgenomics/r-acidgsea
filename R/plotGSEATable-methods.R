@@ -1,7 +1,9 @@
-#' Plot GSEA table
-#'
 #' @name plotGSEATable
+#' @inherit bioverbs::plotGSEATable
+#'
 #' @inheritParams params
+#' @param ... Additional arguments.
+#'
 #' @return `ggplot`.
 #'
 #' @seealso [fgsea::plotGseaTable()].
@@ -9,6 +11,15 @@
 #' @examples
 #' data(gsea)
 #' plotGSEATable(gsea, collection = "h")
+NULL
+
+
+
+#' @rdname plotGSEATable
+#' @name plotGSEATable
+#' @importFrom bioverbs plotGSEATable
+#' @usage plotGSEATable(object, ...)
+#' @export
 NULL
 
 
