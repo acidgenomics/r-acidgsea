@@ -1,33 +1,33 @@
-#' Pathway names
+#' Gene set collection names
 #'
-#' @name pathwayNames
+#' @name collectionNames
 #' @inheritParams params
 #'
 #' @examples
 #' data(gsea)
-#' pathwayNames(gsea)
+#' collectionNames(gsea)
 NULL
 
 
 
-pathwayNames.FGSEAList <-  # nolint
+collectionNames.FGSEAList <-  # nolint
     function(object) {
         names(object)
     }
 
 
 
-#' @rdname pathwayNames
+#' @rdname collectionNames
 #' @export
 setMethod(
-    f = "pathwayNames",
+    f = "collectionNames",
     signature = signature("FGSEAList"),
-    definition = pathwayNames.FGSEAList
+    definition = collectionNames.FGSEAList
 )
 
 
 
-`pathwayNames<-.FGSEAList,character` <-  # nolint
+`collectionNames<-.FGSEAList,character` <-  # nolint
     function(object, value) {
         assert(
             isCharacter(value),
@@ -41,13 +41,13 @@ setMethod(
 
 
 
-#' @rdname pathwayNames
+#' @rdname collectionNames
 #' @export
 setMethod(
-    f = "pathwayNames<-",
+    f = "collectionNames<-",
     signature = signature(
         object = "FGSEAList",
         value = "character"
     ),
-    definition = `pathwayNames<-.FGSEAList,character`
+    definition = `collectionNames<-.FGSEAList,character`
 )

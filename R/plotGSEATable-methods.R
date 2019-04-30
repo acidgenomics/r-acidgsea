@@ -8,29 +8,29 @@
 #'
 #' @examples
 #' data(gsea)
-#' plotGSEATable(gsea, geneSet = "h")
+#' plotGSEATable(gsea, collection = "h")
 NULL
 
 
 
 plotGSEATable.FGSEAList <- function(
     object,
-    geneSet,
+    collection,
     alpha = 0.05,
     n = 10L,
     headerLevel = 3L
 ) {
     validObject(object)
     assert(
-        isString(geneSet),
-        isSubset(geneSet, names(object)),
+        isString(collection),
+        isSubset(collection, names(object)),
         isAlpha(alpha),
         isInt(n),
         isHeaderLevel(headerLevel)
     )
-    data <- object[[geneSet]]
+    data <- object[[collection]]
     stats <- RankedList(object)
-    gmtFile <- metadata(object)[["gmtFiles"]][[geneSet]]
+    gmtFile <- metadata(object)[["gmtFiles"]][[collection]]
     assert(
         identical(names(data), names(stats)),
         isAFile(gmtFile)

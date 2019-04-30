@@ -8,14 +8,14 @@
 #'
 #' @examples
 #' data(gsea)
-#' plotEnrichment(gsea, geneSet = "h", n = 1L)
+#' plotEnrichment(gsea, collection = "h", n = 1L)
 NULL
 
 
 
 plotEnrichment.FGSEAList <- function(
     object,
-    geneSet,
+    collection,
     alpha = 0.05,
     n = 10L,
     headerLevel = 3L,
@@ -23,15 +23,15 @@ plotEnrichment.FGSEAList <- function(
 ) {
     validObject(object)
     assert(
-        isString(geneSet),
-        isSubset(geneSet, names(object)),
+        isString(collection),
+        isSubset(collection, collectionNames(object)),
         isAlpha(alpha),
         isInt(n),
         isHeaderLevel(headerLevel)
     )
-    data <- object[[geneSet]]
+    data <- object[[collection]]
     stats <- RankedList(object)
-    gmtFile <- metadata(object)[["gmtFiles"]][[geneSet]]
+    gmtFile <- metadata(object)[["gmtFiles"]][[collection]]
     assert(
         identical(names(data), names(stats)),
         isAFile(gmtFile)

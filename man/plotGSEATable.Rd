@@ -8,7 +8,7 @@
 \usage{
 plotGSEATable(object, ...)
 
-\S4method{plotGSEATable}{FGSEAList}(object, geneSet, alpha = 0.05,
+\S4method{plotGSEATable}{FGSEAList}(object, collection, alpha = 0.05,
   n = 10L, headerLevel = 3L)
 }
 \arguments{
@@ -16,8 +16,10 @@ plotGSEATable(object, ...)
 
 \item{...}{Additional arguments.}
 
-\item{geneSet}{\code{character(1)}.
-Gene set name. Can obtain using \code{names()} on \code{FGSEAList} object.}
+\item{collection}{\code{character(1)}.
+Gene set collection name.
+Typically refers to \code{h}, \code{c1}-\code{c7} collections from MSigDb.
+Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 
 \item{alpha}{\code{numeric(1)}.
 Alpha level.}
@@ -37,7 +39,7 @@ Plot GSEA table
 }
 \examples{
 data(gsea)
-plotGSEATable(gsea, geneSet = "h")
+plotGSEATable(gsea, collection = "h")
 }
 \seealso{
 \code{\link[fgsea:plotGseaTable]{fgsea::plotGseaTable()}}.

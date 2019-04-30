@@ -20,9 +20,9 @@ combine.FGSEAList <-  # nolint
         validObject(x)
         validObject(y)
 
-        # Require that pathway names are identical.
+        # Require that collection names are identical.
         assert(
-            identical(pathwayNames(x), pathwayNames(y)),
+            identical(collectionNames(x), collectionNames(y)),
             identical(
                 x = metadata(x)[["gmtFiles"]],
                 y = metadata(y)[["gmtFiles"]]
