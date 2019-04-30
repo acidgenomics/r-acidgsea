@@ -1,3 +1,18 @@
+## pfgsea 0.1.7 (2019-04-30)
+
+### Major changes
+
+- Reworked language to use "collection" consistently instead of mixing/matching
+  "geneSet" and "pathway", which isn't appropriate. Relevant function arguments
+  have been updated to reflect this change.
+- Now exporting `collectionNames` instead of `pathwayNames`.
+- `enriched` and `plotEnrichedUpset` have been updated to return per collection
+  (e.g. hallmark gene set), which makes more sense. We don't want to visualize
+  overlap across collections, since these are often completely different
+  classes (e.g. c1-c7 will never have overlap).
+
+
+
 ## pfgsea 0.1.6 (2019-04-29)
 
 ### New functions

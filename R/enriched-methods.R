@@ -39,15 +39,17 @@ enriched.FGSEAList <-  # nolint
             contrastName = names(collection),
             contrast = collection,
             FUN = function(contrastName, contrast) {
-                data <- as_tibble(contrast)
-                sig <- filter(data, padj < !!alpha)
+                sig <- contrast %>%
+                    as_tibble() %>%
+                    filter(!!sym("padj") < !!alpha) %>%
+                    arrange(!!sym("padj"))
                 down <- sig %>%
-                    filter(NES < 0) %>%
-                    arrange(padj, NES) %>%
+                    filter(!!sym("NES") < 0L) %>%
+                    arrange(!!!syms(c("padj", "NES"))) %>%
                     pull("pathway")
                 up <- sig %>%
-                    filter(NES > 0) %>%
-                    arrange(padj, desc(NES)) %>%
+                    filter(!!sym("NES") > 0L) %>%
+                    arrange(!!sym("padj"), desc(!!sym("NES"))) %>%
                     pull("pathway")
                 list(down = down, up = up)
             },
