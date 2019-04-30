@@ -20,6 +20,8 @@ collectionNames(object, ...) <- value
 \item{object}{Object.}
 
 \item{value}{Value.}
+
+\item{...}{Additional arguments.}
 }
 \description{
 Gene set collection names

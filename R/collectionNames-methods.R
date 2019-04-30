@@ -1,5 +1,6 @@
 #' @name collectionNames
 #' @inherit bioverbs::collectionNames
+#' @param ... Additional arguments.
 #' @examples
 #' data(gsea)
 #' collectionNames(gsea)
