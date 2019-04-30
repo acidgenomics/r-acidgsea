@@ -1,4 +1,4 @@
-#' Enriched pathways
+#' Enriched pathways from gene set collections
 #'
 #' @name enriched
 #' @inheritParams params
@@ -6,9 +6,9 @@
 #' @return list.
 #' Named list formatted as:
 #'
-#' 1. pathway (e.g. "h")
-#' 2. contrast (e.g. "dmso_r1881_vs_etoh")
-#' 3. direction (e.g. "down")
+#' 1. Gene set collection (e.g. "h" from MSigDb).
+#' 2. Contrast (e.g. "dmso_r1881_vs_etoh").
+#' 3. Direction (e.g. "down" or "up").
 #'
 #' @examples
 #' data(gsea)
@@ -23,12 +23,12 @@ enriched.FGSEAList <-  # nolint
         validObject(object)
         assert(isAlpha(alpha))
         mapply(
-            pathwayName = names(object),
-            pathway = object,
-            FUN = function(pathwayName, pathway) {
+            collectionName = names(object),
+            collection = object,
+            FUN = function(collectionName, collection) {
                 perContrast <- mapply(
-                    contrastName = names(pathway),
-                    contrast = pathway,
+                    contrastName = names(collection),
+                    contrast = collection,
                     FUN = function(contrastName, contrast) {
                         data <- as_tibble(contrast)
                         sig <- filter(data, padj < !!alpha)

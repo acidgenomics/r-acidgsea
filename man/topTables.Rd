@@ -8,14 +8,16 @@
 \usage{
 topTables(object, ...)
 
-\S4method{topTables}{FGSEAList}(object, geneSet, alpha = 0.05, n = 10L,
-  headerLevel = 3L)
+\S4method{topTables}{FGSEAList}(object, collection, alpha = 0.05,
+  n = 10L, headerLevel = 3L)
 }
 \arguments{
 \item{object}{Object.}
 
-\item{geneSet}{\code{character(1)}.
-Gene set name. Can obtain using \code{names()} on \code{FGSEAList} object.}
+\item{collection}{\code{character(1)}.
+Gene set collection name.
+Typically refers to \code{h}, \code{c1}-\code{c7} collections from MSigDb.
+Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 
 \item{alpha}{\code{numeric(1)}.
 Alpha level.}
@@ -41,5 +43,5 @@ each contrast.
 }
 \examples{
 data(gsea)
-topTables(gsea, geneSet = "h")
+topTables(gsea, collection = "h")
 }

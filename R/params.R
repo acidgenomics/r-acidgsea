@@ -5,8 +5,10 @@
 #'
 #' @param alpha `numeric(1)`.
 #'   Alpha level.
-#' @param geneSet `character(1)`.
-#'   Gene set name. Can obtain using `names()` on `FGSEAList` object.
+#' @param collection `character(1)`.
+#'   Gene set collection name.
+#'   Typically refers to `h`, `c1`-`c7` collections from MSigDb.
+#'   Can obtain using `collectionNames()` on `FGSEAList` object.
 #' @param gmtFile `character(1)`.
 #'   MSigDB GMT file path.
 #' @param gmtFiles `character`.

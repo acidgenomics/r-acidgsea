@@ -4,7 +4,7 @@
 \name{enriched}
 \alias{enriched}
 \alias{enriched,FGSEAList-method}
-\title{Enriched pathways}
+\title{Enriched pathways from gene set collections}
 \usage{
 enriched(object, ...)
 
@@ -22,13 +22,13 @@ Alpha level.}
 list.
 Named list formatted as:
 \enumerate{
-\item pathway (e.g. "h")
-\item contrast (e.g. "dmso_r1881_vs_etoh")
-\item direction (e.g. "down")
+\item Gene set collection (e.g. "h" from MSigDb).
+\item Contrast (e.g. "dmso_r1881_vs_etoh").
+\item Direction (e.g. "down" or "up").
 }
 }
 \description{
-Enriched pathways
+Enriched pathways from gene set collections
 }
 \examples{
 data(gsea)
