@@ -31,14 +31,13 @@ NULL
 topTables.FGSEAList <- function(
     object,
     collection,
-    alpha = 0.05,
     n = 10L,
     headerLevel = 3L
 ) {
     validObject(object)
+    alpha <- alpha(object)
     assert(
-        isString(collection),
-        isSubset(collection, names(object)),
+        isScalar(collection),
         isAlpha(alpha),
         isInt(n),
         isHeaderLevel(headerLevel)

@@ -11,7 +11,7 @@
 #' @importFrom ggplot2 labs
 #' @importFrom goalie areDisjointSets areSameLength assert hasColnames hasNames
 #'   hasLength hasRownames hasRows isAFile isAll isAlpha isCharacter isFile
-#'   isFlag isHeaderLevel isInt isString isSubset validate
+#'   isFlag isHeaderLevel isInt isScalar isString isSubset validate
 #' @importFrom knitr kable
 #' @importFrom magrittr %>%
 #' @importFrom methods as is new setAs setGeneric setMethod show slot slot<-

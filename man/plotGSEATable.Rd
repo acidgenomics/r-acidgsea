@@ -8,8 +8,8 @@
 \usage{
 plotGSEATable(object, ...)
 
-\S4method{plotGSEATable}{FGSEAList}(object, collection, alpha = 0.05,
-  n = 10L, headerLevel = 3L)
+\S4method{plotGSEATable}{FGSEAList}(object, collection, n = 10L,
+  headerLevel = 3L)
 }
 \arguments{
 \item{object}{Object.}
@@ -18,9 +18,6 @@ plotGSEATable(object, ...)
 Gene set collection name.
 Typically refers to \code{h}, \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
-
-\item{alpha}{\code{numeric(1)}.
-Alpha level.}
 
 \item{n}{\code{integer(1)}.
 Number of significant processes to include.
