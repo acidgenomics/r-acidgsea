@@ -10,9 +10,9 @@
 #'   pull select select_if summarise
 #' @importFrom fgsea fgsea gmtPathways plotEnrichment plotGseaTable
 #' @importFrom ggplot2 labs
-#' @importFrom goalie areDisjointSets areSameLength assert hasColnames hasNames
-#'   hasLength hasRownames hasRows isAFile isAll isAlpha isCharacter isFile
-#'   isFlag isHeaderLevel isInt isScalar isString isSubset validate
+#' @importFrom goalie areDisjointSets areSameLength assert bapply hasColnames
+#'   hasNames hasLength hasRownames hasRows isAFile isAll isAlpha isCharacter
+#'   isFile isFlag isHeaderLevel isInt isScalar isString isSubset validate
 #' @importFrom knitr kable
 #' @importFrom magrittr %>%
 #' @importFrom methods as is new setAs setGeneric setMethod show slot slot<-

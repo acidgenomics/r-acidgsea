@@ -1,13 +1,15 @@
-#' Prepare a ranked gene (stats) list for GSEA
+#' @rdname RankedList-class
+#' @name RankedList
 #'
-#' Return a parameterized ranked list for each differential expression contrast.
+#' @title Prepare a ranked gene (stats) list for GSEA
+#'
+#' @description Return a parameterized ranked list for each differential
+#'   expression contrast.
 #'
 #' @section Gene symbol multi-mapping:
 #'
 #' Multiple gene IDs can map to a gene symbol (e.g. *Homo sapiens* HGNC names).
 #' In this event, we're averaging the stat values using `mean()` internally.
-#'
-#' @name RankedList
 #'
 #' @inheritParams params
 #' @param value `character(1)`.
@@ -52,10 +54,7 @@ RankedList.matrix <-  # nolint
 
 
 
-#' @describeIn RankedList
-#' Contrast matrix, containing either log2 fold changes, or (Wald) test
-#' statistic values. Useful when aggregating reuslts from multiple differential
-#' expression analyses that can't be containerized into a DESeqAnalysis object.
+#' @rdname RankedList-class
 #' @export
 setMethod(
     f = "RankedList",
@@ -123,7 +122,7 @@ RankedList.DESeqAnalysis <-  # nolint
 
 
 
-#' @rdname RankedList
+#' @rdname RankedList-class
 #' @export
 setMethod(
     f = "RankedList",
@@ -141,7 +140,7 @@ RankedList.FGSEAList <-  # nolint
 
 
 
-#' @rdname RankedList
+#' @rdname RankedList-class
 #' @export
 setMethod(
     f = "RankedList",
