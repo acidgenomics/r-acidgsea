@@ -2,7 +2,7 @@ context("plotGSEATable")
 
 test_that("FGSEAList", {
     output <- capture.output(
-        plotGSEATable(gsea, geneSet = "h", n = 2L)
+        plotGSEATable(gsea, collection = "h", n = 2L)
     )
     expect_identical(
         output,
