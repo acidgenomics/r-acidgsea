@@ -14,7 +14,7 @@ NULL
 #' @rdname defunct
 #' @export
 plotEnrichments <- function(...) {
-    .Defunct("plotEnrichment")
+    .Defunct("plotEnrichedGeneSets")
 }
 
 #' @rdname defunct
@@ -28,4 +28,13 @@ plotGSEATables <- function(...) {
 statsList <- function(...) {
     .Deprecated("RankedList")
     RankedList(...)
+}
+
+
+
+# v0.1.7 =======================================================================
+#' @rdname defunct
+#' @export
+plotEnrichment <- function(...) {
+    .Defunct("plotEnrichedGeneSets")
 }

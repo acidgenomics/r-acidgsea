@@ -17,6 +17,10 @@
 #' @param maxSize `integer(1)`/`Inf`.
 #'   Maximal size of a gene set to test.
 #'   All pathways above the threshold are excluded.
+#' @param alpha `numeric(1)`.
+#'   Alpha level cutoff. Stored internally in `metadata()`.
+#'   Applied only to plots and enriched gene set exports, but does not affect
+#'   the actual GSEA enrichment calculation.
 #' @param BPPARAM BiocParallel parallelization parameter.
 #'
 #' @examples
@@ -44,13 +48,15 @@ pfgsea <- function(
     nPerm = 1000L,
     minSize = 15L,
     maxSize = 500L,
+    alpha = 0.05,
     BPPARAM = bpparam()
 ) {
     assert(
         is(rankedList, "RankedList"),
         all(isFile(gmtFiles)),
         hasNames(gmtFiles),
-        isInt(nPerm)
+        isInt(nPerm),
+        isAlpha(alpha)
     )
     validObject(rankedList)
     message(paste0(
@@ -87,8 +93,20 @@ pfgsea <- function(
         }
     )
     out <- SimpleList(list)
-    metadata(out)[["version"]] <- .version
-    metadata(out)[["rankedList"]] <- rankedList
-    metadata(out)[["gmtFiles"]] <- gmtFiles
+
+    # Stash useful metadata.
+    metadata(out) <- list(
+        version = .version,
+        date = Sys.Date(),
+        nPerm = nPerm,
+        minSize = minSize,
+        maxSize = maxSize,
+        alpha = alpha,
+        rankedList = rankedList,
+        gmtFiles = gmtFiles,
+        call = match.call(),
+        sessionInfo = session_info()
+    )
+
     new(Class = "FGSEAList", out)
 }

@@ -62,7 +62,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
       </span>
     </div>
 
@@ -131,9 +131,9 @@
     <div id="pfgsea-0-1-2-2019-04-10" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-0-1-2-2019-04-10" class="anchor"></a>pfgsea 0.1.2 (2019-04-10)</h2>
-<div id="major-changes-1" class="section level3">
+<div id="major-changes-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-1" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-2" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Deleted <code>list</code> to <code>FGSEAList</code> coercion method.</li>
 </ul>
@@ -199,9 +199,9 @@
 <code>plotEnrichedUpset</code>: Utility function that makes it easy to compare enrichment groups across contrasts, via an UpSet plot.</li>
 </ul>
 </div>
-<div id="major-changes" class="section level3">
+<div id="major-changes-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-1" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Added <code>combine</code> method support for <code>FGSEAList</code>, allowing us to easily combine GSEA results from multiple datasets. Primarily intended for downstream visualization using an UpSet plot (see <code>plotEnrichedUpset</code>).</li>
 </ul>
@@ -211,6 +211,20 @@
 <a href="#minor-changes" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Improved <code>show</code> method support for <code>FGSEAList</code>, showing <code>pathwayNames</code> and <code>contrastNames</code> more clearly.</li>
+</ul>
+</div>
+</div>
+    <div id="pfgsea-0-1-7-2019-04-30" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pfgsea-0-1-7-2019-04-30" class="anchor"></a>pfgsea 0.1.7 (2019-04-30)</h2>
+<div id="major-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<ul>
+<li>Reworked language to use “collection” consistently instead of mixing/matching “geneSet” and “pathway”, which isn’t appropriate. Relevant function arguments have been updated to reflect this change.</li>
+<li>Now exporting <code>collectionNames</code> instead of <code>pathwayNames</code>.</li>
+<li>
+<code>enriched</code> and <code>plotEnrichedUpset</code> have been updated to return per collection (e.g. hallmark gene set), which makes more sense. We don’t want to visualize overlap across collections, since these are often completely different classes (e.g. c1-c7 will never have overlap).</li>
 </ul>
 </div>
 </div>
@@ -227,6 +241,7 @@
         <li><a href="#pfgsea-0-1-4-2019-04-23">0.1.4</a></li>
         <li><a href="#pfgsea-0-1-5-2019-04-25">0.1.5</a></li>
         <li><a href="#pfgsea-0-1-6-2019-04-29">0.1.6</a></li>
+        <li><a href="#pfgsea-0-1-7-2019-04-30">0.1.7</a></li>
       </ul>
     </div>
   </div>

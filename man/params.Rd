@@ -7,8 +7,10 @@
 \item{alpha}{\code{numeric(1)}.
 Alpha level.}
 
-\item{geneSet}{\code{character(1)}.
-Gene set name. Can obtain using \code{names()} on \code{FGSEAList} object.}
+\item{collection}{\code{character(1)}.
+Gene set collection name.
+Typically refers to \code{h}, \code{c1}-\code{c7} collections from MSigDb.
+Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 
 \item{gmtFile}{\code{character(1)}.
 MSigDB GMT file path.}

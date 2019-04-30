@@ -4,11 +4,14 @@
 \alias{defunct}
 \alias{plotEnrichments}
 \alias{plotGSEATables}
+\alias{plotEnrichment}
 \title{Defunct functions}
 \usage{
 plotEnrichments(...)
 
 plotGSEATables(...)
+
+plotEnrichment(...)
 }
 \arguments{
 \item{...}{Additional arguments.}

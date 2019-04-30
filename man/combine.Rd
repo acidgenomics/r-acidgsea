@@ -11,14 +11,14 @@ combine(x, y, ...)
 \S4method{combine}{FGSEAList,FGSEAList}(x, y)
 }
 \arguments{
-\item{x}{One of the values.}
+\item{x, y}{Object.}
 
-\item{y}{A second value.}
-
-\item{...}{Additional arguments}
+\item{...}{Additional arguments.}
 }
 \value{
-Object of same class, containing elements of combined input objects.
+A single value of the same class as the most specific common ancestor
+  (in class terms) of the input values. This will contain the
+  appropriate combination of the data in the input values.
 }
 \description{
 The \code{combine} generic function handles methods for combining
@@ -41,83 +41,14 @@ There are two basic combine strategies. One is an intersection
   These functions and methods are currently under construction. Please
   let us know if there are features that you require.
 }
-\section{Methods}{
-
-  The following methods are defined in the \pkg{BiocGenerics} package:
-  \describe{
-    \item{\code{combine(x=ANY, missing)}}{Return the first (x) argument
-      unchanged.}
-    \item{\code{combine(data.frame, data.frame)}}{Combines two
-      \code{data.frame} objects so that the resulting \code{data.frame}
-      contains all rows and columns of the original objects. Rows and
-      columns in the returned value are unique, that is, a row or column
-      represented in both arguments is represented only once in the
-      result. To perform this operation, \code{combine} makes sure that data
-      in shared rows and columns are identical in the two
-      data.frames. Data differences in shared rows and columns usually cause an
-      error. \code{combine} issues a warning when a column is a
-      \code{\link{factor}} and the levels of the factor in the two
-      data.frames are different.}
-    \item{\code{combine(matrix, matrix)}}{Combined two \code{matrix}
-      objects so that the resulting \code{matrix} contains all rows and
-      columns of the original objects. Both matricies must have
-      \code{dimnames}. Rows and columns in the returned
-      value are unique, that is, a row or column represented in both
-      arguments is represented only once in the result. To perform this
-      operation, \code{combine} makes sure that data in shared rows and
-      columns are all equal in the two matricies.}
-  }
-  Additional \code{combine} methods are defined in the \pkg{Biobase} package
-  for \link[Biobase]{AnnotatedDataFrame},
-  \link[Biobase]{AssayData}, \link[Biobase]{MIAME},
-  and \link[Biobase]{eSet} objects.
-
-}
-
 \examples{
-combine
-showMethods("combine")
-selectMethod("combine", c("ANY", "missing"))
-selectMethod("combine", c("data.frame", "data.frame"))
-selectMethod("combine", c("matrix", "matrix"))
-
-## ---------------------------------------------------------------------
-## COMBINING TWO DATA FRAMES
-## ---------------------------------------------------------------------
-x <- data.frame(x=1:5,
-        y=factor(letters[1:5], levels=letters[1:8]),
-        row.names=letters[1:5])
-y <- data.frame(z=3:7,
-        y=factor(letters[3:7], levels=letters[1:8]),
-        row.names=letters[3:7])
-combine(x,y)
-
-w <- data.frame(w=4:8,
-       y=factor(letters[4:8], levels=letters[1:8]),
-       row.names=letters[4:8])
-combine(w, x, y)
-
-# y is converted to 'factor' with different levels
-df1 <- data.frame(x=1:5,y=letters[1:5], row.names=letters[1:5])
-df2 <- data.frame(z=3:7,y=letters[3:7], row.names=letters[3:7])
-try(combine(df1, df2)) # fails
-# solution 1: ensure identical levels
-y1 <- factor(letters[1:5], levels=letters[1:7])
-y2 <- factor(letters[3:7], levels=letters[1:7])
-df1 <- data.frame(x=1:5,y=y1, row.names=letters[1:5])
-df2 <- data.frame(z=3:7,y=y2, row.names=letters[3:7])
-combine(df1, df2)
-# solution 2: force column to be 'character'
-df1 <- data.frame(x=1:5,y=I(letters[1:5]), row.names=letters[1:5])
-df2 <- data.frame(z=3:7,y=I(letters[3:7]), row.names=letters[3:7])
-combine(df1, df2)
-
-## ---------------------------------------------------------------------
-## COMBINING TWO MATRICES
-## ---------------------------------------------------------------------
-m <- matrix(1:20, nrow=5, dimnames=list(LETTERS[1:5], letters[1:4]))
-combine(m[1:3,], m[4:5,])
-combine(m[1:3, 1:3], m[3:5, 3:4]) # overlap
+data(gsea)
+x <- gsea
+contrastNames(x) <- paste0("x_", contrastNames(x))
+y <- gsea
+contrastNames(y) <- paste0("y_", contrastNames(y))
+c <- combine(x, y)
+c
 }
 \seealso{
 \itemize{

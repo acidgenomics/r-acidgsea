@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Enriched pathways — enriched • pfgsea</title>
+<title>Plot enriched gene sets — plotEnrichedGeneSets • pfgsea</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Enriched pathways — enriched" />
+<meta property="og:title" content="Plot enriched gene sets — plotEnrichedGeneSets" />
 
-<meta property="og:description" content="Enriched pathways" />
+<meta property="og:description" content="Plot enriched gene sets" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
       </span>
     </div>
 
@@ -107,21 +107,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Enriched pathways</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/enriched-methods.R'><code>R/enriched-methods.R</code></a></small>
-    <div class="hidden name"><code>enriched.Rd</code></div>
+    <h1>Plot enriched gene sets</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/plotEnrichedGeneSets-methods.R'><code>R/plotEnrichedGeneSets-methods.R</code></a></small>
+    <div class="hidden name"><code>plotEnrichedGeneSets.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Enriched pathways</p>
+    <p>Plot enriched gene sets</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>enriched</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>plotEnrichedGeneSets</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>enriched</span>(<span class='no'>object</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)</pre>
+<span class='fu'>plotEnrichedGeneSets</span>(<span class='no'>object</span>, <span class='no'>collection</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
+  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>3L</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/acidplots/topics/themes'>acid_theme_light</a></span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -131,47 +132,56 @@
       <td><p>Object.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
+      <th>collection</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
+Gene set collection name.
+Typically refers to <code>h</code>, <code>c1</code>-<code>c7</code> collections from MSigDb.
+Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
     </tr>
     <tr>
-      <th>alpha</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric(1)</a></code>.
-Alpha level.</p></td>
+      <th>n</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
+Number of significant processes to include.
+Bidirectional; will include <code>n</code> up- and down-regulated processes.</p></td>
+    </tr>
+    <tr>
+      <th>headerLevel</th>
+      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer(1)</a></code>.
+Markdown header level.</p></td>
+    </tr>
+    <tr>
+      <th>theme</th>
+      <td><p><code>theme</code>/<code>gg</code>.
+ggplot2 theme.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>list.
-Named list formatted as:</p><ol>
-<li><p>pathway (e.g. "h")</p></li>
-<li><p>contrast (e.g. "dmso_r1881_vs_etoh")</p></li>
-<li><p>direction (e.g. "down")</p></li>
-</ol>
+    <p><code>ggplot</code>.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
+    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/fgsea/topics/plotEnrichment'>fgsea::plotEnrichment()</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>gsea</span>)
-<span class='fu'>enriched</span>(<span class='no'>gsea</span>)</div><div class='output co'>#&gt; $h_dmso_r1881_vs_etoh_down
-#&gt; [1] "HALLMARK_INTERFERON_ALPHA_RESPONSE" "HALLMARK_MYOGENESIS"               
-#&gt; [3] "HALLMARK_HEDGEHOG_SIGNALING"        "HALLMARK_HEME_METABOLISM"          
-#&gt; [5] "HALLMARK_COAGULATION"               "HALLMARK_UV_RESPONSE_DN"           
-#&gt; [7] "HALLMARK_COMPLEMENT"                "HALLMARK_APICAL_JUNCTION"          
+<span class='fu'>plotEnrichedGeneSets</span>(<span class='no'>gsea</span>, <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1L</span>)</div><div class='output co'>#&gt; 
 #&gt; 
-#&gt; $h_dmso_r1881_vs_etoh_up
-#&gt;  [1] "HALLMARK_E2F_TARGETS"               "HALLMARK_MYC_TARGETS_V1"           
-#&gt;  [3] "HALLMARK_ANDROGEN_RESPONSE"         "HALLMARK_G2M_CHECKPOINT"           
-#&gt;  [5] "HALLMARK_MYC_TARGETS_V2"            "HALLMARK_MTORC1_SIGNALING"         
-#&gt;  [7] "HALLMARK_DNA_REPAIR"                "HALLMARK_UNFOLDED_PROTEIN_RESPONSE"
-#&gt;  [9] "HALLMARK_MITOTIC_SPINDLE"           "HALLMARK_ESTROGEN_RESPONSE_LATE"   
-#&gt; [11] "HALLMARK_UV_RESPONSE_UP"            "HALLMARK_GLYCOLYSIS"               
-#&gt; [13] "HALLMARK_CHOLESTEROL_HOMEOSTASIS"   "HALLMARK_FATTY_ACID_METABOLISM"    
-#&gt; [15] "HALLMARK_ESTROGEN_RESPONSE_EARLY"   "HALLMARK_SPERMATOGENESIS"          
-#&gt; [17] "HALLMARK_PEROXISOME"                "HALLMARK_XENOBIOTIC_METABOLISM"    
-#&gt; [19] "HALLMARK_OXIDATIVE_PHOSPHORYLATION" "HALLMARK_IL2_STAT5_SIGNALING"      
-#&gt; </div></pre>
+#&gt; ### dmso_r1881_vs_etoh {.tabset}
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; #### HALLMARK_E2F_TARGETS
+#&gt; </div><div class='img'><img src='plotEnrichedGeneSets-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; #### HALLMARK_MYOGENESIS
+#&gt; </div><div class='img'><img src='plotEnrichedGeneSets-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -179,6 +189,8 @@ Named list formatted as:</p><ol>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
