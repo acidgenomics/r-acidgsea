@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' data(gsea)
-#' enriched(gsea)
+#' enriched(gsea, collection = "h")
 NULL
 
 

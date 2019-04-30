@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7</span>
       </span>
     </div>
 
@@ -128,9 +128,11 @@
 Alpha level.</p></td>
     </tr>
     <tr>
-      <th>geneSet</th>
+      <th>collection</th>
       <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/character'>character(1)</a></code>.
-Gene set name. Can obtain using <code><a href='https://www.rdocumentation.org/packages/base/topics/names'>names()</a></code> on <code>FGSEAList</code> object.</p></td>
+Gene set collection name.
+Typically refers to <code>h</code>, <code>c1</code>-<code>c7</code> collections from MSigDb.
+Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
     </tr>
     <tr>
       <th>gmtFile</th>

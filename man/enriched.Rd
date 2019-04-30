@@ -42,5 +42,5 @@ Enriched pathways from gene set collections
 }
 \examples{
 data(gsea)
-enriched(gsea)
+enriched(gsea, collection = "h")
 }
