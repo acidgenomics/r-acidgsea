@@ -1,6 +1,9 @@
 #' @name combine
 #' @inherit BiocGenerics::combine description details return seealso title
-#' @param ... Additional arguments
+#'
+#' @param x,y Object.
+#' @param ... Additional arguments.
+#'
 #' @examples
 #' data(gsea)
 #' x <- gsea

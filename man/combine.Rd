@@ -11,7 +11,9 @@ combine(x, y, ...)
 \S4method{combine}{FGSEAList,FGSEAList}(x, y)
 }
 \arguments{
-\item{...}{Additional arguments}
+\item{x, y}{Object.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 A single value of the same class as the most specific common ancestor
