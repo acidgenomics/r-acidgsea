@@ -1,8 +1,3 @@
-# Conflicts:
-# @importFrom fgsea plotEnrichment
-
-
-
 #' @importMethodsFrom DESeqAnalysis coerce
 #'
 #' @importFrom S4Vectors SimpleList lapply metadata metadata<-
@@ -12,7 +7,7 @@
 #'   markdownHeader matchArgsToDoCall showHeader showSlotInfo standardizeCall
 #' @importFrom dplyr arrange desc distinct everything filter group_by left_join
 #'   pull select select_if summarise
-#' @importFrom fgsea fgsea gmtPathways plotGseaTable
+#' @importFrom fgsea fgsea gmtPathways plotEnrichment plotGseaTable
 #' @importFrom ggplot2 labs
 #' @importFrom goalie areDisjointSets areSameLength assert hasColnames hasNames
 #'   hasLength hasRownames hasRows isAFile isAll isAlpha isCharacter isFile
