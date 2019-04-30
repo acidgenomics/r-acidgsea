@@ -94,6 +94,8 @@ plotEnrichedGeneSets.FGSEAList <- function(
                     # Suppressing warnings here to for minimal example to work.
                     # `min(bottoms)` and `max(tops)` failure can occur, causing
                     # ggplot to fail.
+                    # Safe to remove `fgsea::` here once we remove now defunct
+                    # `plotEnrichment()` from export.
                     p <- suppressWarnings(
                         fgsea::plotEnrichment(pathway = pathway, stats = stats)
                     )
