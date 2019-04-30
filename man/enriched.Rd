@@ -8,15 +8,25 @@
 \usage{
 enriched(object, ...)
 
-\S4method{enriched}{FGSEAList}(object, alpha = 0.05)
+\S4method{enriched}{FGSEAList}(object, collection, alpha = 0.05,
+  flatten = TRUE)
 }
 \arguments{
 \item{object}{Object.}
 
 \item{...}{Additional arguments.}
 
+\item{collection}{\code{character(1)}.
+Gene set collection name.
+Typically refers to \code{h}, \code{c1}-\code{c7} collections from MSigDb.
+Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+
 \item{alpha}{\code{numeric(1)}.
 Alpha level.}
+
+\item{flatten}{\code{logical(1)}.
+Flatten nested "up"/"down" directional enrichment vector subsets.
+Recomended by default for UpSet plots.}
 }
 \value{
 list.
