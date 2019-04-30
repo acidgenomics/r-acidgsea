@@ -1,4 +1,4 @@
-#' @rdname RankedList
+#' @rdname RankedList-class
 #' @export
 setGeneric(
     name = "RankedList",
