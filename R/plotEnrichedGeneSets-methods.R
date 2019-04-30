@@ -27,15 +27,14 @@ NULL
 plotEnrichedGeneSets.FGSEAList <- function(
     object,
     collection,
-    alpha = 0.05,
     n = 10L,
     headerLevel = 3L,
     theme = acid_theme_light()
 ) {
     validObject(object)
+    alpha <- alpha(object)
     assert(
-        isString(collection),
-        isSubset(collection, collectionNames(object)),
+        isScalar(collection),
         isAlpha(alpha),
         isInt(n),
         isHeaderLevel(headerLevel)

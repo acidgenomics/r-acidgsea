@@ -8,7 +8,7 @@
 \usage{
 enrichedGeneSets(object, ...)
 
-\S4method{enrichedGeneSets}{FGSEAList}(object, collection, alpha = 0.05,
+\S4method{enrichedGeneSets}{FGSEAList}(object, collection,
   flatten = TRUE)
 }
 \arguments{
@@ -18,9 +18,6 @@ enrichedGeneSets(object, ...)
 Gene set collection name.
 Typically refers to \code{h}, \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
-
-\item{alpha}{\code{numeric(1)}.
-Alpha level.}
 
 \item{flatten}{\code{logical(1)}.
 Flatten nested "up"/"down" directional enrichment vector subsets.
