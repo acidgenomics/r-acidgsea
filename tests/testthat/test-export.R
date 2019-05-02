@@ -12,9 +12,9 @@ test_that("FGSEAList", {
             )
         )
     )
-    expect_identical(list.files("example"), "gsea")
+    expect_identical(sort(list.files("example")), "gsea")
     expect_identical(
-        object = list.files(file.path("example", "gsea")),
+        object = sort(list.files(file.path("example", "gsea"))),
         expected = "dmso_r1881_vs_etoh"
     )
     expect_true(file.exists(
