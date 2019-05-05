@@ -13,3 +13,4 @@
 ^msigdb\.R$
 ^pkgdown$
 ^travis-docker\.R$
+^travis-docker\.sh$

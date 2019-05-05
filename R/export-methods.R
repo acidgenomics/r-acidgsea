@@ -10,7 +10,7 @@
 #' @examples
 #' data(gsea)
 #' export(gsea, dir = "example")
-#' list.files(file.path("example", "gsea"))
+#' sort(list.files(file.path("example", "gsea")))
 #' unlink("example", recursive = TRUE)
 NULL
 
