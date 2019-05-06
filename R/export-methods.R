@@ -1,10 +1,6 @@
 #' @name export
 #'
-#' @inherit bioverbs::export
-#'
-#' @param x Object.
-#' @param name Name.
-#' @param dir Directory.
+#' @inherit brio::export
 #' @param ... Additional arguments.
 #'
 #' @examples
@@ -19,7 +15,7 @@ NULL
 #' @rdname export
 #' @name export
 #' @importFrom bioverbs export
-#' @usage export(x, ...)
+#' @usage export(object, ...)
 #' @export
 NULL
 
@@ -39,13 +35,13 @@ NULL
 #
 # I'm considering restructuring the object to match this approach, and may apply
 # this approach in a future update.
-export.FGSEAList <- function(x, name = NULL, dir = ".") {
-    validObject(x)
+export.FGSEAList <- function(object, name = NULL, dir = ".") {
+    validObject(object)
 
     call <- standardizeCall()
     assert(isString(name, nullOK = TRUE))
     if (is.null(name)) {
-        name <- as.character(call[["x"]])
+        name <- as.character(call[["object"]])
     }
 
     # Note that we're combining the dir with name, so we can set subdirectories
@@ -54,26 +50,26 @@ export.FGSEAList <- function(x, name = NULL, dir = ".") {
     message(paste0("Exporting to ", dir, "."))
 
     files <- lapply(
-        X = seq_len(length(x)),
+        X = seq_len(length(object)),
         FUN = function(gmt) {
-            contrasts <- x[[gmt]]
+            contrasts <- object[[gmt]]
             files <- lapply(
                 X = seq_len(length(contrasts)),
                 FUN = function(contrast) {
-                    data <- x[[gmt]][[contrast]]
+                    data <- object[[gmt]][[contrast]]
                     file <- file.path(
                         dir,
-                        names(x[[gmt]])[[contrast]],
-                        paste0(names(x)[[gmt]], ".csv")
+                        names(object[[gmt]])[[contrast]],
+                        paste0(names(object)[[gmt]], ".csv")
                     )
-                    export(x = data, file = file)
+                    export(object = data, file = file)
                 }
             )
             names(files) <- names(contrasts)
             files
         }
     )
-    names(files) <- names(x)
+    names(files) <- names(object)
     invisible(files)
 }
 
