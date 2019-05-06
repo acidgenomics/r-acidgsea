@@ -11,9 +11,7 @@ export(object, ...)
 \S4method{export}{FGSEAList}(object, name = NULL, dir = ".")
 }
 \arguments{
-\item{object}{Object.
-An object supporting \code{\link[base:dim]{dim()}}, or a supported class capable
-of being coerced to \code{data.frame}, to be written to disk.}
+\item{object}{Object.}
 
 \item{name}{\code{character(1)}.
 Name to use on disk. If \code{NULL}, will use the name of the object instead.}
@@ -24,44 +22,14 @@ Directory path.}
 \item{...}{Additional arguments.}
 }
 \value{
-Invisible \code{character}.
-File path(s).
+Invisibily return file paths, either as \code{list} or \code{character}.
 }
 \description{
 Export data out of R and write to disk.
 }
-\section{Row names}{
-
-
-
-Some export utilities in R have a tendency to drop row names when writing to
-disk in CSV format. For example, the \href{{https://readr.tidyverse.org/}{readr}} family of functions never
-write row names by design. This is a \emph{really poor} default setting for
-handling genomic data, which often contain gene identifiers in the row names.
-Here we're performing any internal tibble coercion step to ensure row names
-are always moved to a "\code{rowname}" column in the CSV export.
-
-}
-
-\section{Exporting vectors}{
-
-
-
-Use \code{\link[base:writeLines]{writeLines()}} instead of \code{\link[=export]{export()}} to write vectors
-to disk. An S4 character method may be defined in a future update, but it is
-intentionally unsupported in the current release.
-
-}
-
 \examples{
 data(gsea)
 export(gsea, dir = "example")
 sort(list.files(file.path("example", "gsea")))
 unlink("example", recursive = TRUE)
-}
-\seealso{
-\itemize{
-\item \code{\link[rtracklayer:export]{rtracklayer::export()}}.
-\item \code{\link[rio:export]{rio::export()}}.
-}
 }

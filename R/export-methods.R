@@ -1,6 +1,7 @@
 #' @name export
+#' @inherit bioverbs::export
 #'
-#' @inherit brio::export
+#' @inheritParams brio::export
 #' @param ... Additional arguments.
 #'
 #' @examples
