@@ -1,9 +1,9 @@
 context("export")
 
 test_that("FGSEAList", {
-    x <- export(x = gsea, dir = "example")
+    files <- export(object = gsea, dir = "example")
     expect_identical(
-        object = x,
+        object = files,
         expected = list(
             h = list(
                 dmso_r1881_vs_etoh = realpath(file.path(
@@ -24,9 +24,9 @@ test_that("FGSEAList", {
 })
 
 test_that("name argument", {
-    x <- export(x = gsea, name = "XXX", dir = ".")
+    files <- export(object = gsea, name = "XXX", dir = ".")
     expect_identical(
-        object = x,
+        object = files,
         expected = list(
             h = list(
                 dmso_r1881_vs_etoh = realpath(file.path(
