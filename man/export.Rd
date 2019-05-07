@@ -6,18 +6,23 @@
 \alias{export,FGSEAList-method}
 \title{Export}
 \usage{
-export(x, ...)
+export(object, ...)
 
-\S4method{export}{FGSEAList}(x, name = NULL, dir = ".")
+\S4method{export}{FGSEAList}(object, name = NULL, dir = ".")
 }
 \arguments{
-\item{x}{Object.}
+\item{object}{Object.}
 
-\item{name}{Name.}
+\item{name}{\code{character(1)}.
+Name to use on disk. If \code{NULL}, will use the name of the object instead.}
 
-\item{dir}{Directory.}
+\item{dir}{\code{character(1)}.
+Directory path.}
 
 \item{...}{Additional arguments.}
+}
+\value{
+Invisibily return file paths, either as \code{list} or \code{character}.
 }
 \description{
 Export data out of R and write to disk.
@@ -25,6 +30,6 @@ Export data out of R and write to disk.
 \examples{
 data(gsea)
 export(gsea, dir = "example")
-list.files(file.path("example", "gsea"))
+sort(list.files(file.path("example", "gsea")))
 unlink("example", recursive = TRUE)
 }

@@ -23,6 +23,9 @@ contrastNames(object, ...) <- value
 
 \item{...}{Additional arguments.}
 }
+\value{
+\code{character}.
+}
 \description{
 Contrast names
 }
