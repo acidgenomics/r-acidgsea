@@ -11,7 +11,7 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, message=FALSE}
-# Last modified 2019-06-06
+# Last modified 2019-06-07
 library(pfgsea)
 library(tidyverse)
 prepareTemplate()
