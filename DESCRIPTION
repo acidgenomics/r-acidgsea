@@ -2,8 +2,8 @@ Package: pfgsea
 Title: Parameterized Fast GSEA
 Description: Perform parameterized gene set enrichment analysis on multiple
     differential expression contrasts.
-Version: 0.1.7
-Date: 2019-06-06
+Version: 0.1.8
+Date: 2019-06-07
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
