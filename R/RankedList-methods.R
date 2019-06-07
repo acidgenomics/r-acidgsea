@@ -89,7 +89,7 @@ RankedList.DESeqAnalysis <-  # nolint
         # We're returning in long format so we can average the values for each
         # gene symbol, since for some genomes gene IDs multi-map to symbols.
         suppressMessages(
-            gene2symbol <- Gene2Symbol(dds, format = "long")
+            gene2symbol <- Gene2Symbol(dds, format = "unmodified")
         )
 
         # Get parameterized GSEA list values for each DESeqResults contrast.
