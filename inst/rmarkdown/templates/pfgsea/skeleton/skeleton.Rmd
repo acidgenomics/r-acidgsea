@@ -27,7 +27,7 @@ Import the `FGSEAList` S4 class object. This single object contains everything w
 
 ```{r load-object}
 file <- params$fgsealist_file
-object <- readRDS(file)
+object <- import(file)
 name <- basenameSansExt(file)
 rm(file)
 stopifnot(
