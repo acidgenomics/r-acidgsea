@@ -6,3 +6,14 @@ setGeneric(
         standardGeneric("RankedList")
     }
 )
+
+
+
+#' @rdname convertToHuman
+#' @export
+setGeneric(
+    name = "convertToHuman",
+    def = function(object, ...) {
+        standardGeneric("convertToHuman")
+    }
+)
