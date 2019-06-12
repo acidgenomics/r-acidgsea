@@ -42,6 +42,8 @@
 #'
 #' x <- pfgsea(rankedList = rankedList, gmtFiles = gmtFiles)
 #' print(x)
+
+# Modified 2019-06-12.
 pfgsea <- function(
     rankedList,
     gmtFiles,
@@ -49,7 +51,7 @@ pfgsea <- function(
     minSize = 15L,
     maxSize = 500L,
     alpha = 0.05,
-    BPPARAM = bpparam()
+    BPPARAM = bpparam()  # nolint
 ) {
     assert(
         is(rankedList, "RankedList"),

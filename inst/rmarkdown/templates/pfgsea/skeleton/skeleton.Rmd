@@ -11,7 +11,7 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, message=FALSE}
-# Last modified 2019-04-30
+# Last modified 2019-06-07
 library(pfgsea)
 library(tidyverse)
 prepareTemplate()
@@ -27,14 +27,8 @@ Import the `FGSEAList` S4 class object. This single object contains everything w
 
 ```{r load-object}
 file <- params$fgsealist_file
-stopifnot(file.exists(file))
-if (fileExt(file) == "rds") {
-    object <- readRDS(file)
-    name <- basenameSansExt(file)
-} else if (fileExt(file) == "rda") {
-    name <- load(file)
-    object <- get(name, inherits = FALSE)
-}
+object <- import(file)
+name <- basenameSansExt(file)
 rm(file)
 stopifnot(
     is(object, "FGSEAList"),
