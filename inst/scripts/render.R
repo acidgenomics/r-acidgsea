@@ -1,19 +1,22 @@
+# Render multiple GSEA reports.
+# Last modified 2019-06-12.
+
 library(rmarkdown)
 
 datasets <- c("object1", "object2")
-object_files <- file.path(
+objectFiles <- file.path(
     "data",
     "YYYY-MM-DD",
     paste0(datasets, ".rds")
 )
-names(object_files) <- datasets
-stopifnot(all(file.exists(object_files)))
+names(objectFiles) <- datasets
+stopifnot(all(file.exists(objectFiles)))
 
-output_dir <- file.path("results", Sys.Date(), "gsea")
+outputDir <- file.path("results", Sys.Date(), "gsea")
 
 invisible(mapply(
-    name = names(object_files),
-    file = object_files,
+    name = names(objectFiles),
+    file = objectFiles,
     FUN = function(name, file) {
         message(paste0(
             "Rendering ", name, "\n",
@@ -23,12 +26,12 @@ invisible(mapply(
             params = list(
                 title = paste("GSEA:", name),
                 object_file = file,
-                output_dir = output_dir
+                output_dir = outputDir
             ),
             input = "gsea.Rmd",
             output_format = "html_document",
             output_file = paste0(name, ".html"),
-            output_dir = output_dir,
+            output_dir = outputDir,
             clean = TRUE,
             envir = new.env()
         )
@@ -36,4 +39,3 @@ invisible(mapply(
     SIMPLIFY = FALSE,
     USE.NAMES = FALSE
 ))
-

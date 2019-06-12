@@ -1,3 +1,4 @@
+#' @importClassesFrom DESeqAnalysis DESeqAnalysis
 #' @importMethodsFrom DESeqAnalysis coerce
 #'
 #' @importFrom S4Vectors SimpleList lapply metadata metadata<-
@@ -12,7 +13,8 @@
 #' @importFrom ggplot2 labs
 #' @importFrom goalie areDisjointSets areSameLength assert bapply hasColnames
 #'   hasNames hasLength hasRownames hasRows isAFile isAll isAlpha isCharacter
-#'   isFile isFlag isHeaderLevel isInt isScalar isString isSubset validate
+#'   isFile isFlag isHeaderLevel isInt isScalar isScalarInteger isString
+#'   isSubset validate
 #' @importFrom knitr kable
 #' @importFrom magrittr %>%
 #' @importFrom methods as is new setAs setGeneric setMethod show slot slot<-
