@@ -3,7 +3,7 @@ Title: Parameterized Fast GSEA
 Description: Perform parameterized gene set enrichment analysis on multiple
     differential expression contrasts.
 Version: 0.1.8
-Date: 2019-06-07
+Date: 2019-06-12
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
