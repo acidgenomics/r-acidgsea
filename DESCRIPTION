@@ -56,6 +56,7 @@ Remotes:
     acidgenomics/bioverbs,
     acidgenomics/goalie
 biocViews:
+    GeneExpression,
     GeneSetEnrichment,
     Visualization
 Roxygen: list(markdown = TRUE)

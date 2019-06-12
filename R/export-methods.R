@@ -36,43 +36,46 @@ NULL
 #
 # I'm considering restructuring the object to match this approach, and may apply
 # this approach in a future update.
-export.FGSEAList <- function(object, name = NULL, dir = ".") {
-    validObject(object)
+#
+# Modified 2019-06-12.
+export.FGSEAList <-  # nolint
+    function(object, name = NULL, dir = ".") {
+        validObject(object)
 
-    call <- standardizeCall()
-    assert(isString(name, nullOK = TRUE))
-    if (is.null(name)) {
-        name <- as.character(call[["object"]])
-    }
-
-    # Note that we're combining the dir with name, so we can set subdirectories
-    # for each slotted data type (e.g. `DESeqDataSet`).
-    dir <- initDir(file.path(dir, name))
-    message(paste0("Exporting to ", dir, "."))
-
-    files <- lapply(
-        X = seq_len(length(object)),
-        FUN = function(gmt) {
-            contrasts <- object[[gmt]]
-            files <- lapply(
-                X = seq_len(length(contrasts)),
-                FUN = function(contrast) {
-                    data <- object[[gmt]][[contrast]]
-                    file <- file.path(
-                        dir,
-                        names(object[[gmt]])[[contrast]],
-                        paste0(names(object)[[gmt]], ".csv")
-                    )
-                    export(object = data, file = file)
-                }
-            )
-            names(files) <- names(contrasts)
-            files
+        call <- standardizeCall()
+        assert(isString(name, nullOK = TRUE))
+        if (is.null(name)) {
+            name <- as.character(call[["object"]])
         }
-    )
-    names(files) <- names(object)
-    invisible(files)
-}
+
+        # Note that we're combining the dir with name, so we can set
+        # subdirectories for each slotted data type (e.g. `DESeqDataSet`).
+        dir <- initDir(file.path(dir, name))
+        message(paste0("Exporting to ", dir, "."))
+
+        files <- lapply(
+            X = seq_len(length(object)),
+            FUN = function(gmt) {
+                contrasts <- object[[gmt]]
+                files <- lapply(
+                    X = seq_len(length(contrasts)),
+                    FUN = function(contrast) {
+                        data <- object[[gmt]][[contrast]]
+                        file <- file.path(
+                            dir,
+                            names(object[[gmt]])[[contrast]],
+                            paste0(names(object)[[gmt]], ".csv")
+                        )
+                        export(object = data, file = file)
+                    }
+                )
+                names(files) <- names(contrasts)
+                files
+            }
+        )
+        names(files) <- names(object)
+        invisible(files)
+    }
 
 
 

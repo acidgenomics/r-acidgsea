@@ -13,6 +13,8 @@ NULL
 
 
 
+# Created 2019-06-12.
+# Updated 2019-06-12.
 convertToHuman.DESeqAnalysis <-  # nolint
     function(object) {
         validObject(object)
