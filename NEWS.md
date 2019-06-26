@@ -1,3 +1,16 @@
+## pfgsea 0.1.9 (2019-06-26)
+
+### New functions
+
+- `convertToHuman`: Utility that maps orthologs onto human genes, so we can
+  perform GSEA.
+
+
+
+## pfgsea 0.1.8 (2019-06-12)
+
+
+
 ## pfgsea 0.1.7 (2019-04-30)
 
 ### Major changes
