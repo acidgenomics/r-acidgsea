@@ -1,7 +1,13 @@
 #' Convert data set to use human orthologs
 #'
 #' @name convertToHuman
+#'
 #' @inheritParams params
+#' @param map `DataFrame`, `tbl_df`, or `NULL`.
+#'   Ortholog mappings data frame returned by [matchHumanOrthologs()]. Since
+#'   this function depends on the BioMart API and has a tendancy to time out,
+#'   we're allowing passthrough of a cached object here instead. If left `NULL`,
+#'   then `[matchHumanOrthologs()] will be called internally.
 #'
 #' @return Modified object.
 #'   Features (i.e. rownames) will be remapped to human genes.
@@ -14,16 +20,18 @@ NULL
 
 
 # Created 2019-06-12.
-# Updated 2019-06-12.
+# Updated 2019-06-24.
 convertToHuman.DESeqAnalysis <-  # nolint
-    function(object) {
+    function(object, map = NULL) {
         validObject(object)
+        assert(isAny(map, c("DataFrame", "tbl_df", "NULL")))
 
         # Break out the slots of the object.
         data <- as(object, "DESeqDataSet")
         transform <- as(object, "DESeqTransform")
         results <- slot(object, "results")
         lfcShrink <- slot(object, "lfcShrink")
+        genes <- rownames(data)
 
         # Get the organism and Ensembl release from DESeqDataSet.
         rrMeta <- metadata(rowRanges(data))
@@ -49,24 +57,24 @@ convertToHuman.DESeqAnalysis <-  # nolint
         }
 
         # Now we're ready to match the human orthologs.
-        genes <- rownames(data)
-        orthologTbl <- matchHumanOrthologs(
-            genes = genes,
-            organism = organism,
-            ensemblRelease = ensemblRelease
-        )
-        assert(
-            is(orthologTbl, "tbl_df"),
-            identical(
-                sort(colnames(orthologTbl)),
-                c("geneID", "geneName", "hgncID", "hgncName")
+        # Note that this step can time out, so we're allowing map passthrough.
+        if (is.null(map)) {
+            map <- matchHumanOrthologs(
+                genes = genes,
+                organism = organism,
+                ensemblRelease = ensemblRelease
             )
-        )
+            assert(
+                is(map, "tbl_df"),
+                identical(
+                    x = sort(colnames(map)),
+                    y = c("geneID", "geneName", "hgncID", "hgncName")
+                )
+            )
 
-        # Adjust the ortholog tibble to match the row names of the DESeqDataSet.
-        # Then get an index of which rows contain a matching human ortholog.
-        # Rows not containing a human ortholog will be dropped in the return.
-        map <- as(orthologTbl, "DataFrame")
+        }
+
+        map <- as(map, "DataFrame")
         rownames(map) <- map[["geneID"]]
         map <- map[genes, , drop = FALSE]
         assert(identical(rownames(data), rownames(map)))
@@ -127,3 +135,13 @@ convertToHuman.DESeqAnalysis <-  # nolint
 
         out
     }
+
+
+
+#' @rdname convertToHuman
+#' @export
+setMethod(
+    f = "convertToHuman",
+    signature = signature(object = "DESeqAnalysis"),
+    definition = convertToHuman.DESeqAnalysis
+)
