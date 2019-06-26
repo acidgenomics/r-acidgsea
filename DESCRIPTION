@@ -33,6 +33,7 @@ Imports:
     BiocGenerics,
     BiocParallel,
     S4Vectors,
+    SummarizedExperiment,
     fgsea,
     UpSetR (>= 1.4),
     dplyr (>= 0.8),
