@@ -72,7 +72,7 @@ plotGSEATable.FGSEAList <-  # nolint
                 # pathways from our FGSEA analysis.
                 pathways <- .headtail(data, alpha = alpha, n = n)
                 if (!hasLength(pathways)) {
-                    return(invisible())
+                    return(invisible())  # nocov
                 }
                 pathways <- gmtPathways(gmt.file = gmtFile)[pathways]
 

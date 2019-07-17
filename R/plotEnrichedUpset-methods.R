@@ -28,8 +28,10 @@ plotEnrichedUpset.FGSEAList <-  # nolint
         # Require at least 2 vectors.
         # Otherwise, UpSetR will return array of at least two dimensions error.
         if (sum(bapply(X = listInput, FUN = hasLength)) < 2L) {
+            # nocov start
             message("Less than 2 enriched sets returned. Skipping plot.")
             return(invisible())
+            # nocov end
         }
 
         # Suppressing message about single contrast not having up/down overlap:

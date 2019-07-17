@@ -9,7 +9,7 @@
     # Note that this sorts by adjusted P value, not desc NES.
     x <- .filterResults(x, alpha = alpha)
     if (!hasRows(x)) {
-        return(character())
+        return(character())  # nocov
     }
     # Need to ensure we're arranging by:
     # 1. NES (descending: positive to negative).
