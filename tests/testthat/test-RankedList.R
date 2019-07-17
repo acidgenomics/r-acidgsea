@@ -1,10 +1,26 @@
 context("RankedList")
 
 test_that("DESeqAnalysis", {
-    x <- RankedList(deseq)
-    expect_s4_class(x, "RankedList")
+    object <- RankedList(deseq)
+    expect_s4_class(object, "RankedList")
     expect_identical(
-        object = names(x),
+        object = names(object),
         expected = "condition_B_vs_A"
     )
+})
+
+test_that("FGSEAList", {
+    object <- RankedList(gsea)
+    expect_s4_class(object, "RankedList")
+    expect_identical(
+        object = names(object),
+        expected = "dmso_r1881_vs_etoh"
+    )
+})
+
+test_that("matrix", {
+    data(mat, package = "acidtest", envir = environment())
+    object <- RankedList(mat)
+    expect_s4_class(object, "RankedList")
+    expect_identical(names(object), colnames(mat))
 })
