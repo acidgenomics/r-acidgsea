@@ -1,3 +1,8 @@
+## pfgsea 0.1.10 (2019-07-17)
+
+
+
+
 ## pfgsea 0.1.9 (2019-06-26)
 
 ### New functions
@@ -5,9 +10,8 @@
 - `convertToHuman`: Utility that maps orthologs onto human genes, so we can
   perform GSEA.
 
-
-
 ## pfgsea 0.1.8 (2019-06-12)
+
 
 
 
@@ -23,8 +27,6 @@
   (e.g. hallmark gene set), which makes more sense. We don't want to visualize
   overlap across collections, since these are often completely different
   classes (e.g. c1-c7 will never have overlap).
-
-
 
 ## pfgsea 0.1.6 (2019-04-29)
 
@@ -49,15 +51,11 @@
 - Improved `show` method support for `FGSEAList`, showing `pathwayNames` and
   `contrastNames` more clearly.
 
-
-
 ## pfgsea 0.1.5 (2019-04-25)
 
 ### Minor changes
 
 - S4 generic reexport documentation fixes.
-
-
 
 ## pfgsea 0.1.4 (2019-04-23)
 
@@ -67,16 +65,12 @@
   defunct minimalism package. Default ggplot2 theme has been renamed from
   `theme_paperwhite` to `acid_theme_light`.
 
-
-
 ## pfgsea 0.1.3 (2019-04-17)
 
 ### Minor changes
 
 - Updated Travis CI configuration to use `rnaseq` Docker image.
 - Miscellaneous documentation improvements.
-
-
 
 ## pfgsea 0.1.2 (2019-04-10)
 
@@ -92,8 +86,6 @@
 - Added documentation working examples, using `gsea` data.
 - Updated NAMESPACE for `theme_paperwhite`. Now reexporting this function.
 
-
-
 ## pfgsea 0.1.1 (2019-04-01)
 
 ### Minor changes
@@ -101,14 +93,10 @@
 - NAMESPACE updates to reflect changes in [basejump][] package.
 - Now importing `theme_paperwhite` from minimalism package.
 
-
-
 ## pfgsea 0.1.0 (2019-03-23)
 
 - Initial stable release.
 - Moved code to [Acid Genomics][].
-
-
 
 ## pfgsea 0.0.7 (2019-03-18)
 
@@ -116,16 +104,12 @@
 
 - Updated basejump and DESeqAnalysis dependencies.
 
-
-
 ## pfgsea 0.0.6 (2019-03-11)
 
 ### Minor changes
 
 - Improved parameterized object passthrough in R Markdown template.
 - Added Travis CI and AppVeyor CI coverage.
-
-
 
 ## pfgsea 0.0.5 (2019-02-04)
 
@@ -137,15 +121,11 @@
 - Renamed `statsList()` to `RankedList()`, and switched to S4 method approach.
 - Updated R Markdown template to reflect these function reworkings.
 
-
-
 ## pfgsea 0.0.4 (2019-01-15)
 
 ### Minor changes
 
 - Documentation fixes and other code cleanup to pass lintr checks.
-
-
 
 ## pfgsea 0.0.3 (2018-12-17)
 
@@ -156,8 +136,6 @@
 ### Major changes
 
 - Added FGSEA R Markdown template.
-
-
 
 ## pfgsea 0.0.2 (2018-12-14)
 
@@ -172,13 +150,9 @@
 - Set up pkgdown website.
 - Miscellaneous documentation improvements.
 
-
-
 ## pfgsea 0.0.1 (2018-11-26)
 
 Initial release.
-
-
 
 [Acid Genomics]: https://acidgenomics.com/
 [acidplots]: https://acidplots.acidgenomics.com/
