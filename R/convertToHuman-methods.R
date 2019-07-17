@@ -3,7 +3,7 @@
 #' @name convertToHuman
 #'
 #' @inheritParams params
-#' @param map `DataFrame`, `tbl_df`, or `NULL`.
+#' @param map `DataFrame`, or `NULL`.
 #'   Ortholog mappings data frame returned by [matchHumanOrthologs()]. Since
 #'   this function depends on the BioMart API and has a tendancy to time out,
 #'   we're allowing passthrough of a cached object here instead. If left `NULL`,
@@ -13,18 +13,18 @@
 #'   Features (i.e. rownames) will be remapped to human genes.
 #'
 #' @examples
-#' ## data(deseq, package = "DESeqAnalysis")
-#' ## convertToHuman(deseq)
+#' data(deseq, package = "DESeqAnalysis")
+#' convertToHuman(deseq)
 NULL
 
 
 
 # Created 2019-06-12.
-# Updated 2019-06-24.
+# Updated 2019-07-17.
 convertToHuman.DESeqAnalysis <-  # nolint
     function(object, map = NULL) {
         validObject(object)
-        assert(isAny(map, c("DataFrame", "tbl_df", "NULL")))
+        assert(isAny(map, c("DataFrame", "NULL")))
 
         # Break out the slots of the object.
         data <- as(object, "DESeqDataSet")
@@ -65,7 +65,7 @@ convertToHuman.DESeqAnalysis <-  # nolint
                 ensemblRelease = ensemblRelease
             )
             assert(
-                is(map, "tbl_df"),
+                is(map, "DataFrame"),
                 identical(
                     x = sort(colnames(map)),
                     y = c("geneID", "geneName", "hgncID", "hgncName")

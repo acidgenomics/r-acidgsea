@@ -25,16 +25,27 @@
 #' @return `RankedList`.
 #'
 #' @examples
+#' ## DESeqAnalysis ====
 #' data(deseq, package = "DESeqAnalysis")
 #' x <- RankedList(deseq)
+#' print(x)
+#'
+#' ## FGSEAList ====
+#' data(gsea, package = "pfgsea")
+#' x <- RankedList(gsea)
+#' print(x)
+#'
+#' ## matrix ====
+#' data(mat, package = "acidtest")
+#' x <- RankedList(mat)
 #' print(x)
 NULL
 
 
-
+# This will work on any numeric matrix.
 # Other options instead of df/list coercion (check benchmarks).
 # https://stackoverflow.com/questions/6819804
-
+# Updated 2019-07-17.
 RankedList.matrix <-  # nolint
     function(object, value = "log2FoldChange") {
         assert(
@@ -64,6 +75,7 @@ setMethod(
 
 
 
+# Updated 2019-07-17.
 RankedList.DESeqAnalysis <-  # nolint
     function(
         object,
@@ -132,6 +144,7 @@ setMethod(
 
 
 
+# Updated 2019-07-17.
 RankedList.FGSEAList <-  # nolint
     function(object) {
         validObject(object)
