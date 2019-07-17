@@ -1,19 +1,29 @@
 ## pfgsea 0.1.10 (2019-07-17)
 
+### Minor changes
 
-
+- Updated basejump dependency.
+- Improved Travis CI docker configuration.
 
 ## pfgsea 0.1.9 (2019-06-26)
 
 ### New functions
 
 - `convertToHuman`: Utility that maps orthologs onto human genes, so we can
-  perform GSEA.
+  perform GSEA. Added `map` argument support, to speed up multiple calls.
 
 ## pfgsea 0.1.8 (2019-06-12)
 
+### New functions
 
+- Initial method support for `convertToHuman`, which allows for easy ortholog
+  conversion to HUGO (HGNC) identifiers.
 
+### Minor changes
+
+- Improved `render.R` script for looping multiple `DESeqAnalysis` objects.
+- Improved dockerized Travis CI checks.
+- Improved code coverage checks for `export` method.
 
 ## pfgsea 0.1.7 (2019-04-30)
 
