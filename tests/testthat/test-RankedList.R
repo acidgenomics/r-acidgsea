@@ -1,5 +1,7 @@
 context("RankedList")
 
+# FIXME Need to test TYPE.
+
 test_that("DESeqAnalysis", {
     object <- RankedList(deseq)
     expect_s4_class(object, "RankedList")

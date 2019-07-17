@@ -63,7 +63,7 @@ topTables.FGSEAList <-  # nolint
                 # Filter our results, and early return if nothing's significant.
                 data <- .filterResults(data, alpha = alpha)
                 if (!hasRows(data)) {
-                    return(invisible())
+                    return(invisible())  # nocov
                 }
 
                 # Sanitize and minimize the results before printing.
@@ -95,7 +95,7 @@ topTables.FGSEAList <-  # nolint
                 if (hasRows(up)) {
                     print(kable(up, digits = 3L))
                 } else {
-                    message("No upregulated sets.")
+                    message("No upregulated sets.")  # nocov
                 }
 
                 markdownHeader(
@@ -106,7 +106,7 @@ topTables.FGSEAList <-  # nolint
                 if (hasRows(down)) {
                     print(kable(down, digits = 3L))
                 } else {
-                    message("No downregulated sets.")
+                    message("No downregulated sets.")  # nocov
                 }
             },
             SIMPLIFY = FALSE,
