@@ -1,3 +1,7 @@
+# nocov start
+
+
+
 #' @name defunct
 #' @inherit basejump::defunct
 #' @keywords internal
@@ -38,3 +42,7 @@ statsList <- function(...) {
 plotEnrichment <- function(...) {
     .Defunct("plotEnrichedGeneSets")
 }
+
+
+
+# nocov end
