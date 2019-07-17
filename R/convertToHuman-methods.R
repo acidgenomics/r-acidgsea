@@ -37,10 +37,12 @@ convertToHuman.DESeqAnalysis <-  # nolint
         rrMeta <- metadata(rowRanges(data))
         # This step shouldn't get hit but it's useful to keep as a check.
         if (!isSubset(c("organism", "ensemblRelease"), names(rrMeta))) {
+            # nocov start
             stop(paste(
                 "Internal DESeqDataSet does not contain necessary metadata.",
                 "Check `metadata(rowRanges(data))`."
             ))
+            # nocov end
         }
         organism <- rrMeta[["organism"]]
         ensemblRelease <- rrMeta[["ensemblRelease"]]

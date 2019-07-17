@@ -1,15 +1,26 @@
 context("RankedList")
 
-# FIXME Need to test TYPE.
+value <- methodFormals(
+    f = "RankedList",
+    signature = "DESeqAnalysis",
+    package = "pfgsea"
+) %>%
+    .[["value"]] %>%
+    eval()
 
-test_that("DESeqAnalysis", {
-    object <- RankedList(deseq)
-    expect_s4_class(object, "RankedList")
-    expect_identical(
-        object = names(object),
-        expected = "condition_B_vs_A"
-    )
-})
+with_parameters_test_that(
+    "DESeqAnalysis", {
+        object <- RankedList(deseq, value = value)
+        expect_s4_class(object, "RankedList")
+        expect_identical(
+            object = names(object),
+            expected = "condition_B_vs_A"
+        )
+    },
+    value = value
+)
+
+rm(value)
 
 test_that("FGSEAList", {
     object <- RankedList(gsea)

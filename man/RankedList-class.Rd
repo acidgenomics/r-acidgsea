@@ -52,8 +52,19 @@ In this event, we're averaging the stat values using \code{mean()} internally.
 }
 
 \examples{
+## DESeqAnalysis ====
 data(deseq, package = "DESeqAnalysis")
 x <- RankedList(deseq)
+print(x)
+
+## FGSEAList ====
+data(gsea, package = "pfgsea")
+x <- RankedList(gsea)
+print(x)
+
+## matrix ====
+data(mat, package = "acidtest")
+x <- RankedList(mat)
 print(x)
 }
 \author{
