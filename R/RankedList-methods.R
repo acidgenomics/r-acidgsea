@@ -42,10 +42,10 @@
 NULL
 
 
-# This will work on any numeric matrix.
-# Other options instead of df/list coercion (check benchmarks).
-# https://stackoverflow.com/questions/6819804
-# Updated 2019-07-17.
+## This will work on any numeric matrix.
+## Other options instead of df/list coercion (check benchmarks).
+## https://stackoverflow.com/questions/6819804
+## Updated 2019-07-17.
 RankedList.matrix <-  # nolint
     function(object, value = "log2FoldChange") {
         assert(
@@ -55,7 +55,7 @@ RankedList.matrix <-  # nolint
         )
         list <- as.list(as.data.frame(object))
         list <- lapply(X = list, FUN = `names<-`, value = rownames(object))
-        # Sort the vectors from positive to negative.
+        ## Sort the vectors from positive to negative.
         sorted <- lapply(X = list, FUN = sort, decreasing = TRUE)
         out <- SimpleList(sorted)
         metadata(out)[["version"]] <- .version
@@ -75,7 +75,7 @@ setMethod(
 
 
 
-# Updated 2019-07-17.
+## Updated 2019-07-17.
 RankedList.DESeqAnalysis <-  # nolint
     function(
         object,
@@ -84,27 +84,27 @@ RankedList.DESeqAnalysis <-  # nolint
         validObject(object)
         value <- match.arg(value)
 
-        # Extract the DESeqDataSet.
+        ## Extract the DESeqDataSet.
         dds <- as(object, "DESeqDataSet")
 
-        # Extract the DESeqResults list.
+        ## Extract the DESeqResults list.
         if (value == "log2FoldChange") {
-            # Note that we're requiring shrunken LFCs if the user wants to
-            # return those values instead of using Wald test statistic.
+            ## Note that we're requiring shrunken LFCs if the user wants to
+            ## return those values instead of using Wald test statistic.
             results <- object@lfcShrink
         } else {
             results <- object@results
         }
         assert(is(results, "list"))
 
-        # Get the gene-to-symbol mappings in long format.
-        # We're returning in long format so we can average the values for each
-        # gene symbol, since for some genomes gene IDs multi-map to symbols.
+        ## Get the gene-to-symbol mappings in long format.
+        ## We're returning in long format so we can average the values for each
+        ## gene symbol, since for some genomes gene IDs multi-map to symbols.
         suppressMessages(
             gene2symbol <- Gene2Symbol(dds, format = "unmodified")
         )
 
-        # Get parameterized GSEA list values for each DESeqResults contrast.
+        ## Get parameterized GSEA list values for each DESeqResults contrast.
         quovalue <- sym(value)
         list <- lapply(
             X = results,
@@ -144,7 +144,7 @@ setMethod(
 
 
 
-# Updated 2019-07-17.
+## Updated 2019-07-17.
 RankedList.FGSEAList <-  # nolint
     function(object) {
         validObject(object)

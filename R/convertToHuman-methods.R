@@ -19,30 +19,30 @@ NULL
 
 
 
-# Created 2019-06-12.
-# Updated 2019-07-17.
+## Created 2019-06-12.
+## Updated 2019-07-17.
 convertToHuman.DESeqAnalysis <-  # nolint
     function(object, map = NULL) {
         validObject(object)
         assert(isAny(map, c("DataFrame", "NULL")))
 
-        # Break out the slots of the object.
+        ## Break out the slots of the object.
         data <- as(object, "DESeqDataSet")
         transform <- as(object, "DESeqTransform")
         results <- slot(object, "results")
         lfcShrink <- slot(object, "lfcShrink")
         genes <- rownames(data)
 
-        # Get the organism and Ensembl release from DESeqDataSet.
+        ## Get the organism and Ensembl release from DESeqDataSet.
         rrMeta <- metadata(rowRanges(data))
-        # This step shouldn't get hit but it's useful to keep as a check.
+        ## This step shouldn't get hit but it's useful to keep as a check.
         if (!isSubset(c("organism", "ensemblRelease"), names(rrMeta))) {
-            # nocov start
+            ## nocov start
             stop(paste(
                 "Internal DESeqDataSet does not contain necessary metadata.",
                 "Check `metadata(rowRanges(data))`."
             ))
-            # nocov end
+            ## nocov end
         }
         organism <- rrMeta[["organism"]]
         ensemblRelease <- rrMeta[["ensemblRelease"]]
@@ -52,14 +52,14 @@ convertToHuman.DESeqAnalysis <-  # nolint
         )
         message(paste0(organism, " (Ensembl ", ensemblRelease, ") detected."))
 
-        # Early return on Homo sapiens.
+        ## Early return on Homo sapiens.
         if (organism == "Homo sapiens") {
             message("Returning unmodified.")
             return(object)
         }
 
-        # Now we're ready to match the human orthologs.
-        # Note that this step can time out, so we're allowing map passthrough.
+        ## Now we're ready to match the human orthologs.
+        ## Note that this step can time out, so we're allowing map passthrough.
         if (is.null(map)) {
             map <- matchHumanOrthologs(
                 genes = genes,
@@ -88,7 +88,7 @@ convertToHuman.DESeqAnalysis <-  # nolint
             " genes to human orthologs."
         ))
 
-        # Perform subset operations.
+        ## Perform subset operations.
         filterList <- function(x) {
             lapply(
                 X = x,
@@ -103,7 +103,7 @@ convertToHuman.DESeqAnalysis <-  # nolint
         results <- filterList(results)
         lfcShrink <- filterList(lfcShrink)
 
-        # Remap the human ortholog gene identifiers onto the row names.
+        ## Remap the human ortholog gene identifiers onto the row names.
         genes <- map[["hgncID"]]
         assignRownames <- function(x, value) {
             lapply(
@@ -117,7 +117,7 @@ convertToHuman.DESeqAnalysis <-  # nolint
         results <- assignRownames(results, genes)
         lfcShrink <- assignRownames(results, genes)
 
-        # Update gene-to-symbol mappings defined in rowRanges.
+        ## Update gene-to-symbol mappings defined in rowRanges.
         mcols(rowRanges(data))[["geneID"]] <- map[["hgncID"]]
         mcols(rowRanges(data))[["geneName"]] <- map[["hgncName"]]
         mcols(rowRanges(transform))[["geneID"]] <- map[["hgncID"]]
@@ -130,7 +130,7 @@ convertToHuman.DESeqAnalysis <-  # nolint
             lfcShrink = lfcShrink
         )
 
-        # Ensure we're keeping any user-defined metadata.
+        ## Ensure we're keeping any user-defined metadata.
         metadata <- metadata(object)
         metadata[["convertToHuman"]] <- TRUE
         metadata(out) <- metadata

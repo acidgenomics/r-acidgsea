@@ -47,7 +47,7 @@ setMethod(
 
 `contrastNames<-.FGSEAList,character` <-  # nolint
     function(object, value) {
-        # Loop across the pathway list and update the contrast names.
+        ## Loop across the pathway list and update the contrast names.
         listData <- slot(object, "listData")
         assert(
             isCharacter(value),
@@ -55,7 +55,7 @@ setMethod(
         )
         listData <- lapply(X = listData, FUN = `names<-`, value = value)
         slot(object, "listData") <- listData
-        # Ensure the ranked list names stored in `metadata()` are updated.
+        ## Ensure the ranked list names stored in `metadata()` are updated.
         names(metadata(object)[["rankedList"]]) <- value
         validObject(object)
         object
