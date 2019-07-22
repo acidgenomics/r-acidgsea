@@ -28,7 +28,7 @@ NULL
 
 
 
-# Modified 2019-06-12.
+## Modified 2019-06-12.
 topTables.FGSEAList <-  # nolint
     function(
         object,
@@ -60,24 +60,24 @@ topTables.FGSEAList <-  # nolint
                     asis = TRUE
                 )
 
-                # Filter our results, and early return if nothing's significant.
+                ## Filter our results, and early return if nothing's significant.
                 data <- .filterResults(data, alpha = alpha)
                 if (!hasRows(data)) {
                     return(invisible())  # nocov
                 }
 
-                # Sanitize and minimize the results before printing.
+                ## Sanitize and minimize the results before printing.
                 data <- data %>%
-                    # Drop the nested list columns
-                    # (e.g. leadingEdge, nMoreExtreme).
+                    ## Drop the nested list columns
+                    ## (e.g. leadingEdge, nMoreExtreme).
                     select_if(is.atomic) %>%
-                    # Drop additional uninformative columns.
-                    # Note: dplyr `-UQS` approach doesn't work for SE drops.
+                    ## Drop additional uninformative columns.
+                    ## Note: dplyr `-UQS` approach doesn't work for SE drops.
                     select(!!!syms(
                         setdiff(colnames(.), c("ES", "nMoreExtreme", "pval"))
                     ))
 
-                # Generate our subset tibbles to print.
+                ## Generate our subset tibbles to print.
                 up <- data %>%
                     filter(!!sym("NES") > 0L) %>%
                     arrange(!!sym("padj"), desc(!!sym("NES"))) %>%

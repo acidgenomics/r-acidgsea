@@ -34,7 +34,7 @@ NULL
 
 
 
-# @seealso `DESeqAnalysis::plotDEGUpset()`, for looping inspiration.
+## @seealso `DESeqAnalysis::plotDEGUpset()`, for looping inspiration.
 enrichedGeneSets.FGSEAList <-  # nolint
     function(
         object,
@@ -79,7 +79,7 @@ enrichedGeneSets.FGSEAList <-  # nolint
 
         if (isTRUE(flatten)) {
             out <- do.call(what = c, args = perContrast)
-            # Using "_" instead of "." for name concatenation.
+            ## Using "_" instead of "." for name concatenation.
             names(out) <- makeNames(names(out), unique = TRUE)
         } else {
             out <- perContrast

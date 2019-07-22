@@ -30,7 +30,7 @@ combine.FGSEAList <-  # nolint
         validObject(x)
         validObject(y)
 
-        # Require that collection names are identical.
+        ## Require that collection names are identical.
         assert(
             identical(collectionNames(x), collectionNames(y)),
             identical(
@@ -39,8 +39,8 @@ combine.FGSEAList <-  # nolint
             )
         )
 
-        # Don't allow intersection of contrast names. Require the user to rename
-        # these first before attempting to combine.
+        ## Don't allow intersection of contrast names. Require the user to rename
+        ## these first before attempting to combine.
         assert(
             areDisjointSets(contrastNames(x), contrastNames(y)),
             areDisjointSets(
@@ -49,8 +49,8 @@ combine.FGSEAList <-  # nolint
             )
         )
 
-        # Update the `listData` slot. Note that using `c()` directly here as
-        # `FUN` argument will prefix with `x.` and `y.`, which we don't want.
+        ## Update the `listData` slot. Note that using `c()` directly here as
+        ## `FUN` argument will prefix with `x.` and `y.`, which we don't want.
         listData <- mapply(
             x = slot(x, "listData"),
             y = slot(y, "listData"),
@@ -61,7 +61,7 @@ combine.FGSEAList <-  # nolint
             USE.NAMES = TRUE
         )
 
-        # Update the `rankedList` data stashed in `metadata`.
+        ## Update the `rankedList` data stashed in `metadata`.
         rankedList <- c(
             metadata(x)[["rankedList"]],
             metadata(y)[["rankedList"]]
@@ -69,7 +69,7 @@ combine.FGSEAList <-  # nolint
 
         assert(identical(names(listData[[1L]]), names(rankedList)))
 
-        # Internally, let's work with `x` as primary object, renamed to `out`.
+        ## Internally, let's work with `x` as primary object, renamed to `out`.
         out <- x
         slot(out, "listData") <- listData
         metadata(out)[["rankedList"]] <- rankedList
