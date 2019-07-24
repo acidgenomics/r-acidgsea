@@ -9,7 +9,8 @@ NULL
 
 
 
-show.FGSEAList <-  # nolint
+## Updated 2019-07-24.
+`show,FGSEAList` <-  # nolint
     function(object) {
         showHeader(object)
         showSlotInfo(list(
@@ -25,5 +26,5 @@ show.FGSEAList <-  # nolint
 setMethod(
     f = "show",
     signature = signature("FGSEAList"),
-    definition = show.FGSEAList
+    definition = `show,FGSEAList`
 )

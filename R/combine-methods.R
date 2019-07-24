@@ -25,7 +25,8 @@ NULL
 
 
 
-combine.FGSEAList <-  # nolint
+## Updated 2019-07-24.
+`combine,FGSEAList` <-  # nolint
     function(x, y) {
         validObject(x)
         validObject(y)
@@ -39,8 +40,8 @@ combine.FGSEAList <-  # nolint
             )
         )
 
-        ## Don't allow intersection of contrast names. Require the user to rename
-        ## these first before attempting to combine.
+        ## Don't allow intersection of contrast names. Require the user to
+        ## rename these first before attempting to combine.
         assert(
             areDisjointSets(contrastNames(x), contrastNames(y)),
             areDisjointSets(
@@ -87,5 +88,5 @@ setMethod(
         x = "FGSEAList",
         y = "FGSEAList"
     ),
-    definition = combine.FGSEAList
+    definition = `combine,FGSEAList`
 )

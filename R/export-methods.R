@@ -23,17 +23,24 @@ NULL
 
 
 ## On-disk structure: fgsea/mutant_vs_control/c1.csv
-## ## S4 object is currently structured by:
+##
+## S4 object is currently structured by:
+##
 ## 1. Gene set (c1-c8, h).
 ## 2. Contrast.
-## ## The object was structured in this manner to flow with the R Markdown template.
-## ## However, when writing to disk, I think it makes more sense to organize by:
+##
+## The object was structured in this manner to flow with the R Markdown
+## template. However, when writing to disk, I think it makes more sense to
+## organize by:
+##
 ## 1. Contrast
 ## 2. Gene set.
-## ## I'm considering restructuring the object to match this approach, and may apply
-## this approach in a future update.
-## ## Modified 2019-06-12.
-export.FGSEAList <-  # nolint
+##
+## I'm considering restructuring the object to match this approach, and may
+## apply this approach in a future update.
+##
+## Modified 2019-07-24.
+`export,FGSEAList` <-  # nolint
     function(object, name = NULL, dir = ".") {
         validObject(object)
 
@@ -79,5 +86,5 @@ export.FGSEAList <-  # nolint
 setMethod(
     f = "export",
     signature = signature("FGSEAList"),
-    definition = export.FGSEAList
+    definition = `export,FGSEAList`
 )

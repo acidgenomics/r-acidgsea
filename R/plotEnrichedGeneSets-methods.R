@@ -25,7 +25,7 @@ NULL
 
 
 ## Modified 2019-06-12.
-plotEnrichedGeneSets.FGSEAList <-  # nolint
+`plotEnrichedGeneSets,FGSEAList` <-  # nolint
     function(
         object,
         collection,
@@ -74,8 +74,8 @@ plotEnrichedGeneSets.FGSEAList <-  # nolint
                 }
                 pathways <- gmtPathways(gmt.file = gmtFile)[pathways]
 
-                ## Using an `mapply()` call here so we can pass the pathway names
-                ## in easily into the `markdownHeader()` call.
+                ## Using an `mapply()` call here so we can pass the pathway
+                ## names in easily into the `markdownHeader()` call.
                 mapply(
                     name = names(pathways),
                     pathway = pathways,
@@ -108,7 +108,7 @@ plotEnrichedGeneSets.FGSEAList <-  # nolint
                         if (isAll(theme, c("theme", "gg"))) {
                             p <- p + theme
                         }
-                        ## Note that we need the `print()` call here for looping.
+                        ## Note that we need the `print()` call here for loops.
                         tryCatch(
                             expr = print(p),
                             error = function(e) invisible()
@@ -126,5 +126,5 @@ plotEnrichedGeneSets.FGSEAList <-  # nolint
 setMethod(
     f = "plotEnrichedGeneSets",
     signature = signature("FGSEAList"),
-    definition = plotEnrichedGeneSets.FGSEAList
+    definition = `plotEnrichedGeneSets,FGSEAList`
 )
