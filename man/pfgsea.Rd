@@ -38,6 +38,8 @@ Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \examples{
 data(gsea)
+metadata <- S4Vectors::metadata
+
 rankedList <- metadata(gsea)[["rankedList"]]
 gmtFiles <- metadata(gsea)[["gmtFiles"]]
 

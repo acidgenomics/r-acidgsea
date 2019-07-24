@@ -73,7 +73,7 @@ setClass(
             is(metadata(object)[["version"]], "package_version"),
             isSubset(
                 x = metadata(object)[["value"]],
-                y = eval(formals(RankedList.DESeqAnalysis)[["value"]])
+                y = eval(formals(`RankedList,DESeqAnalysis`)[["value"]])
             )
         )
     }
