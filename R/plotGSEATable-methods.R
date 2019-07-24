@@ -25,7 +25,7 @@ NULL
 
 
 ## Modified 2019-06-12.
-plotGSEATable.FGSEAList <-  # nolint
+`plotGSEATable,FGSEAList` <-  # nolint
     function(
         object,
         collection,
@@ -76,16 +76,15 @@ plotGSEATable.FGSEAList <-  # nolint
                 }
                 pathways <- gmtPathways(gmt.file = gmtFile)[pathways]
 
-                ## This returns a gtable plot object, which is hard to customize.
-                ## Note that we can't set title or subtitle here.
+                ## This returns a gtable plot object, which is hard to
+                ## customize. Note that we can't set title or subtitle here.
                 fgsea::plotGseaTable(
                     pathways = pathways,
                     stats = stats,
                     fgseaRes = fgseaRes,
-                    ## GSEA-like parameter.
-                    ## Adjusts displayed statistic values.
-                    ## Values closer to 0 flatten plots.
-                    ## 0.5 generally looks better than 1L.
+                    ## GSEA-like parameter. Adjusts displayed statistic values.
+                    ## Values closer to 0 flatten plots. 0.5 generally looks
+                    ## better than 1L.
                     gseaParam = 0.5
                 )
             }
@@ -99,5 +98,5 @@ plotGSEATable.FGSEAList <-  # nolint
 setMethod(
     f = "plotGSEATable",
     signature = signature("FGSEAList"),
-    definition = plotGSEATable.FGSEAList
+    definition = `plotGSEATable,FGSEAList`
 )

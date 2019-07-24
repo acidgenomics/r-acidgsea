@@ -20,7 +20,8 @@ NULL
 
 
 
-plotEnrichedUpset.FGSEAList <-  # nolint
+## Updated 2019-07-24.
+`plotEnrichedUpset,FGSEAList` <-  # nolint
     function(object, collection) {
         validObject(object)
         listInput <- enrichedGeneSets(object = object, collection = collection)
@@ -48,5 +49,5 @@ plotEnrichedUpset.FGSEAList <-  # nolint
 setMethod(
     f = "plotEnrichedUpset",
     signature = signature("FGSEAList"),
-    definition = plotEnrichedUpset.FGSEAList
+    definition = `plotEnrichedUpset,FGSEAList`
 )

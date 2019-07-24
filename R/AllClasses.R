@@ -4,6 +4,8 @@
 #'
 #' @author Michael Steinbaugh
 #' @export
+
+## Updated 2019-07-24.
 setClass(
     Class = "FGSEAList",
     contains = "SimpleList",
@@ -50,6 +52,8 @@ setClass(
 #'
 #' @author Michael Steinbaugh
 #' @export
+
+## Updated 2019-07-24.
 setClass(
     Class = "RankedList",
     contains = "SimpleList",

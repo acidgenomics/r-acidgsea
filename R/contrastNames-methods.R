@@ -27,8 +27,8 @@ NULL
 
 
 
-
-contrastNames.FGSEAList <-  # nolint
+## Updated 2019-07-24.
+`contrastNames,FGSEAList` <-  # nolint
     function(object) {
         names(object[[1L]])
     }
@@ -40,12 +40,13 @@ contrastNames.FGSEAList <-  # nolint
 setMethod(
     f = "contrastNames",
     signature = signature("FGSEAList"),
-    definition = contrastNames.FGSEAList
+    definition = `contrastNames,FGSEAList`
 )
 
 
 
-`contrastNames<-.FGSEAList,character` <-  # nolint
+## Updated 2019-07-24.
+`contrastNames<-,FGSEAList,character` <-  # nolint
     function(object, value) {
         ## Loop across the pathway list and update the contrast names.
         listData <- slot(object, "listData")
@@ -71,5 +72,5 @@ setMethod(
         object = "FGSEAList",
         value = "character"
     ),
-    definition = `contrastNames<-.FGSEAList,character`
+    definition = `contrastNames<-,FGSEAList,character`
 )

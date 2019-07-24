@@ -46,7 +46,7 @@ NULL
 ## Other options instead of df/list coercion (check benchmarks).
 ## https://stackoverflow.com/questions/6819804
 ## Updated 2019-07-17.
-RankedList.matrix <-  # nolint
+`RankedList,matrix` <-  # nolint
     function(object, value = "log2FoldChange") {
         assert(
             is.numeric(object),
@@ -70,13 +70,13 @@ RankedList.matrix <-  # nolint
 setMethod(
     f = "RankedList",
     signature = signature("matrix"),
-    definition = RankedList.matrix
+    definition = `RankedList,matrix`
 )
 
 
 
 ## Updated 2019-07-17.
-RankedList.DESeqAnalysis <-  # nolint
+`RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
         value = c("stat", "log2FoldChange", "padj")
@@ -139,13 +139,13 @@ RankedList.DESeqAnalysis <-  # nolint
 setMethod(
     f = "RankedList",
     signature = signature("DESeqAnalysis"),
-    definition = RankedList.DESeqAnalysis
+    definition = `RankedList,DESeqAnalysis`
 )
 
 
 
 ## Updated 2019-07-17.
-RankedList.FGSEAList <-  # nolint
+`RankedList,FGSEAList` <-  # nolint
     function(object) {
         validObject(object)
         metadata(object)[["rankedList"]]
@@ -158,5 +158,5 @@ RankedList.FGSEAList <-  # nolint
 setMethod(
     f = "RankedList",
     signature = signature("FGSEAList"),
-    definition = RankedList.FGSEAList
+    definition = `RankedList,FGSEAList`
 )

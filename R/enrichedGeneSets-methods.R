@@ -35,7 +35,8 @@ NULL
 
 
 ## @seealso `DESeqAnalysis::plotDEGUpset()`, for looping inspiration.
-enrichedGeneSets.FGSEAList <-  # nolint
+## Updated 2019-07-24.
+`enrichedGeneSets,FGSEAList` <-  # nolint
     function(
         object,
         collection,
@@ -95,5 +96,5 @@ enrichedGeneSets.FGSEAList <-  # nolint
 setMethod(
     f = "enrichedGeneSets",
     signature = signature("FGSEAList"),
-    definition = enrichedGeneSets.FGSEAList
+    definition = `enrichedGeneSets,FGSEAList`
 )

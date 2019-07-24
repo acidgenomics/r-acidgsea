@@ -24,7 +24,8 @@ NULL
 
 
 
-collectionNames.FGSEAList <-  # nolint
+## Updated 2019-07-24.
+`collectionNames,FGSEAList` <-  # nolint
     function(object) {
         names(object)
     }
@@ -36,12 +37,13 @@ collectionNames.FGSEAList <-  # nolint
 setMethod(
     f = "collectionNames",
     signature = signature("FGSEAList"),
-    definition = collectionNames.FGSEAList
+    definition = `collectionNames,FGSEAList`
 )
 
 
 
-`collectionNames<-.FGSEAList,character` <-  # nolint
+## Updated 2019-07-24.
+`collectionNames<-,FGSEAList,character` <-  # nolint
     function(object, value) {
         assert(
             isCharacter(value),
@@ -63,5 +65,5 @@ setMethod(
         object = "FGSEAList",
         value = "character"
     ),
-    definition = `collectionNames<-.FGSEAList,character`
+    definition = `collectionNames<-,FGSEAList,character`
 )

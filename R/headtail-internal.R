@@ -1,4 +1,5 @@
-## Get the top up- and down-regualted pathways from the FGSEA results data.table.
+## Get the top up- and down-regualted pathways from FGSEA results data table.
+## Updated 2019-07-24.
 .headtail <- function(x, alpha, n) {
     assert(
         is(x, "data.table"),

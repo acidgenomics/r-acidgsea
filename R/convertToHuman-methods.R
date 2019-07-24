@@ -21,7 +21,7 @@ NULL
 
 ## Created 2019-06-12.
 ## Updated 2019-07-17.
-convertToHuman.DESeqAnalysis <-  # nolint
+`convertToHuman,DESeqAnalysis` <-  # nolint
     function(object, map = NULL) {
         validObject(object)
         assert(isAny(map, c("DataFrame", "NULL")))
@@ -145,5 +145,5 @@ convertToHuman.DESeqAnalysis <-  # nolint
 setMethod(
     f = "convertToHuman",
     signature = signature(object = "DESeqAnalysis"),
-    definition = convertToHuman.DESeqAnalysis
+    definition = `convertToHuman,DESeqAnalysis`
 )

@@ -1,3 +1,4 @@
+## Updated 2019-07-24.
 .filterResults <- function(data, alpha) {
     assert(
         is(data, "data.table"),

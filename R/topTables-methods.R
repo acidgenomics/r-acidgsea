@@ -28,8 +28,8 @@ NULL
 
 
 
-## Modified 2019-06-12.
-topTables.FGSEAList <-  # nolint
+## Updated 2019-07-24.
+`topTables,FGSEAList` <-  # nolint
     function(
         object,
         collection,
@@ -60,7 +60,7 @@ topTables.FGSEAList <-  # nolint
                     asis = TRUE
                 )
 
-                ## Filter our results, and early return if nothing's significant.
+                ## Filter our results, and early return on no sig features.
                 data <- .filterResults(data, alpha = alpha)
                 if (!hasRows(data)) {
                     return(invisible())  # nocov
@@ -121,5 +121,5 @@ topTables.FGSEAList <-  # nolint
 setMethod(
     f = "topTables",
     signature = signature("FGSEAList"),
-    definition = topTables.FGSEAList
+    definition = `topTables,FGSEAList`
 )
