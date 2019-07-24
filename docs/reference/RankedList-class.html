@@ -188,8 +188,10 @@ In this event, we're averaging the stat values using <code><a href='https://rdrr
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; RankedList of length 1
 #&gt; names(1): dmso_r1881_vs_etoh</div><div class='input'>
 <span class='co'>## matrix ====</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>mat</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: data set 'mat' not found</span></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>RankedList</span>(<span class='no'>mat</span>)</div><div class='output co'>#&gt; <span class='error'>Error in RankedList(mat): object 'mat' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; RankedList of length 1
-#&gt; names(1): dmso_r1881_vs_etoh</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>matrix_lfc</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>RankedList</span>(<span class='no'>matrix_lfc</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; RankedList of length 4
+#&gt; names(4): contrast01 contrast02 contrast03 contrast04</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

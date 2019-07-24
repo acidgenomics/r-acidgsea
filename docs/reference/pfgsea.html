@@ -172,7 +172,11 @@ the actual GSEA enrichment calculation.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>)
-<span class='no'>rankedList</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata</span>(<span class='no'>gsea</span>)<span class='kw'>[[</span><span class='st'>"rankedList"</span>]]</div><div class='output co'>#&gt; <span class='error'>Error in metadata(gsea): could not find function "metadata"</span></div><div class='input'><span class='no'>gmtFiles</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata</span>(<span class='no'>gsea</span>)<span class='kw'>[[</span><span class='st'>"gmtFiles"</span>]]</div><div class='output co'>#&gt; <span class='error'>Error in metadata(gsea): could not find function "metadata"</span></div><div class='input'>
+<span class='no'>metadata</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>S4Vectors</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html'>metadata</a></span>
+
+<span class='no'>rankedList</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata</span>(<span class='no'>gsea</span>)<span class='kw'>[[</span><span class='st'>"rankedList"</span>]]
+<span class='no'>gmtFiles</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata</span>(<span class='no'>gsea</span>)<span class='kw'>[[</span><span class='st'>"gmtFiles"</span>]]
+
 <span class='co'># Copy example MSigDb files to `$HOME`.</span>
 <span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.copy</a></span>(
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(
@@ -184,7 +188,13 @@ the actual GSEA enrichment calculation.</p></td>
     <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
     <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>pfgsea</span>(<span class='kw'>rankedList</span> <span class='kw'>=</span> <span class='no'>rankedList</span>, <span class='kw'>gmtFiles</span> <span class='kw'>=</span> <span class='no'>gmtFiles</span>)</div><div class='output co'>#&gt; <span class='error'>Error in is(rankedList, "RankedList"): object 'rankedList' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span class='error'>Error in print(x): object 'x' not found</span></div></pre>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>pfgsea</span>(<span class='kw'>rankedList</span> <span class='kw'>=</span> <span class='no'>rankedList</span>, <span class='kw'>gmtFiles</span> <span class='kw'>=</span> <span class='no'>gmtFiles</span>)</div><div class='output co'>#&gt; <span class='message'>Running parameterized fast GSEA...</span>
+#&gt; <span class='message'>GMT files: h</span>
+#&gt; <span class='message'>Contrasts: dmso_r1881_vs_etoh</span></div><div class='output co'>#&gt; <span class='message'>GMT file: h.all.v6.2.symbols.gmt</span>
+#&gt; <span class='message'>Testing against 50 pathways.</span>
+#&gt; <span class='message'>Running using 1000 permutations.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; FGSEAList 0.1.11 of length 1
+#&gt; collectionNames: h
+#&gt; contrastNames: dmso_r1881_vs_etoh</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
