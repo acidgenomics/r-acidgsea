@@ -20,22 +20,23 @@ NULL
 
 
 
-plotEnrichedUpset.FGSEAList <-  # nolint
+## Updated 2019-07-24.
+`plotEnrichedUpset,FGSEAList` <-  # nolint
     function(object, collection) {
         validObject(object)
         listInput <- enrichedGeneSets(object = object, collection = collection)
 
-        # Require at least 2 vectors.
-        # Otherwise, UpSetR will return array of at least two dimensions error.
+        ## Require at least 2 vectors.
+        ## Otherwise, UpSetR will return array of at least two dimensions error.
         if (sum(bapply(X = listInput, FUN = hasLength)) < 2L) {
-            # nocov start
+            ## nocov start
             message("Less than 2 enriched sets returned. Skipping plot.")
             return(invisible())
-            # nocov end
+            ## nocov end
         }
 
-        # Suppressing message about single contrast not having up/down overlap:
-        # geom_path: Each group consists of only one observation.
+        ## Suppressing message about single contrast not having up/down overlap:
+        ## geom_path: Each group consists of only one observation.
         suppressMessages(
             upset(data = fromList(listInput))
         )
@@ -48,5 +49,5 @@ plotEnrichedUpset.FGSEAList <-  # nolint
 setMethod(
     f = "plotEnrichedUpset",
     signature = signature("FGSEAList"),
-    definition = plotEnrichedUpset.FGSEAList
+    definition = `plotEnrichedUpset,FGSEAList`
 )

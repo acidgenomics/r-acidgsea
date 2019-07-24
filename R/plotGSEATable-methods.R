@@ -24,8 +24,8 @@ NULL
 
 
 
-# Modified 2019-06-12.
-plotGSEATable.FGSEAList <-  # nolint
+## Modified 2019-06-12.
+`plotGSEATable,FGSEAList` <-  # nolint
     function(
         object,
         collection,
@@ -57,8 +57,8 @@ plotGSEATable.FGSEAList <-  # nolint
                 n = n
             ),
             FUN = function(contrast, data, stats, gmtFile, alpha, n) {
-                # Stash the unmodified FGSEA results table.
-                # We need this for the `plotGseaTable()` call below.
+                ## Stash the unmodified FGSEA results table.
+                ## We need this for the `plotGseaTable()` call below.
                 fgseaRes <- data
 
                 markdownHeader(
@@ -67,25 +67,24 @@ plotGSEATable.FGSEAList <-  # nolint
                     asis = TRUE
                 )
 
-                # Here we're getting the gene set vector for each pathway from
-                # the GMT file. Then we're matching against the significant
-                # pathways from our FGSEA analysis.
+                ## Here we're getting the gene set vector for each pathway from
+                ## the GMT file. Then we're matching against the significant
+                ## pathways from our FGSEA analysis.
                 pathways <- .headtail(data, alpha = alpha, n = n)
                 if (!hasLength(pathways)) {
                     return(invisible())  # nocov
                 }
                 pathways <- gmtPathways(gmt.file = gmtFile)[pathways]
 
-                # This returns a gtable plot object, which is hard to customize.
-                # Note that we can't set title or subtitle here.
+                ## This returns a gtable plot object, which is hard to
+                ## customize. Note that we can't set title or subtitle here.
                 fgsea::plotGseaTable(
                     pathways = pathways,
                     stats = stats,
                     fgseaRes = fgseaRes,
-                    # GSEA-like parameter.
-                    # Adjusts displayed statistic values.
-                    # Values closer to 0 flatten plots.
-                    # 0.5 generally looks better than 1L.
+                    ## GSEA-like parameter. Adjusts displayed statistic values.
+                    ## Values closer to 0 flatten plots. 0.5 generally looks
+                    ## better than 1L.
                     gseaParam = 0.5
                 )
             }
@@ -99,5 +98,5 @@ plotGSEATable.FGSEAList <-  # nolint
 setMethod(
     f = "plotGSEATable",
     signature = signature("FGSEAList"),
-    definition = plotGSEATable.FGSEAList
+    definition = `plotGSEATable,FGSEAList`
 )

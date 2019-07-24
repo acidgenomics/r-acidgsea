@@ -4,6 +4,8 @@
 #'
 #' @author Michael Steinbaugh
 #' @export
+
+## Updated 2019-07-24.
 setClass(
     Class = "FGSEAList",
     contains = "SimpleList",
@@ -50,18 +52,20 @@ setClass(
 #'
 #' @author Michael Steinbaugh
 #' @export
+
+## Updated 2019-07-24.
 setClass(
     Class = "RankedList",
     contains = "SimpleList",
     validity = function(object) {
         validate(
             is.numeric(object[[1L]]),
-            # Check that this is sorted from high to low.
+            ## Check that this is sorted from high to low.
             identical(object[[1L]], sort(object[[1L]], decreasing = TRUE)),
-            # Rank vector must be named.
+            ## Rank vector must be named.
             hasNames(object[[1L]]),
-            # gene2symbol metadata is now optional, but still recommended.
-            # This check was removed to allow RankedList support for matrix.
+            ## gene2symbol metadata is now optional, but still recommended.
+            ## This check was removed to allow RankedList support for matrix.
             isSubset(
                 x = c("value", "version"),
                 y = names(metadata(object))
@@ -69,7 +73,7 @@ setClass(
             is(metadata(object)[["version"]], "package_version"),
             isSubset(
                 x = metadata(object)[["value"]],
-                y = eval(formals(RankedList.DESeqAnalysis)[["value"]])
+                y = eval(formals(`RankedList,DESeqAnalysis`)[["value"]])
             )
         )
     }

@@ -24,8 +24,8 @@ NULL
 
 
 
-# Modified 2019-06-12.
-plotEnrichedGeneSets.FGSEAList <-  # nolint
+## Modified 2019-06-12.
+`plotEnrichedGeneSets,FGSEAList` <-  # nolint
     function(
         object,
         collection,
@@ -65,17 +65,17 @@ plotEnrichedGeneSets.FGSEAList <-  # nolint
                     asis = TRUE
                 )
 
-                # Here we're getting the gene set vector for each pathway from
-                # the GMT file. Then we're matching against the significant
-                # pathways from our FGSEA analysis.
+                ## Here we're getting the gene set vector for each pathway from
+                ## the GMT file. Then we're matching against the significant
+                ## pathways from our FGSEA analysis.
                 pathways <- .headtail(data, alpha = alpha, n = n)
                 if (!hasLength(pathways)) {
                     return(invisible())  # nocov
                 }
                 pathways <- gmtPathways(gmt.file = gmtFile)[pathways]
 
-                # Using an `mapply()` call here so we can pass the pathway names
-                # in easily into the `markdownHeader()` call.
+                ## Using an `mapply()` call here so we can pass the pathway
+                ## names in easily into the `markdownHeader()` call.
                 mapply(
                     name = names(pathways),
                     pathway = pathways,
@@ -92,11 +92,11 @@ plotEnrichedGeneSets.FGSEAList <-  # nolint
                         contrast
                     ) {
                         markdownHeader(name, level = headerLevel, asis = TRUE)
-                        # Suppressing warnings here to for minimal example to
-                        # work. `min(bottoms)` and `max(tops)` failure can
-                        # occur, causing ggplot to fail. Safe to remove
-                        # `fgsea::` here once we remove now defunct
-                        # `plotEnrichment()` from export.
+                        ## Suppressing warnings here to for minimal example to
+                        ## work. `min(bottoms)` and `max(tops)` failure can
+                        ## occur, causing ggplot to fail. Safe to remove
+                        ## `fgsea::` here once we remove now defunct
+                        ## `plotEnrichment()` from export.
                         p <- suppressWarnings(
                             fgsea::plotEnrichment(
                                 pathway = pathway,
@@ -104,11 +104,11 @@ plotEnrichedGeneSets.FGSEAList <-  # nolint
                             )
                         )
                         p <- p + labs(title = name, subtitle = contrast)
-                        # fgsea sets a theme that is too hard to read.
+                        ## fgsea sets a theme that is too hard to read.
                         if (isAll(theme, c("theme", "gg"))) {
                             p <- p + theme
                         }
-                        # Note that we need the `print()` call here for looping.
+                        ## Note that we need the `print()` call here for loops.
                         tryCatch(
                             expr = print(p),
                             error = function(e) invisible()
@@ -126,5 +126,5 @@ plotEnrichedGeneSets.FGSEAList <-  # nolint
 setMethod(
     f = "plotEnrichedGeneSets",
     signature = signature("FGSEAList"),
-    definition = plotEnrichedGeneSets.FGSEAList
+    definition = `plotEnrichedGeneSets,FGSEAList`
 )
