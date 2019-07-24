@@ -47,11 +47,13 @@ Imports:
     stats,
     utils
 Suggests:
+    acidtest (>= 0.2.0),
     BiocStyle,
     rmarkdown (>= 1.14),
     testthat (>= 2.1)
 Remotes:
     acidgenomics/acidplots,
+    acidgenomics/acidtest,
     acidgenomics/DESeqAnalysis,
     acidgenomics/basejump,
     acidgenomics/bioverbs,
