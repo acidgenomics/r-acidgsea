@@ -63,8 +63,8 @@ x <- RankedList(gsea)
 print(x)
 
 ## matrix ====
-data(mat, package = "acidtest")
-x <- RankedList(mat)
+data(matrix_lfc, package = "acidtest")
+x <- RankedList(matrix_lfc)
 print(x)
 }
 \author{

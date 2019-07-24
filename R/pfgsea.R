@@ -25,6 +25,8 @@
 #'
 #' @examples
 #' data(gsea)
+#' metadata <- S4Vectors::metadata
+#'
 #' rankedList <- metadata(gsea)[["rankedList"]]
 #' gmtFiles <- metadata(gsea)[["gmtFiles"]]
 #'
@@ -43,7 +45,7 @@
 #' x <- pfgsea(rankedList = rankedList, gmtFiles = gmtFiles)
 #' print(x)
 
-# Modified 2019-06-12.
+## Modified 2019-06-12.
 pfgsea <- function(
     rankedList,
     gmtFiles,
@@ -96,7 +98,7 @@ pfgsea <- function(
     )
     out <- SimpleList(list)
 
-    # Stash useful metadata.
+    ## Stash useful metadata.
     metadata(out) <- list(
         version = .version,
         date = Sys.Date(),

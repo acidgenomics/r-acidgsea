@@ -1,10 +1,10 @@
-# Render multiple GSEA reports.
-# Modified 2019-06-26.
+## Render multiple GSEA reports.
+## Modified 2019-06-26.
 
 library(rmarkdown)
 templateFile <- "pfgsea.Rmd"
 
-# Load the FGSEAList objects.
+## Load the FGSEAList objects.
 datasets <- c("pbmc_pfgsea", "bm_pfgsea")
 objectFiles <- file.path(
     "rds",
