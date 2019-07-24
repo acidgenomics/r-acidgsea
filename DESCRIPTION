@@ -49,6 +49,7 @@ Imports:
 Suggests:
     acidtest (>= 0.2.0),
     BiocStyle,
+    patrick (>= 0.0.1),
     rmarkdown (>= 1.14),
     testthat (>= 2.1)
 Remotes:

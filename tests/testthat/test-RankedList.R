@@ -32,8 +32,7 @@ test_that("FGSEAList", {
 })
 
 test_that("matrix", {
-    data(mat, package = "acidtest", envir = environment())
-    object <- RankedList(mat)
+    object <- RankedList(matrix_lfc)
     expect_s4_class(object, "RankedList")
-    expect_identical(names(object), colnames(mat))
+    expect_identical(names(object), colnames(matrix_lfc))
 })
