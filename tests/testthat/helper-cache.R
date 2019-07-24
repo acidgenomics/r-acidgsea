@@ -1,3 +1,7 @@
+if (!isTRUE(goalie::hasInternet())) {
+    warning("No Internet connection detected.")
+    return()
+}
 dir.create("cache", showWarnings = FALSE)
 files <- "mm_deseq.rds"
 mapply(
