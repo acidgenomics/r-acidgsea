@@ -20,9 +20,18 @@ NULL
 
 
 ## Created 2019-06-12.
-## Updated 2019-07-17.
+## Updated 2019-07-25.
 `convertToHuman,DESeqAnalysis` <-  # nolint
     function(object, map = NULL) {
+        ## Check for unsupported version of Bioconductor.
+        requireNamespace("BiocManager", quietly = TRUE)
+        if (BiocManager::version() < "3.9") {
+            stop(paste(
+                "This function is currently supported on Bioconductor 3.9+",
+                "due to a subsetting issue that affects Genomic Ranges.",
+            ))
+        }
+
         validObject(object)
         assert(isAny(map, c("DataFrame", "NULL")))
 
@@ -73,11 +82,8 @@ NULL
                     y = c("geneID", "geneName", "hgncID", "hgncName")
                 )
             )
-
         }
 
-        map <- as(map, "DataFrame")
-        rownames(map) <- map[["geneID"]]
         map <- map[genes, , drop = FALSE]
         assert(identical(rownames(data), rownames(map)))
         keep <- !is.na(map[["hgncID"]])
@@ -97,7 +103,14 @@ NULL
                 }
             )
         }
+
         map <- map[keep, , drop = FALSE]
+        ## This operation is failing on BioC 3.8, 3.7 due to a GRanges-related
+        ## subsetting issue. We can't subset the rowRanges as expected here.
+        ## Error: subscript is a NSBS object that is incompatible with the
+        ## current subsetting operation
+        ## https://support.bioconductor.org/p/100097/
+        ## https://support.bioconductor.org/p/74459/
         data <- data[keep, , drop = FALSE]
         transform <- transform[keep, , drop = FALSE]
         results <- filterList(results)
