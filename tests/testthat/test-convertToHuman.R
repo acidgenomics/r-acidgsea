@@ -1,5 +1,8 @@
 context("convertToHuman")
 
+## Skip on older versions of Bioconductor, due to GRanges subsetting issue.
+skip_if_not(BiocManager::version() >= "3.9")
+
 test_that("Already human", {
     object <- convertToHuman(deseq)
     expect_identical(object, deseq)

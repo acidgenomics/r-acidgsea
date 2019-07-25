@@ -28,7 +28,13 @@ Features (i.e. rownames) will be remapped to human genes.
 \description{
 Convert data set to use human orthologs
 }
+\note{
+Currently requires at least Bioconductor 3.9, due to a Genomic Ranges
+subsetting issue.
+}
 \examples{
-data(deseq, package = "DESeqAnalysis")
-convertToHuman(deseq)
+if (BiocManager::version >= "3.9") {
+    data(deseq, package = "DESeqAnalysis")
+    convertToHuman(deseq)
+}
 }
