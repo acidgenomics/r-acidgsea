@@ -153,23 +153,17 @@ then `<code>matchHumanOrthologs()</code> will be called internally.</p></td>
     <p>Modified object.
 Features (i.e. rownames) will be remapped to human genes.</p>
     
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Currently requires at least Bioconductor 3.9, due to a Genomic Ranges
+subsetting issue.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>deseq</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DESeqAnalysis"</span>)
-<span class='fu'>convertToHuman</span>(<span class='no'>deseq</span>)</div><div class='output co'>#&gt; <span class='message'>Homo sapiens (Ensembl 92) detected.</span></div><div class='output co'>#&gt; <span class='message'>Returning unmodified.</span></div><div class='output co'>#&gt; DESeqAnalysis 0.1.8; DESeq2 1.22.2
-#&gt; data:
-#&gt;   dim: 500 12 
-#&gt;   metadata(3): version date interestingGroups
-#&gt;   assays(4): counts mu H cooks
-#&gt;   rownames(500): gene001 gene002 ... gene499 gene500
-#&gt;   rowData names(27): geneID geneName ... deviance maxCooks
-#&gt;   colnames(12): sample01 sample02 ... sample11 sample12
-#&gt;   colData names(2): condition sizeFactor
-#&gt; transformType: varianceStabilizingTransformation
-#&gt; resultsNames: condition_B_vs_A
-#&gt; alpha: 0.1
-#&gt; lfcThreshold: 0
-#&gt; lfcShrinkType: apeglm</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='kw pkg'>BiocManager</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/BiocManager/man/version.html'>version</a></span> <span class='kw'>&gt;=</span> <span class='st'>"3.9"</span>) {
+    <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>deseq</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DESeqAnalysis"</span>)
+    <span class='fu'>convertToHuman</span>(<span class='no'>deseq</span>)
+}</div><div class='output co'>#&gt; <span class='error'>Error in BiocManager::version &gt;= "3.9": comparison (5) is possible only for atomic and list types</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -177,6 +171,8 @@ Features (i.e. rownames) will be remapped to human genes.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#note">Note</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
