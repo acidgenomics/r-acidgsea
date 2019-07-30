@@ -33,7 +33,7 @@ Currently requires at least Bioconductor 3.9, due to a Genomic Ranges
 subsetting issue.
 }
 \examples{
-if (BiocManager::version >= "3.9") {
+if (BiocManager::version() >= "3.9") {
     data(deseq, package = "DESeqAnalysis")
     convertToHuman(deseq)
 }
