@@ -2,8 +2,8 @@ Package: pfgsea
 Title: Parameterized Fast GSEA
 Description: Perform parameterized gene set enrichment analysis on multiple
     differential expression contrasts.
-Version: 0.1.11
-Date: 2019-07-24
+Version: 0.1.12
+Date: 2019-07-30
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -24,12 +24,12 @@ Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 3.5),
-    basejump (>= 0.11.1)
+    basejump (>= 0.11.3)
 Imports:
-    DESeqAnalysis (>= 0.2.0),
-    acidplots (>= 0.2.7),
-    bioverbs (>= 0.2.0),
-    goalie (>= 0.2.19),
+    DESeqAnalysis (>= 0.2.1),
+    acidplots (>= 0.2.9),
+    bioverbs (>= 0.2),
+    goalie (>= 0.3),
     BiocGenerics,
     BiocParallel,
     S4Vectors,
@@ -47,7 +47,7 @@ Imports:
     stats,
     utils
 Suggests:
-    acidtest (>= 0.2.0),
+    acidtest (>= 0.2.1),
     BiocManager,
     BiocStyle,
     patrick (>= 0.0.1),
