@@ -1,3 +1,12 @@
+## pfgsea 0.1.12 (2019-07-30)
+
+### Minor changes
+
+- Updated basejump dependency versions.
+- Updated working examples and improved documentation.
+
+## pfgsea 0.1.11 (2019-07-24)
+
 ## pfgsea 0.1.10 (2019-07-17)
 
 ### Minor changes
