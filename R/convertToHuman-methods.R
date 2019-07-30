@@ -16,7 +16,7 @@
 #'   Features (i.e. rownames) will be remapped to human genes.
 #'
 #' @examples
-#' if (BiocManager::version >= "3.9") {
+#' if (BiocManager::version() >= "3.9") {
 #'     data(deseq, package = "DESeqAnalysis")
 #'     convertToHuman(deseq)
 #' }

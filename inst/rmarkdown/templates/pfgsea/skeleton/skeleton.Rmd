@@ -1,4 +1,5 @@
 ---
+## Updated 2019-06-26.
 params:
   title: "Gene Set Enrichment Analysis"
   fgsealist_file: "rds/YYYY-MM-DD/object.rds"
@@ -11,7 +12,6 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, message=FALSE}
-# Updated 2019-06-26.
 library(pfgsea)
 library(tidyverse)
 prepareTemplate()
