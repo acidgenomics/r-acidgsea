@@ -44,6 +44,9 @@ Class containing parameterized ranked gene lists.
 Return a parameterized ranked list for each differential
 expression contrast.
 }
+\note{
+Updated 2019-07-24.
+}
 \section{Gene symbol multi-mapping}{
 
 

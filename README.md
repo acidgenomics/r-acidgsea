@@ -1,8 +1,8 @@
 # pfgsea
 
+[![Repo status: active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Travis CI build status](https://travis-ci.com/acidgenomics/pfgsea.svg?branch=master)](https://travis-ci.com/acidgenomics/pfgsea)
 [![AppVeyor CI build status](https://ci.appveyor.com/api/projects/status/fa5hpl1hbf4memee/branch/master?svg=true)](https://ci.appveyor.com/project/mjsteinbaugh/pfgsea/branch/master)
-[![Repo status: active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 Parameterized Fast GSEA
 
@@ -10,18 +10,31 @@ Parameterized Fast GSEA
 
 ## Installation
 
-This is an [R][] package.
-
-### [Bioconductor][] method
-
-We recommend installing the package with [BiocManager][].
+### [R][] method
 
 ```r
-if (!require("BiocManager")) {
+if (!requireNamespace("remotes", quietly = TRUE)) {
+    install.packages("remotes")
+}
+Sys.setenv(R_REMOTES_UPGRADE = "always")
+# Set `GITHUB_PAT` in `~/.Renviron` if you get a rate limit error.
+remotes::install_github("acidgenomics/pfgsea")
+```
+
+Here's how to update to the latest version on GitHub:
+
+```r
+Sys.setenv(R_REMOTES_UPGRADE = "always")
+remotes::update_packages()
+```
+
+Always check that your Bioconductor installation is valid before proceeding.
+
+```r
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
-BiocManager::install("remotes")
-BiocManager::install("acidgenomics/pfgsea")
+BiocManager::valid()
 ```
 
 [BiocManager]: https://cran.r-project.org/package=BiocManager
