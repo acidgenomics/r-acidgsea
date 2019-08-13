@@ -64,7 +64,10 @@ NULL
             isString(organism),
             isScalarInteger(ensemblRelease)
         )
-        message(paste0(organism, " (Ensembl ", ensemblRelease, ") detected."))
+        message(sprintf(
+            "%s (Ensembl %d) detected.",
+            organism, ensemblRelease
+        ))
 
         ## Early return on Homo sapiens.
         if (organism == "Homo sapiens") {
@@ -93,10 +96,10 @@ NULL
         assert(identical(rownames(data), rownames(map)))
         keep <- !is.na(map[["hgncID"]])
         assert(any(keep))
-        message(paste0(
-            "Matched ",
-            sum(keep, na.rm = TRUE), " / ", nrow(map),
-            " genes to human orthologs."
+        message(sprintf(
+            "Matched %d / %d genes to human orthologs.",
+            sum(keep, na.rm = TRUE),
+            nrow(map)
         ))
 
         ## Perform subset operations.

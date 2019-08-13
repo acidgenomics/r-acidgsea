@@ -20,9 +20,9 @@ invisible(mapply(
     name = names(objectFiles),
     file = objectFiles,
     FUN = function(name, file) {
-        message(paste0(
-            "Rendering ", name, "\n",
-            "File: ", file
+        message(sprintf(
+            "Rendering '%s'\nFile: %s,
+            name, file
         ))
         render(
             params = list(

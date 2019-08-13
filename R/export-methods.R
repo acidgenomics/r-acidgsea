@@ -53,7 +53,7 @@ NULL
         ## Note that we're combining the dir with name, so we can set
         ## subdirectories for each slotted data type (e.g. `DESeqDataSet`).
         dir <- initDir(file.path(dir, name))
-        message(paste0("Exporting to ", dir, "."))
+        message(sprintf("Exporting to '%s'.", dir))
 
         files <- lapply(
             X = seq_len(length(object)),

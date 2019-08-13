@@ -63,10 +63,15 @@ pfgsea <- function(
         isAlpha(alpha)
     )
     validObject(rankedList)
-    message(paste0(
-        "Running parameterized fast GSEA...", "\n",
-        "GMT files: ", toString(names(gmtFiles)), "\n",
-        "Contrasts: ", toString(names(rankedList))
+    message(sprintf(
+        fmt = paste(
+            "Running parameterized fast GSEA...",
+            "GMT files: %s",
+            "Contrasts: %s", 
+            sep = "\n"
+        ),
+        toString(names(gmtFiles), width = 100L)
+        toString(names(rankedList), width = 100L)
     ))
     list <- lapply(
         X = gmtFiles,
@@ -75,10 +80,16 @@ pfgsea <- function(
                 X = rankedList,
                 FUN = function(stats) {
                     pathways <- gmtPathways(gmt.file = gmtFile)
-                    message(paste0(
-                        "GMT file: ", basename(gmtFile), "\n",
-                        "Testing against ", length(pathways), " pathways.\n",
-                        "Running using ", nPerm, " permutations."
+                    message(sprintf(
+                        fmt = paste(
+                            "GMT file: %s",
+                            "Testing against %d pathways.",
+                            "Running using %d permutations."
+                            sep = "\n"
+                        ),
+                        basename(gmtFile),
+                        length(pathways),
+                        nPerm
                     ))
                     suppressWarnings(
                         data <- fgsea::fgsea(
