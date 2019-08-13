@@ -24,17 +24,16 @@ NULL
 
 
 
-## Created 2019-06-12.
-## Updated 2019-07-25.
+## Updated 2019-08-13.
 `convertToHuman,DESeqAnalysis` <-  # nolint
     function(object, map = NULL) {
         ## Check for unsupported version of Bioconductor.
         requireNamespace("BiocManager", quietly = TRUE)
         if (BiocManager::version() < "3.9") {
-            stop(paste(
-                "This function is currently supported on Bioconductor 3.9+",
+            stop(
+                "This function is currently supported on Bioconductor 3.9+ ",
                 "due to a subsetting issue that affects Genomic Ranges.",
-            ))
+            )
         }
 
         validObject(object)
@@ -52,10 +51,10 @@ NULL
         ## This step shouldn't get hit but it's useful to keep as a check.
         if (!isSubset(c("organism", "ensemblRelease"), names(rrMeta))) {
             ## nocov start
-            stop(paste(
-                "Internal DESeqDataSet does not contain necessary metadata.",
-                "Check `metadata(rowRanges(data))`."
-            ))
+            stop(
+                "Internal DESeqDataSet does not contain necessary metadata.\n",
+                "Check 'metadata(rowRanges(data))'."
+            )
             ## nocov end
         }
         organism <- rrMeta[["organism"]]
