@@ -28,7 +28,7 @@ NULL
 `convertToHuman,DESeqAnalysis` <-  # nolint
     function(object, map = NULL) {
         ## Check for unsupported version of Bioconductor.
-        requireNamespace("BiocManager", quietly = TRUE)
+        assert(requireNamespace("BiocManager", quietly = TRUE))
         if (BiocManager::version() < "3.9") {
             stop(
                 "This function is currently supported on Bioconductor 3.9+ ",
