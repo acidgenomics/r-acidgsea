@@ -109,7 +109,8 @@ setMethod(
         list <- lapply(
             X = results,
             FUN = function(data) {
-                left_join(
+                ## FIXME Remove pipe here.
+                leftJoin(
                     x = as_tibble(data, rownames = "rowname"),
                     y = as_tibble(gene2symbol, rownames = "rowname"),
                     by = "rowname"

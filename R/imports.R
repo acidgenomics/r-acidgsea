@@ -9,7 +9,7 @@
 #' @importFrom basejump Gene2Symbol alphaThreshold as_tibble export initDir
 #'   makeNames markdownHeader matchArgsToDoCall matchHumanOrthologs showHeader
 #'   showSlotInfo standardizeCall
-#' @importFrom dplyr arrange desc distinct everything filter group_by left_join
+#' @importFrom dplyr arrange desc distinct everything filter group_by leftJoin
 #'   pull select select_if summarise
 #' @importFrom fgsea fgsea gmtPathways plotEnrichment plotGseaTable
 #' @importFrom ggplot2 labs
