@@ -41,6 +41,9 @@ There are two basic combine strategies. One is an intersection
   These functions and methods are currently under construction. Please
   let us know if there are features that you require.
 }
+\note{
+Updated 2019-08-28.
+}
 \examples{
 data(gsea)
 x <- gsea

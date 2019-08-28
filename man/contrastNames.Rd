@@ -29,6 +29,9 @@ contrastNames(object, ...) <- value
 \description{
 Contrast names
 }
+\note{
+Updated 2019-08-28.
+}
 \examples{
 data(gsea)
 contrastNames(gsea)

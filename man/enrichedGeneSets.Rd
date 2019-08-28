@@ -37,6 +37,9 @@ Named list formatted as:
 \description{
 Enriched pathways from gene set collections
 }
+\note{
+Updated 2019-08-28.
+}
 \examples{
 data(gsea)
 enrichedGeneSets(gsea, collection = "h")
