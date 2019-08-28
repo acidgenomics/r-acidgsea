@@ -10,7 +10,7 @@
 #' @importFrom acidplots acid_theme_light upset
 #' @importFrom basejump Gene2Symbol alphaThreshold as_tibble export initDir
 #'   leftJoin makeNames markdownHeader matchArgsToDoCall matchHumanOrthologs
-#'   showHeader showSlotInfo standardizeCall
+#'   selectIf showHeader showSlotInfo standardizeCall
 #' @importFrom fgsea fgsea gmtPathways plotEnrichment plotGseaTable
 #' @importFrom ggplot2 labs
 #' @importFrom goalie areDisjointSets areSameLength assert bapply hasColnames
@@ -20,13 +20,6 @@
 #' @importFrom knitr kable
 #' @importFrom methods as is new setAs setGeneric setMethod show slot slot<-
 #'   validObject
-#' @importFrom rlang !! sym
 #' @importFrom sessioninfo session_info
 #' @importFrom utils globalVariables
-#'
-#'
-#'
-#' @importFrom dplyr arrange desc distinct everything filter group_by pull
-#'   select select_if summarise
-#' @importFrom rlang !!! := syms
 NULL

@@ -4,7 +4,7 @@
         is(data, "data.table"),
         isAlpha(alpha)
     )
-    data <- data[data[["padj"]] < !!alpha, ]
+    data <- data[data[["padj"]] < alpha, ]
     data <- data[order(data[["padj"]], -data[["NES"]]), ]
     data
 }
