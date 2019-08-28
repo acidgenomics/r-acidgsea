@@ -2,15 +2,9 @@
 % Please edit documentation in R/deprecated.R
 \name{defunct}
 \alias{defunct}
-\alias{plotEnrichments}
-\alias{plotGSEATables}
 \alias{plotEnrichment}
 \title{Defunct functions}
 \usage{
-plotEnrichments(...)
-
-plotGSEATables(...)
-
 plotEnrichment(...)
 }
 \arguments{
