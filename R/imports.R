@@ -2,8 +2,9 @@
 #' @importMethodsFrom DESeqAnalysis coerce
 #'
 #' @importFrom DESeqAnalysis DESeqAnalysis
-#' @importFrom S4Vectors SimpleList head lapply mcols mcols<- metadata
-#'   metadata<- na.omit tail
+#' @importFrom IRanges SplitDataFrameList unsplit
+#' @importFrom S4Vectors SimpleList complete.cases head lapply mcols mcols<-
+#'   metadata metadata<- na.omit split tail unique
 #' @importFrom SummarizedExperiment rowRanges rowRanges<-
 #' @importFrom UpSetR fromList
 #' @importFrom acidplots acid_theme_light upset
@@ -13,9 +14,9 @@
 #' @importFrom fgsea fgsea gmtPathways plotEnrichment plotGseaTable
 #' @importFrom ggplot2 labs
 #' @importFrom goalie areDisjointSets areSameLength assert bapply hasColnames
-#'   hasNames hasLength hasRownames hasRows isAFile isAll isAlpha isAny
-#'   isCharacter isFile isFlag isHeaderLevel isInt isScalar isScalarInteger
-#'   isString isSubset validate
+#'   hasLength hasNames hasNoDuplicates hasRownames hasRows isAFile isAll
+#'   isAlpha isAny isCharacter isFile isFlag isHeaderLevel isInt isScalar
+#'   isScalarInteger isString isSubset validate
 #' @importFrom knitr kable
 #' @importFrom methods as is new setAs setGeneric setMethod show slot slot<-
 #'   validObject
