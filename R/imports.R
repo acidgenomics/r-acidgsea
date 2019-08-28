@@ -3,8 +3,8 @@
 #'
 #' @importFrom DESeqAnalysis DESeqAnalysis
 #' @importFrom IRanges SplitDataFrameList unsplit
-#' @importFrom S4Vectors SimpleList complete.cases head lapply mcols mcols<-
-#'   metadata metadata<- na.omit order split tail unique
+#' @importFrom S4Vectors DataFrame SimpleList complete.cases head lapply mcols
+#'   mcols<- metadata metadata<- na.omit order split tail unique
 #' @importFrom SummarizedExperiment rowRanges rowRanges<-
 #' @importFrom UpSetR fromList
 #' @importFrom acidplots acid_theme_light upset
