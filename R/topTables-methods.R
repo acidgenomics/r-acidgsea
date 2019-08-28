@@ -76,11 +76,11 @@ NULL
                     level = headerLevel + 1L,
                     asis = TRUE
                 )
-                up <- data[data[["NES"]] > 0L, ]
-                up <- up[order(up[["padj"]], -up[["NES"]]), ]
+                up <- data[data[["NES"]] > 0L, , drop = FALSE]
+                up <- up[order(up[["padj"]], -up[["NES"]]), , drop = FALSE]
                 up <- head(up, n = n)
                 if (hasRows(up)) {
-                    print(kable(up, digits = 3L))
+                    print(kable(as.data.frame(up), digits = 3L))
                 } else {
                     message("No upregulated sets.")  # nocov
                 }
@@ -89,11 +89,13 @@ NULL
                     level = headerLevel + 1L,
                     asis = TRUE
                 )
-                down <- data[data[["NES"]] < 0L, ]
-                down <- down[order(down[["padj"]], down[["NES"]]), ]
+                down <- data[data[["NES"]] < 0L, , drop = FALSE]
+                down <- down[
+                    order(down[["padj"]], down[["NES"]]), , drop = FALSE
+                    ]
                 down <- head(down, n = n)
                 if (hasRows(down)) {
-                    print(kable(down, digits = 3L))
+                    print(kable(as.data.frame(down), digits = 3L))
                 } else {
                     message("No downregulated sets.")  # nocov
                 }

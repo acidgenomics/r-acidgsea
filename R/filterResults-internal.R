@@ -1,10 +1,8 @@
 ## Updated 2019-08-28.
 .filterResults <- function(data, alpha) {
-    assert(
-        is(data, "data.table"),
-        isAlpha(alpha)
-    )
-    data <- data[data[["padj"]] < alpha, ]
-    data <- data[order(data[["padj"]], -data[["NES"]]), ]
+    assert(isAlpha(alpha))
+    data <- as(data, "DataFrame")
+    data <- data[data[["padj"]] < alpha, , drop = FALSE]
+    data <- data[order(data[["padj"]], -data[["NES"]]), , drop = FALSE]
     data
 }

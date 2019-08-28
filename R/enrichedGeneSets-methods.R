@@ -59,16 +59,18 @@ NULL
             name = names(collection),
             data = collection,
             FUN = function(name, data) {
-                assert(is(data, "data.table"))
+                data <- as(data, "DataFrame")
                 ## Subset significant enrichment.
-                data <- data[data[["padj"]] < alpha, ]
+                data <- data[data[["padj"]] < alpha, , drop = FALSE]
                 ## Upregulated.
-                up <- data[data[["NES"]] > 0L, ]
-                up <- up[order(up[["padj"]], -up[["NES"]]), ]
+                up <- data[data[["NES"]] > 0L, , drop = FALSE]
+                up <- up[order(up[["padj"]], -up[["NES"]]), , drop = FALSE]
                 up <- up[["pathway"]]
                 ## Downregulated.
-                down <- data[data[["NES"]] < 0L, ]
-                down <- down[order(down[["padj"]], down[["NES"]]), ]
+                down <- data[data[["NES"]] < 0L, , drop = FALSE]
+                down <- down[
+                    order(down[["padj"]], down[["NES"]]), , drop = FALSE
+                    ]
                 down <- down[["pathway"]]
                 list(up = up, down = down)
             },
