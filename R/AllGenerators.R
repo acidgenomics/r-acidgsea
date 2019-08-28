@@ -67,7 +67,7 @@ NULL
 
 
 
-#' @rdname RankedList-class
+#' @rdname RankedList
 #' @export
 setMethod(
     f = "RankedList",
@@ -163,7 +163,7 @@ setMethod(
 
 
 
-#' @rdname RankedList-class
+#' @rdname RankedList
 #' @export
 setMethod(
     f = "RankedList",
@@ -182,7 +182,7 @@ setMethod(
 
 
 
-#' @rdname RankedList-class
+#' @rdname RankedList
 #' @export
 setMethod(
     f = "RankedList",
