@@ -2,10 +2,10 @@
 #'
 #' Class containing parameterized fast GSEA results.
 #'
-#' @aliases FGSEAList
-#' @author Michael Steinbaugh
-#' @note Updated 2019-07-24.
 #' @export
+#' @note Updated 2019-07-24.
+#'
+#' @return `FGSEAList`.
 setClass(
     Class = "FGSEAList",
     contains = "SimpleList",
@@ -50,9 +50,10 @@ setClass(
 #'
 #' Class containing parameterized ranked gene lists.
 #'
-#' @author Michael Steinbaugh
-#' @note Updated 2019-07-24.
 #' @export
+#' @note Updated 2019-07-24.
+#'
+#' @return `RankedList`.
 setClass(
     Class = "RankedList",
     contains = "SimpleList",
