@@ -5,7 +5,7 @@ test_that("FGSEAList", {
     expect_type(object, "list")
     expect_identical(
         object = names(object),
-        expected = c("dmso_r1881_vs_etoh_down", "dmso_r1881_vs_etoh_up")
+        expected = c("dmso_r1881_vs_etoh_up", "dmso_r1881_vs_etoh_down")
     )
 })
 
