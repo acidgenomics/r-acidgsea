@@ -2,8 +2,8 @@ Package: pfgsea
 Title: Parameterized Fast GSEA
 Description: Perform parameterized gene set enrichment analysis on multiple
     differential expression contrasts.
-Version: 0.1.12
-Date: 2019-07-30
+Version: 0.1.13
+Date: 2019-08-28
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -23,36 +23,31 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: false
 Depends:
-    R (>= 3.5),
-    basejump (>= 0.11.3)
+    R (>= 3.6),
+    basejump (>= 0.11.11)
 Imports:
-    DESeqAnalysis (>= 0.2.1),
-    acidplots (>= 0.2.9),
-    bioverbs (>= 0.2),
-    goalie (>= 0.3),
-    BiocGenerics,
-    BiocParallel,
-    S4Vectors,
-    SummarizedExperiment,
-    fgsea,
+    DESeqAnalysis (>= 0.2.5),
+    acidplots (>= 0.2.14),
+    bioverbs (>= 0.2.7),
+    goalie (>= 0.3.6),
+    BiocGenerics (>= 0.30),
+    BiocParallel (>= 1.18),
+    IRanges (>= 2.18),
+    S4Vectors (>= 0.22),
+    SummarizedExperiment (>= 1.14),
+    fgsea (>= 1.10),
     UpSetR (>= 1.4),
-    dplyr (>= 0.8),
     ggplot2 (>= 3.1),
     knitr (>= 1.23),
-    magrittr (>= 1.5),
-    rlang (>= 0.4),
     sessioninfo (>= 1.1),
-    tibble (>= 2.1),
     methods,
-    stats,
     utils
 Suggests:
     acidtest (>= 0.2.1),
-    BiocManager,
-    BiocStyle,
+    BiocStyle (>= 2.12),
     patrick (>= 0.0.1),
-    rmarkdown (>= 1.14),
-    testthat (>= 2.1)
+    rmarkdown (>= 1.15),
+    testthat (>= 2.2)
 Remotes:
     acidgenomics/acidplots,
     acidgenomics/acidtest,
@@ -67,3 +62,27 @@ biocViews:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
+Collate: 
+    'AllClasses.R'
+    'AllGenerics.R'
+    'AllGenerators.R'
+    'collectionNames-methods.R'
+    'combine-methods.R'
+    'contrastNames-methods.R'
+    'convertToHuman-methods.R'
+    'data.R'
+    'deprecated.R'
+    'enrichedGeneSets-methods.R'
+    'export-methods.R'
+    'filterResults-internal.R'
+    'globals.R'
+    'headtail-internal.R'
+    'imports.R'
+    'package.R'
+    'params.R'
+    'pfgsea.R'
+    'plotEnrichedGeneSets-methods.R'
+    'plotEnrichedUpset-methods.R'
+    'plotGSEATable-methods.R'
+    'show-methods.R'
+    'topTables-methods.R'

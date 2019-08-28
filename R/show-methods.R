@@ -1,5 +1,9 @@
+#' Show an object
+#'
 #' @name show
-#' @inherit basejump::show
+#' @inherit methods::show
+#' @note Updated 2019-08-28.
+#'
 #' @examples
 #' data(gsea)
 #'

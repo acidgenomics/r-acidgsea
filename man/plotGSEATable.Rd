@@ -34,6 +34,9 @@ Markdown header level.}
 \description{
 Plot GSEA enrichment table
 }
+\note{
+Updated 2019-08-28.
+}
 \examples{
 data(gsea)
 plotGSEATable(gsea, collection = "h")

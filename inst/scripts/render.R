@@ -1,5 +1,5 @@
 ## Render multiple GSEA reports.
-## Modified 2019-06-26.
+## Modified 2019-08-28.
 
 library(rmarkdown)
 templateFile <- "pfgsea.Rmd"
@@ -20,9 +20,9 @@ invisible(mapply(
     name = names(objectFiles),
     file = objectFiles,
     FUN = function(name, file) {
-        message(paste0(
-            "Rendering ", name, "\n",
-            "File: ", file
+        message(sprintf(
+            "Rendering '%s'\nFile: %s",
+            name, file
         ))
         render(
             params = list(

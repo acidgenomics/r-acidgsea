@@ -1,10 +1,13 @@
-#' @rdname RankedList-class
+#' All generator functions
+#' @include AllGenerics.R
+#' @noRd
+NULL
+
+
+
 #' @name RankedList
-#'
-#' @title Prepare a ranked gene (stats) list for GSEA
-#'
-#' @description Return a parameterized ranked list for each differential
-#'   expression contrast.
+#' @inherit RankedList-class title description return
+#' @note Updated 2019-08-28.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -21,8 +24,6 @@
 #'      requires [DESeq2::lfcShrink()] return to be slotted.
 #'   3. `padj`: Adjusted *P* value. This don't provide directional ranks, but
 #'      is offered as a legacy option. Not generally recommended.
-#'
-#' @return `RankedList`.
 #'
 #' @examples
 #' ## DESeqAnalysis ====
@@ -42,8 +43,9 @@
 NULL
 
 
+
 ## This will work on any numeric matrix.
-## Other options instead of df/list coercion (check benchmarks).
+## Other options instead of df/list coercion (check benchmarks):
 ## https://stackoverflow.com/questions/6819804
 ## Updated 2019-07-17.
 `RankedList,matrix` <-  # nolint
@@ -75,7 +77,7 @@ setMethod(
 
 
 
-## Updated 2019-07-17.
+## Updated 2019-08-28.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
@@ -83,48 +85,75 @@ setMethod(
     ) {
         validObject(object)
         value <- match.arg(value)
-
         ## Extract the DESeqDataSet.
         dds <- as(object, "DESeqDataSet")
-
         ## Extract the DESeqResults list.
-        if (value == "log2FoldChange") {
+        if (identical(value, "log2FoldChange")) {
             ## Note that we're requiring shrunken LFCs if the user wants to
             ## return those values instead of using Wald test statistic.
-            results <- object@lfcShrink
+            results <- slot(object, "lfcShrink")
         } else {
-            results <- object@results
+            results <- slot(object, "results")
         }
         assert(is(results, "list"))
-
         ## Get the gene-to-symbol mappings in long format.
         ## We're returning in long format so we can average the values for each
         ## gene symbol, since for some genomes gene IDs multi-map to symbols.
         suppressMessages(
             gene2symbol <- Gene2Symbol(dds, format = "unmodified")
         )
-
+        gene2symbol <- as(gene2symbol, "DataFrame")
+        gene2symbol[["rowname"]] <- rownames(gene2symbol)
         ## Get parameterized GSEA list values for each DESeqResults contrast.
-        quovalue <- sym(value)
         list <- lapply(
             X = results,
             FUN = function(data) {
-                left_join(
-                    x = as_tibble(data, rownames = "rowname"),
-                    y = as_tibble(gene2symbol, rownames = "rowname"),
-                    by = "rowname"
-                ) %>%
-                    select(!!!syms(c("geneName", quovalue))) %>%
-                    na.omit() %>%
-                    distinct() %>%
-                    group_by(!!sym("geneName")) %>%
-                    summarise(!!quovalue := mean(!!quovalue)) %>%
-                    arrange(desc(!!quovalue)) %>%
-                    deframe()
+                data <- as(data, "DataFrame")
+                data[["rowname"]] <- rownames(data)
+                data <- leftJoin(data, gene2symbol, by = "rowname")
+                data <- data[, c("geneName", value), drop = FALSE]
+                data <- data[complete.cases(data), , drop = FALSE]
+                data <- unique(data)
+                ## Average the value per gene symbol, if necessary.
+                data[["geneName"]] <- as.factor(data[["geneName"]])
+                if (any(duplicated(data[["geneName"]]))) {
+                    rownames(data) <- NULL
+                    dupes <- which(duplicated(data[["geneName"]]))
+                    dupes <- as.character(data[["geneName"]][dupes])
+                    dupes <- sort(unique(dupes))
+                    message(sprintf(
+                        fmt = "Averaging '%s' value for %d gene %s: %s.",
+                        value,
+                        length(dupes),
+                        ngettext(
+                            n = length(dupes),
+                            msg1 = "symbol",
+                            msg2 = "symbols"
+                        ),
+                        toString(dupes, width = 100L)
+                    ))
+                    split <- split(data, f = data[["geneName"]])
+                    split <- SplitDataFrameList(lapply(
+                        X = split,
+                        FUN = function(x) {
+                            if (nrow(x) == 1L) return(x)
+                            args <- list()
+                            args[["geneName"]] <- x[["geneName"]][[1L]]
+                            args[[value]] <- mean(x[[value]])
+                            do.call(what = DataFrame, args = args)
+                        }
+                    ))
+                    data <- unsplit(split, f = unique(data[["geneName"]]))
+                }
+                assert(hasNoDuplicates(data[["geneName"]]))
+                ## Arrange from positive to negative.
+                data <- data[order(-data[[value]]), , drop = FALSE]
+                out <- data[[value]]
+                names(out) <- data[["geneName"]]
+                out
             }
         )
         names(list) <- names(results)
-
         out <- SimpleList(list)
         metadata(out)[["version"]] <- .version
         metadata(out)[["value"]] <- value

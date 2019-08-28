@@ -1,5 +1,6 @@
 #' @name topTables
 #' @inherit bioverbs::topTables
+#' @note Updated 2019-08-28.
 #'
 #' @description Top tables of significantly enriched pathways.
 #'
@@ -28,7 +29,7 @@ NULL
 
 
 
-## Updated 2019-07-24.
+## Updated 2019-08-28.
 `topTables,FGSEAList` <-  # nolint
     function(
         object,
@@ -59,52 +60,42 @@ NULL
                     level = headerLevel,
                     asis = TRUE
                 )
-
                 ## Filter our results, and early return on no sig features.
                 data <- .filterResults(data, alpha = alpha)
                 if (!hasRows(data)) {
                     return(invisible())  # nocov
                 }
-
                 ## Sanitize and minimize the results before printing.
-                data <- data %>%
-                    ## Drop the nested list columns
-                    ## (e.g. leadingEdge, nMoreExtreme).
-                    select_if(is.atomic) %>%
-                    ## Drop additional uninformative columns.
-                    ## Note: dplyr `-UQS` approach doesn't work for SE drops.
-                    select(!!!syms(
-                        setdiff(colnames(.), c("ES", "nMoreExtreme", "pval"))
-                    ))
-
-                ## Generate our subset tibbles to print.
-                up <- data %>%
-                    filter(!!sym("NES") > 0L) %>%
-                    arrange(!!sym("padj"), desc(!!sym("NES"))) %>%
-                    head(n = n)
-                down <- data %>%
-                    filter(!!sym("NES") < 0L) %>%
-                    arrange(!!sym("padj"), !!sym("NES")) %>%
-                    head(n = n)
-
+                ## Drop the nested list columns (e.g. leadingEdge).
+                data <- selectIf(data, is.atomic)
+                ## Drop additional uninformative columns.
+                keep <- setdiff(colnames(data), c("ES", "nMoreExtreme", "pval"))
+                data <- data[, keep, drop = FALSE]
                 markdownHeader(
                     text = "Upregulated",
                     level = headerLevel + 1L,
                     asis = TRUE
                 )
+                up <- data[data[["NES"]] > 0L, , drop = FALSE]
+                up <- up[order(up[["padj"]], -up[["NES"]]), , drop = FALSE]
+                up <- head(up, n = n)
                 if (hasRows(up)) {
-                    print(kable(up, digits = 3L))
+                    print(kable(as.data.frame(up), digits = 3L))
                 } else {
                     message("No upregulated sets.")  # nocov
                 }
-
                 markdownHeader(
                     text = "Downregulated",
                     level = headerLevel + 1L,
                     asis = TRUE
                 )
+                down <- data[data[["NES"]] < 0L, , drop = FALSE]
+                down <- down[
+                    order(down[["padj"]], down[["NES"]]), , drop = FALSE
+                    ]
+                down <- head(down, n = n)
                 if (hasRows(down)) {
-                    print(kable(down, digits = 3L))
+                    print(kable(as.data.frame(down), digits = 3L))
                 } else {
                     message("No downregulated sets.")  # nocov
                 }

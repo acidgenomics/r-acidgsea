@@ -1,5 +1,6 @@
 #' @name contrastNames
 #' @inherit bioverbs::contrastNames
+#' @note Updated 2019-08-28.
 #'
 #' @inheritParams params
 #' @param ... Additional arguments.
