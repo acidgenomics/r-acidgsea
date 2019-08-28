@@ -32,6 +32,7 @@ Imports:
     goalie (>= 0.3.6),
     BiocGenerics (>= 0.30),
     BiocParallel (>= 1.18),
+    IRanges (>= 2.18),
     S4Vectors (>= 0.22),
     SummarizedExperiment (>= 1.14),
     fgsea (>= 1.10),
@@ -63,3 +64,28 @@ biocViews:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
+Collate: 
+    'AllClasses.R'
+    'AllGenerics.R'
+    'AllGenerators.R'
+    'collectionNames-methods.R'
+    'combine-methods.R'
+    'contrastNames-methods.R'
+    'convertToHuman-methods.R'
+    'data.R'
+    'deprecated.R'
+    'enrichedGeneSets-methods.R'
+    'export-methods.R'
+    'filterResults-internal.R'
+    'globals.R'
+    'headtail-internal.R'
+    'imports.R'
+    'package.R'
+    'params.R'
+    'pfgsea.R'
+    'plotEnrichedGeneSets-methods.R'
+    'plotEnrichedUpset-methods.R'
+    'plotGSEATable-methods.R'
+    'reexports.R'
+    'show-methods.R'
+    'topTables-methods.R'
