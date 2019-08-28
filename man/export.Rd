@@ -27,6 +27,9 @@ Invisibily return file paths, either as \code{list} or \code{character}.
 \description{
 Export data out of R and write to disk.
 }
+\note{
+Updated 2019-08-28.
+}
 \examples{
 data(gsea)
 export(gsea, dir = "example")

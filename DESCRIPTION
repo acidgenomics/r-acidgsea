@@ -41,7 +41,6 @@ Imports:
     knitr (>= 1.23),
     rlang (>= 0.4),
     sessioninfo (>= 1.1),
-    tibble (>= 2.1),
     methods,
     utils
 Suggests:
@@ -86,6 +85,5 @@ Collate:
     'plotEnrichedGeneSets-methods.R'
     'plotEnrichedUpset-methods.R'
     'plotGSEATable-methods.R'
-    'reexports.R'
     'show-methods.R'
     'topTables-methods.R'
