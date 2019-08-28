@@ -1,13 +1,10 @@
-## Updated 2019-07-24.
+## Updated 2019-08-28.
 .filterResults <- function(data, alpha) {
     assert(
         is(data, "data.table"),
         isAlpha(alpha)
     )
-    data %>%
-        as_tibble() %>%
-        filter(!!sym("padj") < !!alpha) %>%
-        arrange(!!sym("padj"), desc(!!sym("NES"))) %>%
-        ## Prioritize the first columns.
-        select(!!!syms(c("pathway", "padj", "NES")), everything())
+    data <- data[data[["padj"]] < !!alpha, ]
+    data <- data[order(data[["padj"]], -data[["NES"]]), ]
+    data
 }
