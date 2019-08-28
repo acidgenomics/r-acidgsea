@@ -67,10 +67,10 @@ pfgsea <- function(
         fmt = paste(
             "Running parameterized fast GSEA...",
             "GMT files: %s",
-            "Contrasts: %s", 
+            "Contrasts: %s",
             sep = "\n"
         ),
-        toString(names(gmtFiles), width = 100L)
+        toString(names(gmtFiles), width = 100L),
         toString(names(rankedList), width = 100L)
     ))
     list <- lapply(
@@ -84,7 +84,7 @@ pfgsea <- function(
                         fmt = paste(
                             "GMT file: %s",
                             "Testing against %d pathways.",
-                            "Running using %d permutations."
+                            "Running using %d permutations.",
                             sep = "\n"
                         ),
                         basename(gmtFile),

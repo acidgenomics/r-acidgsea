@@ -1,5 +1,6 @@
+#' Show an object
 #' @name show
-#' @inherit basejump::show
+#' @inherit acidroxygen::params
 #' @examples
 #' data(gsea)
 #'
