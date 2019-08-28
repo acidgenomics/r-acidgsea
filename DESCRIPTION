@@ -39,7 +39,6 @@ Imports:
     UpSetR (>= 1.4),
     ggplot2 (>= 3.1),
     knitr (>= 1.23),
-    rlang (>= 0.4),
     sessioninfo (>= 1.1),
     methods,
     utils
