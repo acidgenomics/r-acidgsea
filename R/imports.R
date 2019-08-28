@@ -28,7 +28,5 @@
 #'
 #' @importFrom dplyr arrange desc distinct everything filter group_by pull
 #'   select select_if summarise
-#' @importFrom magrittr %>%
 #' @importFrom rlang !!! := syms
-#' @importFrom tibble deframe
 NULL

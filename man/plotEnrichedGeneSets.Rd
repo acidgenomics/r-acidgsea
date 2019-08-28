@@ -9,7 +9,7 @@
 plotEnrichedGeneSets(object, ...)
 
 \S4method{plotEnrichedGeneSets}{FGSEAList}(object, collection, n = 10L,
-  headerLevel = 3L, theme = acid_theme_light())
+  headerLevel = 3L, theme = acidplots::acid_theme_light())
 }
 \arguments{
 \item{object}{Object.}

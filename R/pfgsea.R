@@ -3,6 +3,7 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @export
+#' @note Updated 2019-08-28.
 #'
 #' @param rankedList `RankedList`.
 #'   Ranked gene list.
@@ -44,8 +45,6 @@
 #'
 #' x <- pfgsea(rankedList = rankedList, gmtFiles = gmtFiles)
 #' print(x)
-
-## Modified 2019-06-12.
 pfgsea <- function(
     rankedList,
     gmtFiles,
@@ -53,7 +52,7 @@ pfgsea <- function(
     minSize = 15L,
     maxSize = 500L,
     alpha = 0.05,
-    BPPARAM = bpparam()  # nolint
+    BPPARAM = BiocParallel::bpparam()  # nolint
 ) {
     assert(
         is(rankedList, "RankedList"),
@@ -108,7 +107,6 @@ pfgsea <- function(
         }
     )
     out <- SimpleList(list)
-
     ## Stash useful metadata.
     metadata(out) <- list(
         version = .version,
@@ -119,9 +117,9 @@ pfgsea <- function(
         alpha = alpha,
         rankedList = rankedList,
         gmtFiles = gmtFiles,
-        call = match.call(),
+        call = standardizeCall(),
         sessionInfo = session_info()
     )
-
+    ## Return.
     new(Class = "FGSEAList", out)
 }

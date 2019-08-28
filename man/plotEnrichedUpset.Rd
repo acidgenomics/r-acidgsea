@@ -26,6 +26,9 @@ Plot.
 \description{
 UpSet plot of directional enriched pathway intersections across contrasts
 }
+\note{
+Updated 2019-08-28.
+}
 \examples{
 data(gsea)
 plotEnrichedUpset(gsea, collection = "h")
