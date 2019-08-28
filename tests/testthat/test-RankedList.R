@@ -23,12 +23,15 @@ rm(value)
 test_that("Average values for duplicate gene symbols", {
     x <- deseq
     rowData <- rowData(x@data)
+    ## Rle is subsettable with `[[`.
+    ## nolint start
     rowData[["geneName"]][2L] <- rowData[["geneName"]][1L]
     rowData[["geneName"]][4L] <- rowData[["geneName"]][3L]
+    ## nolint end
     rowData(x@data) <- rowData
     y <- RankedList(x)
     expect_s4_class(y, "RankedList")
-    expect_true(nrow(x@data) - length(y[[1]]) == 2L)
+    expect_true(nrow(x@data) - length(y[[1L]]) == 2L)
 })
 
 test_that("FGSEAList", {
