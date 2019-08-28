@@ -19,7 +19,7 @@ collectionNames(object, ...) <- value
 \arguments{
 \item{object}{Object.}
 
-\item{value}{Value.}
+\item{value}{Value to assign.}
 
 \item{...}{Additional arguments.}
 }
@@ -28,6 +28,9 @@ collectionNames(object, ...) <- value
 }
 \description{
 Gene set collection names
+}
+\note{
+Updated 2019-08-28.
 }
 \examples{
 data(gsea)

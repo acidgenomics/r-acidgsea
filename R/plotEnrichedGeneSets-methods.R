@@ -31,7 +31,7 @@ NULL
         collection,
         n = 10L,
         headerLevel = 3L,
-        theme = acid_theme_light()
+        theme = acidplots::acid_theme_light()
     ) {
         validObject(object)
         alpha <- alphaThreshold(object)

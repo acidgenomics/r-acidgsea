@@ -31,10 +31,10 @@ Convert data set to use human orthologs
 \note{
 Currently requires at least Bioconductor 3.9, due to a Genomic Ranges
 subsetting issue.
+
+Updated 2019-08-28.
 }
 \examples{
-if (BiocManager::version() >= "3.9") {
-    data(deseq, package = "DESeqAnalysis")
-    convertToHuman(deseq)
-}
+data(deseq, package = "DESeqAnalysis")
+convertToHuman(deseq)
 }

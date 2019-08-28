@@ -5,7 +5,7 @@
 \title{Parameterized fast gene set enrichment analysis (GSEA)}
 \usage{
 pfgsea(rankedList, gmtFiles, nPerm = 1000L, minSize = 15L,
-  maxSize = 500L, alpha = 0.05, BPPARAM = bpparam())
+  maxSize = 500L, alpha = 0.05, BPPARAM = BiocParallel::bpparam())
 }
 \arguments{
 \item{rankedList}{\code{RankedList}.
@@ -35,6 +35,9 @@ the actual GSEA enrichment calculation.}
 }
 \description{
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
+}
+\note{
+Updated 2019-08-28.
 }
 \examples{
 data(gsea)

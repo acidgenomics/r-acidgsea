@@ -2,14 +2,7 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
-\alias{statsList}
 \title{Deprecated functions}
-\usage{
-statsList(...)
-}
-\arguments{
-\item{...}{Additional arguments.}
-}
 \value{
 \code{.Deprecated}.
 }

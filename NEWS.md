@@ -1,3 +1,10 @@
+## pfgsea 0.1.13 (2019-08-28)
+
+### Major changes
+
+- Reworked internal code to no longer depend on dplyr.
+- Improved internal handling using `DataFrame` rather than `data.table`.
+
 ## pfgsea 0.1.12 (2019-07-30)
 
 ### Minor changes

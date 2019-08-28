@@ -3,14 +3,13 @@
 \docType{class}
 \name{FGSEAList-class}
 \alias{FGSEAList-class}
-\alias{FGSEAList}
 \title{Fast GSEA list}
+\value{
+\code{FGSEAList}.
+}
 \description{
 Class containing parameterized fast GSEA results.
 }
 \note{
 Updated 2019-07-24.
-}
-\author{
-Michael Steinbaugh
 }
