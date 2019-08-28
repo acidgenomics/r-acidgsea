@@ -29,6 +29,9 @@ collectionNames(object, ...) <- value
 \description{
 Gene set collection names
 }
+\note{
+Updated 2019-08-28.
+}
 \examples{
 data(gsea)
 collectionNames(gsea)

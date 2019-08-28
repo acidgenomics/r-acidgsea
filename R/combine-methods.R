@@ -1,5 +1,6 @@
 #' @name combine
 #' @inherit BiocGenerics::combine description details return seealso title
+#' @note Updated 2019-08-28.
 #'
 #' @param x,y Object.
 #' @param ... Additional arguments.
@@ -25,31 +26,23 @@ NULL
 
 
 
-## Updated 2019-07-24.
+## Updated 2019-08-28.
 `combine,FGSEAList` <-  # nolint
     function(x, y) {
         validObject(x)
         validObject(y)
-
-        ## Require that collection names are identical.
         assert(
             identical(collectionNames(x), collectionNames(y)),
             identical(
                 x = metadata(x)[["gmtFiles"]],
                 y = metadata(y)[["gmtFiles"]]
-            )
-        )
-
-        ## Don't allow intersection of contrast names. Require the user to
-        ## rename these first before attempting to combine.
-        assert(
+            ),
             areDisjointSets(contrastNames(x), contrastNames(y)),
             areDisjointSets(
                 x = names(metadata(x)[["rankedList"]]),
                 y = names(metadata(y)[["rankedList"]]),
             )
         )
-
         ## Update the `listData` slot. Note that using `c()` directly here as
         ## `FUN` argument will prefix with `x.` and `y.`, which we don't want.
         listData <- mapply(
@@ -61,15 +54,12 @@ NULL
             SIMPLIFY = FALSE,
             USE.NAMES = TRUE
         )
-
         ## Update the `rankedList` data stashed in `metadata`.
         rankedList <- c(
             metadata(x)[["rankedList"]],
             metadata(y)[["rankedList"]]
         )
-
         assert(identical(names(listData[[1L]]), names(rankedList)))
-
         ## Internally, let's work with `x` as primary object, renamed to `out`.
         out <- x
         slot(out, "listData") <- listData
