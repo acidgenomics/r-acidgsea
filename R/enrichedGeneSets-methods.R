@@ -4,6 +4,7 @@
 #'
 #' @name enrichedGeneSets
 #' @inherit bioverbs::enrichedGeneSets
+#' @note Updated 2019-08-28.
 #'
 #' @inheritParams params
 #' @param flatten `logical(1)`.
@@ -35,7 +36,7 @@ NULL
 
 
 ## @seealso `DESeqAnalysis::plotDEGUpset()`, for looping inspiration.
-## Updated 2019-07-24.
+## Updated 2019-08-28.
 `enrichedGeneSets,FGSEAList` <-  # nolint
     function(
         object,
@@ -49,35 +50,31 @@ NULL
             isFlag(flatten),
             isAlpha(alpha)
         )
-
         collection <- object[[collection]]
         assert(
             is.list(collection),
             hasNames(collection)
         )
-
         perContrast <- mapply(
-            contrastName = names(collection),
-            contrast = collection,
-            FUN = function(contrastName, contrast) {
-                sig <- contrast %>%
-                    as_tibble() %>%
-                    filter(!!sym("padj") < !!alpha) %>%
-                    arrange(!!sym("padj"))
-                down <- sig %>%
-                    filter(!!sym("NES") < 0L) %>%
-                    arrange(!!!syms(c("padj", "NES"))) %>%
-                    pull("pathway")
-                up <- sig %>%
-                    filter(!!sym("NES") > 0L) %>%
-                    arrange(!!sym("padj"), desc(!!sym("NES"))) %>%
-                    pull("pathway")
-                list(down = down, up = up)
+            name = names(collection),
+            data = collection,
+            FUN = function(name, data) {
+                assert(is(data, "data.table"))
+                ## Subset significant enrichment.
+                data <- data[data[["padj"]] < alpha, ]
+                ## Upregulated.
+                up <- data[data[["NES"]] > 0L, ]
+                up <- up[order(up[["padj"]], -up[["NES"]]), ]
+                up <- up[["pathway"]]
+                ## Downregulated.
+                down <- data[data[["NES"]] < 0L, ]
+                down <- down[order(down[["padj"]], down[["NES"]]), ]
+                down <- down[["pathway"]]
+                list(up = up, down = down)
             },
             SIMPLIFY = FALSE,
             USE.NAMES = TRUE
         )
-
         if (isTRUE(flatten)) {
             out <- do.call(what = c, args = perContrast)
             ## Using "_" instead of "." for name concatenation.
@@ -85,7 +82,6 @@ NULL
         } else {
             out <- perContrast
         }
-
         out
     }
 
