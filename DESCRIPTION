@@ -31,7 +31,6 @@ Imports:
     bioverbs (>= 0.2.7),
     goalie (>= 0.3.6),
     BiocGenerics (>= 0.30),
-    BiocParallel (>= 1.18),
     IRanges (>= 2.18),
     S4Vectors (>= 0.22),
     SummarizedExperiment (>= 1.14),
@@ -43,6 +42,7 @@ Imports:
     methods,
     utils
 Suggests:
+    acidroxygen (>= 0.1),
     acidtest (>= 0.2.1),
     BiocStyle (>= 2.12),
     patrick (>= 0.0.1),
@@ -50,6 +50,7 @@ Suggests:
     testthat (>= 2.2)
 Remotes:
     acidgenomics/acidplots,
+    acidgenomics/acidroxygen,
     acidgenomics/acidtest,
     acidgenomics/DESeqAnalysis,
     acidgenomics/basejump,

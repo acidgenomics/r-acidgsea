@@ -31,13 +31,20 @@ Alpha level cutoff. Stored internally in \code{metadata()}.
 Applied only to plots and enriched gene set exports, but does not affect
 the actual GSEA enrichment calculation.}
 
-\item{BPPARAM}{BiocParallel parallelization parameter.}
+\item{BPPARAM}{\code{bpparamClass}.
+BiocParallel parameter to specify the desired processor configuration.\cr
+We recommend using one of the following:
+\itemize{
+\item \link[BiocParallel:bpparam]{bpparam}.
+\item \link[BiocParallel:SerialParam]{SerialParam}.
+\item \link[BiocParallel:MulticoreParam]{MulticoreParam}.
+}}
 }
 \description{
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2019-08-28.
+Updated 2019-08-29.
 }
 \examples{
 data(gsea)

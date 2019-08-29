@@ -3,8 +3,9 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @export
-#' @note Updated 2019-08-28.
+#' @note Updated 2019-08-29.
 #'
+#' @inheritParams acidroxygen::params
 #' @param rankedList `RankedList`.
 #'   Ranked gene list.
 #' @param gmtFiles `character`.
@@ -22,7 +23,6 @@
 #'   Alpha level cutoff. Stored internally in `metadata()`.
 #'   Applied only to plots and enriched gene set exports, but does not affect
 #'   the actual GSEA enrichment calculation.
-#' @param BPPARAM BiocParallel parallelization parameter.
 #'
 #' @examples
 #' data(gsea)
