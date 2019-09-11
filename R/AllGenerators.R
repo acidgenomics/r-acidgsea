@@ -7,13 +7,14 @@ NULL
 
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2019-08-28.
+#' @note Updated 2019-09-11.
 #'
 #' @section Gene symbol multi-mapping:
 #'
 #' Multiple gene IDs can map to a gene symbol (e.g. *Homo sapiens* HGNC names).
 #' In this event, we're averaging the stat values using `mean()` internally.
 #'
+#' @inheritParams acidroxygen::params
 #' @inheritParams params
 #' @param value `character(1)`.
 #'   Value type to use for GSEA. Currently supported:
@@ -77,11 +78,12 @@ setMethod(
 
 
 
-## Updated 2019-08-28.
+## Updated 2019-09-11.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
-        value = c("stat", "log2FoldChange", "padj")
+        value = c("stat", "log2FoldChange", "padj"),
+        BPPARAM = BiocParallel::bpparam()
     ) {
         validObject(object)
         value <- match.arg(value)
@@ -91,11 +93,11 @@ setMethod(
         if (identical(value, "log2FoldChange")) {
             ## Note that we're requiring shrunken LFCs if the user wants to
             ## return those values instead of using Wald test statistic.
-            results <- slot(object, "lfcShrink")
+            resultsList <- slot(object, "lfcShrink")
         } else {
-            results <- slot(object, "results")
+            resultsList <- slot(object, "results")
         }
-        assert(is(results, "list"))
+        assert(is(resultsList, "list"))
         ## Get the gene-to-symbol mappings in long format.
         ## We're returning in long format so we can average the values for each
         ## gene symbol, since for some genomes gene IDs multi-map to symbols.
@@ -105,21 +107,21 @@ setMethod(
         gene2symbol <- as(gene2symbol, "DataFrame")
         gene2symbol[["rowname"]] <- rownames(gene2symbol)
         ## Get parameterized GSEA list values for each DESeqResults contrast.
-        list <- lapply(
-            X = results,
-            FUN = function(data) {
-                data <- as(data, "DataFrame")
-                data[["rowname"]] <- rownames(data)
-                data <- leftJoin(data, gene2symbol, by = "rowname")
-                data <- data[, c("geneName", value), drop = FALSE]
-                data <- data[complete.cases(data), , drop = FALSE]
-                data <- unique(data)
+        list <- bplapply(
+            X = resultsList,
+            FUN = function(x) {
+                x <- as(x, "DataFrame")
+                x[["rowname"]] <- rownames(x)
+                x <- leftJoin(x, gene2symbol, by = "rowname")
+                x <- x[, c("geneName", value), drop = FALSE]
+                x <- x[complete.cases(x), , drop = FALSE]
+                x <- unique(x)
                 ## Average the value per gene symbol, if necessary.
-                data[["geneName"]] <- as.factor(data[["geneName"]])
-                if (any(duplicated(data[["geneName"]]))) {
-                    rownames(data) <- NULL
-                    dupes <- which(duplicated(data[["geneName"]]))
-                    dupes <- as.character(data[["geneName"]][dupes])
+                x[["geneName"]] <- as.factor(x[["geneName"]])
+                if (any(duplicated(x[["geneName"]]))) {
+                    rownames(x) <- NULL
+                    dupes <- which(duplicated(x[["geneName"]]))
+                    dupes <- as.character(x[["geneName"]][dupes])
                     dupes <- sort(unique(dupes))
                     message(sprintf(
                         fmt = "Averaging '%s' value for %d gene %s: %s.",
@@ -132,26 +134,16 @@ setMethod(
                         ),
                         toString(dupes, width = 100L)
                     ))
-                    split <- split(data, f = data[["geneName"]])
-                    split <- SplitDataFrameList(lapply(
-                        X = split,
-                        FUN = function(x) {
-                            if (nrow(x) == 1L) return(x)
-                            args <- list()
-                            args[["geneName"]] <- x[["geneName"]][[1L]]
-                            args[[value]] <- mean(x[[value]])
-                            do.call(what = DataFrame, args = args)
-                        }
-                    ))
-                    data <- unsplit(split, f = unique(data[["geneName"]]))
                 }
-                assert(hasNoDuplicates(data[["geneName"]]))
+                ## Split by the gene symbol.
+                x <- split(x = x, f = x[["geneName"]])
+                ## Calculate mean expression per symbol.
+                x <- vapply(X = x[, value], FUN = mean, FUN.VALUE = numeric(1L))
                 ## Arrange from positive to negative.
-                data <- data[order(-data[[value]]), , drop = FALSE]
-                out <- data[[value]]
-                names(out) <- data[["geneName"]]
-                out
-            }
+                x <- sort(x, decreasing = TRUE)
+                x
+            },
+            BPPARAM = BPPARAM
         )
         names(list) <- names(results)
         out <- SimpleList(list)

@@ -13,7 +13,7 @@ RankedList(object, ...)
 \S4method{RankedList}{matrix}(object, value = "log2FoldChange")
 
 \S4method{RankedList}{DESeqAnalysis}(object, value = c("stat",
-  "log2FoldChange", "padj"))
+  "log2FoldChange", "padj"), BPPARAM = BiocParallel::bpparam())
 
 \S4method{RankedList}{FGSEAList}(object)
 }
@@ -32,6 +32,15 @@ requires \code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} return to be slotte
 \item \code{padj}: Adjusted \emph{P} value. This don't provide directional ranks, but
 is offered as a legacy option. Not generally recommended.
 }}
+
+\item{BPPARAM}{\code{bpparamClass}.
+BiocParallel parameter to specify the desired processor configuration.\cr
+We recommend using one of the following:
+\itemize{
+\item \link[BiocParallel:bpparam]{bpparam}.
+\item \link[BiocParallel:SerialParam]{SerialParam}.
+\item \link[BiocParallel:MulticoreParam]{MulticoreParam}.
+}}
 }
 \value{
 \code{RankedList}.
@@ -40,7 +49,7 @@ is offered as a legacy option. Not generally recommended.
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2019-08-28.
+Updated 2019-09-11.
 }
 \section{Gene symbol multi-mapping}{
 
