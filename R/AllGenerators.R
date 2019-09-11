@@ -83,7 +83,7 @@ setMethod(
     function(
         object,
         value = c("stat", "log2FoldChange", "padj"),
-        BPPARAM = BiocParallel::bpparam()
+        BPPARAM = BiocParallel::SerialParam(progressbar = FALSE)
     ) {
         validObject(object)
         value <- match.arg(value)
@@ -145,7 +145,7 @@ setMethod(
             },
             BPPARAM = BPPARAM
         )
-        names(list) <- names(results)
+        names(list) <- names(resultsList)
         out <- SimpleList(list)
         metadata(out)[["version"]] <- .version
         metadata(out)[["value"]] <- value

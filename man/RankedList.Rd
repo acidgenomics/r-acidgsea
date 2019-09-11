@@ -13,7 +13,8 @@ RankedList(object, ...)
 \S4method{RankedList}{matrix}(object, value = "log2FoldChange")
 
 \S4method{RankedList}{DESeqAnalysis}(object, value = c("stat",
-  "log2FoldChange", "padj"), BPPARAM = BiocParallel::bpparam())
+  "log2FoldChange", "padj"),
+  BPPARAM = BiocParallel::SerialParam(progressbar = FALSE))
 
 \S4method{RankedList}{FGSEAList}(object)
 }
