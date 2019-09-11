@@ -1,6 +1,7 @@
 #' @importClassesFrom DESeqAnalysis DESeqAnalysis
 #' @importMethodsFrom DESeqAnalysis coerce
 #'
+#' @importFrom BiocParallel bplapply
 #' @importFrom DESeqAnalysis DESeqAnalysis
 #' @importFrom IRanges SplitDataFrameList unsplit
 #' @importFrom S4Vectors DataFrame SimpleList complete.cases head lapply mcols
