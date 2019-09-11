@@ -4,7 +4,7 @@ params:
   title: "Gene Set Enrichment Analysis"
   fgsealist_file: "rds/YYYY-MM-DD/object.rds"
   output_dir: !r file.path("results", Sys.Date(), "gsea")
-  n_pathways: 5
+  n_pathways: 10
 title: "`r params$title`"
 author: "`r getOption('author')`"
 date: "`r Sys.Date()`"
@@ -13,13 +13,14 @@ bibliography: bibliography.bib
 
 ```{r setup, message=FALSE}
 library(pfgsea)
-library(tidyverse)
 prepareTemplate()
 source("_setup.R")
 ```
 
 ```{r header, child="_header.Rmd"}
 ```
+
+Note that we have switched to MSigDB 7.0 (August 2019) from 6.2.
 
 # Load FGSEAList object
 
@@ -77,7 +78,7 @@ Here we are arranging the tables by normalized enrichment score (NES), positive 
 
 # Export tables
 
-Here we are exporting the GSEA tables from the object, orgaized per contrast.
+Here we are exporting the GSEA tables from the object, organized per contrast.
 
 ```{r export}
 export(
@@ -97,17 +98,6 @@ The `fgsea::gmtPathways()` function will take a GMT file from MSigDb and turn it
 
 ```{r h-top-tables, results="asis"}
 topTables(
-    object = object,
-    collection = "h",
-    n = params$n_pathways,
-    headerLevel = 3
-)
-```
-
-## Plot GSEA table {.tabset}
-
-```{r h-plot-gsea-table, results="asis"}
-plotGSEATable(
     object = object,
     collection = "h",
     n = params$n_pathways,
@@ -148,17 +138,6 @@ topTables(
 )
 ```
 
-## Plot GSEA table {.tabset}
-
-```{r c1-plot-gsea-table, results="asis"}
-plotGSEATable(
-    object = object,
-    collection = "c1",
-    n = params$n_pathways,
-    headerLevel = 3
-)
-```
-
 ## Plot enriched gene sets {.tabset}
 
 ```{r c1-plot-enriched-gene-sets, results="asis"}
@@ -185,17 +164,6 @@ plotEnrichedUpset(
 
 ```{r c2-top-tables, results="asis"}
 topTables(
-    object = object,
-    collection = "c2",
-    n = params$n_pathways,
-    headerLevel = 3
-)
-```
-
-## Plot GSEA table {.tabset}
-
-```{r c2-plot-gsea-table, results="asis"}
-plotGSEATable(
     object = object,
     collection = "c2",
     n = params$n_pathways,
@@ -236,17 +204,6 @@ topTables(
 )
 ```
 
-## Plot GSEA table {.tabset}
-
-```{r c3-plot-gsea-table, results="asis"}
-plotGSEATable(
-    object = object,
-    collection = "c3",
-    n = params$n_pathways,
-    headerLevel = 3
-)
-```
-
 ## Plot enriched gene sets {.tabset}
 
 ```{r c3-plot-enriched-gene-sets, results="asis"}
@@ -273,17 +230,6 @@ plotEnrichedUpset(
 
 ```{r c4-top-tables, results="asis"}
 topTables(
-    object = object,
-    collection = "c4",
-    n = params$n_pathways,
-    headerLevel = 3
-)
-```
-
-## Plot GSEA table {.tabset}
-
-```{r c4-plot-gsea-table, results="asis"}
-plotGSEATable(
     object = object,
     collection = "c4",
     n = params$n_pathways,
@@ -324,17 +270,6 @@ topTables(
 )
 ```
 
-## Plot GSEA table {.tabset}
-
-```{r c5-plot-gsea-table, results="asis"}
-plotGSEATable(
-    object = object,
-    collection = "c5",
-    n = params$n_pathways,
-    headerLevel = 3
-)
-```
-
 ## Plot enriched gene sets {.tabset}
 
 ```{r c5-plot-enriched-gene-sets, results="asis"}
@@ -368,17 +303,6 @@ topTables(
 )
 ```
 
-## Plot GSEA table {.tabset}
-
-```{r c6-plot-gsea-table, results="asis"}
-plotGSEATable(
-    object = object,
-    collection = "c6",
-    n = params$n_pathways,
-    headerLevel = 3
-)
-```
-
 ## Plot enriched gene sets {.tabset}
 
 ```{r c6-plot-enriched-gene-sets, results="asis"}
@@ -405,17 +329,6 @@ plotEnrichedUpset(
 
 ```{r c7-top-tables, results="asis"}
 topTables(
-    object = object,
-    collection = "c7",
-    n = params$n_pathways,
-    headerLevel = 3
-)
-```
-
-## Plot GSEA table {.tabset}
-
-```{r c7-plot-gsea-table, results="asis"}
-plotGSEATable(
     object = object,
     collection = "c7",
     n = params$n_pathways,
