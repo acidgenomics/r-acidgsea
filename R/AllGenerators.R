@@ -83,7 +83,7 @@ setMethod(
     function(
         object,
         value = c("stat", "log2FoldChange", "padj"),
-        BPPARAM = BiocParallel::SerialParam(progressbar = FALSE)
+        BPPARAM = BiocParallel::bpparam()
     ) {
         validObject(object)
         value <- match.arg(value)
