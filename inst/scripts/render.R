@@ -2,7 +2,9 @@
 ## Updated 2019-08-28.
 
 library(rmarkdown)
+
 templateFile <- "pfgsea.Rmd"
+stopifnot(file.exists(templateFile))
 
 ## Load the FGSEAList objects.
 datasets <- c("pbmc_pfgsea", "bm_pfgsea")
