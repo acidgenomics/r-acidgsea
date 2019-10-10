@@ -1,5 +1,5 @@
 ## Render multiple GSEA reports.
-## Modified 2019-08-28.
+## Updated 2019-08-28.
 
 library(rmarkdown)
 templateFile <- "pfgsea.Rmd"
