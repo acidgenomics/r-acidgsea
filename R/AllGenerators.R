@@ -78,12 +78,12 @@ setMethod(
 
 
 
-## Updated 2019-09-11.
+## Updated 2019-10-11.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
         value = c("stat", "log2FoldChange", "padj"),
-        BPPARAM = BiocParallel::bpparam()
+        BPPARAM = BiocParallel::bpparam()  # nolint
     ) {
         validObject(object)
         value <- match.arg(value)
