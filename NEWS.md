@@ -1,3 +1,10 @@
+## pfgsea 0.1.14 (2019-10-11)
+
+### Minor changes
+
+- `export`: Updated internal code to handle `leadingEdge` as `list` class.
+- Updated R Markdown template to use "object" as primary param.
+
 ## pfgsea 0.1.13 (2019-08-28)
 
 ### Major changes
