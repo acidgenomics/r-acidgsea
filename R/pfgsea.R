@@ -3,7 +3,7 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @export
-#' @note Updated 2019-08-29.
+#' @note Updated 2019-10-11.
 #'
 #' @inheritParams acidroxygen::params
 #' @param rankedList `RankedList`.
@@ -23,6 +23,8 @@
 #'   Alpha level cutoff. Stored internally in `metadata()`.
 #'   Applied only to plots and enriched gene set exports, but does not affect
 #'   the actual GSEA enrichment calculation.
+#'
+#' @return `FGSEAList`.
 #'
 #' @examples
 #' data(gsea)
