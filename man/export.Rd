@@ -28,8 +28,28 @@ Invisibily return file paths, either as \code{list} or \code{character}.
 Export data out of R and write to disk.
 }
 \note{
-Updated 2019-08-28.
+Updated 2019-10-11.
 }
+\section{On-disk structure}{
+
+
+Example: \code{fgsea/mutant_vs_control/c1.csv}
+
+S4 object is currently structured by:
+\enumerate{
+\item Gene set (c1-c8, h).
+\item Contrast.
+}
+
+The object was structured in this manner to flow with the R Markdown
+template. However, when writing to disk, I think it makes more sense to
+organize by:
+\enumerate{
+\item Contrast
+\item Gene set.
+}
+}
+
 \examples{
 data(gsea)
 export(gsea, dir = "example")

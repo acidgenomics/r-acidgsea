@@ -1,5 +1,5 @@
 ## Render multiple GSEA reports.
-## Updated 2019-08-28.
+## Updated 2019-10-11.
 
 library(rmarkdown)
 
@@ -7,13 +7,16 @@ templateFile <- "pfgsea.Rmd"
 stopifnot(file.exists(templateFile))
 
 ## Load the FGSEAList objects.
-datasets <- c("pbmc_pfgsea", "bm_pfgsea")
+datasets <- c(
+    name1 = "fgsealist1",
+    name2 = "fgsealist2"
+)
 objectFiles <- file.path(
     "rds",
     Sys.Date(),
     paste0(datasets, ".rds")
 )
-names(objectFiles) <- datasets
+names(objectFiles) <- names(datasets)
 stopifnot(all(file.exists(objectFiles)))
 
 outputDir <- file.path("results", Sys.Date(), "gsea")
@@ -29,7 +32,8 @@ invisible(mapply(
         render(
             params = list(
                 title = paste("GSEA:", name),
-                fgsealist_file = file,
+                object = file,
+                name = name,
                 output_dir = outputDir
             ),
             input = templateFile,
