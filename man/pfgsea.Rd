@@ -40,11 +40,14 @@ We recommend using one of the following:
 \item \link[BiocParallel:MulticoreParam]{MulticoreParam}.
 }}
 }
+\value{
+\code{FGSEAList}.
+}
 \description{
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2019-08-29.
+Updated 2019-10-11.
 }
 \examples{
 data(gsea)

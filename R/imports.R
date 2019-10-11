@@ -1,6 +1,7 @@
 #' @importClassesFrom DESeqAnalysis DESeqAnalysis
 #' @importMethodsFrom DESeqAnalysis coerce
 #'
+#' @importFrom BiocParallel bplapply bpparam
 #' @importFrom DESeqAnalysis DESeqAnalysis
 #' @importFrom IRanges SplitDataFrameList unsplit
 #' @importFrom S4Vectors DataFrame SimpleList complete.cases head lapply mcols
@@ -13,9 +14,9 @@
 #'   selectIf showHeader showSlotInfo standardizeCall
 #' @importFrom fgsea fgsea gmtPathways plotEnrichment plotGseaTable
 #' @importFrom ggplot2 labs
-#' @importFrom goalie areDisjointSets areSameLength assert bapply hasColnames
-#'   hasLength hasNames hasNoDuplicates hasRownames hasRows isAFile isAll
-#'   isAlpha isAny isCharacter isFile isFlag isHeaderLevel isInt isScalar
+#' @importFrom goalie allAreAtomic areDisjointSets areSameLength assert bapply
+#'   hasColnames hasLength hasNames hasNoDuplicates hasRownames hasRows isAFile
+#'   isAll isAlpha isAny isCharacter isFile isFlag isHeaderLevel isInt isScalar
 #'   isScalarInteger isString isSubset validate
 #' @importFrom knitr kable
 #' @importFrom methods as is new setAs setGeneric setMethod show slot slot<-
