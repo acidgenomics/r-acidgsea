@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.14</span>
       </span>
     </div>
 
@@ -155,11 +155,29 @@ Directory path.</p></td>
     <p>Invisibily return file paths, either as <code>list</code> or <code>character</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-08-28.</p>
+    <p>Updated 2019-10-11.</p>
+    <h2 class="hasAnchor" id="on-disk-structure"><a class="anchor" href="#on-disk-structure"></a>On-disk structure</h2>
+
+    
+
+
+<p>Example: <code>fgsea/mutant_vs_control/c1.csv</code></p>
+<p>S4 object is currently structured by:</p><ol>
+<li><p>Gene set (c1-c8, h).</p></li>
+<li><p>Contrast.</p></li>
+</ol>
+
+<p>The object was structured in this manner to flow with the R Markdown
+template. However, when writing to disk, I think it makes more sense to
+organize by:</p><ol>
+<li><p>Contrast</p></li>
+<li><p>Gene set.</p></li>
+</ol>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>)
-<span class='fu'>export</span>(<span class='no'>gsea</span>, <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"example"</span>)</div><div class='output co'>#&gt; <span class='message'>Exporting to '/data00/draco/acidbase/packages/pfgsea/docs/reference/example/gsea'.</span></div><div class='output co'>#&gt; <span class='message'>Exported 'h.csv'.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"example"</span>, <span class='st'>"gsea"</span>)))</div><div class='output co'>#&gt; [1] "dmso_r1881_vs_etoh"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"example"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
+<span class='fu'>export</span>(<span class='no'>gsea</span>, <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"example"</span>)</div><div class='output co'>#&gt; <span class='message'>Exporting to '/data00/draco/acidbase/packages/pfgsea/docs/reference/example/gsea'.</span></div><div class='output co'>#&gt; <span class='error'>Error in allAreAtomic(data): could not find function "allAreAtomic"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"example"</span>, <span class='st'>"gsea"</span>)))</div><div class='output co'>#&gt; character(0)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"example"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -167,6 +185,7 @@ Directory path.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#note">Note</a></li>
+      <li><a href="#on-disk-structure">On-disk structure</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -180,7 +199,7 @@ Directory path.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>
