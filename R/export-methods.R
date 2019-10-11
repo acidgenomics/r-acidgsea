@@ -1,6 +1,22 @@
 #' @name export
 #' @inherit bioverbs::export
-#' @note Updated 2019-08-28.
+#' @note Updated 2019-10-11.
+#'
+#' @section On-disk structure:
+#'
+#' Example: `fgsea/mutant_vs_control/c1.csv`
+#'
+#' S4 object is currently structured by:
+#'
+#' 1. Gene set (c1-c8, h).
+#' 2. Contrast.
+#'
+#' The object was structured in this manner to flow with the R Markdown
+#' template. However, when writing to disk, I think it makes more sense to
+#' organize by:
+#'
+#' 1. Contrast
+#' 2. Gene set.
 #'
 #' @inheritParams brio::export
 #' @param ... Additional arguments.
@@ -23,24 +39,6 @@ NULL
 
 
 
-## On-disk structure: fgsea/mutant_vs_control/c1.csv
-##
-## S4 object is currently structured by:
-##
-## 1. Gene set (c1-c8, h).
-## 2. Contrast.
-##
-## The object was structured in this manner to flow with the R Markdown
-## template. However, when writing to disk, I think it makes more sense to
-## organize by:
-##
-## 1. Contrast
-## 2. Gene set.
-##
-## I'm considering restructuring the object to match this approach, and may
-## apply this approach in a future update.
-##
-## Modified 2019-08-28.
 `export,FGSEAList` <-  # nolint
     function(object, name = NULL, dir = ".") {
         validObject(object)
@@ -61,11 +59,31 @@ NULL
                     X = seq_len(length(contrasts)),
                     FUN = function(contrast) {
                         data <- object[[gmt]][[contrast]]
+                        assert(
+                            is(data, "data.table"),
+                            isSubset(
+                                x = c(
+                                    "pathway",
+                                    "pval",
+                                    "padj",
+                                    "ES",
+                                    "NES",
+                                    "nMoreExtreme",
+                                    "size",
+                                    "leadingEdge"
+                                ),
+                                y = colnames(data)
+                            )
+                        )
+                        data[["leadingEdge"]] <-
+                            unlist(lapply(data[["leadingEdge"]], toString))
+                        ## Coerce "leadingEdge" list column to string.
                         file <- file.path(
                             dir,
                             names(object[[gmt]])[[contrast]],
                             paste0(names(object)[[gmt]], ".csv")
                         )
+                        assert(allAreAtomic(data))
                         export(object = data, file = file)
                     }
                 )
