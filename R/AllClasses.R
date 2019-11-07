@@ -3,7 +3,7 @@
 #' Class containing parameterized fast GSEA results.
 #'
 #' @export
-#' @note Updated 2019-07-24.
+#' @note Updated 2019-11-07.
 #'
 #' @return `FGSEAList`.
 setClass(
@@ -27,7 +27,18 @@ setClass(
                 )
             ),
             isSubset(
-                x = c("alpha", "gmtFiles", "rankedList", "version"),
+                x = c(
+                    "alpha",
+                    "call",
+                    "date",
+                    "gmtFiles",
+                    "maxSize",
+                    "minSize",
+                    "nPerm",
+                    "rankedList",
+                    "sessionInfo",
+                    "version"
+                ),
                 y = names(metadata(object))
             ),
             isCharacter(metadata(object)[["gmtFiles"]]),
