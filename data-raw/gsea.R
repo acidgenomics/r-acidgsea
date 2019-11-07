@@ -1,24 +1,26 @@
-library(pryr)
-library(usethis)
+library(pryr)      # 0.1.4
+library(usethis)   # 1.5.1
 
 dataset <- file.path(
     "~",
     "draco",
     "datasets",
-    "2018_12_EZH2_CPI1205_LNCaP_CSS_RNAseq_Genewiz"
+    "2018_12_ezh2_cpi1205_lncap_css_rnaseq_genewiz"
 )
 stopifnot(dir.exists(dataset))
 
 ## FGSEAList
-gsea <- readRDS(file.path(dataset, "rds", "2019-02-04", "gsea.rds"))
-validObject(gsea)
+object <- readRDS(file.path(dataset, "rds", "2019-02-04", "gsea.rds"))
+object <- updateObject(object)
 
-object_size(gsea)
+object_size(object)
 ## 23.5 MB
 
-gsea <- gsea["h"]
+## Subset to only contain hallmark gene sets.
+## List extraction via `[` is currently failing for S4Vectors 0.24.0.
+object <- object["h"]
 
-object_size(gsea)
+object_size(object)
 ## 3.83 MB
 
 ## nolint start
@@ -46,16 +48,19 @@ gsea@listData[["h"]] <- gsea[["h"]]["dmso_r1881_vs_etoh"]
 
 ## validObject(gsea)
 ## Error in validObject(gsea) :
-##   invalid class "FGSEAList" object: identical(names(object), names(metadata(object)[["gmtFiles"]])) is not TRUE.
+##   invalid class "FGSEAList" object: identical(names(object),
+##   names(metadata(object)[["gmtFiles"]])) is not TRUE.
 ##
-## identical(names(object[[1L]]), names(metadata(object)[["rankedList"]])) is not TRUE.
+## identical(names(object[[1L]]), names(metadata(object)[["rankedList"]])) is
+## not TRUE.
 
 ## Fix gmtFiles metadata.
 metadata(gsea)[["gmtFiles"]] <- metadata(gsea)[["gmtFiles"]]["h"]
 
 ## validObject(gsea)
 ## Error in validObject(gsea) :
-##   invalid class "FGSEAList" object: identical(names(object[[1L]]), names(metadata(object)[["rankedList"]])) is not TRUE.
+##   invalid class "FGSEAList" object: identical(names(object[[1L]]),
+##   names(metadata(object)[["rankedList"]])) is not TRUE.
 
 metadata(gsea)[["rankedList"]] <-
     metadata(gsea)[["rankedList"]]["dmso_r1881_vs_etoh"]
