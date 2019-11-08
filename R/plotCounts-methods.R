@@ -38,6 +38,10 @@ NULL
 ## Can average per sample or per gene.
 ## Not sure which approach is best yet.
 
+## FIXME For this plot, just plot the mean without the dots.
+## Consider connecting the points by a line.
+## Let's just write custom ggplot code here to handle it ourselves.
+
 
 
 `plotCounts,FGSEAList` <-  # nolint
@@ -68,30 +72,33 @@ NULL
 
         ## Now we need to map the GSEA gene symbols back to the corresponding
         ## DESeqDataSet row names (gene identifiers).
-        dds <- as(DESeqAnalysis, "DESeqDataSet")
-        ## > map <- mapGenesToRownames(object = dds, genes = symbols)
-        ## > dds <- dds[map, ]
+        dt <- as(DESeqAnalysis, "DESeqTransform")
+        map <- mapGenesToRownames(object = dt, genes = symbols)
+        dt <- dt[map, ]
+
+        res <- DESeqAnalysis@results[[1]]
+        res <- res[map, ]
+
+        ## Now we need to average the expression for all genes, and plot
+        ## as an X-Y scatter with interesting groups on the X axis (e.g.
+        ## compound treatment), with the distribution of replicates shown on the
+        ## Y axis, which are the average expression of the normalized counts.
 
         ## FIXME Currently this errors out for more than 20 genes...
         ## FIXME May need to add an average per sample here?
         ## Need to think of an aggregate approach here.
+
         plotCounts(
-            object = dds,
-            genes = head(genes, n = 2),
-            style = "facet",
+            object = dt,
+            genes = head(genes, n = 12L),
+            style = "wide",
             interestingGroups = c(
                 "vector",
                 "dox",
                 "compound"
             )
-        ) +
-            ## FIXME Need to define this utility in acidplots.
-            ## Quick functions to hide x, y, or both axes.
-            ggplot2::theme(
-                axis.title.x = ggplot2::element_blank(),
-                axis.text.x = ggplot2::element_blank(),
-                axis.ticks.x = ggplot2::element_blank()
-            )
+        )
+
 
         ## Extract the symbols from the gene set.
         ## Alternatively can parse:
