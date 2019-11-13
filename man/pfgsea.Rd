@@ -4,8 +4,15 @@
 \alias{pfgsea}
 \title{Parameterized fast gene set enrichment analysis (GSEA)}
 \usage{
-pfgsea(rankedList, gmtFiles, nPerm = 1000L, minSize = 15L,
-  maxSize = 500L, alpha = 0.05, BPPARAM = BiocParallel::bpparam())
+pfgsea(
+  rankedList,
+  gmtFiles,
+  nPerm = 1000L,
+  minSize = 15L,
+  maxSize = 500L,
+  alpha = 0.05,
+  BPPARAM = BiocParallel::bpparam()
+)
 }
 \arguments{
 \item{rankedList}{\code{RankedList}.

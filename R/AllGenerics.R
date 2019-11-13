@@ -17,3 +17,14 @@ setGeneric(
         standardGeneric("convertToHuman")
     }
 )
+
+
+
+#' @rdname plotGSEAHeatmap
+#' @export
+setGeneric(
+    name = "plotGSEAHeatmap",
+    def = function(object, ...) {
+        standardGeneric("plotGSEAHeatmap")
+    }
+)

@@ -2,11 +2,16 @@
 % Please edit documentation in R/plotCounts-methods.R
 \name{plotCounts}
 \alias{plotCounts}
+\alias{plotCounts,FGSEAList-method}
 \title{Plot counts}
 \usage{
 plotCounts(object, ...)
+
+\S4method{plotCounts}{FGSEAList}(object, collection, contrast, set, DESeqAnalysis, samples = NULL)
 }
 \arguments{
+\item{object}{Object.}
+
 \item{collection}{\code{character(1)} or \code{integer(1)}.
 Collection name or position, corresponding to values defined in
 \code{\link[base:names]{names()}}.
@@ -39,25 +44,5 @@ If \code{NULL} (default), include all samples.}
 Plot counts
 }
 \note{
-Updated 2019-11-07.
-}
-\examples{
-data(RangedSummarizedExperiment, package = "acidtest")
-
-## SummarizedExperiment ====
-object <- RangedSummarizedExperiment
-rownames <- head(rownames(object))
-print(rownames)
-g2s <- basejump::Gene2Symbol(object)
-geneIDs <- head(g2s[["geneID"]])
-print(geneIDs)
-geneNames <- head(g2s[["geneName"]])
-print(geneNames)
-
-## Rownames, gene IDs, and gene names (symbols) are supported.
-plotCounts(object, genes = geneIDs, style = "facet")
-plotCounts(object, genes = geneNames, style = "wide")
-}
-\seealso{
-\code{DESeq2::plotCounts()}.
+Updated 2019-11-13.
 }

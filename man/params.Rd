@@ -44,9 +44,6 @@ standard error correction.}
 \item{statsList}{\code{list}.
 Gene stats list.}
 
-\item{statsList}{\code{list}.
-Gene stats list.}
-
 \item{theme}{\code{theme}/\code{gg}.
 ggplot2 theme.}
 
