@@ -1,9 +1,8 @@
 #' @name plotCounts
-#' @inherit acidplots::plotCounts
-#' @note Updated 2019-11-07.
+#' @inherit acidplots::plotCounts description return title
+#' @note Updated 2019-11-13.
 #'
 #' @inheritParams acidroxygen::params
-#' @inheritParams params
 #'
 #' @param collection `character(1)` or `integer(1)`.
 #'   Collection name or position, corresponding to values defined in
@@ -104,3 +103,13 @@ NULL
         ## Alternatively can parse:
         ## > metadata(object)[["gmtFiles"]]
     }
+
+
+
+#' @rdname plotCounts
+#' @export
+setMethod(
+    f = "plotCounts",
+    signature = signature("FGSEAList"),
+    definition = `plotCounts,FGSEAList`
+)

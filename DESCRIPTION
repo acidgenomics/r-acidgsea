@@ -62,7 +62,7 @@ biocViews:
     GeneSetEnrichment,
     Visualization
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.0
 VignetteBuilder: knitr
 Collate: 
     'AllClasses.R'
@@ -86,6 +86,7 @@ Collate:
     'plotCounts-methods.R'
     'plotEnrichedGeneSets-methods.R'
     'plotEnrichedUpset-methods.R'
+    'plotGSEAHeatmap-methods.R'
     'plotGSEATable-methods.R'
     'show-methods.R'
     'topTables-methods.R'
