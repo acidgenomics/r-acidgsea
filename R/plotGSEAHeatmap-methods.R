@@ -1,3 +1,7 @@
+## FIXME This isn't fully implemented yet
+
+
+
 #' Plot normalized GSEA scores as a heatmap
 #'
 #' @name plotGSEAHeatmap
