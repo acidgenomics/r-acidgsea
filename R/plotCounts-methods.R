@@ -1,3 +1,7 @@
+## FIXME This isn't fully implemented yet
+
+
+
 #' @name plotCounts
 #' @inherit acidplots::plotCounts description return title
 #' @note Updated 2019-11-13.
