@@ -4,7 +4,7 @@
 
 #' @name plotCounts
 #' @inherit acidplots::plotCounts description return title
-#' @note Updated 2019-11-13.
+#' @note Updated 2019-11-15.
 #'
 #' @inheritParams acidroxygen::params
 #'
@@ -76,11 +76,11 @@ NULL
         ## Now we need to map the GSEA gene symbols back to the corresponding
         ## DESeqDataSet row names (gene identifiers).
         dt <- as(DESeqAnalysis, "DESeqTransform")
-        map <- mapGenesToRownames(object = dt, genes = symbols)
-        dt <- dt[map, ]
+        map <- mapGenesToRownames(object = dt, genes = genes)
+        dt <- dt[map, , drop = FALSE]
 
         res <- DESeqAnalysis@results[[1]]
-        res <- res[map, ]
+        res <- res[map, , drop = FALSE]
 
         ## Now we need to average the expression for all genes, and plot
         ## as an X-Y scatter with interesting groups on the X axis (e.g.
@@ -91,7 +91,7 @@ NULL
         ## FIXME May need to add an average per sample here?
         ## Need to think of an aggregate approach here.
 
-        plotCounts(
+        p <- plotCounts(
             object = dt,
             genes = head(genes, n = 12L),
             style = "wide",
@@ -99,8 +99,30 @@ NULL
                 "vector",
                 "dox",
                 "compound"
-            )
+            ),
+            line = "median"
         )
+
+        pdf(
+            file = "~/gsea-interferon-1.pdf",
+            width = 10,
+            height = 10
+        )
+        p
+        dev.off()
+
+        ## Strip the points from the plot, which are too busy.
+        ## Find the crossbar layer (median line) and only use that here.
+        p$layers <- p$layers[2]
+
+        pdf(
+            file = "~/gsea-interferon-2.pdf",
+            width = 10,
+            height = 10
+        )
+        p
+        dev.off()
+
 
 
         ## Extract the symbols from the gene set.
