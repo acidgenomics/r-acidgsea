@@ -5,7 +5,7 @@
 #' Plot normalized GSEA scores as a heatmap
 #'
 #' @name plotGSEAHeatmap
-#' @note Updated 2019-11-13.
+#' @note Updated 2019-11-18.
 #'
 #' @inheritParams params
 #'
