@@ -30,16 +30,45 @@ NULL
 
 
 
+## Get the leading edge genes for a GSEA contrast.
+## Updated 2019-11-18.
+.leadingEdge <- function(
+    object,
+    contrast,
+    collection,
+    set
+) {
+    assert(
+        is(object, "FGSEAList"),
+        isScalar(contrast),
+        isScalar(collection),
+        isString(set)
+    )
+    data <- object[[collection]][[contrast]]
+    assert(is(data, "data.table"))
+    ## Coerce to DataFrame, to use standard subsetting syntax.
+    data <- as(data, "DataFrame")
+    keep <- match(set, table = data[["pathway"]])
+    if (!isInt(keep)) {
+        stop(sprintf("Failed to match '%s' set.", set))
+    }
+    genes <- unlist(unname(data[keep, "leadingEdge"]))
+    assert(isCharacter(genes))
+    genes
+}
+
+
+
 ## Updated 2019-11-18.
 `plotCounts,FGSEAList` <-  # nolint
     function(
         object,
         DESeqAnalysis,
         contrast,
-        contrastSamples = TRUE,
         collection,
         set,
         n = 12L,
+        contrastSamples = TRUE,
         line = "mean",
         ...
     ) {
@@ -52,13 +81,11 @@ NULL
                 y = contrastNames(DESeqAnalysis)
             ),
             isScalar(contrast),
-            isFlag(contrastSamples),
             isScalar(collection),
             isString(set),
-            isInt(n)
+            isInt(n),
+            isFlag(contrastSamples)
         )
-        ## Plot the log counts from DESeqTransform object.
-        dt <- as(DESeqAnalysis, "DESeqTransform")
         ## Match collection to name, if necessary.
         if (!isString(collection)) {
             collection <- names(object)[[collection]]
@@ -67,18 +94,15 @@ NULL
         if (!isString(contrast)) {
             contrast <- names(object[[collection]])[[contrast]]
         }
-        ## Extract the gene symbols from the gene set.
-        data <- object[[collection]][[contrast]]
-        assert(is(data, "data.table"))
-        ## Coerce to DataFrame, to use standard subsetting syntax.
-        data <- as(data, "DataFrame")
-        keep <- match(set, table = data[["pathway"]])
-        if (!isInt(keep)) {
-            ## FIXME Tell the user which collection.
-            stop(sprintf("Failed to match '%s' set.", set))
-        }
-        genes <- unlist(unname(data[keep, "leadingEdge"]))
+        genes <- .leadingEdge(
+            object = object,
+            contrast = contrast,
+            collection = collection,
+            set = set
+        )
         genes <- head(genes, n = n)
+        ## Plot the log counts from DESeqTransform object.
+        dt <- as(DESeqAnalysis, "DESeqTransform")
         if (isTRUE(contrastSamples)) {
             colnames <- contrastSamples(DESeqAnalysis, i = contrast)
             dt <- dt[, colnames, drop = FALSE]
