@@ -3,7 +3,6 @@
 #' @note Updated 2019-11-18.
 #'
 #' @inheritParams acidroxygen::params
-#'
 #' @param DESeqAnalysis `DESeqAnalysis`.
 #'   Corresponding DESeq2 data used to perform GSEA.
 #' @param contrast `character(1)` or `integer(1)`.
@@ -17,7 +16,6 @@
 #' @param set `character(1)`.
 #'   Gene set name, in a defined `collection`.
 #'   For example, `"HALLMARK_ADIPOGENESIS"`.
-#'
 #' @param ... Additional arguments.
 NULL
 
@@ -38,10 +36,10 @@ NULL
         object,
         DESeqAnalysis,
         contrast,
+        contrastSamples = TRUE,
         collection,
         set,
         n = 12L,
-        contrastSamples = TRUE,
         line = "mean",
         ...
     ) {
@@ -54,10 +52,10 @@ NULL
                 y = contrastNames(DESeqAnalysis)
             ),
             isScalar(contrast),
+            isFlag(contrastSamples),
             isScalar(collection),
             isString(set),
-            isInt(n),
-            isFlag(contrastSamples)
+            isInt(n)
         )
         ## Plot the log counts from DESeqTransform object.
         dt <- as(DESeqAnalysis, "DESeqTransform")
