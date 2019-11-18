@@ -30,32 +30,7 @@ NULL
 
 
 
-## Get the leading edge genes for a GSEA contrast.
-## Updated 2019-11-18.
-.leadingEdge <- function(
-    object,
-    contrast,
-    collection,
-    set
-) {
-    assert(
-        is(object, "FGSEAList"),
-        isScalar(contrast),
-        isScalar(collection),
-        isString(set)
-    )
-    data <- object[[collection]][[contrast]]
-    assert(is(data, "data.table"))
-    ## Coerce to DataFrame, to use standard subsetting syntax.
-    data <- as(data, "DataFrame")
-    keep <- match(set, table = data[["pathway"]])
-    if (!isInt(keep)) {
-        stop(sprintf("Failed to match '%s' set.", set))
-    }
-    genes <- unlist(unname(data[keep, "leadingEdge"]))
-    assert(isCharacter(genes))
-    genes
-}
+
 
 
 
@@ -107,16 +82,18 @@ NULL
             colnames <- contrastSamples(DESeqAnalysis, i = contrast)
             dt <- dt[, colnames, drop = FALSE]
         }
-        plotCounts(
+        ## Using DESeqTransform method defined in DESeqAnalysis.
+        args <- list(
             object = dt,
             genes = genes,
             line = line,
             labels = list(
                 title = set,
                 subtitle = paste(collection, contrast, sep = " | ")
-            ),
-            ...
+            )
         )
+        args <- c(args, list(...))
+        do.call(what = plotHeatmap, args = args)
     }
 
 

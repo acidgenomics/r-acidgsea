@@ -32,6 +32,15 @@ NULL
         collection,
         set,
         leadingEdge = TRUE,
+        ## `acidplots::plotHeatmap()`
+        scale = "row",
+        clusteringMethod = "ward.D2",
+        clusterRows = TRUE,
+        clusterCols = TRUE,
+        ## `DESeqAnalysis::plotDEGHeatmap()`
+        color,
+        breaks = seq(from = -2L, to = 2L, by = 0.25),
+        legendBreaks = seq(from = -2L, to = 2L, by = 1L),
         ...
     ) {
         validObject(object)
@@ -63,19 +72,43 @@ NULL
         }
         ## Plot the log counts from DESeqTransform object.
         dt <- as(DESeqAnalysis, "DESeqTransform")
+        rownames <- mapGenesToRownames(object = dt, genes = genes)
+        dt <- dt[rownames, , drop = FALSE]
+        if (isTRUE(contrastSamples)) {
+            colnames <- contrastSamples(DESeqAnalysis, i = contrast)
+            dt <- dt[, colnames, drop = FALSE]
+        }
 
+        ## FIXME Alternatively, can define plotHeatmap method in DESeqAnalysis.
 
+        ## Using SummarizedExperiment method defined in acidplots here.
+        ## > labels = list(
+        ## >     title = set,
+        ## >     subtitle = paste(collection, contrast, sep = " | ")
+        ## > )
 
-
-
-
-
-
-
-
-
-
+        args <- list(
+            object = as(dt, "RangedSummarizedExperiment"),
+            scale = scale,
+            clusteringMethod = clusteringMethod,
+            clusterRows = clusterRows,
+            clusterCols = clusterCols,
+            color = color,
+            breaks = breaks,
+            legendBreaks = legendBreaks
+        )
+        args <- c(args, list(...))
+        do.call(what = plotHeatmap, args = args)
     }
+
+## FIXME Define this as default in acidplots package.
+formals(`plotHeatmap,FGSEAList`)[["color"]] <-
+    quote(
+        getOption(
+            x = "acid.heatmap.color",
+            default = acidplots::blueYellow
+        )
+    )
 
 
 
