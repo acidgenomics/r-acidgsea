@@ -1,3 +1,8 @@
+## FIXME Consider removing method support for this.
+## Would also need to remove generic from bioverbs.
+
+
+
 #' @name plotGSEATable
 #' @inherit bioverbs::plotGSEATable
 #' @note Updated 2019-08-28.
