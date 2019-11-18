@@ -39,7 +39,6 @@ Imports:
     ggplot2 (>= 3.2),
     goalie (>= 0.4),
     knitr (>= 1.25),
-    rlang (>= 0.4),
     sessioninfo (>= 1.1),
     methods,
     utils

@@ -13,7 +13,7 @@
 #'   leftJoin makeNames markdownHeader matchArgsToDoCall matchHumanOrthologs
 #'   selectIf showHeader showSlotInfo standardizeCall
 #' @importFrom fgsea fgsea gmtPathways plotEnrichment plotGseaTable
-#' @importFrom ggplot2 aes ggplot labs
+#' @importFrom ggplot2 labs
 #' @importFrom goalie allAreAtomic areDisjointSets areSameLength assert bapply
 #'   hasColnames hasLength hasNames hasNoDuplicates hasRownames hasRows isAFile
 #'   isAll isAlpha isAny isCharacter isFile isFlag isHeaderLevel isInt isScalar
@@ -21,7 +21,6 @@
 #' @importFrom knitr kable
 #' @importFrom methods as is new setAs setGeneric setMethod show slot slot<-
 #'   validObject
-#' @importFrom rlang !! sym
 #' @importFrom sessioninfo session_info
 #' @importFrom utils globalVariables
 NULL
