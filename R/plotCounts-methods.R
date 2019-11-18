@@ -1,27 +1,22 @@
-## FIXME This isn't fully implemented yet
-
-
-
 #' @name plotCounts
 #' @inherit acidplots::plotCounts description return title
-#' @note Updated 2019-11-15.
+#' @note Updated 2019-11-18.
 #'
 #' @inheritParams acidroxygen::params
 #'
+#' @param DESeqAnalysis `DESeqAnalysis`.
+#'   Corresponding DESeq2 data used to perform GSEA.
+#' @param contrast `character(1)` or `integer(1)`.
+#'   DESeqResults contrast.
+#' @param contrastSamples `logical(1)`.
+#'   Only visualize the samples defined in the contrast.
 #' @param collection `character(1)` or `integer(1)`.
 #'   Collection name or position, corresponding to values defined in
 #'   [`names()`][base::names].
 #'   For example, `"c1"` or `"h"` (for hallmark).
-#' @param contrast `character(1)` or `integer(1)`.
-#'   DESeqResults contrast.
 #' @param set `character(1)`.
 #'   Gene set name, in a defined `collection`.
 #'   For example, `"HALLMARK_ADIPOGENESIS"`.
-#' @param DESeqAnalysis `DESeqAnalysis`.
-#'   Corresponding DESeq2 data used to perform GSEA.
-#' @param samples `character` or `NULL`.
-#'   Specific samples to plot.
-#'   If `NULL` (default), include all samples.
 #'
 #' @param ... Additional arguments.
 NULL
@@ -37,97 +32,69 @@ NULL
 
 
 
-## Need to average the data here, to reduce the amount of information.
-## Can average per sample or per gene.
-## Not sure which approach is best yet.
-
-## FIXME For this plot, just plot the mean without the dots.
-## Consider connecting the points by a line.
-## Let's just write custom ggplot code here to handle it ourselves.
-
-
-
+## Updated 2019-11-18.
 `plotCounts,FGSEAList` <-  # nolint
     function(
         object,
-        collection,
-        contrast,
-        set,
         DESeqAnalysis,
-        samples = NULL
+        contrast,
+        collection,
+        set,
+        n = 12L,
+        contrastSamples = TRUE,
+        line = "mean",
+        ...
     ) {
         validObject(object)
         validObject(DESeqAnalysis)
         assert(
-            isScalar(collection),
-            isScalar(contrast),
-            isString(set),
             is(DESeqAnalysis, "DESeqAnalysis"),
-            isCharacter(samples, nullOK = TRUE)
+            identical(
+                x = names(object[[1L]]),
+                y = contrastNames(DESeqAnalysis)
+            ),
+            isScalar(contrast),
+            isScalar(collection),
+            isString(set),
+            isInt(n),
+            isFlag(contrastSamples)
         )
-
+        ## Plot the log counts from DESeqTransform object.
+        dt <- as(DESeqAnalysis, "DESeqTransform")
+        ## Match collection to name, if necessary.
+        if (!isString(collection)) {
+            collection <- names(object)[[collection]]
+        }
+        ## Match contrast to name, if necessary.
+        if (!isString(contrast)) {
+            contrast <- names(object[[collection]])[[contrast]]
+        }
         ## Extract the gene symbols from the gene set.
         data <- object[[collection]][[contrast]]
         assert(is(data, "data.table"))
-        keep <- match(x = set, table = data[["pathway"]])
-        assert(isInt(keep))
+        ## Coerce to DataFrame, to use standard subsetting syntax.
+        data <- as(data, "DataFrame")
+        keep <- match(set, table = data[["pathway"]])
+        if (!isInt(keep)) {
+            ## FIXME Tell the user which collection.
+            stop(sprintf("Failed to match '%s' set.", set))
+        }
         genes <- unlist(unname(data[keep, "leadingEdge"]))
-
-        ## Now we need to map the GSEA gene symbols back to the corresponding
-        ## DESeqDataSet row names (gene identifiers).
-        dt <- as(DESeqAnalysis, "DESeqTransform")
-        map <- mapGenesToRownames(object = dt, genes = genes)
-        dt <- dt[map, , drop = FALSE]
-
-        res <- DESeqAnalysis@results[[1]]
-        res <- res[map, , drop = FALSE]
-
-        ## Now we need to average the expression for all genes, and plot
-        ## as an X-Y scatter with interesting groups on the X axis (e.g.
-        ## compound treatment), with the distribution of replicates shown on the
-        ## Y axis, which are the average expression of the normalized counts.
-
-        ## FIXME Currently this errors out for more than 20 genes...
-        ## FIXME May need to add an average per sample here?
-        ## Need to think of an aggregate approach here.
-
-        p <- plotCounts(
+        genes <- head(genes, n = n)
+        if (isTRUE(contrastSamples)) {
+            colnames <- contrastSamples(DESeqAnalysis, i = contrast)
+            dt <- dt[, colnames, drop = FALSE]
+        }
+        plotCounts(
             object = dt,
-            genes = head(genes, n = 12L),
-            style = "wide",
-            interestingGroups = c(
-                "vector",
-                "dox",
-                "compound"
+            genes = genes,
+            line = line,
+            labels = list(
+                title = set,
+                subtitle = paste(collection, contrast, sep = " | ")
             ),
-            line = "median"
+            ...
         )
-
-        pdf(
-            file = "~/gsea-interferon-1.pdf",
-            width = 10,
-            height = 10
-        )
-        p
-        dev.off()
-
-        ## Strip the points from the plot, which are too busy.
-        ## Find the crossbar layer (median line) and only use that here.
-        p$layers <- p$layers[2]
-
-        pdf(
-            file = "~/gsea-interferon-2.pdf",
-            width = 10,
-            height = 10
-        )
-        p
-        dev.off()
-
-
-
-        ## Extract the symbols from the gene set.
-        ## Alternatively can parse:
-        ## > metadata(object)[["gmtFiles"]]
     }
 
 

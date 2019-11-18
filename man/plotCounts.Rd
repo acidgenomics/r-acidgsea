@@ -7,29 +7,41 @@
 \usage{
 plotCounts(object, ...)
 
-\S4method{plotCounts}{FGSEAList}(object, collection, contrast, set, DESeqAnalysis, samples = NULL)
+\S4method{plotCounts}{FGSEAList}(
+  object,
+  DESeqAnalysis,
+  contrast,
+  collection,
+  set,
+  n = 12L,
+  contrastSamples = TRUE,
+  line = "mean",
+  ...
+)
 }
 \arguments{
 \item{object}{Object.}
+
+\item{DESeqAnalysis}{\code{DESeqAnalysis}.
+Corresponding DESeq2 data used to perform GSEA.}
+
+\item{contrast}{\code{character(1)} or \code{integer(1)}.
+DESeqResults contrast.}
 
 \item{collection}{\code{character(1)} or \code{integer(1)}.
 Collection name or position, corresponding to values defined in
 \code{\link[base:names]{names()}}.
 For example, \code{"c1"} or \code{"h"} (for hallmark).}
 
-\item{contrast}{\code{character(1)} or \code{integer(1)}.
-DESeqResults contrast.}
-
 \item{set}{\code{character(1)}.
 Gene set name, in a defined \code{collection}.
 For example, \code{"HALLMARK_ADIPOGENESIS"}.}
 
-\item{DESeqAnalysis}{\code{DESeqAnalysis}.
-Corresponding DESeq2 data used to perform GSEA.}
+\item{n}{\code{integer(1)}.
+Number to include.}
 
-\item{samples}{\code{character} or \code{NULL}.
-Specific samples to plot.
-If \code{NULL} (default), include all samples.}
+\item{contrastSamples}{\code{logical(1)}.
+Only visualize the samples defined in the contrast.}
 
 \item{...}{Additional arguments.}
 }
@@ -44,5 +56,5 @@ If \code{NULL} (default), include all samples.}
 Plot counts
 }
 \note{
-Updated 2019-11-13.
+Updated 2019-11-18.
 }
