@@ -11,10 +11,10 @@ plotCounts(object, ...)
   object,
   DESeqAnalysis,
   contrast,
+  contrastSamples = TRUE,
   collection,
   set,
   n = 12L,
-  contrastSamples = TRUE,
   line = "mean",
   ...
 )
@@ -28,6 +28,9 @@ Corresponding DESeq2 data used to perform GSEA.}
 \item{contrast}{\code{character(1)} or \code{integer(1)}.
 DESeqResults contrast.}
 
+\item{contrastSamples}{\code{logical(1)}.
+Only visualize the samples defined in the contrast.}
+
 \item{collection}{\code{character(1)} or \code{integer(1)}.
 Collection name or position, corresponding to values defined in
 \code{\link[base:names]{names()}}.
@@ -39,9 +42,6 @@ For example, \code{"HALLMARK_ADIPOGENESIS"}.}
 
 \item{n}{\code{integer(1)}.
 Number to include.}
-
-\item{contrastSamples}{\code{logical(1)}.
-Only visualize the samples defined in the contrast.}
 
 \item{...}{Additional arguments.}
 }
