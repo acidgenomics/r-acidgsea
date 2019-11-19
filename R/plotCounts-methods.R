@@ -89,7 +89,7 @@ NULL
             line = line,
             labels = list(
                 title = set,
-                subtitle = paste(collection, contrast, sep = " | ")
+                subtitle = paste(collection, contrast, sep = "  |  ")
             )
         )
         args <- c(args, list(...))
