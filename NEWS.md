@@ -1,3 +1,10 @@
+## pfgsea 0.1.15 (UNRELEASED)
+
+### Major changes
+
+- `plotGSEATable`: Made defunct, since this visualization doesn't render very
+  reliably in R Markdown output. Consider using a heatmap approach instead.
+
 ## pfgsea 0.1.14 (2019-10-11)
 
 ### Minor changes
