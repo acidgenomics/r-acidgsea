@@ -1,6 +1,6 @@
 #' @name plotHeatmap
 #' @inherit acidplots::plotHeatmap description return title
-#' @note Updated 2019-11-18.
+#' @note Updated 2019-11-19.
 #'
 #' @inheritParams acidroxygen::params
 #' @param leadingEdge `logical(1)`.
@@ -22,7 +22,7 @@ NULL
 
 
 
-## Updated 2019-11-18.
+## Updated 2019-11-19.
 `plotHeatmap,FGSEAList` <-  # nolint
     function(
         object,
@@ -32,15 +32,6 @@ NULL
         collection,
         set,
         leadingEdge = TRUE,
-        ## `acidplots::plotHeatmap()`
-        scale = "row",
-        clusteringMethod = "ward.D2",
-        clusterRows = TRUE,
-        clusterCols = TRUE,
-        ## `DESeqAnalysis::plotDEGHeatmap()`
-        color,
-        breaks = seq(from = -2L, to = 2L, by = 0.25),
-        legendBreaks = seq(from = -2L, to = 2L, by = 1L),
         ...
     ) {
         validObject(object)
@@ -57,6 +48,14 @@ NULL
             isString(set),
             isFlag(leadingEdge)
         )
+        ## Match collection to name, if necessary.
+        if (!isString(collection)) {
+            collection <- names(object)[[collection]]
+        }
+        ## Match contrast to name, if necessary.
+        if (!isString(contrast)) {
+            contrast <- names(object[[collection]])[[contrast]]
+        }
         ## Map the genes we want to plot to the DESeq data.
         if (isTRUE(leadingEdge)) {
             genes <- .leadingEdge(
@@ -78,37 +77,13 @@ NULL
             colnames <- contrastSamples(DESeqAnalysis, i = contrast)
             dt <- dt[, colnames, drop = FALSE]
         }
-
-        ## FIXME Alternatively, can define plotHeatmap method in DESeqAnalysis.
-
-        ## Using SummarizedExperiment method defined in acidplots here.
-        ## > labels = list(
-        ## >     title = set,
-        ## >     subtitle = paste(collection, contrast, sep = " | ")
-        ## > )
-
         args <- list(
             object = as(dt, "RangedSummarizedExperiment"),
-            scale = scale,
-            clusteringMethod = clusteringMethod,
-            clusterRows = clusterRows,
-            clusterCols = clusterCols,
-            color = color,
-            breaks = breaks,
-            legendBreaks = legendBreaks
+            title = paste0(set, "\n", collection, "  |  ", contrast)
         )
         args <- c(args, list(...))
         do.call(what = plotHeatmap, args = args)
     }
-
-## FIXME Define this as default in acidplots package.
-formals(`plotHeatmap,FGSEAList`)[["color"]] <-
-    quote(
-        getOption(
-            x = "acid.heatmap.color",
-            default = acidplots::blueYellow
-        )
-    )
 
 
 
