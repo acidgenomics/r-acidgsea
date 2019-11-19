@@ -23,4 +23,13 @@ plotEnrichment <- function(...) {
 
 
 
+## v0.1.15 =====================================================================
+#' @rdname defunct
+#' @export
+plotGSEATable <- function(...) {
+    .Defunct()
+}
+
+
+
 ## nocov end

@@ -3,9 +3,12 @@
 \name{defunct}
 \alias{defunct}
 \alias{plotEnrichment}
+\alias{plotGSEATable}
 \title{Defunct functions}
 \usage{
 plotEnrichment(...)
+
+plotGSEATable(...)
 }
 \value{
 \code{.Defunct}.

@@ -8,7 +8,7 @@
 #'   mcols<- metadata metadata<- na.omit order split tail unique
 #' @importFrom SummarizedExperiment rowRanges rowRanges<-
 #' @importFrom UpSetR fromList
-#' @importFrom acidplots acid_theme_light upset
+#' @importFrom acidplots acid_theme_light plotUpset
 #' @importFrom basejump Gene2Symbol alphaThreshold as_tibble export initDir
 #'   leftJoin makeNames markdownHeader matchArgsToDoCall matchHumanOrthologs
 #'   selectIf showHeader showSlotInfo standardizeCall
