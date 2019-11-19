@@ -28,7 +28,7 @@ Depends:
 Imports:
     BiocGenerics (>= 0.32),
     BiocParallel (>= 1.20),
-    DESeqAnalysis (>= 0.2.12),
+    DESeqAnalysis (>= 0.2.13),
     IRanges (>= 2.20),
     S4Vectors (>= 0.24),
     SummarizedExperiment (>= 1.16),
