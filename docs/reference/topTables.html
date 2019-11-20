@@ -139,7 +139,7 @@
       <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
 Gene set collection name.
 Typically refers to <code>h</code>, <code>c1</code>-<code>c7</code> collections from MSigDb.
-Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
+Can obtain using <code>collectionNames()</code> on <code>FGSEAList</code> object.</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -171,8 +171,44 @@ each contrast.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>)
-<span class='fu'>topTables</span>(<span class='no'>gsea</span>, <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "FGSEAList" object: isSubset(x = c("alpha", "call", "date", "gmtFiles", "maxSize",  .... is not TRUE.</span>
-#&gt; <span class='error'>Cause: 'c("alpha", "call", "date", "gmtFiles", "maxSize", "minSize", "nPerm", "rankedList", "sessionInfo....' has elements not in 'names(metadata(object))': call, date, maxSize, minSize, nPerm, sessionInfo</span></div></pre>
+<span class='fu'>topTables</span>(<span class='no'>gsea</span>, <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; ### dmso_r1881_vs_etoh
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; #### Upregulated
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |pathway                            |  padj|   NES| size|
+#&gt; |:----------------------------------|-----:|-----:|----:|
+#&gt; |HALLMARK_E2F_TARGETS               | 0.005| 3.111|  196|
+#&gt; |HALLMARK_MYC_TARGETS_V1            | 0.005| 2.814|  197|
+#&gt; |HALLMARK_ANDROGEN_RESPONSE         | 0.005| 2.743|   97|
+#&gt; |HALLMARK_G2M_CHECKPOINT            | 0.005| 2.723|  193|
+#&gt; |HALLMARK_MYC_TARGETS_V2            | 0.005| 2.452|   58|
+#&gt; |HALLMARK_MTORC1_SIGNALING          | 0.005| 2.375|  197|
+#&gt; |HALLMARK_DNA_REPAIR                | 0.005| 2.229|  140|
+#&gt; |HALLMARK_UNFOLDED_PROTEIN_RESPONSE | 0.005| 1.929|  107|
+#&gt; |HALLMARK_MITOTIC_SPINDLE           | 0.005| 1.875|  197|
+#&gt; |HALLMARK_ESTROGEN_RESPONSE_LATE    | 0.005| 1.875|  192|
+#&gt; 
+#&gt; 
+#&gt; #### Downregulated
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |pathway                            |  padj|    NES| size|
+#&gt; |:----------------------------------|-----:|------:|----:|
+#&gt; |HALLMARK_INTERFERON_ALPHA_RESPONSE | 0.012| -1.549|   91|
+#&gt; |HALLMARK_MYOGENESIS                | 0.014| -1.830|  181|
+#&gt; |HALLMARK_HEDGEHOG_SIGNALING        | 0.014| -1.778|   34|
+#&gt; |HALLMARK_HEME_METABOLISM           | 0.014| -1.515|  187|
+#&gt; |HALLMARK_COAGULATION               | 0.019| -1.499|  118|
+#&gt; |HALLMARK_UV_RESPONSE_DN            | 0.021| -1.554|  137|
+#&gt; |HALLMARK_COMPLEMENT                | 0.022| -1.485|  180|
+#&gt; |HALLMARK_APICAL_JUNCTION           | 0.022| -1.427|  187|</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -38,14 +38,7 @@
   
 
 <meta property="og:title" content="Combining or merging different Bioconductor data structures — combine" />
-<meta property="og:description" content="The combine generic function handles methods for combining
-  or merging different Bioconductor data structures.
-  It should, given an arbitrary number of arguments of the same class
-  (possibly by inheritance), combine them into a single instance in
-  a sensible way (some methods may only combine 2 objects,
-  ignoring ... in the argument list; because Bioconductor
-  data structures are complicated, check carefully that combine
-  does as you intend)." />
+<meta property="og:description" content="Combining or merging different Bioconductor data structures" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,14 +119,7 @@
     </div>
 
     <div class="ref-description">
-    <p>The <code>combine</code> generic function handles methods for combining
-  or merging different Bioconductor data structures.
-  It should, given an arbitrary number of arguments of the same class
-  (possibly by inheritance), combine them into a single instance in
-  a sensible way (some methods may only combine 2 objects,
-  ignoring <code>...</code> in the argument list; because Bioconductor
-  data structures are complicated, check carefully that <code>combine</code>
-  does as you intend).</p>
+    <p>Combining or merging different Bioconductor data structures</p>
     </div>
 
     <pre class="usage"><span class='fu'>combine</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>...</span>)
@@ -145,7 +131,11 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x, y</th>
+      <th>x</th>
+      <td><p>Object.</p></td>
+    </tr>
+    <tr>
+      <th>y</th>
       <td><p>Object.</p></td>
     </tr>
     <tr>
@@ -159,56 +149,27 @@
     <p>A single value of the same class as the most specific common ancestor
   (in class terms) of the input values. This will contain the
   appropriate combination of the data in the input values.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>There are two basic combine strategies. One is an intersection
-  strategy. The returned value should only have rows (or columns) that
-  are found in all input data objects. The union strategy says that the
-  return value will have all rows (or columns) found in any one of the
-  input data objects (in which case some indication of what to use for
-  missing values will need to be provided).</p>
-<p>These functions and methods are currently under construction. Please
-  let us know if there are features that you require.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-08-28.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'>
-<ul>
-<li><p><a href='https://rdrr.io/pkg/Biobase/man/class.AnnotatedDataFrame.html'>combine,AnnotatedDataFrame,AnnotatedDataFrame-method</a>,
-          <a href='https://rdrr.io/pkg/Biobase/man/class.AssayData.html'>combine,AssayData,AssayData-method</a>,
-          <a href='https://rdrr.io/pkg/Biobase/man/class.MIAME.html'>combine,MIAME,MIAME-method</a>,
-          and <a href='https://rdrr.io/pkg/Biobase/man/class.eSet.html'>combine,eSet,eSet-method</a> in the <span class="pkg">Biobase</span>
-          package for additional <code>combine</code> methods.</p></li>
-<li><p><code>merge</code> for merging two data frames (or data-frame-like)
-          objects.</p></li>
-<li><p><code><a href='https://rdrr.io/r/methods/showMethods.html'>showMethods</a></code> for displaying a summary of the
-          methods defined for a given generic function.</p></li>
-<li><p><code><a href='https://rdrr.io/r/methods/getMethod.html'>selectMethod</a></code> for getting the definition of
-          a specific method.</p></li>
-<li><p><a href='https://rdrr.io/pkg/BiocGenerics/man/BiocGenerics-package.html'>BiocGenerics</a> for a summary of all the generics defined
-          in the <span class="pkg">BiocGenerics</span> package.</p></li>
-</ul>
-</div>
+    <p>Updated 2019-11-19.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>)
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>gsea</span>
-<span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"x_"</span>, <span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='no'>x</span>))</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "FGSEAList" object: isSubset(x = c("alpha", "call", "date", "gmtFiles", "maxSize",  .... is not TRUE.</span>
-#&gt; <span class='error'>Cause: 'c("alpha", "call", "date", "gmtFiles", "maxSize", "minSize", "nPerm", "rankedList", "sessionInfo....' has elements not in 'names(metadata(object))': call, date, maxSize, minSize, nPerm, sessionInfo</span></div><div class='input'><span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>gsea</span>
-<span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='no'>y</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"y_"</span>, <span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='no'>y</span>))</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "FGSEAList" object: isSubset(x = c("alpha", "call", "date", "gmtFiles", "maxSize",  .... is not TRUE.</span>
-#&gt; <span class='error'>Cause: 'c("alpha", "call", "date", "gmtFiles", "maxSize", "minSize", "nPerm", "rankedList", "sessionInfo....' has elements not in 'names(metadata(object))': call, date, maxSize, minSize, nPerm, sessionInfo</span></div><div class='input'><span class='no'>c</span> <span class='kw'>&lt;-</span> <span class='fu'>combine</span>(<span class='no'>x</span>, <span class='no'>y</span>)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(x): invalid class "FGSEAList" object: isSubset(x = c("alpha", "call", "date", "gmtFiles", "maxSize",  .... is not TRUE.</span>
-#&gt; <span class='error'>Cause: 'c("alpha", "call", "date", "gmtFiles", "maxSize", "minSize", "nPerm", "rankedList", "sessionInfo....' has elements not in 'names(metadata(object))': call, date, maxSize, minSize, nPerm, sessionInfo</span></div><div class='input'><span class='no'>c</span></div><div class='output co'>#&gt; function (...)  .Primitive("c")</div></pre>
+<span class='fu'>contrastNames</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"x_"</span>, <span class='fu'>contrastNames</span>(<span class='no'>x</span>))
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>gsea</span>
+<span class='fu'>contrastNames</span>(<span class='no'>y</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"y_"</span>, <span class='fu'>contrastNames</span>(<span class='no'>y</span>))
+<span class='no'>c</span> <span class='kw'>&lt;-</span> <span class='fu'>combine</span>(<span class='no'>x</span>, <span class='no'>y</span>)
+<span class='no'>c</span></div><div class='output co'>#&gt; FGSEAList 0.0.5 of length 1
+#&gt; collectionNames: h
+#&gt; contrastNames(2): x_dmso_r1881_vs_etoh y_dmso_r1881_vs_etoh</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
       <li><a href="#note">Note</a></li>
-      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
