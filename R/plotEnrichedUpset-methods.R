@@ -1,6 +1,6 @@
 #' @name plotEnrichedUpset
 #' @inherit bioverbs::plotEnrichedUpset
-#' @note Updated 2019-11-19.
+#' @note Updated 2019-11-20.
 #'
 #' @inheritParams params
 #' @param ... Additional arguments.
@@ -21,7 +21,7 @@ NULL
 
 
 
-## Updated 2019-11-19.
+## Updated 2019-11-20.
 `plotEnrichedUpset,FGSEAList` <-  # nolint
     function(object, collection) {
         validObject(object)
@@ -37,7 +37,7 @@ NULL
         ## Suppressing message about single contrast not having up/down overlap:
         ## geom_path: Each group consists of only one observation.
         suppressMessages(
-            plotUpset(data = fromList(listInput))
+            plotUpset(object = fromList(listInput))
         )
     }
 

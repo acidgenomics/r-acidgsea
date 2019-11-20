@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Export — export • pfgsea</title>
+<title>Plot counts — plotCounts • pfgsea</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Export — export" />
-<meta property="og:description" content="Export data out of R and write to disk." />
+<meta property="og:title" content="Plot counts — plotCounts" />
+<meta property="og:description" content="Plot counts" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,19 +113,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Export</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/export-methods.R'><code>R/export-methods.R</code></a></small>
-    <div class="hidden name"><code>export.Rd</code></div>
+    <h1>Plot counts</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/plotCounts-methods.R'><code>R/plotCounts-methods.R</code></a></small>
+    <div class="hidden name"><code>plotCounts.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Export data out of R and write to disk.</p>
+    <p>Plot counts</p>
     </div>
 
-    <pre class="usage"><span class='fu'>export</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>plotCounts</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>export</span>(<span class='no'>object</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>)</pre>
+<span class='fu'>plotCounts</span>(
+  <span class='no'>object</span>,
+  <span class='no'>DESeqAnalysis</span>,
+  <span class='no'>contrast</span>,
+  <span class='no'>collection</span>,
+  <span class='no'>set</span>,
+  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>12L</span>,
+  <span class='kw'>contrastSamples</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>line</span> <span class='kw'>=</span> <span class='st'>"mean"</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,14 +145,37 @@
       <td><p>Object.</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Name to use on disk. If <code>NULL</code>, will use the name of the object instead.</p></td>
+      <th>DESeqAnalysis</th>
+      <td><p><code>DESeqAnalysis</code>.
+Corresponding DESeq2 data used to perform GSEA.</p></td>
     </tr>
     <tr>
-      <th>dir</th>
+      <th>contrast</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> or <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
+DESeqResults contrast.</p></td>
+    </tr>
+    <tr>
+      <th>collection</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> or <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
+Collection name or position, corresponding to values defined in
+<code><a href='https://rdrr.io/r/base/names.html'>names()</a></code>.
+For example, <code>"c1"</code> or <code>"h"</code> (for hallmark).</p></td>
+    </tr>
+    <tr>
+      <th>set</th>
       <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Directory path.</p></td>
+Gene set name, in a defined <code>collection</code>.
+For example, <code>"HALLMARK_ADIPOGENESIS"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
+Number to include.</p></td>
+    </tr>
+    <tr>
+      <th>contrastSamples</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
+Only visualize the samples defined in the contrast.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -152,33 +185,17 @@ Directory path.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Invisibily return file paths, either as <code>list</code> or <code>character</code>.</p>
+    
+<ul>
+<li><p><code>style = "facet"</code>: <code>ggplot</code> grouped by <code>sampleName</code>, with
+<code><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>ggplot2::facet_wrap()</a></code> applied to panel the samples.</p></li>
+<li><p><code>style = "wide"</code>: <code>ggplot</code> in wide format, with genes on the x-axis.</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-10-11.</p>
-    <h2 class="hasAnchor" id="on-disk-structure"><a class="anchor" href="#on-disk-structure"></a>On-disk structure</h2>
+    <p>Updated 2019-11-19.</p>
 
-    
-
-
-<p>Example: <code>fgsea/mutant_vs_control/c1.csv</code></p>
-<p>S4 object is currently structured by:</p><ol>
-<li><p>Gene set (c1-c8, h).</p></li>
-<li><p>Contrast.</p></li>
-</ol>
-
-<p>The object was structured in this manner to flow with the R Markdown
-template. However, when writing to disk, I think it makes more sense to
-organize by:</p><ol>
-<li><p>Contrast</p></li>
-<li><p>Gene set.</p></li>
-</ol>
-
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>)
-<span class='fu'>export</span>(<span class='no'>gsea</span>, <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"example"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "FGSEAList" object: isSubset(x = c("alpha", "call", "date", "gmtFiles", "maxSize",  .... is not TRUE.</span>
-#&gt; <span class='error'>Cause: 'c("alpha", "call", "date", "gmtFiles", "maxSize", "minSize", "nPerm", "rankedList", "sessionInfo....' has elements not in 'names(metadata(object))': call, date, maxSize, minSize, nPerm, sessionInfo</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"example"</span>, <span class='st'>"gsea"</span>)))</div><div class='output co'>#&gt; character(0)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"example"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -186,8 +203,6 @@ organize by:</p><ol>
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#note">Note</a></li>
-      <li><a href="#on-disk-structure">On-disk structure</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

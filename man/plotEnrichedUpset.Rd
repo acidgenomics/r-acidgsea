@@ -26,7 +26,7 @@ Plot.
 UpSet plot of directional enriched pathway intersections across contrasts
 }
 \note{
-Updated 2019-11-19.
+Updated 2019-11-20.
 }
 \examples{
 data(gsea)

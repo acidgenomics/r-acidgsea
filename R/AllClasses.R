@@ -3,7 +3,7 @@
 #' Class containing parameterized fast GSEA results.
 #'
 #' @export
-#' @note Updated 2019-11-07.
+#' @note Updated 2019-11-19.
 #'
 #' @return `FGSEAList`.
 setClass(
@@ -14,8 +14,8 @@ setClass(
             is.list(object[[1L]]),
             is(object[[1L]][[1L]], "data.table"),
             identical(
-                colnames(object[[1L]][[1L]]),
-                c(
+                x = colnames(object[[1L]][[1L]]),
+                y = c(
                     "pathway",
                     "pval",
                     "padj",
@@ -28,28 +28,28 @@ setClass(
             ),
             isSubset(
                 x = c(
+                    ## "call"
+                    ## "date"
+                    ## "maxSize"
+                    ## "minSize"
+                    ## "nPerm"
+                    ## "sessionInfo"
                     "alpha",
-                    "call",
-                    "date",
                     "gmtFiles",
-                    "maxSize",
-                    "minSize",
-                    "nPerm",
                     "rankedList",
-                    "sessionInfo",
                     "version"
                 ),
                 y = names(metadata(object))
             ),
             isCharacter(metadata(object)[["gmtFiles"]]),
             identical(
-                names(object),
-                names(metadata(object)[["gmtFiles"]])
+                x = names(object),
+                y = names(metadata(object)[["gmtFiles"]])
             ),
             is(metadata(object)[["rankedList"]], "RankedList"),
             identical(
-                names(object[[1L]]),
-                names(metadata(object)[["rankedList"]])
+                x = names(object[[1L]]),
+                y = names(metadata(object)[["rankedList"]])
             )
         )
     }
