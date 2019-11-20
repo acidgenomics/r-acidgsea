@@ -3,35 +3,17 @@
 \name{defunct}
 \alias{defunct}
 \alias{plotEnrichment}
+\alias{plotGSEATable}
 \title{Defunct functions}
 \usage{
 plotEnrichment(...)
-}
-\arguments{
-\item{...}{Additional arguments.}
+
+plotGSEATable(...)
 }
 \value{
 \code{.Defunct}.
 }
 \description{
 Defunct functions
-}
-\examples{
-a <- function(...) {
-    .Defunct("b")
-}
-
-withCallingHandlers(
-    expr = tryCatch(
-        expr = a(1L),
-        error = function(e) {
-            print(e)
-            invisible()
-        }
-    )
-)
-}
-\seealso{
-\link[base:Defunct]{Defunct}.
 }
 \keyword{internal}

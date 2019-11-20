@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.14</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.15</span>
       </span>
     </div>
 
@@ -128,8 +128,11 @@
 <span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"log2FoldChange"</span>)
 
 <span class='co'># S4 method for DESeqAnalysis</span>
-<span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"stat"</span>,
-  <span class='st'>"log2FoldChange"</span>, <span class='st'>"padj"</span>), <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>())
+<span class='fu'>RankedList</span>(
+  <span class='no'>object</span>,
+  <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"stat"</span>, <span class='st'>"log2FoldChange"</span>, <span class='st'>"padj"</span>),
+  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
+)
 
 <span class='co'># S4 method for FGSEAList</span>
 <span class='fu'>RankedList</span>(<span class='no'>object</span>)</pre>
@@ -187,8 +190,8 @@ In this event, we're averaging the stat values using <code><a href='https://rdrr
     <pre class="examples"><div class='input'><span class='co'>## DESeqAnalysis ====</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>deseq</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DESeqAnalysis"</span>)
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>RankedList</span>(<span class='no'>deseq</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; RankedList of length 1
-#&gt; names(1): condition_B_vs_A</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; RankedList of length 2
+#&gt; names(2): condition_B_vs_A treatment_D_vs_C</div><div class='input'>
 <span class='co'>## FGSEAList ====</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"pfgsea"</span>)
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>RankedList</span>(<span class='no'>gsea</span>)

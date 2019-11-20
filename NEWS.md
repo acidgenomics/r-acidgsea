@@ -1,3 +1,14 @@
+## pfgsea 0.1.15 (2019-11-20)
+
+### New functions
+
+- `plotCounts`, `plotHeatmap`: Added initial `FGSEAList` method support.
+
+### Major changes
+
+- `plotGSEATable`: Made defunct, since this visualization doesn't render very
+  reliably in R Markdown output. Consider using a heatmap approach instead.
+
 ## pfgsea 0.1.14 (2019-10-11)
 
 ### Minor changes

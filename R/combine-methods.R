@@ -1,8 +1,8 @@
 #' @name combine
-#' @inherit BiocGenerics::combine description details return seealso title
-#' @note Updated 2019-08-28.
+#' @inherit BiocGenerics::combine return title
+#' @note Updated 2019-11-19.
 #'
-#' @param x,y Object.
+#' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #'
 #' @examples
