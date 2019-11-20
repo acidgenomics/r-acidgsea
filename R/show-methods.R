@@ -1,8 +1,10 @@
 #' Show an object
 #'
 #' @name show
-#' @inherit methods::show
-#' @note Updated 2019-08-28.
+#' @inherit methods::show return
+#' @note Updated 2019-11-20.
+#'
+#' @inheritParams acidroxygen::params
 #'
 #' @examples
 #' data(gsea)

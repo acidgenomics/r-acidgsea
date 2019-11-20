@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.14</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.15</span>
       </span>
     </div>
 
@@ -125,8 +125,13 @@
     <pre class="usage"><span class='fu'>plotEnrichedGeneSets</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>plotEnrichedGeneSets</span>(<span class='no'>object</span>, <span class='no'>collection</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
-  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>3L</span>, <span class='kw'>theme</span> <span class='kw'>=</span> <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/themes.html'>acid_theme_light</a></span>())</pre>
+<span class='fu'>plotEnrichedGeneSets</span>(
+  <span class='no'>object</span>,
+  <span class='no'>collection</span>,
+  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
+  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>3L</span>,
+  <span class='kw'>theme</span> <span class='kw'>=</span> <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/themes.html'>acid_theme_light</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,17 +178,8 @@ ggplot2 theme.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>)
-<span class='fu'>plotEnrichedGeneSets</span>(<span class='no'>gsea</span>, <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1L</span>)</div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; ### dmso_r1881_vs_etoh {.tabset}
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; #### HALLMARK_E2F_TARGETS
-#&gt; </div><div class='img'><img src='plotEnrichedGeneSets-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; #### HALLMARK_MYOGENESIS
-#&gt; </div><div class='img'><img src='plotEnrichedGeneSets-2.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>plotEnrichedGeneSets</span>(<span class='no'>gsea</span>, <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1L</span>)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "FGSEAList" object: isSubset(x = c("alpha", "call", "date", "gmtFiles", "maxSize",  .... is not TRUE.</span>
+#&gt; <span class='error'>Cause: 'c("alpha", "call", "date", "gmtFiles", "maxSize", "minSize", "nPerm", "rankedList", "sessionInfo....' has elements not in 'names(metadata(object))': call, date, maxSize, minSize, nPerm, sessionInfo</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

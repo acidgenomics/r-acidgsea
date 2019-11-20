@@ -1,4 +1,8 @@
-## pfgsea 0.1.15 (UNRELEASED)
+## pfgsea 0.1.15 (2019-11-20)
+
+### New functions
+
+- `plotCounts`, `plotHeatmap`: Added initial `FGSEAList` method support.
 
 ### Major changes
 

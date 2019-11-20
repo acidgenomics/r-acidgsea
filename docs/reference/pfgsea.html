@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.14</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.15</span>
       </span>
     </div>
 
@@ -122,8 +122,15 @@
     <p>Extends the functionality of <code><a href='https://rdrr.io/pkg/fgsea/man/fgsea.html'>fgsea::fgsea()</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pfgsea</span>(<span class='no'>rankedList</span>, <span class='no'>gmtFiles</span>, <span class='kw'>nPerm</span> <span class='kw'>=</span> <span class='fl'>1000L</span>, <span class='kw'>minSize</span> <span class='kw'>=</span> <span class='fl'>15L</span>,
-  <span class='kw'>maxSize</span> <span class='kw'>=</span> <span class='fl'>500L</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>())</pre>
+    <pre class="usage"><span class='fu'>pfgsea</span>(
+  <span class='no'>rankedList</span>,
+  <span class='no'>gmtFiles</span>,
+  <span class='kw'>nPerm</span> <span class='kw'>=</span> <span class='fl'>1000L</span>,
+  <span class='kw'>minSize</span> <span class='kw'>=</span> <span class='fl'>15L</span>,
+  <span class='kw'>maxSize</span> <span class='kw'>=</span> <span class='fl'>500L</span>,
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -204,7 +211,7 @@ We recommend using one of the following:</p><ul>
 #&gt; <span class='message'>GMT files: h</span>
 #&gt; <span class='message'>Contrasts: dmso_r1881_vs_etoh</span></div><div class='output co'>#&gt; <span class='message'>GMT file: h.all.v6.2.symbols.gmt</span>
 #&gt; <span class='message'>Testing against 50 pathways.</span>
-#&gt; <span class='message'>Running using 1000 permutations.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; FGSEAList 0.1.14 of length 1
+#&gt; <span class='message'>Running using 1000 permutations.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; FGSEAList 0.1.15 of length 1
 #&gt; collectionNames: h
 #&gt; contrastNames: dmso_r1881_vs_etoh</div></pre>
   </div>

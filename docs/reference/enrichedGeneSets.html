@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.14</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.15</span>
       </span>
     </div>
 
@@ -125,8 +125,7 @@
     <pre class="usage"><span class='fu'>enrichedGeneSets</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>enrichedGeneSets</span>(<span class='no'>object</span>, <span class='no'>collection</span>,
-  <span class='kw'>flatten</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>enrichedGeneSets</span>(<span class='no'>object</span>, <span class='no'>collection</span>, <span class='kw'>flatten</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -169,24 +168,8 @@ Named list formatted as:</p><ol>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>)
-<span class='fu'>enrichedGeneSets</span>(<span class='no'>gsea</span>, <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; $dmso_r1881_vs_etoh_up
-#&gt;  [1] "HALLMARK_E2F_TARGETS"               "HALLMARK_MYC_TARGETS_V1"           
-#&gt;  [3] "HALLMARK_ANDROGEN_RESPONSE"         "HALLMARK_G2M_CHECKPOINT"           
-#&gt;  [5] "HALLMARK_MYC_TARGETS_V2"            "HALLMARK_MTORC1_SIGNALING"         
-#&gt;  [7] "HALLMARK_DNA_REPAIR"                "HALLMARK_UNFOLDED_PROTEIN_RESPONSE"
-#&gt;  [9] "HALLMARK_MITOTIC_SPINDLE"           "HALLMARK_ESTROGEN_RESPONSE_LATE"   
-#&gt; [11] "HALLMARK_UV_RESPONSE_UP"            "HALLMARK_GLYCOLYSIS"               
-#&gt; [13] "HALLMARK_CHOLESTEROL_HOMEOSTASIS"   "HALLMARK_FATTY_ACID_METABOLISM"    
-#&gt; [15] "HALLMARK_ESTROGEN_RESPONSE_EARLY"   "HALLMARK_SPERMATOGENESIS"          
-#&gt; [17] "HALLMARK_PEROXISOME"                "HALLMARK_XENOBIOTIC_METABOLISM"    
-#&gt; [19] "HALLMARK_OXIDATIVE_PHOSPHORYLATION" "HALLMARK_IL2_STAT5_SIGNALING"      
-#&gt; 
-#&gt; $dmso_r1881_vs_etoh_down
-#&gt; [1] "HALLMARK_INTERFERON_ALPHA_RESPONSE" "HALLMARK_MYOGENESIS"               
-#&gt; [3] "HALLMARK_HEDGEHOG_SIGNALING"        "HALLMARK_HEME_METABOLISM"          
-#&gt; [5] "HALLMARK_COAGULATION"               "HALLMARK_UV_RESPONSE_DN"           
-#&gt; [7] "HALLMARK_COMPLEMENT"                "HALLMARK_APICAL_JUNCTION"          
-#&gt; </div></pre>
+<span class='fu'>enrichedGeneSets</span>(<span class='no'>gsea</span>, <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "FGSEAList" object: isSubset(x = c("alpha", "call", "date", "gmtFiles", "maxSize",  .... is not TRUE.</span>
+#&gt; <span class='error'>Cause: 'c("alpha", "call", "date", "gmtFiles", "maxSize", "minSize", "nPerm", "rankedList", "sessionInfo....' has elements not in 'names(metadata(object))': call, date, maxSize, minSize, nPerm, sessionInfo</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

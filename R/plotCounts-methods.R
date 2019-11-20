@@ -1,6 +1,6 @@
 #' @name plotCounts
 #' @inherit acidplots::plotCounts description return title
-#' @note Updated 2019-11-18.
+#' @note Updated 2019-11-19.
 #'
 #' @inheritParams acidroxygen::params
 #' @param DESeqAnalysis `DESeqAnalysis`.
@@ -30,15 +30,11 @@ NULL
 
 
 
-
-
-
-
-## Updated 2019-11-18.
+## Updated 2019-11-19.
 `plotCounts,FGSEAList` <-  # nolint
     function(
         object,
-        DESeqAnalysis,
+        DESeqAnalysis,  # nolint
         contrast,
         collection,
         set,

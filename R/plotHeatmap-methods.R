@@ -26,7 +26,7 @@ NULL
 `plotHeatmap,FGSEAList` <-  # nolint
     function(
         object,
-        DESeqAnalysis,
+        DESeqAnalysis,  # nolint
         contrast,
         contrastSamples = TRUE,
         collection,

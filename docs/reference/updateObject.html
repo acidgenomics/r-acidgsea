@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Combining or merging different Bioconductor data structures — combine • pfgsea</title>
+<title>Update an object to its current class definition — updateObject • pfgsea</title>
 
 
 <!-- jquery -->
@@ -37,15 +37,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Combining or merging different Bioconductor data structures — combine" />
-<meta property="og:description" content="The combine generic function handles methods for combining
-  or merging different Bioconductor data structures.
-  It should, given an arbitrary number of arguments of the same class
-  (possibly by inheritance), combine them into a single instance in
-  a sensible way (some methods may only combine 2 objects,
-  ignoring ... in the argument list; because Bioconductor
-  data structures are complicated, check carefully that combine
-  does as you intend)." />
+<meta property="og:title" content="Update an object to its current class definition — updateObject" />
+<meta property="og:description" content="updateObject is a generic function that returns an instance
+  of object updated to its current class definition." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,69 +114,99 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Combining or merging different Bioconductor data structures</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/combine-methods.R'><code>R/combine-methods.R</code></a></small>
-    <div class="hidden name"><code>combine.Rd</code></div>
+    <h1>Update an object to its current class definition</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/updateObject-methods.R'><code>R/updateObject-methods.R</code></a></small>
+    <div class="hidden name"><code>updateObject.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The <code>combine</code> generic function handles methods for combining
-  or merging different Bioconductor data structures.
-  It should, given an arbitrary number of arguments of the same class
-  (possibly by inheritance), combine them into a single instance in
-  a sensible way (some methods may only combine 2 objects,
-  ignoring <code>...</code> in the argument list; because Bioconductor
-  data structures are complicated, check carefully that <code>combine</code>
-  does as you intend).</p>
+    <p><code>updateObject</code> is a generic function that returns an instance
+  of <code>object</code> updated to its current class definition.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>combine</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>updateObject</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
-<span class='co'># S4 method for FGSEAList,FGSEAList</span>
-<span class='fu'>combine</span>(<span class='no'>x</span>, <span class='no'>y</span>)</pre>
+<span class='co'># S4 method for FGSEAList</span>
+<span class='fu'>updateObject</span>(<span class='no'>object</span>, <span class='no'>alpha</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x, y</th>
-      <td><p>Object.</p></td>
+      <th>object</th>
+      <td><p>Object to be updated for <code>updateObject</code> and
+    <code>updateObjectFromSlots</code>.</p>
+<p>Object for slot information to be extracted from for
+    <code>getObjectSlots</code>.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
+      <th>alpha</th>
+      <td><p><code>number(1)</code>.
+Alpha level used in <code><a href='pfgsea.html'>pfgsea()</a></code> call.
+Note that this is not necessarily the alpha level used to generate
+<code>DESeqResults</code> object.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A single value of the same class as the most specific common ancestor
-  (in class terms) of the input values. This will contain the
-  appropriate combination of the data in the input values.</p>
+    <p>Modified object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>There are two basic combine strategies. One is an intersection
-  strategy. The returned value should only have rows (or columns) that
-  are found in all input data objects. The union strategy says that the
-  return value will have all rows (or columns) found in any one of the
-  input data objects (in which case some indication of what to use for
-  missing values will need to be provided).</p>
-<p>These functions and methods are currently under construction. Please
-  let us know if there are features that you require.</p>
+    <p>Updating objects is primarily useful when an object has been
+  serialized (e.g., stored to disk) for some time (e.g., months), and the
+  class definition has in the mean time changed. Because of the changed
+  class definition, the serialized instance is no longer valid.</p>
+<p><code>updateObject</code> requires that the class of the returned object be
+  the same as the class of the argument <code>object</code>, and that the
+  object is valid (see <code><a href='https://rdrr.io/r/methods/validObject.html'>validObject</a></code>). By default,
+  <code>updateObject</code> has the following behaviors:</p><dl class='dl-horizontal'>
+    <dt><code>updateObject(ANY, ..., verbose=FALSE)</code></dt><dd><p>By default, <code>updateObject</code> uses heuristic methods to determine
+      whether the object should be the `new' S4 type (introduced in R 2.4.0),
+      but is not. If the heuristics indicate an update is required,
+      the <code>updateObjectFromSlots</code> function tries to update the
+      object. The default method returns the original S4 object or the
+      successfully updated object, or issues an error if an update is
+      required but not possible.
+      The optional named argument <code>verbose</code> causes a message to be
+      printed describing the action.
+      Arguments <code>...</code> are passed to <code>updateObjectFromSlots</code>.</p></dd>
+    <dt><code>updateObject(list, ..., verbose=FALSE)</code></dt><dd><p>Visit each element in <code>list</code>, applying
+      <code>updateObject(list[[elt]], ..., verbose=verbose)</code>.</p></dd>
+    <dt><code>updateObject(environment, ..., verbose=FALSE)</code></dt><dd><p>Visit each element in <code>environment</code>, applying
+      <code>updateObject(environment[[elt]], ..., verbose=verbose)</code></p></dd>
+    <dt><code>updateObject(formula, ..., verbose=FALSE)</code></dt><dd><p>Do nothing; the environment of the formula may be too general
+      (e.g., <code>R_GlobalEnv</code>) to attempt an update.</p></dd>
+    <dt><code>updateObject(envRefClass, ..., verbose=FALSE)</code></dt><dd><p>Attempt to update objects from fields using a strategy like
+      <code>updateObjectFromSlots</code> Method 1.</p></dd>
+  
+</dl>
+
+<p><code>updateObjectFromSlots(object, objclass=class(object), ...,
+  verbose=FALSE)</code> is a utility function that identifies the intersection
+  of slots defined in the <code>object</code> instance and <code>objclass</code>
+  definition. Under Method 1, the corresponding elements in
+  <code>object</code> are then updated (with <code>updateObject(elt, ...,
+  verbose=verbose)</code>) and used as arguments to a call to <code>new(class,
+  ...)</code>, with <code>...</code> replaced by slots from the original
+  object. If this fails, then Method 2 tries <code>new(class)</code> and
+  assigns slots of <code>object</code> to the newly created instance.</p>
+<p><code>getObjectSlots(object)</code> extracts the slot names and contents from
+  <code>object</code>. This is useful when <code>object</code> was created by a class
+  definition that is no longer current, and hence the contents of
+  <code>object</code> cannot be determined by accessing known slots.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-08-28.</p>
+    <p>Updated 2019-11-07.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'>
 <ul>
-<li><p><a href='https://rdrr.io/pkg/Biobase/man/class.AnnotatedDataFrame.html'>combine,AnnotatedDataFrame,AnnotatedDataFrame-method</a>,
-          <a href='https://rdrr.io/pkg/Biobase/man/class.AssayData.html'>combine,AssayData,AssayData-method</a>,
-          <a href='https://rdrr.io/pkg/Biobase/man/class.MIAME.html'>combine,MIAME,MIAME-method</a>,
-          and <a href='https://rdrr.io/pkg/Biobase/man/class.eSet.html'>combine,eSet,eSet-method</a> in the <span class="pkg">Biobase</span>
-          package for additional <code>combine</code> methods.</p></li>
-<li><p><code>merge</code> for merging two data frames (or data-frame-like)
-          objects.</p></li>
+<li><p><code><a href='https://rdrr.io/pkg/Biobase/man/updateObjectTo.html'>updateObjectTo</a></code> in the <span class="pkg">Biobase</span> package
+          for updating an object to the class definition of a template (might
+          be useful for updating a virtual superclass).</p></li>
+<li><p><code><a href='https://rdrr.io/r/methods/validObject.html'>validObject</a></code> for testing the validity of an
+          object.</p></li>
 <li><p><code><a href='https://rdrr.io/r/methods/showMethods.html'>showMethods</a></code> for displaying a summary of the
           methods defined for a given generic function.</p></li>
 <li><p><code><a href='https://rdrr.io/r/methods/getMethod.html'>selectMethod</a></code> for getting the definition of
@@ -194,12 +218,8 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>gsea</span>
-<span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"x_"</span>, <span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='no'>x</span>))</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "FGSEAList" object: isSubset(x = c("alpha", "call", "date", "gmtFiles", "maxSize",  .... is not TRUE.</span>
-#&gt; <span class='error'>Cause: 'c("alpha", "call", "date", "gmtFiles", "maxSize", "minSize", "nPerm", "rankedList", "sessionInfo....' has elements not in 'names(metadata(object))': call, date, maxSize, minSize, nPerm, sessionInfo</span></div><div class='input'><span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>gsea</span>
-<span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='no'>y</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"y_"</span>, <span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='no'>y</span>))</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "FGSEAList" object: isSubset(x = c("alpha", "call", "date", "gmtFiles", "maxSize",  .... is not TRUE.</span>
-#&gt; <span class='error'>Cause: 'c("alpha", "call", "date", "gmtFiles", "maxSize", "minSize", "nPerm", "rankedList", "sessionInfo....' has elements not in 'names(metadata(object))': call, date, maxSize, minSize, nPerm, sessionInfo</span></div><div class='input'><span class='no'>c</span> <span class='kw'>&lt;-</span> <span class='fu'>combine</span>(<span class='no'>x</span>, <span class='no'>y</span>)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(x): invalid class "FGSEAList" object: isSubset(x = c("alpha", "call", "date", "gmtFiles", "maxSize",  .... is not TRUE.</span>
-#&gt; <span class='error'>Cause: 'c("alpha", "call", "date", "gmtFiles", "maxSize", "minSize", "nPerm", "rankedList", "sessionInfo....' has elements not in 'names(metadata(object))': call, date, maxSize, minSize, nPerm, sessionInfo</span></div><div class='input'><span class='no'>c</span></div><div class='output co'>#&gt; function (...)  .Primitive("c")</div></pre>
+<span class='fu'>updateObject</span>(<span class='no'>gsea</span>)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "FGSEAList" object: isSubset(x = c("alpha", "call", "date", "gmtFiles", "maxSize",  .... is not TRUE.</span>
+#&gt; <span class='error'>Cause: 'c("alpha", "call", "date", "gmtFiles", "maxSize", "minSize", "nPerm", "rankedList", "sessionInfo....' has elements not in 'names(metadata(object))': call, date, maxSize, minSize, nPerm, sessionInfo</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -212,6 +232,8 @@
       <li><a href="#examples">Examples</a></li>
     </ul>
 
+    <h2>Author</h2>
+    <p>Michael Steinbaugh</p>
   </div>
 </div>
 
