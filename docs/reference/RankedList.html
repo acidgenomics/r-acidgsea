@@ -194,9 +194,9 @@ In this event, we're averaging the stat values using <code><a href='https://rdrr
 #&gt; names(2): condition_B_vs_A treatment_D_vs_C</div><div class='input'>
 <span class='co'>## FGSEAList ====</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"pfgsea"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>RankedList</span>(<span class='no'>gsea</span>)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "FGSEAList" object: isSubset(x = c("alpha", "call", "date", "gmtFiles", "maxSize",  .... is not TRUE.</span>
-#&gt; <span class='error'>Cause: 'c("alpha", "call", "date", "gmtFiles", "maxSize", "minSize", "nPerm", "rankedList", "sessionInfo....' has elements not in 'names(metadata(object))': call, date, maxSize, minSize, nPerm, sessionInfo</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; RankedList of length 2
-#&gt; names(2): condition_B_vs_A treatment_D_vs_C</div><div class='input'>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>RankedList</span>(<span class='no'>gsea</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; RankedList of length 1
+#&gt; names(1): dmso_r1881_vs_etoh</div><div class='input'>
 <span class='co'>## matrix ====</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>matrix_lfc</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>RankedList</span>(<span class='no'>matrix_lfc</span>)

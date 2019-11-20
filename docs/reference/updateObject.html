@@ -142,7 +142,7 @@
     <tr>
       <th>alpha</th>
       <td><p><code>number(1)</code>.
-Alpha level used in <code><a href='pfgsea.html'>pfgsea()</a></code> call.
+Alpha level used in <code>pfgsea()</code> call.
 Note that this is not necessarily the alpha level used to generate
 <code>DESeqResults</code> object.</p></td>
     </tr>
@@ -218,8 +218,9 @@ Note that this is not necessarily the alpha level used to generate
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>)
-<span class='fu'>updateObject</span>(<span class='no'>gsea</span>)</div><div class='output co'>#&gt; <span class='error'>Error in validObject(object): invalid class "FGSEAList" object: isSubset(x = c("alpha", "call", "date", "gmtFiles", "maxSize",  .... is not TRUE.</span>
-#&gt; <span class='error'>Cause: 'c("alpha", "call", "date", "gmtFiles", "maxSize", "minSize", "nPerm", "rankedList", "sessionInfo....' has elements not in 'names(metadata(object))': call, date, maxSize, minSize, nPerm, sessionInfo</span></div></pre>
+<span class='fu'>updateObject</span>(<span class='no'>gsea</span>)</div><div class='output co'>#&gt; FGSEAList 0.0.5 of length 1
+#&gt; collectionNames: h
+#&gt; contrastNames: dmso_r1881_vs_etoh</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
