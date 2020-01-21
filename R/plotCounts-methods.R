@@ -1,21 +1,9 @@
 #' @name plotCounts
 #' @inherit acidplots::plotCounts description params return title
-#' @note Updated 2020-01-09.
+#' @note Updated 2020-01-20.
 #'
 #' @inheritParams acidroxygen::params
-#' @param DESeqAnalysis `DESeqAnalysis`.
-#'   Corresponding DESeq2 data used to perform GSEA.
-#' @param contrast `character(1)` or `integer(1)`.
-#'   DESeqResults contrast.
-#' @param collection `character(1)` or `integer(1)`.
-#'   Collection name or position, corresponding to values defined in
-#'   [`names()`][base::names].
-#'   For example, `"c1"` or `"h"` (for hallmark).
-#' @param set `character(1)`.
-#'   Gene set name, in a defined `collection`.
-#'   For example, `"HALLMARK_ADIPOGENESIS"`.
-#' @param contrastSamples `logical(1)`.
-#'   Only visualize the samples defined in the contrast.
+#' @inheritParams params
 #' @param ... Additional arguments.
 NULL
 
