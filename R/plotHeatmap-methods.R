@@ -15,7 +15,7 @@ NULL
 
 #' @rdname plotHeatmap
 #' @name plotHeatmap
-#' @importFrom bioverbs plotHeatmap
+#' @importFrom acidgenerics plotHeatmap
 #' @usage plotHeatmap(object, ...)
 #' @export
 NULL
