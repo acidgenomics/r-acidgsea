@@ -1,7 +1,7 @@
 #' @name updateObject
 #' @author Michael Steinbaugh
 #' @inherit BiocGenerics::updateObject
-#' @note Updated 2019-11-07.
+#' @note Updated 2020-01-20.
 #'
 #' @inheritParams acidroxygen::params
 #' @param alpha `number(1)`.
@@ -30,15 +30,20 @@ NULL
 
 
 `updateObject,FGSEAList` <-  # nolint
-    function(object, alpha) {
+    function(object, alpha, verbose = TRUE) {
+        assert(isFlag(verbose))
         ## Slot alpha if undefined.
         if (!isSubset("alpha", names(metadata(object)))) {
-            message("Object does not contain alpha used to perform GSEA.")
+            if (isTRUE(verbose)) {
+                message("Object does not contain alpha used to perform GSEA.")
+            }
             if (missing(alpha)) {
                 alpha <- 0.05
             }
             assert(isAlpha(alpha))
-            message("Assigning alpha of ", alpha, " into 'metadata()'.")
+            if (isTRUE(verbose)) {
+                message("Assigning alpha of ", alpha, " into 'metadata()'.")
+            }
             metadata(object)[["alpha"]] <- alpha
         }
         validObject(object)

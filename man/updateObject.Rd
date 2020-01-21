@@ -7,7 +7,7 @@
 \usage{
 updateObject(object, ..., verbose = FALSE)
 
-\S4method{updateObject}{FGSEAList}(object, alpha)
+\S4method{updateObject}{FGSEAList}(object, alpha, verbose = TRUE)
 }
 \arguments{
 \item{object}{
@@ -90,7 +90,7 @@ Updating objects is primarily useful when an object has been
   \code{object} cannot be determined by accessing known slots.
 }
 \note{
-Updated 2019-11-07.
+Updated 2020-01-20.
 }
 \examples{
 data(gsea)
