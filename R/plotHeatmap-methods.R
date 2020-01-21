@@ -3,6 +3,7 @@
 #' @note Updated 2019-11-19.
 #'
 #' @inheritParams acidroxygen::params
+#' @inheritParams plotCounts
 #' @param leadingEdge `logical(1)`.
 #'   Visualize only the leading edge genes returned by GSEA. If `FALSE`, plot
 #'   all genes in the gene set, which requires the external gene set file that
