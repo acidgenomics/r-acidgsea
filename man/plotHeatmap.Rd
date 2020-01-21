@@ -31,9 +31,10 @@ DESeqResults contrast.}
 Only visualize the samples defined in the contrast.}
 
 \item{collection}{\code{character(1)} or \code{integer(1)}.
-Collection name or position, corresponding to values defined in
+Gene set collection name or position, corresponding to values defined in
 \code{\link[base:names]{names()}}.
-For example, \code{"c1"} or \code{"h"} (for hallmark).}
+Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
+Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 
 \item{set}{\code{character(1)}.
 Gene set name, in a defined \code{collection}.
@@ -54,5 +55,5 @@ inside the object at \code{metadata(object)[["gmtFiles"]]}.}
 Construct a simple heatmap.
 }
 \note{
-Updated 2019-11-19.
+Updated 2020-01-20.
 }

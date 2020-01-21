@@ -1,14 +1,9 @@
 #' @name plotHeatmap
 #' @inherit acidplots::plotHeatmap description return title
-#' @note Updated 2019-11-19.
+#' @note Updated 2020-01-20.
 #'
 #' @inheritParams acidroxygen::params
-#' @inheritParams plotCounts
-#' @param leadingEdge `logical(1)`.
-#'   Visualize only the leading edge genes returned by GSEA. If `FALSE`, plot
-#'   all genes in the gene set, which requires the external gene set file that
-#'   was originally used to run the analysis. This file is referenced internally
-#'   inside the object at `metadata(object)[["gmtFiles"]]`.
+#' @inheritParams params
 #' @param ... Additional arguments.
 NULL
 
