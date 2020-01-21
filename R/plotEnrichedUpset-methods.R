@@ -1,5 +1,5 @@
 #' @name plotEnrichedUpset
-#' @inherit bioverbs::plotEnrichedUpset
+#' @inherit acidgenerics::plotEnrichedUpset
 #' @note Updated 2019-11-20.
 #'
 #' @inheritParams params
@@ -14,7 +14,7 @@ NULL
 
 #' @rdname plotEnrichedUpset
 #' @name plotEnrichedUpset
-#' @importFrom bioverbs plotEnrichedUpset
+#' @importFrom acidgenerics plotEnrichedUpset
 #' @usage plotEnrichedUpset(object, ...)
 #' @export
 NULL

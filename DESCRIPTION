@@ -2,8 +2,8 @@ Package: pfgsea
 Title: Parameterized Fast GSEA
 Description: Perform parameterized gene set enrichment analysis on multiple
     differential expression contrasts.
-Version: 0.1.15
-Date: 2019-11-19
+Version: 0.1.16
+Date: 2020-01-20
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -24,7 +24,7 @@ Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 3.6),
-    basejump (>= 0.11.23)
+    basejump (>= 0.12.0)
 Imports:
     BiocGenerics (>= 0.32),
     BiocParallel (>= 1.20),
@@ -33,36 +33,36 @@ Imports:
     S4Vectors (>= 0.24),
     SummarizedExperiment (>= 1.16),
     UpSetR (>= 1.4),
+    acidgenerics (>= 0.3.0),
     acidplots (>= 0.2.19),
-    bioverbs (>= 0.2.12),
     fgsea (>= 1.12),
     ggplot2 (>= 3.2),
-    goalie (>= 0.4),
+    goalie (>= 0.4.1),
     knitr (>= 1.25),
     sessioninfo (>= 1.1),
     methods,
     utils
 Suggests:
     BiocStyle (>= 2.14),
-    acidroxygen (>= 0.1.4),
-    acidtest (>= 0.2.8),
+    acidroxygen (>= 0.1.6),
+    acidtest (>= 0.2.11),
     patrick (>= 0.0.1),
     rmarkdown (>= 1.16),
     testthat (>= 2.3)
 Remotes:
+    acidgenomics/DESeqAnalysis,
+    acidgenomics/acidgenerics,
     acidgenomics/acidplots,
     acidgenomics/acidroxygen,
     acidgenomics/acidtest,
-    acidgenomics/DESeqAnalysis,
     acidgenomics/basejump,
-    acidgenomics/bioverbs,
     acidgenomics/goalie
 biocViews:
     GeneExpression,
     GeneSetEnrichment,
     Visualization
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.2
 VignetteBuilder: knitr
 Collate: 
     'AllClasses.R'

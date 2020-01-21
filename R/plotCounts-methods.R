@@ -23,7 +23,7 @@ NULL
 
 #' @rdname plotCounts
 #' @name plotCounts
-#' @importFrom bioverbs plotCounts
+#' @importFrom acidgenerics plotCounts
 #' @usage plotCounts(object, ...)
 #' @export
 NULL

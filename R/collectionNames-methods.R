@@ -1,5 +1,5 @@
 #' @name collectionNames
-#' @inherit bioverbs::collectionNames
+#' @inherit acidgenerics::collectionNames
 #' @note Updated 2019-08-28.
 #' @param ... Additional arguments.
 #' @examples
@@ -11,14 +11,14 @@ NULL
 
 #' @rdname collectionNames
 #' @name collectionNames
-#' @importFrom bioverbs collectionNames
+#' @importFrom acidgenerics collectionNames
 #' @usage collectionNames(object, ...)
 #' @export
 NULL
 
 #' @rdname collectionNames
 #' @name collectionNames<-
-#' @importFrom bioverbs collectionNames<-
+#' @importFrom acidgenerics collectionNames<-
 #' @usage collectionNames(object, ...) <- value
 #' @export
 NULL

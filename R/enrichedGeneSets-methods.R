@@ -3,7 +3,7 @@
 #' Enriched pathways from gene set collections
 #'
 #' @name enrichedGeneSets
-#' @inherit bioverbs::enrichedGeneSets
+#' @inherit acidgenerics::enrichedGeneSets
 #' @note Updated 2019-08-28.
 #'
 #' @inheritParams params
@@ -28,7 +28,7 @@ NULL
 
 #' @rdname enrichedGeneSets
 #' @name enrichedGeneSets
-#' @importFrom bioverbs enrichedGeneSets
+#' @importFrom acidgenerics enrichedGeneSets
 #' @usage enrichedGeneSets(object, ...)
 #' @export
 NULL
