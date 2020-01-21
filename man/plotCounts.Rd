@@ -60,5 +60,5 @@ group. Disabled by default and if samples are colored by sample name.}
 Plot counts
 }
 \note{
-Updated 2020-01-209.
+Updated 2020-01-09.
 }

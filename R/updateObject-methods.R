@@ -30,7 +30,7 @@ NULL
 
 
 `updateObject,FGSEAList` <-  # nolint
-    function(object, alpha, verbose = TRUE) {
+    function(object, alpha, verbose = FALSE) {
         assert(isFlag(verbose))
         ## Slot alpha if undefined.
         if (!isSubset("alpha", names(metadata(object)))) {
