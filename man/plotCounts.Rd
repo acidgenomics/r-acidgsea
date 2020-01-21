@@ -43,6 +43,10 @@ Number to include.}
 \item{contrastSamples}{\code{logical(1)}.
 Only visualize the samples defined in the contrast.}
 
+\item{line}{\code{character(1)}.
+Include average (median, mean, or geometric mean) line for each interesting
+group. Disabled by default and if samples are colored by sample name.}
+
 \item{...}{Additional arguments.}
 }
 \value{
@@ -56,5 +60,5 @@ Only visualize the samples defined in the contrast.}
 Plot counts
 }
 \note{
-Updated 2019-11-19.
+Updated 2020-01-209.
 }
