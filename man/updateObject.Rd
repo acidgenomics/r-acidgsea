@@ -7,7 +7,7 @@
 \usage{
 updateObject(object, ..., verbose = FALSE)
 
-\S4method{updateObject}{FGSEAList}(object, alpha, verbose = TRUE)
+\S4method{updateObject}{FGSEAList}(object, alpha, verbose = FALSE)
 }
 \arguments{
 \item{object}{
