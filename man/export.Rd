@@ -27,7 +27,7 @@ Invisibily return file paths, either as \code{list} or \code{character}.
 Export data out of R and write to disk.
 }
 \note{
-Updated 2019-10-11.
+Updated 2020-01-20.
 }
 \section{On-disk structure}{
 

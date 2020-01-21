@@ -29,9 +29,10 @@ Corresponding DESeq2 data used to perform GSEA.}
 DESeqResults contrast.}
 
 \item{collection}{\code{character(1)} or \code{integer(1)}.
-Collection name or position, corresponding to values defined in
+Gene set collection name or position, corresponding to values defined in
 \code{\link[base:names]{names()}}.
-For example, \code{"c1"} or \code{"h"} (for hallmark).}
+Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
+Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 
 \item{set}{\code{character(1)}.
 Gene set name, in a defined \code{collection}.
@@ -42,6 +43,10 @@ Number to include.}
 
 \item{contrastSamples}{\code{logical(1)}.
 Only visualize the samples defined in the contrast.}
+
+\item{line}{\code{character(1)}.
+Include average (median, mean, or geometric mean) line for each interesting
+group. Disabled by default and if samples are colored by sample name.}
 
 \item{...}{Additional arguments.}
 }
@@ -56,5 +61,5 @@ Only visualize the samples defined in the contrast.}
 Plot counts
 }
 \note{
-Updated 2019-11-19.
+Updated 2020-01-20.
 }

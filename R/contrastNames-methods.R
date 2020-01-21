@@ -1,5 +1,5 @@
 #' @name contrastNames
-#' @inherit bioverbs::contrastNames
+#' @inherit acidgenerics::contrastNames
 #' @note Updated 2019-08-28.
 #'
 #' @inheritParams params
@@ -14,14 +14,14 @@ NULL
 
 #' @rdname contrastNames
 #' @name contrastNames
-#' @importFrom bioverbs contrastNames
+#' @importFrom acidgenerics contrastNames
 #' @usage contrastNames(object, ...)
 #' @export
 NULL
 
 #' @rdname contrastNames
 #' @name contrastNames<-
-#' @importFrom bioverbs contrastNames<-
+#' @importFrom acidgenerics contrastNames<-
 #' @usage contrastNames(object, ...) <- value
 #' @export
 NULL

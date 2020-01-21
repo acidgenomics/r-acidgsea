@@ -1,5 +1,5 @@
 #' @name topTables
-#' @inherit bioverbs::topTables
+#' @inherit acidgenerics::topTables
 #' @note Updated 2019-08-28.
 #'
 #' @description Top tables of significantly enriched pathways.
@@ -22,7 +22,7 @@ NULL
 
 #' @rdname topTables
 #' @name topTables
-#' @importFrom bioverbs topTables
+#' @importFrom acidgenerics topTables
 #' @usage topTables(object, ...)
 #' @export
 NULL
