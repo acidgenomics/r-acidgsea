@@ -1,5 +1,5 @@
 #' @name plotEnrichedGeneSets
-#' @inherit bioverbs::plotEnrichedGeneSets
+#' @inherit acidgenerics::plotEnrichedGeneSets
 #'
 #' @inheritParams params
 #' @param ... Additional arguments.
@@ -17,7 +17,7 @@ NULL
 
 #' @rdname plotEnrichedGeneSets
 #' @name plotEnrichedGeneSets
-#' @importFrom bioverbs plotEnrichedGeneSets
+#' @importFrom acidgenerics plotEnrichedGeneSets
 #' @usage plotEnrichedGeneSets(object, ...)
 #' @export
 NULL

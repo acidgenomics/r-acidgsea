@@ -1,6 +1,6 @@
 #' @name export
-#' @inherit bioverbs::export
-#' @note Updated 2019-10-11.
+#' @inherit acidgenerics::export
+#' @note Updated 2020-01-20.
 #'
 #' @section On-disk structure:
 #'
@@ -18,7 +18,7 @@
 #' 1. Contrast
 #' 2. Gene set.
 #'
-#' @inheritParams brio::export
+#' @inheritParams pipette::export
 #' @param ... Additional arguments.
 #'
 #' @examples
@@ -32,7 +32,7 @@ NULL
 
 #' @rdname export
 #' @name export
-#' @importFrom bioverbs export
+#' @importFrom acidgenerics export
 #' @usage export(object, ...)
 #' @export
 NULL

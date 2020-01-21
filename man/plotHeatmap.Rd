@@ -21,6 +21,25 @@ plotHeatmap(object, ...)
 \arguments{
 \item{object}{Object.}
 
+\item{DESeqAnalysis}{\code{DESeqAnalysis}.
+Corresponding DESeq2 data used to perform GSEA.}
+
+\item{contrast}{\code{character(1)} or \code{integer(1)}.
+DESeqResults contrast.}
+
+\item{contrastSamples}{\code{logical(1)}.
+Only visualize the samples defined in the contrast.}
+
+\item{collection}{\code{character(1)} or \code{integer(1)}.
+Gene set collection name or position, corresponding to values defined in
+\code{\link[base:names]{names()}}.
+Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
+Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+
+\item{set}{\code{character(1)}.
+Gene set name, in a defined \code{collection}.
+For example, \code{"HALLMARK_ADIPOGENESIS"}.}
+
 \item{leadingEdge}{\code{logical(1)}.
 Visualize only the leading edge genes returned by GSEA. If \code{FALSE}, plot
 all genes in the gene set, which requires the external gene set file that
@@ -36,5 +55,5 @@ inside the object at \code{metadata(object)[["gmtFiles"]]}.}
 Construct a simple heatmap.
 }
 \note{
-Updated 2019-11-19.
+Updated 2020-01-20.
 }
