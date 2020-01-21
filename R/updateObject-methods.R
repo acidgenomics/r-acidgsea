@@ -8,6 +8,8 @@
 #'   Alpha level used in [pfgsea()] call.
 #'   Note that this is not necessarily the alpha level used to generate
 #'   `DESeqResults` object.
+#' @param verbose `logical(1)`.
+#'   Whether information about the update should be reported.
 #'
 #' @return Modified object.
 #'
@@ -21,7 +23,7 @@ NULL
 #' @rdname updateObject
 #' @name updateObject
 #' @importFrom BiocGenerics updateObject
-#' @usage updateObject(object, ...)
+#' @usage updateObject(object, ..., verbose = FALSE)
 #' @export
 NULL
 

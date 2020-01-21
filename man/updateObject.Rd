@@ -5,7 +5,7 @@
 \alias{updateObject,FGSEAList-method}
 \title{Update an object to its current class definition}
 \usage{
-updateObject(object, ...)
+updateObject(object, ..., verbose = FALSE)
 
 \S4method{updateObject}{FGSEAList}(object, alpha)
 }
@@ -22,6 +22,9 @@ updateObject(object, ...)
 Alpha level used in \code{\link[=pfgsea]{pfgsea()}} call.
 Note that this is not necessarily the alpha level used to generate
 \code{DESeqResults} object.}
+
+\item{verbose}{\code{logical(1)}.
+Whether information about the update should be reported.}
 }
 \value{
 Modified object.
