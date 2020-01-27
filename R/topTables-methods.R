@@ -1,6 +1,6 @@
 #' @name topTables
 #' @inherit acidgenerics::topTables
-#' @note Updated 2019-08-28.
+#' @note Updated 2020-01-27.
 #'
 #' @description Top tables of significantly enriched pathways.
 #'
@@ -29,7 +29,7 @@ NULL
 
 
 
-## Updated 2019-08-28.
+## Updated 2020-01-27.
 `topTables,FGSEAList` <-  # nolint
     function(
         object,
@@ -82,7 +82,7 @@ NULL
                 if (hasRows(up)) {
                     print(kable(as.data.frame(up), digits = 3L))
                 } else {
-                    message("No upregulated sets.")  # nocov
+                    cli_alert_info("No upregulated sets.")  # nocov
                 }
                 markdownHeader(
                     text = "Downregulated",
@@ -97,7 +97,7 @@ NULL
                 if (hasRows(down)) {
                     print(kable(as.data.frame(down), digits = 3L))
                 } else {
-                    message("No downregulated sets.")  # nocov
+                    cli_alert_info("No downregulated sets.")  # nocov
                 }
             },
             SIMPLIFY = FALSE,

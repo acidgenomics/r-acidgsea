@@ -1,3 +1,15 @@
+## pfgsea 0.1.17 (2020-01-27)
+
+### Minor changes
+
+- Now using cli package for interactive messages.
+
+## pfgsea 0.1.16 (2020-01-20)
+
+### Minor changes
+
+- NAMESPACE update required for changes in basejump v0.12.
+
 ## pfgsea 0.1.15 (2019-11-20)
 
 ### New functions

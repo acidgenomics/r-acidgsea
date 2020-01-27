@@ -3,7 +3,7 @@
 #' @name convertToHuman
 #' @note Currently requires at least Bioconductor 3.9, due to a Genomic Ranges
 #'   subsetting issue.
-#' @note Updated 2019-08-28.
+#' @note Updated 2020-01-27.
 #'
 #' @inheritParams params
 #' @param map `DataFrame`, or `NULL`.
@@ -22,7 +22,7 @@ NULL
 
 
 
-## Updated 2019-08-28.
+## Updated 2020-01-27.
 `convertToHuman,DESeqAnalysis` <-  # nolint
     function(object, map = NULL) {
         validObject(object)
@@ -50,13 +50,13 @@ NULL
             isString(organism),
             isScalarInteger(ensemblRelease)
         )
-        message(sprintf(
+        cli_alert_info(sprintf(
             "%s (Ensembl %d) detected.",
             organism, ensemblRelease
         ))
         ## Early return on Homo sapiens.
         if (identical(organism, "Homo sapiens")) {
-            message("Returning unmodified.")
+            cli_alert_warning("Returning unmodified.")
             return(object)
         }
         ## Now we're ready to match the human orthologs.
@@ -79,7 +79,7 @@ NULL
         assert(identical(rownames(data), rownames(map)))
         keep <- !is.na(map[["hgncID"]])
         assert(any(keep))
-        message(sprintf(
+        cli_alert_info(sprintf(
             "Matched %d / %d genes to human orthologs.",
             sum(keep, na.rm = TRUE),
             nrow(map)
