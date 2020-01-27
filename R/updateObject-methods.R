@@ -36,14 +36,16 @@ NULL
         ## Slot alpha if undefined.
         if (!isSubset("alpha", names(metadata(object)))) {
             if (isTRUE(verbose)) {
-                message("Object does not contain alpha used to perform GSEA.")
+                cli_alert_warning(
+                    "Object does not contain alpha used to perform GSEA."
+                )
             }
             if (missing(alpha)) {
                 alpha <- 0.05
             }
             assert(isAlpha(alpha))
             if (isTRUE(verbose)) {
-                message("Assigning alpha of ", alpha, " into 'metadata()'.")
+                cli_alert("Assigning alpha of ", alpha, " into 'metadata()'.")
             }
             metadata(object)[["alpha"]] <- alpha
         }
