@@ -1,7 +1,7 @@
 #' @name updateObject
 #' @author Michael Steinbaugh
 #' @inherit BiocGenerics::updateObject
-#' @note Updated 2020-01-20.
+#' @note Updated 2020-01-27.
 #'
 #' @inheritParams acidroxygen::params
 #' @param alpha `number(1)`.
@@ -10,6 +10,7 @@
 #'   `DESeqResults` object.
 #' @param verbose `logical(1)`.
 #'   Whether information about the update should be reported.
+#' @param ... Additional arguments.
 #'
 #' @return Modified object.
 #'

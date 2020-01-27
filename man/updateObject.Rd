@@ -25,6 +25,8 @@ Note that this is not necessarily the alpha level used to generate
 
 \item{verbose}{\code{logical(1)}.
 Whether information about the update should be reported.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 Modified object.
@@ -90,7 +92,7 @@ Updating objects is primarily useful when an object has been
   \code{object} cannot be determined by accessing known slots.
 }
 \note{
-Updated 2020-01-20.
+Updated 2020-01-27.
 }
 \examples{
 data(gsea)
