@@ -51,7 +51,7 @@ We recommend using one of the following:
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2019-09-11.
+Updated 2020-01-27.
 }
 \section{Gene symbol multi-mapping}{
 
