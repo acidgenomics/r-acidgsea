@@ -76,7 +76,7 @@ pfgsea <- function(
                 X = rankedList,
                 FUN = function(stats) {
                     pathways <- gmtPathways(gmt.file = gmtFile)
-                    cli_dl("GMT file" = basename(gmtFile))
+                    cli_dl(c("GMT file" = basename(gmtFile)))
                     cli_alert_info(sprintf(
                         "Testing against %d pathways.",
                         length(pathways)
