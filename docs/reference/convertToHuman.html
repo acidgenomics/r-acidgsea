@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.17</span>
       </span>
     </div>
 
@@ -156,11 +156,11 @@ Features (i.e. rownames) will be remapped to human genes.</p>
 
     <p>Currently requires at least Bioconductor 3.9, due to a Genomic Ranges
 subsetting issue.</p>
-<p>Updated 2019-08-28.</p>
+<p>Updated 2020-01-27.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>deseq</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DESeqAnalysis"</span>)
-<span class='fu'>convertToHuman</span>(<span class='no'>deseq</span>)</div><div class='output co'>#&gt; <span class='message'>Homo sapiens (Ensembl 92) detected.</span></div><div class='output co'>#&gt; <span class='message'>Returning unmodified.</span></div><div class='output co'>#&gt; DESeqAnalysis 0.2.11; DESeq2 1.26.0
+<span class='fu'>convertToHuman</span>(<span class='no'>deseq</span>)</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> Homo sapiens (Ensembl 92) detected.</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #BBBB00;'>!</span><span> Returning unmodified.</span></div><div class='output co'>#&gt; DESeqAnalysis 0.2.11; DESeq2 1.26.0
 #&gt; data:
 #&gt;   dim: 500 12 
 #&gt;   metadata(3): version date interestingGroups
@@ -173,7 +173,7 @@ subsetting issue.</p>
 #&gt; resultsNames(2): condition_B_vs_A treatment_D_vs_C
 #&gt; alpha: 0.01
 #&gt; lfcThreshold: 0
-#&gt; lfcShrinkType: apeglm</div></pre>
+#&gt; lfcShrinkType: apeglm</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

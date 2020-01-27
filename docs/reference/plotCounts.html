@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.17</span>
       </span>
     </div>
 
@@ -157,9 +157,10 @@ DESeqResults contrast.</p></td>
     <tr>
       <th>collection</th>
       <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> or <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
-Collection name or position, corresponding to values defined in
+Gene set collection name or position, corresponding to values defined in
 <code><a href='https://rdrr.io/r/base/names.html'>names()</a></code>.
-For example, <code>"c1"</code> or <code>"h"</code> (for hallmark).</p></td>
+Typically refers to <code>h</code> (hallmark), <code>c1</code>-<code>c7</code> collections from MSigDb.
+Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
     </tr>
     <tr>
       <th>set</th>
@@ -178,6 +179,12 @@ Number to include.</p></td>
 Only visualize the samples defined in the contrast.</p></td>
     </tr>
     <tr>
+      <th>line</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Include average (median, mean, or geometric mean) line for each interesting
+group. Disabled by default and if samples are colored by sample name.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Additional arguments.</p></td>
     </tr>
@@ -194,7 +201,7 @@ Only visualize the samples defined in the contrast.</p></td>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-11-19.</p>
+    <p>Updated 2020-01-20.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
