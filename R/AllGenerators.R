@@ -7,7 +7,7 @@ NULL
 
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2019-09-11.
+#' @note Updated 2020-01-27.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -78,7 +78,7 @@ setMethod(
 
 
 
-## Updated 2019-10-11.
+## Updated 2020-01-27.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
@@ -123,7 +123,7 @@ setMethod(
                     dupes <- which(duplicated(x[["geneName"]]))
                     dupes <- as.character(x[["geneName"]][dupes])
                     dupes <- sort(unique(dupes))
-                    message(sprintf(
+                    cli_alert(sprintf(
                         fmt = "Averaging '%s' value for %d gene %s: %s.",
                         value,
                         length(dupes),

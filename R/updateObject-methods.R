@@ -1,7 +1,7 @@
 #' @name updateObject
 #' @author Michael Steinbaugh
 #' @inherit BiocGenerics::updateObject
-#' @note Updated 2020-01-20.
+#' @note Updated 2020-01-27.
 #'
 #' @inheritParams acidroxygen::params
 #' @param alpha `number(1)`.
@@ -10,6 +10,7 @@
 #'   `DESeqResults` object.
 #' @param verbose `logical(1)`.
 #'   Whether information about the update should be reported.
+#' @param ... Additional arguments.
 #'
 #' @return Modified object.
 #'
@@ -35,14 +36,16 @@ NULL
         ## Slot alpha if undefined.
         if (!isSubset("alpha", names(metadata(object)))) {
             if (isTRUE(verbose)) {
-                message("Object does not contain alpha used to perform GSEA.")
+                cli_alert_warning(
+                    "Object does not contain alpha used to perform GSEA."
+                )
             }
             if (missing(alpha)) {
                 alpha <- 0.05
             }
             assert(isAlpha(alpha))
             if (isTRUE(verbose)) {
-                message("Assigning alpha of ", alpha, " into 'metadata()'.")
+                cli_alert("Assigning alpha of ", alpha, " into 'metadata()'.")
             }
             metadata(object)[["alpha"]] <- alpha
         }

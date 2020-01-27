@@ -38,7 +38,7 @@ Supports looping across multiple DEG results, and adds a Markdown header for
 each contrast.
 }
 \note{
-Updated 2019-08-28.
+Updated 2020-01-27.
 }
 \examples{
 data(gsea)

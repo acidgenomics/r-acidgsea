@@ -3,7 +3,7 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @export
-#' @note Updated 2019-10-11.
+#' @note Updated 2020-01-27.
 #'
 #' @inheritParams acidroxygen::params
 #' @param rankedList `RankedList`.
@@ -64,16 +64,11 @@ pfgsea <- function(
         isAlpha(alpha)
     )
     validObject(rankedList)
-    message(sprintf(
-        fmt = paste(
-            "Running parameterized fast GSEA...",
-            "GMT files: %s",
-            "Contrasts: %s",
-            sep = "\n"
-        ),
-        toString(names(gmtFiles), width = 100L),
-        toString(names(rankedList), width = 100L)
-    ))
+    cli_alert("Running parameterized fast GSEA.")
+    cli_text("GMT files:")
+    cli_ul(names(gmtFiles))
+    cli_text("Contrasts:")
+    cli_ul(names(rankedList))
     list <- lapply(
         X = gmtFiles,
         FUN = function(gmtFile) {
@@ -81,15 +76,13 @@ pfgsea <- function(
                 X = rankedList,
                 FUN = function(stats) {
                     pathways <- gmtPathways(gmt.file = gmtFile)
-                    message(sprintf(
-                        fmt = paste(
-                            "GMT file: %s",
-                            "Testing against %d pathways.",
-                            "Running using %d permutations.",
-                            sep = "\n"
-                        ),
-                        basename(gmtFile),
-                        length(pathways),
+                    cli_dl(c("GMT file" = basename(gmtFile)))
+                    cli_alert_info(sprintf(
+                        "Testing against %d pathways.",
+                        length(pathways)
+                    ))
+                    cli_alert_info(sprintf(
+                        "Running using %d permutations.",
                         nPerm
                     ))
                     suppressWarnings(
