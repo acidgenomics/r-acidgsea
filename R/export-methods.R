@@ -1,6 +1,6 @@
 #' @name export
 #' @inherit acidgenerics::export
-#' @note Updated 2020-01-20.
+#' @note Updated 2020-01-27.
 #'
 #' @section On-disk structure:
 #'
@@ -39,6 +39,7 @@ NULL
 
 
 
+## Updated 2020-01-27.
 `export,FGSEAList` <-  # nolint
     function(object, name = NULL, dir = ".") {
         validObject(object)
@@ -50,7 +51,7 @@ NULL
         ## Note that we're combining the dir with name, so we can set
         ## subdirectories for each slotted data type (e.g. `DESeqDataSet`).
         dir <- initDir(file.path(dir, name))
-        message(sprintf("Exporting to '%s'.", dir))
+        cli_alert(sprintf("Exporting to '{.path %s}'.", dir))
         files <- lapply(
             X = seq_len(length(object)),
             FUN = function(gmt) {
