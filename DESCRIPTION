@@ -35,6 +35,7 @@ Imports:
     UpSetR (>= 1.4),
     acidgenerics (>= 0.3.0),
     acidplots (>= 0.2.22),
+    cli (>= 2.0),
     fgsea (>= 1.12),
     ggplot2 (>= 3.2),
     goalie (>= 0.4.1),
