@@ -13,6 +13,7 @@
 #'   initDir leftJoin makeNames mapGenesToRownames markdownHeader
 #'   matchArgsToDoCall matchHumanOrthologs selectIf showHeader showSlotInfo
 #'   standardizeCall
+#' @importFrom cli cli_alert cli_alert_warning
 #' @importFrom fgsea fgsea gmtPathways plotEnrichment plotGseaTable
 #' @importFrom ggplot2 labs
 #' @importFrom goalie allAreAtomic areDisjointSets areSameLength assert bapply
