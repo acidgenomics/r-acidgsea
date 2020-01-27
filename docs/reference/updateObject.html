@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.17</span>
       </span>
     </div>
 
@@ -124,10 +124,10 @@
   of <code>object</code> updated to its current class definition.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>updateObject</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>updateObject</span>(<span class='no'>object</span>, <span class='no'>...</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>updateObject</span>(<span class='no'>object</span>, <span class='no'>alpha</span>)</pre>
+<span class='fu'>updateObject</span>(<span class='no'>object</span>, <span class='no'>alpha</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,9 +142,18 @@
     <tr>
       <th>alpha</th>
       <td><p><code>number(1)</code>.
-Alpha level used in <code>pfgsea()</code> call.
+Alpha level used in <code><a href='pfgsea.html'>pfgsea()</a></code> call.
 Note that this is not necessarily the alpha level used to generate
 <code>DESeqResults</code> object.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
+Whether information about the update should be reported.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
 
@@ -197,7 +206,7 @@ Note that this is not necessarily the alpha level used to generate
   <code>object</code> cannot be determined by accessing known slots.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-11-07.</p>
+    <p>Updated 2020-01-27.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'>
