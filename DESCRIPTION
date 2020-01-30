@@ -19,7 +19,7 @@ URL:
     https://pfgsea.acidgenomics.com/pfgsea/,
     https://github.com/acidgenomics/pfgsea/
 BugReports: https://github.com/acidgenomics/pfgsea/issues/
-License: MIT + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: false
 Depends:
