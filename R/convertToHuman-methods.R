@@ -3,7 +3,7 @@
 #' @name convertToHuman
 #' @note Currently requires at least Bioconductor 3.9, due to a Genomic Ranges
 #'   subsetting issue.
-#' @note Updated 2020-01-27.
+#' @note Updated 2020-03-15.
 #'
 #' @inheritParams params
 #' @param map `DataFrame`, or `NULL`.
@@ -22,7 +22,7 @@ NULL
 
 
 
-## Updated 2020-01-27.
+## Updated 2020-03-15.
 `convertToHuman,DESeqAnalysis` <-  # nolint
     function(object, map = NULL) {
         validObject(object)
