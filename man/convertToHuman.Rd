@@ -31,7 +31,7 @@ Convert data set to use human orthologs
 Currently requires at least Bioconductor 3.9, due to a Genomic Ranges
 subsetting issue.
 
-Updated 2020-01-27.
+Updated 2020-03-15.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")

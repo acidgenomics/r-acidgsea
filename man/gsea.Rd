@@ -4,7 +4,9 @@
 \name{gsea}
 \alias{gsea}
 \title{FGSEAList example data}
-\format{An object of class \code{FGSEAList} of length 1.}
+\format{
+An object of class \code{FGSEAList} of length 1.
+}
 \usage{
 gsea
 }
