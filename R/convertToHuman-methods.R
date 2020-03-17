@@ -3,7 +3,7 @@
 #' @name convertToHuman
 #' @note Currently requires at least Bioconductor 3.9, due to a Genomic Ranges
 #'   subsetting issue.
-#' @note Updated 2020-03-15.
+#' @note Updated 2020-03-17.
 #'
 #' @inheritParams params
 #' @param map `DataFrame`, or `NULL`.
@@ -22,7 +22,7 @@ NULL
 
 
 
-## Updated 2020-03-15.
+## Updated 2020-03-17.
 `convertToHuman,DESeqAnalysis` <-  # nolint
     function(object, map = NULL) {
         validObject(object)
@@ -32,9 +32,11 @@ NULL
         transform <- as(object, "DESeqTransform")
         results <- slot(object, "results")
         lfcShrink <- slot(object, "lfcShrink")
-        genes <- rownames(data)
+        ## Attempt to use the row ranges to map gene identifiers.
+        ## Don't assume gene identifiers are defined as row names.
+        rr <- rowRanges(data)
         ## Get the organism and Ensembl release from DESeqDataSet.
-        rrMeta <- metadata(rowRanges(data))
+        rrMeta <- metadata(rr)
         ## This step shouldn't get hit but it's useful to keep as a check.
         if (!isSubset(c("organism", "ensemblRelease"), names(rrMeta))) {
             ## nocov start
@@ -60,7 +62,14 @@ NULL
             return(object)
         }
         ## Now we're ready to match the human orthologs.
-        ## Note that this step can time out, so we're allowing map passthrough.
+        genes <- as.character(mcols(rr)[["geneID"]])
+        if (!hasLength(genes)) {
+            ## nocov start
+            stop("'geneID' column not defined in DESeqDataSet 'rowRanges'.")
+            ## nocov end
+        }
+        ## Note that this step can time out, so we're allowing map passthrough,
+        ## which can help when working on multiple objects.
         if (is.null(map)) {
             map <- matchHumanOrthologs(
                 genes = genes,
@@ -75,8 +84,13 @@ NULL
                 )
             )
         }
+        ## Ensure that we rearrange the map return to match DESeqDataSet.
         map <- map[genes, , drop = FALSE]
-        assert(identical(rownames(data), rownames(map)))
+        ## Reassign the row names to match the DESeqDataSet. This step is
+        ## necessary in the event that Ensembl gene identifiers are not defined
+        ## as the row names, but are defined in row ranges. This isn't very
+        ## common but is accounted for in our unit testing.
+        rownames(map) <- rownames(data)
         keep <- !is.na(map[["hgncID"]])
         assert(any(keep))
         cli_alert_info(sprintf(
