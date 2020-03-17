@@ -3,7 +3,10 @@ if (!isTRUE(goalie::hasInternet())) {
     return()
 }
 dir.create("cache", showWarnings = FALSE)
-files <- "mm_deseq.rds"
+files <- c(
+    "h.all.v7.0.symbols.gmt",
+    "mm_deseq.rds"
+)
 mapply(
     FUN = function(remoteDir, file, envir) {
         destfile <- file.path("cache", file)

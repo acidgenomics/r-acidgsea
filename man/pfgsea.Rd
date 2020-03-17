@@ -54,7 +54,7 @@ We recommend using one of the following:
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2020-01-27.
+Updated 2020-03-16.
 }
 \examples{
 data(gsea)

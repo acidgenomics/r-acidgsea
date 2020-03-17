@@ -1,3 +1,11 @@
+## pfgsea 0.1.18 (2020-03-16)
+
+### Minor changes
+
+- `convertToHuman`: Updated working example to use Ensembl 99 release, as
+  archived releases are currently unavailable via biomaRt until March 24, due
+  to Ensembl server migration. See Ensembl website for details.
+
 ## pfgsea 0.1.17 (2020-01-27)
 
 ### Minor changes
