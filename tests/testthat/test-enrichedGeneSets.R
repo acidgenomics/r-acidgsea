@@ -5,7 +5,12 @@ test_that("FGSEAList", {
     expect_type(object, "list")
     expect_identical(
         object = names(object),
-        expected = c("dmso_r1881_vs_etoh_up", "dmso_r1881_vs_etoh_down")
+        expected = c(
+            "condition_B_vs_A_up",
+            "condition_B_vs_A_down",
+            "treatment_D_vs_C_up",
+            "treatment_D_vs_C_down"
+        )
     )
 })
 
@@ -14,6 +19,9 @@ test_that("Disable flatten mode", {
     expect_type(object, "list")
     expect_identical(
         object = names(object),
-        expected = "dmso_r1881_vs_etoh"
+        expected = c(
+            "condition_B_vs_A",
+            "treatment_D_vs_C"
+        )
     )
 })

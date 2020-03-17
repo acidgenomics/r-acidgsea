@@ -6,8 +6,17 @@ test_that("FGSEAList", {
         object = files,
         expected = list(
             h = list(
-                dmso_r1881_vs_etoh = realpath(file.path(
-                    "example", "gsea", "dmso_r1881_vs_etoh", "h.csv"
+                "condition_B_vs_A" = realpath(file.path(
+                    "example",
+                    "gsea",
+                    "condition_B_vs_A",
+                    "h.csv"
+                )),
+                "treatment_D_vs_C" = realpath(file.path(
+                    "example",
+                    "gsea",
+                    "treatment_D_vs_C",
+                    "h.csv"
                 ))
             )
         )
@@ -15,11 +24,22 @@ test_that("FGSEAList", {
     expect_identical(sort(list.files("example")), "gsea")
     expect_identical(
         object = sort(list.files(file.path("example", "gsea"))),
-        expected = "dmso_r1881_vs_etoh"
+        expected = c(
+            "condition_B_vs_A",
+            "treatment_D_vs_C"
+        )
     )
-    expect_true(file.exists(
-        file.path("example", "gsea", "dmso_r1881_vs_etoh", "h.csv")
-    ))
+    expect_true(all(file.exists(
+        file.path(
+            "example",
+            "gsea",
+            c(
+                "condition_B_vs_A",
+                "treatment_D_vs_C"
+            ),
+            "h.csv"
+        )
+    )))
     unlink("example", recursive = TRUE)
 })
 
@@ -29,8 +49,15 @@ test_that("name argument", {
         object = files,
         expected = list(
             h = list(
-                dmso_r1881_vs_etoh = realpath(file.path(
-                    "XXX", "dmso_r1881_vs_etoh", "h.csv"
+                "condition_B_vs_A" = realpath(file.path(
+                    "XXX",
+                    "condition_B_vs_A",
+                    "h.csv"
+                )),
+                "treatment_D_vs_C" = realpath(file.path(
+                    "XXX",
+                    "treatment_D_vs_C",
+                    "h.csv"
                 ))
             )
         )
