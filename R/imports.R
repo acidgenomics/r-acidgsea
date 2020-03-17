@@ -2,7 +2,7 @@
 #' @importMethodsFrom DESeqAnalysis coerce plotCounts
 #'
 #' @importFrom BiocParallel bplapply bpparam
-#' @importFrom DESeqAnalysis DESeqAnalysis contrastSamples
+#' @importFrom DESeqAnalysis DESeqAnalysis contrastName contrastSamples
 #' @importFrom IRanges SplitDataFrameList unsplit
 #' @importFrom S4Vectors DataFrame SimpleList complete.cases head lapply mcols
 #'   mcols<- metadata metadata<- na.omit order split tail unique
