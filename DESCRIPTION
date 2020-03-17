@@ -63,28 +63,3 @@ biocViews:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 VignetteBuilder: knitr
-Collate: 
-    'AllClasses.R'
-    'AllGenerics.R'
-    'AllGenerators.R'
-    'collectionNames-methods.R'
-    'combine-methods.R'
-    'contrastNames-methods.R'
-    'convertToHuman-methods.R'
-    'data.R'
-    'deprecated.R'
-    'enrichedGeneSets-methods.R'
-    'export-methods.R'
-    'globals.R'
-    'imports.R'
-    'internal.R'
-    'package.R'
-    'params.R'
-    'pfgsea.R'
-    'plotCounts-methods.R'
-    'plotEnrichedGeneSets-methods.R'
-    'plotEnrichedUpset-methods.R'
-    'plotHeatmap-methods.R'
-    'show-methods.R'
-    'topTables-methods.R'
-    'updateObject-methods.R'
