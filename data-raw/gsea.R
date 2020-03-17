@@ -1,17 +1,31 @@
+## Example *Homo sapiens* GSEA analysis.
+## Updated 2020-03-17.
+
 library(usethis)
 library(pryr)
+library(basejump)  # 0.12.5
+library(DESeq2)    # 1.26.0
 
-data(deseq, package = "DESeqAnalysis")
+## Restrict to 1 MB.
+## Use `pryr::object_size()` instead of `utils::object.size()`.
+limit <- structure(1e6, class = "object_size")
 
-## Ensure that we're using Ensembl 99 in working example, to avoid current
-## issue with archives for biomaRt being unavailable during server migration,
-## which applies until March 24, 2020.
-stopifnot(identical(metadata(rowRanges(deseq@data))[["ensemblRelease"]], 99L))
+gr <- makeGRangesFromEnsembl(organism = "Homo sapiens", release = 99L)
+## Subset to include 10k genes, as minimal example.
+gr <- head(gr, n = 10000L)
 
-rankedList <- RankedList(deseq)
+dds <- makeExampleDESeqDataSet(n = length(gr), m = 12L)
+rowRanges(dds) <- gr
+design(dds)
+dds <- DESeq(dds)
 
-## RankedList of length 2
-## names(2): condition_B_vs_A treatment_D_vs_C
+res <- results(dds)
+g2s <- Gene2Symbol(gr, format = "unmodified")
+
+rankedList <- RankedList(object = res, gene2symbol = g2s)
+object_size(rankedList)
+## 729 kB
+stopifnot(object_size(rankedList) < limit)
 
 ## Just using hallmark in minimal example.
 gmtFiles <- file.path(
@@ -30,7 +44,10 @@ gsea <- pfgsea(
 )
 validObject(gsea)
 
+## Check the object size.
+lapply(coerceToList(gsea), object_size)
 object_size(gsea)
-## 113 kB
+lapply(metadata(gsea), object_size)
+stopifnot(object_size(gsea) < limit)
 
-use_data(gsea)
+use_data(gsea, overwrite = TRUE, compress = "xz")
