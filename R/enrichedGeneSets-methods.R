@@ -41,10 +41,13 @@ NULL
     function(
         object,
         collection,
+        alpha = NULL,
         flatten = TRUE
     ) {
         validObject(object)
-        alpha <- alphaThreshold(object)
+        if (is.null(alpha)) {
+            alpha <- alphaThreshold(object)
+        }
         assert(
             isScalar(collection),
             isFlag(flatten),
