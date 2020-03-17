@@ -3,7 +3,7 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @export
-#' @note Updated 2020-01-27.
+#' @note Updated 2020-03-16.
 #'
 #' @inheritParams acidroxygen::params
 #' @param rankedList `RankedList`.
