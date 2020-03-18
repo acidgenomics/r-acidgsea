@@ -1,11 +1,11 @@
 #' @name updateObject
 #' @author Michael Steinbaugh
 #' @inherit BiocGenerics::updateObject
-#' @note Updated 2020-01-27.
+#' @note Updated 2020-03-18.
 #'
 #' @inheritParams acidroxygen::params
 #' @param alpha `number(1)`.
-#'   Alpha level used in [pfgsea()] call.
+#'   Alpha level used for GSEA.
 #'   Note that this is not necessarily the alpha level used to generate
 #'   `DESeqResults` object.
 #' @param verbose `logical(1)`.
