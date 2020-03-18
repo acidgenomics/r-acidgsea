@@ -26,7 +26,7 @@
 #' print(x)
 #'
 #' ## FGSEAList ====
-#' data(gsea, package = "pfgsea")
+#' data(gsea, package = "acidgsea")
 #' x <- RankedList(gsea)
 #' print(x)
 #'
