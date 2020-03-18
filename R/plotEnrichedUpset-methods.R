@@ -7,7 +7,7 @@
 #'
 #' @examples
 #' data(gsea)
-#' plotEnrichedUpset(gsea, collection = "h")
+#' plotEnrichedUpset(gsea, collection = "h", alpha = 0.9)
 NULL
 
 
@@ -32,13 +32,38 @@ NULL
     ) {
         validObject(object)
         direction <- match.arg(direction)
-        listInput <- enrichedGeneSets(
+        args <- list(
             object = object,
             collection = collection,
             alpha = alpha,
-            nesThreshold = nesThreshold,
-            direction = direction
+            nesThreshold = nesThreshold
         )
+        ## Upregulated gene sets.
+        if (isSubset(direction, c("both", "up"))) {
+            suppressMessages(
+                up <- do.call(
+                    what = enrichedGeneSets,
+                    args = c(args, direction = "up")
+                )
+            )
+            names(up) <- makeNames(paste(names(up), "up"))
+        } else {
+            up <- NULL
+        }
+        ## Downregulated gene sets.
+        if (isSubset(direction, c("both", "down"))) {
+            suppressMessages(
+                down <- do.call(
+                    what = enrichedGeneSets,
+                    args = c(args, direction = "down")
+                )
+            )
+            names(down) <- makeNames(paste(names(down), "down"))
+        } else {
+            down <- NULL
+        }
+        ## Combine directional output and hand off to UpSetR package.
+        listInput <- c(up, down)
         ## Require at least 2 vectors.
         ## Otherwise, UpSetR will return array of at least two dimensions error.
         if (sum(bapply(X = listInput, FUN = hasLength)) < 2L) {
