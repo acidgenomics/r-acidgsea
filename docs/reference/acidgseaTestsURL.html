@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Top tables — topTables • acidgsea</title>
+<title>acidgsea test data URL — acidgseaTestsURL • acidgsea</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Top tables — topTables" />
-<meta property="og:description" content="Top tables of significantly enriched pathways." />
+<meta property="og:title" content="acidgsea test data URL — acidgseaTestsURL" />
+<meta property="og:description" content="acidgsea test data URL" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -113,112 +113,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Top tables</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/topTables-methods.R'><code>R/topTables-methods.R</code></a></small>
-    <div class="hidden name"><code>topTables.Rd</code></div>
+    <h1>acidgsea test data URL</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/globals.R'><code>R/globals.R</code></a></small>
+    <div class="hidden name"><code>acidgseaTestsURL.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Top tables of significantly enriched pathways.</p>
+    <p>acidgsea test data URL</p>
     </div>
 
-    <pre class="usage"><span class='fu'>topTables</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='no'>acidgseaTestsURL</span></pre>
 
-<span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>topTables</span>(
-  <span class='no'>object</span>,
-  <span class='no'>collection</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>nesThreshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
-  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>3L</span>
-)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
-    </tr>
-    <tr>
-      <th>collection</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> or <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
-Gene set collection name or position, corresponding to values defined in
-<code><a href='https://rdrr.io/r/base/names.html'>names()</a></code>.
-Typically refers to <code>h</code> (hallmark), <code>c1</code>-<code>c7</code> collections from MSigDb.
-Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
-    </tr>
-    <tr>
-      <th>alpha</th>
-      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>.
-Alpha level.</p></td>
-    </tr>
-    <tr>
-      <th>nesThreshold</th>
-      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code> or <code>NULL</code>.
-NES cutoff threshold.
-If left <code>NULL</code>, no cutoff will be applied.</p></td>
-    </tr>
-    <tr>
-      <th>n</th>
-      <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
-Number of significant processes to include.
-Bidirectional; will include <code>n</code> up- and down-regulated processes.</p></td>
-    </tr>
-    <tr>
-      <th>headerLevel</th>
-      <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
-Markdown header level.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
-    </table>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Markdown output.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Supports looping across multiple DEG results, and adds a Markdown header for
-each contrast.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Updated 2020-03-18.</p>
+    <p>An object of class <code>character</code> of length 1.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
-<span class='fu'>topTables</span>(<span class='no'>fgsea</span>, <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; ### condition_B_vs_A
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; #### Upregulated
-#&gt; </div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> No upregulated gene sets.</span></div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; #### Downregulated
-#&gt; </div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> No downregulated gene sets.</span></div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; ### treatment_D_vs_C
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; #### Upregulated
-#&gt; </div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> No upregulated gene sets.</span></div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; #### Downregulated
-#&gt; </div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> No downregulated gene sets.</span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='no'>acidgseaTestsURL</span></div><div class='output co'>#&gt; [1] "http://tests.acidgenomics.com/acidgsea/v0.2"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#note">Note</a></li>
+      <li><a href="#format">Format</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
