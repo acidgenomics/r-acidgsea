@@ -41,6 +41,10 @@ inside the object at \code{metadata(object)[["gmtFiles"]]}.}
 Number of significant processes to include.
 Bidirectional; will include \code{n} up- and down-regulated processes.}
 
+\item{nesThreshold}{\code{numeric(1)} or \code{NULL}.
+NES cutoff threshold.
+If left \code{NULL}, no cutoff will be applied.}
+
 \item{object}{Object.}
 
 \item{pathways}{\code{character}.
