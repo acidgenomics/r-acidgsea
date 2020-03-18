@@ -32,4 +32,14 @@ plotGSEATable <- function(...) {
 
 
 
+## v0.2.0 =====================================================================
+#' @rdname deprecated
+#' @export
+pfgsea <- function(...) {
+    .Deprecated("FGSEAList")
+    FGSEAList(...)
+}
+
+
+
 ## nocov end
