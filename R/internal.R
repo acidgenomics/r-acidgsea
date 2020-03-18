@@ -8,8 +8,9 @@
 #' @seealso `DESeqAnalysis::deg`.
 #'
 #' @examples
+#' data(fgsea)
 #' .enrichedGeneSets(
-#'     object = gsea[[1L]][[1L]],
+#'     object = fgsea[[1L]][[1L]],
 #'     alpha = 0.9,
 #'     nesThreshold = 1,
 #'     direction = "down",
@@ -93,8 +94,9 @@
 #'   Number of upregulated and downregulated sets (each) to return.
 #'
 #' @examples
+#' data(fgsea)
 #' .headtail(
-#'     object = gsea[[1L]][[1L]],
+#'     object = fgsea[[1L]][[1L]],
 #'     alpha = 0.9,
 #'     nesThreshold = 1L,
 #'     direction = "both",

@@ -17,9 +17,9 @@
 #' - `DESeqAnalysis::deg`.
 #'
 #' @examples
-#' data(gsea)
+#' data(fgsea)
 #' enrichedGeneSets(
-#'     object = gsea,
+#'     object = fgsea,
 #'     collection = "h",
 #'     alpha = 0.7,
 #'     direction = "up"

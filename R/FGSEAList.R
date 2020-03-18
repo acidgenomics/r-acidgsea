@@ -27,11 +27,11 @@
 #' @return `FGSEAList`.
 #'
 #' @examples
-#' data(gsea)
+#' data(fgsea)
 #' metadata <- S4Vectors::metadata
 #'
-#' rankedList <- metadata(gsea)[["rankedList"]]
-#' gmtFiles <- metadata(gsea)[["gmtFiles"]]
+#' rankedList <- metadata(fgsea)[["rankedList"]]
+#' gmtFiles <- metadata(fgsea)[["gmtFiles"]]
 #'
 #' # Copy example MSigDb files to `$HOME`.
 #' file.copy(
@@ -45,8 +45,8 @@
 #'     recursive = TRUE
 #' )
 #'
-#' x <- FGSEAList(rankedList = rankedList, gmtFiles = gmtFiles)
-#' print(x)
+#' fgsea <- FGSEAList(rankedList = rankedList, gmtFiles = gmtFiles)
+#' print(fgsea)
 FGSEAList <- function(  # nolint
     rankedList,
     gmtFiles,

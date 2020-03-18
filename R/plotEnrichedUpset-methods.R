@@ -6,8 +6,8 @@
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(gsea)
-#' plotEnrichedUpset(gsea, collection = "h", alpha = 0.9)
+#' data(fgsea)
+#' plotEnrichedUpset(fgsea, collection = "h", alpha = 0.9)
 NULL
 
 

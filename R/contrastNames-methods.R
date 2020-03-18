@@ -1,13 +1,13 @@
 #' @name contrastNames
 #' @inherit acidgenerics::contrastNames
-#' @note Updated 2019-08-28.
+#' @note Updated 2020-03-18.
 #'
 #' @inheritParams params
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(gsea)
-#' contrastNames(gsea)
+#' data(fgsea)
+#' contrastNames(fgsea)
 NULL
 
 

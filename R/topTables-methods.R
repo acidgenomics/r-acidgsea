@@ -1,6 +1,6 @@
 #' @name topTables
 #' @inherit acidgenerics::topTables
-#' @note Updated 2020-01-27.
+#' @note Updated 2020-03-18.
 #'
 #' @description Top tables of significantly enriched pathways.
 #'
@@ -14,8 +14,8 @@
 #' @return Markdown output.
 #'
 #' @examples
-#' data(gsea)
-#' topTables(gsea, collection = "h")
+#' data(fgsea)
+#' topTables(fgsea, collection = "h")
 NULL
 
 
