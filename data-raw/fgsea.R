@@ -1,5 +1,5 @@
 ## Example *Homo sapiens* GSEA analysis.
-## Updated 2020-03-17.
+## Updated 2020-03-18.
 
 library(usethis)
 library(pryr)
@@ -76,16 +76,16 @@ gmtFiles <- file.path(
 stopifnot(all(file.exists(gmtFiles)))
 names(gmtFiles) <- "h"
 
-gsea <- pfgsea(
+fgsea <- FGSEAList(
     rankedList = rankedList,
     gmtFiles = gmtFiles
 )
-validObject(gsea)
+validObject(fgsea)
 
 ## Check the object size.
-lapply(coerceToList(gsea), object_size)
-object_size(gsea)
-lapply(metadata(gsea), object_size)
-stopifnot(object_size(gsea) < limit)
+lapply(coerceToList(fgsea), object_size)
+object_size(fgsea)
+lapply(metadata(fgsea), object_size)
+stopifnot(object_size(fgsea) < limit)
 
-use_data(gsea, overwrite = TRUE, compress = "xz")
+use_data(fgsea, overwrite = TRUE, compress = "xz")
