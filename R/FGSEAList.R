@@ -37,7 +37,7 @@
 #' file.copy(
 #'     from = system.file(
 #'         "extdata", "msigdb",
-#'         package = "pfgsea",
+#'         package = "acidgsea",
 #'         mustWork = TRUE
 #'     ),
 #'     to = "~",
@@ -45,9 +45,9 @@
 #'     recursive = TRUE
 #' )
 #'
-#' x <- pfgsea(rankedList = rankedList, gmtFiles = gmtFiles)
+#' x <- FGSEAList(rankedList = rankedList, gmtFiles = gmtFiles)
 #' print(x)
-pfgsea <- function(
+FGSEAList <- function(  # nolint
     rankedList,
     gmtFiles,
     nPerm = 1000L,
