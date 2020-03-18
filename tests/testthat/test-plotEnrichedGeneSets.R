@@ -9,15 +9,11 @@ test_that("FGSEAList", {
         expected = c(
             "",
             "",
-            "### dmso_r1881_vs_etoh {.tabset}",
+            "### condition_B_vs_A {.tabset}",
             "",
             "",
             "",
-            "#### HALLMARK_E2F_TARGETS",
-            "",
-            "",
-            "",
-            "#### HALLMARK_MYOGENESIS",
+            "### treatment_D_vs_C {.tabset}",
             ""
         )
     )
