@@ -48,9 +48,9 @@ Enriched pathways from gene set collections.
 Updated 2020-03-18.
 }
 \examples{
-data(gsea)
+data(fgsea)
 enrichedGeneSets(
-    object = gsea,
+    object = fgsea,
     collection = "h",
     alpha = 0.7,
     direction = "up"

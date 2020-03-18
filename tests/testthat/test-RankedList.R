@@ -36,7 +36,7 @@ test_that("Average values for duplicate gene symbols", {
 })
 
 test_that("FGSEAList", {
-    object <- RankedList(gsea)
+    object <- RankedList(fgsea)
     expect_s4_class(object, "RankedList")
     expect_identical(
         object = names(object),

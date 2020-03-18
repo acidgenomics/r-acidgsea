@@ -43,6 +43,6 @@ UpSet plot of directional enriched pathway intersections across contrasts
 Updated 2020-03-18.
 }
 \examples{
-data(gsea)
-plotEnrichedUpset(gsea, collection = "h", alpha = 0.9)
+data(fgsea)
+plotEnrichedUpset(fgsea, collection = "h", alpha = 0.9)
 }

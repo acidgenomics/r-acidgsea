@@ -50,8 +50,8 @@ organize by:
 }
 
 \examples{
-data(gsea)
-export(gsea, dir = "example")
-sort(list.files(file.path("example", "gsea")))
+data(fgsea)
+export(fgsea, dir = "example")
+sort(list.files(file.path("example", "fgsea")))
 unlink("example", recursive = TRUE)
 }

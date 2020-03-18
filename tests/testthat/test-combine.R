@@ -1,7 +1,7 @@
 context("combine")
 
 test_that("FGSEAList", {
-    x <- gsea
+    x <- fgsea
     y <- x
     expect_error(
         object = combine(x, y),

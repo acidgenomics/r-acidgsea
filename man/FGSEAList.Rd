@@ -57,11 +57,11 @@ Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 Updated 2020-03-16.
 }
 \examples{
-data(gsea)
+data(fgsea)
 metadata <- S4Vectors::metadata
 
-rankedList <- metadata(gsea)[["rankedList"]]
-gmtFiles <- metadata(gsea)[["gmtFiles"]]
+rankedList <- metadata(fgsea)[["rankedList"]]
+gmtFiles <- metadata(fgsea)[["gmtFiles"]]
 
 # Copy example MSigDb files to `$HOME`.
 file.copy(
@@ -75,6 +75,6 @@ file.copy(
     recursive = TRUE
 )
 
-x <- FGSEAList(rankedList = rankedList, gmtFiles = gmtFiles)
-print(x)
+fgsea <- FGSEAList(rankedList = rankedList, gmtFiles = gmtFiles)
+print(fgsea)
 }

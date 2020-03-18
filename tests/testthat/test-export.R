@@ -1,29 +1,29 @@
 context("export")
 
 test_that("FGSEAList", {
-    files <- export(object = gsea, dir = "example")
+    files <- export(object = fgsea, dir = "example")
     expect_identical(
         object = files,
         expected = list(
             h = list(
                 "condition_B_vs_A" = realpath(file.path(
                     "example",
-                    "gsea",
+                    "fgsea",
                     "condition_B_vs_A",
                     "h.csv"
                 )),
                 "treatment_D_vs_C" = realpath(file.path(
                     "example",
-                    "gsea",
+                    "fgsea",
                     "treatment_D_vs_C",
                     "h.csv"
                 ))
             )
         )
     )
-    expect_identical(sort(list.files("example")), "gsea")
+    expect_identical(sort(list.files("example")), "fgsea")
     expect_identical(
-        object = sort(list.files(file.path("example", "gsea"))),
+        object = sort(list.files(file.path("example", "fgsea"))),
         expected = c(
             "condition_B_vs_A",
             "treatment_D_vs_C"
@@ -32,7 +32,7 @@ test_that("FGSEAList", {
     expect_true(all(file.exists(
         file.path(
             "example",
-            "gsea",
+            "fgsea",
             c(
                 "condition_B_vs_A",
                 "treatment_D_vs_C"
@@ -44,7 +44,7 @@ test_that("FGSEAList", {
 })
 
 test_that("name argument", {
-    files <- export(object = gsea, name = "XXX", dir = ".")
+    files <- export(object = fgsea, name = "XXX", dir = ".")
     expect_identical(
         object = files,
         expected = list(

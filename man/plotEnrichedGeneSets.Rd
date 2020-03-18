@@ -56,8 +56,8 @@ Plot enriched gene sets
 Updated 2020-03-18.
 }
 \examples{
-data(gsea)
-plotEnrichedGeneSets(gsea, collection = "h", alpha = 0.9, n = 1L)
+data(fgsea)
+plotEnrichedGeneSets(fgsea, collection = "h", alpha = 0.9, n = 1L)
 }
 \seealso{
 \code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}}.

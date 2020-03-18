@@ -1,7 +1,7 @@
 context("enrichedGeneSets")
 
 test_that("FGSEAList", {
-    object <- enrichedGeneSets(gsea, collection = "h", flatten = TRUE)
+    object <- enrichedGeneSets(fgsea, collection = "h", flatten = TRUE)
     expect_type(object, "list")
     expect_identical(
         object = names(object),
@@ -15,7 +15,7 @@ test_that("FGSEAList", {
 })
 
 test_that("Disable flatten mode", {
-    object <- enrichedGeneSets(gsea, collection = "h", flatten = FALSE)
+    object <- enrichedGeneSets(fgsea, collection = "h", flatten = FALSE)
     expect_type(object, "list")
     expect_identical(
         object = names(object),
