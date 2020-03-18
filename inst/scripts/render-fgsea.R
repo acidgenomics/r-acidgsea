@@ -1,9 +1,9 @@
-## Render multiple GSEA reports.
-## Updated 2019-10-11.
+## Render multiple fast GSEA reports.
+## Updated 2020-03-18.
 
 library(rmarkdown)
 
-templateFile <- "pfgsea.Rmd"
+templateFile <- "fgsea.Rmd"
 stopifnot(file.exists(templateFile))
 
 ## Load the FGSEAList objects.
@@ -19,7 +19,7 @@ objectFiles <- file.path(
 names(objectFiles) <- names(datasets)
 stopifnot(all(file.exists(objectFiles)))
 
-outputDir <- file.path("results", Sys.Date(), "gsea")
+outputDir <- file.path("results", Sys.Date(), "fgsea")
 
 invisible(mapply(
     name = names(objectFiles),
