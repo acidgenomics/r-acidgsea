@@ -19,8 +19,8 @@
 #' @importFrom ggplot2 labs
 #' @importFrom goalie allAreAtomic areDisjointSets areSameLength assert bapply
 #'   hasColnames hasLength hasNames hasNoDuplicates hasRownames hasRows isAFile
-#'   isAll isAlpha isAny isCharacter isFile isFlag isHeaderLevel isInt isScalar
-#'   isScalarInteger isString isSubset validate
+#'   isAll isAlpha isAny isCharacter isFile isFlag isHeaderLevel isInt isNumber
+#'   isScalar isScalarInteger isString isSubset validate
 #' @importFrom knitr kable
 #' @importFrom methods as is new setAs setGeneric setMethod show slot slot<-
 #'   validObject
