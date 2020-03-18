@@ -10,8 +10,8 @@
 #' @seealso [fgsea::plotEnrichment()].
 #'
 #' @examples
-#' data(gsea)
-#' plotEnrichedGeneSets(gsea, collection = "h", alpha = 0.9, n = 1L)
+#' data(fgsea)
+#' plotEnrichedGeneSets(fgsea, collection = "h", alpha = 0.9, n = 1L)
 NULL
 
 

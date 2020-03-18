@@ -15,8 +15,8 @@
 #' @return Modified object.
 #'
 #' @examples
-#' data(gsea)
-#' updateObject(gsea)
+#' data(fgsea)
+#' updateObject(fgsea)
 NULL
 
 
