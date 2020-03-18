@@ -1,10 +1,10 @@
 #' @name collectionNames
 #' @inherit acidgenerics::collectionNames
-#' @note Updated 2019-08-28.
+#' @note Updated 2020-03-18.
 #' @param ... Additional arguments.
 #' @examples
-#' data(gsea)
-#' collectionNames(gsea)
+#' data(fgsea)
+#' collectionNames(fgsea)
 NULL
 
 
