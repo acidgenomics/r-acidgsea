@@ -40,7 +40,10 @@ test_that("FGSEAList", {
     expect_s4_class(object, "RankedList")
     expect_identical(
         object = names(object),
-        expected = "condition_B_vs_A"
+        expected = c(
+            "condition_B_vs_A",
+            "treatment_D_vs_C"
+        )
     )
 })
 
