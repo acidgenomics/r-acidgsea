@@ -3,7 +3,7 @@ context("RankedList")
 value <- eval(methodFormals(
     f = "RankedList",
     signature = "DESeqAnalysis",
-    package = "pfgsea"
+    package = "acidgsea"
 )[["value"]])
 
 with_parameters_test_that(
