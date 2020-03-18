@@ -1,12 +1,12 @@
-# pfgsea
+# acidgsea
 
 [![Repo status: active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Travis CI build status](https://travis-ci.com/acidgenomics/pfgsea.svg?branch=master)](https://travis-ci.com/acidgenomics/pfgsea)
-[![AppVeyor CI build status](https://ci.appveyor.com/api/projects/status/fa5hpl1hbf4memee/branch/master?svg=true)](https://ci.appveyor.com/project/mjsteinbaugh/pfgsea/branch/master)
+[![Travis CI build status](https://travis-ci.com/acidgenomics/acidgsea.svg?branch=master)](https://travis-ci.com/acidgenomics/acidgsea)
+[![AppVeyor CI build status](https://ci.appveyor.com/api/projects/status/fa5hpl1hbf4memee/branch/master?svg=true)](https://ci.appveyor.com/project/mjsteinbaugh/acidgsea/branch/master)
 
-Parameterized Fast GSEA
+Perform parameterized gene set enrichment analysis (GSEA) on multiple differential expression contrasts.
 
-[pfgsea][] extends the functionality of [fgsea][]. The package is designed to quickly perform multiple GSEA comparisons on RNA-seq differential expression results.
+[acidgsea][] currently extends the functionality of [fgsea][].
 
 ## Installation
 
@@ -18,7 +18,7 @@ if (!requireNamespace("remotes", quietly = TRUE)) {
 }
 Sys.setenv(R_REMOTES_UPGRADE = "always")
 # Set `GITHUB_PAT` in `~/.Renviron` if you get a rate limit error.
-remotes::install_github("acidgenomics/pfgsea")
+remotes::install_github("acidgenomics/acidgsea")
 ```
 
 Here's how to update to the latest version on GitHub:
@@ -39,6 +39,6 @@ BiocManager::valid()
 
 [BiocManager]: https://cran.r-project.org/package=BiocManager
 [Bioconductor]: https://bioconductor.org/
+[acidgsea]: https://acidgsea.acidgenomics.com/
 [fgsea]: https://bioconductor.org/packages/fgsea/
-[pfgsea]: https://pfgsea.acidgenomics.com/
 [R]: https://www.r-project.org
