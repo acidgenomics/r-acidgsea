@@ -6,6 +6,17 @@
 #' @noRd
 #'
 #' @seealso `DESeqAnalysis::deg`.
+#'
+#' @examples
+#' .enrichedGeneSets(
+#'     object = gsea[[1L]][[1L]],
+#'     alpha = 0.9,
+#'     nesThreshold = 1,
+#'     direction = "down",
+#'     idCol = "pathway",
+#'     alphaCol = "padj",
+#'     nesCol = "NES"
+#' )
 .enrichedGeneSets <- function(
     object,
     alpha,
@@ -22,6 +33,7 @@
         isString(nesCol),
         isSubset(c(idCol, alphaCol, nesCol), colnames(data))
     )
+    direction <- match.arg(direction, choices = c("both", "up", "down"))
     data <- data[, c(idCol, nesCol, alphaCol)]
     ## Apply alpha cutoff.
     keep <- which(data[[alphaCol]] < alpha)
@@ -71,69 +83,43 @@
 
 
 
-## FIXME This isn't capturing up and down correctly.
-## FIXME Need to rework this.
-
 #' Get the top up- and down-regulated pathways from FGSEA results
+#'
 #' @note Updated 2020-03-18.
 #' @noRd
-.headtail <- function(
-    object,
-    alpha,
-    nesThreshold,
-    direction,
-    n
-) {
-    ## This step is necessary to coerce `data.table`/`data.frame` from fgsea.
-    object <- as(object, "DataFrame")
-    assert(
-        isSubset(c("pathway", "padj", "NES"), colnames(object)),
-        isInt(n)
+#'
+#' @param ... Passthrough arguments to `.enrichedGeneSets`.
+#' @param n `integer(1)`.
+#'   Number of upregulated and downregulated sets (each) to return.
+#'
+#' @examples
+#' .headtail(
+#'     object = gsea[[1L]][[1L]],
+#'     alpha = 0.9,
+#'     nesThreshold = 1L,
+#'     n = 2L,
+#'     idCol = "pathway",
+#'     alphaCol = "padj",
+#'     nesCol = "NES"
+#' )
+.headtail <- function(..., n) {
+    assert(isInt(n))
+    args <- list(...)
+    ## Upregulated sets.
+    up <- do.call(
+        what = .enrichedGeneSets,
+        args = c(args, direction = "up")
     )
-    direction <- match.arg(direction, choices = c("both", "up", "down"))
-    egs <- .enrichedGeneSets(
-        object = object,
-        alpha = alpha,
-        nesThreshold = nesThreshold,
-        direction = direction,
-        idCol = idCol,
-        alphaCol = alphaCol,
-        nesCol = nesCol
+    up <- head(x = up, n = n)
+    ## Downregulated sets.
+    down <- do.call(
+        what = .enrichedGeneSets,
+        args = c(args, direction = "down")
     )
-    if (!hasLength(egs)) {
-        return(character())  # nocov
-    }
-
-
-
-
-
-
-    ## Need to ensure we're arranging by:
-    ## 1. NES (descending: positive to negative).
-    ## 2. Adjusted P value.
-    object <- object[order(-object[["NES"]], object[["padj"]]), , drop = FALSE]
-    ## Extract the pathway vector.
-    x <- object[["pathway"]]
-
-
-
-    ## FIXME This needs to check for positive, negative NES.
-
-    ## Upregulated pathways.
-    if (isSubset(direction, c("both", "up"))) {
-        up <- head(x = x, n = n)
-    } else {
-        up <- character()
-    }
-    ## Downregulated pathways.
-    if (isSubset(direction, c("both", "down"))) {
-        down <- tail(x = x, n = n)
-    } else {
-        down <- character()
-    }
-    out <- unique(c(up, down))
-    out
+    down <- head(x = down, n = n)
+    ## Combine upregulated and downregulated sets.
+    egs <- unique(c(up, rev(down)))
+    egs
 }
 
 
