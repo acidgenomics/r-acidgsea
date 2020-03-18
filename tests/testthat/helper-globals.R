@@ -10,7 +10,7 @@ data(
 )
 data(
     gsea,
-    package = "pfgsea",
+    package = "acidgsea",
     envir = environment()
 )
 
