@@ -1,6 +1,6 @@
 #' @name plotEnrichedUpset
 #' @inherit acidgenerics::plotEnrichedUpset
-#' @note Updated 2020-01-27.
+#' @note Updated 2020-03-18.
 #'
 #' @inheritParams params
 #' @param ... Additional arguments.
@@ -21,11 +21,24 @@ NULL
 
 
 
-## Updated 2020-01-27.
+## Updated 2020-03-18.
 `plotEnrichedUpset,FGSEAList` <-  # nolint
-    function(object, collection) {
+    function(
+        object,
+        collection,
+        alpha = NULL,
+        nesThreshold = NULL,
+        direction = c("both", "up", "down")
+    ) {
         validObject(object)
-        listInput <- enrichedGeneSets(object = object, collection = collection)
+        direction <- match.arg(direction)
+        listInput <- enrichedGeneSets(
+            object = object,
+            collection = collection,
+            alpha = alpha,
+            nesThreshold = nesThreshold,
+            direction = direction
+        )
         ## Require at least 2 vectors.
         ## Otherwise, UpSetR will return array of at least two dimensions error.
         if (sum(bapply(X = listInput, FUN = hasLength)) < 2L) {
