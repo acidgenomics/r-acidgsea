@@ -97,26 +97,36 @@
 #'     object = gsea[[1L]][[1L]],
 #'     alpha = 0.9,
 #'     nesThreshold = 1L,
+#'     direction = "both",
 #'     n = 2L,
 #'     idCol = "pathway",
 #'     alphaCol = "padj",
 #'     nesCol = "NES"
 #' )
-.headtail <- function(..., n) {
+.headtail <- function(..., direction, n) {
     assert(isInt(n))
+    direction <- match.arg(direction, choices = c("both", "up", "down"))
     args <- list(...)
     ## Upregulated sets.
-    up <- do.call(
-        what = .enrichedGeneSets,
-        args = c(args, direction = "up")
-    )
-    up <- head(x = up, n = n)
+    if (isSubset(direction, c("both", "up"))) {
+        up <- do.call(
+            what = .enrichedGeneSets,
+            args = c(args, direction = "up")
+        )
+        up <- head(x = up, n = n)
+    } else {
+        up <- character()
+    }
     ## Downregulated sets.
-    down <- do.call(
-        what = .enrichedGeneSets,
-        args = c(args, direction = "down")
-    )
-    down <- head(x = down, n = n)
+    if (isSubset(direction, c("both", "down"))) {
+        down <- do.call(
+            what = .enrichedGeneSets,
+            args = c(args, direction = "down")
+        )
+        down <- head(x = down, n = n)
+    } else {
+        down <- character()
+    }
     ## Combine upregulated and downregulated sets.
     egs <- unique(c(up, rev(down)))
     egs
