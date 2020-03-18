@@ -10,6 +10,9 @@ plotEnrichedGeneSets(object, ...)
 \S4method{plotEnrichedGeneSets}{FGSEAList}(
   object,
   collection,
+  alpha = NULL,
+  nesThreshold = NULL,
+  direction = c("both", "up", "down"),
   n = 10L,
   headerLevel = 3L,
   theme = acidplots::acid_theme_light()
@@ -23,6 +26,13 @@ Gene set collection name or position, corresponding to values defined in
 \code{\link[base:names]{names()}}.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+
+\item{alpha}{\code{numeric(1)}.
+Alpha level.}
+
+\item{nesThreshold}{\code{numeric(1)} or \code{NULL}.
+NES cutoff threshold.
+If left \code{NULL}, no cutoff will be applied.}
 
 \item{n}{\code{integer(1)}.
 Number of significant processes to include.
@@ -42,9 +52,12 @@ ggplot2 theme.}
 \description{
 Plot enriched gene sets
 }
+\note{
+Updated 2020-03-18.
+}
 \examples{
 data(gsea)
-plotEnrichedGeneSets(gsea, collection = "h", n = 1L)
+plotEnrichedGeneSets(gsea, collection = "h", alpha = 0.9, n = 1L)
 }
 \seealso{
 \code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}}.
