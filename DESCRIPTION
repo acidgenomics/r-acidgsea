@@ -1,9 +1,9 @@
-Package: pfgsea
-Title: Parameterized Fast GSEA
+Package: acidgsea
+Title: Acid Genomics GSEA
 Description: Perform parameterized gene set enrichment analysis on multiple
     differential expression contrasts.
-Version: 0.1.18
-Date: 2020-03-16
+Version: 0.2.0
+Date: 2020-03-18
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -16,9 +16,9 @@ Authors@R: c(
         role = c("cph", "fnd")
     ))
 URL:
-    https://pfgsea.acidgenomics.com/pfgsea/,
-    https://github.com/acidgenomics/pfgsea/
-BugReports: https://github.com/acidgenomics/pfgsea/issues/
+    https://acidgsea.acidgenomics.com/,
+    https://github.com/acidgenomics/acidgsea/
+BugReports: https://github.com/acidgenomics/acidgsea/issues/
 License: GPL-3
 Encoding: UTF-8
 LazyData: false
