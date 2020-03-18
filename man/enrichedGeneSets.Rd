@@ -3,11 +3,18 @@
 \name{enrichedGeneSets}
 \alias{enrichedGeneSets}
 \alias{enrichedGeneSets,FGSEAList-method}
-\title{Enriched pathways}
+\title{Enriched gene sets}
 \usage{
 enrichedGeneSets(object, ...)
 
-\S4method{enrichedGeneSets}{FGSEAList}(object, collection, alpha = NULL, flatten = TRUE)
+\S4method{enrichedGeneSets}{FGSEAList}(
+  object,
+  collection,
+  alpha = NULL,
+  nesThreshold = NULL,
+  direction = c("both", "up", "down"),
+  flatten = TRUE
+)
 }
 \arguments{
 \item{object}{Object.}
@@ -22,6 +29,13 @@ Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 Adjusted P value ("alpha") cutoff. If left \code{NULL}, will use the cutoff
 defined in the object.}
 
+\item{nesThreshold}{\code{numeric(1)} or \code{NULL}.
+NES cutoff threshold.
+If left \code{NULL}, no cutoff will be applied.}
+
+\item{direction}{\code{character(1)}.
+Include \code{"both"}, \code{"up"}, or \code{"down"} directions.}
+
 \item{flatten}{\code{logical(1)}.
 Flatten nested "up"/"down" directional enrichment vector subsets.
 Recomended by default for UpSet plots.}
@@ -33,12 +47,12 @@ list.
 Named list formatted as:
 \enumerate{
 \item Gene set collection (e.g. "h" from MSigDb).
-\item Contrast (e.g. "dmso_r1881_vs_etoh").
+\item Contrast (e.g. "condition_B_vs_A").
 \item Direction (e.g. "down" or "up").
 }
 }
 \description{
-Enriched pathways from gene set collections
+Enriched pathways from gene set collections.
 }
 \note{
 Updated 2020-03-18.
