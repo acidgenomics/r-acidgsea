@@ -25,13 +25,13 @@ A single value of the same class as the most specific common ancestor
 Combining or merging different Bioconductor data structures
 }
 \note{
-Updated 2019-11-19.
+Updated 2020-03-18.
 }
 \examples{
-data(gsea)
-x <- gsea
+data(fgsea)
+x <- fgsea
 contrastNames(x) <- paste0("x_", contrastNames(x))
-y <- gsea
+y <- fgsea
 contrastNames(y) <- paste0("y_", contrastNames(y))
 c <- combine(x, y)
 c

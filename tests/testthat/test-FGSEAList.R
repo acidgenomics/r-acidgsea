@@ -1,7 +1,7 @@
 context("FGSEAList")
 
-rankedList <- metadata(gsea)[["rankedList"]]
-gmtFiles <- metadata(gsea)[["gmtFiles"]]
+rankedList <- metadata(fgsea)[["rankedList"]]
+gmtFiles <- metadata(fgsea)[["gmtFiles"]]
 
 test_that("FGSEAList", {
     x <- FGSEAList(rankedList = rankedList, gmtFiles = gmtFiles)

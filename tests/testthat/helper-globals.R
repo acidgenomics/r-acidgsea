@@ -9,7 +9,7 @@ data(
     envir = environment()
 )
 data(
-    gsea,
+    fgsea,
     package = "acidgsea",
     envir = environment()
 )

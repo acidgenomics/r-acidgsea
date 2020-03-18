@@ -95,8 +95,8 @@ Updating objects is primarily useful when an object has been
 Updated 2020-03-18.
 }
 \examples{
-data(gsea)
-updateObject(gsea)
+data(fgsea)
+updateObject(fgsea)
 }
 \seealso{
 \itemize{

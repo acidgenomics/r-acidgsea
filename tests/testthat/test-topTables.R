@@ -2,7 +2,7 @@ context("topTables")
 
 test_that("FGSEAList", {
     output <- capture.output(
-        topTables(gsea, collection = "h")
+        topTables(fgsea, collection = "h")
     )
     expect_identical(
         object = output,

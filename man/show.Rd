@@ -17,11 +17,11 @@
 Show an object
 }
 \note{
-Updated 2019-11-20.
+Updated 2020-03-18.
 }
 \examples{
-data(gsea)
+data(fgsea)
 
 ## FGSEAList ====
-show(gsea)
+show(fgsea)
 }
