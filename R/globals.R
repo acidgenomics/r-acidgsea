@@ -2,14 +2,14 @@ globalVariables(".")
 
 
 
-.version <- packageVersion("pfgsea")
+.version <- packageVersion("acidgsea")
 
-#' pfgsea test data URL
+#' acidgsea test data URL
 #' @keywords internal
 #' @export
 #' @examples
-#' pfgseaTestsURL
-pfgseaTestsURL <- paste0(
-    "http://tests.acidgenomics.com/pfgsea/",
+#' acidgseaTestsURL
+acidgseaTestsURL <- paste0(
+    "http://tests.acidgenomics.com/acidgsea/",
     "v", .version$major, ".", .version$minor  # nolint
 )
