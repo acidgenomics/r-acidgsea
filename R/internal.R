@@ -67,7 +67,7 @@
             EXPR = direction,
             up = "upregulated",
             down = "downregulated",
-            both = "differentially expressed"
+            both = "enriched"
         ),
         ngettext(
             n = length(egs),
