@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ranked list of genes — RankedList • pfgsea</title>
+<title>Ranked list of genes — RankedList • acidgsea</title>
 
 
 <!-- jquery -->
@@ -70,8 +70,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.17</span>
+        <a class="navbar-link" href="../index.html">acidgsea</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@
   </a>
 </li>
 <li>
-  <a href="../articles/pfgsea.html">Get started</a>
+  <a href="../articles/acidgsea.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -95,7 +95,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/acidgenomics/pfgsea">
+  <a href="https://github.com/acidgenomics/acidgsea">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -114,7 +114,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Ranked list of genes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/AllGenerators.R'><code>R/AllGenerators.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/RankedList-methods.R'><code>R/RankedList-methods.R</code></a></small>
     <div class="hidden name"><code>RankedList.Rd</code></div>
     </div>
 
@@ -126,6 +126,9 @@
 
 <span class='co'># S4 method for matrix</span>
 <span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"log2FoldChange"</span>)
+
+<span class='co'># S4 method for DESeqResults</span>
+<span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='no'>gene2symbol</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"stat"</span>, <span class='st'>"log2FoldChange"</span>, <span class='st'>"padj"</span>))
 
 <span class='co'># S4 method for DESeqAnalysis</span>
 <span class='fu'>RankedList</span>(
@@ -161,6 +164,12 @@ is offered as a legacy option. Not generally recommended.</p></li>
 </ol></td>
     </tr>
     <tr>
+      <th>gene2symbol</th>
+      <td><p><code>Gene2Symbol</code>.
+Gene-to-symbol mappings. Must contain <code>geneID</code> and <code>geneName</code> columns. See
+<code>Gene2Symbol</code> for more information.</p></td>
+    </tr>
+    <tr>
       <th>BPPARAM</th>
       <td><p><code>bpparamClass</code>.
 BiocParallel parameter to specify the desired processor configuration.<br />
@@ -177,7 +186,7 @@ We recommend using one of the following:</p><ul>
     <p><code>RankedList</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-01-27.</p>
+    <p>Updated 2020-03-17.</p>
     <h2 class="hasAnchor" id="gene-symbol-multi-mapping"><a class="anchor" href="#gene-symbol-multi-mapping"></a>Gene symbol multi-mapping</h2>
 
     
@@ -193,10 +202,10 @@ In this event, we're averaging the stat values using <code><a href='https://rdrr
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; RankedList of length 2
 #&gt; names(2): condition_B_vs_A treatment_D_vs_C</div><div class='input'>
 <span class='co'>## FGSEAList ====</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"pfgsea"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>RankedList</span>(<span class='no'>gsea</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; RankedList of length 1
-#&gt; names(1): dmso_r1881_vs_etoh</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidgsea"</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>RankedList</span>(<span class='no'>fgsea</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; RankedList of length 2
+#&gt; names(2): condition_B_vs_A treatment_D_vs_C</div><div class='input'>
 <span class='co'>## matrix ====</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>matrix_lfc</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"acidtest"</span>)
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>RankedList</span>(<span class='no'>matrix_lfc</span>)

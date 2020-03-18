@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Enriched pathways — enrichedGeneSets • pfgsea</title>
+<title>Enriched gene sets — enrichedGeneSets • acidgsea</title>
 
 
 <!-- jquery -->
@@ -37,8 +37,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Enriched pathways — enrichedGeneSets" />
-<meta property="og:description" content="Enriched pathways from gene set collections" />
+<meta property="og:title" content="Enriched gene sets — enrichedGeneSets" />
+<meta property="og:description" content="Enriched pathways from gene set collections." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -70,8 +70,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.17</span>
+        <a class="navbar-link" href="../index.html">acidgsea</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@
   </a>
 </li>
 <li>
-  <a href="../articles/pfgsea.html">Get started</a>
+  <a href="../articles/acidgsea.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -95,7 +95,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/acidgenomics/pfgsea">
+  <a href="https://github.com/acidgenomics/acidgsea">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -113,19 +113,25 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Enriched pathways</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/enrichedGeneSets-methods.R'><code>R/enrichedGeneSets-methods.R</code></a></small>
+    <h1>Enriched gene sets</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/enrichedGeneSets-methods.R'><code>R/enrichedGeneSets-methods.R</code></a></small>
     <div class="hidden name"><code>enrichedGeneSets.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Enriched pathways from gene set collections</p>
+    <p>Enriched pathways from gene set collections.</p>
     </div>
 
     <pre class="usage"><span class='fu'>enrichedGeneSets</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>enrichedGeneSets</span>(<span class='no'>object</span>, <span class='no'>collection</span>, <span class='kw'>flatten</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>enrichedGeneSets</span>(
+  <span class='no'>object</span>,
+  <span class='no'>collection</span>,
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>nesThreshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"both"</span>, <span class='st'>"up"</span>, <span class='st'>"down"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,10 +149,21 @@ Typically refers to <code>h</code> (hallmark), <code>c1</code>-<code>c7</code> c
 Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
     </tr>
     <tr>
-      <th>flatten</th>
-      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
-Flatten nested "up"/"down" directional enrichment vector subsets.
-Recomended by default for UpSet plots.</p></td>
+      <th>alpha</th>
+      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code> or <code>NULL</code>.
+Adjusted P value ("alpha") cutoff. If left <code>NULL</code>, will use the cutoff
+defined in the object.</p></td>
+    </tr>
+    <tr>
+      <th>nesThreshold</th>
+      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code> or <code>NULL</code>.
+NES cutoff threshold.
+If left <code>NULL</code>, no cutoff will be applied.</p></td>
+    </tr>
+    <tr>
+      <th>direction</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Include <code>"both"</code>, <code>"up"</code>, or <code>"down"</code> directions.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -157,36 +174,47 @@ Recomended by default for UpSet plots.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>list.
-Named list formatted as:</p><ol>
-<li><p>Gene set collection (e.g. "h" from MSigDb).</p></li>
-<li><p>Contrast (e.g. "dmso_r1881_vs_etoh").</p></li>
-<li><p>Direction (e.g. "down" or "up").</p></li>
-</ol>
-
+Named list containing significant gene sets per contrast.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2019-08-28.</p>
+    <p>Updated 2020-03-18.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'>
+<ul>
+<li><p><code><a href='https://rdrr.io/pkg/DESeqAnalysis/man/deg.html'>DESeqAnalysis::deg</a></code>.</p></li>
+</ul>
+</div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>)
-<span class='fu'>enrichedGeneSets</span>(<span class='no'>gsea</span>, <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; $dmso_r1881_vs_etoh_up
-#&gt;  [1] "HALLMARK_E2F_TARGETS"               "HALLMARK_MYC_TARGETS_V1"           
-#&gt;  [3] "HALLMARK_ANDROGEN_RESPONSE"         "HALLMARK_G2M_CHECKPOINT"           
-#&gt;  [5] "HALLMARK_MYC_TARGETS_V2"            "HALLMARK_MTORC1_SIGNALING"         
-#&gt;  [7] "HALLMARK_DNA_REPAIR"                "HALLMARK_UNFOLDED_PROTEIN_RESPONSE"
-#&gt;  [9] "HALLMARK_MITOTIC_SPINDLE"           "HALLMARK_ESTROGEN_RESPONSE_LATE"   
-#&gt; [11] "HALLMARK_UV_RESPONSE_UP"            "HALLMARK_GLYCOLYSIS"               
-#&gt; [13] "HALLMARK_CHOLESTEROL_HOMEOSTASIS"   "HALLMARK_FATTY_ACID_METABOLISM"    
-#&gt; [15] "HALLMARK_ESTROGEN_RESPONSE_EARLY"   "HALLMARK_SPERMATOGENESIS"          
-#&gt; [17] "HALLMARK_PEROXISOME"                "HALLMARK_XENOBIOTIC_METABOLISM"    
-#&gt; [19] "HALLMARK_OXIDATIVE_PHOSPHORYLATION" "HALLMARK_IL2_STAT5_SIGNALING"      
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
+<span class='fu'>enrichedGeneSets</span>(
+    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>fgsea</span>,
+    <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>,
+    <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.7</span>,
+    <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"up"</span>
+)</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> 5 upregulated gene sets detected (alpha: 0.7; nes: 0).</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 15 upregulated gene sets detected (alpha: 0.7; nes: 0).</span></div><div class='output co'>#&gt; $condition_B_vs_A
+#&gt; [1] "HALLMARK_PANCREAS_BETA_CELLS"     "HALLMARK_NOTCH_SIGNALING"        
+#&gt; [3] "HALLMARK_P53_PATHWAY"             "HALLMARK_MITOTIC_SPINDLE"        
+#&gt; [5] "HALLMARK_TNFA_SIGNALING_VIA_NFKB"
 #&gt; 
-#&gt; $dmso_r1881_vs_etoh_down
-#&gt; [1] "HALLMARK_INTERFERON_ALPHA_RESPONSE" "HALLMARK_MYOGENESIS"               
-#&gt; [3] "HALLMARK_HEDGEHOG_SIGNALING"        "HALLMARK_HEME_METABOLISM"          
-#&gt; [5] "HALLMARK_COAGULATION"               "HALLMARK_UV_RESPONSE_DN"           
-#&gt; [7] "HALLMARK_COMPLEMENT"                "HALLMARK_APICAL_JUNCTION"          
-#&gt; </div></pre>
+#&gt; $treatment_D_vs_C
+#&gt;  [1] "HALLMARK_PI3K_AKT_MTOR_SIGNALING"          
+#&gt;  [2] "HALLMARK_INFLAMMATORY_RESPONSE"            
+#&gt;  [3] "HALLMARK_XENOBIOTIC_METABOLISM"            
+#&gt;  [4] "HALLMARK_UV_RESPONSE_DN"                   
+#&gt;  [5] "HALLMARK_INTERFERON_GAMMA_RESPONSE"        
+#&gt;  [6] "HALLMARK_ESTROGEN_RESPONSE_LATE"           
+#&gt;  [7] "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION"
+#&gt;  [8] "HALLMARK_ESTROGEN_RESPONSE_EARLY"          
+#&gt;  [9] "HALLMARK_TNFA_SIGNALING_VIA_NFKB"          
+#&gt; [10] "HALLMARK_HEME_METABOLISM"                  
+#&gt; [11] "HALLMARK_FATTY_ACID_METABOLISM"            
+#&gt; [12] "HALLMARK_COMPLEMENT"                       
+#&gt; [13] "HALLMARK_P53_PATHWAY"                      
+#&gt; [14] "HALLMARK_MTORC1_SIGNALING"                 
+#&gt; [15] "HALLMARK_KRAS_SIGNALING_DN"                
+#&gt; </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -194,6 +222,7 @@ Named list formatted as:</p><ol>
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
       <li><a href="#note">Note</a></li>
+      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

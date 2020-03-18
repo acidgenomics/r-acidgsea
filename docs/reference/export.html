@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Export — export • pfgsea</title>
+<title>Export — export • acidgsea</title>
 
 
 <!-- jquery -->
@@ -70,8 +70,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">pfgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.17</span>
+        <a class="navbar-link" href="../index.html">acidgsea</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@
   </a>
 </li>
 <li>
-  <a href="../articles/pfgsea.html">Get started</a>
+  <a href="../articles/acidgsea.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -95,7 +95,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/acidgenomics/pfgsea">
+  <a href="https://github.com/acidgenomics/acidgsea">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -114,7 +114,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Export</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/pfgsea/blob/master/R/export-methods.R'><code>R/export-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/export-methods.R'><code>R/export-methods.R</code></a></small>
     <div class="hidden name"><code>export.Rd</code></div>
     </div>
 
@@ -176,8 +176,8 @@ organize by:</p><ol>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>gsea</span>)
-<span class='fu'>export</span>(<span class='no'>gsea</span>, <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"example"</span>)</div><div class='output co'>#&gt; <span class='message'>→ Exporting to '<span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/pfgsea/docs/reference/example/gsea</span><span>'.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> using </span><span style='color: #0000BB;'>data.table</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`fwrite()`</span><span>.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"example"</span>, <span class='st'>"gsea"</span>)))</div><div class='output co'>#&gt; [1] "dmso_r1881_vs_etoh"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"example"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
+<span class='fu'>export</span>(<span class='no'>fgsea</span>, <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"example"</span>)</div><div class='output co'>#&gt; <span class='message'>→ Exporting to '<span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea</span><span>'.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> using </span><span style='color: #0000BB;'>data.table</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`fwrite()`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> using </span><span style='color: #0000BB;'>data.table</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`fwrite()`</span><span>.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"example"</span>, <span class='st'>"fgsea"</span>)))</div><div class='output co'>#&gt; [1] "condition_B_vs_A" "treatment_D_vs_C"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"example"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
