@@ -44,5 +44,5 @@ Updated 2020-03-18.
 }
 \examples{
 data(gsea)
-plotEnrichedUpset(gsea, collection = "h")
+plotEnrichedUpset(gsea, collection = "h", alpha = 0.9)
 }

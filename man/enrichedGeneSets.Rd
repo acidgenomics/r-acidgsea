@@ -12,8 +12,7 @@ enrichedGeneSets(object, ...)
   collection,
   alpha = NULL,
   nesThreshold = NULL,
-  direction = c("both", "up", "down"),
-  flatten = TRUE
+  direction = c("both", "up", "down")
 )
 }
 \arguments{
@@ -36,20 +35,11 @@ If left \code{NULL}, no cutoff will be applied.}
 \item{direction}{\code{character(1)}.
 Include \code{"both"}, \code{"up"}, or \code{"down"} directions.}
 
-\item{flatten}{\code{logical(1)}.
-Flatten nested "up"/"down" directional enrichment vector subsets.
-Recomended by default for UpSet plots.}
-
 \item{...}{Additional arguments.}
 }
 \value{
 list.
-Named list formatted as:
-\enumerate{
-\item Gene set collection (e.g. "h" from MSigDb).
-\item Contrast (e.g. "condition_B_vs_A").
-\item Direction (e.g. "down" or "up").
-}
+Named list containing significant gene sets per contrast.
 }
 \description{
 Enriched pathways from gene set collections.
@@ -59,7 +49,12 @@ Updated 2020-03-18.
 }
 \examples{
 data(gsea)
-enrichedGeneSets(gsea, collection = "h", alpha = 0.6)
+enrichedGeneSets(
+    object = gsea,
+    collection = "h",
+    alpha = 0.7,
+    direction = "up"
+)
 }
 \seealso{
 \itemize{
