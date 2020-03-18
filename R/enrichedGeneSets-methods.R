@@ -1,6 +1,6 @@
-#' Enriched pathways
+#' Enriched gene sets
 #'
-#' Enriched pathways from gene set collections
+#' Enriched pathways from gene set collections.
 #'
 #' @name enrichedGeneSets
 #' @inherit acidgenerics::enrichedGeneSets
@@ -71,42 +71,16 @@ NULL
             hasNames(collection)
         )
         perContrast <- mapply(
-            name = names(collection),
-            data = collection,
+            object = collection,
             MoreArgs = list(
                 alpha = alpha,
                 nesThreshold = nesThreshold,
-                direction = direction
+                direction = direction,
+                idCol = "pathway",
+                alphaCol = "padj",
+                nesCol = "NES"
             ),
-            FUN = function(
-                name,
-                data,
-                alpha,
-                nesThreshold,
-                direction
-            ) {
-                out <- list()
-                data <- as(data, "DataFrame")
-                ## Subset significant enrichment.
-                data <- data[data[["padj"]] < alpha, , drop = FALSE]
-                ## Upregulated.
-                if (isSubset(direction, c("both", "up"))) {
-                    up <- data[data[["NES"]] > nesThreshold, , drop = FALSE]
-                    up <- up[order(up[["padj"]], -up[["NES"]]), , drop = FALSE]
-                    up <- up[["pathway"]]
-                    out[["up"]] <- up
-                }
-                ## Downregulated.
-                if (isSubset(direction, c("both", "down"))) {
-                    down <- data[data[["NES"]] < nesThreshold, , drop = FALSE]
-                    down <- down[
-                        order(down[["padj"]], down[["NES"]]), , drop = FALSE
-                        ]
-                    down <- down[["pathway"]]
-                    out[["down"]] <- down
-                }
-                out
-            },
+            FUN = .enrichedGeneSets,
             SIMPLIFY = FALSE,
             USE.NAMES = TRUE
         )
