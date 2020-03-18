@@ -8,24 +8,22 @@
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
-#' @param flatten `logical(1)`.
-#'   Flatten nested "up"/"down" directional enrichment vector subsets.
-#'   Recomended by default for UpSet plots.
 #' @param ... Additional arguments.
 #'
 #' @return list.
-#' Named list formatted as:
-#'
-#' 1. Gene set collection (e.g. "h" from MSigDb).
-#' 2. Contrast (e.g. "condition_B_vs_A").
-#' 3. Direction (e.g. "down" or "up").
+#' Named list containing significant gene sets per contrast.
 #'
 #' @seealso
 #' - `DESeqAnalysis::deg`.
 #'
 #' @examples
 #' data(gsea)
-#' enrichedGeneSets(gsea, collection = "h", alpha = 0.6)
+#' enrichedGeneSets(
+#'     object = gsea,
+#'     collection = "h",
+#'     alpha = 0.7,
+#'     direction = "up"
+#' )
 NULL
 
 
@@ -47,8 +45,7 @@ NULL
         collection,
         alpha = NULL,
         nesThreshold = NULL,
-        direction = c("both", "up", "down"),
-        flatten = TRUE
+        direction = c("both", "up", "down")
     ) {
         validObject(object)
         if (is.null(alpha)) {
@@ -60,8 +57,7 @@ NULL
         assert(
             isScalar(collection),
             isAlpha(alpha),
-            isNumber(nesThreshold),
-            isFlag(flatten)
+            isNumber(nesThreshold)
         )
         direction <- match.arg(direction)
         nesThreshold <- abs(nesThreshold)
@@ -70,7 +66,7 @@ NULL
             is.list(collection),
             hasNames(collection)
         )
-        perContrast <- mapply(
+        out <- mapply(
             object = collection,
             MoreArgs = list(
                 alpha = alpha,
@@ -84,13 +80,6 @@ NULL
             SIMPLIFY = FALSE,
             USE.NAMES = TRUE
         )
-        if (isTRUE(flatten)) {
-            out <- do.call(what = c, args = perContrast)
-            ## Using "_" instead of "." for name concatenation.
-            names(out) <- makeNames(names(out), unique = TRUE)
-        } else {
-            out <- perContrast
-        }
         out
     }
 
