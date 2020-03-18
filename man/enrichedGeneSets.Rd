@@ -18,8 +18,9 @@ Gene set collection name or position, corresponding to values defined in
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 
-\item{alpha}{\code{numeric(1)}.
-Alpha level.}
+\item{alpha}{\code{numeric(1)} or \code{NULL}.
+Adjusted P value ("alpha") cutoff. If left \code{NULL}, will use the cutoff
+defined in the object.}
 
 \item{flatten}{\code{logical(1)}.
 Flatten nested "up"/"down" directional enrichment vector subsets.
@@ -40,9 +41,14 @@ Named list formatted as:
 Enriched pathways from gene set collections
 }
 \note{
-Updated 2019-08-28.
+Updated 2020-03-18.
 }
 \examples{
 data(gsea)
-enrichedGeneSets(gsea, collection = "h")
+enrichedGeneSets(gsea, collection = "h", alpha = 0.6)
+}
+\seealso{
+\itemize{
+\item \code{DESeqAnalysis::deg}.
+}
 }
