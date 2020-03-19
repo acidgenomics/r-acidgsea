@@ -1,27 +1,29 @@
-#' Enriched pathways
+#' Enriched gene sets
 #'
-#' Enriched pathways from gene set collections
+#' Enriched pathways from gene set collections.
 #'
 #' @name enrichedGeneSets
 #' @inherit acidgenerics::enrichedGeneSets
-#' @note Updated 2019-08-28.
+#' @note Updated 2020-03-18.
 #'
+#' @inheritParams acidroxygen::params
 #' @inheritParams params
-#' @param flatten `logical(1)`.
-#'   Flatten nested "up"/"down" directional enrichment vector subsets.
-#'   Recomended by default for UpSet plots.
 #' @param ... Additional arguments.
 #'
 #' @return list.
-#' Named list formatted as:
+#' Named list containing significant gene sets per contrast.
 #'
-#' 1. Gene set collection (e.g. "h" from MSigDb).
-#' 2. Contrast (e.g. "dmso_r1881_vs_etoh").
-#' 3. Direction (e.g. "down" or "up").
+#' @seealso
+#' - `DESeqAnalysis::deg`.
 #'
 #' @examples
-#' data(gsea)
-#' enrichedGeneSets(gsea, collection = "h")
+#' data(fgsea)
+#' enrichedGeneSets(
+#'     object = fgsea,
+#'     collection = "h",
+#'     alpha = 0.7,
+#'     direction = "up"
+#' )
 NULL
 
 
@@ -36,54 +38,48 @@ NULL
 
 
 ## @seealso `DESeqAnalysis::plotDEGUpset()`, for looping inspiration.
-## Updated 2019-08-28.
+## Updated 2020-03-18.
 `enrichedGeneSets,FGSEAList` <-  # nolint
     function(
         object,
         collection,
-        flatten = TRUE
+        alpha = NULL,
+        nesThreshold = NULL,
+        direction = c("both", "up", "down")
     ) {
         validObject(object)
-        alpha <- alphaThreshold(object)
+        if (is.null(alpha)) {
+            alpha <- alphaThreshold(object)
+        }
+        if (is.null(nesThreshold)) {
+            nesThreshold <- 0L
+        }
         assert(
             isScalar(collection),
-            isFlag(flatten),
-            isAlpha(alpha)
+            isAlpha(alpha),
+            isNumber(nesThreshold)
         )
+        direction <- match.arg(direction)
+        nesThreshold <- abs(nesThreshold)
         collection <- object[[collection]]
         assert(
             is.list(collection),
             hasNames(collection)
         )
-        perContrast <- mapply(
-            name = names(collection),
-            data = collection,
-            FUN = function(name, data) {
-                data <- as(data, "DataFrame")
-                ## Subset significant enrichment.
-                data <- data[data[["padj"]] < alpha, , drop = FALSE]
-                ## Upregulated.
-                up <- data[data[["NES"]] > 0L, , drop = FALSE]
-                up <- up[order(up[["padj"]], -up[["NES"]]), , drop = FALSE]
-                up <- up[["pathway"]]
-                ## Downregulated.
-                down <- data[data[["NES"]] < 0L, , drop = FALSE]
-                down <- down[
-                    order(down[["padj"]], down[["NES"]]), , drop = FALSE
-                    ]
-                down <- down[["pathway"]]
-                list(up = up, down = down)
-            },
+        out <- mapply(
+            object = collection,
+            MoreArgs = list(
+                alpha = alpha,
+                nesThreshold = nesThreshold,
+                direction = direction,
+                idCol = "pathway",
+                alphaCol = "padj",
+                nesCol = "NES"
+            ),
+            FUN = .enrichedGeneSets,
             SIMPLIFY = FALSE,
             USE.NAMES = TRUE
         )
-        if (isTRUE(flatten)) {
-            out <- do.call(what = c, args = perContrast)
-            ## Using "_" instead of "." for name concatenation.
-            names(out) <- makeNames(names(out), unique = TRUE)
-        } else {
-            out <- perContrast
-        }
         out
     }
 

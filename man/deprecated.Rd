@@ -2,7 +2,11 @@
 % Please edit documentation in R/deprecated.R
 \name{deprecated}
 \alias{deprecated}
+\alias{pfgsea}
 \title{Deprecated functions}
+\usage{
+pfgsea(...)
+}
 \value{
 \code{.Deprecated}.
 }

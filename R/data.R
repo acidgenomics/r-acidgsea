@@ -1,5 +1,5 @@
 #' FGSEAList example data
 #' @examples
-#' data(gsea)
-#' print(gsea)
-"gsea"
+#' data(fgsea)
+#' print(fgsea)
+"fgsea"

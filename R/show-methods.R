@@ -2,15 +2,15 @@
 #'
 #' @name show
 #' @inherit methods::show return
-#' @note Updated 2019-11-20.
+#' @note Updated 2020-03-18.
 #'
 #' @inheritParams acidroxygen::params
 #'
 #' @examples
-#' data(gsea)
+#' data(fgsea)
 #'
 #' ## FGSEAList ====
-#' show(gsea)
+#' show(fgsea)
 NULL
 
 

@@ -1,13 +1,14 @@
 #' @name plotEnrichedUpset
 #' @inherit acidgenerics::plotEnrichedUpset
-#' @note Updated 2020-01-27.
+#' @note Updated 2020-03-18.
 #'
+#' @inheritParams acidroxygen::params
 #' @inheritParams params
 #' @param ... Additional arguments.
 #'
 #' @examples
-#' data(gsea)
-#' plotEnrichedUpset(gsea, collection = "h")
+#' data(fgsea)
+#' plotEnrichedUpset(fgsea, collection = "h", alpha = 0.9)
 NULL
 
 
@@ -21,11 +22,49 @@ NULL
 
 
 
-## Updated 2020-01-27.
+## Updated 2020-03-18.
 `plotEnrichedUpset,FGSEAList` <-  # nolint
-    function(object, collection) {
+    function(
+        object,
+        collection,
+        alpha = NULL,
+        nesThreshold = NULL,
+        direction = c("both", "up", "down")
+    ) {
         validObject(object)
-        listInput <- enrichedGeneSets(object = object, collection = collection)
+        direction <- match.arg(direction)
+        args <- list(
+            object = object,
+            collection = collection,
+            alpha = alpha,
+            nesThreshold = nesThreshold
+        )
+        ## Upregulated gene sets.
+        if (isSubset(direction, c("both", "up"))) {
+            suppressMessages(
+                up <- do.call(
+                    what = enrichedGeneSets,
+                    args = c(args, direction = "up")
+                )
+            )
+            names(up) <- makeNames(paste(names(up), "up"))
+        } else {
+            up <- NULL
+        }
+        ## Downregulated gene sets.
+        if (isSubset(direction, c("both", "down"))) {
+            suppressMessages(
+                down <- do.call(
+                    what = enrichedGeneSets,
+                    args = c(args, direction = "down")
+                )
+            )
+            names(down) <- makeNames(paste(names(down), "down"))
+        } else {
+            down <- NULL
+        }
+        ## Combine directional output and hand off to UpSetR package.
+        listInput <- c(up, down)
         ## Require at least 2 vectors.
         ## Otherwise, UpSetR will return array of at least two dimensions error.
         if (sum(bapply(X = listInput, FUN = hasLength)) < 2L) {

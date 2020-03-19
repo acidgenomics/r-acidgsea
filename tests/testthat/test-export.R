@@ -1,36 +1,63 @@
 context("export")
 
 test_that("FGSEAList", {
-    files <- export(object = gsea, dir = "example")
+    files <- export(object = fgsea, dir = "example")
     expect_identical(
         object = files,
         expected = list(
             h = list(
-                dmso_r1881_vs_etoh = realpath(file.path(
-                    "example", "gsea", "dmso_r1881_vs_etoh", "h.csv"
+                "condition_B_vs_A" = realpath(file.path(
+                    "example",
+                    "fgsea",
+                    "condition_B_vs_A",
+                    "h.csv"
+                )),
+                "treatment_D_vs_C" = realpath(file.path(
+                    "example",
+                    "fgsea",
+                    "treatment_D_vs_C",
+                    "h.csv"
                 ))
             )
         )
     )
-    expect_identical(sort(list.files("example")), "gsea")
+    expect_identical(sort(list.files("example")), "fgsea")
     expect_identical(
-        object = sort(list.files(file.path("example", "gsea"))),
-        expected = "dmso_r1881_vs_etoh"
+        object = sort(list.files(file.path("example", "fgsea"))),
+        expected = c(
+            "condition_B_vs_A",
+            "treatment_D_vs_C"
+        )
     )
-    expect_true(file.exists(
-        file.path("example", "gsea", "dmso_r1881_vs_etoh", "h.csv")
-    ))
+    expect_true(all(file.exists(
+        file.path(
+            "example",
+            "fgsea",
+            c(
+                "condition_B_vs_A",
+                "treatment_D_vs_C"
+            ),
+            "h.csv"
+        )
+    )))
     unlink("example", recursive = TRUE)
 })
 
 test_that("name argument", {
-    files <- export(object = gsea, name = "XXX", dir = ".")
+    files <- export(object = fgsea, name = "XXX", dir = ".")
     expect_identical(
         object = files,
         expected = list(
             h = list(
-                dmso_r1881_vs_etoh = realpath(file.path(
-                    "XXX", "dmso_r1881_vs_etoh", "h.csv"
+                "condition_B_vs_A" = realpath(file.path(
+                    "XXX",
+                    "condition_B_vs_A",
+                    "h.csv"
+                )),
+                "treatment_D_vs_C" = realpath(file.path(
+                    "XXX",
+                    "treatment_D_vs_C",
+                    "h.csv"
                 ))
             )
         )

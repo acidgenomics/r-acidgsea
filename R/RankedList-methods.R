@@ -1,13 +1,6 @@
-#' All generator functions
-#' @include AllGenerics.R
-#' @noRd
-NULL
-
-
-
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2020-01-27.
+#' @note Updated 2020-03-17.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -33,8 +26,8 @@ NULL
 #' print(x)
 #'
 #' ## FGSEAList ====
-#' data(gsea, package = "pfgsea")
-#' x <- RankedList(gsea)
+#' data(fgsea, package = "acidgsea")
+#' x <- RankedList(fgsea)
 #' print(x)
 #'
 #' ## matrix ====
@@ -78,11 +71,82 @@ setMethod(
 
 
 
-## Updated 2020-01-27.
+## Updated 2020-03-17.
+`RankedList,DESeqResults` <-  # nolint
+    function(
+        object,
+        gene2symbol,
+        value = c("stat", "log2FoldChange", "padj")
+    ) {
+        validObject(object)
+        value <- match.arg(value)
+        assert(is(gene2symbol, "Gene2Symbol"))
+        x <- as(object, "DataFrame")
+        y <- as(gene2symbol, "DataFrame")
+        ## Join the gene-to-symbol mappings, so we can convert Ensembl gene IDs
+        ## to gene symbols, for use with GSEA MSigDb GMT files.
+        x[["rowname"]] <- rownames(x)
+        y[["rowname"]] <- rownames(y)
+        x <- leftJoin(x, y, by = "rowname")
+        x <- x[, c("geneName", value), drop = FALSE]
+        x <- x[complete.cases(x), , drop = FALSE]
+        x <- unique(x)
+        ## Average the value per gene symbol, if necessary.
+        x[["geneName"]] <- as.factor(x[["geneName"]])
+        if (any(duplicated(x[["geneName"]]))) {
+            rownames(x) <- NULL
+            dupes <- which(duplicated(x[["geneName"]]))
+            dupes <- as.character(x[["geneName"]][dupes])
+            dupes <- sort(unique(dupes))
+            cli_alert(sprintf(
+                fmt = "Averaging '%s' value for %d gene %s: %s.",
+                value,
+                length(dupes),
+                ngettext(
+                    n = length(dupes),
+                    msg1 = "symbol",
+                    msg2 = "symbols"
+                ),
+                toString(dupes, width = 100L)
+            ))
+        }
+        ## Split by the gene symbol.
+        x <- split(x = x, f = x[["geneName"]])
+        ## Calculate mean expression per symbol.
+        x <- vapply(
+            X = x[, value],
+            FUN = mean,
+            FUN.VALUE = numeric(1L)
+        )
+        ## Arrange from positive to negative.
+        x <- sort(x, decreasing = TRUE)
+        ## Return ranked list.
+        out <- SimpleList(x)
+        ## Ensure return contains contrast name.
+        names(out) <- contrastName(object)
+        metadata(out)[["version"]] <- .version
+        metadata(out)[["value"]] <- value
+        metadata(out)[["gene2symbol"]] <- metadata(gene2symbol)
+        new(Class = "RankedList", out)
+    }
+
+
+
+#' @rdname RankedList
+#' @export
+setMethod(
+    f = "RankedList",
+    signature = signature("DESeqResults"),
+    definition = `RankedList,DESeqResults`
+)
+
+
+
+## Updated 2020-03-17.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
-        value = c("stat", "log2FoldChange", "padj"),
+        value,
         BPPARAM = BiocParallel::bpparam()  # nolint
     ) {
         validObject(object)
@@ -104,54 +168,32 @@ setMethod(
         suppressMessages(
             gene2symbol <- Gene2Symbol(dds, format = "unmodified")
         )
-        gene2symbol <- as(gene2symbol, "DataFrame")
-        gene2symbol[["rowname"]] <- rownames(gene2symbol)
         ## Get parameterized GSEA list values for each DESeqResults contrast.
         list <- bplapply(
             X = resultsList,
-            FUN = function(x) {
-                x <- as(x, "DataFrame")
-                x[["rowname"]] <- rownames(x)
-                x <- leftJoin(x, gene2symbol, by = "rowname")
-                x <- x[, c("geneName", value), drop = FALSE]
-                x <- x[complete.cases(x), , drop = FALSE]
-                x <- unique(x)
-                ## Average the value per gene symbol, if necessary.
-                x[["geneName"]] <- as.factor(x[["geneName"]])
-                if (any(duplicated(x[["geneName"]]))) {
-                    rownames(x) <- NULL
-                    dupes <- which(duplicated(x[["geneName"]]))
-                    dupes <- as.character(x[["geneName"]][dupes])
-                    dupes <- sort(unique(dupes))
-                    cli_alert(sprintf(
-                        fmt = "Averaging '%s' value for %d gene %s: %s.",
-                        value,
-                        length(dupes),
-                        ngettext(
-                            n = length(dupes),
-                            msg1 = "symbol",
-                            msg2 = "symbols"
-                        ),
-                        toString(dupes, width = 100L)
-                    ))
-                }
-                ## Split by the gene symbol.
-                x <- split(x = x, f = x[["geneName"]])
-                ## Calculate mean expression per symbol.
-                x <- vapply(X = x[, value], FUN = mean, FUN.VALUE = numeric(1L))
-                ## Arrange from positive to negative.
-                x <- sort(x, decreasing = TRUE)
-                x
-            },
-            BPPARAM = BPPARAM
+            FUN = RankedList,
+            BPPARAM = BPPARAM,
+            gene2symbol = gene2symbol,
+            value = value
         )
-        names(list) <- names(resultsList)
+        ## Extract the required metadata from the first slotted RankedList
+        ## defined from DESeqResults method.
+        meta <- metadata(list[[1L]])
+        ## Now loop across the DESeqResults method return and unlist, so we
+        ## don't have an additional nested list level.
+        list <- lapply(
+            X = list,
+            FUN = unlist,
+            recursive = FALSE,
+            use.names = FALSE
+        )
         out <- SimpleList(list)
-        metadata(out)[["version"]] <- .version
-        metadata(out)[["value"]] <- value
-        metadata(out)[["gene2symbol"]] <- metadata(gene2symbol)
+        metadata(out) <- meta
         new(Class = "RankedList", out)
     }
+
+formals(`RankedList,DESeqAnalysis`)[["value"]] <-
+    formals(`RankedList,DESeqResults`)[["value"]]
 
 
 

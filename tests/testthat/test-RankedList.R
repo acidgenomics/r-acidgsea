@@ -3,7 +3,7 @@ context("RankedList")
 value <- eval(methodFormals(
     f = "RankedList",
     signature = "DESeqAnalysis",
-    package = "pfgsea"
+    package = "acidgsea"
 )[["value"]])
 
 with_parameters_test_that(
@@ -31,15 +31,19 @@ test_that("Average values for duplicate gene symbols", {
     rowData(x@data) <- rowData
     y <- RankedList(x)
     expect_s4_class(y, "RankedList")
-    expect_true(nrow(x@data) - length(y[[1L]]) == 2L)
+    ## Averaging 'stat' value for 2 gene symbols: DPM1, TSPAN6.
+    expect_true(nrow(x@data) - length(y[[1L]]) == 3L)
 })
 
 test_that("FGSEAList", {
-    object <- RankedList(gsea)
+    object <- RankedList(fgsea)
     expect_s4_class(object, "RankedList")
     expect_identical(
         object = names(object),
-        expected = "dmso_r1881_vs_etoh"
+        expected = c(
+            "condition_B_vs_A",
+            "treatment_D_vs_C"
+        )
     )
 })
 
