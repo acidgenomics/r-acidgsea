@@ -29,9 +29,9 @@ contrastNames(object, ...) <- value
 Contrast names
 }
 \note{
-Updated 2019-08-28.
+Updated 2020-03-18.
 }
 \examples{
-data(gsea)
-contrastNames(gsea)
+data(fgsea)
+contrastNames(fgsea)
 }

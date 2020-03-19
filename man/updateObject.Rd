@@ -19,7 +19,7 @@ updateObject(object, ..., verbose = FALSE)
   }
 
 \item{alpha}{\code{number(1)}.
-Alpha level used in \code{\link[=pfgsea]{pfgsea()}} call.
+Alpha level used for GSEA.
 Note that this is not necessarily the alpha level used to generate
 \code{DESeqResults} object.}
 
@@ -92,11 +92,11 @@ Updating objects is primarily useful when an object has been
   \code{object} cannot be determined by accessing known slots.
 }
 \note{
-Updated 2020-01-27.
+Updated 2020-03-18.
 }
 \examples{
-data(gsea)
-updateObject(gsea)
+data(fgsea)
+updateObject(fgsea)
 }
 \seealso{
 \itemize{

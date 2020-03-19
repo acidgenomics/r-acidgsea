@@ -30,6 +30,9 @@
 #' @param n `integer(1)`.
 #'   Number of significant processes to include.
 #'   Bidirectional; will include `n` up- and down-regulated processes.
+#' @param nesThreshold `numeric(1)` or `NULL`.
+#'   NES cutoff threshold.
+#'   If left `NULL`, no cutoff will be applied.
 #' @param object Object.
 #' @param pathways `character`.
 #'   Pathways.

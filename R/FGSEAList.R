@@ -3,7 +3,7 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @export
-#' @note Updated 2020-01-27.
+#' @note Updated 2020-03-16.
 #'
 #' @inheritParams acidroxygen::params
 #' @param rankedList `RankedList`.
@@ -27,17 +27,17 @@
 #' @return `FGSEAList`.
 #'
 #' @examples
-#' data(gsea)
+#' data(fgsea)
 #' metadata <- S4Vectors::metadata
 #'
-#' rankedList <- metadata(gsea)[["rankedList"]]
-#' gmtFiles <- metadata(gsea)[["gmtFiles"]]
+#' rankedList <- metadata(fgsea)[["rankedList"]]
+#' gmtFiles <- metadata(fgsea)[["gmtFiles"]]
 #'
 #' # Copy example MSigDb files to `$HOME`.
 #' file.copy(
 #'     from = system.file(
 #'         "extdata", "msigdb",
-#'         package = "pfgsea",
+#'         package = "acidgsea",
 #'         mustWork = TRUE
 #'     ),
 #'     to = "~",
@@ -45,9 +45,9 @@
 #'     recursive = TRUE
 #' )
 #'
-#' x <- pfgsea(rankedList = rankedList, gmtFiles = gmtFiles)
-#' print(x)
-pfgsea <- function(
+#' fgsea <- FGSEAList(rankedList = rankedList, gmtFiles = gmtFiles)
+#' print(fgsea)
+FGSEAList <- function(  # nolint
     rankedList,
     gmtFiles,
     nPerm = 1000L,

@@ -1,3 +1,23 @@
+## acidgsea 0.2.0 (2020-03-18)
+
+### Major changes
+
+- Renamed package from "pfgsea" to "acidgsea". Additional GSEA methods including
+  the Broad GSEA Preranked algorithm and support for Jean Fan's liger package
+  are planned for a future update, so it no longer makes sense to pin the
+  package name specifically to fgsea.
+- Reworked internally enriched gene set filtering and handoff.
+  Affected functions: `enrichedGeneSets`, `plotEnrichedGeneSets`,
+  and `plotEnrichedUpset`.
+
+### Minor changes
+
+- `convertToHuman`: Updated working example to use Ensembl 99 release, as
+  archived releases are currently unavailable via biomaRt until March 24, due
+  to Ensembl server migration. See Ensembl website for details.
+- Updated minimal example `gsea` object.
+- Updated unit tests and working examples to reflect package name change.
+
 ## pfgsea 0.1.17 (2020-01-27)
 
 ### Minor changes

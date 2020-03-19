@@ -1,10 +1,10 @@
 context("collectionNames")
 
 test_that("FGSEAList", {
-    expect_identical(collectionNames(gsea), "h")
+    expect_identical(collectionNames(fgsea), "h")
 })
 
 test_that("FGSEAList assignment", {
-    collectionNames(gsea) <- "XXX"
-    expect_identical(collectionNames(gsea), "XXX")
+    collectionNames(fgsea) <- "XXX"
+    expect_identical(collectionNames(fgsea), "XXX")
 })

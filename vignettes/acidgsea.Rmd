@@ -1,10 +1,10 @@
 ---
-title: "pfgsea"
+title: "acidgsea"
 date: "`r BiocStyle::doc_date()`"
 output: BiocStyle::html_document
 bibliography: '`r system.file("rmarkdown", "shared", "bibliography.bib", package = "basejump")`'
 vignette: >
-  %\VignetteIndexEntry{pfgsea}
+  %\VignetteIndexEntry{acidgsea}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 abstract: >

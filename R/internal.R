@@ -1,41 +1,144 @@
-## Filter results.
-## Updated 2019-08-28.
-.filterResults <- function(data, alpha) {
-    assert(isAlpha(alpha))
-    data <- as(data, "DataFrame")
-    data <- data[data[["padj"]] < alpha, , drop = FALSE]
-    data <- data[order(data[["padj"]], -data[["NES"]]), , drop = FALSE]
-    data
-}
-
-
-
-## Get the top up- and down-regualted pathways from FGSEA results data frame.
-## Updated 2019-08-28.
-.headtail <- function(x, alpha, n) {
+#' Enriched gene sets
+#'
+#' Assuming fgsea input by default currently.
+#'
+#' @note Updated 2020-03-18.
+#' @noRd
+#'
+#' @seealso `DESeqAnalysis::deg`.
+#'
+#' @examples
+#' data(fgsea)
+#' .enrichedGeneSets(
+#'     object = fgsea[[1L]][[1L]],
+#'     alpha = 0.9,
+#'     nesThreshold = 1,
+#'     direction = "down",
+#'     idCol = "pathway",
+#'     alphaCol = "padj",
+#'     nesCol = "NES"
+#' )
+.enrichedGeneSets <- function(
+    object,
+    alpha,
+    nesThreshold,
+    direction,
+    idCol,          # pathway
+    alphaCol,       # padj
+    nesCol          # NES
+) {
+    data <- as(object, "DataFrame")
     assert(
-        isSubset("pathway", colnames(x)),
-        isAlpha(alpha),
-        isInt(n)
+        isString(idCol),
+        isString(alphaCol),
+        isString(nesCol),
+        isSubset(c(idCol, alphaCol, nesCol), colnames(data))
     )
-    x <- as(x, "DataFrame")
-    ## Note that this sorts by adjusted P value, not desc NES.
-    x <- .filterResults(x, alpha = alpha)
-    if (!hasRows(x)) {
-        return(character())  # nocov
+    direction <- match.arg(direction, choices = c("both", "up", "down"))
+    data <- data[, c(idCol, nesCol, alphaCol)]
+    ## Apply alpha cutoff.
+    keep <- which(data[[alphaCol]] < alpha)
+    data <- data[keep, , drop = FALSE]
+    ## Apply NES threshold cutoff.
+    if (nesThreshold > 0L) {
+        keep <- which(abs(data[[nesCol]]) > nesThreshold)
+        data <- data[keep, , drop = FALSE]
     }
-    ## Need to ensure we're arranging by:
-    ## 1. NES (descending: positive to negative).
-    ## 2. Adjusted P value.
-    x <- x[order(-x[["NES"]], x[["padj"]]), , drop = FALSE]
-    x <- x[["pathway"]]
-    unique(c(head(x = x, n = n), tail(x = x, n = n)))
+    ## Apply directional filtering.
+    if (identical(direction, "up")) {
+        keep <- which(data[[nesCol]] > 0L)
+        data <- data[keep, , drop = FALSE]
+    } else if (identical(direction, "down")) {
+        keep <- which(data[[nesCol]] < 0L)
+        data <- data[keep, , drop = FALSE]
+    }
+    ## Arrange table by adjusted P value and NES score.
+    if (identical(direction, "down")) {
+        data <- data[order(data[["padj"]], data[["NES"]]), , drop = FALSE]
+    } else {
+        ## Note that we're arranging from high (positive) to low (negative)
+        ## NES value when direction is up or both.
+        data <- data[order(data[["padj"]], -data[["NES"]]), , drop = FALSE]
+    }
+    egs <- data[[idCol]]
+    status <- sprintf(
+        fmt = "%d %s %s detected (alpha: %g; nes: %g).",
+        length(egs),
+        switch(
+            EXPR = direction,
+            up = "upregulated",
+            down = "downregulated",
+            both = "enriched"
+        ),
+        ngettext(
+            n = length(egs),
+            msg1 = "gene set",
+            msg2 = "gene sets"
+        ),
+        alpha,
+        nesThreshold
+    )
+    cli_alert_info(status)
+    egs
 }
 
 
 
-## Get the leading edge genes for a GSEA contrast.
-## Updated 2019-11-18.
+#' Get the top up- and down-regulated pathways from FGSEA results
+#'
+#' @note Updated 2020-03-18.
+#' @noRd
+#'
+#' @param ... Passthrough arguments to `.enrichedGeneSets`.
+#' @param n `integer(1)`.
+#'   Number of upregulated and downregulated sets (each) to return.
+#'
+#' @examples
+#' data(fgsea)
+#' .headtail(
+#'     object = fgsea[[1L]][[1L]],
+#'     alpha = 0.9,
+#'     nesThreshold = 1L,
+#'     direction = "both",
+#'     n = 2L,
+#'     idCol = "pathway",
+#'     alphaCol = "padj",
+#'     nesCol = "NES"
+#' )
+.headtail <- function(..., direction, n) {
+    assert(isInt(n))
+    direction <- match.arg(direction, choices = c("both", "up", "down"))
+    args <- list(...)
+    ## Upregulated sets.
+    if (isSubset(direction, c("both", "up"))) {
+        up <- do.call(
+            what = .enrichedGeneSets,
+            args = c(args, direction = "up")
+        )
+        up <- head(x = up, n = n)
+    } else {
+        up <- character()
+    }
+    ## Downregulated sets.
+    if (isSubset(direction, c("both", "down"))) {
+        down <- do.call(
+            what = .enrichedGeneSets,
+            args = c(args, direction = "down")
+        )
+        down <- head(x = down, n = n)
+    } else {
+        down <- character()
+    }
+    ## Combine upregulated and downregulated sets.
+    egs <- unique(c(up, rev(down)))
+    egs
+}
+
+
+
+#' Get the leading edge genes for a GSEA contrast
+#' @note Updated 2019-11-18.
+#' @noRd
 .leadingEdge <- function(
     object,
     contrast,
