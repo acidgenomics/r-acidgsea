@@ -2,6 +2,7 @@
 #' @inherit acidgenerics::plotEnrichedUpset
 #' @note Updated 2020-03-18.
 #'
+#' @inheritParams acidroxygen::params
 #' @inheritParams params
 #' @param ... Additional arguments.
 #'

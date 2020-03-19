@@ -153,8 +153,9 @@ Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></cod
     </tr>
     <tr>
       <th>alpha</th>
-      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>.
-Alpha level.</p></td>
+      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code> or <code>NULL</code>.
+Adjusted P value ("alpha") cutoff. If left <code>NULL</code>, will use the cutoff
+defined in the object.</p></td>
     </tr>
     <tr>
       <th>nesThreshold</th>
@@ -163,14 +164,18 @@ NES cutoff threshold.
 If left <code>NULL</code>, no cutoff will be applied.</p></td>
     </tr>
     <tr>
+      <th>direction</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Include <code>"both"</code>, <code>"up"</code>, or <code>"down"</code> directions.</p></td>
+    </tr>
+    <tr>
       <th>n</th>
       <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
-Number of significant processes to include.
-Bidirectional; will include <code>n</code> up- and down-regulated processes.</p></td>
+Number to include.</p></td>
     </tr>
     <tr>
       <th>headerLevel</th>
-      <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
+      <td><p><code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code> (<code>1</code>-<code>7</code>).
 Markdown header level.</p></td>
     </tr>
     <tr>

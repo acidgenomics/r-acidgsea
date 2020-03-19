@@ -27,18 +27,21 @@ Gene set collection name or position, corresponding to values defined in
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 
-\item{alpha}{\code{numeric(1)}.
-Alpha level.}
+\item{alpha}{\code{numeric(1)} or \code{NULL}.
+Adjusted P value ("alpha") cutoff. If left \code{NULL}, will use the cutoff
+defined in the object.}
 
 \item{nesThreshold}{\code{numeric(1)} or \code{NULL}.
 NES cutoff threshold.
 If left \code{NULL}, no cutoff will be applied.}
 
-\item{n}{\code{integer(1)}.
-Number of significant processes to include.
-Bidirectional; will include \code{n} up- and down-regulated processes.}
+\item{direction}{\code{character(1)}.
+Include \code{"both"}, \code{"up"}, or \code{"down"} directions.}
 
-\item{headerLevel}{\code{integer(1)}.
+\item{n}{\code{integer(1)}.
+Number to include.}
+
+\item{headerLevel}{\code{integer(1)} (\code{1}-\code{7}).
 Markdown header level.}
 
 \item{theme}{\code{theme}/\code{gg}.
