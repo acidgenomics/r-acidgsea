@@ -12,8 +12,10 @@
 #'
 #' @examples
 #' ## This requires MSigDB to be installed at `${HOME}`.
-#' ## > data(fgsea)
-#' ## > plotEnrichedGeneSets(fgsea, collection = "h", alpha = 0.9, n = 1L)
+#' if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
+#'     data(fgsea)
+#'     plotEnrichedGeneSets(fgsea, collection = "h", alpha = 0.9, n = 1L)
+#' }
 NULL
 
 

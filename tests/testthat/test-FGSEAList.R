@@ -1,5 +1,7 @@
 context("FGSEAList")
 
+skip_if_not(dir.exists(file.path("~", "msigdb")))
+
 rankedList <- metadata(fgsea)[["rankedList"]]
 gmtFiles <- metadata(fgsea)[["gmtFiles"]]
 

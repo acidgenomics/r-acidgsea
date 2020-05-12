@@ -27,13 +27,7 @@
 #' @return `FGSEAList`.
 #'
 #' @examples
-#' ## > data(fgsea)
-#' ## > metadata <- S4Vectors::metadata
-#' ##
-#' ## > rankedList <- metadata(fgsea)[["rankedList"]]
-#' ## > gmtFiles <- metadata(fgsea)[["gmtFiles"]]
-#' ##
-#' ## Copy example MSigDb files to `$HOME`.
+#' ## > ## Copy example MSigDb files to `$HOME`.
 #' ## > file.copy(
 #' ## >     from = system.file(
 #' ## >         "extdata", "msigdb",
@@ -44,9 +38,17 @@
 #' ## >     overwrite = FALSE,
 #' ## >     recursive = TRUE
 #' ## > )
-#' ##
-#' ## > fgsea <- FGSEAList(rankedList = rankedList, gmtFiles = gmtFiles)
-#' ## > print(fgsea)
+#'
+#' if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
+#'     data(fgsea)
+#'     metadata <- S4Vectors::metadata
+#'
+#'     rankedList <- metadata(fgsea)[["rankedList"]]
+#'     gmtFiles <- metadata(fgsea)[["gmtFiles"]]
+#'
+#'     fgsea <- FGSEAList(rankedList = rankedList, gmtFiles = gmtFiles)
+#'     print(fgsea)
+#' }
 FGSEAList <- function(  # nolint
     rankedList,
     gmtFiles,
