@@ -11,8 +11,9 @@
 #' @seealso [fgsea::plotEnrichment()].
 #'
 #' @examples
-#' data(fgsea)
-#' plotEnrichedGeneSets(fgsea, collection = "h", alpha = 0.9, n = 1L)
+#' ## This requires MSigDB to be installed at `${HOME}`.
+#' ## > data(fgsea)
+#' ## > plotEnrichedGeneSets(fgsea, collection = "h", alpha = 0.9, n = 1L)
 NULL
 
 
