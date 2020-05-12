@@ -3,13 +3,16 @@
 #' Class containing parameterized fast GSEA results.
 #'
 #' @export
-#' @note Updated 2019-11-19.
+#' @note Updated 2020-05-12.
 #'
 #' @return `FGSEAList`.
 setClass(
     Class = "FGSEAList",
-    contains = "SimpleList",
-    validity = function(object) {
+    contains = "SimpleList"
+)
+setValidity(
+    Class = "FGSEAList",
+    method = function(object) {
         validate(
             is.list(object[[1L]]),
             is(object[[1L]][[1L]], "data.table"),
@@ -62,13 +65,16 @@ setClass(
 #' Class containing parameterized ranked gene lists.
 #'
 #' @export
-#' @note Updated 2019-07-24.
+#' @note Updated 2020-05-12.
 #'
 #' @return `RankedList`.
 setClass(
     Class = "RankedList",
-    contains = "SimpleList",
-    validity = function(object) {
+    contains = "SimpleList"
+)
+setValidity(
+    Class = "RankedList",
+    method = function(object) {
         validate(
             is.numeric(object[[1L]]),
             ## Check that this is sorted from high to low.

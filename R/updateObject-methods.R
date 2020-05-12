@@ -1,7 +1,7 @@
 #' @name updateObject
 #' @author Michael Steinbaugh
 #' @inherit BiocGenerics::updateObject
-#' @note Updated 2020-03-18.
+#' @note Updated 2020-05-12.
 #'
 #' @inheritParams acidroxygen::params
 #' @param alpha `number(1)`.
@@ -31,7 +31,7 @@ NULL
 
 
 `updateObject,FGSEAList` <-  # nolint
-    function(object, alpha, verbose = FALSE) {
+    function(object, alpha, ..., verbose = FALSE) {
         assert(isFlag(verbose))
         ## Slot alpha if undefined.
         if (!isSubset("alpha", names(metadata(object)))) {

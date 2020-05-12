@@ -7,7 +7,7 @@
 \usage{
 updateObject(object, ..., verbose = FALSE)
 
-\S4method{updateObject}{FGSEAList}(object, alpha, verbose = FALSE)
+\S4method{updateObject}{FGSEAList}(object, alpha, ..., verbose = FALSE)
 }
 \arguments{
 \item{object}{
@@ -23,10 +23,10 @@ Alpha level used for GSEA.
 Note that this is not necessarily the alpha level used to generate
 \code{DESeqResults} object.}
 
+\item{...}{Additional arguments.}
+
 \item{verbose}{\code{logical(1)}.
 Whether information about the update should be reported.}
-
-\item{...}{Additional arguments.}
 }
 \value{
 Modified object.
@@ -92,7 +92,7 @@ Updating objects is primarily useful when an object has been
   \code{object} cannot be determined by accessing known slots.
 }
 \note{
-Updated 2020-03-18.
+Updated 2020-05-12.
 }
 \examples{
 data(fgsea)

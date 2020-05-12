@@ -22,8 +22,8 @@
 #'   isAll isAlpha isAny isCharacter isFile isFlag isHeaderLevel isInt isNumber
 #'   isScalar isScalarInteger isString isSubset validate
 #' @importFrom knitr kable
-#' @importFrom methods as is new setAs setGeneric setMethod show slot slot<-
-#'   validObject
+#' @importFrom methods as is new setAs setGeneric setMethod setValidity show
+#'   slot slot<- validObject
 #' @importFrom sessioninfo session_info
 #' @importFrom utils globalVariables
 NULL
