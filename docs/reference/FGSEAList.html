@@ -193,27 +193,28 @@ We recommend using one of the following:</p><ul>
     <p>Updated 2020-05-12.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>## &gt; data(fgsea)
-## &gt; metadata &lt;- S4Vectors::metadata
-##
-## &gt; rankedList &lt;- metadata(fgsea)[["rankedList"]]
-## &gt; gmtFiles &lt;- metadata(fgsea)[["gmtFiles"]]
-##
-## Copy example MSigDb files to `$HOME`.
-## &gt; file.copy(
-## &gt;     from = system.file(
-## &gt;         "extdata", "msigdb",
-## &gt;         package = "acidgsea",
-## &gt;         mustWork = TRUE
-## &gt;     ),
-## &gt;     to = "~",
-## &gt;     overwrite = FALSE,
-## &gt;     recursive = TRUE
-## &gt; )
-##
-## &gt; fgsea &lt;- FGSEAList(rankedList = rankedList, gmtFiles = gmtFiles)
-## &gt; print(fgsea)
-</div></pre>
+    <pre class="examples"><div class='input'><span class='co'>## &gt; ## Copy example MSigDb files to `$HOME`.</span>
+<span class='co'>## &gt; file.copy(</span>
+<span class='co'>## &gt;     from = system.file(</span>
+<span class='co'>## &gt;         "extdata", "msigdb",</span>
+<span class='co'>## &gt;         package = "acidgsea",</span>
+<span class='co'>## &gt;         mustWork = TRUE</span>
+<span class='co'>## &gt;     ),</span>
+<span class='co'>## &gt;     to = "~",</span>
+<span class='co'>## &gt;     overwrite = FALSE,</span>
+<span class='co'>## &gt;     recursive = TRUE</span>
+<span class='co'>## &gt; )</span>
+
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/Logic.html'>isTRUE</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.exists</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"~"</span>, <span class='st'>"msigdb"</span>)))) {
+    <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
+    <span class='no'>metadata</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>S4Vectors</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html'>metadata</a></span>
+
+    <span class='no'>rankedList</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata</span>(<span class='no'>fgsea</span>)<span class='kw'>[[</span><span class='st'>"rankedList"</span>]]
+    <span class='no'>gmtFiles</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata</span>(<span class='no'>fgsea</span>)<span class='kw'>[[</span><span class='st'>"gmtFiles"</span>]]
+
+    <span class='no'>fgsea</span> <span class='kw'>&lt;-</span> <span class='fu'>FGSEAList</span>(<span class='kw'>rankedList</span> <span class='kw'>=</span> <span class='no'>rankedList</span>, <span class='kw'>gmtFiles</span> <span class='kw'>=</span> <span class='no'>gmtFiles</span>)
+    <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>fgsea</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
