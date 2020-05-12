@@ -1,3 +1,11 @@
+## acidgsea 0.2.1 (2020-05-12)
+
+### Minor changes
+
+- Split out `setValidity` from `setClass` for S4 class definitions.
+- `updateObject`: Added support for `...` and `verbose` arguments defined in the
+  S4 generic.
+
 ## acidgsea 0.2.0 (2020-03-18)
 
 ### Major changes
