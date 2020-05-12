@@ -54,27 +54,27 @@ We recommend using one of the following:
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2020-03-16.
+Updated 2020-05-12.
 }
 \examples{
-data(fgsea)
-metadata <- S4Vectors::metadata
-
-rankedList <- metadata(fgsea)[["rankedList"]]
-gmtFiles <- metadata(fgsea)[["gmtFiles"]]
-
-# Copy example MSigDb files to `$HOME`.
-file.copy(
-    from = system.file(
-        "extdata", "msigdb",
-        package = "acidgsea",
-        mustWork = TRUE
-    ),
-    to = "~",
-    overwrite = FALSE,
-    recursive = TRUE
-)
-
-fgsea <- FGSEAList(rankedList = rankedList, gmtFiles = gmtFiles)
-print(fgsea)
+## > data(fgsea)
+## > metadata <- S4Vectors::metadata
+##
+## > rankedList <- metadata(fgsea)[["rankedList"]]
+## > gmtFiles <- metadata(fgsea)[["gmtFiles"]]
+##
+## Copy example MSigDb files to `$HOME`.
+## > file.copy(
+## >     from = system.file(
+## >         "extdata", "msigdb",
+## >         package = "acidgsea",
+## >         mustWork = TRUE
+## >     ),
+## >     to = "~",
+## >     overwrite = FALSE,
+## >     recursive = TRUE
+## > )
+##
+## > fgsea <- FGSEAList(rankedList = rankedList, gmtFiles = gmtFiles)
+## > print(fgsea)
 }
