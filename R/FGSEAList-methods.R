@@ -52,7 +52,7 @@ NULL
 
 
 ## Updated 2020-05-20.
-`FGSEAList,RankedList` <-
+`FGSEAList,RankedList` <-  # nolint
     function(
         object,
         gmtFiles,
