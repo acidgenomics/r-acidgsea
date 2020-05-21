@@ -1,3 +1,14 @@
+#' @rdname FGSEAList
+#' @export
+setGeneric(
+    name = "FGSEAList",
+    def = function(object, ...) {
+        standardGeneric("FGSEAList")
+    }
+)
+
+
+
 #' @rdname RankedList
 #' @export
 setGeneric(
