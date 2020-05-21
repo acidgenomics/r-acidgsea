@@ -1,6 +1,6 @@
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2020-03-17.
+#' @note Updated 2020-05-20.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -71,16 +71,18 @@ setMethod(
 
 
 
-## Updated 2020-03-17.
-`RankedList,DESeqResults` <-  # nolint
+## Updated 2020-05-20.
+`RankedList,DataFrame` <-  # nolint
     function(
         object,
         gene2symbol,
-        value = c("stat", "log2FoldChange", "padj")
+        value
     ) {
         validObject(object)
-        value <- match.arg(value)
-        assert(is(gene2symbol, "Gene2Symbol"))
+        assert(
+            is(gene2symbol, "Gene2Symbol"),
+            isSubset(value, colnames(object))
+        )
         x <- as(object, "DataFrame")
         y <- as(gene2symbol, "DataFrame")
         ## Join the gene-to-symbol mappings, so we can convert Ensembl gene IDs
@@ -122,12 +124,40 @@ setMethod(
         x <- sort(x, decreasing = TRUE)
         ## Return ranked list.
         out <- SimpleList(x)
-        ## Ensure return contains contrast name.
-        names(out) <- contrastName(object)
         metadata(out)[["version"]] <- .version
         metadata(out)[["value"]] <- value
         metadata(out)[["gene2symbol"]] <- metadata(gene2symbol)
         new(Class = "RankedList", out)
+    }
+
+
+
+#' @rdname RankedList
+#' @export
+setMethod(
+    f = "RankedList",
+    signature = signature("DataFrame"),
+    definition = `RankedList,DataFrame`
+)
+
+
+
+## Updated 2020-05-20.
+`RankedList,DESeqResults` <-  # nolint
+    function(
+        object,
+        gene2symbol,
+        value = c("stat", "log2FoldChange", "padj")
+    ) {
+        validObject(object)
+        out <- RankedList(
+            object = as(object, "DataFrame"),
+            gene2symbol = gene2symbol,
+            value = match.arg(value)
+        )
+        ## Ensure return contains contrast name.
+        names(out) <- contrastName(object)
+        out
     }
 
 
