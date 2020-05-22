@@ -11,7 +11,7 @@
 \usage{
 RankedList(object, ...)
 
-\S4method{RankedList}{matrix}(object, value = "log2FoldChange")
+\S4method{RankedList}{matrix}(object, gene2symbol = NULL, value = "log2FoldChange")
 
 \S4method{RankedList}{DataFrame}(object, gene2symbol, value)
 
@@ -30,6 +30,10 @@ RankedList(object, ...)
 
 \item{...}{Additional arguments.}
 
+\item{gene2symbol}{\code{Gene2Symbol}.
+Gene-to-symbol mappings. Must contain \code{geneID} and \code{geneName} columns. See
+\code{Gene2Symbol} for more information.}
+
 \item{value}{\code{character(1)}.
 Value type to use for GSEA. Currently supported:
 \enumerate{
@@ -40,10 +44,6 @@ requires \code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} return to be slotte
 \item \code{padj}: Adjusted \emph{P} value. This don't provide directional ranks, but
 is offered as a legacy option. Not generally recommended.
 }}
-
-\item{gene2symbol}{\code{Gene2Symbol}.
-Gene-to-symbol mappings. Must contain \code{geneID} and \code{geneName} columns. See
-\code{Gene2Symbol} for more information.}
 
 \item{BPPARAM}{\code{bpparamClass}.
 BiocParallel parameter to specify the desired processor configuration.\cr

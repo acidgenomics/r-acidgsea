@@ -1,4 +1,4 @@
-## acidgsea 0.3.0 (2020-05-21)
+## acidgsea 0.3.0 (2020-05-22)
 
 ### Major changes
 
@@ -12,6 +12,9 @@
 
 - `RankedList`: Added support for `DataFrame` class, which is used inside
   pointillism package update.
+- `RankedList`: Added `gene2symbol` argument support for `matrix` model.
+  Using this for cluster matrix in pointillism for scRNA-seq using output
+  from edgeR (or DESeq2) for per-cluster marker analysis.
 
 ## acidgsea 0.2.1 (2020-05-12)
 
