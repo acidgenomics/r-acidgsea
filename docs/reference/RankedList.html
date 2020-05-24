@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -128,7 +128,10 @@
     <pre class="usage"><span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for matrix</span>
-<span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"log2FoldChange"</span>)
+<span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='kw'>gene2symbol</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"log2FoldChange"</span>)
+
+<span class='co'># S4 method for DataFrame</span>
+<span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='no'>gene2symbol</span>, <span class='no'>value</span>)
 
 <span class='co'># S4 method for DESeqResults</span>
 <span class='fu'>RankedList</span>(<span class='no'>object</span>, <span class='no'>gene2symbol</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"stat"</span>, <span class='st'>"log2FoldChange"</span>, <span class='st'>"padj"</span>))
@@ -155,6 +158,12 @@
       <td><p>Additional arguments.</p></td>
     </tr>
     <tr>
+      <th>gene2symbol</th>
+      <td><p><code>Gene2Symbol</code>.
+Gene-to-symbol mappings. Must contain <code>geneID</code> and <code>geneName</code> columns. See
+<code>Gene2Symbol</code> for more information.</p></td>
+    </tr>
+    <tr>
       <th>value</th>
       <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
 Value type to use for GSEA. Currently supported:</p><ol>
@@ -165,12 +174,6 @@ requires <code><a href='https://rdrr.io/pkg/DESeq2/man/lfcShrink.html'>DESeq2::l
 <li><p><code>padj</code>: Adjusted <em>P</em> value. This don't provide directional ranks, but
 is offered as a legacy option. Not generally recommended.</p></li>
 </ol></td>
-    </tr>
-    <tr>
-      <th>gene2symbol</th>
-      <td><p><code>Gene2Symbol</code>.
-Gene-to-symbol mappings. Must contain <code>geneID</code> and <code>geneName</code> columns. See
-<code>Gene2Symbol</code> for more information.</p></td>
     </tr>
     <tr>
       <th>BPPARAM</th>
@@ -189,7 +192,7 @@ We recommend using one of the following:</p><ul>
     <p><code>RankedList</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-03-17.</p>
+    <p>Updated 2020-05-20.</p>
     <h2 class="hasAnchor" id="gene-symbol-multi-mapping"><a class="anchor" href="#gene-symbol-multi-mapping"></a>Gene symbol multi-mapping</h2>
 
     
