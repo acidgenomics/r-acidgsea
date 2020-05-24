@@ -9,8 +9,8 @@
 #' @importFrom SummarizedExperiment rowRanges rowRanges<-
 #' @importFrom UpSetR fromList
 #' @importFrom acidplots acid_theme_light plotUpset
-#' @importFrom basejump Gene2Symbol alphaThreshold as_tibble export import
-#'   initDir leftJoin makeNames mapGenesToRownames markdownHeader
+#' @importFrom basejump Gene2Symbol aggregateRows alphaThreshold as_tibble
+#'   export import initDir leftJoin makeNames mapGenesToRownames markdownHeader
 #'   matchArgsToDoCall matchHumanOrthologs selectIf showHeader showSlotInfo
 #'   standardizeCall
 #' @importFrom cli cli_alert cli_alert_info cli_alert_warning cli_dl cli_text
