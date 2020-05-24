@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Contrast names — contrastNames • acidgsea</title>
+<title>Version 0.3 • acidgsea</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Contrast names — contrastNames" />
-<meta property="og:description" content="Contrast names" />
+<meta property="og:title" content="Version 0.3" />
 
 
 
@@ -61,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -116,58 +115,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Contrast names</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/contrastNames-methods.R'><code>R/contrastNames-methods.R</code></a></small>
-    <div class="hidden name"><code>contrastNames.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small>0.3</small></h1>
+      
     </div>
 
-    <div class="ref-description">
-    <p>Contrast names</p>
-    </div>
-
-    <pre class="usage"><span class='fu'>contrastNames</span>(<span class='no'>object</span>, <span class='no'>...</span>)
-
-<span class='fu'>contrastNames</span>(<span class='no'>object</span>, <span class='no'>...</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
-
-<span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>contrastNames</span>(<span class='no'>object</span>)
-
-<span class='co'># S4 method for FGSEAList,character</span>
-<span class='fu'>contrastNames</span>(<span class='no'>object</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>object</th>
-      <td><p>Object.</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>Value to assign.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p><code>character</code>.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Updated 2020-03-18.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
-<span class='fu'>contrastNames</span>(<span class='no'>fgsea</span>)</div><div class='output co'>#&gt; [1] "condition_B_vs_A" "treatment_D_vs_C"</div></pre>
+    <div id="acidgsea-030-2020-05-24" class="section level2">
+<h2 class="hasAnchor">
+<a href="#acidgsea-030-2020-05-24" class="anchor"></a>acidgsea 0.3.0 (2020-05-24)</h2>
+<div id="major-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<ul>
+<li>
+<code>FGSEAList</code>: Converted function to an S4 generic. Previously the main arguemnt was named <code>rankedList</code>, but this has been renamed to <code>object</code>. A <code>RankedList</code> object can still be passed in as the first object in the function call. This change was necessary for adding GSEA support in pointillism single-cell RNA-seq analysis toolkit.</li>
+</ul>
+</div>
+<div id="minor-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>
+<code>RankedList</code>: Added support for <code>DataFrame</code> class, which is used inside pointillism package update.</li>
+<li>
+<code>RankedList</code>: Added <code>gene2symbol</code> argument support for <code>matrix</code> model. Using this for cluster matrix in pointillism for scRNA-seq using output from edgeR (or DESeq2) for per-cluster marker analysis.</li>
+</ul>
+</div>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 
