@@ -1,3 +1,21 @@
+## acidgsea 0.3.0 (2020-05-24)
+
+### Major changes
+
+- `FGSEAList`: Converted function to an S4 generic. Previously the main arguemnt
+  was named `rankedList`, but this has been renamed to `object`. A `RankedList`
+  object can still be passed in as the first object in the function call. This
+  change was necessary for adding GSEA support in pointillism single-cell
+  RNA-seq analysis toolkit.
+
+### Minor changes
+
+- `RankedList`: Added support for `DataFrame` class, which is used inside
+  pointillism package update.
+- `RankedList`: Added `gene2symbol` argument support for `matrix` model.
+  Using this for cluster matrix in pointillism for scRNA-seq using output
+  from edgeR (or DESeq2) for per-cluster marker analysis.
+
 ## acidgsea 0.2.1 (2020-05-12)
 
 ### Minor changes

@@ -3,6 +3,7 @@
 \name{RankedList}
 \alias{RankedList}
 \alias{RankedList,matrix-method}
+\alias{RankedList,DataFrame-method}
 \alias{RankedList,DESeqResults-method}
 \alias{RankedList,DESeqAnalysis-method}
 \alias{RankedList,FGSEAList-method}
@@ -10,7 +11,9 @@
 \usage{
 RankedList(object, ...)
 
-\S4method{RankedList}{matrix}(object, value = "log2FoldChange")
+\S4method{RankedList}{matrix}(object, gene2symbol = NULL, value = "log2FoldChange")
+
+\S4method{RankedList}{DataFrame}(object, gene2symbol, value)
 
 \S4method{RankedList}{DESeqResults}(object, gene2symbol, value = c("stat", "log2FoldChange", "padj"))
 
@@ -27,6 +30,10 @@ RankedList(object, ...)
 
 \item{...}{Additional arguments.}
 
+\item{gene2symbol}{\code{Gene2Symbol}.
+Gene-to-symbol mappings. Must contain \code{geneID} and \code{geneName} columns. See
+\code{Gene2Symbol} for more information.}
+
 \item{value}{\code{character(1)}.
 Value type to use for GSEA. Currently supported:
 \enumerate{
@@ -37,10 +44,6 @@ requires \code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} return to be slotte
 \item \code{padj}: Adjusted \emph{P} value. This don't provide directional ranks, but
 is offered as a legacy option. Not generally recommended.
 }}
-
-\item{gene2symbol}{\code{Gene2Symbol}.
-Gene-to-symbol mappings. Must contain \code{geneID} and \code{geneName} columns. See
-\code{Gene2Symbol} for more information.}
 
 \item{BPPARAM}{\code{bpparamClass}.
 BiocParallel parameter to specify the desired processor configuration.\cr
@@ -58,7 +61,7 @@ We recommend using one of the following:
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2020-03-17.
+Updated 2020-05-20.
 }
 \section{Gene symbol multi-mapping}{
 

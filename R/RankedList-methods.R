@@ -1,6 +1,6 @@
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2020-03-17.
+#' @note Updated 2020-05-20.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -41,14 +41,47 @@ NULL
 ## This will work on any numeric matrix.
 ## Other options instead of df/list coercion (check benchmarks):
 ## https://stackoverflow.com/questions/6819804
-## Updated 2019-07-17.
+## Updated 2020-05-22.
 `RankedList,matrix` <-  # nolint
-    function(object, value = "log2FoldChange") {
+    function(
+        object,
+        gene2symbol = NULL,
+        value = "log2FoldChange"
+    ) {
         assert(
             is.numeric(object),
             hasColnames(object),
-            hasRownames(object)
+            hasRownames(object),
+            is(gene2symbol, "Gene2Symbol") || is.null(gene2symbol)
         )
+        ## Convert gene identifiers to gene symbols, if necessary.
+        if (is(gene2symbol, "Gene2Symbol")) {
+            assert(isSubset(rownames(object), rownames(gene2symbol)))
+            gene2symbol <- as(gene2symbol, "DataFrame")
+            gene2symbol <- gene2symbol[rownames(object), , drop = FALSE]
+            rownames(object) <- gene2symbol[["geneName"]]
+        }
+        ## Average expression of duplicate gene symbols, if necessary.
+        if (any(duplicated(rownames(object)))) {
+            dupes <- which(duplicated(rownames(object)))
+            dupes <- rownames(object)[dupes]
+            dupes <- sort(unique(dupes))
+            cli_alert(sprintf(
+                fmt = "Averaging '%s' value for %d gene %s: %s.",
+                value,
+                length(dupes),
+                ngettext(
+                    n = length(dupes),
+                    msg1 = "symbol",
+                    msg2 = "symbols"
+                ),
+                toString(dupes, width = 100L)
+            ))
+            by <- as.factor(rownames(object))
+            rownames(object) <- makeNames(rownames(object))
+            names(by) <- rownames(object)
+            object <- aggregateRows(x = object, by = by)
+        }
         list <- as.list(as.data.frame(object))
         list <- lapply(X = list, FUN = `names<-`, value = rownames(object))
         ## Sort the vectors from positive to negative.
@@ -71,16 +104,18 @@ setMethod(
 
 
 
-## Updated 2020-03-17.
-`RankedList,DESeqResults` <-  # nolint
+## Updated 2020-05-20.
+`RankedList,DataFrame` <-  # nolint
     function(
         object,
         gene2symbol,
-        value = c("stat", "log2FoldChange", "padj")
+        value
     ) {
         validObject(object)
-        value <- match.arg(value)
-        assert(is(gene2symbol, "Gene2Symbol"))
+        assert(
+            is(gene2symbol, "Gene2Symbol"),
+            isSubset(value, colnames(object))
+        )
         x <- as(object, "DataFrame")
         y <- as(gene2symbol, "DataFrame")
         ## Join the gene-to-symbol mappings, so we can convert Ensembl gene IDs
@@ -122,12 +157,40 @@ setMethod(
         x <- sort(x, decreasing = TRUE)
         ## Return ranked list.
         out <- SimpleList(x)
-        ## Ensure return contains contrast name.
-        names(out) <- contrastName(object)
         metadata(out)[["version"]] <- .version
         metadata(out)[["value"]] <- value
         metadata(out)[["gene2symbol"]] <- metadata(gene2symbol)
         new(Class = "RankedList", out)
+    }
+
+
+
+#' @rdname RankedList
+#' @export
+setMethod(
+    f = "RankedList",
+    signature = signature("DataFrame"),
+    definition = `RankedList,DataFrame`
+)
+
+
+
+## Updated 2020-05-20.
+`RankedList,DESeqResults` <-  # nolint
+    function(
+        object,
+        gene2symbol,
+        value = c("stat", "log2FoldChange", "padj")
+    ) {
+        validObject(object)
+        out <- RankedList(
+            object = as(object, "DataFrame"),
+            gene2symbol = gene2symbol,
+            value = match.arg(value)
+        )
+        ## Ensure return contains contrast name.
+        names(out) <- contrastName(object)
+        out
     }
 
 
