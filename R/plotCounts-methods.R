@@ -1,3 +1,30 @@
+## FIXME What's up with this?
+##
+# plotCounts(
+#     object = gsea,
+#     DESeqAnalysis = deseq_analysis,
+#     contrast = "day1_ts001637_0_1_vs_dmso",
+#     collection = "h",
+#     set = "HALLMARK_MYC_TARGETS_V1",
+#     interestingGroups = "compound"
+# )
+# Contrast: group_day1_ts001637_0_1_vs_day1_dmso_na
+# Factor column: group.
+# Numerator samples: x30194_016, x30194_017, x30194_018.
+# Denominator samples: x30194_019, x30194_020, x30194_021.
+# Scaling matrix per row (z-score).
+# 19872 rows don't have enough variance: ENSG00000000005, ENSG00000000971, ENSG00000001626, ENSG00000002079, ENSG00000002745, ENSG00000002933, ENSG00000003137, ENSG00000003987, ENSG00000004799, ENSG00000004809, ENSG00000004948, ENSG00000.....
+# Performing hierarchical clustering.
+# Using 'stats::hclust(method = "ward.D2")'.
+# Arranging rows using 'hclust()'.
+# Arranging columns using 'hclust()'.
+# Error in .pheatmapArgs(args) : Assert failure.
+# [1] isSubset(names(args), formalArgs(pheatmap)) is not TRUE.
+# Cause: 'names(args)' has elements not in 'formalArgs(pheatmap)': genes, line, labels
+# Calls: plotCounts ... <Anonymous> -> <Anonymous> -> .local -> .pheatmapArgs -> assert
+
+
+
 #' @name plotCounts
 #' @inherit acidplots::plotCounts description params return title
 #' @note Updated 2020-01-20.

@@ -95,7 +95,7 @@ NULL
                 ## Using an `mapply()` call here so we can pass the pathway
                 ## names in easily into the `markdownHeader()` call.
                 mapply(
-                    set = set,
+                    set = sets,
                     MoreArgs = list(
                         collection = collection,
                         contrast = contrast,
