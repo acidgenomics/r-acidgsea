@@ -66,20 +66,22 @@ NULL
             is.list(collection),
             hasNames(collection)
         )
-        out <- mapply(
-            object = collection,
-            MoreArgs = list(
-                alpha = alpha,
-                nesThreshold = nesThreshold,
-                direction = direction,
-                idCol = "pathway",
-                alphaCol = "padj",
-                nesCol = "NES"
-            ),
-            FUN = .enrichedGeneSets,
-            SIMPLIFY = FALSE,
-            USE.NAMES = TRUE
-        )
+        suppressMessages({
+            out <- mapply(
+                object = collection,
+                MoreArgs = list(
+                    alpha = alpha,
+                    nesThreshold = nesThreshold,
+                    direction = direction,
+                    idCol = "pathway",
+                    alphaCol = "padj",
+                    nesCol = "NES"
+                ),
+                FUN = .enrichedGeneSets,
+                SIMPLIFY = FALSE,
+                USE.NAMES = TRUE
+            )
+        })
         out
     }
 
