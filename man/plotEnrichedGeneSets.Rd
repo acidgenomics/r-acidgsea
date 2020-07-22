@@ -14,8 +14,7 @@ plotEnrichedGeneSets(object, ...)
   nesThreshold = NULL,
   direction = c("both", "up", "down"),
   n = 10L,
-  headerLevel = 3L,
-  theme = acidplots::acid_theme_light()
+  headerLevel = 3L
 )
 }
 \arguments{
@@ -43,9 +42,6 @@ Number to include.}
 
 \item{headerLevel}{\code{integer(1)} (\code{1}-\code{7}).
 Markdown header level.}
-
-\item{theme}{\code{theme}/\code{gg}.
-ggplot2 theme.}
 
 \item{...}{Additional arguments.}
 }
