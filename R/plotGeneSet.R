@@ -1,3 +1,7 @@
+## FIXME Store gene set in object, for portability.
+
+
+
 #' Plot gene set enrichment
 #'
 #' @name plotGeneSet
@@ -6,7 +10,22 @@
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
 #' @param ... Additional arguments.
+#'
+#' @seealso [fgsea::plotEnrichment()].
+#'
+#' @examples
+#' ## This requires MSigDB to be installed at `${HOME}`.
+#' if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
+#'     data(fgsea)
+#'     plotGeneSet(
+#'         object = fgsea,
+#'         collection = "h",
+#'         contrast = "condition_B_vs_A",
+#'         set = "HALLMARK_P53_PATHWAY"
+#'     )
+#' }
 NULL
+
 
 
 `plotGeneSet,FGSEAList` <-
