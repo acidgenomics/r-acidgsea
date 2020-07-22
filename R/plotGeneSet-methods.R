@@ -1,7 +1,3 @@
-## FIXME Store gene set in object, for portability.
-
-
-
 #' Plot gene set enrichment
 #'
 #' @name plotGeneSet

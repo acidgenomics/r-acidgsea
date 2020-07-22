@@ -34,7 +34,7 @@ Imports:
     SummarizedExperiment (>= 1.16),
     UpSetR (>= 1.4),
     acidgenerics (>= 0.3.7),
-    acidplots (>= 0.2.29),
+    acidplots (>= 0.2.30),
     cli (>= 2.0),
     fgsea (>= 1.12),
     ggplot2 (>= 3.3),
