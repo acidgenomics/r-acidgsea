@@ -1,7 +1,3 @@
-## FIXME Store gene set in object, for portability.
-
-
-
 #' @name plotEnrichedGeneSets
 #' @inherit acidgenerics::plotEnrichedGeneSets
 #' @note Updated 2020-07-22.
