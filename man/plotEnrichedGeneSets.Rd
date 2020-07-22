@@ -56,7 +56,7 @@ ggplot2 theme.}
 Plot enriched gene sets
 }
 \note{
-Updated 2020-03-18.
+Updated 2020-07-22.
 }
 \examples{
 ## This requires MSigDB to be installed at `${HOME}`.
@@ -66,5 +66,5 @@ if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
 }
 }
 \seealso{
-\code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}}.
+\code{\link[=plotGeneSet]{plotGeneSet()}}.
 }

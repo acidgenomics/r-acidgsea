@@ -28,3 +28,14 @@ setGeneric(
         standardGeneric("convertToHuman")
     }
 )
+
+
+
+#' @rdname plotGeneSet
+#' @export
+setGeneric(
+    name = "plotGeneSet",
+    def = function(object, ...) {
+        standardGeneric("plotGeneSet")
+    }
+)
