@@ -1,6 +1,10 @@
+## FIXME Store gene set in object, for portability.
+
+
+
 #' @name plotEnrichedGeneSets
 #' @inherit acidgenerics::plotEnrichedGeneSets
-#' @note Updated 2020-03-18.
+#' @note Updated 2020-07-22.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
@@ -8,7 +12,7 @@
 #'
 #' @return `ggplot`.
 #'
-#' @seealso [fgsea::plotEnrichment()].
+#' @seealso [plotGeneSet()].
 #'
 #' @examples
 #' ## This requires MSigDB to be installed at `${HOME}`.
@@ -29,7 +33,7 @@ NULL
 
 
 
-## Modified 2019-06-12.
+## Modified 2020-07-22.
 `plotEnrichedGeneSets,FGSEAList` <-  # nolint
     function(
         object,
@@ -38,8 +42,7 @@ NULL
         nesThreshold = NULL,
         direction = c("both", "up", "down"),
         n = 10L,
-        headerLevel = 3L,
-        theme = acidplots::acid_theme_light()
+        headerLevel = 3L
     ) {
         validObject(object)
         if (is.null(alpha)) {
@@ -57,28 +60,18 @@ NULL
         )
         direction <- match.arg(direction)
         data <- object[[collection]]
-        stats <- RankedList(object)
-        gmtFile <- metadata(object)[["gmtFiles"]][[collection]]
-        assert(
-            identical(names(data), names(stats)),
-            isAFile(gmtFile)
-        )
         invisible(mapply(
             contrast = names(data),
             data = data,
-            stats = stats,
             MoreArgs = list(
                 alpha = alpha,
                 direction = direction,
-                gmtFile = gmtFile,
                 n = n,
                 nesThreshold = nesThreshold
             ),
             FUN = function(
                 contrast,
                 data,
-                stats,
-                gmtFile,
                 alpha,
                 nesThreshold,
                 direction,
@@ -90,10 +83,7 @@ NULL
                     tabset = TRUE,
                     asis = TRUE
                 )
-                ## Here we're getting the gene set vector for each pathway from
-                ## the GMT file. Then we're matching against the significant
-                ## pathways from our FGSEA analysis.
-                pathways <- .headtail(
+                sets <- .headtail(
                     object = data,
                     alpha = alpha,
                     nesThreshold = nesThreshold,
@@ -103,45 +93,31 @@ NULL
                     alphaCol = "padj",
                     nesCol = "NES"
                 )
-                if (!hasLength(pathways)) {
+                if (!hasLength(sets)) {
                     return(invisible())  # nocov
                 }
-                pathways <- gmtPathways(gmt.file = gmtFile)[pathways]
                 ## Using an `mapply()` call here so we can pass the pathway
                 ## names in easily into the `markdownHeader()` call.
                 mapply(
-                    name = names(pathways),
-                    pathway = pathways,
+                    set = set,
                     MoreArgs = list(
-                        stats = stats,
-                        headerLevel = headerLevel + 1L,
-                        contrast = contrast
+                        collection = collection,
+                        contrast = contrast,
+                        headerLevel = headerLevel + 1L
                     ),
                     FUN = function(
-                        name,
-                        pathway,
-                        stats,
-                        headerLevel,
-                        contrast
+                        set,
+                        collection,
+                        contrast,
+                        headerLevel
                     ) {
-                        markdownHeader(name, level = headerLevel, asis = TRUE)
-                        ## Suppressing warnings here to for minimal example to
-                        ## work. `min(bottoms)` and `max(tops)` failure can
-                        ## occur, causing ggplot to fail. Safe to remove
-                        ## `fgsea::` here once we remove now defunct
-                        ## `plotEnrichment()` from export.
-                        p <- suppressWarnings(
-                            fgsea::plotEnrichment(
-                                pathway = pathway,
-                                stats = stats
-                            )
+                        markdownHeader(set, level = headerLevel, asis = TRUE)
+                        p <- plotGeneSet(
+                            object,
+                            collection = collection,
+                            contrast = contrast,
+                            set = set
                         )
-                        p <- p + labs(title = name, subtitle = contrast)
-                        ## fgsea sets a theme that is too hard to read.
-                        if (isAll(theme, c("theme", "gg"))) {
-                            p <- p + theme
-                        }
-                        ## Note that we need the `print()` call here for loops.
                         tryCatch(
                             expr = print(p),
                             error = function(e) invisible()

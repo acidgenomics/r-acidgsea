@@ -33,3 +33,18 @@ Plot gene set enrichment
 \note{
 Updated 2020-07-22.
 }
+\examples{
+## This requires MSigDB to be installed at `${HOME}`.
+if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
+    data(fgsea)
+    plotGeneSet(
+        object = fgsea,
+        collection = "h",
+        contrast = "condition_B_vs_A",
+        set = "HALLMARK_P53_PATHWAY"
+    )
+}
+}
+\seealso{
+\code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}}.
+}
