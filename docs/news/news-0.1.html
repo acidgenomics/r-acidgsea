@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -142,9 +142,9 @@
     <div id="pfgsea-012-2019-04-10" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-012-2019-04-10" class="anchor"></a>pfgsea 0.1.2 (2019-04-10)</h2>
-<div id="major-changes-6" class="section level3">
+<div id="major-changes-7" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-6" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-7" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Deleted <code>list</code> to <code>FGSEAList</code> coercion method.</li>
 </ul>
@@ -198,9 +198,9 @@
     <div id="pfgsea-016-2019-04-29" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-016-2019-04-29" class="anchor"></a>pfgsea 0.1.6 (2019-04-29)</h2>
-<div id="new-functions-3" class="section level3">
+<div id="new-functions-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-3" class="anchor"></a>New functions</h3>
+<a href="#new-functions-4" class="anchor"></a>New functions</h3>
 <ul>
 <li>
 <code>pathwayNames</code>, <code>contrastNames</code>: Accessor functions for pathway (e.g. MSigDb) and differential expression contrast names.</li>
@@ -210,9 +210,9 @@
 <code>plotEnrichedUpset</code>: Utility function that makes it easy to compare enrichment groups across contrasts, via an UpSet plot.</li>
 </ul>
 </div>
-<div id="major-changes-5" class="section level3">
+<div id="major-changes-6" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-5" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-6" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Added <code>combine</code> method support for <code>FGSEAList</code>, allowing us to easily combine GSEA results from multiple datasets. Primarily intended for downstream visualization using an UpSet plot (see <code>plotEnrichedUpset</code>).</li>
 </ul>
@@ -228,9 +228,9 @@
     <div id="pfgsea-017-2019-04-30" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-017-2019-04-30" class="anchor"></a>pfgsea 0.1.7 (2019-04-30)</h2>
-<div id="major-changes-4" class="section level3">
+<div id="major-changes-5" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-4" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-5" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Reworked language to use “collection” consistently instead of mixing/matching “geneSet” and “pathway”, which isn’t appropriate. Relevant function arguments have been updated to reflect this change.</li>
 <li>Now exporting <code>collectionNames</code> instead of <code>pathwayNames</code>.</li>
@@ -242,9 +242,9 @@
     <div id="pfgsea-018-2019-06-12" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-018-2019-06-12" class="anchor"></a>pfgsea 0.1.8 (2019-06-12)</h2>
-<div id="new-functions-2" class="section level3">
+<div id="new-functions-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-2" class="anchor"></a>New functions</h3>
+<a href="#new-functions-3" class="anchor"></a>New functions</h3>
 <ul>
 <li>Initial method support for <code>convertToHuman</code>, which allows for easy ortholog conversion to HUGO (HGNC) identifiers.</li>
 </ul>
@@ -262,9 +262,9 @@
     <div id="pfgsea-019-2019-06-26" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-019-2019-06-26" class="anchor"></a>pfgsea 0.1.9 (2019-06-26)</h2>
-<div id="new-functions-1" class="section level3">
+<div id="new-functions-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions-1" class="anchor"></a>New functions</h3>
+<a href="#new-functions-2" class="anchor"></a>New functions</h3>
 <ul>
 <li>
 <code>convertToHuman</code>: Utility that maps orthologs onto human genes, so we can perform GSEA. Added <code>map</code> argument support, to speed up multiple calls.</li>
@@ -302,9 +302,9 @@
     <div id="pfgsea-0113-2019-08-28" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-0113-2019-08-28" class="anchor"></a>pfgsea 0.1.13 (2019-08-28)</h2>
-<div id="major-changes-3" class="section level3">
+<div id="major-changes-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-3" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-4" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Reworked internal code to no longer depend on dplyr.</li>
 <li>Improved internal handling using <code>DataFrame</code> rather than <code>data.table</code>.</li>
@@ -327,17 +327,17 @@
     <div id="pfgsea-0115-2019-11-20" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-0115-2019-11-20" class="anchor"></a>pfgsea 0.1.15 (2019-11-20)</h2>
-<div id="new-functions" class="section level3">
+<div id="new-functions-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#new-functions" class="anchor"></a>New functions</h3>
+<a href="#new-functions-1" class="anchor"></a>New functions</h3>
 <ul>
 <li>
 <code>plotCounts</code>, <code>plotHeatmap</code>: Added initial <code>FGSEAList</code> method support.</li>
 </ul>
 </div>
-<div id="major-changes-2" class="section level3">
+<div id="major-changes-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-2" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-3" class="anchor"></a>Major changes</h3>
 <ul>
 <li>
 <code>plotGSEATable</code>: Made defunct, since this visualization doesn’t render very reliably in R Markdown output. Consider using a heatmap approach instead.</li>
