@@ -8,6 +8,7 @@
 
 ### Major changes
 
+- Updated minimum R dependency to 4.0.
 - `plotEnrichedGeneSets`: Now calls new `plotGeneSet` function internally.
 
 ## acidgsea 0.3.0 (2020-05-24)

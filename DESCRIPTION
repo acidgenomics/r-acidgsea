@@ -23,20 +23,20 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: false
 Depends:
-    R (>= 3.6),
+    R (>= 4.0),
     basejump (>= 0.12.8)
 Imports:
-    BiocGenerics (>= 0.32),
-    BiocParallel (>= 1.20),
+    BiocGenerics,
+    BiocParallel,
     DESeqAnalysis (>= 0.2.18),
-    IRanges (>= 2.20),
-    S4Vectors (>= 0.24),
-    SummarizedExperiment (>= 1.16),
+    IRanges,
+    S4Vectors,
+    SummarizedExperiment,
     UpSetR (>= 1.4),
     acidgenerics (>= 0.3.7),
     acidplots (>= 0.2.30),
     cli (>= 2.0),
-    fgsea (>= 1.12),
+    fgsea (>= 1.14),
     ggplot2 (>= 3.3),
     goalie (>= 0.4.5),
     knitr (>= 1.25),
@@ -44,10 +44,10 @@ Imports:
     methods,
     utils
 Suggests:
-    BiocStyle (>= 2.14),
+    BiocStyle,
     acidtest (>= 0.3.0),
     patrick (>= 0.0.1),
-    rmarkdown (>= 1.16),
+    rmarkdown (>= 2.3),
     testthat (>= 2.3)
 Remotes:
     acidgenomics/DESeqAnalysis,

@@ -1,3 +1,8 @@
+## FIXME Rework internal code using fgsea::plotEnrichment as a guide.
+## That code currently hard-codes theme_bw.
+
+
+
 #' Plot gene set enrichment
 #'
 #' @name plotGeneSet
