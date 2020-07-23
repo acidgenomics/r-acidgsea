@@ -1,7 +1,3 @@
-## FIXME Remove plotGseaTable
-
-
-
 #' @importClassesFrom DESeqAnalysis DESeqAnalysis
 #' @importMethodsFrom DESeqAnalysis coerce plotCounts
 #'
@@ -19,7 +15,7 @@
 #'   standardizeCall
 #' @importFrom cli cli_alert cli_alert_info cli_alert_warning cli_dl cli_text
 #'   cli_ul
-#' @importFrom fgsea calcGseaStat fgsea gmtPathways plotGseaTable
+#' @importFrom fgsea calcGseaStat fgsea gmtPathways
 #' @importFrom ggplot2 aes element_blank geom_hline geom_line geom_point
 #'   geom_segment ggplot labs theme
 #' @importFrom goalie allAreAtomic areDisjointSets areSameLength areSetEqual
