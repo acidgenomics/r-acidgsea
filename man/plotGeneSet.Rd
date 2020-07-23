@@ -7,7 +7,14 @@
 \usage{
 plotGeneSet(object, ...)
 
-\S4method{plotGeneSet}{FGSEAList}(object, collection, contrast, set)
+\S4method{plotGeneSet}{FGSEAList}(
+  object,
+  collection,
+  contrast,
+  set,
+  colors = c(line = "black", min = acidplots::purpleOrange(n = 2L)[[1L]], max =
+    acidplots::purpleOrange(n = 2L)[[2L]], ticks = "black", yintercept = "black")
+)
 }
 \arguments{
 \item{object}{Object.}
@@ -26,12 +33,22 @@ DESeqResults contrast.}
 \item{set}{\code{character(1)}.
 Gene set name, in a defined \code{collection}.
 For example, \code{"HALLMARK_ADIPOGENESIS"}.}
+
+\item{colors}{\code{character(5)}.
+Named character color vector indicating:
+\itemize{
+\item Line color.
+\item Minimum (negative) threshold line color.
+\item Maximum (positive) threhsold color.
+\item Y intercept at origin color.
+\item Ticks color.
+}}
 }
 \description{
 Plot gene set enrichment
 }
 \note{
-Updated 2020-07-22.
+Updated 2020-07-23.
 }
 \examples{
 ## This requires MSigDB to be installed at `${HOME}`.
@@ -46,5 +63,5 @@ if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
 }
 }
 \seealso{
-\code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}}.
+Modified version of \code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}}.
 }
