@@ -1,10 +1,10 @@
-## acidgsea 0.3.1 (2020-07-22)
+## acidgsea 0.3.1 (2020-07-23)
 
 ### New functions
 
 - `plotGeneSet`: Split out internal gene set plotting code used previously in
-  `plotEnrichedGeneSets`. Now wraps `fgsea::plotEnrichment` with some additional
-  tweaks, including automatic title support.
+  `plotEnrichedGeneSets`. This is a modified variant of `fgsea::plotEnrichment`
+  that allows for additional color customization.
 
 ### Major changes
 
