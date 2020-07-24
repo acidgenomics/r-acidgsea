@@ -1,6 +1,6 @@
 #' @name plotEnrichedUpset
 #' @inherit acidgenerics::plotEnrichedUpset
-#' @note Updated 2020-03-18.
+#' @note Updated 2020-07-23.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
@@ -22,7 +22,7 @@ NULL
 
 
 
-## Updated 2020-03-18.
+## Updated 2020-07-23.
 `plotEnrichedUpset,FGSEAList` <-  # nolint
     function(
         object,
@@ -41,24 +41,24 @@ NULL
         )
         ## Upregulated gene sets.
         if (isSubset(direction, c("both", "up"))) {
-            suppressMessages(
+            suppressMessages({
                 up <- do.call(
                     what = enrichedGeneSets,
                     args = c(args, direction = "up")
                 )
-            )
+            })
             names(up) <- makeNames(paste(names(up), "up"))
         } else {
             up <- NULL
         }
         ## Downregulated gene sets.
         if (isSubset(direction, c("both", "down"))) {
-            suppressMessages(
+            suppressMessages({
                 down <- do.call(
                     what = enrichedGeneSets,
                     args = c(args, direction = "down")
                 )
-            )
+            })
             names(down) <- makeNames(paste(names(down), "down"))
         } else {
             down <- NULL
@@ -72,14 +72,14 @@ NULL
             cli_alert_warning(
                 "Less than 2 enriched sets returned. Skipping plot."
             )
-            return(invisible())
+            return()
             ## nocov end
         }
         ## Suppressing message about single contrast not having up/down overlap:
         ## geom_path: Each group consists of only one observation.
-        suppressMessages(
-            plotUpset(object = fromList(listInput))
-        )
+        suppressMessages({
+            plotUpset(listInput)
+        })
     }
 
 
