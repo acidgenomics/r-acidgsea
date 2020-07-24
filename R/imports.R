@@ -7,7 +7,6 @@
 #' @importFrom S4Vectors DataFrame SimpleList complete.cases head lapply mcols
 #'   mcols<- metadata metadata<- na.omit order split tail unique
 #' @importFrom SummarizedExperiment rowRanges rowRanges<-
-#' @importFrom UpSetR fromList
 #' @importFrom acidplots acid_theme_light plotUpset
 #' @importFrom basejump Gene2Symbol aggregateRows alphaThreshold as_tibble
 #'   export import initDir leftJoin makeNames mapGenesToRownames markdownHeader
@@ -15,12 +14,13 @@
 #'   standardizeCall
 #' @importFrom cli cli_alert cli_alert_info cli_alert_warning cli_dl cli_text
 #'   cli_ul
-#' @importFrom fgsea fgsea gmtPathways plotEnrichment plotGseaTable
-#' @importFrom ggplot2 labs
-#' @importFrom goalie allAreAtomic areDisjointSets areSameLength assert bapply
-#'   hasColnames hasLength hasNames hasNoDuplicates hasRownames hasRows isAFile
-#'   isAll isAlpha isAny isCharacter isFile isFlag isHeaderLevel isInt isNumber
-#'   isScalar isScalarInteger isString isSubset validate
+#' @importFrom fgsea calcGseaStat fgsea gmtPathways
+#' @importFrom ggplot2 aes geom_hline geom_line geom_point geom_segment ggplot
+#'   labs
+#' @importFrom goalie allAreAtomic areDisjointSets areSameLength areSetEqual
+#'   assert bapply hasColnames hasLength hasNames hasNoDuplicates hasRownames
+#'   hasRows isAFile isAll isAlpha isAny isCharacter isFile isFlag isHeaderLevel
+#'   isInt isNumber isScalar isScalarInteger isString isSubset validate
 #' @importFrom knitr kable
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity show
 #'   slot slot<- validObject
