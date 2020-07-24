@@ -1,4 +1,4 @@
-## acidgsea 0.3.1 (2020-07-23)
+## acidgsea 0.3.1 (2020-07-24)
 
 ### New functions
 
@@ -14,6 +14,7 @@
 ### Minor changes
 
 - Removed UpSetR dependency, based on update to acidplots package.
+- Removed `plotCounts` method, in favor of `plotHeatmap` usage.
 
 ## acidgsea 0.3.0 (2020-05-24)
 

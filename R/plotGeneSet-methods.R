@@ -1,7 +1,7 @@
 #' Plot gene set enrichment
 #'
 #' @name plotGeneSet
-#' @note Updated 2020-07-23.
+#' @note Updated 2020-07-24.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
@@ -17,6 +17,8 @@
 #' @param ... Additional arguments.
 #'
 #' @seealso Modified version of [fgsea::plotEnrichment()].
+#'
+#' @return `ggplot`.
 #'
 #' @examples
 #' ## This requires MSigDB to be installed at `${HOME}`.
@@ -34,7 +36,7 @@ NULL
 
 
 ## Updated 2020-07-23.
-`plotGeneSet,FGSEAList` <-
+`plotGeneSet,FGSEAList` <-  # nolint
     function(
         object,
         collection,
@@ -106,7 +108,7 @@ NULL
             mapping = aes(x = x, y = y)
         ) +
             geom_hline(
-                yintercept = 0,
+                yintercept = 0L,
                 color = colors[["yintercept"]],
                 size = 0.5
             ) +
@@ -136,10 +138,6 @@ NULL
                 color = colors[["min"]],
                 linetype = "longdash",
                 size = 0.5
-            ) +
-            theme(
-                panel.border = element_blank(),
-                panel.grid.minor = element_blank()
             ) +
             labs(
                 title = set,

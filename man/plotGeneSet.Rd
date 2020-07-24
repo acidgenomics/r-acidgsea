@@ -44,11 +44,14 @@ Named character color vector indicating:
 \item Ticks color.
 }}
 }
+\value{
+\code{ggplot}.
+}
 \description{
 Plot gene set enrichment
 }
 \note{
-Updated 2020-07-23.
+Updated 2020-07-24.
 }
 \examples{
 ## This requires MSigDB to be installed at `${HOME}`.

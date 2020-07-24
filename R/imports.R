@@ -15,8 +15,8 @@
 #' @importFrom cli cli_alert cli_alert_info cli_alert_warning cli_dl cli_text
 #'   cli_ul
 #' @importFrom fgsea calcGseaStat fgsea gmtPathways
-#' @importFrom ggplot2 aes element_blank geom_hline geom_line geom_point
-#'   geom_segment ggplot labs theme
+#' @importFrom ggplot2 aes geom_hline geom_line geom_point geom_segment ggplot
+#'   labs
 #' @importFrom goalie allAreAtomic areDisjointSets areSameLength areSetEqual
 #'   assert bapply hasColnames hasLength hasNames hasNoDuplicates hasRownames
 #'   hasRows isAFile isAll isAlpha isAny isCharacter isFile isFlag isHeaderLevel

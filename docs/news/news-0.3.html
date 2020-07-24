@@ -130,9 +130,9 @@
 <code>FGSEAList</code>: Converted function to an S4 generic. Previously the main arguemnt was named <code>rankedList</code>, but this has been renamed to <code>object</code>. A <code>RankedList</code> object can still be passed in as the first object in the function call. This change was necessary for adding GSEA support in pointillism single-cell RNA-seq analysis toolkit.</li>
 </ul>
 </div>
-<div id="minor-changes" class="section level3">
+<div id="minor-changes-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>RankedList</code>: Added support for <code>DataFrame</code> class, which is used inside pointillism package update.</li>
@@ -141,9 +141,9 @@
 </ul>
 </div>
 </div>
-    <div id="acidgsea-031-2020-07-23" class="section level2">
+    <div id="acidgsea-031-2020-07-24" class="section level2">
 <h2 class="hasAnchor">
-<a href="#acidgsea-031-2020-07-23" class="anchor"></a>acidgsea 0.3.1 (2020-07-23)</h2>
+<a href="#acidgsea-031-2020-07-24" class="anchor"></a>acidgsea 0.3.1 (2020-07-24)</h2>
 <div id="new-functions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#new-functions" class="anchor"></a>New functions</h3>
@@ -159,6 +159,14 @@
 <li>Updated minimum R dependency to 4.0.</li>
 <li>
 <code>plotEnrichedGeneSets</code>: Now calls new <code>plotGeneSet</code> function internally.</li>
+</ul>
+</div>
+<div id="minor-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#minor-changes" class="anchor"></a>Minor changes</h3>
+<ul>
+<li>Removed UpSetR dependency, based on update to acidplots package.</li>
+<li>Removed <code>plotCounts</code> method, in favor of <code>plotHeatmap</code> usage.</li>
 </ul>
 </div>
 </div>
