@@ -1,3 +1,21 @@
+## acidgsea 0.3.1 (2020-07-24)
+
+### New functions
+
+- `plotGeneSet`: Split out internal gene set plotting code used previously in
+  `plotEnrichedGeneSets`. This is a modified variant of `fgsea::plotEnrichment`
+  that allows for additional color customization.
+
+### Major changes
+
+- Updated minimum R dependency to 4.0.
+- `plotEnrichedGeneSets`: Now calls new `plotGeneSet` function internally.
+
+### Minor changes
+
+- Removed UpSetR dependency, based on update to acidplots package.
+- Removed `plotCounts` method, in favor of `plotHeatmap` usage.
+
 ## acidgsea 0.3.0 (2020-05-24)
 
 ### Major changes

@@ -14,8 +14,7 @@ plotEnrichedGeneSets(object, ...)
   nesThreshold = NULL,
   direction = c("both", "up", "down"),
   n = 10L,
-  headerLevel = 3L,
-  theme = acidplots::acid_theme_light()
+  headerLevel = 3L
 )
 }
 \arguments{
@@ -44,9 +43,6 @@ Number to include.}
 \item{headerLevel}{\code{integer(1)} (\code{1}-\code{7}).
 Markdown header level.}
 
-\item{theme}{\code{theme}/\code{gg}.
-ggplot2 theme.}
-
 \item{...}{Additional arguments.}
 }
 \value{
@@ -56,7 +52,7 @@ ggplot2 theme.}
 Plot enriched gene sets
 }
 \note{
-Updated 2020-03-18.
+Updated 2020-07-22.
 }
 \examples{
 ## This requires MSigDB to be installed at `${HOME}`.
@@ -66,5 +62,5 @@ if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
 }
 }
 \seealso{
-\code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}}.
+\code{\link[=plotGeneSet]{plotGeneSet()}}.
 }
