@@ -7,7 +7,6 @@
 #' @importFrom S4Vectors DataFrame SimpleList complete.cases head lapply mcols
 #'   mcols<- metadata metadata<- na.omit order split tail unique
 #' @importFrom SummarizedExperiment rowRanges rowRanges<-
-#' @importFrom UpSetR fromList
 #' @importFrom acidplots acid_theme_light plotUpset
 #' @importFrom basejump Gene2Symbol aggregateRows alphaThreshold as_tibble
 #'   export import initDir leftJoin makeNames mapGenesToRownames markdownHeader
