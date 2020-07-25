@@ -44,10 +44,10 @@ Imports:
     utils
 Suggests:
     BiocStyle,
-    acidtest (>= 0.3.0),
-    patrick (>= 0.0.1),
-    rmarkdown (>= 2.3),
-    testthat (>= 2.3)
+    acidtest (>= 0.3.2),
+    patrick,
+    rmarkdown,
+    testthat
 Remotes:
     acidgenomics/DESeqAnalysis,
     acidgenomics/acidgenerics,

@@ -11,6 +11,7 @@ test_that("Upregulated gene sets", {
         what = enrichedGeneSets,
         args = c(args, direction = "up")
     )
+    expect_type(object, "list")
 })
 
 test_that("Downregulated gene sets", {
@@ -18,6 +19,7 @@ test_that("Downregulated gene sets", {
         what = enrichedGeneSets,
         args = c(args, direction = "down")
     )
+    expect_type(object, "list")
 })
 
 test_that("Enriched in both directions", {
