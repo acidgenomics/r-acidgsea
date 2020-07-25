@@ -1,24 +1,21 @@
 context("RankedList")
 
-value <- eval(methodFormals(
+values <- eval(methodFormals(
     f = "RankedList",
     signature = "DESeqAnalysis",
     package = "acidgsea"
 )[["value"]])
-
-with_parameters_test_that(
-    "DESeqAnalysis", {
+test_that("DESeqAnalysis", {
+    for (value in values) {
         object <- RankedList(deseq, value = value)
         expect_s4_class(object, "RankedList")
         expect_identical(
             object = names(object),
             expected = c("condition_B_vs_A", "treatment_D_vs_C")
         )
-    },
-    value = value
-)
-
-rm(value)
+    }
+})
+rm(values)
 
 test_that("Average values for duplicate gene symbols", {
     x <- deseq
