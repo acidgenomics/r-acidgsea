@@ -3,7 +3,7 @@ Title: Acid Genomics GSEA
 Description: Perform parameterized gene set enrichment analysis (GSEA)
     on multiple differential expression contrasts.
 Version: 0.3.1
-Date: 2020-07-24
+Date: 2020-07-28
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -39,15 +39,14 @@ Imports:
     ggplot2 (>= 3.3),
     goalie (>= 0.4.5),
     knitr (>= 1.25),
-    sessioninfo (>= 1.1),
     methods,
+    sessioninfo (>= 1.1),
     utils
 Suggests:
     BiocStyle,
-    acidtest (>= 0.3.0),
-    patrick (>= 0.0.1),
-    rmarkdown (>= 2.3),
-    testthat (>= 2.3)
+    acidtest (>= 0.3.2),
+    rmarkdown,
+    testthat
 Remotes:
     acidgenomics/DESeqAnalysis,
     acidgenomics/acidgenerics,
