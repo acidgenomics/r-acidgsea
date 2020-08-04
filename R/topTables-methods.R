@@ -52,19 +52,19 @@ NULL
             nesThreshold = nesThreshold
         )
         ## Upregulated gene sets.
-        suppressMessages(
+        suppressMessages({
             up <- do.call(
                 what = enrichedGeneSets,
                 args = c(args, direction = "up")
             )
-        )
+        })
         ## Downregulated gene sets.
-        suppressMessages(
+        suppressMessages({
             down <- do.call(
                 what = enrichedGeneSets,
                 args = c(args, direction = "down")
             )
-        )
+        })
         assert(
             is.list(up),
             is.list(down),

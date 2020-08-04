@@ -228,9 +228,9 @@ setMethod(
         ## Get the gene-to-symbol mappings in long format.
         ## We're returning in long format so we can average the values for each
         ## gene symbol, since for some genomes gene IDs multi-map to symbols.
-        suppressMessages(
+        suppressMessages({
             gene2symbol <- Gene2Symbol(dds, format = "unmodified")
-        )
+        })
         ## Get parameterized GSEA list values for each DESeqResults contrast.
         list <- bplapply(
             X = resultsList,
