@@ -90,7 +90,7 @@ NULL
                             "Running using %d permutations.",
                             nPerm
                         ))
-                        suppressWarnings(
+                        suppressWarnings({
                             data <- fgsea::fgsea(
                                 pathways = pathways,
                                 stats = stats,
@@ -99,7 +99,7 @@ NULL
                                 maxSize = maxSize,
                                 BPPARAM = BPPARAM
                             )
-                        )
+                        })
                         assert(is(data, "data.table"))
                         data
                     }
