@@ -18,10 +18,12 @@
 #'
 #' @examples
 #' data(fgsea)
+#'
+#' ## FGSEAList ====
+#' alphaThreshold(fgsea) <- 0.7
 #' enrichedGeneSets(
 #'     object = fgsea,
 #'     collection = "h",
-#'     alpha = 0.7,
 #'     direction = "up"
 #' )
 NULL

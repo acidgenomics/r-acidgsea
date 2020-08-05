@@ -15,6 +15,8 @@
 #'
 #' @examples
 #' data(fgsea)
+#'
+#' ## FGSEAList ====
 #' alphaThreshold(fgsea) <- 0.9
 #' topTables(fgsea, collection = "h")
 NULL

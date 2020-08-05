@@ -34,5 +34,8 @@ Updated 2020-08-05.
 }
 \examples{
 data(fgsea)
-plotEnrichedUpset(fgsea, collection = "h", alpha = 0.9)
+
+## FGSEAList ====
+alphaThreshold(fgsea) <- 0.9
+plotEnrichedUpset(fgsea, collection = "h")
 }
