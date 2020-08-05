@@ -5,8 +5,6 @@
 #'
 #' @param DESeqAnalysis `DESeqAnalysis`.
 #'   Corresponding DESeq2 data used to perform GSEA.
-#' @param alpha `numeric(1)`.
-#'   Alpha level.
 #' @param collection `character(1)` or `integer(1)`.
 #'   Gene set collection name or position, corresponding to values defined in
 #'   [`names()`][base::names].

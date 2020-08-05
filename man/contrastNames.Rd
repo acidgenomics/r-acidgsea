@@ -33,5 +33,7 @@ Updated 2020-03-18.
 }
 \examples{
 data(fgsea)
+
+## FGSEAList ====
 contrastNames(fgsea)
 }

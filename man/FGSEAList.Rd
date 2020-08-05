@@ -13,7 +13,7 @@ FGSEAList(object, ...)
   nPerm = 1000L,
   minSize = 15L,
   maxSize = 500L,
-  alpha = 0.05,
+  alphaThreshold = 0.05,
   BPPARAM = BiocParallel::bpparam()
 )
 }
@@ -37,8 +37,9 @@ All pathways below the threshold are excluded.}
 Maximal size of a gene set to test.
 All pathways above the threshold are excluded.}
 
-\item{alpha}{\code{numeric(1)}.
-Alpha level cutoff. Stored internally in \code{metadata()}.
+\item{alphaThreshold}{\code{numeric(1)}.
+Alpha level cutoff.
+Stored internally in \code{\link[=alphaThreshold]{alphaThreshold()}}.
 Applied only to plots and enriched gene set exports, but does not affect
 the actual GSEA enrichment calculation.}
 
@@ -58,7 +59,7 @@ We recommend using one of the following:
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2020-05-20.
+Updated 2020-08-05.
 }
 \examples{
 ## > ## Copy example MSigDb files to `$HOME`.

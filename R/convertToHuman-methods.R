@@ -17,6 +17,8 @@
 #'
 #' @examples
 #' data(deseq, package = "DESeqAnalysis")
+#'
+#' ## DESeqAnalysis ====
 #' convertToHuman(deseq)
 NULL
 

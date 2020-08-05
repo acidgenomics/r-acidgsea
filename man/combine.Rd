@@ -29,6 +29,8 @@ Updated 2020-03-18.
 }
 \examples{
 data(fgsea)
+
+## FGSEAList ====
 x <- fgsea
 contrastNames(x) <- paste0("x_", contrastNames(x))
 y <- fgsea

@@ -3,7 +3,7 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @name FGSEAList
-#' @note Updated 2020-05-20.
+#' @note Updated 2020-08-05.
 #'
 #' @inheritParams acidroxygen::params
 #' @param gmtFiles `character`.
@@ -17,8 +17,9 @@
 #' @param maxSize `integer(1)`/`Inf`.
 #'   Maximal size of a gene set to test.
 #'   All pathways above the threshold are excluded.
-#' @param alpha `numeric(1)`.
-#'   Alpha level cutoff. Stored internally in `metadata()`.
+#' @param alphaThreshold `numeric(1)`.
+#'   Alpha level cutoff.
+#'   Stored internally in [alphaThreshold()].
 #'   Applied only to plots and enriched gene set exports, but does not affect
 #'   the actual GSEA enrichment calculation.
 #'
@@ -51,7 +52,7 @@ NULL
 
 
 
-## Updated 2020-05-20.
+## Updated 2020-08-05.
 `FGSEAList,RankedList` <-  # nolint
     function(
         object,
@@ -59,14 +60,14 @@ NULL
         nPerm = 1000L,
         minSize = 15L,
         maxSize = 500L,
-        alpha = 0.05,
+        alphaThreshold = 0.05,
         BPPARAM = BiocParallel::bpparam()  # nolint
     ) {
         assert(
             all(isFile(gmtFiles)),
             hasNames(gmtFiles),
             isInt(nPerm),
-            isAlpha(alpha)
+            isAlpha(alphaThreshold)
         )
         validObject(object)
         cli_alert("Running parameterized fast GSEA.")
@@ -114,7 +115,7 @@ NULL
             nPerm = nPerm,
             minSize = minSize,
             maxSize = maxSize,
-            alpha = alpha,
+            alpha = alphaThreshold,
             rankedList = object,
             gmtFiles = gmtFiles,
             call = standardizeCall(),

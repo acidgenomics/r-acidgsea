@@ -1,6 +1,6 @@
 #' @name plotEnrichedUpset
 #' @inherit acidgenerics::plotEnrichedUpset
-#' @note Updated 2020-07-23.
+#' @note Updated 2020-08-05.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
@@ -8,7 +8,10 @@
 #'
 #' @examples
 #' data(fgsea)
-#' plotEnrichedUpset(fgsea, collection = "h", alpha = 0.9)
+#'
+#' ## FGSEAList ====
+#' alphaThreshold(fgsea) <- 0.9
+#' plotEnrichedUpset(fgsea, collection = "h")
 NULL
 
 
@@ -22,22 +25,18 @@ NULL
 
 
 
-## Updated 2020-07-23.
+## Updated 2020-08-05.
 `plotEnrichedUpset,FGSEAList` <-  # nolint
     function(
         object,
         collection,
-        alpha = NULL,
-        nesThreshold = NULL,
         direction = c("both", "up", "down")
     ) {
         validObject(object)
         direction <- match.arg(direction)
         args <- list(
             object = object,
-            collection = collection,
-            alpha = alpha,
-            nesThreshold = nesThreshold
+            collection = collection
         )
         ## Upregulated gene sets.
         if (isSubset(direction, c("both", "up"))) {

@@ -7,14 +7,7 @@
 \usage{
 topTables(object, ...)
 
-\S4method{topTables}{FGSEAList}(
-  object,
-  collection,
-  alpha = NULL,
-  nesThreshold = NULL,
-  n = 10L,
-  headerLevel = 3L
-)
+\S4method{topTables}{FGSEAList}(object, collection, n = 10L, headerLevel = 3L)
 }
 \arguments{
 \item{object}{Object.}
@@ -24,13 +17,6 @@ Gene set collection name or position, corresponding to values defined in
 \code{\link[base:names]{names()}}.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
-
-\item{alpha}{\code{numeric(1)}.
-Alpha level.}
-
-\item{nesThreshold}{\code{numeric(1)} or \code{NULL}.
-NES cutoff threshold.
-If left \code{NULL}, no cutoff will be applied.}
 
 \item{n}{\code{integer(1)}.
 Number of significant processes to include.
@@ -52,9 +38,12 @@ Supports looping across multiple DEG results, and adds a Markdown header for
 each contrast.
 }
 \note{
-Updated 2020-03-18.
+Updated 2020-08-05.
 }
 \examples{
 data(fgsea)
+
+## FGSEAList ====
+alphaThreshold(fgsea) <- 0.9
 topTables(fgsea, collection = "h")
 }

@@ -1,6 +1,6 @@
 #' @name plotEnrichedGeneSets
 #' @inherit acidgenerics::plotEnrichedGeneSets
-#' @note Updated 2020-07-22.
+#' @note Updated 2020-08-05.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
@@ -14,7 +14,8 @@
 #' ## This requires MSigDB to be installed at `${HOME}`.
 #' if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
 #'     data(fgsea)
-#'     plotEnrichedGeneSets(fgsea, collection = "h", alpha = 0.9, n = 1L)
+#'     alphaThreshold(fgsea) <- 0.9
+#'     plotEnrichedGeneSets(fgsea, collection = "h", n = 1L)
 #' }
 NULL
 
@@ -29,46 +30,38 @@ NULL
 
 
 
-## Modified 2020-07-22.
+## Modified 2020-08-05.
 `plotEnrichedGeneSets,FGSEAList` <-  # nolint
     function(
         object,
         collection,
-        alpha = NULL,
-        nesThreshold = NULL,
         direction = c("both", "up", "down"),
         n = 10L,
         headerLevel = 3L
     ) {
         validObject(object)
-        if (is.null(alpha)) {
-            alpha <- alphaThreshold(object)
-        }
-        if (is.null(nesThreshold)) {
-            nesThreshold <- 0L
-        }
         assert(
             isScalar(collection),
-            isAlpha(alpha),
-            isNumber(nesThreshold),
             isInt(n),
             isHeaderLevel(headerLevel)
         )
+        alphaThreshold <- alphaThreshold(object)
+        nesThreshold <- nesThreshold(object)
         direction <- match.arg(direction)
         data <- object[[collection]]
         invisible(mapply(
             contrast = names(data),
             data = data,
             MoreArgs = list(
-                alpha = alpha,
+                alphaThreshold = alphaThreshold,
+                nesThreshold = nesThreshold,
                 direction = direction,
-                n = n,
-                nesThreshold = nesThreshold
+                n = n
             ),
             FUN = function(
                 contrast,
                 data,
-                alpha,
+                alphaThreshold,
                 nesThreshold,
                 direction,
                 n
@@ -81,7 +74,7 @@ NULL
                 )
                 sets <- .headtail(
                     object = data,
-                    alpha = alpha,
+                    alphaThreshold = alphaThreshold,
                     nesThreshold = nesThreshold,
                     direction = direction,
                     n = n,
@@ -90,7 +83,7 @@ NULL
                     nesCol = "NES"
                 )
                 if (!hasLength(sets)) {
-                    return(invisible())  # nocov
+                    return()  # nocov
                 }
                 ## Using an `mapply()` call here so we can pass the pathway
                 ## names in easily into the `markdownHeader()` call.

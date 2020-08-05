@@ -1,6 +1,6 @@
 #' @name topTables
 #' @inherit acidgenerics::topTables
-#' @note Updated 2020-03-18.
+#' @note Updated 2020-08-05.
 #'
 #' @description Top tables of significantly enriched pathways.
 #'
@@ -15,6 +15,9 @@
 #'
 #' @examples
 #' data(fgsea)
+#'
+#' ## FGSEAList ====
+#' alphaThreshold(fgsea) <- 0.9
 #' topTables(fgsea, collection = "h")
 NULL
 
@@ -29,13 +32,11 @@ NULL
 
 
 
-## Updated 2020-03-18.
+## Updated 2020-08-05.
 `topTables,FGSEAList` <-  # nolint
     function(
         object,
         collection,
-        alpha = NULL,
-        nesThreshold = NULL,
         n = 10L,
         headerLevel = 3L
     ) {
@@ -47,9 +48,7 @@ NULL
         )
         args <- list(
             object = object,
-            collection = collection,
-            alpha = alpha,
-            nesThreshold = nesThreshold
+            collection = collection
         )
         ## Upregulated gene sets.
         suppressMessages({

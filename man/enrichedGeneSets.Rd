@@ -7,13 +7,7 @@
 \usage{
 enrichedGeneSets(object, ...)
 
-\S4method{enrichedGeneSets}{FGSEAList}(
-  object,
-  collection,
-  alpha = NULL,
-  nesThreshold = NULL,
-  direction = c("both", "up", "down")
-)
+\S4method{enrichedGeneSets}{FGSEAList}(object, collection, direction = c("both", "up", "down"))
 }
 \arguments{
 \item{object}{Object.}
@@ -23,14 +17,6 @@ Gene set collection name or position, corresponding to values defined in
 \code{\link[base:names]{names()}}.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
-
-\item{alpha}{\code{numeric(1)} or \code{NULL}.
-Adjusted P value ("alpha") cutoff. If left \code{NULL}, will use the cutoff
-defined in the object.}
-
-\item{nesThreshold}{\code{numeric(1)} or \code{NULL}.
-NES cutoff threshold.
-If left \code{NULL}, no cutoff will be applied.}
 
 \item{direction}{\code{character(1)}.
 Include \code{"both"}, \code{"up"}, or \code{"down"} directions.}
@@ -45,19 +31,21 @@ Named list containing significant gene sets per contrast.
 Enriched pathways from gene set collections.
 }
 \note{
-Updated 2020-03-18.
+Updated 2020-08-05.
 }
 \examples{
 data(fgsea)
+
+## FGSEAList ====
+alphaThreshold(fgsea) <- 0.7
 enrichedGeneSets(
     object = fgsea,
     collection = "h",
-    alpha = 0.7,
     direction = "up"
 )
 }
 \seealso{
 \itemize{
-\item \code{DESeqAnalysis::deg}.
+\item \code{DESeqAnalysis::deg()}.
 }
 }

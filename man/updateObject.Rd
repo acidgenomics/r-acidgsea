@@ -7,7 +7,7 @@
 \usage{
 updateObject(object, ..., verbose = FALSE)
 
-\S4method{updateObject}{FGSEAList}(object, alpha, ..., verbose = FALSE)
+\S4method{updateObject}{FGSEAList}(object, alphaThreshold = NULL, ..., verbose = FALSE)
 }
 \arguments{
 \item{object}{
@@ -18,7 +18,7 @@ updateObject(object, ..., verbose = FALSE)
     \code{getObjectSlots}.
   }
 
-\item{alpha}{\code{number(1)}.
+\item{alphaThreshold}{\code{number(1)}.
 Alpha level used for GSEA.
 Note that this is not necessarily the alpha level used to generate
 \code{DESeqResults} object.}
@@ -92,10 +92,12 @@ Updating objects is primarily useful when an object has been
   \code{object} cannot be determined by accessing known slots.
 }
 \note{
-Updated 2020-05-12.
+Updated 2020-08-05.
 }
 \examples{
 data(fgsea)
+
+## FGSEAList ====
 updateObject(fgsea)
 }
 \seealso{

@@ -35,5 +35,7 @@ Updated 2020-03-17.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")
+
+## DESeqAnalysis ====
 convertToHuman(deseq)
 }

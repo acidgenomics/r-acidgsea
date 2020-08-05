@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -134,7 +134,7 @@
   <span class='kw'>nPerm</span> <span class='kw'>=</span> <span class='fl'>1000L</span>,
   <span class='kw'>minSize</span> <span class='kw'>=</span> <span class='fl'>15L</span>,
   <span class='kw'>maxSize</span> <span class='kw'>=</span> <span class='fl'>500L</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>alphaThreshold</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
   <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
 )</pre>
 
@@ -173,9 +173,10 @@ Maximal size of a gene set to test.
 All pathways above the threshold are excluded.</p></td>
     </tr>
     <tr>
-      <th>alpha</th>
+      <th>alphaThreshold</th>
       <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>.
-Alpha level cutoff. Stored internally in <code>metadata()</code>.
+Alpha level cutoff.
+Stored internally in <code>alphaThreshold()</code>.
 Applied only to plots and enriched gene set exports, but does not affect
 the actual GSEA enrichment calculation.</p></td>
     </tr>
@@ -196,7 +197,7 @@ We recommend using one of the following:</p><ul>
     <p><code>FGSEAList</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-05-20.</p>
+    <p>Updated 2020-08-05.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## &gt; ## Copy example MSigDb files to `$HOME`.</span>
@@ -220,9 +221,10 @@ We recommend using one of the following:</p><ul>
 
     <span class='no'>fgsea</span> <span class='kw'>&lt;-</span> <span class='fu'>FGSEAList</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>rankedList</span>, <span class='kw'>gmtFiles</span> <span class='kw'>=</span> <span class='no'>gmtFiles</span>)
     <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>fgsea</span>)
-}</div><div class='output co'>#&gt; <span class='message'>→ Running parameterized fast GSEA.</span></div><div class='output co'>#&gt; <span class='message'>GMT files:</span></div><div class='output co'>#&gt; <span class='message'>● h</span></div><div class='output co'>#&gt; <span class='message'>Contrasts:</span></div><div class='output co'>#&gt; <span class='message'>● condition_B_vs_A</span></div><div class='output co'>#&gt; <span class='message'>● treatment_D_vs_C</span></div><div class='output co'>#&gt; <span class='message'>GMT file: h.all.v7.0.symbols.gmt</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> Testing against 50 pathways.</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> Running using 1000 permutations.</span></div><div class='output co'>#&gt; <span class='message'>GMT file: h.all.v7.0.symbols.gmt</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> Testing against 50 pathways.</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> Running using 1000 permutations.</span></div><div class='output co'>#&gt; FGSEAList 0.3.1 of length 1
+}</div><div class='output co'>#&gt; <span class='message'>→ Running parameterized fast GSEA.</span></div><div class='output co'>#&gt; <span class='message'>GMT files:</span></div><div class='output co'>#&gt; <span class='message'>● h</span></div><div class='output co'>#&gt; <span class='message'>Contrasts:</span></div><div class='output co'>#&gt; <span class='message'>● condition_B_vs_A</span></div><div class='output co'>#&gt; <span class='message'>● treatment_D_vs_C</span></div><div class='output co'>#&gt; <span class='message'>GMT file: h.all.v7.0.symbols.gmt</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> Testing against 50 pathways.</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> Running using 1000 permutations.</span></div><div class='output co'>#&gt; <span class='message'>GMT file: h.all.v7.0.symbols.gmt</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> Testing against 50 pathways.</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> Running using 1000 permutations.</span></div><div class='output co'>#&gt; FGSEAList 0.3.2 of length 1
 #&gt; collectionNames: h
-#&gt; contrastNames(2): condition_B_vs_A treatment_D_vs_C</div></span></pre>
+#&gt; contrastNames(2): condition_B_vs_A treatment_D_vs_C
+#&gt; alphaThreshold: 0.05</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -51,6 +51,8 @@ organize by:
 
 \examples{
 data(fgsea)
+
+## FGSEAList ====
 export(fgsea, dir = "example")
 sort(list.files(file.path("example", "fgsea")))
 unlink("example", recursive = TRUE)
