@@ -2,7 +2,7 @@
 #'
 #' @name show
 #' @inherit methods::show return
-#' @note Updated 2020-03-18.
+#' @note Updated 2020-08-05.
 #'
 #' @inheritParams acidroxygen::params
 #'
@@ -15,14 +15,20 @@ NULL
 
 
 
-## Updated 2019-07-24.
+## Updated 2020-08-05.
 `show,FGSEAList` <-  # nolint
     function(object) {
         showHeader(object)
-        showSlotInfo(list(
+        list <- list(
             collectionNames = collectionNames(object),
-            contrastNames = contrastNames(object)
-        ))
+            contrastNames = contrastNames(object),
+            alphaThreshold = alphaThreshold(object)
+        )
+        nesThreshold <- nesThreshold(object)
+        if (nesThreshold > 0L) {
+            list[["nesThreshold"]] <- nesThreshold
+        }
+        showSlotInfo(list)
     }
 
 

@@ -7,9 +7,6 @@
 \item{DESeqAnalysis}{\code{DESeqAnalysis}.
 Corresponding DESeq2 data used to perform GSEA.}
 
-\item{alpha}{\code{numeric(1)}.
-Alpha level.}
-
 \item{collection}{\code{character(1)} or \code{integer(1)}.
 Gene set collection name or position, corresponding to values defined in
 \code{\link[base:names]{names()}}.

@@ -46,13 +46,9 @@ NULL
         direction = c("both", "up", "down")
     ) {
         validObject(object)
-        assert(
-            isScalar(collection),
-            isAlpha(alpha),
-            isNumber(nesThreshold)
-        )
+        assert(isScalar(collection))
         direction <- match.arg(direction)
-        alpha <- alphaThreshold(object)
+        alphaThreshold <- alphaThreshold(object)
         nesThreshold <- nesThreshold(object)
         collection <- object[[collection]]
         assert(

@@ -7,13 +7,7 @@
 \usage{
 plotEnrichedUpset(object, ...)
 
-\S4method{plotEnrichedUpset}{FGSEAList}(
-  object,
-  collection,
-  alpha = NULL,
-  nesThreshold = NULL,
-  direction = c("both", "up", "down")
-)
+\S4method{plotEnrichedUpset}{FGSEAList}(object, collection, direction = c("both", "up", "down"))
 }
 \arguments{
 \item{object}{Object.}
@@ -23,13 +17,6 @@ Gene set collection name or position, corresponding to values defined in
 \code{\link[base:names]{names()}}.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
-
-\item{alpha}{\code{numeric(1)}.
-Alpha level.}
-
-\item{nesThreshold}{\code{numeric(1)} or \code{NULL}.
-NES cutoff threshold.
-If left \code{NULL}, no cutoff will be applied.}
 
 \item{direction}{\code{character(1)}.
 Include \code{"both"}, \code{"up"}, or \code{"down"} directions.}
@@ -43,7 +30,7 @@ Plot.
 UpSet plot of directional enriched pathway intersections across contrasts
 }
 \note{
-Updated 2020-07-23.
+Updated 2020-08-05.
 }
 \examples{
 data(fgsea)
