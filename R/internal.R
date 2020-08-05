@@ -11,7 +11,7 @@
 #' data(fgsea)
 #' .enrichedGeneSets(
 #'     object = fgsea[[1L]][[1L]],
-#'     alpha = 0.9,
+#'     alphaThreshold = 0.9,
 #'     nesThreshold = 1,
 #'     direction = "down",
 #'     idCol = "pathway",
@@ -20,7 +20,7 @@
 #' )
 .enrichedGeneSets <- function(
     object,
-    alpha,
+    alphaThreshold,
     nesThreshold,
     direction,
     idCol,          # pathway
@@ -37,7 +37,7 @@
     direction <- match.arg(direction, choices = c("both", "up", "down"))
     data <- data[, c(idCol, nesCol, alphaCol)]
     ## Apply alpha cutoff.
-    keep <- which(data[[alphaCol]] < alpha)
+    keep <- which(data[[alphaCol]] < alphaThreshold)
     data <- data[keep, , drop = FALSE]
     ## Apply NES threshold cutoff.
     if (nesThreshold > 0L) {
@@ -62,7 +62,7 @@
     }
     egs <- data[[idCol]]
     status <- sprintf(
-        fmt = "%d %s %s detected (alpha: %g; nes: %g).",
+        fmt = "%d %s %s detected (alpha < %g; nes > %g).",
         length(egs),
         switch(
             EXPR = direction,
@@ -75,7 +75,7 @@
             msg1 = "gene set",
             msg2 = "gene sets"
         ),
-        alpha,
+        alphaThreshold,
         nesThreshold
     )
     cli_alert_info(status)
@@ -97,7 +97,7 @@
 #' data(fgsea)
 #' .headtail(
 #'     object = fgsea[[1L]][[1L]],
-#'     alpha = 0.9,
+#'     alphaThreshold = 0.9,
 #'     nesThreshold = 1L,
 #'     direction = "both",
 #'     n = 2L,

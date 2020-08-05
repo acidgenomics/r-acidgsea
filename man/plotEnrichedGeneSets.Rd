@@ -10,8 +10,6 @@ plotEnrichedGeneSets(object, ...)
 \S4method{plotEnrichedGeneSets}{FGSEAList}(
   object,
   collection,
-  alpha = NULL,
-  nesThreshold = NULL,
   direction = c("both", "up", "down"),
   n = 10L,
   headerLevel = 3L
@@ -25,13 +23,6 @@ Gene set collection name or position, corresponding to values defined in
 \code{\link[base:names]{names()}}.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
-
-\item{alpha}{\code{numeric(1)}.
-Alpha level.}
-
-\item{nesThreshold}{\code{numeric(1)} or \code{NULL}.
-NES cutoff threshold.
-If left \code{NULL}, no cutoff will be applied.}
 
 \item{direction}{\code{character(1)}.
 Include \code{"both"}, \code{"up"}, or \code{"down"} directions.}

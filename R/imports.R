@@ -20,7 +20,8 @@
 #' @importFrom goalie allAreAtomic areDisjointSets areSameLength areSetEqual
 #'   assert bapply hasColnames hasLength hasNames hasNoDuplicates hasRownames
 #'   hasRows isAFile isAll isAlpha isAny isCharacter isFile isFlag isHeaderLevel
-#'   isInt isNumber isScalar isScalarInteger isString isSubset validate
+#'   isInt isNumber isNonNegative isScalar isScalarInteger isString isSubset
+#'   validate
 #' @importFrom knitr kable
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity show
 #'   slot slot<- validObject

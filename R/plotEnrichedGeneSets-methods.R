@@ -34,8 +34,6 @@ NULL
     function(
         object,
         collection,
-        alpha = NULL,
-        nesThreshold = NULL,
         direction = c("both", "up", "down"),
         n = 10L,
         headerLevel = 3L
