@@ -4,6 +4,8 @@
 #' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
+#'
+#' ## FGSEAList ====
 #' collectionNames(fgsea)
 NULL
 

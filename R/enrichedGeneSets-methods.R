@@ -4,7 +4,7 @@
 #'
 #' @name enrichedGeneSets
 #' @inherit acidgenerics::enrichedGeneSets
-#' @note Updated 2020-03-18.
+#' @note Updated 2020-08-05.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
@@ -14,14 +14,16 @@
 #' Named list containing significant gene sets per contrast.
 #'
 #' @seealso
-#' - `DESeqAnalysis::deg`.
+#' - `DESeqAnalysis::deg()`.
 #'
 #' @examples
 #' data(fgsea)
+#'
+#' ## FGSEAList ====
+#' alphaThreshold(fgsea) <- 0.7
 #' enrichedGeneSets(
 #'     object = fgsea,
 #'     collection = "h",
-#'     alpha = 0.7,
 #'     direction = "up"
 #' )
 NULL
@@ -38,29 +40,18 @@ NULL
 
 
 ## @seealso `DESeqAnalysis::plotDEGUpset()`, for looping inspiration.
-## Updated 2020-03-18.
+## Updated 2020-08-05.
 `enrichedGeneSets,FGSEAList` <-  # nolint
     function(
         object,
         collection,
-        alpha = NULL,
-        nesThreshold = NULL,
         direction = c("both", "up", "down")
     ) {
         validObject(object)
-        if (is.null(alpha)) {
-            alpha <- alphaThreshold(object)
-        }
-        if (is.null(nesThreshold)) {
-            nesThreshold <- 0L
-        }
-        assert(
-            isScalar(collection),
-            isAlpha(alpha),
-            isNumber(nesThreshold)
-        )
+        assert(isScalar(collection))
         direction <- match.arg(direction)
-        nesThreshold <- abs(nesThreshold)
+        alphaThreshold <- alphaThreshold(object)
+        nesThreshold <- nesThreshold(object)
         collection <- object[[collection]]
         assert(
             is.list(collection),
@@ -70,7 +61,7 @@ NULL
             out <- mapply(
                 object = collection,
                 MoreArgs = list(
-                    alpha = alpha,
+                    alphaThreshold = alphaThreshold,
                     nesThreshold = nesThreshold,
                     direction = direction,
                     idCol = "pathway",

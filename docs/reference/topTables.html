@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -128,14 +128,7 @@
     <pre class="usage"><span class='fu'>topTables</span>(<span class='no'>object</span>, <span class='no'>...</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>topTables</span>(
-  <span class='no'>object</span>,
-  <span class='no'>collection</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>nesThreshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
-  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>3L</span>
-)</pre>
+<span class='fu'>topTables</span>(<span class='no'>object</span>, <span class='no'>collection</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>, <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>3L</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -150,18 +143,7 @@
 Gene set collection name or position, corresponding to values defined in
 <code><a href='https://rdrr.io/r/base/names.html'>names()</a></code>.
 Typically refers to <code>h</code> (hallmark), <code>c1</code>-<code>c7</code> collections from MSigDb.
-Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
-    </tr>
-    <tr>
-      <th>alpha</th>
-      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>.
-Alpha level.</p></td>
-    </tr>
-    <tr>
-      <th>nesThreshold</th>
-      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code> or <code>NULL</code>.
-NES cutoff threshold.
-If left <code>NULL</code>, no cutoff will be applied.</p></td>
+Can obtain using <code>collectionNames()</code> on <code>FGSEAList</code> object.</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -189,10 +171,13 @@ Markdown header level.</p></td>
 each contrast.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-03-18.</p>
+    <p>Updated 2020-08-05.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
+
+<span class='co'>## FGSEAList ====</span>
+<span class='fu'>alphaThreshold</span>(<span class='no'>fgsea</span>) <span class='kw'>&lt;-</span> <span class='fl'>0.9</span>
 <span class='fu'>topTables</span>(<span class='no'>fgsea</span>, <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>)</div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ### condition_B_vs_A
@@ -200,20 +185,73 @@ each contrast.</p>
 #&gt; 
 #&gt; 
 #&gt; #### Upregulated
-#&gt; </div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> No upregulated gene sets.</span></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |pathway                            |  padj|   NES| size|
+#&gt; |:----------------------------------|-----:|-----:|----:|
+#&gt; |HALLMARK_PANCREAS_BETA_CELLS       | 0.672| 1.397|   15|
+#&gt; |HALLMARK_NOTCH_SIGNALING           | 0.672| 1.371|   17|
+#&gt; |HALLMARK_P53_PATHWAY               | 0.672| 1.336|   63|
+#&gt; |HALLMARK_MITOTIC_SPINDLE           | 0.672| 1.239|   77|
+#&gt; |HALLMARK_TNFA_SIGNALING_VIA_NFKB   | 0.672| 1.234|   64|
+#&gt; |HALLMARK_ESTROGEN_RESPONSE_EARLY   | 0.779| 1.160|   72|
+#&gt; |HALLMARK_HEME_METABOLISM           | 0.779| 1.155|   84|
+#&gt; |HALLMARK_INTERFERON_GAMMA_RESPONSE | 0.808| 1.132|   61|
+#&gt; 
 #&gt; 
 #&gt; #### Downregulated
-#&gt; </div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> No downregulated gene sets.</span></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |pathway                            |  padj|    NES| size|
+#&gt; |:----------------------------------|-----:|------:|----:|
+#&gt; |HALLMARK_IL2_STAT5_SIGNALING       | 0.672| -1.377|   67|
+#&gt; |HALLMARK_KRAS_SIGNALING_UP         | 0.672| -1.288|   80|
+#&gt; |HALLMARK_OXIDATIVE_PHOSPHORYLATION | 0.672| -1.277|   77|
+#&gt; |HALLMARK_GLYCOLYSIS                | 0.672| -1.243|   72|
+#&gt; |HALLMARK_PEROXISOME                | 0.779| -1.201|   41|
+#&gt; |HALLMARK_TGF_BETA_SIGNALING        | 0.808| -1.172|   24|
+#&gt; 
 #&gt; 
 #&gt; ### treatment_D_vs_C
 #&gt; 
 #&gt; 
 #&gt; 
 #&gt; #### Upregulated
-#&gt; </div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> No upregulated gene sets.</span></div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |pathway                                    |  padj|   NES| size|
+#&gt; |:------------------------------------------|-----:|-----:|----:|
+#&gt; |HALLMARK_PI3K_AKT_MTOR_SIGNALING           | 0.377| 1.575|   34|
+#&gt; |HALLMARK_INFLAMMATORY_RESPONSE             | 0.377| 1.436|   79|
+#&gt; |HALLMARK_XENOBIOTIC_METABOLISM             | 0.377| 1.423|   80|
+#&gt; |HALLMARK_UV_RESPONSE_DN                    | 0.477| 1.350|   58|
+#&gt; |HALLMARK_INTERFERON_GAMMA_RESPONSE         | 0.477| 1.331|   61|
+#&gt; |HALLMARK_ESTROGEN_RESPONSE_LATE            | 0.477| 1.311|   85|
+#&gt; |HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION | 0.477| 1.306|   84|
+#&gt; |HALLMARK_ESTROGEN_RESPONSE_EARLY           | 0.526| 1.273|   72|
+#&gt; |HALLMARK_TNFA_SIGNALING_VIA_NFKB           | 0.526| 1.269|   64|
+#&gt; |HALLMARK_HEME_METABOLISM                   | 0.568| 1.206|   84|
+#&gt; 
 #&gt; 
 #&gt; #### Downregulated
-#&gt; </div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> No downregulated gene sets.</span></div></span></pre>
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; |pathway                                  |  padj|    NES| size|
+#&gt; |:----------------------------------------|-----:|------:|----:|
+#&gt; |HALLMARK_PROTEIN_SECRETION               | 0.477| -1.375|   44|
+#&gt; |HALLMARK_BILE_ACID_METABOLISM            | 0.568| -1.232|   40|
+#&gt; |HALLMARK_ANDROGEN_RESPONSE               | 0.568| -1.229|   40|
+#&gt; |HALLMARK_OXIDATIVE_PHOSPHORYLATION       | 0.568| -1.210|   77|
+#&gt; |HALLMARK_TGF_BETA_SIGNALING              | 0.568| -1.186|   24|
+#&gt; |HALLMARK_MYOGENESIS                      | 0.568| -1.177|   72|
+#&gt; |HALLMARK_REACTIVE_OXYGEN_SPECIES_PATHWAY | 0.714| -1.072|   20|
+#&gt; |HALLMARK_HYPOXIA                         | 0.727| -1.038|   81|
+#&gt; |HALLMARK_MYC_TARGETS_V2                  | 0.788| -0.996|   20|
+#&gt; |HALLMARK_COAGULATION                     | 0.830| -0.969|   49|</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
