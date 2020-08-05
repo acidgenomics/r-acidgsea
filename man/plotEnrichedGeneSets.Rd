@@ -48,7 +48,8 @@ Updated 2020-08-05.
 ## This requires MSigDB to be installed at `${HOME}`.
 if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
     data(fgsea)
-    plotEnrichedGeneSets(fgsea, collection = "h", alpha = 0.9, n = 1L)
+    alphaThreshold(fgsea) <- 0.9
+    plotEnrichedGeneSets(fgsea, collection = "h", n = 1L)
 }
 }
 \seealso{

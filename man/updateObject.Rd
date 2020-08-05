@@ -96,6 +96,8 @@ Updated 2020-08-05.
 }
 \examples{
 data(fgsea)
+
+## FGSEAList ====
 updateObject(fgsea)
 }
 \seealso{

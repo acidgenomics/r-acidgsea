@@ -73,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
       </span>
     </div>
 
@@ -122,9 +122,9 @@
     <div id="acidgsea-030-2020-05-24" class="section level2">
 <h2 class="hasAnchor">
 <a href="#acidgsea-030-2020-05-24" class="anchor"></a>acidgsea 0.3.0 (2020-05-24)</h2>
-<div id="major-changes-1" class="section level3">
+<div id="major-changes-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-1" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-2" class="anchor"></a>Major changes</h3>
 <ul>
 <li>
 <code>FGSEAList</code>: Converted function to an S4 generic. Previously the main arguemnt was named <code>rankedList</code>, but this has been renamed to <code>object</code>. A <code>RankedList</code> object can still be passed in as the first object in the function call. This change was necessary for adding GSEA support in pointillism single-cell RNA-seq analysis toolkit.</li>
@@ -152,9 +152,9 @@
 <code>plotGeneSet</code>: Split out internal gene set plotting code used previously in <code>plotEnrichedGeneSets</code>. This is a modified variant of <code><a href="https://rdrr.io/pkg/fgsea/man/plotEnrichment.html">fgsea::plotEnrichment</a></code> that allows for additional color customization.</li>
 </ul>
 </div>
-<div id="major-changes" class="section level3">
+<div id="major-changes-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-1" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Updated minimum R dependency to 4.0.</li>
 <li>
@@ -167,6 +167,19 @@
 <ul>
 <li>Removed UpSetR dependency, based on update to acidplots package.</li>
 <li>Removed <code>plotCounts</code> method, in favor of <code>plotHeatmap</code> usage.</li>
+</ul>
+</div>
+</div>
+    <div id="acidgsea-032-2020-08-05" class="section level2">
+<h2 class="hasAnchor">
+<a href="#acidgsea-032-2020-08-05" class="anchor"></a>acidgsea 0.3.2 (2020-08-05)</h2>
+<div id="major-changes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h3>
+<ul>
+<li>Simplified internal handling of alpha (now consistently referfed to as “alphaThreshold”) and nesThreshold.</li>
+<li>Added <code>alphaThreshold</code> and <code>nesThreshold</code> S4 generic support.</li>
+<li>These name chanages better match the syntax used in DESeqAnalysis v0.3.</li>
 </ul>
 </div>
 </div>

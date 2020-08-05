@@ -1,3 +1,12 @@
+## acidgsea 0.3.2 (2020-08-05)
+
+### Major changes
+
+- Simplified internal handling of alpha (now consistently referfed to as
+  "alphaThreshold") and nesThreshold.
+- Added `alphaThreshold` and `nesThreshold` S4 generic support.
+- These name chanages better match the syntax used in DESeqAnalysis v0.3.
+
 ## acidgsea 0.3.1 (2020-07-24)
 
 ### New functions

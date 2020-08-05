@@ -28,6 +28,6 @@ Updated 2020-08-05.
 data(fgsea)
 
 ## FGSEAList ====
-nesThreshold(gsea) <- 0.1
-nesThreshold(gsea)
+nesThreshold(fgsea) <- 0.1
+nesThreshold(fgsea)
 }

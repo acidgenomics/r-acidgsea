@@ -36,6 +36,6 @@ Updated 2020-08-05.
 data(fgsea)
 
 ## FGSEAList ====
-alphaThreshold(gsea) <- 0.1
-alphaThreshold(gsea)
+alphaThreshold(fgsea) <- 0.1
+alphaThreshold(fgsea)
 }

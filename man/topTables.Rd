@@ -42,6 +42,8 @@ Updated 2020-08-05.
 }
 \examples{
 data(fgsea)
+
+## FGSEAList ====
 alphaThreshold(fgsea) <- 0.9
 topTables(fgsea, collection = "h")
 }

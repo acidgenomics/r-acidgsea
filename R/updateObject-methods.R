@@ -16,6 +16,8 @@
 #'
 #' @examples
 #' data(fgsea)
+#'
+#' ## FGSEAList ====
 #' updateObject(fgsea)
 NULL
 

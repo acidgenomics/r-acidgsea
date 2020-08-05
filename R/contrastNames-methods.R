@@ -7,6 +7,8 @@
 #'
 #' @examples
 #' data(fgsea)
+#'
+#' ## FGSEAList ====
 #' contrastNames(fgsea)
 NULL
 
