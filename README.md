@@ -21,24 +21,22 @@ Sys.setenv(R_REMOTES_UPGRADE = "always")
 remotes::install_github("acidgenomics/acidgsea")
 ```
 
-Here's how to update to the latest version on GitHub:
+### [Docker][] method
 
-```r
-Sys.setenv(R_REMOTES_UPGRADE = "always")
-remotes::update_packages()
+```sh
+image="acidgenomics/r-rnaseq"
+workdir="/mnt/work"
+docker pull "$image"
+docker run -it \
+    --volume="${PWD}:${workdir}" \
+    --workdir="$workdir" \
+    "$image" \
+    R
 ```
 
-Always check that your Bioconductor installation is valid before proceeding.
-
-```r
-if (!requireNamespace("BiocManager", quietly = TRUE)) {
-    install.packages("BiocManager")
-}
-BiocManager::valid()
-```
-
-[BiocManager]: https://cran.r-project.org/package=BiocManager
-[Bioconductor]: https://bioconductor.org/
 [acidgsea]: https://acidgsea.acidgenomics.com/
+[biocmanager]: https://cran.r-project.org/package=BiocManager
+[bioconductor]: https://bioconductor.org/
+[docker]: https://www.docker.com/
 [fgsea]: https://bioconductor.org/packages/fgsea/
-[R]: https://www.r-project.org
+[r]: https://www.r-project.org
