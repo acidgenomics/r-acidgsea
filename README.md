@@ -13,32 +13,18 @@ Perform parameterized gene set enrichment analysis (GSEA) on multiple differenti
 ### [R][] method
 
 ```r
-if (!requireNamespace("remotes", quietly = TRUE)) {
-    install.packages("remotes")
-}
-Sys.setenv(R_REMOTES_UPGRADE = "always")
-# Set `GITHUB_PAT` in `~/.Renviron` if you get a rate limit error.
-remotes::install_github("acidgenomics/acidgsea")
-```
-
-Here's how to update to the latest version on GitHub:
-
-```r
-Sys.setenv(R_REMOTES_UPGRADE = "always")
-remotes::update_packages()
-```
-
-Always check that your Bioconductor installation is valid before proceeding.
-
-```r
 if (!requireNamespace("BiocManager", quietly = TRUE)) {
     install.packages("BiocManager")
 }
-BiocManager::valid()
+install.packages(
+    pkgs = "basejump",
+    repos = c(
+        "r.acidgenomics.com",
+        BiocManager::repositories()
+    )
+)
 ```
 
-[BiocManager]: https://cran.r-project.org/package=BiocManager
-[Bioconductor]: https://bioconductor.org/
 [acidgsea]: https://acidgsea.acidgenomics.com/
 [fgsea]: https://bioconductor.org/packages/fgsea/
-[R]: https://www.r-project.org
+[r]: https://www.r-project.org
