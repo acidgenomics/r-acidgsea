@@ -83,7 +83,7 @@ NULL
                     nesCol = "NES"
                 )
                 if (!hasLength(sets)) {
-                    return()  # nocov
+                    return(invisible())  # nocov
                 }
                 ## Using an `mapply()` call here so we can pass the pathway
                 ## names in easily into the `markdownHeader()` call.
