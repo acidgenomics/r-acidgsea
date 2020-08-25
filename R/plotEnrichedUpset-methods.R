@@ -71,7 +71,7 @@ NULL
             cli_alert_warning(
                 "Less than 2 enriched sets returned. Skipping plot."
             )
-            return(invisible())
+            return(invisible(NULL))
             ## nocov end
         }
         ## Suppressing message about single contrast not having up/down overlap:
