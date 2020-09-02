@@ -62,7 +62,10 @@ NULL
             )
         } else {
             ## Locate the GMT file used to run GSEA.
-            gmt <- import(file = metadata(object)[["gmtFiles"]][[collection]])
+            file <- metadata(object)[["gmtFiles"]][[collection]]
+            suppressMessages({
+                gmt <- import(file)
+            })
             genes <- gmt[[set]]
         }
         ## Plot the log counts from DESeqTransform object.
