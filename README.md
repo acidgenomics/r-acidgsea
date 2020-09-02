@@ -13,30 +13,18 @@ Perform parameterized gene set enrichment analysis (GSEA) on multiple differenti
 ### [R][] method
 
 ```r
-if (!requireNamespace("remotes", quietly = TRUE)) {
-    install.packages("remotes")
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+    install.packages("BiocManager")
 }
-Sys.setenv(R_REMOTES_UPGRADE = "always")
-# Set `GITHUB_PAT` in `~/.Renviron` if you get a rate limit error.
-remotes::install_github("acidgenomics/acidgsea")
-```
-
-### [Docker][] method
-
-```sh
-image="acidgenomics/r-rnaseq"
-workdir="/mnt/work"
-docker pull "$image"
-docker run -it \
-    --volume="${PWD}:${workdir}" \
-    --workdir="$workdir" \
-    "$image" \
-    R
+install.packages(
+    pkgs = "acidgsea",
+    repos = c(
+        "r.acidgenomics.com",
+        BiocManager::repositories()
+    )
+)
 ```
 
 [acidgsea]: https://acidgsea.acidgenomics.com/
-[biocmanager]: https://cran.r-project.org/package=BiocManager
-[bioconductor]: https://bioconductor.org/
-[docker]: https://www.docker.com/
 [fgsea]: https://bioconductor.org/packages/fgsea/
 [r]: https://www.r-project.org
