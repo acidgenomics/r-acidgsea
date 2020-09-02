@@ -49,6 +49,7 @@ setValidity(
                 x = names(object),
                 y = names(metadata(object)[["gmtFiles"]])
             ),
+            allAreFiles(metadata(object)[["gmtFiles"]]),
             is(metadata(object)[["rankedList"]], "RankedList"),
             identical(
                 x = names(object[[1L]]),
