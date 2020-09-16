@@ -31,6 +31,17 @@ setGeneric(
 
 
 
+#' @rdname geneSet
+#' @export
+setGeneric(
+    name = "geneSet",
+    def = function(object, ...) {
+        standardGeneric("geneSet")
+    }
+)
+
+
+
 #' @rdname nesThreshold
 #' @export
 setGeneric(
