@@ -17,11 +17,11 @@
 #' @importFrom fgsea calcGseaStat fgsea gmtPathways
 #' @importFrom ggplot2 aes geom_hline geom_line geom_point geom_segment ggplot
 #'   labs
-#' @importFrom goalie allAreAtomic areDisjointSets areSameLength areSetEqual
-#'   assert bapply hasColnames hasLength hasNames hasNoDuplicates hasRownames
-#'   hasRows isAFile isAll isAlpha isAny isCharacter isFile isFlag isHeaderLevel
-#'   isInt isNumber isNonNegative isScalar isScalarInteger isString isSubset
-#'   validate
+#' @importFrom goalie allAreAtomic allAreFiles areDisjointSets areSameLength
+#'   areSetEqual assert bapply hasColnames hasLength hasNames hasNoDuplicates
+#'   hasRownames hasRows isAFile isAll isAlpha isAny isCharacter isFile isFlag
+#'   isHeaderLevel isInt isNumber isNonNegative isScalar isScalarInteger
+#'   isString isSubset validate
 #' @importFrom knitr kable
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity show
 #'   slot slot<- validObject
