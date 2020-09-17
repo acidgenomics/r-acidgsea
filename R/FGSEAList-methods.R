@@ -6,8 +6,8 @@
 #' @note Updated 2020-09-17.
 #'
 #' @inheritParams acidroxygen::params
-#' @param gmtFiles `character`.
-#'   GMT file paths.
+#' @param geneSetFiles `character`.
+#'   Gene set file paths (i.e. GMT files).
 #' @param nPerm `integer(1)`.
 #'   Number of permutations.
 #'   Minimial possible nominal *P* value is about 1/`nPerm`.
@@ -42,8 +42,8 @@
 #'     data(fgsea)
 #'     metadata <- S4Vectors::metadata
 #'     rankedList <- metadata(fgsea)[["rankedList"]]
-#'     gmtFiles <- metadata(fgsea)[["gmtFiles"]]
-#'     fgsea <- FGSEAList(object = rankedList, gmtFiles = gmtFiles)
+#'     geneSetFiles <- metadata(fgsea)[["geneSetFiles"]]
+#'     fgsea <- FGSEAList(object = rankedList, geneSetFiles = geneSetFiles)
 #'     print(fgsea)
 #' }
 NULL
@@ -54,7 +54,7 @@ NULL
 `FGSEAList,RankedList` <-  # nolint
     function(
         object,
-        gmtFiles,
+        geneSetFiles,
         nPerm = 1000L,
         minSize = 15L,
         maxSize = 500L,
@@ -62,38 +62,34 @@ NULL
         BPPARAM = BiocParallel::bpparam()  # nolint
     ) {
         assert(
-            all(isFile(gmtFiles)),
-            hasNames(gmtFiles),
+            allAreFiles(geneSetFiles),
+            hasNames(geneSetFiles),
             isInt(nPerm),
             isAlpha(alphaThreshold)
         )
         validObject(object)
+        contrasts <- names(object)
+        stats <- as.list(object)
         cli_alert("Running parameterized fast GSEA.")
-        cli_text("GMT files:")
-        cli_ul(names(gmtFiles))
+        cli_text("Gene set files:")
+        cli_ul(names(geneSetFiles))
         cli_text("Contrasts:")
-        cli_ul(names(object))
-
-        ## FIXME TRena
-        collections <- lapply(X = gmtFiles, FUN = import)
-
-        list <- lapply(
-            X = gmt,
-            FUN = function(gmtFile) {
-                lapply(
-                    X = object,
-                    FUN = function(stats) {
-                        ## FIXME Can we simplify this?
-                        pathways <- gmtPathways(gmt.file = gmtFile)
-                        cli_dl(c("GMT file" = basename(gmtFile)))
-                        cli_alert_info(sprintf(
-                            "Testing against %d pathways.",
-                            length(pathways)
-                        ))
-                        cli_alert_info(sprintf(
-                            "Running using %d permutations.",
-                            nPerm
-                        ))
+        cli_ul(contrasts)
+        collections <- lapply(X = geneSetFiles, FUN = import)
+        list <- mapply(
+            name = names(collections),
+            pathways = collections,
+            FUN = function(name, pathways) {
+                cli_dl(c("Collection" = name))
+                cli_alert_info(sprintf(
+                    "Testing %d pathways.",
+                    length(pathways)
+                ))
+                mapply(
+                    contrast = contrasts,
+                    stats = stats,
+                    FUN = function(contrast, stats) {
+                        cli_dl(c("Contrast" = contrast))
                         suppressWarnings({
                             data <- fgsea::fgsea(
                                 pathways = pathways,
@@ -106,12 +102,15 @@ NULL
                         })
                         assert(is(data, "data.table"))
                         data
-                    }
+                    },
+                    SIMPLIFY = FALSE,
+                    USE.NAMES = TRUE
                 )
-            }
+            },
+            SIMPLIFY = FALSE,
+            USE.NAMES = TRUE
         )
         out <- SimpleList(list)
-        ## Stash useful metadata.
         metadata(out) <- list(
             version = .version,
             date = Sys.Date(),
@@ -120,11 +119,11 @@ NULL
             maxSize = maxSize,
             alpha = alphaThreshold,
             rankedList = object,
-            gmtFiles = gmtFiles,
+            geneSetFiles = geneSetFiles,
+            collections = collections,
             call = standardizeCall(),
             sessionInfo = session_info()
         )
-        ## Return.
         new(Class = "FGSEAList", out)
     }
 
