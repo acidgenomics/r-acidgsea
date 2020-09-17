@@ -1,17 +1,17 @@
 ## Example *Homo sapiens* GSEA analysis.
-## Updated 2020-03-18.
+## Updated 2020-09-17.
 
 library(usethis)
 library(pryr)
-library(basejump)       # 0.12.5
-library(DESeq2)         # 1.26.0
-library(DESeqAnalysis)  # 0.2.19
+library(basejump)       # 0.12.14
+library(DESeq2)         # 1.28.1
+library(DESeqAnalysis)  # 0.3.6
 
 ## Restrict to 1 MB.
 ## Use `pryr::object_size()` instead of `utils::object.size()`.
 limit <- structure(1e6, class = "object_size")
 
-gr <- makeGRangesFromEnsembl(organism = "Homo sapiens", release = 99L)
+gr <- makeGRangesFromEnsembl(organism = "Homo sapiens", release = 100L)
 ## Subset to include 5k genes, as minimal example.
 gr <- head(gr, n = 5000L)
 
@@ -66,19 +66,19 @@ object_size(rankedList)
 stopifnot(object_size(rankedList) < limit)
 
 ## Just using hallmark in minimal example.
-gmtFiles <- file.path(
+geneSetFiles <- file.path(
     "~",
     "msigdb",
     "7.0",
     "msigdb_v7.0_GMTs",
     "h.all.v7.0.symbols.gmt"
 )
-stopifnot(all(file.exists(gmtFiles)))
-names(gmtFiles) <- "h"
+stopifnot(all(file.exists(geneSetFiles)))
+names(geneSetFiles) <- "h"
 
 fgsea <- FGSEAList(
-    rankedList = rankedList,
-    gmtFiles = gmtFiles
+    object = rankedList,
+    geneSetFiles = geneSetFiles
 )
 validObject(fgsea)
 
