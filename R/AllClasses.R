@@ -38,21 +38,22 @@ setValidity(
                     ## "nPerm"
                     ## "sessionInfo"
                     "alpha",
-                    "gmtFiles",
+                    "collections",
+                    "geneSetFiles",
                     "rankedList",
                     "version"
                 ),
                 y = names(metadata(object))
             ),
-            isCharacter(metadata(object)[["gmtFiles"]]),
+            is.list(metadata(object)[["collections"]]),
             identical(
                 x = names(object),
-                y = names(metadata(object)[["gmtFiles"]])
+                y = names(metadata(object)[["collections"]])
             ),
-            is.list(metadata(object)[["gmt"]]),
+            isCharacter(metadata(object)[["geneSetFiles"]]),
             identical(
                 x = names(object),
-                y = names(metadata(object)[["gmt"]])
+                y = names(metadata(object)[["geneSetFiles"]])
             ),
             is(metadata(object)[["rankedList"]], "RankedList"),
             identical(
