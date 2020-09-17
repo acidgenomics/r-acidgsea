@@ -38,7 +38,7 @@
 #'   Unmodified `fgsea::fgsea` return.
 #' @param resultsList `list`.
 #'   Results list.
-#' @param set `character(1)`.
+#' @param set `character(1)` or `integer(1)`.
 #'   Gene set name, in a defined `collection`.
 #'   For example, `"HALLMARK_ADIPOGENESIS"`.
 #' @param stats `numeric`.
