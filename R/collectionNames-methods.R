@@ -1,6 +1,6 @@
 #' @name collectionNames
 #' @inherit acidgenerics::collectionNames
-#' @note Updated 2020-03-18.
+#' @note Updated 2020-09-17.
 #' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
@@ -45,7 +45,7 @@ setMethod(
 
 
 
-## Updated 2019-07-24.
+## Updated 2020-09-17.
 `collectionNames<-,FGSEAList,character` <-  # nolint
     function(object, value) {
         assert(
@@ -53,7 +53,8 @@ setMethod(
             areSameLength(names(object), value)
         )
         names(object) <- value
-        names(metadata(object)[["gmtFiles"]]) <- value
+        names(metadata(object)[["collections"]]) <- value
+        names(metadata(object)[["geneSetFiles"]]) <- value
         validObject(object)
         object
     }
