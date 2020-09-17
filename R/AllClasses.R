@@ -3,7 +3,7 @@
 #' Class containing parameterized fast GSEA results.
 #'
 #' @export
-#' @note Updated 2020-05-12.
+#' @note Updated 2020-09-16.
 #'
 #' @return `FGSEAList`.
 setClass(
@@ -49,7 +49,11 @@ setValidity(
                 x = names(object),
                 y = names(metadata(object)[["gmtFiles"]])
             ),
-            allAreFiles(metadata(object)[["gmtFiles"]]),
+            is.list(metadata(object)[["gmt"]]),
+            identical(
+                x = names(object),
+                y = names(metadata(object)[["gmt"]])
+            ),
             is(metadata(object)[["rankedList"]], "RankedList"),
             identical(
                 x = names(object[[1L]]),
