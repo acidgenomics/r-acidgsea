@@ -14,7 +14,7 @@
 #'   standardizeCall
 #' @importFrom cli cli_alert cli_alert_info cli_alert_warning cli_dl cli_text
 #'   cli_ul
-#' @importFrom fgsea calcGseaStat fgsea gmtPathways
+#' @importFrom fgsea calcGseaStat fgsea
 #' @importFrom ggplot2 aes geom_hline geom_line geom_point geom_segment ggplot
 #'   labs
 #' @importFrom goalie allAreAtomic allAreFiles areDisjointSets areSameLength
