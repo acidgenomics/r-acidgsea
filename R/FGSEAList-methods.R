@@ -3,7 +3,7 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @name FGSEAList
-#' @note Updated 2020-08-05.
+#' @note Updated 2020-09-17.
 #'
 #' @inheritParams acidroxygen::params
 #' @param gmtFiles `character`.
@@ -41,10 +41,8 @@
 #' if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
 #'     data(fgsea)
 #'     metadata <- S4Vectors::metadata
-#'
 #'     rankedList <- metadata(fgsea)[["rankedList"]]
 #'     gmtFiles <- metadata(fgsea)[["gmtFiles"]]
-#'
 #'     fgsea <- FGSEAList(object = rankedList, gmtFiles = gmtFiles)
 #'     print(fgsea)
 #' }
@@ -52,7 +50,7 @@ NULL
 
 
 
-## Updated 2020-08-05.
+## Updated 2020-09-17.
 `FGSEAList,RankedList` <-  # nolint
     function(
         object,
@@ -75,12 +73,17 @@ NULL
         cli_ul(names(gmtFiles))
         cli_text("Contrasts:")
         cli_ul(names(object))
+
+        ## FIXME TRena
+        collections <- lapply(X = gmtFiles, FUN = import)
+
         list <- lapply(
-            X = gmtFiles,
+            X = gmt,
             FUN = function(gmtFile) {
                 lapply(
                     X = object,
                     FUN = function(stats) {
+                        ## FIXME Can we simplify this?
                         pathways <- gmtPathways(gmt.file = gmtFile)
                         cli_dl(c("GMT file" = basename(gmtFile)))
                         cli_alert_info(sprintf(
