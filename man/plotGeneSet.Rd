@@ -21,13 +21,13 @@ plotGeneSet(object, ...)
 
 \item{...}{Additional arguments.}
 
-\item{collection}{\code{character(1)} or \code{integer(1)}.
-Gene set collection name or position, corresponding to values defined in
+\item{collection}{\code{character(1)}.
+Gene set collection name, coresponding to values defined in
 \code{\link[base:names]{names()}}.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 
-\item{contrast}{\code{character(1)} or \code{integer(1)}.
+\item{contrast}{\code{character(1)}.
 DESeqResults contrast.}
 
 \item{set}{\code{character(1)}.
@@ -51,19 +51,16 @@ Named character color vector indicating:
 Plot gene set enrichment
 }
 \note{
-Updated 2020-07-24.
+Updated 2020-09-18.
 }
 \examples{
-## This requires MSigDB to be installed at `${HOME}`.
-if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
-    data(fgsea)
-    plotGeneSet(
-        object = fgsea,
-        collection = "h",
-        contrast = "condition_B_vs_A",
-        set = "HALLMARK_P53_PATHWAY"
-    )
-}
+data(fgsea)
+plotGeneSet(
+    object = fgsea,
+    collection = "h",
+    contrast = "condition_B_vs_A",
+    set = "HALLMARK_P53_PATHWAY"
+)
 }
 \seealso{
 Modified version of \code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}}.

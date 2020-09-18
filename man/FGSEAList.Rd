@@ -9,7 +9,7 @@ FGSEAList(object, ...)
 
 \S4method{FGSEAList}{RankedList}(
   object,
-  gmtFiles,
+  geneSetFiles,
   nPerm = 1000L,
   minSize = 15L,
   maxSize = 500L,
@@ -22,8 +22,9 @@ FGSEAList(object, ...)
 
 \item{...}{Additional arguments.}
 
-\item{gmtFiles}{\code{character}.
-GMT file paths.}
+\item{geneSetFiles}{\code{character}.
+Gene set file paths (i.e. GMT files).
+MSigDB files are recommended by default.}
 
 \item{nPerm}{\code{integer(1)}.
 Number of permutations.
@@ -59,7 +60,7 @@ We recommend using one of the following:
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2020-08-05.
+Updated 2020-09-17.
 }
 \examples{
 ## > ## Copy example MSigDb files to `$HOME`.
@@ -77,11 +78,9 @@ Updated 2020-08-05.
 if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
     data(fgsea)
     metadata <- S4Vectors::metadata
-
     rankedList <- metadata(fgsea)[["rankedList"]]
-    gmtFiles <- metadata(fgsea)[["gmtFiles"]]
-
-    fgsea <- FGSEAList(object = rankedList, gmtFiles = gmtFiles)
+    geneSetFiles <- metadata(fgsea)[["geneSetFiles"]]
+    fgsea <- FGSEAList(object = rankedList, geneSetFiles = geneSetFiles)
     print(fgsea)
 }
 }
