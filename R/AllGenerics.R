@@ -20,6 +20,8 @@ setGeneric(
 
 
 
+## FIXME Move to acidgenerics.
+
 #' @rdname convertToHuman
 #' @export
 setGeneric(
@@ -30,6 +32,8 @@ setGeneric(
 )
 
 
+
+## FIXME Move to acidgenerics.
 
 #' @rdname geneSet
 #' @export
@@ -42,6 +46,8 @@ setGeneric(
 
 
 
+## FIXME Move to acidgenerics.
+
 #' @rdname nesThreshold
 #' @export
 setGeneric(
@@ -53,6 +59,8 @@ setGeneric(
 
 
 
+## FIXME Move to acidgenerics.
+
 #' @rdname nesThreshold
 #' @export
 setGeneric(
@@ -63,6 +71,8 @@ setGeneric(
 )
 
 
+
+## FIXME Move to acidgenerics.
 
 #' @rdname plotGeneSet
 #' @export
