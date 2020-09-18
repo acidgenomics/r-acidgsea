@@ -6,8 +6,6 @@
 #' @note Updated 2020-09-17.
 #'
 #' @inheritParams acidroxygen::params
-#' @param geneSetFiles `character`.
-#'   Gene set file paths (i.e. GMT files).
 #' @param nPerm `integer(1)`.
 #'   Number of permutations.
 #'   Minimial possible nominal *P* value is about 1/`nPerm`.
