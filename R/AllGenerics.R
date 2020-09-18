@@ -48,6 +48,19 @@ setGeneric(
 
 ## FIXME Move to acidgenerics.
 
+#' @rdname leadingEdge
+#' @export
+setGeneric(
+    name = "leadingEdge",
+    def = function(object, ...) {
+        standardGeneric("leadingEdge")
+    }
+)
+
+
+
+## FIXME Move to acidgenerics.
+
 #' @rdname nesThreshold
 #' @export
 setGeneric(
