@@ -25,7 +25,7 @@ LazyData: false
 Depends:
     R (>= 4.0),
     basejump (>= 0.12.14),
-    DESeqAnalysis (>= 0.3.6)
+    DESeqAnalysis (>= 0.3.7)
 Imports:
     BiocGenerics,
     BiocParallel,
