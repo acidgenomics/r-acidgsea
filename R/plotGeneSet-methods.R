@@ -49,9 +49,9 @@ NULL
     ) {
         validObject(object)
         assert(
-            isScalar(collection),
-            isScalar(contrast),
-            isScalar(set),
+            isString(collection),
+            isString(contrast),
+            isString(set),
             isCharacter(colors),
             areSetEqual(names(colors), names(eval(formals()[["colors"]])))
         )
