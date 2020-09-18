@@ -29,7 +29,7 @@ collectionNames(object, ...) <- value
 Gene set collection names
 }
 \note{
-Updated 2020-03-18.
+Updated 2020-09-17.
 }
 \examples{
 data(fgsea)

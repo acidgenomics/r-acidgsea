@@ -12,8 +12,8 @@ plotEnrichedUpset(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{collection}{\code{character(1)} or \code{integer(1)}.
-Gene set collection name or position, corresponding to values defined in
+\item{collection}{\code{character(1)}.
+Gene set collection name, coresponding to values defined in
 \code{\link[base:names]{names()}}.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
