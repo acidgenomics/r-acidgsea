@@ -4,7 +4,7 @@
 #'
 #' @name enrichedGeneSets
 #' @inherit acidgenerics::enrichedGeneSets
-#' @note Updated 2020-08-05.
+#' @note Updated 2020-09-18.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
@@ -40,7 +40,7 @@ NULL
 
 
 ## @seealso `DESeqAnalysis::plotDEGUpset()`, for looping inspiration.
-## Updated 2020-08-05.
+## Updated 2020-09-18.
 `enrichedGeneSets,FGSEAList` <-  # nolint
     function(
         object,
@@ -48,7 +48,7 @@ NULL
         direction = c("both", "up", "down")
     ) {
         validObject(object)
-        assert(isScalar(collection))
+        assert(isString(collection))
         direction <- match.arg(direction)
         alphaThreshold <- alphaThreshold(object)
         nesThreshold <- nesThreshold(object)
