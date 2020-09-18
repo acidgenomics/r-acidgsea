@@ -1,3 +1,14 @@
+## acidgsea 0.4.0 (2020-09-18)
+
+### Major changes
+
+- Now slotting gene sets inside the object.
+- `gmtFiles` argument has been renamed to `geneSetFiles`.
+
+### New functions
+
+- `leadingEdge`: New accessor that returns leading edge genes from GSEA run.
+
 ## acidgsea 0.3.2 (2020-08-05)
 
 ### Major changes
