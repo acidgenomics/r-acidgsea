@@ -41,14 +41,11 @@ NULL
         verbose = FALSE
     ) {
         assert(isFlag(verbose))
-
-        ## FIXME Rename gmtFiles to geneSetFiles.
+        ## Rename `gmtFiles` to `geneSetFiles`. Changed in v0.4 (2020-09).
         if (isSubset("gmtFiles", names(metadata(object)))) {
             metadata(object)[["geneSetFiles"]] <- metadata[["gmtFiles"]]
             metadata(object)[["gmtFiles"]] <- NULL
         }
-
-
         ## Slot gene set files if undefined.
         if (!isSubset("collections", names(metadata(object)))) {
             cli_alert("Importing gene set collections into object.")
@@ -81,6 +78,7 @@ NULL
             }
             alphaThreshold(object) <- alphaThreshold
         }
+        metadata(object) <- Filter(f = Negate(is.null), x = metadata(object))
         validObject(object)
         object
     }
