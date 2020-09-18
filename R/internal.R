@@ -147,8 +147,8 @@
 ) {
     assert(
         is(object, "FGSEAList"),
-        isScalar(contrast),
-        isScalar(collection),
+        isString(contrast),
+        isString(collection),
         isString(set)
     )
     data <- object[[collection]][[contrast]]
