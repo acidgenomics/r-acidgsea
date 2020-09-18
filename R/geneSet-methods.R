@@ -1,7 +1,7 @@
 #' Gene set
 #'
 #' @name geneSet
-#' @note Updated 2020-09-16.
+#' @note Updated 2020-09-18.
 #'
 #' @inheritParams params
 #' @inheritParams acidroxygen::params
@@ -19,6 +19,7 @@ NULL
 
 
 
+## Updated 2020-09-18.
 `geneSet,FGSEAList` <-  # nolint
     function(
         object,
@@ -30,7 +31,7 @@ NULL
             isScalar(collection),
             isScalar(set)
         )
-        x <- metadata(object)[["gmt"]][[collection]][[set]]
+        x <- metadata(object)[["collections"]][[collection]][[set]]
         assert(isCharacter(x))
         x
     }
