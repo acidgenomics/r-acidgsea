@@ -66,14 +66,15 @@ object_size(rankedList)
 stopifnot(object_size(rankedList) < limit)
 
 ## Just using hallmark in minimal example.
-geneSetFiles <- file.path(
-    "~",
+geneSetFiles <- system.file(
+    "extdata",
     "msigdb",
     "7.0",
     "msigdb_v7.0_GMTs",
-    "h.all.v7.0.symbols.gmt"
+    "h.all.v7.0.symbols.gmt",
+    package = "acidgsea",
+    mustWork = TRUE
 )
-stopifnot(all(file.exists(geneSetFiles)))
 names(geneSetFiles) <- "h"
 
 fgsea <- FGSEAList(
