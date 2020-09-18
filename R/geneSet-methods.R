@@ -12,8 +12,8 @@
 #' data(fgsea)
 #' geneSet(
 #'     object = fgsea,
-#'     collection = 1L,
-#'     set = 1L
+#'     collection = "h",
+#'     set = "HALLMARK_P53_PATHWAY"
 #' )
 NULL
 
@@ -28,8 +28,8 @@ NULL
     ) {
         validObject(object)
         assert(
-            isScalar(collection),
-            isScalar(set)
+            isString(collection),
+            isString(set)
         )
         x <- metadata(object)[["collections"]][[collection]][[set]]
         assert(isCharacter(x))
