@@ -6,8 +6,7 @@
 #' @param DESeqAnalysis `DESeqAnalysis`.
 #'   Corresponding DESeq2 data used to perform GSEA.
 #' @param collection `character(1)`.
-#'   Gene set collection name, coresponding to values defined in
-#'   [`names()`][base::names].
+#'   Gene set collection name.
 #'   Typically refers to `h` (hallmark), `c1`-`c7` collections from MSigDb.
 #'   Can obtain using `collectionNames()` on `FGSEAList` object.
 #' @param contrast `character(1)`.
