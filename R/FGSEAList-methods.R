@@ -5,6 +5,7 @@
 #' @name FGSEAList
 #' @note Updated 2020-09-17.
 #'
+#' @inheritParams params
 #' @inheritParams acidroxygen::params
 #' @param nPerm `integer(1)`.
 #'   Number of permutations.
