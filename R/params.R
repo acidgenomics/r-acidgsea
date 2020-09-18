@@ -5,12 +5,12 @@
 #'
 #' @param DESeqAnalysis `DESeqAnalysis`.
 #'   Corresponding DESeq2 data used to perform GSEA.
-#' @param collection `character(1)` or `integer(1)`.
-#'   Gene set collection name or position, corresponding to values defined in
+#' @param collection `character(1)`.
+#'   Gene set collection name, coresponding to values defined in
 #'   [`names()`][base::names].
 #'   Typically refers to `h` (hallmark), `c1`-`c7` collections from MSigDb.
 #'   Can obtain using `collectionNames()` on `FGSEAList` object.
-#' @param contrast `character(1)` or `integer(1)`.
+#' @param contrast `character(1)`.
 #'   DESeqResults contrast.
 #' @param contrastSamples `logical(1)`.
 #'   Only visualize the samples defined in the contrast.
@@ -35,7 +35,7 @@
 #'   Unmodified `fgsea::fgsea` return.
 #' @param resultsList `list`.
 #'   Results list.
-#' @param set `character(1)` or `integer(1)`.
+#' @param set `character(1)`.
 #'   Gene set name, in a defined `collection`.
 #'   For example, `"HALLMARK_ADIPOGENESIS"`.
 #' @param stats `numeric`.
