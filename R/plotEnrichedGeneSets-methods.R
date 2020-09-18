@@ -1,6 +1,6 @@
 #' @name plotEnrichedGeneSets
 #' @inherit acidgenerics::plotEnrichedGeneSets
-#' @note Updated 2020-08-05.
+#' @note Updated 2020-09-18.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
@@ -30,7 +30,7 @@ NULL
 
 
 
-## Modified 2020-08-05.
+## Modified 2020-09-18.
 `plotEnrichedGeneSets,FGSEAList` <-  # nolint
     function(
         object,
@@ -41,7 +41,7 @@ NULL
     ) {
         validObject(object)
         assert(
-            isScalar(collection),
+            isString(collection),
             isInt(n),
             isHeaderLevel(headerLevel)
         )
@@ -109,7 +109,7 @@ NULL
                         )
                         tryCatch(
                             expr = print(p),
-                            error = function(e) invisible()
+                            error = function(e) invisible(NULL)
                         )
                     }
                 )
