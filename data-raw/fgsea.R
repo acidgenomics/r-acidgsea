@@ -1,5 +1,5 @@
 ## Example *Homo sapiens* GSEA analysis.
-## Updated 2020-09-17.
+## Updated 2020-09-18.
 
 library(usethis)
 library(pryr)
@@ -88,4 +88,4 @@ object_size(fgsea)
 lapply(metadata(fgsea), object_size)
 stopifnot(object_size(fgsea) < limit)
 
-use_data(fgsea, overwrite = TRUE, compress = "xz")
+use_data(deseq, fgsea, overwrite = TRUE, compress = "xz")
