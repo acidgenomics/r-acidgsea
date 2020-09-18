@@ -1,7 +1,7 @@
 #' @name updateObject
 #' @author Michael Steinbaugh
 #' @inherit BiocGenerics::updateObject
-#' @note Updated 2020-08-05.
+#' @note Updated 2020-09-16.
 #'
 #' @inheritParams acidroxygen::params
 #' @param alphaThreshold `number(1)`.
@@ -32,6 +32,7 @@ NULL
 
 
 
+## Updated 2020-09-17.
 `updateObject,FGSEAList` <-  # nolint
     function(
         object,
@@ -40,6 +41,28 @@ NULL
         verbose = FALSE
     ) {
         assert(isFlag(verbose))
+
+        ## FIXME Rename gmtFiles to geneSetFiles.
+        if (isSubset("gmtFiles", names(metadata(object)))) {
+            metadata(object)[["geneSetFiles"]] <- metadata[["gmtFiles"]]
+            metadata(object)[["gmtFiles"]] <- NULL
+        }
+
+
+        ## Slot gene set files if undefined.
+        if (!isSubset("collections", names(metadata(object)))) {
+            cli_alert("Importing gene set collections into object.")
+            assert(isSubset("geneSetFiles", names(metadata(object))))
+            geneSetFiles <- metadata(object)[["geneSetFiles"]]
+            if (!allAreFiles(geneSetFiles)) {
+                stop(sprintf(
+                    "Required gene set files: %s.",
+                    toString(geneSetFiles)
+                ))
+            }
+            collections <- lapply(X = geneSetFiles, FUN = import)
+            metadata(object)[["collections"]] <- collections
+        }
         ## Slot alpha threshold if undefined.
         if (!isSubset("alpha", names(metadata(object)))) {
             if (isTRUE(verbose)) {
