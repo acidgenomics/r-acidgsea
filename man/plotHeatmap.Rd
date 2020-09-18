@@ -31,8 +31,7 @@ DESeqResults contrast.}
 Only visualize the samples defined in the contrast.}
 
 \item{collection}{\code{character(1)}.
-Gene set collection name, coresponding to values defined in
-\code{\link[base:names]{names()}}.
+Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 
@@ -60,8 +59,8 @@ data(fgsea, deseq)
 plotHeatmap(
     object = fgsea,
     DESeqAnalysis = deseq,
-    contrast = 1,
-    collection = 1,
-    set = 1
+    contrast = "condition_B_vs_A",
+    collection = "h",
+    set = "HALLMARK_P53_PATHWAY"
 )
 }
