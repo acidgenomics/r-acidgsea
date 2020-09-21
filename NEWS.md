@@ -1,8 +1,8 @@
-## acidgsea 0.4.0 (2020-09-18)
+## acidgsea 0.4.0 (2020-09-21)
 
 ### Major changes
 
-- Now slotting gene sets inside the object.
+- Now slotting gene sets inside the `FGSEAList` object.
 - `gmtFiles` argument has been renamed to `geneSetFiles`.
 
 ### New functions
