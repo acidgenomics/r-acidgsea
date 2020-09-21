@@ -1,6 +1,5 @@
-#' Plot gene set enrichment
-#'
 #' @name plotGeneSet
+#' @inherit acidgenerics::alphaThreshold
 #' @note Updated 2020-09-18.
 #'
 #' @inheritParams acidroxygen::params
@@ -13,7 +12,6 @@
 #'   - Maximum (positive) threhsold color.
 #'   - Y intercept at origin color.
 #'   - Ticks color.
-#'
 #' @param ... Additional arguments.
 #'
 #' @seealso Modified version of [fgsea::plotEnrichment()].
@@ -28,6 +26,15 @@
 #'     contrast = "condition_B_vs_A",
 #'     set = "HALLMARK_P53_PATHWAY"
 #' )
+NULL
+
+
+
+#' @rdname plotGeneSet
+#' @name plotGeneSet
+#' @importFrom acidgenerics plotGeneSet
+#' @usage plotGeneSet(object, ...)
+#' @export
 NULL
 
 

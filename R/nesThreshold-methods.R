@@ -1,17 +1,29 @@
-#' Normalized enrichment score (NES) threshold
-#'
 #' @name nesThreshold
-#' @note Updated 2020-08-05.
-#'
-#' @inheritParams params
+#' @inherit acidgenerics::alphaThreshold
+#' @note Updated 2020-09-21.
 #' @param ... Additional arguments.
-#'
 #' @examples
 #' data(fgsea)
 #'
 #' ## FGSEAList ====
 #' nesThreshold(fgsea) <- 0.1
 #' nesThreshold(fgsea)
+NULL
+
+
+
+#' @rdname nesThreshold
+#' @name nesThreshold
+#' @importFrom acidgenerics nesThreshold
+#' @usage nesThreshold(object, ...)
+#' @export
+NULL
+
+#' @rdname nesThreshold
+#' @name nesThreshold<-
+#' @importFrom acidgenerics nesThreshold<-
+#' @usage nesThreshold(object, ...) <- value
+#' @export
 NULL
 
 
