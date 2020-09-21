@@ -22,7 +22,7 @@ NULL
 
 
 
-## Updated 2020-09-18.
+## Updated 2020-09-21.
 `geneSet,FGSEAList` <-  # nolint
     function(
         object,
@@ -32,6 +32,7 @@ NULL
         validObject(object)
         assert(
             isString(collection),
+            isSubset(collection, collectionNames(object)),
             isString(set)
         )
         x <- metadata(object)[["collections"]][[collection]][[set]]

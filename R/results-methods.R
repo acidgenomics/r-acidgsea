@@ -25,18 +25,19 @@ NULL
 
 
 
+## Updated 2020-09-21.
 `results,FGSEAList` <-  # nolint
     function(
         object,
-        collection,
-        contrast
+        contrast,
+        collection
     ) {
         validObject(object)
         assert(
-            isString(collection),
-            isSubset(collection, collectionNames(object)),
             isString(contrast),
-            isSubset(contrast, contrastNames(object))
+            isSubset(contrast, contrastNames(object)),
+            isString(collection),
+            isSubset(collection, collectionNames(object))
         )
         data <- object[[collection]][[contrast]]
         assert(is(data, "data.table"))
