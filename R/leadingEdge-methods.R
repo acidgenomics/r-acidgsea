@@ -1,14 +1,7 @@
-#' Leading edge genes
-#'
 #' @name leadingEdge
-#' @note Updated 2020-09-18.
-#'
-#' @inheritParams params
-#' @inheritParams acidroxygen::params
-#'
-#' @return `character`.
-#'   Elements of gene set that correspond to leading edge.
-#'
+#' @inherit acidgenerics::leadingEdge
+#' @note Updated 2020-09-21.
+#' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
 #' leadingEdge(
@@ -21,6 +14,16 @@ NULL
 
 
 
+#' @rdname leadingEdge
+#' @name leadingEdge
+#' @importFrom acidgenerics leadingEdge
+#' @usage leadingEdge(object, ...)
+#' @export
+NULL
+
+
+
+## Updated 2020-09-21.
 `leadingEdge,FGSEAList` <-  # nolint
     function(
         object,

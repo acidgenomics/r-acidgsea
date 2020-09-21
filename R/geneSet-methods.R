@@ -1,13 +1,7 @@
-#' Gene set
-#'
 #' @name geneSet
-#' @note Updated 2020-09-18.
-#'
-#' @inheritParams params
-#' @inheritParams acidroxygen::params
-#'
-#' @return `character`.
-#'
+#' @inherit acidgenerics::geneSet
+#' @note Updated 2020-09-21.
+#' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
 #' geneSet(
@@ -15,6 +9,15 @@
 #'     collection = "h",
 #'     set = "HALLMARK_P53_PATHWAY"
 #' )
+NULL
+
+
+
+#' @rdname geneSet
+#' @name geneSet
+#' @importFrom acidgenerics geneSet
+#' @usage geneSet(object, ...)
+#' @export
 NULL
 
 

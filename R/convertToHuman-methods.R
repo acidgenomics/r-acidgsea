@@ -1,9 +1,6 @@
-#' Convert data set to use human orthologs
-#'
 #' @name convertToHuman
-#' @note Currently requires at least Bioconductor 3.9, due to a Genomic Ranges
-#'   subsetting issue.
-#' @note Updated 2020-03-17.
+#' @inherit acidgenerics::convertToHuman
+#' @note Updated 2020-09-21.
 #'
 #' @inheritParams params
 #' @param map `DataFrame`, or `NULL`.
@@ -11,15 +8,22 @@
 #'   this function depends on the BioMart API and has a tendancy to time out,
 #'   we're allowing passthrough of a cached object here instead. If left `NULL`,
 #'   then `[matchHumanOrthologs()] will be called internally.
-#'
-#' @return Modified object.
-#'   Features (i.e. rownames) will be remapped to human genes.
+#' @param ... Additional arguments.
 #'
 #' @examples
 #' data(deseq, package = "DESeqAnalysis")
 #'
 #' ## DESeqAnalysis ====
 #' convertToHuman(deseq)
+NULL
+
+
+
+#' @rdname convertToHuman
+#' @name convertToHuman
+#' @importFrom acidgenerics convertToHuman
+#' @usage convertToHuman(object, ...)
+#' @export
 NULL
 
 
