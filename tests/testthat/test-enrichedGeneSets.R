@@ -39,10 +39,10 @@ test_that("Enriched in both directions", {
     )
     expect_identical(
         object = length(object[["condition_B_vs_A"]]),
-        expected = 9L
+        expected = 8L
     )
     expect_identical(
         object = length(object[["treatment_D_vs_C"]]),
-        expected = 21L
+        expected = 0L
     )
 })
