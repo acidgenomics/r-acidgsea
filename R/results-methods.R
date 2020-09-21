@@ -6,7 +6,11 @@
 #' data(fgsea)
 #'
 #' ## FGSEAList ====
-#' results(fgsea)
+#' results(
+#'     object = fgsea,
+#'     collection = "h",
+#'     contrast = "condition_B_vs_A"
+#' )
 NULL
 
 
@@ -21,7 +25,31 @@ NULL
 
 
 `results,FGSEAList` <-  # nolint
-    function(object) {
-        ## FIXME
+    function(
+        object,
+        collection,
+        contrast
+    ) {
         validObject(object)
+        assert(
+            isString(collection),
+            isSubset(collection, collectionNames(object)),
+            isString(contrast),
+            isSubset(contrast, contrastNames(object))
+        )
+        data <- object[[collection]][[contrast]]
+        assert(is(data, "data.table"))
+        data <- as(data, "DataFrame")
+        data <- camelCase(data)
+        data
     }
+
+
+
+#' @rdname results
+#' @export
+setMethod(
+    f = "results",
+    signature = signature("FGSEAList"),
+    definition = `results,FGSEAList`
+)
