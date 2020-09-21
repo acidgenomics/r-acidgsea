@@ -1,6 +1,6 @@
 #' @name plotHeatmap
 #' @inherit acidplots::plotHeatmap description return title
-#' @note Updated 2020-09-18.
+#' @note Updated 2020-09-21.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
@@ -28,7 +28,7 @@ NULL
 
 
 
-## Updated 2020-09-18.
+## Updated 2020-09-21.
 `plotHeatmap,FGSEAList` <-  # nolint
     function(
         object,
@@ -72,30 +72,8 @@ NULL
         }
         ## Plot the log counts from DESeqTransform object.
         dt <- as(deseq, "DESeqTransform")
-        ## Handle situation where DESeq object doesn't contain all symbols
-        ## defined in the gene set.
-        suppressMessages({
-            g2s <- Gene2Symbol(dt, format = "unmodified")
-        })
-        keep <- genes %in% g2s[["geneName"]]
-        if (!all(keep)) {
-            n <- sum(!keep)
-            cli_alert_warning(sprintf(
-                "%d %s in {.var %s} missing in {.var DESeqAnalysis}.",
-                n,
-                ngettext(
-                    n = n,
-                    msg1 = "gene",
-                    msg2 = "genes"
-                ),
-                set
-            ))
-            genes <- genes[keep]
-        }
-        rownames <- mapGenesToRownames(object = dt, genes = genes)
-        dt <- dt[rownames, , drop = FALSE]
+        dt <- .matchGeneSet(object = dt, genes = genes)
         if (isTRUE(contrastSamples)) {
-            ## FIXME Is this step erroring out in a clean R session?
             colnames <- contrastSamples(deseq, i = contrast)
             dt <- dt[, colnames, drop = FALSE]
         }
