@@ -52,7 +52,7 @@ If \code{FALSE}, plot all genes in the gene set.}
 Construct a simple heatmap.
 }
 \note{
-Updated 2020-09-18.
+Updated 2020-09-21.
 }
 \examples{
 data(fgsea, deseq)
