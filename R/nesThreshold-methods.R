@@ -1,5 +1,5 @@
 #' @name nesThreshold
-#' @inherit acidgenerics::alphaThreshold
+#' @inherit acidgenerics::nesThreshold
 #' @note Updated 2020-09-21.
 #' @param ... Additional arguments.
 #' @examples

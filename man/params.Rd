@@ -13,7 +13,7 @@ Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MS
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 
 \item{contrast}{\code{character(1)}.
-DESeqResults contrast.}
+Contrast name.}
 
 \item{contrastSamples}{\code{logical(1)}.
 Only visualize the samples defined in the contrast.}

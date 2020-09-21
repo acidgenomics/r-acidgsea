@@ -1,6 +1,6 @@
 #' @name plotGeneSet
-#' @inherit acidgenerics::alphaThreshold
-#' @note Updated 2020-09-18.
+#' @inherit acidgenerics::plotGeneSet
+#' @note Updated 2020-09-21.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams params

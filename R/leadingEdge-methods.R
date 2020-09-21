@@ -1,6 +1,7 @@
 #' @name leadingEdge
 #' @inherit acidgenerics::leadingEdge
 #' @note Updated 2020-09-21.
+#' @inheritParams params
 #' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
@@ -34,7 +35,9 @@ NULL
         validObject(object)
         assert(
             isString(contrast),
+            isSubset(contrast, contrastNames(object)),
             isString(collection),
+            isSubset(collection, collectionNames(object)),
             isString(set)
         )
         data <- object[[collection]][[contrast]]
