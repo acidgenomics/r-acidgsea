@@ -16,7 +16,11 @@ nesThreshold(object, ...) <- value
 \S4method{nesThreshold}{FGSEAList,numeric}(object) <- value
 }
 \arguments{
+\item{object}{Object.}
+
 \item{...}{Additional arguments.}
+
+\item{value}{Value to assign.}
 }
 \description{
 Normalized enrichment score (NES) threshold

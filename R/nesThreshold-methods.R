@@ -1,7 +1,11 @@
 #' Normalized enrichment score (NES) threshold
+#'
 #' @name nesThreshold
 #' @note Updated 2020-08-05.
+#'
+#' @inheritParams params
 #' @param ... Additional arguments.
+#'
 #' @examples
 #' data(fgsea)
 #'
