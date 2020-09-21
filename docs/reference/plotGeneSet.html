@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/acidgsea.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/acidgsea.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/acidgsea/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -125,16 +131,16 @@
     <p>Plot gene set enrichment</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plotGeneSet</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>plotGeneSet</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
 <span class='fu'>plotGeneSet</span>(
-  <span class='no'>object</span>,
-  <span class='no'>collection</span>,
-  <span class='no'>contrast</span>,
-  <span class='no'>set</span>,
-  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>line</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>min</span> <span class='kw'>=</span> <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/gradient.html'>purpleOrange</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2L</span>)<span class='kw'>[[</span><span class='fl'>1L</span>]], <span class='kw'>max</span> <span class='kw'>=</span>
-    <span class='kw pkg'>acidplots</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/gradient.html'>purpleOrange</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2L</span>)<span class='kw'>[[</span><span class='fl'>2L</span>]], <span class='kw'>ticks</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>yintercept</span> <span class='kw'>=</span> <span class='st'>"black"</span>)
+  <span class='kw'>object</span>,
+  <span class='kw'>collection</span>,
+  <span class='kw'>contrast</span>,
+  <span class='kw'>set</span>,
+  colors = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(line = <span class='st'>"black"</span>, min = <span class='kw'>acidplots</span>::<span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/gradient.html'>purpleOrange</a></span>(n = <span class='fl'>2L</span>)[[<span class='fl'>1L</span>]], max =
+    <span class='kw'>acidplots</span>::<span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/gradient.html'>purpleOrange</a></span>(n = <span class='fl'>2L</span>)[[<span class='fl'>2L</span>]], ticks = <span class='st'>"black"</span>, yintercept = <span class='st'>"black"</span>)
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -150,15 +156,14 @@
     </tr>
     <tr>
       <th>collection</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> or <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
-Gene set collection name or position, corresponding to values defined in
-<code><a href='https://rdrr.io/r/base/names.html'>names()</a></code>.
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Gene set collection name.
 Typically refers to <code>h</code> (hallmark), <code>c1</code>-<code>c7</code> collections from MSigDb.
-Can obtain using <code>collectionNames()</code> on <code>FGSEAList</code> object.</p></td>
+Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
     </tr>
     <tr>
       <th>contrast</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> or <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
 DESeqResults contrast.</p></td>
     </tr>
     <tr>
@@ -185,22 +190,20 @@ Named character color vector indicating:</p><ul>
     <p><code>ggplot</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-07-24.</p>
+    <p>Updated 2020-09-18.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Modified version of <code><a href='https://rdrr.io/pkg/fgsea/man/plotEnrichment.html'>fgsea::plotEnrichment()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## This requires MSigDB to be installed at `${HOME}`.</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/Logic.html'>isTRUE</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.exists</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"~"</span>, <span class='st'>"msigdb"</span>)))) {
-    <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
-    <span class='fu'>plotGeneSet</span>(
-        <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>fgsea</span>,
-        <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>,
-        <span class='kw'>contrast</span> <span class='kw'>=</span> <span class='st'>"condition_B_vs_A"</span>,
-        <span class='kw'>set</span> <span class='kw'>=</span> <span class='st'>"HALLMARK_P53_PATHWAY"</span>
-    )
-}</div><div class='img'><img src='plotGeneSet-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
+<span class='fu'>plotGeneSet</span>(
+    object = <span class='kw'>fgsea</span>,
+    collection = <span class='st'>"h"</span>,
+    contrast = <span class='st'>"condition_B_vs_A"</span>,
+    set = <span class='st'>"HALLMARK_P53_PATHWAY"</span>
+)
+</div><div class='img'><img src='plotGeneSet-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -216,7 +219,7 @@ Named character color vector indicating:</p><ul>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

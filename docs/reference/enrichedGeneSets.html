@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/acidgsea.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/acidgsea.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/acidgsea/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -125,10 +131,10 @@
     <p>Enriched pathways from gene set collections.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>enrichedGeneSets</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>enrichedGeneSets</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>enrichedGeneSets</span>(<span class='no'>object</span>, <span class='no'>collection</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"both"</span>, <span class='st'>"up"</span>, <span class='st'>"down"</span>))</pre>
+<span class='fu'>enrichedGeneSets</span>(<span class='kw'>object</span>, <span class='kw'>collection</span>, direction = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"both"</span>, <span class='st'>"up"</span>, <span class='st'>"down"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -139,11 +145,10 @@
     </tr>
     <tr>
       <th>collection</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> or <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
-Gene set collection name or position, corresponding to values defined in
-<code><a href='https://rdrr.io/r/base/names.html'>names()</a></code>.
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Gene set collection name.
 Typically refers to <code>h</code> (hallmark), <code>c1</code>-<code>c7</code> collections from MSigDb.
-Can obtain using <code>collectionNames()</code> on <code>FGSEAList</code> object.</p></td>
+Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
     </tr>
     <tr>
       <th>direction</th>
@@ -162,7 +167,7 @@ Include <code>"both"</code>, <code>"up"</code>, or <code>"down"</code> direction
 Named list containing significant gene sets per contrast.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-08-05.</p>
+    <p>Updated 2020-09-18.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'>
@@ -172,35 +177,20 @@ Named list containing significant gene sets per contrast.</p>
 </div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
 
 <span class='co'>## FGSEAList ====</span>
-<span class='fu'>alphaThreshold</span>(<span class='no'>fgsea</span>) <span class='kw'>&lt;-</span> <span class='fl'>0.7</span>
+<span class='fu'><a href='alphaThreshold.html'>alphaThreshold</a></span>(<span class='kw'>fgsea</span>) <span class='op'>&lt;-</span> <span class='fl'>0.7</span>
 <span class='fu'>enrichedGeneSets</span>(
-    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>fgsea</span>,
-    <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>,
-    <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"up"</span>
-)</div><div class='output co'>#&gt; $condition_B_vs_A
-#&gt; [1] "HALLMARK_PANCREAS_BETA_CELLS"     "HALLMARK_NOTCH_SIGNALING"        
-#&gt; [3] "HALLMARK_P53_PATHWAY"             "HALLMARK_MITOTIC_SPINDLE"        
-#&gt; [5] "HALLMARK_TNFA_SIGNALING_VIA_NFKB"
+    object = <span class='kw'>fgsea</span>,
+    collection = <span class='st'>"h"</span>,
+    direction = <span class='st'>"up"</span>
+)
+</div><div class='output co'>#&gt; $condition_B_vs_A
+#&gt; [1] "HALLMARK_PANCREAS_BETA_CELLS"   "HALLMARK_XENOBIOTIC_METABOLISM"
 #&gt; 
 #&gt; $treatment_D_vs_C
-#&gt;  [1] "HALLMARK_PI3K_AKT_MTOR_SIGNALING"          
-#&gt;  [2] "HALLMARK_INFLAMMATORY_RESPONSE"            
-#&gt;  [3] "HALLMARK_XENOBIOTIC_METABOLISM"            
-#&gt;  [4] "HALLMARK_UV_RESPONSE_DN"                   
-#&gt;  [5] "HALLMARK_INTERFERON_GAMMA_RESPONSE"        
-#&gt;  [6] "HALLMARK_ESTROGEN_RESPONSE_LATE"           
-#&gt;  [7] "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION"
-#&gt;  [8] "HALLMARK_ESTROGEN_RESPONSE_EARLY"          
-#&gt;  [9] "HALLMARK_TNFA_SIGNALING_VIA_NFKB"          
-#&gt; [10] "HALLMARK_HEME_METABOLISM"                  
-#&gt; [11] "HALLMARK_FATTY_ACID_METABOLISM"            
-#&gt; [12] "HALLMARK_COMPLEMENT"                       
-#&gt; [13] "HALLMARK_P53_PATHWAY"                      
-#&gt; [14] "HALLMARK_MTORC1_SIGNALING"                 
-#&gt; [15] "HALLMARK_KRAS_SIGNALING_DN"                
+#&gt; character(0)
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -217,7 +207,7 @@ Named list containing significant gene sets per contrast.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/acidgsea.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/acidgsea.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/acidgsea/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -125,10 +131,10 @@
     <p>Combining or merging different Bioconductor data structures</p>
     </div>
 
-    <pre class="usage"><span class='fu'>combine</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>combine</span>(<span class='kw'>x</span>, <span class='kw'>y</span>, <span class='kw'>...</span>)
 
 <span class='co'># S4 method for FGSEAList,FGSEAList</span>
-<span class='fu'>combine</span>(<span class='no'>x</span>, <span class='no'>y</span>)</pre>
+<span class='fu'>combine</span>(<span class='kw'>x</span>, <span class='kw'>y</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,18 +160,19 @@
   appropriate combination of the data in the input values.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-03-18.</p>
+    <p>Updated 2020-09-17.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
 
 <span class='co'>## FGSEAList ====</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>fgsea</span>
-<span class='fu'>contrastNames</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"x_"</span>, <span class='fu'>contrastNames</span>(<span class='no'>x</span>))
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>fgsea</span>
-<span class='fu'>contrastNames</span>(<span class='no'>y</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"y_"</span>, <span class='fu'>contrastNames</span>(<span class='no'>y</span>))
-<span class='no'>c</span> <span class='kw'>&lt;-</span> <span class='fu'>combine</span>(<span class='no'>x</span>, <span class='no'>y</span>)
-<span class='no'>c</span></div><div class='output co'>#&gt; FGSEAList 0.2.0 of length 1
+<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='kw'>fgsea</span>
+<span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='kw'>x</span>) <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"x_"</span>, <span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='kw'>x</span>))
+<span class='kw'>y</span> <span class='op'>&lt;-</span> <span class='kw'>fgsea</span>
+<span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='kw'>y</span>) <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"y_"</span>, <span class='fu'><a href='contrastNames.html'>contrastNames</a></span>(<span class='kw'>y</span>))
+<span class='kw'>c</span> <span class='op'>&lt;-</span> <span class='fu'>combine</span>(<span class='kw'>x</span>, <span class='kw'>y</span>)
+<span class='kw'>c</span>
+</div><div class='output co'>#&gt; FGSEAList 0.4.0 of length 1
 #&gt; collectionNames: h
 #&gt; contrastNames(4): x_condition_B_vs_A x_treatment_D_vs_C y_condition_B_vs_A y_treatment_D_vs_C
 #&gt; alphaThreshold: 0.05</div></pre>
@@ -184,7 +191,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

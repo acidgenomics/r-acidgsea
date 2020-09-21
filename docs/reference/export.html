@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/acidgsea.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/acidgsea.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/acidgsea/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -125,10 +131,10 @@
     <p>Export data out of R and write to disk.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>export</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>export</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>export</span>(<span class='no'>object</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"."</span>)</pre>
+<span class='fu'>export</span>(<span class='kw'>object</span>, name = <span class='kw'>NULL</span>, dir = <span class='st'>"."</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -179,10 +185,13 @@ organize by:</p><ol>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
 
 <span class='co'>## FGSEAList ====</span>
-<span class='fu'>export</span>(<span class='no'>fgsea</span>, <span class='kw'>dir</span> <span class='kw'>=</span> <span class='st'>"example"</span>)</div><div class='output co'>#&gt; <span class='message'>→ Exporting to '<span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea</span><span>'.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> at </span><span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea/condition_B_vs_A</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom_write()`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> at </span><span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea/treatment_D_vs_C</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom_write()`</span><span>.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"example"</span>, <span class='st'>"fgsea"</span>)))</div><div class='output co'>#&gt; [1] "condition_B_vs_A" "treatment_D_vs_C"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"example"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></span></pre>
+<span class='fu'>export</span>(<span class='kw'>fgsea</span>, dir = <span class='st'>"example"</span>)
+</div><div class='output co'>#&gt; <span class='message'>→ Exporting to '<span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea</span><span>'.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> at </span><span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea/condition_B_vs_A</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom_write()`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> at </span><span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea/treatment_D_vs_C</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom_write()`</span><span>.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"example"</span>, <span class='st'>"fgsea"</span>)))
+</div><div class='output co'>#&gt; [1] "condition_B_vs_A" "treatment_D_vs_C"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"example"</span>, recursive = <span class='fl'>TRUE</span>)
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -198,7 +207,7 @@ organize by:</p><ol>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
