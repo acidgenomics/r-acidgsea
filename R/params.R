@@ -10,7 +10,7 @@
 #'   Typically refers to `h` (hallmark), `c1`-`c7` collections from MSigDb.
 #'   Can obtain using `collectionNames()` on `FGSEAList` object.
 #' @param contrast `character(1)`.
-#'   DESeqResults contrast.
+#'   Contrast name.
 #' @param contrastSamples `logical(1)`.
 #'   Only visualize the samples defined in the contrast.
 #' @param geneSetFiles `character`.
