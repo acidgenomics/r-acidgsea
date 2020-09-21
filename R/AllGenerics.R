@@ -48,6 +48,19 @@ setGeneric(
 
 ## FIXME Move to acidgenerics.
 
+#' @rdname geneSetResults
+#' @export
+setGeneric(
+    name = "geneSetResults",
+    def = function(object, ...) {
+        standardGeneric("geneSetResults")
+    }
+)
+
+
+
+## FIXME Move to acidgenerics.
+
 #' @rdname leadingEdge
 #' @export
 setGeneric(
@@ -93,5 +106,16 @@ setGeneric(
     name = "plotGeneSet",
     def = function(object, ...) {
         standardGeneric("plotGeneSet")
+    }
+)
+
+
+
+#' @rdname results
+#' @export
+setGeneric(
+    name = "results",
+    def = function(object, ...) {
+        standardGeneric("results")
     }
 )
