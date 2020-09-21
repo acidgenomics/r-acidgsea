@@ -7,18 +7,18 @@
 \usage{
 results(object, ...)
 
-\S4method{results}{FGSEAList}(object, collection, contrast)
+\S4method{results}{FGSEAList}(object, contrast, collection)
 }
 \arguments{
 \item{object}{Object.}
+
+\item{contrast}{\code{character(1)}.
+Contrast name.}
 
 \item{collection}{\code{character(1)}.
 Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
-
-\item{contrast}{\code{character(1)}.
-Contrast name.}
 
 \item{...}{Additional arguments.}
 }

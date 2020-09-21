@@ -25,7 +25,7 @@ plotHeatmap(object, ...)
 Corresponding DESeq2 data used to perform GSEA.}
 
 \item{contrast}{\code{character(1)}.
-DESeqResults contrast.}
+Contrast name.}
 
 \item{contrastSamples}{\code{logical(1)}.
 Only visualize the samples defined in the contrast.}

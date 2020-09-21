@@ -41,7 +41,7 @@ Markdown header level.}
 Plot enriched gene sets
 }
 \note{
-Updated 2020-09-18.
+Updated 2020-09-21.
 }
 \examples{
 ## This requires MSigDB to be installed at `${HOME}`.
