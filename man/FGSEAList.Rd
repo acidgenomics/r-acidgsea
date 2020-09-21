@@ -63,24 +63,22 @@ Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 Updated 2020-09-17.
 }
 \examples{
-## > ## Copy example MSigDb files to `$HOME`.
-## > file.copy(
-## >     from = system.file(
-## >         "extdata", "msigdb",
-## >         package = "acidgsea",
-## >         mustWork = TRUE
-## >     ),
-## >     to = "~",
-## >     overwrite = FALSE,
-## >     recursive = TRUE
-## > )
-
-if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
-    data(fgsea)
-    metadata <- S4Vectors::metadata
-    rankedList <- metadata(fgsea)[["rankedList"]]
-    geneSetFiles <- metadata(fgsea)[["geneSetFiles"]]
-    fgsea <- FGSEAList(object = rankedList, geneSetFiles = geneSetFiles)
-    print(fgsea)
-}
+data(fgsea)
+metadata <- S4Vectors::metadata
+rankedList <- metadata(fgsea)[["rankedList"]]
+geneSetFiles <- system.file(
+    "extdata",
+    "msigdb",
+    "7.0",
+    "msigdb_v7.0_GMTs",
+    "h.all.v7.0.symbols.gmt",
+    package = "acidgsea",
+    mustWork = TRUE
+)
+names(geneSetFiles) <- "h"
+fgsea <- FGSEAList(
+    object = rankedList,
+    geneSetFiles = geneSetFiles
+)
+print(fgsea)
 }
