@@ -47,3 +47,44 @@
     egs <- unique(c(up, rev(down)))
     egs
 }
+
+
+
+#' Match symbols in gene set to SummarizedExperiment (i.e. DESeqDataSet)
+#'
+#' Handle situation where DESeq object doesn't contain all symbols defined in
+#' the gene set.
+#'
+#' @note Updated 2020-09-21.
+#' @noRd
+.matchGeneSet <- function(
+    object,
+    genes
+) {
+    validObject(object)
+    assert(
+        is(object, "SummarizedExperiment"),
+        isCharacter(genes)
+    )
+    suppressMessages({
+        g2s <- Gene2Symbol(object, format = "unmodified")
+    })
+    keep <- genes %in% g2s[["geneName"]]
+    if (!all(keep)) {
+        n <- sum(!keep)
+        cli_alert_warning(sprintf(
+            "%d %s in {.var %s} missing in {.var DESeqAnalysis}.",
+            n,
+            ngettext(
+                n = n,
+                msg1 = "gene",
+                msg2 = "genes"
+            ),
+            set
+        ))
+        genes <- genes[keep]
+    }
+    rownames <- mapGenesToRownames(object = object, genes = genes)
+    object <- object[rownames, , drop = FALSE]
+    object
+}
