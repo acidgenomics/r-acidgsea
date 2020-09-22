@@ -16,13 +16,13 @@
 #' @importFrom cli cli_alert cli_alert_info cli_alert_warning cli_dl cli_text
 #'   cli_ul
 #' @importFrom fgsea calcGseaStat fgsea
-#' @importFrom ggplot2 aes coord_flip geom_col geom_hline geom_line geom_point
-#'   geom_segment ggplot labs
+#' @importFrom ggplot2 aes coord_flip geom_boxplot geom_col geom_hline
+#'   geom_jitter geom_line geom_point geom_segment geom_violin ggplot labs
 #' @importFrom goalie allAreAtomic allAreFiles areDisjointSets areSameLength
 #'   areSetEqual assert bapply hasColnames hasLength hasNames hasNoDuplicates
 #'   hasRownames hasRows isAFile isAll isAlpha isAny isCharacter isFile isFlag
-#'   isHeaderLevel isInt isNumber isNonNegative isScalarInteger isString
-#'   isSubset validate
+#'   isGGScale isHeaderLevel isInt isNumber isNonNegative isScalarInteger
+#'   isString isSubset validate
 #' @importFrom knitr kable
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity show
 #'   slot slot<- validObject
