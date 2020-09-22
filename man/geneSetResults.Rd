@@ -28,7 +28,7 @@ data(fgsea, deseq)
 geneSetResults(
     object = fgsea,
     DESeqAnalysis = deseq,
-    contrast,
+    contrast = "condition_B_vs_A",
     collection = "h",
     set = "HALLMARK_P53_PATHWAY"
 )

@@ -44,12 +44,9 @@ Plot enriched gene sets
 Updated 2020-09-21.
 }
 \examples{
-## This requires MSigDB to be installed at `${HOME}`.
-if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
-    data(fgsea)
-    alphaThreshold(fgsea) <- 0.9
-    plotEnrichedGeneSets(fgsea, collection = "h", n = 1L)
-}
+data(fgsea)
+alphaThreshold(fgsea) <- 0.9
+plotEnrichedGeneSets(fgsea, collection = "h", n = 1L)
 }
 \seealso{
 \code{\link[=plotGeneSet]{plotGeneSet()}}.

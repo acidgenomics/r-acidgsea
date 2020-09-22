@@ -37,7 +37,7 @@ data(fgsea)
 ## FGSEAList ====
 results(
     object = fgsea,
-    collection = "h",
-    contrast = "condition_B_vs_A"
+    contrast = "condition_B_vs_A",
+    collection = "h"
 )
 }
