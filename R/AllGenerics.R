@@ -17,3 +17,14 @@ setGeneric(
         standardGeneric("RankedList")
     }
 )
+
+
+
+#' @rdname plotNES
+#' @export
+setGeneric(
+    name = "plotNES",
+    def = function(object, ...) {
+        standardGeneric("plotNES")
+    }
+)
