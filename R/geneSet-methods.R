@@ -1,6 +1,7 @@
 #' @name geneSet
 #' @inherit acidgenerics::geneSet
 #' @note Updated 2020-09-21.
+#' @inheritParams params
 #' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
