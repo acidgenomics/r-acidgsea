@@ -7,6 +7,7 @@
 #' @importFrom S4Vectors DataFrame SimpleList complete.cases head lapply mcols
 #'   mcols<- metadata metadata<- na.omit order split tail unique
 #' @importFrom SummarizedExperiment rowRanges rowRanges<-
+#' @importFrom acidbase formalsList
 #' @importFrom acidplots acid_theme_light plotUpset
 #' @importFrom basejump Gene2Symbol aggregateRows as_tibble export import
 #'   initDir leftJoin makeNames mapGenesToRownames markdownHeader
@@ -15,8 +16,8 @@
 #' @importFrom cli cli_alert cli_alert_info cli_alert_warning cli_dl cli_text
 #'   cli_ul
 #' @importFrom fgsea calcGseaStat fgsea
-#' @importFrom ggplot2 aes geom_hline geom_line geom_point geom_segment ggplot
-#'   labs
+#' @importFrom ggplot2 aes coord_flip geom_col geom_hline geom_line geom_point
+#'   geom_segment ggplot labs
 #' @importFrom goalie allAreAtomic allAreFiles areDisjointSets areSameLength
 #'   areSetEqual assert bapply hasColnames hasLength hasNames hasNoDuplicates
 #'   hasRownames hasRows isAFile isAll isAlpha isAny isCharacter isFile isFlag
@@ -25,6 +26,7 @@
 #' @importFrom knitr kable
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity show
 #'   slot slot<- validObject
+#' @importFrom rlang !! sym
 #' @importFrom sessioninfo session_info
 #' @importFrom utils globalVariables
 NULL
