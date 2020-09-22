@@ -47,7 +47,7 @@ Flip x and y axes. Recommended for plots containing many samples.}
 Plot normalized enrichment scores of a collection
 }
 \note{
-Updated 2020-09-17.
+Updated 2020-09-22.
 }
 \examples{
 data(fgsea)

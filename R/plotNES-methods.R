@@ -1,7 +1,7 @@
 #' Plot normalized enrichment scores of a collection
 #'
 #' @name plotNES
-#' @note Updated 2020-09-17.
+#' @note Updated 2020-09-22.
 #'
 #' @inheritParams params
 #' @inheritParams acidroxygen::params
