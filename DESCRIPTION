@@ -32,6 +32,7 @@ Imports:
     IRanges,
     S4Vectors,
     SummarizedExperiment,
+    acidbase (>= 0.1.14),
     acidgenerics (>= 0.3.12),
     acidplots (>= 0.2.35),
     cli (>= 2.0),
@@ -40,6 +41,7 @@ Imports:
     goalie (>= 0.4.8),
     knitr (>= 1.25),
     methods,
+    rlang (>= 0.4),
     sessioninfo (>= 1.1),
     utils
 Suggests:
