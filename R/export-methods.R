@@ -1,6 +1,6 @@
 #' @name export
 #' @inherit acidgenerics::export
-#' @note Updated 2020-01-27.
+#' @note Updated 2020-09-23.
 #'
 #' @section On-disk structure:
 #'
@@ -19,6 +19,8 @@
 #' 2. Gene set.
 #'
 #' @inheritParams pipette::export
+#' @param geneSetResults `logical(1)`.
+#'   Export expression CSV files per gene set.
 #' @param ... Additional arguments.
 #'
 #' @examples
@@ -41,12 +43,22 @@ NULL
 
 
 
-## Updated 2020-01-27.
+## FIXME Also optionally export CSV files for each gene set.
+
+## Updated 2020-09-23.
 `export,FGSEAList` <-  # nolint
-    function(object, name = NULL, dir = ".") {
+    function(
+        object,
+        name = NULL,
+        dir = ".",
+        geneSetResults = TRUE
+    ) {
         validObject(object)
         call <- standardizeCall()
-        assert(isString(name, nullOK = TRUE))
+        assert(
+            isString(name, nullOK = TRUE),
+            isFlag(geneSetResults)
+        )
         if (is.null(name)) {
             name <- as.character(call[["object"]])
         }
@@ -55,39 +67,49 @@ NULL
         dir <- initDir(file.path(dir, name))
         cli_alert(sprintf("Exporting to '{.path %s}'.", dir))
         files <- lapply(
-            X = seq_len(length(object)),
-            FUN = function(gmt) {
-                contrasts <- object[[gmt]]
+            X = collectionNames(object),
+            FUN = function(collection) {
                 files <- lapply(
-                    X = seq_len(length(contrasts)),
+                    X = contrastNames(object),
                     FUN = function(contrast) {
-                        data <- object[[gmt]][[contrast]]
-                        assert(
-                            is(data, "data.table"),
-                            isSubset(
-                                x = c(
-                                    "pathway",
-                                    "pval",
-                                    "padj",
-                                    "ES",
-                                    "NES",
-                                    "nMoreExtreme",
-                                    "size",
-                                    "leadingEdge"
-                                ),
-                                y = colnames(data)
+                        export(
+                            object = results(
+                                object = object,
+                                contrast = contrast,
+                                collection = collection
+                            ),
+                            file = file.path(
+                                dir,
+                                contrast,
+                                paste0(collection, ".csv")
                             )
                         )
-                        data[["leadingEdge"]] <-
-                            unlist(lapply(data[["leadingEdge"]], toString))
-                        ## Coerce "leadingEdge" list column to string.
-                        file <- file.path(
-                            dir,
-                            names(object[[gmt]])[[contrast]],
-                            paste0(names(object)[[gmt]], ".csv")
-                        )
-                        assert(allAreAtomic(data))
-                        export(object = data, file = file)
+                        if (isTRUE(geneSetResults)) {
+                            cli_alert("Exporting results per gene set.")
+                            sets <- geneSetNames(
+                                object = fgsea,
+                                collection = collection
+                            )
+                            lapply(
+                                X = sets,
+                                FUN = function(set) {
+                                    export(
+                                        object = geneSetResults(
+                                            object = object,
+                                            contrast = contrast,
+                                            collection = collection,
+                                            set = set
+                                        ),
+                                        file = file.path(
+                                            dir,
+                                            contrast,
+                                            collection,
+                                            paste0(tolower(set), ".csv")
+                                        )
+                                    )
+                                }
+                            )
+                        }
                     }
                 )
                 names(files) <- names(contrasts)
