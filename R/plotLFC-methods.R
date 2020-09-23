@@ -11,6 +11,8 @@
 #' @param points `logical(1)`.
 #'   Show individual data points.
 #'
+#' @return `ggplot`.
+#'
 #' @examples
 #' data(fgsea)
 #' plotLFC(

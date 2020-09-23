@@ -51,6 +51,9 @@ are desired, we recommend using \code{ggplot2::scale_color_manual()}.
 To set the discrete color palette globally, use:\preformatted{options(acid.color.discrete = ggplot2::scale_color_viridis_d())
 }}
 }
+\value{
+\code{ggplot}.
+}
 \description{
 Plot log2 fold change distributions
 }
