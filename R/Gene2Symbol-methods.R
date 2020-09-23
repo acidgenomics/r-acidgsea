@@ -60,3 +60,21 @@ setMethod(
     signature = signature("RankedList"),
     definition = `Gene2Symbol,RankedList`
 )
+
+
+
+## Updated 2020-09-23.
+`Gene2Symbol,FGSEAList` <-  # nolint
+    function(object) {
+        Gene2Symbol(RankedList(object))
+    }
+
+
+
+#' @rdname Gene2Symbol
+#' @export
+setMethod(
+    f = "Gene2Symbol",
+    signature = signature("FGSEAList"),
+    definition = `Gene2Symbol,FGSEAList`
+)
