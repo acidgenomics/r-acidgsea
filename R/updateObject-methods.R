@@ -1,13 +1,16 @@
 #' @name updateObject
 #' @author Michael Steinbaugh
 #' @inherit BiocGenerics::updateObject
-#' @note Updated 2020-09-16.
+#' @note Updated 2020-09-23.
 #'
 #' @inheritParams acidroxygen::params
 #' @param alphaThreshold `number(1)`.
 #'   Alpha level used for GSEA.
 #'   Note that this is not necessarily the alpha level used to generate
 #'   `DESeqResults` object.
+#' @param deseq `DESeqAnalysis` or `NULL`.
+#'   Update object by slotting `DESeqAnalysis`, if necessary.
+#'   This was added to object in 2020-09.
 #' @param verbose `logical(1)`.
 #'   Whether information about the update should be reported.
 #' @param ... Additional arguments.
@@ -32,15 +35,23 @@ NULL
 
 
 
-## Updated 2020-09-17.
+## Updated 2020-09-23.
 `updateObject,FGSEAList` <-  # nolint
     function(
         object,
+        deseq = NULL,
         alphaThreshold = NULL,
         ...,
         verbose = FALSE
     ) {
         assert(isFlag(verbose))
+        ## Slot DESeqAnalysis object, if necessary.
+        if (is.null(metadata(object)[["deseq"]])) {
+            assert(is(deseq, "DESeqAnalysis"))
+            metadata(object)[["deseq"]] <- deseq
+        } else {
+            stop("DESeqAnalysis is already defined in object.")
+        }
         ## Rename `gmtFiles` to `geneSetFiles`. Changed in v0.4 (2020-09).
         if (isSubset("gmtFiles", names(metadata(object)))) {
             metadata(object)[["geneSetFiles"]] <- metadata[["gmtFiles"]]
@@ -77,6 +88,8 @@ NULL
                 ))
             }
             alphaThreshold(object) <- alphaThreshold
+        } else {
+            stop("alphaThreshold is already defined in object.")
         }
         metadata(object) <- Filter(f = Negate(is.null), x = metadata(object))
         validObject(object)
