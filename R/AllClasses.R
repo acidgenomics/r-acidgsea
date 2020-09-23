@@ -39,7 +39,7 @@ setValidity(
                     ## "sessionInfo"
                     "alpha",
                     "collections",
-                    "deseq",
+                    ## > "deseq",  # 0.4.0
                     "geneSetFiles",
                     "rankedList",
                     "version"
@@ -51,7 +51,7 @@ setValidity(
                 x = names(object),
                 y = names(metadata(object)[["collections"]])
             ),
-            is(metadata(object)[["deseq"]], "DESeqAnalysis"),
+            ## > is(metadata(object)[["deseq"]], "DESeqAnalysis"),  # 0.4.0
             isCharacter(metadata(object)[["geneSetFiles"]]),
             identical(
                 x = names(object),
