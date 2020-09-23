@@ -49,7 +49,7 @@ NULL
         if (is.null(metadata(object)[["deseq"]])) {
             assert(is(deseq, "DESeqAnalysis"))
             metadata(object)[["deseq"]] <- deseq
-        } else {
+        } else if (!is.null(deseq)) {
             stop("DESeqAnalysis is already defined in object.")
         }
         ## Rename `gmtFiles` to `geneSetFiles`. Changed in v0.4 (2020-09).
@@ -88,7 +88,7 @@ NULL
                 ))
             }
             alphaThreshold(object) <- alphaThreshold
-        } else {
+        } else if (!is.null(alphaThreshold)) {
             stop("alphaThreshold is already defined in object.")
         }
         metadata(object) <- Filter(f = Negate(is.null), x = metadata(object))
