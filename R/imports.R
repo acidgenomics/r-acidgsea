@@ -9,9 +9,9 @@
 #' @importFrom SummarizedExperiment rowRanges rowRanges<-
 #' @importFrom acidbase formalsList
 #' @importFrom acidplots acid_theme_light plotUpset
-#' @importFrom basejump Gene2Symbol aggregateRows as_tibble export import
-#'   initDir leftJoin makeNames mapGenesToRownames markdownHeader
-#'   matchArgsToDoCall matchHumanOrthologs selectIf showHeader showSlotInfo
+#' @importFrom basejump Gene2Symbol aggregateRows as_tibble camelCase export
+#'   import initDir leftJoin makeNames mapGenesToRownames markdownHeader
+#'   matchArgsToDoCall matchHumanOrthologs melt selectIf showHeader showSlotInfo
 #'   standardizeCall
 #' @importFrom cli cli_alert cli_alert_info cli_alert_warning cli_dl cli_text
 #'   cli_ul
@@ -28,5 +28,6 @@
 #'   slot slot<- validObject
 #' @importFrom rlang !! sym
 #' @importFrom sessioninfo session_info
+#' @importFrom stats reorder
 #' @importFrom utils globalVariables
 NULL

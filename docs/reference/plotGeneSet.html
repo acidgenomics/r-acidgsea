@@ -123,7 +123,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot gene set enrichment</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/plotGeneSet-methods.R'><code>R/plotGeneSet-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/plotGeneSet-methods.R'><code>R/plotGeneSet-methods.R</code></a></small>
     <div class="hidden name"><code>plotGeneSet.Rd</code></div>
     </div>
 
@@ -151,10 +151,6 @@
       <td><p>Object.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
-    <tr>
       <th>collection</th>
       <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
 Gene set collection name.
@@ -164,7 +160,7 @@ Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></cod
     <tr>
       <th>contrast</th>
       <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-DESeqResults contrast.</p></td>
+Contrast name.</p></td>
     </tr>
     <tr>
       <th>set</th>
@@ -183,6 +179,10 @@ Named character color vector indicating:</p><ul>
 <li><p>Ticks color.</p></li>
 </ul></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -190,7 +190,7 @@ Named character color vector indicating:</p><ul>
     <p><code>ggplot</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-09-18.</p>
+    <p>Updated 2020-09-21.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Modified version of <code><a href='https://rdrr.io/pkg/fgsea/man/plotEnrichment.html'>fgsea::plotEnrichment()</a></code>.</p></div>
