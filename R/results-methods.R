@@ -1,6 +1,6 @@
 #' @name results
 #' @inherit acidgenerics::results
-#' @note Updated 2020-09-21.
+#' @note Updated 2020-09-23.
 #' @inheritParams params
 #' @param ... Additional arguments.
 #' @examples
@@ -25,7 +25,7 @@ NULL
 
 
 
-## Updated 2020-09-21.
+## Updated 2020-09-23.
 `results,FGSEAList` <-  # nolint
     function(
         object,
@@ -40,9 +40,16 @@ NULL
             isSubset(collection, collectionNames(object))
         )
         data <- object[[collection]][[contrast]]
-        assert(is(data, "data.table"))
+        assert(
+            is(data, "data.table"),
+            isSubset("leadingEdge", colnames(data))
+        )
         data <- as(data, "DataFrame")
         data <- camelCase(data)
+        ## Coerce "leadingEdge" list column to string.
+        data[["leadingEdge"]] <-
+            unlist(lapply(X = data[["leadingEdge"]], FUN = toString))
+        assert(allAreAtomic(data))
         data
     }
 
