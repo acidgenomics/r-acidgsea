@@ -1,7 +1,7 @@
 #' Plot log2 fold change distributions
 #'
 #' @name plotLFC
-#' @note Updated 2020-09-22.
+#' @note Updated 2020-09-23.
 #'
 #' @inheritParams params
 #' @inheritParams acidroxygen::params
@@ -22,11 +22,10 @@ NULL
 
 
 
-## Updated 2020-09-22.
+## Updated 2020-09-23.
 `plotLFC,FGSEAList` <-  # nolint
     function(
         object,
-        DESeqAnalysis,
         contrast = NULL,
         collection,
         set,
@@ -51,7 +50,6 @@ NULL
                 FUN = geneSetResults,
                 MoreArgs = list(
                     object = object,
-                    DESeqAnalysis = DESeqAnalysis,
                     collection = collection,
                     set = set
                 ),
