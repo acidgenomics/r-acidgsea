@@ -2,18 +2,21 @@
 ## Updated 2020-09-23.
 
 library(usethis)
-library(pryr)
 library(basejump)       # 0.12.14
 library(DESeq2)         # 1.28.1
 library(DESeqAnalysis)  # 0.3.6
 
 ## Restrict to 2 MB.
-## Use `pryr::object_size()` instead of `utils::object.size()`.
 limit <- structure(2e6, class = "object_size")
 
 gr <- makeGRangesFromEnsembl(organism = "Homo sapiens", release = 100L)
-## Subset to include 5k genes, as minimal example.
-gr <- head(gr, n = 5000L)
+gr <- head(gr, n = 500L)
+gr <- droplevels(gr)
+object.size(gr)
+## 420560 bytes
+mcols(gr) <- mcols(gr)[c("geneID", "geneName")]
+object.size(gr)
+## 219080 bytes
 
 ## DESeqDataSet
 dds <- makeExampleDESeqDataSet(n = length(gr), m = 12L)
@@ -27,6 +30,8 @@ dds$condition
 dds$treatment
 ##  [1] C C C D D D C C C D D D
 ## Levels: C D
+object.size(dds)
+## 573464 bytes
 
 ## DESeqTransform
 dt <- varianceStabilizingTransformation(dds)
@@ -59,11 +64,8 @@ deseq <- DESeqAnalysis(
     results = res,
     lfcShrink = NULL
 )
-
-rankedList <- RankedList(deseq)
-object_size(rankedList)
-## 890 kB
-stopifnot(object_size(rankedList) < limit)
+object.size(deseq)
+## 1196328 bytes
 
 ## Just using hallmark in minimal example.
 geneSetFiles <- system.file(
@@ -78,15 +80,10 @@ geneSetFiles <- system.file(
 names(geneSetFiles) <- "h"
 
 fgsea <- FGSEAList(
-    object = rankedList,
+    object = deseq,
     geneSetFiles = geneSetFiles
 )
 validObject(fgsea)
-
-## Check the object size.
-lapply(coerceToList(fgsea), object_size)
-object_size(fgsea)
-lapply(metadata(fgsea), object_size)
-stopifnot(object_size(fgsea) < limit)
+stopifnot(object.size(fgsea) < limit)
 
 use_data(fgsea, overwrite = TRUE, compress = "xz")
