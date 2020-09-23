@@ -7,7 +7,7 @@
 \usage{
 export(object, ...)
 
-\S4method{export}{FGSEAList}(object, name = NULL, dir = ".", geneSetResults = TRUE)
+\S4method{export}{FGSEAList}(object, name = NULL, dir = ".", geneSetResults = FALSE)
 }
 \arguments{
 \item{object}{Object.}
