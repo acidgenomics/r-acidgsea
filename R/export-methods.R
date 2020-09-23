@@ -68,11 +68,13 @@ NULL
         ## subdirectories for each slotted data type (e.g. `DESeqDataSet`).
         dir <- initDir(file.path(dir, name))
         cli_alert(sprintf("Exporting to '{.path %s}'.", dir))
+        collectionNames <- collectionNames(object)
         files <- lapply(
-            X = collectionNames(object),
+            X = collectionNames,
             FUN = function(collection) {
+                contrastNames <- contrastNames(object)
                 files <- lapply(
-                    X = contrastNames(object),
+                    X = contrastNames,
                     FUN = function(contrast) {
                         export(
                             object = results(
@@ -115,11 +117,11 @@ NULL
                         }
                     }
                 )
-                names(files) <- names(contrasts)
+                names(files) <- contrastNames
                 files
             }
         )
-        names(files) <- names(object)
+        names(files) <- collectionNames
         invisible(files)
     }
 
