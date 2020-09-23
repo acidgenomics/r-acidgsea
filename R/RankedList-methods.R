@@ -187,10 +187,8 @@ setMethod(
 ## Updated 2020-09-23.
 `RankedList,FGSEAList` <-  # nolint
     function(object) {
-        validObject(object)
         rl <- metadata(object)[["rankedList"]]
         assert(is(rl, "RankedList"))
-        validObject(rl)
         rl
     }
 

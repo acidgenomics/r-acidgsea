@@ -47,19 +47,44 @@ NULL
         assert(isFlag(verbose))
         ## Slot DESeqAnalysis object, if necessary.
         if (is.null(metadata(object)[["deseq"]])) {
+            if (!is(deseq, "DESeqAnalysis")) {
+                stop(paste(
+                    "Define required DESeqAnalysis object using 'deseq'",
+                    "argument to update the object."
+                ))
+            }
             assert(is(deseq, "DESeqAnalysis"))
             metadata(object)[["deseq"]] <- deseq
         } else if (!is.null(deseq)) {
             stop("DESeqAnalysis is already defined in object.")
         }
+        ## Ensure the RankedList contains gene-to-symbol mappings.
+        rl <- metadata(object)[["rankedList"]]
+        assert(is(rl, "RankedList"))
+        g2s <- metadata(rl)[["gene2symbol"]]
+        if (!is(g2s, "Gene2Symbol")) {
+            if (isTRUE(verbose)) {
+                cli_alert("Slotting Gene2Symbol in internal RankedList.")
+            }
+            suppressMessages({
+                metadata(rl)[["gene2symbol"]] <-
+                    Gene2Symbol(
+                        object = as(deseq, "DESeqDataSet"),
+                        format = "unmodified"
+                    )
+            })
+            metadata(object)[["rankedList"]] <- rl
+        }
         ## Rename `gmtFiles` to `geneSetFiles`. Changed in v0.4 (2020-09).
         if (isSubset("gmtFiles", names(metadata(object)))) {
-            metadata(object)[["geneSetFiles"]] <- metadata[["gmtFiles"]]
+            metadata(object)[["geneSetFiles"]] <- metadata(object)[["gmtFiles"]]
             metadata(object)[["gmtFiles"]] <- NULL
         }
         ## Slot gene set files if undefined.
         if (!isSubset("collections", names(metadata(object)))) {
-            cli_alert("Importing gene set collections into object.")
+            if (isTRUE(verbose)) {
+                cli_alert("Importing gene set collections into object.")
+            }
             assert(isSubset("geneSetFiles", names(metadata(object))))
             geneSetFiles <- metadata(object)[["geneSetFiles"]]
             if (!allAreFiles(geneSetFiles)) {
@@ -68,7 +93,9 @@ NULL
                     toString(geneSetFiles)
                 ))
             }
-            collections <- lapply(X = geneSetFiles, FUN = import)
+            suppressMessages({
+                collections <- lapply(X = geneSetFiles, FUN = import)
+            })
             metadata(object)[["collections"]] <- collections
         }
         ## Slot alpha threshold if undefined.
