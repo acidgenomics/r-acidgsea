@@ -42,7 +42,9 @@ NULL
         value
     ) {
         validObject(object)
+        validObject(gene2symbol)
         assert(
+            is(object, "DataFrame"),
             is(gene2symbol, "Gene2Symbol"),
             isSubset(value, colnames(object))
         )
@@ -95,17 +97,7 @@ NULL
 
 
 
-#' @rdname RankedList
-#' @export
-setMethod(
-    f = "RankedList",
-    signature = signature("DataFrame"),
-    definition = `RankedList,DataFrame`
-)
-
-
-
-## Updated 2020-05-20.
+## Updated 2020-09-23.
 `RankedList,DESeqResults` <-  # nolint
     function(
         object,
@@ -113,7 +105,8 @@ setMethod(
         value = c("stat", "log2FoldChange", "padj")
     ) {
         validObject(object)
-        out <- RankedList(
+        assert(is(object, "DESeqResults"))
+        out <- `RankedList,DataFrame`(
             object = as(object, "DataFrame"),
             gene2symbol = gene2symbol,
             value = match.arg(value)
@@ -122,16 +115,6 @@ setMethod(
         names(out) <- contrastName(object)
         out
     }
-
-
-
-#' @rdname RankedList
-#' @export
-setMethod(
-    f = "RankedList",
-    signature = signature("DESeqResults"),
-    definition = `RankedList,DESeqResults`
-)
 
 
 
@@ -144,8 +127,6 @@ setMethod(
     ) {
         validObject(object)
         value <- match.arg(value)
-        ## Extract the DESeqDataSet.
-        dds <- as(object, "DESeqDataSet")
         ## Extract the DESeqResults list.
         if (identical(value, "log2FoldChange")) {
             ## Note that we're requiring shrunken LFCs if the user wants to
@@ -155,16 +136,19 @@ setMethod(
             resultsList <- slot(object, "results")
         }
         assert(is(resultsList, "list"))
-        ## Get the gene-to-symbol mappings in long format.
-        ## We're returning in long format so we can average the values for each
-        ## gene symbol, since for some genomes gene IDs multi-map to symbols.
+        ## Get the gene-to-symbol mappings. We're returning in long format so we
+        ## can average the values for each gene symbol, since for some genomes
+        ## gene IDs multi-map to symbols.
         suppressMessages({
-            gene2symbol <- Gene2Symbol(dds, format = "unmodified")
+            gene2symbol <- Gene2Symbol(
+                object = as(object, "DESeqDataSet"),
+                format = "unmodified"
+            )
         })
         ## Get parameterized GSEA list values for each DESeqResults contrast.
         list <- bplapply(
             X = resultsList,
-            FUN = RankedList,
+            FUN = `RankedList,DESeqResults`,
             BPPARAM = BPPARAM,
             gene2symbol = gene2symbol,
             value = value
