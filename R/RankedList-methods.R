@@ -118,7 +118,7 @@ NULL
 
 
 
-## Updated 2020-03-17.
+## Updated 2020-09-23.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
