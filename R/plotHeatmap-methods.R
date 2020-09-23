@@ -72,7 +72,11 @@ NULL
         }
         ## Plot the log counts from DESeqTransform object.
         dt <- as(deseq, "DESeqTransform")
-        dt <- .matchGeneSet(object = dt, genes = genes)
+        dt <- .matchGeneSet(
+            object = dt,
+            set = set,
+            genes = genes
+        )
         if (isTRUE(contrastSamples)) {
             colnames <- contrastSamples(deseq, i = contrast)
             dt <- dt[, colnames, drop = FALSE]

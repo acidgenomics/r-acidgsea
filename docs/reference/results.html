@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert data set by mapping to human orthologs — convertToHuman • acidgsea</title>
+<title>Results — results • acidgsea</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Convert data set by mapping to human orthologs — convertToHuman" />
-<meta property="og:description" content="Convert data set by mapping to human orthologs" />
+<meta property="og:title" content="Results — results" />
+<meta property="og:description" content="Results" />
 
 
 
@@ -122,19 +122,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert data set by mapping to human orthologs</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/convertToHuman-methods.R'><code>R/convertToHuman-methods.R</code></a></small>
-    <div class="hidden name"><code>convertToHuman.Rd</code></div>
+    <h1>Results</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/results-methods.R'><code>R/results-methods.R</code></a></small>
+    <div class="hidden name"><code>results.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Convert data set by mapping to human orthologs</p>
+    <p>Results</p>
     </div>
 
-    <pre class="usage"><span class='fu'>convertToHuman</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>results</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
 
-<span class='co'># S4 method for DESeqAnalysis</span>
-<span class='fu'>convertToHuman</span>(<span class='kw'>object</span>, map = <span class='kw'>NULL</span>)</pre>
+<span class='co'># S4 method for FGSEAList</span>
+<span class='fu'>results</span>(<span class='kw'>object</span>, <span class='kw'>contrast</span>, <span class='kw'>collection</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,12 +144,16 @@
       <td><p>Object.</p></td>
     </tr>
     <tr>
-      <th>map</th>
-      <td><p><code>DataFrame</code>, or <code>NULL</code>.
-Ortholog mappings data frame returned by <code>matchHumanOrthologs()</code>. Since
-this function depends on the BioMart API and has a tendancy to time out,
-we're allowing passthrough of a cached object here instead. If left <code>NULL</code>,
-then `<code>matchHumanOrthologs()</code> will be called internally.</p></td>
+      <th>contrast</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Contrast name.</p></td>
+    </tr>
+    <tr>
+      <th>collection</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Gene set collection name.
+Typically refers to <code>h</code> (hallmark), <code>c1</code>-<code>c7</code> collections from MSigDb.
+Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -159,30 +163,47 @@ then `<code>matchHumanOrthologs()</code> will be called internally.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Modified object.
-Features (i.e. rownames) will be remapped to human genes.</p>
+    <p>Varies, depending on the method.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Updated 2020-09-21.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>deseq</span>, package = <span class='st'>"DESeqAnalysis"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
 
-<span class='co'>## DESeqAnalysis ====</span>
-<span class='fu'>convertToHuman</span>(<span class='kw'>deseq</span>)
-</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> Homo sapiens (Ensembl 99) detected.</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #BBBB00;'>!</span><span> Returning unmodified.</span></div><div class='output co'>#&gt; DESeqAnalysis 0.2.18; DESeq2 1.26.0
-#&gt; data:
-#&gt;   dim: 500 12 
-#&gt;   metadata(3): version date interestingGroups
-#&gt;   assays(4): counts mu H cooks
-#&gt;   rownames(500): gene001 gene002 ... gene499 gene500
-#&gt;   rowData names(38): broadClass description ... deviance maxCooks
-#&gt;   colnames(12): sample01 sample02 ... sample11 sample12
-#&gt;   colData names(3): condition treatment sizeFactor
-#&gt; transformType: varianceStabilizingTransformation
-#&gt; resultsNames(2): condition_B_vs_A treatment_D_vs_C
-#&gt; alphaThreshold: 0.01
-#&gt; lfcShrinkType: apeglm</div></span></pre>
+<span class='co'>## FGSEAList ====</span>
+<span class='fu'>results</span>(
+    object = <span class='kw'>fgsea</span>,
+    contrast = <span class='st'>"condition_B_vs_A"</span>,
+    collection = <span class='st'>"h"</span>
+)
+</div><div class='output co'>#&gt; DataFrame with 47 rows and 8 columns
+#&gt;                              pathway      pval      padj        es       nes
+#&gt;                          &lt;character&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+#&gt; 1   HALLMARK_TNFA_SIGNALING_VIA_NFKB  0.564394  0.958752  0.231182  0.945643
+#&gt; 2                   HALLMARK_HYPOXIA  0.479757  0.958752 -0.224738 -0.978612
+#&gt; 3   HALLMARK_CHOLESTEROL_HOMEOSTASIS  0.550296  0.958752 -0.280574 -0.937298
+#&gt; 4           HALLMARK_MITOTIC_SPINDLE  0.677932  0.990133  0.211564  0.891731
+#&gt; 5        HALLMARK_TGF_BETA_SIGNALING  0.320939  0.942759 -0.338145 -1.109686
+#&gt; ...                              ...       ...       ...       ...       ...
+#&gt; 43      HALLMARK_ALLOGRAFT_REJECTION 0.1586998  0.764683  0.281434  1.186942
+#&gt; 44          HALLMARK_SPERMATOGENESIS 0.5595463  0.958752  0.241195  0.938017
+#&gt; 45        HALLMARK_KRAS_SIGNALING_UP 0.9027778  0.990133  0.181727  0.772702
+#&gt; 46        HALLMARK_KRAS_SIGNALING_DN 0.9402985  0.990133 -0.175790 -0.713280
+#&gt; 47      HALLMARK_PANCREAS_BETA_CELLS 0.0567951  0.655426  0.524696  1.506491
+#&gt;     nMoreExtreme      size             leadingEdge
+#&gt;        &lt;numeric&gt; &lt;integer&gt;                  &lt;list&gt;
+#&gt; 1            297        64     AREG,KLF6,NFAT5,...
+#&gt; 2            236        82    P4HA2,GPC4,RRAGD,...
+#&gt; 3            278        26 CHKA,TNFRSF12A,IDI1,...
+#&gt; 4            340        77  RASAL2,FSCN1,CYTH2,...
+#&gt; 5            163        24    ACVR1,HIPK2,CDH1,...
+#&gt; ...          ...       ...                     ...
+#&gt; 43            82        74    TAPBP,LY75,STAB1,...
+#&gt; 44           295        50      GSG1,ZPBP,TLE4,...
+#&gt; 45           454        80  ABCB1,ETV1,ST6GAL1,...
+#&gt; 46           440        62 CLDN16,ABCB11,SIDT1,...
+#&gt; 47            27        15      ISL1,AKT3,PAK3,...</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

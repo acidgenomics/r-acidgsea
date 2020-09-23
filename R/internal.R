@@ -55,15 +55,13 @@
 #' Handle situation where DESeq object doesn't contain all symbols defined in
 #' the gene set.
 #'
-#' @note Updated 2020-09-21.
+#' @note Updated 2020-09-22.
 #' @noRd
-.matchGeneSet <- function(
-    object,
-    genes
-) {
+.matchGeneSet <- function(object, set, genes) {
     validObject(object)
     assert(
         is(object, "SummarizedExperiment"),
+        isString(set),
         isCharacter(genes)
     )
     suppressMessages({

@@ -55,6 +55,7 @@ NULL
         )
         ddsSubset <- .matchGeneSet(
             object = as(deseq, "DESeqDataSet"),
+            set = set,
             genes = genes
         )
         rownames <- rownames(ddsSubset)
