@@ -20,6 +20,17 @@ setGeneric(
 
 
 
+#' @rdname geneSetNames
+#' @export
+setGeneric(
+    name = "geneSetNames",
+    def = function(object, ...) {
+        standardGeneric("geneSetNames")
+    }
+)
+
+
+
 #' @rdname plotLFC
 #' @export
 setGeneric(
