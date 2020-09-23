@@ -27,7 +27,11 @@
 #' data(fgsea)
 #'
 #' ## FGSEAList ====
-#' export(fgsea, dir = "example")
+#' export(
+#'     object = fgsea,
+#'     dir = "example",
+#'     geneSetResults = FALSE
+#' )
 #' sort(list.files(file.path("example", "fgsea")))
 #' unlink("example", recursive = TRUE)
 NULL
@@ -42,8 +46,6 @@ NULL
 NULL
 
 
-
-## FIXME Also optionally export CSV files for each gene set.
 
 ## Updated 2020-09-23.
 `export,FGSEAList` <-  # nolint
@@ -86,20 +88,21 @@ NULL
                         )
                         if (isTRUE(geneSetResults)) {
                             cli_alert("Exporting results per gene set.")
-                            sets <- geneSetNames(
-                                object = fgsea,
-                                collection = collection
-                            )
                             lapply(
-                                X = sets,
+                                X = geneSetNames(
+                                    object = object,
+                                    collection = collection
+                                ),
                                 FUN = function(set) {
                                     export(
-                                        object = geneSetResults(
-                                            object = object,
-                                            contrast = contrast,
-                                            collection = collection,
-                                            set = set
-                                        ),
+                                        object = suppressMessages({
+                                            geneSetResults(
+                                                object = object,
+                                                contrast = contrast,
+                                                collection = collection,
+                                                set = set
+                                            )
+                                        }),
                                         file = file.path(
                                             dir,
                                             contrast,
