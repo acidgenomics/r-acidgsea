@@ -133,15 +133,6 @@
 
     <pre class="usage"><span class='fu'>RankedList</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
 
-<span class='co'># S4 method for matrix</span>
-<span class='fu'>RankedList</span>(<span class='kw'>object</span>, gene2symbol = <span class='kw'>NULL</span>, value = <span class='st'>"log2FoldChange"</span>)
-
-<span class='co'># S4 method for DataFrame</span>
-<span class='fu'>RankedList</span>(<span class='kw'>object</span>, <span class='kw'>gene2symbol</span>, <span class='kw'>value</span>)
-
-<span class='co'># S4 method for DESeqResults</span>
-<span class='fu'>RankedList</span>(<span class='kw'>object</span>, <span class='kw'>gene2symbol</span>, value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"stat"</span>, <span class='st'>"log2FoldChange"</span>, <span class='st'>"padj"</span>))
-
 <span class='co'># S4 method for DESeqAnalysis</span>
 <span class='fu'>RankedList</span>(
   <span class='kw'>object</span>,
@@ -164,15 +155,10 @@
       <td><p>Additional arguments.</p></td>
     </tr>
     <tr>
-      <th>gene2symbol</th>
-      <td><p><code>Gene2Symbol</code>.
-Gene-to-symbol mappings. Must contain <code>geneID</code> and <code>geneName</code> columns. See
-<code>Gene2Symbol</code> for more information.</p></td>
-    </tr>
-    <tr>
       <th>value</th>
       <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-Value type to use for GSEA. Currently supported:</p><ol>
+Value type to use for GSEA.
+Currently supported:</p><ol>
 <li><p><code>stat</code>: Wald test statistic. This column is returned by <code><a href='results.html'>results()</a></code>
 but is removed in <code><a href='https://rdrr.io/pkg/DESeq2/man/lfcShrink.html'>DESeq2::lfcShrink()</a></code> return, currently.</p></li>
 <li><p><code>log2FoldChange</code>: Shrunken log2 fold change. Note that this option
@@ -198,7 +184,7 @@ We recommend using one of the following:</p><ul>
     <p><code>RankedList</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-05-20.</p>
+    <p>Updated 2020-09-23.</p>
     <h2 class="hasAnchor" id="gene-symbol-multi-mapping"><a class="anchor" href="#gene-symbol-multi-mapping"></a>Gene symbol multi-mapping</h2>
 
     
@@ -219,13 +205,7 @@ In this event, we're averaging the stat values using <code><a href='https://rdrr
 <span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'>RankedList</span>(<span class='kw'>fgsea</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>x</span>)
 </div><div class='output co'>#&gt; RankedList of length 2
-#&gt; names(2): condition_B_vs_A treatment_D_vs_C</div><div class='input'>
-<span class='co'>## matrix ====</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>matrix_lfc</span>, package = <span class='st'>"acidtest"</span>)
-<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'>RankedList</span>(<span class='kw'>matrix_lfc</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>x</span>)
-</div><div class='output co'>#&gt; RankedList of length 4
-#&gt; names(4): contrast01 contrast02 contrast03 contrast04</div></pre>
+#&gt; names(2): condition_B_vs_A treatment_D_vs_C</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

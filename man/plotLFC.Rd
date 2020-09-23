@@ -9,7 +9,6 @@ plotLFC(object, ...)
 
 \S4method{plotLFC}{FGSEAList}(
   object,
-  DESeqAnalysis,
   contrast = NULL,
   collection,
   set,
@@ -23,9 +22,6 @@ plotLFC(object, ...)
 \item{object}{Object.}
 
 \item{...}{Additional arguments.}
-
-\item{DESeqAnalysis}{\code{DESeqAnalysis}.
-Corresponding DESeq2 data used to perform GSEA.}
 
 \item{contrast}{\code{character} or \code{NULL}.
 Contrast name.
@@ -62,10 +58,9 @@ Plot log2 fold change distributions
 Updated 2020-09-23.
 }
 \examples{
-data(fgsea, deseq)
+data(fgsea)
 plotLFC(
     object = fgsea,
-    DESeqAnalysis = deseq,
     collection = "h",
     set = "HALLMARK_P53_PATHWAY"
 )

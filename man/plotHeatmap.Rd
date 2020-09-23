@@ -9,7 +9,6 @@ plotHeatmap(object, ...)
 
 \S4method{plotHeatmap}{FGSEAList}(
   object,
-  DESeqAnalysis,
   contrast,
   contrastSamples = TRUE,
   collection,
@@ -20,9 +19,6 @@ plotHeatmap(object, ...)
 }
 \arguments{
 \item{object}{Object.}
-
-\item{DESeqAnalysis}{\code{DESeqAnalysis}.
-Corresponding DESeq2 data used to perform GSEA.}
 
 \item{contrast}{\code{character(1)}.
 Contrast name.}
@@ -52,13 +48,12 @@ If \code{FALSE}, plot all genes in the gene set.}
 Construct a simple heatmap.
 }
 \note{
-Updated 2020-09-21.
+Updated 2020-09-23.
 }
 \examples{
-data(fgsea, deseq)
+data(fgsea)
 plotHeatmap(
     object = fgsea,
-    DESeqAnalysis = deseq,
     contrast = "condition_B_vs_A",
     collection = "h",
     set = "HALLMARK_P53_PATHWAY"

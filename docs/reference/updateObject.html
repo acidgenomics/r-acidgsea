@@ -136,7 +136,7 @@
     <pre class="usage"><span class='fu'>updateObject</span>(<span class='kw'>object</span>, <span class='kw'>...</span>, verbose = <span class='fl'>FALSE</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>updateObject</span>(<span class='kw'>object</span>, alphaThreshold = <span class='kw'>NULL</span>, <span class='kw'>...</span>, verbose = <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>updateObject</span>(<span class='kw'>object</span>, deseq = <span class='kw'>NULL</span>, alphaThreshold = <span class='kw'>NULL</span>, <span class='kw'>...</span>, verbose = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,6 +147,12 @@
     <code>updateObjectFromSlots</code>.</p>
 <p>Object for slot information to be extracted from for
     <code>getObjectSlots</code>.</p></td>
+    </tr>
+    <tr>
+      <th>deseq</th>
+      <td><p><code>DESeqAnalysis</code> or <code>NULL</code>.
+Update object by slotting <code>DESeqAnalysis</code>, if necessary.
+This was added to object in 2020-09.</p></td>
     </tr>
     <tr>
       <th>alphaThreshold</th>
@@ -215,7 +221,7 @@ Whether information about the update should be reported.</p></td>
   <code>object</code> cannot be determined by accessing known slots.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-09-16.</p>
+    <p>Updated 2020-09-23.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'>
@@ -242,11 +248,7 @@ Whether information about the update should be reported.</p></td>
 
 <span class='co'>## FGSEAList ====</span>
 <span class='fu'>updateObject</span>(<span class='kw'>fgsea</span>)
-</div><div class='output co'>#&gt; FGSEAList 0.4.0 of length 1
-#&gt; collectionNames: h
-#&gt; contrastNames(2): condition_B_vs_A treatment_D_vs_C
-#&gt; alphaThreshold: 0.05
-#&gt; rankedList: stat</div></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error in .local(object, ..., verbose = verbose): DESeqAnalysis is already defined in object.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
