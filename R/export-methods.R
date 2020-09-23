@@ -90,21 +90,20 @@ NULL
                         )
                         if (isTRUE(geneSetResults)) {
                             cli_alert("Exporting results per gene set.")
+                            sets <- geneSetNames(
+                                object = object,
+                                collection = collection
+                            )
                             lapply(
-                                X = geneSetNames(
-                                    object = object,
-                                    collection = collection
-                                ),
+                                X = sets,
                                 FUN = function(set) {
                                     export(
-                                        object = suppressMessages({
-                                            geneSetResults(
-                                                object = object,
-                                                contrast = contrast,
-                                                collection = collection,
-                                                set = set
-                                            )
-                                        }),
+                                        object = geneSetResults(
+                                            object = object,
+                                            contrast = contrast,
+                                            collection = collection,
+                                            set = set
+                                        ),
                                         file = file.path(
                                             dir,
                                             contrast,
