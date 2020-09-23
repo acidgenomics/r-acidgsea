@@ -59,12 +59,13 @@ To set the discrete color palette globally, use:\preformatted{options(acid.color
 Plot log2 fold change distributions
 }
 \note{
-Updated 2020-09-22.
+Updated 2020-09-23.
 }
 \examples{
-data(fgsea)
+data(fgsea, deseq)
 plotLFC(
     object = fgsea,
+    DESeqAnalysis = deseq,
     collection = "h",
     set = "HALLMARK_P53_PATHWAY"
 )
