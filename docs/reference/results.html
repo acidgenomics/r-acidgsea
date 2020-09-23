@@ -166,7 +166,7 @@ Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></cod
     <p>Varies, depending on the method.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-09-21.</p>
+    <p>Updated 2020-09-23.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
@@ -180,30 +180,43 @@ Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></cod
 </div><div class='output co'>#&gt; DataFrame with 47 rows and 8 columns
 #&gt;                              pathway      pval      padj        es       nes
 #&gt;                          &lt;character&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-#&gt; 1   HALLMARK_TNFA_SIGNALING_VIA_NFKB  0.564394  0.958752  0.231182  0.945643
-#&gt; 2                   HALLMARK_HYPOXIA  0.479757  0.958752 -0.224738 -0.978612
-#&gt; 3   HALLMARK_CHOLESTEROL_HOMEOSTASIS  0.550296  0.958752 -0.280574 -0.937298
-#&gt; 4           HALLMARK_MITOTIC_SPINDLE  0.677932  0.990133  0.211564  0.891731
-#&gt; 5        HALLMARK_TGF_BETA_SIGNALING  0.320939  0.942759 -0.338145 -1.109686
+#&gt; 1   HALLMARK_TNFA_SIGNALING_VIA_NFKB 0.0616570  0.528439 -0.328059 -1.354399
+#&gt; 2                   HALLMARK_HYPOXIA 0.0523013  0.528439  0.321077  1.365390
+#&gt; 3   HALLMARK_CHOLESTEROL_HOMEOSTASIS 0.5296443  0.873278 -0.278795 -0.937287
+#&gt; 4           HALLMARK_MITOTIC_SPINDLE 0.5945946  0.901482  0.219971  0.927028
+#&gt; 5        HALLMARK_TGF_BETA_SIGNALING 0.2656250  0.873278 -0.342573 -1.130470
 #&gt; ...                              ...       ...       ...       ...       ...
-#&gt; 43      HALLMARK_ALLOGRAFT_REJECTION 0.1586998  0.764683  0.281434  1.186942
-#&gt; 44          HALLMARK_SPERMATOGENESIS 0.5595463  0.958752  0.241195  0.938017
-#&gt; 45        HALLMARK_KRAS_SIGNALING_UP 0.9027778  0.990133  0.181727  0.772702
-#&gt; 46        HALLMARK_KRAS_SIGNALING_DN 0.9402985  0.990133 -0.175790 -0.713280
-#&gt; 47      HALLMARK_PANCREAS_BETA_CELLS 0.0567951  0.655426  0.524696  1.506491
-#&gt;     nMoreExtreme      size             leadingEdge
-#&gt;        &lt;numeric&gt; &lt;integer&gt;                  &lt;list&gt;
-#&gt; 1            297        64     AREG,KLF6,NFAT5,...
-#&gt; 2            236        82    P4HA2,GPC4,RRAGD,...
-#&gt; 3            278        26 CHKA,TNFRSF12A,IDI1,...
-#&gt; 4            340        77  RASAL2,FSCN1,CYTH2,...
-#&gt; 5            163        24    ACVR1,HIPK2,CDH1,...
-#&gt; ...          ...       ...                     ...
-#&gt; 43            82        74    TAPBP,LY75,STAB1,...
-#&gt; 44           295        50      GSG1,ZPBP,TLE4,...
-#&gt; 45           454        80  ABCB1,ETV1,ST6GAL1,...
-#&gt; 46           440        62 CLDN16,ABCB11,SIDT1,...
-#&gt; 47            27        15      ISL1,AKT3,PAK3,...</div></pre>
+#&gt; 43      HALLMARK_ALLOGRAFT_REJECTION  0.331429  0.873278 -0.251115 -1.067606
+#&gt; 44          HALLMARK_SPERMATOGENESIS  0.292398  0.873278 -0.277416 -1.091622
+#&gt; 45        HALLMARK_KRAS_SIGNALING_UP  0.880455  0.940486 -0.185470 -0.798227
+#&gt; 46        HALLMARK_KRAS_SIGNALING_DN  0.556017  0.873278  0.231356  0.943311
+#&gt; 47      HALLMARK_PANCREAS_BETA_CELLS  0.970526  0.991625  0.199035  0.571336
+#&gt;     nMoreExtreme      size
+#&gt;        &lt;numeric&gt; &lt;integer&gt;
+#&gt; 1             31        64
+#&gt; 2             24        82
+#&gt; 3            267        26
+#&gt; 4            285        77
+#&gt; 5            135        24
+#&gt; ...          ...       ...
+#&gt; 43           173        74
+#&gt; 44           149        50
+#&gt; 45           463        80
+#&gt; 46           267        62
+#&gt; 47           460        15
+#&gt;                                                                                                                                                                                                                        leadingEdge
+#&gt;                                                                                                                                                                                                                        &lt;character&gt;
+#&gt; 1   SLC16A6, GADD45B, TSC22D1, EHD1, SOD2, B4GALT1, GADD45A, RELB, NFKB1, DDX58, EDN1, IFIH1, CCND1, CD69, ICAM1, SLC2A3, KYNU, NFE2L2, MXD1, IL1A, IFIT2, NFKB2, PANX1, BIRC2, JAG1, RIPK2, IL23A, NFKBIA, NAMPT, CXCL2, SERPINE1
+#&gt; 2                                                                                                PGF, SCARB1, HMOX1, TGFB3, SULT2B1, ILVBL, PDK3, CA12, MXI1, KDM3A, GPI, PLAUR, BNIP3L, NR3C1, PKP1, NEDD4L, NDST1, VEGFA, KDELR3
+#&gt; 3                                                                                                                                                                                                 IDI1, SCD, HMGCR, ERRFI1, TMEM97
+#&gt; 4                                                                                                                                            AURKA, ARHGAP10, CDC27, ARHGAP5, SOS1, WASL, TPX2, DLG1, EPB41L2, KIFAP3, CTTN, KIF3C
+#&gt; 5                                                                                                                                                                                                     HIPK2, SPTBN1, HDAC1, FKBP1A
+#&gt; ...                                                                                                                                                                                                                            ...
+#&gt; 43                                                                                    BRCA1, CD74, IL12RB1, HIF1A, RPS19, CD40, WAS, EIF3A, EIF4G3, GZMB, IL2, CCL7, ICAM1, NOS2, CD40LG, ST8SIA4, LY86, CD2, EIF3D, MTIF2, IL27RA
+#&gt; 44                                                                                                                             ADAM2, DBF4, ZC2HC1C, GAPDHS, IFT88, STAM2, GMCL1, ACRBP, CSNK2A2, MAST2, MLLT10, NEK2, DMC1, TEKT2
+#&gt; 45                                                                                     ARG1, DNMBP, CD37, PRDM1, AMMECR1, LAT2, FGF9, MMP11, TSPAN1, PLEK2, GABRA3, PRELID3B, ST6GAL1, TNFRSF1B, HSD11B1, STRN, AKT2, RETN, ADGRA2
+#&gt; 46                                                                                                           TLX1, NRIP2, SIDT1, TFAP2B, CLDN16, WNT16, PKP1, PAX4, ZNF112, SLC30A3, PDK2, FGFR3, ZBTB16, EFHD1, TCL1A, YBX2, IFNG
+#&gt; 47                                                                                                                                                                                       PAX4, ELP4, SCGN, SPCS1, PAX6, DCX, ABCC8</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

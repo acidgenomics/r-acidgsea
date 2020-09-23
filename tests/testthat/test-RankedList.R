@@ -43,9 +43,3 @@ test_that("FGSEAList", {
         )
     )
 })
-
-test_that("matrix", {
-    object <- RankedList(matrix_lfc)
-    expect_s4_class(object, "RankedList")
-    expect_identical(names(object), colnames(matrix_lfc))
-})

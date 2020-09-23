@@ -134,7 +134,7 @@
     <pre class="usage"><span class='fu'>geneSetResults</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>geneSetResults</span>(<span class='kw'>object</span>, <span class='kw'>DESeqAnalysis</span>, <span class='kw'>contrast</span>, <span class='kw'>collection</span>, <span class='kw'>set</span>)</pre>
+<span class='fu'>geneSetResults</span>(<span class='kw'>object</span>, <span class='kw'>contrast</span>, <span class='kw'>collection</span>, <span class='kw'>set</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,6 +142,24 @@
     <tr>
       <th>object</th>
       <td><p>Object.</p></td>
+    </tr>
+    <tr>
+      <th>contrast</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Contrast name.</p></td>
+    </tr>
+    <tr>
+      <th>collection</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Gene set collection name.
+Typically refers to <code>h</code> (hallmark), <code>c1</code>-<code>c7</code> collections from MSigDb.
+Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
+    </tr>
+    <tr>
+      <th>set</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Gene set name, in a defined <code>collection</code>.
+For example, <code>"HALLMARK_ADIPOGENESIS"</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -154,98 +172,71 @@
     <p><code>DataFrame</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-09-21.</p>
+    <p>Updated 2020-09-23.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>, <span class='kw'>deseq</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
 <span class='fu'>geneSetResults</span>(
     object = <span class='kw'>fgsea</span>,
-    DESeqAnalysis = <span class='kw'>deseq</span>,
     contrast = <span class='st'>"condition_B_vs_A"</span>,
     collection = <span class='st'>"h"</span>,
     set = <span class='st'>"HALLMARK_P53_PATHWAY"</span>
 )
 </div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> condition_B_vs_A</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #BBBB00;'>!</span><span> 137 genes in </span><span style='color: #000000;background-color: #BBBBBB;'>`HALLMARK_P53_PATHWAY`</span><span> missing in </span><span style='color: #000000;background-color: #BBBBBB;'>`DESeqAnalysis`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Arranging by </span><span style='color: #000000;background-color: #BBBBBB;'>`stat`</span><span> column.</span></div><div class='output co'>#&gt; log2 fold change (MLE): condition B vs A 
 #&gt; Wald test p-value: condition B vs A 
-#&gt; DataFrame with 63 rows and 24 columns
+#&gt; DataFrame with 63 rows and 20 columns
 #&gt;                  baseMean log2FoldChange     lfcSE      stat    pvalue
 #&gt;                 &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-#&gt; ENSG00000115107  44.29845       1.051491  0.583826   1.80104 0.0716972
-#&gt; ENSG00000100417   2.06061       3.050207  2.048423   1.48905 0.1364738
-#&gt; ENSG00000055163  10.28758       1.278886  0.911227   1.40348 0.1604750
-#&gt; ENSG00000064115  92.26418       0.620667  0.465728   1.33268 0.1826358
-#&gt; ENSG00000058262   9.83584       1.355050  1.100615   1.23118 0.2182570
+#&gt; ENSG00000100292   7.47808       3.201281  1.142559   2.80185 0.0050810
+#&gt; ENSG00000026103  32.48501       1.251333  0.557048   2.24636 0.0246807
+#&gt; ENSG00000106992  22.38098       1.671400  0.744326   2.24552 0.0247346
+#&gt; ENSG00000115107 274.87956       0.698249  0.349920   1.99545 0.0459936
+#&gt; ENSG00000109670   5.49422       2.556515  1.345611   1.89989 0.0574474
 #&gt; ...                   ...            ...       ...       ...       ...
-#&gt; ENSG00000068745  39.75144       -0.76342  0.551956  -1.38312 0.1666293
-#&gt; ENSG00000042445  13.00528       -1.28374  0.882471  -1.45471 0.1457502
-#&gt; ENSG00000073282   7.74930       -2.03720  1.161577  -1.75382 0.0794606
-#&gt; ENSG00000118640   2.54477       -4.04071  1.935285  -2.08792 0.0368053
-#&gt; ENSG00000085117   3.65067       -4.04726  1.853966  -2.18303 0.0290336
-#&gt;                      padj broadClass
-#&gt;                 &lt;numeric&gt;   &lt;factor&gt;
-#&gt; ENSG00000115107  0.924602     coding
-#&gt; ENSG00000100417  0.986607     coding
-#&gt; ENSG00000055163  0.987921     coding
-#&gt; ENSG00000064115  0.987921     coding
-#&gt; ENSG00000058262  0.987921     coding
-#&gt; ...                   ...        ...
-#&gt; ENSG00000068745  0.987921     coding
-#&gt; ENSG00000042445  0.986607     coding
-#&gt; ENSG00000073282  0.924602     coding
-#&gt; ENSG00000118640  0.867258     coding
-#&gt; ENSG00000085117  0.867258     coding
-#&gt;                                                                                description
-#&gt;                                                                                &lt;character&gt;
-#&gt; ENSG00000115107                STEAP3 metalloreductase [Source:HGNC Symbol;Acc:HGNC:24592]
-#&gt; ENSG00000100417                    phosphomannomutase 1 [Source:HGNC Symbol;Acc:HGNC:9114]
-#&gt; ENSG00000055163 cytoplasmic FMR1 interacting protein 2 [Source:HGNC Symbol;Acc:HGNC:13760]
-#&gt; ENSG00000064115   transmembrane 7 superfamily member 3 [Source:HGNC Symbol;Acc:HGNC:23049]
-#&gt; ENSG00000058262       SEC61 translocon subunit alpha 1 [Source:HGNC Symbol;Acc:HGNC:18276]
-#&gt; ...                                                                                    ...
-#&gt; ENSG00000068745     inositol hexakisphosphate kinase 2 [Source:HGNC Symbol;Acc:HGNC:17313]
-#&gt; ENSG00000042445                       retinol saturase [Source:HGNC Symbol;Acc:HGNC:25991]
-#&gt; ENSG00000073282                      tumor protein p63 [Source:HGNC Symbol;Acc:HGNC:15979]
-#&gt; ENSG00000118640  vesicle associated membrane protein 8 [Source:HGNC Symbol;Acc:HGNC:12647]
-#&gt; ENSG00000085117                           CD82 molecule [Source:HGNC Symbol;Acc:HGNC:6210]
-#&gt;                    geneBiotype          geneID      geneIDVersion    geneName
-#&gt;                    &lt;character&gt;     &lt;character&gt;        &lt;character&gt; &lt;character&gt;
-#&gt; ENSG00000115107 protein_coding ENSG00000115107 ENSG00000115107.20      STEAP3
-#&gt; ENSG00000100417 protein_coding ENSG00000100417 ENSG00000100417.12        PMM1
-#&gt; ENSG00000055163 protein_coding ENSG00000055163 ENSG00000055163.20      CYFIP2
-#&gt; ENSG00000064115 protein_coding ENSG00000064115 ENSG00000064115.11      TM7SF3
-#&gt; ENSG00000058262 protein_coding ENSG00000058262 ENSG00000058262.10     SEC61A1
-#&gt; ...                        ...             ...                ...         ...
-#&gt; ENSG00000068745 protein_coding ENSG00000068745 ENSG00000068745.15       IP6K2
-#&gt; ENSG00000042445 protein_coding ENSG00000042445 ENSG00000042445.14      RETSAT
-#&gt; ENSG00000073282 protein_coding ENSG00000073282 ENSG00000073282.13        TP63
-#&gt; ENSG00000118640 protein_coding ENSG00000118640 ENSG00000118640.11       VAMP8
-#&gt; ENSG00000085117 protein_coding ENSG00000085117 ENSG00000085117.12        CD82
-#&gt;                   sample1   sample2   sample3   sample4   sample5   sample6
-#&gt;                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-#&gt; ENSG00000115107  62.24700  16.64361  14.52539 53.101145  73.12154  36.52361
-#&gt; ENSG00000100417   0.92906   0.00000   0.00000  0.948235   6.64741   0.00000
-#&gt; ENSG00000055163  15.79402   6.85325   3.87344  1.896469  11.39556   2.88344
-#&gt; ENSG00000064115 114.27435 106.71494  43.57617 66.376432  76.92006  52.86312
-#&gt; ENSG00000058262   2.78718   5.87422   3.87344 10.430582  23.74076   3.84459
-#&gt; ...                   ...       ...       ...       ...       ...       ...
-#&gt; ENSG00000068745  20.43931 22.517831  85.21563  36.98115  30.38817 49.979673
-#&gt; ENSG00000042445  13.93590 43.077590   2.90508  11.37882   8.54667  9.611476
-#&gt; ENSG00000073282   2.78718  7.832289  28.08242   5.68941  18.04298  0.961148
-#&gt; ENSG00000118640   4.64530  3.916145   0.00000   2.84470   7.59704  8.650328
-#&gt; ENSG00000085117   2.78718  0.979036   4.84180  23.70587   1.89926  2.883443
-#&gt;                   sample7   sample8   sample9  sample10  sample11  sample12
-#&gt;                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-#&gt; ENSG00000115107  34.31249  64.91961   94.7198  16.13318  36.58224  28.75173
-#&gt; ENSG00000100417   5.71875   2.82259    0.0000   1.89802   2.88807   2.87517
-#&gt; ENSG00000055163  44.79686   4.70432   15.0051   6.64307   4.81345   4.79196
-#&gt; ENSG00000064115 214.45305  69.62393  122.8544  55.04261 103.00789  81.46324
-#&gt; ENSG00000058262   7.62500   0.00000   24.3833   2.84703   8.66422  23.95978
-#&gt; ...                   ...       ...       ...       ...       ...       ...
-#&gt; ENSG00000068745  20.96874  28.22592  26.25896 46.501515  63.53758 46.002771
-#&gt; ENSG00000042445  11.43750  11.29037   1.87564 22.776252  13.47767  5.750346
-#&gt; ENSG00000073282   1.90625   1.88173   5.62692  0.949011  14.44036  4.791955
-#&gt; ENSG00000118640   0.00000   0.00000   0.00000  0.000000   1.92538  0.958391
-#&gt; ENSG00000085117   0.00000   0.00000   0.00000  1.898021   4.81345  0.000000</div></span></pre>
+#&gt; ENSG00000076604  38.54837      -1.109769  0.625006  -1.77561 0.0757966
+#&gt; ENSG00000102804   4.11625      -2.513730  1.369861  -1.83502 0.0665020
+#&gt; ENSG00000068745 316.78739      -0.791305  0.413118  -1.91544 0.0554360
+#&gt; ENSG00000111716   6.82642      -2.222969  1.139498  -1.95083 0.0510771
+#&gt; ENSG00000112378  25.73768      -1.727919  0.708407  -2.43916 0.0147214
+#&gt;                      padj          geneID    geneName   sample1   sample2
+#&gt;                 &lt;numeric&gt;     &lt;character&gt; &lt;character&gt; &lt;numeric&gt; &lt;numeric&gt;
+#&gt; ENSG00000100292  0.702411 ENSG00000100292       HMOX1   1.92251   4.74526
+#&gt; ENSG00000026103  0.817225 ENSG00000026103         FAS  24.03142  18.98104
+#&gt; ENSG00000106992  0.817225 ENSG00000106992         AK1  15.38011   5.69431
+#&gt; ENSG00000115107  0.899908 ENSG00000115107      STEAP3 297.02839 189.81036
+#&gt; ENSG00000109670  0.899908 ENSG00000109670       FBXW7   1.92251   0.00000
+#&gt; ...                   ...             ...         ...       ...       ...
+#&gt; ENSG00000076604  0.917014 ENSG00000076604       TRAF4  83.62935  40.80923
+#&gt; ENSG00000102804  0.906498 ENSG00000102804     TSC22D1   5.76754   6.64336
+#&gt; ENSG00000068745  0.899908 ENSG00000068745       IP6K2 284.53205 372.02831
+#&gt; ENSG00000111716  0.899908 ENSG00000111716        LDHB   4.80628  22.77724
+#&gt; ENSG00000112378  0.760562 ENSG00000112378        PERP   7.69006  78.77130
+#&gt;                   sample3   sample4    sample5    sample6    sample7   sample8
+#&gt;                 &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt;  &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt;
+#&gt; ENSG00000100292   0.00000   9.35682    4.76793   0.000000    17.1181   9.67894
+#&gt; ENSG00000026103  14.11527  31.81319   51.49367  19.013185    57.0604  31.94051
+#&gt; ENSG00000106992  12.23323  15.90660   23.83966   6.654615    11.4121  80.33522
+#&gt; ENSG00000115107 191.02664 227.37074  164.97046 246.220742   349.0191 359.08875
+#&gt; ENSG00000109670   2.82305  13.09955    6.67511   0.950659     0.0000  16.45420
+#&gt; ...                   ...       ...        ...        ...        ...       ...
+#&gt; ENSG00000076604  24.46647  43.97706  36.236286   13.30923  20.922129  15.48631
+#&gt; ENSG00000102804   9.41018   7.48546   8.582278    0.00000   2.853018   0.00000
+#&gt; ENSG00000068745 420.63502 250.76279 507.308009  262.38195 160.719989 289.40037
+#&gt; ENSG00000111716   3.76407  14.03523   0.953586    5.70396   0.951006   1.93579
+#&gt; ENSG00000112378  21.64341  18.71364  11.443038   29.47044   8.559053  14.51841
+#&gt;                    sample9  sample10   sample11  sample12
+#&gt;                  &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt;
+#&gt; ENSG00000100292    34.4738   2.84746   0.971055   3.85509
+#&gt; ENSG00000026103    46.9227  15.18646  31.073745  48.18865
+#&gt; ENSG00000106992    14.3641  25.62715  34.957963  22.16678
+#&gt; ENSG00000115107   391.6607 440.40733 201.008286 240.94323
+#&gt; ENSG00000109670    11.4913   2.84746   3.884218   5.78264
+#&gt; ...                    ...       ...        ...       ...
+#&gt; ENSG00000076604  32.558587  90.16960   39.81324  21.20300
+#&gt; ENSG00000102804   0.957606   1.89831    1.94211   3.85509
+#&gt; ENSG00000068745 172.368992 527.72948  178.67403 374.90767
+#&gt; ENSG00000111716   3.830422   3.79661   11.65265   7.71018
+#&gt; ENSG00000112378   9.576055  45.55938   34.95796  27.94941</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

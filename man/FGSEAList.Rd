@@ -3,6 +3,7 @@
 \name{FGSEAList}
 \alias{FGSEAList}
 \alias{FGSEAList,RankedList-method}
+\alias{FGSEAList,DESeqAnalysis-method}
 \title{Parameterized fast gene set enrichment analysis (GSEA)}
 \usage{
 FGSEAList(object, ...)
@@ -16,11 +17,13 @@ FGSEAList(object, ...)
   alphaThreshold = 0.05,
   BPPARAM = BiocParallel::bpparam()
 )
+
+\S4method{FGSEAList}{DESeqAnalysis}(object, ...)
 }
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Additional arguments.}
+\item{...}{Arguments pass through to \code{RankedList} method.}
 
 \item{geneSetFiles}{\code{character}.
 Gene set file paths (i.e. GMT files).
@@ -60,7 +63,7 @@ We recommend using one of the following:
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2020-09-17.
+Updated 2020-09-23.
 }
 \examples{
 data(deseq)

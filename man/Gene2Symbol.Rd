@@ -3,11 +3,14 @@
 \name{Gene2Symbol}
 \alias{Gene2Symbol}
 \alias{Gene2Symbol,RankedList-method}
+\alias{Gene2Symbol,FGSEAList-method}
 \title{Gene-to-symbol mappings}
 \usage{
 Gene2Symbol(object, ...)
 
 \S4method{Gene2Symbol}{RankedList}(object)
+
+\S4method{Gene2Symbol}{FGSEAList}(object)
 }
 \arguments{
 \item{object}{Object.}
