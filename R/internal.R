@@ -50,39 +50,35 @@
 
 
 
-#' Match symbols in gene set to SummarizedExperiment (i.e. DESeqDataSet)
+#' Match symbols in gene set to gene IDs (i.e. DESeqDataSet rownames)
 #'
 #' Handle situation where DESeq object doesn't contain all symbols defined in
 #' the gene set.
 #'
-#' @note Updated 2020-09-22.
+#' @note Updated 2020-09-23.
 #' @noRd
-.matchGeneSet <- function(object, set, genes) {
-    validObject(object)
+.matchGenesToIDs <- function(object, set, genes) {
     assert(
-        is(object, "SummarizedExperiment"),
+        is(object, "FGSEAList"),
         isString(set),
         isCharacter(genes)
     )
     suppressMessages({
-        g2s <- Gene2Symbol(object, format = "unmodified")
+        g2s <- Gene2Symbol(object)
     })
-    keep <- genes %in% g2s[["geneName"]]
-    if (!all(keep)) {
-        n <- sum(!keep)
+    idx <- match(x = genes, table = g2s[["geneName"]])
+
+    if (any(is.na(idx))) {
+        n <- sum(is.na(idx))
         cli_alert_warning(sprintf(
-            "%d %s in {.var %s} missing in {.var DESeqAnalysis}.",
-            n,
-            ngettext(
-                n = n,
-                msg1 = "gene",
-                msg2 = "genes"
-            ),
-            set
+            "%d %s in {.var %s } gene set missing from RNA-seq results.",
+            n, ngettext(n = n, msg1 = "gene", msg2 = "genes"), set
         ))
-        genes <- genes[keep]
     }
-    rownames <- mapGenesToRownames(object = object, genes = genes)
-    object <- object[rownames, , drop = FALSE]
-    object
+    idx <- na.omit(idx)
+    g2s <- g2s[idx, ]
+    assert(hasRows(g2s))
+    out <- g2s[["geneID"]]
+    assert(isCharacter(out))
+    out
 }

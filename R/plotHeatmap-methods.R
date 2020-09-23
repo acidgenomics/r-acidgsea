@@ -55,20 +55,14 @@ NULL
                 set = set
             )
         } else {
-            genes <- geneSet(
-                object = object,
-                collection = collection,
-                set = set
-            )
+            genes <- NULL
         }
         ## Plot the log counts from DESeqTransform object.
+        genes <- geneSet(object, collection = collection, set = set)
+        rownames <- .matchGenesToIDs(object, set = set, genes = genes)
         deseq <- `DESeqAnalysis,FGSEAList`(object)
         dt <- as(deseq, "DESeqTransform")
-        dt <- .matchGeneSet(
-            object = dt,
-            set = set,
-            genes = genes
-        )
+        dt <- dt[rownames, ]
         if (isTRUE(contrastSamples)) {
             colnames <- contrastSamples(deseq, i = contrast)
             dt <- dt[, colnames, drop = FALSE]

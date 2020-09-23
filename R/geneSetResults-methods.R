@@ -41,15 +41,10 @@ NULL
             isSubset(collection, collectionNames(object)),
             isString(set)
         )
-        deseq <- `DESeqAnalysis,FGSEAList`(object)
-        res <- results(deseq, i = contrast, extra = TRUE)
         genes <- geneSet(object, collection = collection, set = set)
-        ddsSubset <- .matchGeneSet(
-            object = as(deseq, "DESeqDataSet"),
-            set = set,
-            genes = genes
-        )
-        rownames <- rownames(ddsSubset)
+        rownames <- .matchGenesToIDs(object, set = set, genes = genes)
+        deseq <- `DESeqAnalysis,FGSEAList`(object)
+        res <- results(object = deseq, i = contrast, extra = TRUE)
         out <- res[rownames, ]
         rl <- RankedList(object)
         valueCol <- metadata(rl)[["value"]]
