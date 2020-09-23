@@ -1,12 +1,13 @@
 #' @name geneSetResults
 #' @inherit acidgenerics::geneSetResults
-#' @note Updated 2020-09-21.
+#' @note Updated 2020-09-23.
+#' @inheritParams params
+#' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
 #' @examples
-#' data(fgsea, deseq)
+#' data(fgsea)
 #' geneSetResults(
 #'     object = fgsea,
-#'     DESeqAnalysis = deseq,
 #'     contrast = "condition_B_vs_A",
 #'     collection = "h",
 #'     set = "HALLMARK_P53_PATHWAY"
@@ -24,18 +25,15 @@ NULL
 
 
 
-## Updated 2020-09-21.
+## Updated 2020-09-23.
 `geneSetResults,FGSEAList` <-  # nolint
     function(
         object,
-        DESeqAnalysis,
         contrast,
         collection,
         set
     ) {
-        deseq <- DESeqAnalysis
         validObject(object)
-        validObject(deseq)
         assert(
             isString(contrast),
             isSubset(contrast, contrastNames(object)),
@@ -43,16 +41,9 @@ NULL
             isSubset(collection, collectionNames(object)),
             isString(set)
         )
-        res <- results(
-            object = deseq,
-            i = contrast,
-            extra = TRUE
-        )
-        genes <- geneSet(
-            object = object,
-            collection = collection,
-            set = set
-        )
+        deseq <- `DESeqAnalysis,FGSEAList`(object)
+        res <- results(deseq, i = contrast, extra = TRUE)
+        genes <- geneSet(object, collection = collection, set = set)
         ddsSubset <- .matchGeneSet(
             object = as(deseq, "DESeqDataSet"),
             set = set,
