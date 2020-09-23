@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/acidgsea.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/acidgsea.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/acidgsea/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -136,16 +142,15 @@ Corresponding DESeq2 data used to perform GSEA.</p></td>
     </tr>
     <tr>
       <th>collection</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> or <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
-Gene set collection name or position, corresponding to values defined in
-<code><a href='https://rdrr.io/r/base/names.html'>names()</a></code>.
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Gene set collection name.
 Typically refers to <code>h</code> (hallmark), <code>c1</code>-<code>c7</code> collections from MSigDb.
-Can obtain using <code>collectionNames()</code> on <code>FGSEAList</code> object.</p></td>
+Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
     </tr>
     <tr>
       <th>contrast</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> or <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
-DESeqResults contrast.</p></td>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Contrast name.</p></td>
     </tr>
     <tr>
       <th>contrastSamples</th>
@@ -153,14 +158,10 @@ DESeqResults contrast.</p></td>
 Only visualize the samples defined in the contrast.</p></td>
     </tr>
     <tr>
-      <th>gmtFile</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
-MSigDB GMT file path.</p></td>
-    </tr>
-    <tr>
-      <th>gmtFiles</th>
+      <th>geneSetFiles</th>
       <td><p><code>character</code>.
-MSigDB GMT file paths.</p></td>
+Gene set file paths (i.e. GMT files).
+MSigDB files are recommended by default.</p></td>
     </tr>
     <tr>
       <th>headerLevel</th>
@@ -170,10 +171,8 @@ Markdown header level.</p></td>
     <tr>
       <th>leadingEdge</th>
       <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
-Visualize only the leading edge genes returned by GSEA. If <code>FALSE</code>, plot
-all genes in the gene set, which requires the external gene set file that
-was originally used to run the analysis. This file is referenced internally
-inside the object at <code>metadata(object)[["gmtFiles"]]</code>.</p></td>
+Visualize only the leading edge genes returned by GSEA.
+If <code>FALSE</code>, plot all genes in the gene set.</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -255,7 +254,7 @@ ggplot2 theme.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

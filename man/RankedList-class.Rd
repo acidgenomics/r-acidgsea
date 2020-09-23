@@ -11,5 +11,5 @@
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2020-05-12.
+Updated 2020-09-23.
 }

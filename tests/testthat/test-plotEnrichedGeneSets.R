@@ -7,16 +7,7 @@ test_that("FGSEAList", {
         plotEnrichedGeneSets(fgsea, collection = "h", n = 1L)
     })
     expect_identical(
-        object = output,
-        expected = c(
-            "",
-            "",
-            "### condition_B_vs_A {.tabset}",
-            "",
-            "",
-            "",
-            "### treatment_D_vs_C {.tabset}",
-            ""
-        )
+        object = output[[3L]],
+        expected = "### condition_B_vs_A {.tabset}"
     )
 })

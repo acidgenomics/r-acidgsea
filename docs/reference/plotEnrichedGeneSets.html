@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/acidgsea.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/acidgsea.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/acidgsea/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -125,15 +131,15 @@
     <p>Plot enriched gene sets</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plotEnrichedGeneSets</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>plotEnrichedGeneSets</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
 <span class='fu'>plotEnrichedGeneSets</span>(
-  <span class='no'>object</span>,
-  <span class='no'>collection</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"both"</span>, <span class='st'>"up"</span>, <span class='st'>"down"</span>),
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10L</span>,
-  <span class='kw'>headerLevel</span> <span class='kw'>=</span> <span class='fl'>3L</span>
+  <span class='kw'>object</span>,
+  <span class='kw'>collection</span>,
+  direction = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"both"</span>, <span class='st'>"up"</span>, <span class='st'>"down"</span>),
+  n = <span class='fl'>10L</span>,
+  headerLevel = <span class='fl'>3L</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -145,11 +151,10 @@
     </tr>
     <tr>
       <th>collection</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code> or <code><a href='https://rdrr.io/r/base/integer.html'>integer(1)</a></code>.
-Gene set collection name or position, corresponding to values defined in
-<code><a href='https://rdrr.io/r/base/names.html'>names()</a></code>.
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Gene set collection name.
 Typically refers to <code>h</code> (hallmark), <code>c1</code>-<code>c7</code> collections from MSigDb.
-Can obtain using <code>collectionNames()</code> on <code>FGSEAList</code> object.</p></td>
+Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
     </tr>
     <tr>
       <th>direction</th>
@@ -177,36 +182,28 @@ Markdown header level.</p></td>
     <p><code>ggplot</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-08-05.</p>
+    <p>Updated 2020-09-21.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>plotGeneSet()</code>.</p></div>
+    <div class='dont-index'><p><code><a href='plotGeneSet.html'>plotGeneSet()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## This requires MSigDB to be installed at `${HOME}`.</span>
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/Logic.html'>isTRUE</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.exists</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"~"</span>, <span class='st'>"msigdb"</span>)))) {
-    <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
-    <span class='fu'>alphaThreshold</span>(<span class='no'>fgsea</span>) <span class='kw'>&lt;-</span> <span class='fl'>0.9</span>
-    <span class='fu'>plotEnrichedGeneSets</span>(<span class='no'>fgsea</span>, <span class='kw'>collection</span> <span class='kw'>=</span> <span class='st'>"h"</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1L</span>)
-}</div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
+<span class='fu'><a href='alphaThreshold.html'>alphaThreshold</a></span>(<span class='kw'>fgsea</span>) <span class='op'>&lt;-</span> <span class='fl'>0.9</span>
+<span class='fu'>plotEnrichedGeneSets</span>(<span class='kw'>fgsea</span>, collection = <span class='st'>"h"</span>, n = <span class='fl'>1L</span>)
+</div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ### condition_B_vs_A {.tabset}
-#&gt; </div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> 8 upregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 6 downregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='output co'>#&gt; 
+#&gt; </div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> 1 upregulated gene set detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 0 downregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='output co'>#&gt; 
 #&gt; 
-#&gt; #### HALLMARK_PANCREAS_BETA_CELLS
-#&gt; </div><div class='img'><img src='plotEnrichedGeneSets-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; #### HALLMARK_IL2_STAT5_SIGNALING
+#&gt; #### HALLMARK_GLYCOLYSIS
 #&gt; </div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ### treatment_D_vs_C {.tabset}
-#&gt; </div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 21 upregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 11 downregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='img'><img src='plotEnrichedGeneSets-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; </div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 1 upregulated gene set detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 0 downregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='img'><img src='plotEnrichedGeneSets-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
-#&gt; #### HALLMARK_PI3K_AKT_MTOR_SIGNALING
-#&gt; </div><div class='img'><img src='plotEnrichedGeneSets-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; #### HALLMARK_PROTEIN_SECRETION
-#&gt; </div><div class='img'><img src='plotEnrichedGeneSets-4.png' alt='' width='700' height='433' /></div></span></pre>
+#&gt; #### HALLMARK_GLYCOLYSIS
+#&gt; </div><div class='img'><img src='plotEnrichedGeneSets-2.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -222,7 +219,7 @@ Markdown header level.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

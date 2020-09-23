@@ -5,26 +5,22 @@
 #'
 #' @param DESeqAnalysis `DESeqAnalysis`.
 #'   Corresponding DESeq2 data used to perform GSEA.
-#' @param collection `character(1)` or `integer(1)`.
-#'   Gene set collection name or position, corresponding to values defined in
-#'   [`names()`][base::names].
+#' @param collection `character(1)`.
+#'   Gene set collection name.
 #'   Typically refers to `h` (hallmark), `c1`-`c7` collections from MSigDb.
 #'   Can obtain using `collectionNames()` on `FGSEAList` object.
-#' @param contrast `character(1)` or `integer(1)`.
-#'   DESeqResults contrast.
+#' @param contrast `character(1)`.
+#'   Contrast name.
 #' @param contrastSamples `logical(1)`.
 #'   Only visualize the samples defined in the contrast.
-#' @param gmtFile `character(1)`.
-#'   MSigDB GMT file path.
-#' @param gmtFiles `character`.
-#'   MSigDB GMT file paths.
+#' @param geneSetFiles `character`.
+#'   Gene set file paths (i.e. GMT files).
+#'   MSigDB files are recommended by default.
 #' @param headerLevel `integer(1)`.
 #'   Markdown header level.
 #' @param leadingEdge `logical(1)`.
-#'   Visualize only the leading edge genes returned by GSEA. If `FALSE`, plot
-#'   all genes in the gene set, which requires the external gene set file that
-#'   was originally used to run the analysis. This file is referenced internally
-#'   inside the object at `metadata(object)[["gmtFiles"]]`.
+#'   Visualize only the leading edge genes returned by GSEA.
+#'   If `FALSE`, plot all genes in the gene set.
 #' @param n `integer(1)`.
 #'   Number of significant processes to include.
 #'   Bidirectional; will include `n` up- and down-regulated processes.

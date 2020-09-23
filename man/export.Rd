@@ -7,7 +7,7 @@
 \usage{
 export(object, ...)
 
-\S4method{export}{FGSEAList}(object, name = NULL, dir = ".")
+\S4method{export}{FGSEAList}(object, name = NULL, dir = ".", geneSetResults = FALSE)
 }
 \arguments{
 \item{object}{Object.}
@@ -18,6 +18,9 @@ Name to use on disk. If \code{NULL}, will use the name of the object instead.}
 \item{dir}{\code{character(1)}.
 Directory path.}
 
+\item{geneSetResults}{\code{logical(1)}.
+Export expression CSV files per gene set.}
+
 \item{...}{Additional arguments.}
 }
 \value{
@@ -27,7 +30,7 @@ Invisibily return file paths, either as \code{list} or \code{character}.
 Export data out of R and write to disk.
 }
 \note{
-Updated 2020-01-27.
+Updated 2020-09-23.
 }
 \section{On-disk structure}{
 
@@ -53,7 +56,11 @@ organize by:
 data(fgsea)
 
 ## FGSEAList ====
-export(fgsea, dir = "example")
+export(
+    object = fgsea,
+    dir = "example",
+    geneSetResults = FALSE
+)
 sort(list.files(file.path("example", "fgsea")))
 unlink("example", recursive = TRUE)
 }

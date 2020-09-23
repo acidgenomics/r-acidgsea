@@ -1,89 +1,3 @@
-#' Enriched gene sets
-#'
-#' Assuming fgsea input by default currently.
-#'
-#' @note Updated 2020-03-18.
-#' @noRd
-#'
-#' @seealso `DESeqAnalysis::deg`.
-#'
-#' @examples
-#' data(fgsea)
-#' .enrichedGeneSets(
-#'     object = fgsea[[1L]][[1L]],
-#'     alphaThreshold = 0.9,
-#'     nesThreshold = 1,
-#'     direction = "down",
-#'     idCol = "pathway",
-#'     alphaCol = "padj",
-#'     nesCol = "NES"
-#' )
-.enrichedGeneSets <- function(
-    object,
-    alphaThreshold,
-    nesThreshold,
-    direction,
-    idCol,          # pathway
-    alphaCol,       # padj
-    nesCol          # NES
-) {
-    data <- as(object, "DataFrame")
-    assert(
-        isString(idCol),
-        isString(alphaCol),
-        isString(nesCol),
-        isSubset(c(idCol, alphaCol, nesCol), colnames(data))
-    )
-    direction <- match.arg(direction, choices = c("both", "up", "down"))
-    data <- data[, c(idCol, nesCol, alphaCol)]
-    ## Apply alpha cutoff.
-    keep <- which(data[[alphaCol]] < alphaThreshold)
-    data <- data[keep, , drop = FALSE]
-    ## Apply NES threshold cutoff.
-    if (nesThreshold > 0L) {
-        keep <- which(abs(data[[nesCol]]) > nesThreshold)
-        data <- data[keep, , drop = FALSE]
-    }
-    ## Apply directional filtering.
-    if (identical(direction, "up")) {
-        keep <- which(data[[nesCol]] > 0L)
-        data <- data[keep, , drop = FALSE]
-    } else if (identical(direction, "down")) {
-        keep <- which(data[[nesCol]] < 0L)
-        data <- data[keep, , drop = FALSE]
-    }
-    ## Arrange table by adjusted P value and NES score.
-    if (identical(direction, "down")) {
-        data <- data[order(data[["padj"]], data[["NES"]]), , drop = FALSE]
-    } else {
-        ## Note that we're arranging from high (positive) to low (negative)
-        ## NES value when direction is up or both.
-        data <- data[order(data[["padj"]], -data[["NES"]]), , drop = FALSE]
-    }
-    egs <- data[[idCol]]
-    status <- sprintf(
-        fmt = "%d %s %s detected (alpha < %g; nes > %g).",
-        length(egs),
-        switch(
-            EXPR = direction,
-            up = "upregulated",
-            down = "downregulated",
-            both = "enriched"
-        ),
-        ngettext(
-            n = length(egs),
-            msg1 = "gene set",
-            msg2 = "gene sets"
-        ),
-        alphaThreshold,
-        nesThreshold
-    )
-    cli_alert_info(status)
-    egs
-}
-
-
-
 #' Get the top up- and down-regulated pathways from FGSEA results
 #'
 #' @note Updated 2020-03-18.
@@ -136,30 +50,35 @@
 
 
 
-#' Get the leading edge genes for a GSEA contrast
-#' @note Updated 2019-11-18.
+#' Match symbols in gene set to gene IDs (i.e. DESeqDataSet rownames)
+#'
+#' Handle situation where DESeq object doesn't contain all symbols defined in
+#' the gene set.
+#'
+#' @note Updated 2020-09-23.
 #' @noRd
-.leadingEdge <- function(
-    object,
-    contrast,
-    collection,
-    set
-) {
+.matchGenesToIDs <- function(object, set, genes) {
     assert(
         is(object, "FGSEAList"),
-        isScalar(contrast),
-        isScalar(collection),
-        isString(set)
+        isString(set),
+        isCharacter(genes)
     )
-    data <- object[[collection]][[contrast]]
-    assert(is(data, "data.table"))
-    ## Coerce to DataFrame, to use standard subsetting syntax.
-    data <- as(data, "DataFrame")
-    keep <- match(set, table = data[["pathway"]])
-    if (!isInt(keep)) {
-        stop(sprintf("Failed to match '%s' set.", set))
+    suppressMessages({
+        g2s <- Gene2Symbol(object)
+    })
+    idx <- match(x = genes, table = g2s[["geneName"]])
+
+    if (any(is.na(idx))) {
+        n <- sum(is.na(idx))
+        cli_alert_warning(sprintf(
+            "%d %s in {.var %s } gene set missing from RNA-seq results.",
+            n, ngettext(n = n, msg1 = "gene", msg2 = "genes"), set
+        ))
     }
-    genes <- unlist(unname(data[keep, "leadingEdge"]))
-    assert(isCharacter(genes))
-    genes
+    idx <- na.omit(idx)
+    g2s <- g2s[idx, ]
+    assert(hasRows(g2s))
+    out <- g2s[["geneID"]]
+    assert(isCharacter(out))
+    out
 }

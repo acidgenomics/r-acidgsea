@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/acidgsea.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/acidgsea.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/acidgsea/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -125,7 +131,7 @@
     <p>FGSEAList example data</p>
     </div>
 
-    <pre class="usage"><span class='no'>fgsea</span></pre>
+    <pre class="usage"><span class='kw'>fgsea</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -133,11 +139,13 @@
     <p>An object of class <code>function</code> of length 1.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>fgsea</span>)</div><div class='output co'>#&gt; FGSEAList 0.2.0 of length 1
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>fgsea</span>)
+</div><div class='output co'>#&gt; FGSEAList 0.4.0 of length 1
 #&gt; collectionNames: h
 #&gt; contrastNames(2): condition_B_vs_A treatment_D_vs_C
-#&gt; alphaThreshold: 0.05</div></pre>
+#&gt; alphaThreshold: 0.99
+#&gt; rankedList: stat</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -153,7 +161,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

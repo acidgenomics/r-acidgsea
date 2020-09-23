@@ -1,6 +1,6 @@
 #' @name plotEnrichedGeneSets
 #' @inherit acidgenerics::plotEnrichedGeneSets
-#' @note Updated 2020-08-05.
+#' @note Updated 2020-09-21.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
@@ -11,12 +11,9 @@
 #' @seealso [plotGeneSet()].
 #'
 #' @examples
-#' ## This requires MSigDB to be installed at `${HOME}`.
-#' if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
-#'     data(fgsea)
-#'     alphaThreshold(fgsea) <- 0.9
-#'     plotEnrichedGeneSets(fgsea, collection = "h", n = 1L)
-#' }
+#' data(fgsea)
+#' alphaThreshold(fgsea) <- 0.9
+#' plotEnrichedGeneSets(fgsea, collection = "h", n = 1L)
 NULL
 
 
@@ -30,7 +27,7 @@ NULL
 
 
 
-## Modified 2020-08-05.
+## Modified 2020-09-21.
 `plotEnrichedGeneSets,FGSEAList` <-  # nolint
     function(
         object,
@@ -41,7 +38,8 @@ NULL
     ) {
         validObject(object)
         assert(
-            isScalar(collection),
+            isString(collection),
+            isSubset(collection, collectionNames(object)),
             isInt(n),
             isHeaderLevel(headerLevel)
         )
@@ -109,7 +107,7 @@ NULL
                         )
                         tryCatch(
                             expr = print(p),
-                            error = function(e) invisible()
+                            error = function(e) invisible(NULL)
                         )
                     }
                 )

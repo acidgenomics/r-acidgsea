@@ -20,44 +20,33 @@ setGeneric(
 
 
 
-#' @rdname convertToHuman
+#' @rdname geneSetNames
 #' @export
 setGeneric(
-    name = "convertToHuman",
+    name = "geneSetNames",
     def = function(object, ...) {
-        standardGeneric("convertToHuman")
+        standardGeneric("geneSetNames")
     }
 )
 
 
 
-#' @rdname nesThreshold
+#' @rdname plotLFC
 #' @export
 setGeneric(
-    name = "nesThreshold",
+    name = "plotLFC",
     def = function(object, ...) {
-        standardGeneric("nesThreshold")
+        standardGeneric("plotLFC")
     }
 )
 
 
 
-#' @rdname nesThreshold
+#' @rdname plotNES
 #' @export
 setGeneric(
-    name = "nesThreshold<-",
-    def = function(object, ..., value) {
-        standardGeneric("nesThreshold<-")
-    }
-)
-
-
-
-#' @rdname plotGeneSet
-#' @export
-setGeneric(
-    name = "plotGeneSet",
+    name = "plotNES",
     def = function(object, ...) {
-        standardGeneric("plotGeneSet")
+        standardGeneric("plotNES")
     }
 )
