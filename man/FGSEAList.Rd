@@ -63,9 +63,7 @@ Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 Updated 2020-09-17.
 }
 \examples{
-data(fgsea)
-metadata <- S4Vectors::metadata
-rankedList <- metadata(fgsea)[["rankedList"]]
+data(deseq)
 geneSetFiles <- system.file(
     "extdata",
     "msigdb",
@@ -77,7 +75,7 @@ geneSetFiles <- system.file(
 )
 names(geneSetFiles) <- "h"
 fgsea <- FGSEAList(
-    object = rankedList,
+    object = deseq,
     geneSetFiles = geneSetFiles
 )
 print(fgsea)

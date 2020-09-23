@@ -7,10 +7,22 @@
 \usage{
 geneSetResults(object, ...)
 
-\S4method{geneSetResults}{FGSEAList}(object, DESeqAnalysis, contrast, collection, set)
+\S4method{geneSetResults}{FGSEAList}(object, contrast, collection, set)
 }
 \arguments{
 \item{object}{Object.}
+
+\item{contrast}{\code{character(1)}.
+Contrast name.}
+
+\item{collection}{\code{character(1)}.
+Gene set collection name.
+Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
+Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+
+\item{set}{\code{character(1)}.
+Gene set name, in a defined \code{collection}.
+For example, \code{"HALLMARK_ADIPOGENESIS"}.}
 
 \item{...}{Additional arguments.}
 }
@@ -21,13 +33,12 @@ geneSetResults(object, ...)
 Gene set results
 }
 \note{
-Updated 2020-09-21.
+Updated 2020-09-23.
 }
 \examples{
-data(fgsea, deseq)
+data(fgsea)
 geneSetResults(
     object = fgsea,
-    DESeqAnalysis = deseq,
     contrast = "condition_B_vs_A",
     collection = "h",
     set = "HALLMARK_P53_PATHWAY"
