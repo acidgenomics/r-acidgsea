@@ -53,7 +53,7 @@ NULL
         object,
         name = NULL,
         dir = ".",
-        geneSetResults = TRUE
+        geneSetResults = FALSE
     ) {
         validObject(object)
         call <- standardizeCall()
