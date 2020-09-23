@@ -46,7 +46,8 @@ NULL
         data <- as(data, "DataFrame")
         keep <- match(set, table = data[["pathway"]])
         if (!isInt(keep)) {
-            stop(sprintf("Failed to match '%s' set.", set))
+            cli_alert_warning(sprintf("Failed to match '%s' set.", set))
+            return(NULL)
         }
         genes <- unlist(unname(data[keep, "leadingEdge"]))
         assert(isCharacter(genes))

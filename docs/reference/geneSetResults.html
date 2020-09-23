@@ -182,61 +182,29 @@ For example, <code>"HALLMARK_ADIPOGENESIS"</code>.</p></td>
     collection = <span class='st'>"h"</span>,
     set = <span class='st'>"HALLMARK_P53_PATHWAY"</span>
 )
-</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> condition_B_vs_A</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #BBBB00;'>!</span><span> 137 genes in </span><span style='color: #000000;background-color: #BBBBBB;'>`HALLMARK_P53_PATHWAY`</span><span> missing in </span><span style='color: #000000;background-color: #BBBBBB;'>`DESeqAnalysis`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Arranging by </span><span style='color: #000000;background-color: #BBBBBB;'>`stat`</span><span> column.</span></div><div class='output co'>#&gt; log2 fold change (MLE): condition B vs A 
+</div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> condition_B_vs_A</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #BBBB00;'>!</span><span> 197 genes in </span><span style='color: #000000;background-color: #BBBBBB;'>`HALLMARK_P53_PATHWAY`</span><span> missing in </span><span style='color: #000000;background-color: #BBBBBB;'>`DESeqAnalysis`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Arranging by </span><span style='color: #000000;background-color: #BBBBBB;'>`stat`</span><span> column.</span></div><div class='output co'>#&gt; log2 fold change (MLE): condition B vs A 
 #&gt; Wald test p-value: condition B vs A 
-#&gt; DataFrame with 63 rows and 20 columns
+#&gt; DataFrame with 3 rows and 20 columns
 #&gt;                  baseMean log2FoldChange     lfcSE      stat    pvalue
 #&gt;                 &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-#&gt; ENSG00000100292   7.47808       3.201281  1.142559   2.80185 0.0050810
-#&gt; ENSG00000026103  32.48501       1.251333  0.557048   2.24636 0.0246807
-#&gt; ENSG00000106992  22.38098       1.671400  0.744326   2.24552 0.0247346
-#&gt; ENSG00000115107 274.87956       0.698249  0.349920   1.99545 0.0459936
-#&gt; ENSG00000109670   5.49422       2.556515  1.345611   1.89989 0.0574474
-#&gt; ...                   ...            ...       ...       ...       ...
-#&gt; ENSG00000076604  38.54837      -1.109769  0.625006  -1.77561 0.0757966
-#&gt; ENSG00000102804   4.11625      -2.513730  1.369861  -1.83502 0.0665020
-#&gt; ENSG00000068745 316.78739      -0.791305  0.413118  -1.91544 0.0554360
-#&gt; ENSG00000111716   6.82642      -2.222969  1.139498  -1.95083 0.0510771
-#&gt; ENSG00000112378  25.73768      -1.727919  0.708407  -2.43916 0.0147214
+#&gt; ENSG00000023892 256.33635       0.143904  0.337095  0.426895  0.669456
+#&gt; ENSG00000030110  22.80302       0.101729  0.660358  0.154051  0.877570
+#&gt; ENSG00000026103   8.85595      -0.579867  0.991536 -0.584817  0.558671
 #&gt;                      padj          geneID    geneName   sample1   sample2
 #&gt;                 &lt;numeric&gt;     &lt;character&gt; &lt;character&gt; &lt;numeric&gt; &lt;numeric&gt;
-#&gt; ENSG00000100292  0.702411 ENSG00000100292       HMOX1   1.92251   4.74526
-#&gt; ENSG00000026103  0.817225 ENSG00000026103         FAS  24.03142  18.98104
-#&gt; ENSG00000106992  0.817225 ENSG00000106992         AK1  15.38011   5.69431
-#&gt; ENSG00000115107  0.899908 ENSG00000115107      STEAP3 297.02839 189.81036
-#&gt; ENSG00000109670  0.899908 ENSG00000109670       FBXW7   1.92251   0.00000
-#&gt; ...                   ...             ...         ...       ...       ...
-#&gt; ENSG00000076604  0.917014 ENSG00000076604       TRAF4  83.62935  40.80923
-#&gt; ENSG00000102804  0.906498 ENSG00000102804     TSC22D1   5.76754   6.64336
-#&gt; ENSG00000068745  0.899908 ENSG00000068745       IP6K2 284.53205 372.02831
-#&gt; ENSG00000111716  0.899908 ENSG00000111716        LDHB   4.80628  22.77724
-#&gt; ENSG00000112378  0.760562 ENSG00000112378        PERP   7.69006  78.77130
-#&gt;                   sample3   sample4    sample5    sample6    sample7   sample8
-#&gt;                 &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt;  &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt;
-#&gt; ENSG00000100292   0.00000   9.35682    4.76793   0.000000    17.1181   9.67894
-#&gt; ENSG00000026103  14.11527  31.81319   51.49367  19.013185    57.0604  31.94051
-#&gt; ENSG00000106992  12.23323  15.90660   23.83966   6.654615    11.4121  80.33522
-#&gt; ENSG00000115107 191.02664 227.37074  164.97046 246.220742   349.0191 359.08875
-#&gt; ENSG00000109670   2.82305  13.09955    6.67511   0.950659     0.0000  16.45420
-#&gt; ...                   ...       ...        ...        ...        ...       ...
-#&gt; ENSG00000076604  24.46647  43.97706  36.236286   13.30923  20.922129  15.48631
-#&gt; ENSG00000102804   9.41018   7.48546   8.582278    0.00000   2.853018   0.00000
-#&gt; ENSG00000068745 420.63502 250.76279 507.308009  262.38195 160.719989 289.40037
-#&gt; ENSG00000111716   3.76407  14.03523   0.953586    5.70396   0.951006   1.93579
-#&gt; ENSG00000112378  21.64341  18.71364  11.443038   29.47044   8.559053  14.51841
-#&gt;                    sample9  sample10   sample11  sample12
-#&gt;                  &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt;
-#&gt; ENSG00000100292    34.4738   2.84746   0.971055   3.85509
-#&gt; ENSG00000026103    46.9227  15.18646  31.073745  48.18865
-#&gt; ENSG00000106992    14.3641  25.62715  34.957963  22.16678
-#&gt; ENSG00000115107   391.6607 440.40733 201.008286 240.94323
-#&gt; ENSG00000109670    11.4913   2.84746   3.884218   5.78264
-#&gt; ...                    ...       ...        ...       ...
-#&gt; ENSG00000076604  32.558587  90.16960   39.81324  21.20300
-#&gt; ENSG00000102804   0.957606   1.89831    1.94211   3.85509
-#&gt; ENSG00000068745 172.368992 527.72948  178.67403 374.90767
-#&gt; ENSG00000111716   3.830422   3.79661   11.65265   7.71018
-#&gt; ENSG00000112378   9.576055  45.55938   34.95796  27.94941</div></span></pre>
+#&gt; ENSG00000023892  0.981995 ENSG00000023892        DEF6 223.39090 317.16441
+#&gt; ENSG00000030110  0.998041 ENSG00000030110        BAK1   5.85304  29.43742
+#&gt; ENSG00000026103  0.974390 ENSG00000026103         FAS   3.90202   3.79838
+#&gt;                   sample3   sample4    sample5   sample6   sample7   sample8
+#&gt;                 &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+#&gt; ENSG00000023892  230.0935  164.4024 389.294123 247.87465  319.3252 259.42024
+#&gt; ENSG00000030110   35.3990   22.9167  32.674567  41.46952   26.2203  35.84716
+#&gt; ENSG00000026103   21.6327   16.9384   0.933559   6.59742   11.2373   2.83004
+#&gt;                   sample9  sample10  sample11  sample12
+#&gt;                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+#&gt; ENSG00000023892 272.82974 227.26276  224.1347  200.8436
+#&gt; ENSG00000030110  13.82583   3.59309   13.4098   12.9899
+#&gt; ENSG00000026103   5.53033   5.38963   11.4941   15.9876</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

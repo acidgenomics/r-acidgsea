@@ -76,7 +76,7 @@ NULL
                 files <- lapply(
                     X = contrastNames,
                     FUN = function(contrast) {
-                        export(
+                        out <- export(
                             object = results(
                                 object = object,
                                 contrast = contrast,
@@ -115,6 +115,7 @@ NULL
                                 }
                             )
                         }
+                        out
                     }
                 )
                 names(files) <- contrastNames
