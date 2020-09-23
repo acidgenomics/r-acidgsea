@@ -3,7 +3,7 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @name FGSEAList
-#' @note Updated 2020-09-17.
+#' @note Updated 2020-09-23.
 #'
 #' @inheritParams params
 #' @inheritParams acidroxygen::params
@@ -21,6 +21,7 @@
 #'   Stored internally in [alphaThreshold()].
 #'   Applied only to plots and enriched gene set exports, but does not affect
 #'   the actual GSEA enrichment calculation.
+#' @param ... Arguments pass through to `RankedList` method.
 #'
 #' @return `FGSEAList`.
 #'
@@ -148,7 +149,7 @@ setMethod(
 
 
 
-#' @describeIn FGSEAList Arguments pass through to `RankedList` method.
+#' @rdname FGSEAList
 #' @export
 setMethod(
     f = "FGSEAList",
