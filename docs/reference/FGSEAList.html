@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -87,17 +87,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/acidgsea.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/acidgsea.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/acidgsea/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -125,18 +131,21 @@
     <p>Extends the functionality of <code><a href='https://rdrr.io/pkg/fgsea/man/fgsea.html'>fgsea::fgsea()</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>FGSEAList</span>(<span class='no'>object</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>FGSEAList</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
 
 <span class='co'># S4 method for RankedList</span>
 <span class='fu'>FGSEAList</span>(
-  <span class='no'>object</span>,
-  <span class='no'>gmtFiles</span>,
-  <span class='kw'>nPerm</span> <span class='kw'>=</span> <span class='fl'>1000L</span>,
-  <span class='kw'>minSize</span> <span class='kw'>=</span> <span class='fl'>15L</span>,
-  <span class='kw'>maxSize</span> <span class='kw'>=</span> <span class='fl'>500L</span>,
-  <span class='kw'>alphaThreshold</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>BPPARAM</span> <span class='kw'>=</span> <span class='kw pkg'>BiocParallel</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
-)</pre>
+  <span class='kw'>object</span>,
+  <span class='kw'>geneSetFiles</span>,
+  nPerm = <span class='fl'>1000L</span>,
+  minSize = <span class='fl'>15L</span>,
+  maxSize = <span class='fl'>500L</span>,
+  alphaThreshold = <span class='fl'>0.05</span>,
+  BPPARAM = <span class='kw'>BiocParallel</span>::<span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
+)
+
+<span class='co'># S4 method for DESeqAnalysis</span>
+<span class='fu'>FGSEAList</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,12 +156,13 @@
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional arguments.</p></td>
+      <td><p>Arguments pass through to <code>RankedList</code> method.</p></td>
     </tr>
     <tr>
-      <th>gmtFiles</th>
+      <th>geneSetFiles</th>
       <td><p><code>character</code>.
-GMT file paths.</p></td>
+Gene set file paths (i.e. GMT files).
+MSigDB files are recommended by default.</p></td>
     </tr>
     <tr>
       <th>nPerm</th>
@@ -176,7 +186,7 @@ All pathways above the threshold are excluded.</p></td>
       <th>alphaThreshold</th>
       <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code>.
 Alpha level cutoff.
-Stored internally in <code>alphaThreshold()</code>.
+Stored internally in <code><a href='alphaThreshold.html'>alphaThreshold()</a></code>.
 Applied only to plots and enriched gene set exports, but does not affect
 the actual GSEA enrichment calculation.</p></td>
     </tr>
@@ -197,34 +207,30 @@ We recommend using one of the following:</p><ul>
     <p><code>FGSEAList</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-08-05.</p>
+    <p>Updated 2020-09-23.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## &gt; ## Copy example MSigDb files to `$HOME`.</span>
-<span class='co'>## &gt; file.copy(</span>
-<span class='co'>## &gt;     from = system.file(</span>
-<span class='co'>## &gt;         "extdata", "msigdb",</span>
-<span class='co'>## &gt;         package = "acidgsea",</span>
-<span class='co'>## &gt;         mustWork = TRUE</span>
-<span class='co'>## &gt;     ),</span>
-<span class='co'>## &gt;     to = "~",</span>
-<span class='co'>## &gt;     overwrite = FALSE,</span>
-<span class='co'>## &gt;     recursive = TRUE</span>
-<span class='co'>## &gt; )</span>
-
-<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/Logic.html'>isTRUE</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.exists</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"~"</span>, <span class='st'>"msigdb"</span>)))) {
-    <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
-    <span class='no'>metadata</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>S4Vectors</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html'>metadata</a></span>
-
-    <span class='no'>rankedList</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata</span>(<span class='no'>fgsea</span>)<span class='kw'>[[</span><span class='st'>"rankedList"</span>]]
-    <span class='no'>gmtFiles</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata</span>(<span class='no'>fgsea</span>)<span class='kw'>[[</span><span class='st'>"gmtFiles"</span>]]
-
-    <span class='no'>fgsea</span> <span class='kw'>&lt;-</span> <span class='fu'>FGSEAList</span>(<span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>rankedList</span>, <span class='kw'>gmtFiles</span> <span class='kw'>=</span> <span class='no'>gmtFiles</span>)
-    <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>fgsea</span>)
-}</div><div class='output co'>#&gt; <span class='message'>→ Running parameterized fast GSEA.</span></div><div class='output co'>#&gt; <span class='message'>GMT files:</span></div><div class='output co'>#&gt; <span class='message'>● h</span></div><div class='output co'>#&gt; <span class='message'>Contrasts:</span></div><div class='output co'>#&gt; <span class='message'>● condition_B_vs_A</span></div><div class='output co'>#&gt; <span class='message'>● treatment_D_vs_C</span></div><div class='output co'>#&gt; <span class='message'>GMT file: h.all.v7.0.symbols.gmt</span></div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> Testing against 50 pathways.</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> Running using 1000 permutations.</span></div><div class='output co'>#&gt; <span class='message'>GMT file: h.all.v7.0.symbols.gmt</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> Testing against 50 pathways.</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> Running using 1000 permutations.</span></div><div class='output co'>#&gt; FGSEAList 0.3.2 of length 1
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>deseq</span>)
+<span class='kw'>geneSetFiles</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(
+    <span class='st'>"extdata"</span>,
+    <span class='st'>"msigdb"</span>,
+    <span class='st'>"7.0"</span>,
+    <span class='st'>"msigdb_v7.0_GMTs"</span>,
+    <span class='st'>"h.all.v7.0.symbols.gmt"</span>,
+    package = <span class='st'>"acidgsea"</span>,
+    mustWork = <span class='fl'>TRUE</span>
+)
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='kw'>geneSetFiles</span>) <span class='op'>&lt;-</span> <span class='st'>"h"</span>
+<span class='kw'>fgsea</span> <span class='op'>&lt;-</span> <span class='fu'>FGSEAList</span>(
+    object = <span class='kw'>deseq</span>,
+    geneSetFiles = <span class='kw'>geneSetFiles</span>
+)
+</div><div class='output co'>#&gt; <span class='message'>→ Running parameterized fast GSEA.</span></div><div class='output co'>#&gt; <span class='message'>Gene set files:</span></div><div class='output co'>#&gt; <span class='message'>● h</span></div><div class='output co'>#&gt; <span class='message'>Contrasts:</span></div><div class='output co'>#&gt; <span class='message'>● condition_B_vs_A</span></div><div class='output co'>#&gt; <span class='message'>● treatment_D_vs_C</span></div><div class='output co'>#&gt; <span class='message'>→ Importing <span style='color: #0000BB;'>h.all.v7.0.symbols.gmt</span><span> at </span><span style='color: #0000BB;'>/private/var/folders/l1/8y8sjzmn15v49jgrqglghcfr0000gn/T/RtmpBHrSZF/temp_libpath12311e3fad84/acidgsea/extdata/msigdb/7.0/msigdb_v7.0_GMTs</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Importing </span><span style='color: #0000BB;'>h.all.v7.0.symbols.gmt</span><span> at </span><span style='color: #0000BB;'>/private/var/folders/l1/8y8sjzmn15v49jgrqglghcfr0000gn/T/RtmpBHrSZF/temp_libpath12311e3fad84/acidgsea/extdata/msigdb/7.0/msigdb_v7.0_GMTs</span><span> using </span><span style='color: #0000BB;'>readr</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`read_lines()`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>Collection: h</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> Testing 50 pathways.</span></div><div class='output co'>#&gt; <span class='message'>Contrast: condition_B_vs_A</span></div><div class='output co'>#&gt; <span class='message'>Contrast: treatment_D_vs_C</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>fgsea</span>)
+</div><div class='output co'>#&gt; FGSEAList 0.4.0 of length 1
 #&gt; collectionNames: h
 #&gt; contrastNames(2): condition_B_vs_A treatment_D_vs_C
-#&gt; alphaThreshold: 0.05</div></span></pre>
+#&gt; alphaThreshold: 0.05
+#&gt; rankedList: stat</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -240,7 +246,7 @@ We recommend using one of the following:</p><ul>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

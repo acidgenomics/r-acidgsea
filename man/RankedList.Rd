@@ -2,20 +2,11 @@
 % Please edit documentation in R/AllGenerics.R, R/RankedList-methods.R
 \name{RankedList}
 \alias{RankedList}
-\alias{RankedList,matrix-method}
-\alias{RankedList,DataFrame-method}
-\alias{RankedList,DESeqResults-method}
 \alias{RankedList,DESeqAnalysis-method}
 \alias{RankedList,FGSEAList-method}
 \title{Ranked list of genes}
 \usage{
 RankedList(object, ...)
-
-\S4method{RankedList}{matrix}(object, gene2symbol = NULL, value = "log2FoldChange")
-
-\S4method{RankedList}{DataFrame}(object, gene2symbol, value)
-
-\S4method{RankedList}{DESeqResults}(object, gene2symbol, value = c("stat", "log2FoldChange", "padj"))
 
 \S4method{RankedList}{DESeqAnalysis}(
   object,
@@ -30,12 +21,9 @@ RankedList(object, ...)
 
 \item{...}{Additional arguments.}
 
-\item{gene2symbol}{\code{Gene2Symbol}.
-Gene-to-symbol mappings. Must contain \code{geneID} and \code{geneName} columns. See
-\code{Gene2Symbol} for more information.}
-
 \item{value}{\code{character(1)}.
-Value type to use for GSEA. Currently supported:
+Value type to use for GSEA.
+Currently supported:
 \enumerate{
 \item \code{stat}: Wald test statistic. This column is returned by \code{results()}
 but is removed in \code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} return, currently.
@@ -61,7 +49,7 @@ We recommend using one of the following:
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2020-05-20.
+Updated 2020-09-23.
 }
 \section{Gene symbol multi-mapping}{
 
@@ -79,10 +67,5 @@ print(x)
 ## FGSEAList ====
 data(fgsea, package = "acidgsea")
 x <- RankedList(fgsea)
-print(x)
-
-## matrix ====
-data(matrix_lfc, package = "acidtest")
-x <- RankedList(matrix_lfc)
 print(x)
 }

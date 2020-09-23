@@ -1,6 +1,6 @@
 #' @name topTables
 #' @inherit acidgenerics::topTables
-#' @note Updated 2020-08-05.
+#' @note Updated 2020-09-18.
 #'
 #' @description Top tables of significantly enriched pathways.
 #'
@@ -32,7 +32,7 @@ NULL
 
 
 
-## Updated 2020-08-05.
+## Updated 2020-09-18.
 `topTables,FGSEAList` <-  # nolint
     function(
         object,
@@ -42,7 +42,7 @@ NULL
     ) {
         validObject(object)
         assert(
-            isScalar(collection),
+            isString(collection),
             isInt(n),
             isHeaderLevel(headerLevel)
         )

@@ -3,11 +3,10 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @name FGSEAList
-#' @note Updated 2020-08-05.
+#' @note Updated 2020-09-23.
 #'
+#' @inheritParams params
 #' @inheritParams acidroxygen::params
-#' @param gmtFiles `character`.
-#'   GMT file paths.
 #' @param nPerm `integer(1)`.
 #'   Number of permutations.
 #'   Minimial possible nominal *P* value is about 1/`nPerm`.
@@ -22,41 +21,36 @@
 #'   Stored internally in [alphaThreshold()].
 #'   Applied only to plots and enriched gene set exports, but does not affect
 #'   the actual GSEA enrichment calculation.
+#' @param ... Arguments pass through to `RankedList` method.
 #'
 #' @return `FGSEAList`.
 #'
 #' @examples
-#' ## > ## Copy example MSigDb files to `$HOME`.
-#' ## > file.copy(
-#' ## >     from = system.file(
-#' ## >         "extdata", "msigdb",
-#' ## >         package = "acidgsea",
-#' ## >         mustWork = TRUE
-#' ## >     ),
-#' ## >     to = "~",
-#' ## >     overwrite = FALSE,
-#' ## >     recursive = TRUE
-#' ## > )
-#'
-#' if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
-#'     data(fgsea)
-#'     metadata <- S4Vectors::metadata
-#'
-#'     rankedList <- metadata(fgsea)[["rankedList"]]
-#'     gmtFiles <- metadata(fgsea)[["gmtFiles"]]
-#'
-#'     fgsea <- FGSEAList(object = rankedList, gmtFiles = gmtFiles)
-#'     print(fgsea)
-#' }
+#' data(deseq)
+#' geneSetFiles <- system.file(
+#'     "extdata",
+#'     "msigdb",
+#'     "7.0",
+#'     "msigdb_v7.0_GMTs",
+#'     "h.all.v7.0.symbols.gmt",
+#'     package = "acidgsea",
+#'     mustWork = TRUE
+#' )
+#' names(geneSetFiles) <- "h"
+#' fgsea <- FGSEAList(
+#'     object = deseq,
+#'     geneSetFiles = geneSetFiles
+#' )
+#' print(fgsea)
 NULL
 
 
 
-## Updated 2020-08-05.
+## Updated 2020-09-17.
 `FGSEAList,RankedList` <-  # nolint
     function(
         object,
-        gmtFiles,
+        geneSetFiles,
         nPerm = 1000L,
         minSize = 15L,
         maxSize = 500L,
@@ -64,33 +58,34 @@ NULL
         BPPARAM = BiocParallel::bpparam()  # nolint
     ) {
         assert(
-            all(isFile(gmtFiles)),
-            hasNames(gmtFiles),
+            allAreFiles(geneSetFiles),
+            hasNames(geneSetFiles),
             isInt(nPerm),
             isAlpha(alphaThreshold)
         )
         validObject(object)
+        contrasts <- names(object)
+        stats <- as.list(object)
         cli_alert("Running parameterized fast GSEA.")
-        cli_text("GMT files:")
-        cli_ul(names(gmtFiles))
+        cli_text("Gene set files:")
+        cli_ul(names(geneSetFiles))
         cli_text("Contrasts:")
-        cli_ul(names(object))
-        list <- lapply(
-            X = gmtFiles,
-            FUN = function(gmtFile) {
-                lapply(
-                    X = object,
-                    FUN = function(stats) {
-                        pathways <- gmtPathways(gmt.file = gmtFile)
-                        cli_dl(c("GMT file" = basename(gmtFile)))
-                        cli_alert_info(sprintf(
-                            "Testing against %d pathways.",
-                            length(pathways)
-                        ))
-                        cli_alert_info(sprintf(
-                            "Running using %d permutations.",
-                            nPerm
-                        ))
+        cli_ul(contrasts)
+        collections <- lapply(X = geneSetFiles, FUN = import)
+        list <- mapply(
+            name = names(collections),
+            pathways = collections,
+            FUN = function(name, pathways) {
+                cli_dl(c("Collection" = name))
+                cli_alert_info(sprintf(
+                    "Testing %d pathways.",
+                    length(pathways)
+                ))
+                mapply(
+                    contrast = contrasts,
+                    stats = stats,
+                    FUN = function(contrast, stats) {
+                        cli_dl(c("Contrast" = contrast))
                         suppressWarnings({
                             data <- fgsea::fgsea(
                                 pathways = pathways,
@@ -103,12 +98,15 @@ NULL
                         })
                         assert(is(data, "data.table"))
                         data
-                    }
+                    },
+                    SIMPLIFY = FALSE,
+                    USE.NAMES = TRUE
                 )
-            }
+            },
+            SIMPLIFY = FALSE,
+            USE.NAMES = TRUE
         )
         out <- SimpleList(list)
-        ## Stash useful metadata.
         metadata(out) <- list(
             version = .version,
             date = Sys.Date(),
@@ -117,11 +115,11 @@ NULL
             maxSize = maxSize,
             alpha = alphaThreshold,
             rankedList = object,
-            gmtFiles = gmtFiles,
+            geneSetFiles = geneSetFiles,
+            collections = collections,
             call = standardizeCall(),
             sessionInfo = session_info()
         )
-        ## Return.
         new(Class = "FGSEAList", out)
     }
 
@@ -133,4 +131,28 @@ setMethod(
     f = "FGSEAList",
     signature = signature("RankedList"),
     definition = `FGSEAList,RankedList`
+)
+
+
+
+## Updated 2020-09-23.
+`FGSEAList,DESeqAnalysis` <-  # nolint
+    function(object, ...) {
+        validObject(object)
+        out <- FGSEAList(
+            object = RankedList(object),
+            ...
+        )
+        metadata(out)[["deseq"]] <- object
+        out
+    }
+
+
+
+#' @rdname FGSEAList
+#' @export
+setMethod(
+    f = "FGSEAList",
+    signature = signature("DESeqAnalysis"),
+    definition = `FGSEAList,DESeqAnalysis`
 )

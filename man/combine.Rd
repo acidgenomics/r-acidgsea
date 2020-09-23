@@ -25,7 +25,7 @@ A single value of the same class as the most specific common ancestor
 Combining or merging different Bioconductor data structures
 }
 \note{
-Updated 2020-03-18.
+Updated 2020-09-17.
 }
 \examples{
 data(fgsea)

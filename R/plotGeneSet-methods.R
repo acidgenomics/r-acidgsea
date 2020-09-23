@@ -1,7 +1,6 @@
-#' Plot gene set enrichment
-#'
 #' @name plotGeneSet
-#' @note Updated 2020-07-24.
+#' @inherit acidgenerics::plotGeneSet
+#' @note Updated 2020-09-21.
 #'
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
@@ -13,7 +12,6 @@
 #'   - Maximum (positive) threhsold color.
 #'   - Y intercept at origin color.
 #'   - Ticks color.
-#'
 #' @param ... Additional arguments.
 #'
 #' @seealso Modified version of [fgsea::plotEnrichment()].
@@ -21,21 +19,27 @@
 #' @return `ggplot`.
 #'
 #' @examples
-#' ## This requires MSigDB to be installed at `${HOME}`.
-#' if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
-#'     data(fgsea)
-#'     plotGeneSet(
-#'         object = fgsea,
-#'         collection = "h",
-#'         contrast = "condition_B_vs_A",
-#'         set = "HALLMARK_P53_PATHWAY"
-#'     )
-#' }
+#' data(fgsea)
+#' plotGeneSet(
+#'     object = fgsea,
+#'     collection = "h",
+#'     contrast = "condition_B_vs_A",
+#'     set = "HALLMARK_P53_PATHWAY"
+#' )
 NULL
 
 
 
-## Updated 2020-07-23.
+#' @rdname plotGeneSet
+#' @name plotGeneSet
+#' @importFrom acidgenerics plotGeneSet
+#' @usage plotGeneSet(object, ...)
+#' @export
+NULL
+
+
+
+## Updated 2020-09-18.
 `plotGeneSet,FGSEAList` <-  # nolint
     function(
         object,
@@ -52,33 +56,27 @@ NULL
     ) {
         validObject(object)
         assert(
+            isString(collection),
+            isString(contrast),
+            isString(set),
             isCharacter(colors),
             areSetEqual(names(colors), names(eval(formals()[["colors"]])))
         )
         ## GSEA weight parameter. Refer to `fgsea::calcGseaStat` for details.
         gseaParam <- 1L
-        assert(
-            isString(collection),
-            isSubset(collection, names(object))
-        )
         data <- object[[collection]]
+        assert(is.list(data))
         rankedList <- RankedList(object)
-        assert(
-            isString(contrast),
-            isSubset(contrast, names(rankedList))
-        )
-        gmtFile <- metadata(object)[["gmtFiles"]][[collection]]
-        assert(
-            identical(names(data), names(rankedList)),
-            isAFile(gmtFile)
-        )
-        pathways <- gmtPathways(gmt.file = gmtFile)
-        assert(
-            isString(set),
-            isSubset(set, names(pathways))
-        )
-        pathway <- pathways[[set]]
         stats <- rankedList[[contrast]]
+        pathway <- geneSet(
+            object = object,
+            collection = collection,
+            set = set
+        )
+        if (!any(names(stats) %in% pathway)) {
+            cli_alert_warning("No intersection in ranked list and gene set.")
+            return(invisible(NULL))
+        }
         rnk <- rank(-stats)
         ord <- order(rnk)
         statsAdj <- stats[ord]

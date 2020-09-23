@@ -3,7 +3,7 @@
 #' Class containing parameterized fast GSEA results.
 #'
 #' @export
-#' @note Updated 2020-05-12.
+#' @note Updated 2020-09-23.
 #'
 #' @return `FGSEAList`.
 setClass(
@@ -38,21 +38,33 @@ setValidity(
                     ## "nPerm"
                     ## "sessionInfo"
                     "alpha",
-                    "gmtFiles",
+                    "collections",
+                    ## > "deseq",  # 0.4.0
+                    "geneSetFiles",
                     "rankedList",
                     "version"
                 ),
                 y = names(metadata(object))
             ),
-            isCharacter(metadata(object)[["gmtFiles"]]),
+            is.list(metadata(object)[["collections"]]),
             identical(
                 x = names(object),
-                y = names(metadata(object)[["gmtFiles"]])
+                y = names(metadata(object)[["collections"]])
+            ),
+            ## > is(metadata(object)[["deseq"]], "DESeqAnalysis"),  # 0.4.0
+            isCharacter(metadata(object)[["geneSetFiles"]]),
+            identical(
+                x = names(object),
+                y = names(metadata(object)[["geneSetFiles"]])
             ),
             is(metadata(object)[["rankedList"]], "RankedList"),
             identical(
                 x = names(object[[1L]]),
                 y = names(metadata(object)[["rankedList"]])
+            ),
+            is(
+                metadata(metadata(object)[["rankedList"]])[["gene2symbol"]],
+                "Gene2Symbol"
             )
         )
     }
@@ -65,7 +77,7 @@ setValidity(
 #' Class containing parameterized ranked gene lists.
 #'
 #' @export
-#' @note Updated 2020-05-12.
+#' @note Updated 2020-09-23.
 #'
 #' @return `RankedList`.
 setClass(
@@ -84,14 +96,21 @@ setValidity(
             ## gene2symbol metadata is now optional, but still recommended.
             ## This check was removed to allow RankedList support for matrix.
             isSubset(
-                x = c("value", "version"),
+                x = c("gene2symbol", "value", "version"),
                 y = names(metadata(object))
             ),
-            is(metadata(object)[["version"]], "package_version"),
+            ## These checks break backward compatiblity. Consider enabling in a
+            ## future release for tighter checks.
+            ## > is(metadata(object)[["gene2symbol"]], "Gene2Symbol"),
+            ## > isSubset(
+            ## >     x = names(object[[1L]]),
+            ## >     y = metadata(object)[["gene2symbol"]][["geneName"]]
+            ## > ),
             isSubset(
                 x = metadata(object)[["value"]],
                 y = eval(formals(`RankedList,DESeqAnalysis`)[["value"]])
-            )
+            ),
+            is(metadata(object)[["version"]], "package_version")
         )
     }
 )

@@ -1,7 +1,11 @@
 context("export")
 
 test_that("FGSEAList", {
-    files <- export(object = fgsea, dir = "example")
+    files <- export(
+        object = fgsea,
+        dir = "example",
+        geneSetResults = FALSE
+    )
     expect_identical(
         object = files,
         expected = list(
@@ -44,7 +48,12 @@ test_that("FGSEAList", {
 })
 
 test_that("name argument", {
-    files <- export(object = fgsea, name = "XXX", dir = ".")
+    files <- export(
+        object = fgsea,
+        name = "XXX",
+        dir = ".",
+        geneSetResults = FALSE
+    )
     expect_identical(
         object = files,
         expected = list(

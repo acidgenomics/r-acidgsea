@@ -2,7 +2,7 @@
 #'
 #' @name show
 #' @inherit methods::show return
-#' @note Updated 2020-08-05.
+#' @note Updated 2020-09-22.
 #'
 #' @inheritParams acidroxygen::params
 #'
@@ -15,14 +15,15 @@ NULL
 
 
 
-## Updated 2020-08-05.
+## Updated 2020-09-22.
 `show,FGSEAList` <-  # nolint
     function(object) {
         showHeader(object)
         list <- list(
             collectionNames = collectionNames(object),
             contrastNames = contrastNames(object),
-            alphaThreshold = alphaThreshold(object)
+            alphaThreshold = alphaThreshold(object),
+            rankedList = metadata(RankedList(object))[["value"]]
         )
         nesThreshold <- nesThreshold(object)
         if (nesThreshold > 0L) {

@@ -1,3 +1,16 @@
+## acidgsea 0.4.0 (2020-09-23)
+
+### Major changes
+
+- Now slotting gene sets inside the `FGSEAList` object.
+- `gmtFiles` argument has been renamed to `geneSetFiles`.
+
+### New functions
+
+- `geneSetResults`: Extract gene set expression values (from `DESeqResults`).
+- `leadingEdge`: New accessor that returns leading edge genes from GSEA run.
+- `results`: Extract GSEA results from object (from `fgsea` return).
+
 ## acidgsea 0.3.2 (2020-08-05)
 
 ### Major changes

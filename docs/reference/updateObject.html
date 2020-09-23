@@ -75,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -88,17 +88,23 @@
   </a>
 </li>
 <li>
-  <a href="../articles/acidgsea.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
+<li>
+  <a href="../articles/acidgsea.html">Get started</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://acidgenomics.com/">
+    <span class="fas fa fas fa-vial fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/acidgenomics/acidgsea/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -127,10 +133,10 @@
   of <code>object</code> updated to its current class definition.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>updateObject</span>(<span class='no'>object</span>, <span class='no'>...</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>updateObject</span>(<span class='kw'>object</span>, <span class='kw'>...</span>, verbose = <span class='fl'>FALSE</span>)
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>updateObject</span>(<span class='no'>object</span>, <span class='kw'>alphaThreshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>updateObject</span>(<span class='kw'>object</span>, deseq = <span class='kw'>NULL</span>, alphaThreshold = <span class='kw'>NULL</span>, <span class='kw'>...</span>, verbose = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,6 +147,12 @@
     <code>updateObjectFromSlots</code>.</p>
 <p>Object for slot information to be extracted from for
     <code>getObjectSlots</code>.</p></td>
+    </tr>
+    <tr>
+      <th>deseq</th>
+      <td><p><code>DESeqAnalysis</code> or <code>NULL</code>.
+Update object by slotting <code>DESeqAnalysis</code>, if necessary.
+This was added to object in 2020-09.</p></td>
     </tr>
     <tr>
       <th>alphaThreshold</th>
@@ -172,7 +184,7 @@ Whether information about the update should be reported.</p></td>
 <p><code>updateObject</code> requires that the class of the returned object be
   the same as the class of the argument <code>object</code>, and that the
   object is valid (see <code><a href='https://rdrr.io/r/methods/validObject.html'>validObject</a></code>). By default,
-  <code>updateObject</code> has the following behaviors:</p><dl'>
+  <code>updateObject</code> has the following behaviors:</p><dl>
     <dt><code>updateObject(ANY, ..., verbose=FALSE)</code></dt><dd><p>By default, <code>updateObject</code> uses heuristic methods to determine
       whether the object should be the `new' S4 type (introduced in R 2.4.0),
       but is not. If the heuristics indicate an update is required,
@@ -209,7 +221,7 @@ Whether information about the update should be reported.</p></td>
   <code>object</code> cannot be determined by accessing known slots.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-08-05.</p>
+    <p>Updated 2020-09-23.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'>
@@ -227,15 +239,20 @@ Whether information about the update should be reported.</p></td>
           in the <span class="pkg">BiocGenerics</span> package.</p></li>
 </ul>
 </div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Michael Steinbaugh</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>fgsea</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
 
 <span class='co'>## FGSEAList ====</span>
-<span class='fu'>updateObject</span>(<span class='no'>fgsea</span>)</div><div class='output co'>#&gt; FGSEAList 0.2.0 of length 1
+<span class='fu'>updateObject</span>(<span class='kw'>fgsea</span>)
+</div><div class='output co'>#&gt; FGSEAList 0.4.0 of length 1
 #&gt; collectionNames: h
 #&gt; contrastNames(2): condition_B_vs_A treatment_D_vs_C
-#&gt; alphaThreshold: 0.05</div></pre>
+#&gt; alphaThreshold: 0.99
+#&gt; rankedList: stat</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -251,7 +268,7 @@ Whether information about the update should be reported.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

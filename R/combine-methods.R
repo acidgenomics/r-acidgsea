@@ -1,6 +1,6 @@
 #' @name combine
 #' @inherit BiocGenerics::combine return title
-#' @note Updated 2020-03-18.
+#' @note Updated 2020-09-17.
 #'
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -28,18 +28,28 @@ NULL
 
 
 
-## Updated 2019-08-28.
+## Updated 2020-09-17.
 `combine,FGSEAList` <-  # nolint
     function(x, y) {
         validObject(x)
         validObject(y)
         assert(
-            identical(collectionNames(x), collectionNames(y)),
             identical(
-                x = metadata(x)[["gmtFiles"]],
-                y = metadata(y)[["gmtFiles"]]
+                x = collectionNames(x),
+                y = collectionNames(y)
             ),
-            areDisjointSets(contrastNames(x), contrastNames(y)),
+            identical(
+                x = metadata(x)[["collections"]],
+                y = metadata(y)[["collections"]]
+            ),
+            identical(
+                x = metadata(x)[["geneSetFiles"]],
+                y = metadata(y)[["geneSetFiles"]]
+            ),
+            areDisjointSets(
+                x = contrastNames(x),
+                y = contrastNames(y)
+            ),
             areDisjointSets(
                 x = names(metadata(x)[["rankedList"]]),
                 y = names(metadata(y)[["rankedList"]]),

@@ -2,8 +2,8 @@ Package: acidgsea
 Title: Acid Genomics GSEA
 Description: Perform parameterized gene set enrichment analysis (GSEA)
     on multiple differential expression contrasts.
-Version: 0.3.2
-Date: 2020-08-05
+Version: 0.4.0
+Date: 2020-09-23
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -24,23 +24,26 @@ Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 4.0),
-    basejump (>= 0.12.10)
+    basejump (>= 0.12.14),
+    DESeqAnalysis (>= 0.3.8)
 Imports:
     BiocGenerics,
     BiocParallel,
-    DESeqAnalysis (>= 0.3.0),
     IRanges,
     S4Vectors,
     SummarizedExperiment,
-    acidgenerics (>= 0.3.9),
-    acidplots (>= 0.2.32),
+    acidbase (>= 0.1.14),
+    acidgenerics (>= 0.3.12),
+    acidplots (>= 0.2.35),
     cli (>= 2.0),
     fgsea (>= 1.14),
     ggplot2 (>= 3.3),
-    goalie (>= 0.4.5),
+    goalie (>= 0.4.8),
     knitr (>= 1.25),
     methods,
+    rlang (>= 0.4),
     sessioninfo (>= 1.1),
+    stats,
     utils
 Suggests:
     BiocStyle,

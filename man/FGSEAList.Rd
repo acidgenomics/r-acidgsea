@@ -3,27 +3,31 @@
 \name{FGSEAList}
 \alias{FGSEAList}
 \alias{FGSEAList,RankedList-method}
+\alias{FGSEAList,DESeqAnalysis-method}
 \title{Parameterized fast gene set enrichment analysis (GSEA)}
 \usage{
 FGSEAList(object, ...)
 
 \S4method{FGSEAList}{RankedList}(
   object,
-  gmtFiles,
+  geneSetFiles,
   nPerm = 1000L,
   minSize = 15L,
   maxSize = 500L,
   alphaThreshold = 0.05,
   BPPARAM = BiocParallel::bpparam()
 )
+
+\S4method{FGSEAList}{DESeqAnalysis}(object, ...)
 }
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Additional arguments.}
+\item{...}{Arguments pass through to \code{RankedList} method.}
 
-\item{gmtFiles}{\code{character}.
-GMT file paths.}
+\item{geneSetFiles}{\code{character}.
+Gene set file paths (i.e. GMT files).
+MSigDB files are recommended by default.}
 
 \item{nPerm}{\code{integer(1)}.
 Number of permutations.
@@ -59,29 +63,23 @@ We recommend using one of the following:
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2020-08-05.
+Updated 2020-09-23.
 }
 \examples{
-## > ## Copy example MSigDb files to `$HOME`.
-## > file.copy(
-## >     from = system.file(
-## >         "extdata", "msigdb",
-## >         package = "acidgsea",
-## >         mustWork = TRUE
-## >     ),
-## >     to = "~",
-## >     overwrite = FALSE,
-## >     recursive = TRUE
-## > )
-
-if (isTRUE(dir.exists(file.path("~", "msigdb")))) {
-    data(fgsea)
-    metadata <- S4Vectors::metadata
-
-    rankedList <- metadata(fgsea)[["rankedList"]]
-    gmtFiles <- metadata(fgsea)[["gmtFiles"]]
-
-    fgsea <- FGSEAList(object = rankedList, gmtFiles = gmtFiles)
-    print(fgsea)
-}
+data(deseq)
+geneSetFiles <- system.file(
+    "extdata",
+    "msigdb",
+    "7.0",
+    "msigdb_v7.0_GMTs",
+    "h.all.v7.0.symbols.gmt",
+    package = "acidgsea",
+    mustWork = TRUE
+)
+names(geneSetFiles) <- "h"
+fgsea <- FGSEAList(
+    object = deseq,
+    geneSetFiles = geneSetFiles
+)
+print(fgsea)
 }

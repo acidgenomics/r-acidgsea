@@ -1,19 +1,20 @@
 ## Example *Homo sapiens* GSEA analysis.
-## Updated 2020-03-18.
+## Updated 2020-09-23.
 
 library(usethis)
-library(pryr)
-library(basejump)       # 0.12.5
-library(DESeq2)         # 1.26.0
-library(DESeqAnalysis)  # 0.2.19
+library(basejump)       # 0.12.14
+library(DESeq2)         # 1.28.1
+library(DESeqAnalysis)  # 0.3.6
 
-## Restrict to 1 MB.
-## Use `pryr::object_size()` instead of `utils::object.size()`.
-limit <- structure(1e6, class = "object_size")
+## Restrict to 3 MB.
+limit <- structure(4e6, class = "object_size")
 
-gr <- makeGRangesFromEnsembl(organism = "Homo sapiens", release = 99L)
-## Subset to include 5k genes, as minimal example.
-gr <- head(gr, n = 5000L)
+gr <- makeGRangesFromEnsembl(organism = "Homo sapiens", release = 100L)
+gr <- head(gr, n = 500L)
+gr <- droplevels(gr)
+mcols(gr) <- mcols(gr)[c("geneID", "geneName")]
+object.size(gr)
+## 219080 bytes
 
 ## DESeqDataSet
 dds <- makeExampleDESeqDataSet(n = length(gr), m = 12L)
@@ -27,6 +28,8 @@ dds$condition
 dds$treatment
 ##  [1] C C C D D D C C C D D D
 ## Levels: C D
+object.size(dds)
+## 539304 bytes
 
 ## DESeqTransform
 dt <- varianceStabilizingTransformation(dds)
@@ -59,33 +62,27 @@ deseq <- DESeqAnalysis(
     results = res,
     lfcShrink = NULL
 )
-
-rankedList <- RankedList(deseq)
-object_size(rankedList)
-## 448 kB
-stopifnot(object_size(rankedList) < limit)
+object.size(deseq)
+## 1128008 bytes
 
 ## Just using hallmark in minimal example.
-gmtFiles <- file.path(
-    "~",
+geneSetFiles <- system.file(
+    "extdata",
     "msigdb",
     "7.0",
     "msigdb_v7.0_GMTs",
-    "h.all.v7.0.symbols.gmt"
+    "h.all.v7.0.symbols.gmt",
+    package = "acidgsea",
+    mustWork = TRUE
 )
-stopifnot(all(file.exists(gmtFiles)))
-names(gmtFiles) <- "h"
+names(geneSetFiles) <- "h"
 
 fgsea <- FGSEAList(
-    rankedList = rankedList,
-    gmtFiles = gmtFiles
+    object = deseq,
+    geneSetFiles = geneSetFiles,
+    alphaThreshold = 0.99
 )
 validObject(fgsea)
-
-## Check the object size.
-lapply(coerceToList(fgsea), object_size)
-object_size(fgsea)
-lapply(metadata(fgsea), object_size)
-stopifnot(object_size(fgsea) < limit)
+stopifnot(object.size(fgsea) < limit)
 
 use_data(fgsea, overwrite = TRUE, compress = "xz")

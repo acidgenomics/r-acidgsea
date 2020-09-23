@@ -1,6 +1,6 @@
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2020-05-20.
+#' @note Updated 2020-09-23.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -10,7 +10,8 @@
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
 #' @param value `character(1)`.
-#'   Value type to use for GSEA. Currently supported:
+#'   Value type to use for GSEA.
+#'   Currently supported:
 #'
 #'   1. `stat`: Wald test statistic. This column is returned by `results()`
 #'      but is removed in [DESeq2::lfcShrink()] return, currently.
@@ -29,82 +30,11 @@
 #' data(fgsea, package = "acidgsea")
 #' x <- RankedList(fgsea)
 #' print(x)
-#'
-#' ## matrix ====
-#' data(matrix_lfc, package = "acidtest")
-#' x <- RankedList(matrix_lfc)
-#' print(x)
 NULL
 
 
 
-## This will work on any numeric matrix.
-## Other options instead of df/list coercion (check benchmarks):
-## https://stackoverflow.com/questions/6819804
-## Updated 2020-05-22.
-`RankedList,matrix` <-  # nolint
-    function(
-        object,
-        gene2symbol = NULL,
-        value = "log2FoldChange"
-    ) {
-        assert(
-            is.numeric(object),
-            hasColnames(object),
-            hasRownames(object),
-            is(gene2symbol, "Gene2Symbol") || is.null(gene2symbol)
-        )
-        ## Convert gene identifiers to gene symbols, if necessary.
-        if (is(gene2symbol, "Gene2Symbol")) {
-            assert(isSubset(rownames(object), rownames(gene2symbol)))
-            gene2symbol <- as(gene2symbol, "DataFrame")
-            gene2symbol <- gene2symbol[rownames(object), , drop = FALSE]
-            rownames(object) <- gene2symbol[["geneName"]]
-        }
-        ## Average expression of duplicate gene symbols, if necessary.
-        if (any(duplicated(rownames(object)))) {
-            dupes <- which(duplicated(rownames(object)))
-            dupes <- rownames(object)[dupes]
-            dupes <- sort(unique(dupes))
-            cli_alert(sprintf(
-                fmt = "Averaging '%s' value for %d gene %s: %s.",
-                value,
-                length(dupes),
-                ngettext(
-                    n = length(dupes),
-                    msg1 = "symbol",
-                    msg2 = "symbols"
-                ),
-                toString(dupes, width = 100L)
-            ))
-            by <- as.factor(rownames(object))
-            rownames(object) <- makeNames(rownames(object))
-            names(by) <- rownames(object)
-            object <- aggregateRows(x = object, by = by)
-        }
-        list <- as.list(as.data.frame(object))
-        list <- lapply(X = list, FUN = `names<-`, value = rownames(object))
-        ## Sort the vectors from positive to negative.
-        sorted <- lapply(X = list, FUN = sort, decreasing = TRUE)
-        out <- SimpleList(sorted)
-        metadata(out)[["version"]] <- .version
-        metadata(out)[["value"]] <- value
-        new(Class = "RankedList", out)
-    }
-
-
-
-#' @rdname RankedList
-#' @export
-setMethod(
-    f = "RankedList",
-    signature = signature("matrix"),
-    definition = `RankedList,matrix`
-)
-
-
-
-## Updated 2020-05-20.
+## Updated 2020-09-23.
 `RankedList,DataFrame` <-  # nolint
     function(
         object,
@@ -112,7 +42,9 @@ setMethod(
         value
     ) {
         validObject(object)
+        validObject(gene2symbol)
         assert(
+            is(object, "DataFrame"),
             is(gene2symbol, "Gene2Symbol"),
             isSubset(value, colnames(object))
         )
@@ -159,23 +91,13 @@ setMethod(
         out <- SimpleList(x)
         metadata(out)[["version"]] <- .version
         metadata(out)[["value"]] <- value
-        metadata(out)[["gene2symbol"]] <- metadata(gene2symbol)
+        metadata(out)[["gene2symbol"]] <- gene2symbol
         new(Class = "RankedList", out)
     }
 
 
 
-#' @rdname RankedList
-#' @export
-setMethod(
-    f = "RankedList",
-    signature = signature("DataFrame"),
-    definition = `RankedList,DataFrame`
-)
-
-
-
-## Updated 2020-05-20.
+## Updated 2020-09-23.
 `RankedList,DESeqResults` <-  # nolint
     function(
         object,
@@ -183,7 +105,8 @@ setMethod(
         value = c("stat", "log2FoldChange", "padj")
     ) {
         validObject(object)
-        out <- RankedList(
+        assert(is(object, "DESeqResults"))
+        out <- `RankedList,DataFrame`(
             object = as(object, "DataFrame"),
             gene2symbol = gene2symbol,
             value = match.arg(value)
@@ -195,17 +118,7 @@ setMethod(
 
 
 
-#' @rdname RankedList
-#' @export
-setMethod(
-    f = "RankedList",
-    signature = signature("DESeqResults"),
-    definition = `RankedList,DESeqResults`
-)
-
-
-
-## Updated 2020-03-17.
+## Updated 2020-09-23.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
@@ -214,8 +127,6 @@ setMethod(
     ) {
         validObject(object)
         value <- match.arg(value)
-        ## Extract the DESeqDataSet.
-        dds <- as(object, "DESeqDataSet")
         ## Extract the DESeqResults list.
         if (identical(value, "log2FoldChange")) {
             ## Note that we're requiring shrunken LFCs if the user wants to
@@ -225,16 +136,19 @@ setMethod(
             resultsList <- slot(object, "results")
         }
         assert(is(resultsList, "list"))
-        ## Get the gene-to-symbol mappings in long format.
-        ## We're returning in long format so we can average the values for each
-        ## gene symbol, since for some genomes gene IDs multi-map to symbols.
+        ## Get the gene-to-symbol mappings. We're returning in long format so we
+        ## can average the values for each gene symbol, since for some genomes
+        ## gene IDs multi-map to symbols.
         suppressMessages({
-            gene2symbol <- Gene2Symbol(dds, format = "unmodified")
+            gene2symbol <- Gene2Symbol(
+                object = as(object, "DESeqDataSet"),
+                format = "unmodified"
+            )
         })
         ## Get parameterized GSEA list values for each DESeqResults contrast.
         list <- bplapply(
             X = resultsList,
-            FUN = RankedList,
+            FUN = `RankedList,DESeqResults`,
             BPPARAM = BPPARAM,
             gene2symbol = gene2symbol,
             value = value
@@ -270,11 +184,12 @@ setMethod(
 
 
 
-## Updated 2019-07-17.
+## Updated 2020-09-23.
 `RankedList,FGSEAList` <-  # nolint
     function(object) {
-        validObject(object)
-        metadata(object)[["rankedList"]]
+        rl <- metadata(object)[["rankedList"]]
+        assert(is(rl, "RankedList"))
+        rl
     }
 
 
