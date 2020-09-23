@@ -25,9 +25,7 @@
 #' @return `FGSEAList`.
 #'
 #' @examples
-#' data(fgsea)
-#' metadata <- S4Vectors::metadata
-#' rankedList <- metadata(fgsea)[["rankedList"]]
+#' data(deseq)
 #' geneSetFiles <- system.file(
 #'     "extdata",
 #'     "msigdb",
@@ -39,7 +37,7 @@
 #' )
 #' names(geneSetFiles) <- "h"
 #' fgsea <- FGSEAList(
-#'     object = rankedList,
+#'     object = deseq,
 #'     geneSetFiles = geneSetFiles
 #' )
 #' print(fgsea)
@@ -132,4 +130,28 @@ setMethod(
     f = "FGSEAList",
     signature = signature("RankedList"),
     definition = `FGSEAList,RankedList`
+)
+
+
+
+## Updated 2020-09-23.
+`FGSEAList,DESeqAnalysis` <-  # nolint
+    function(object, ...) {
+        validObject(object)
+        out <- FGSEAList(
+            object = RankedList(object),
+            ...
+        )
+        metadata(out)[["deseq"]] <- object
+        out
+    }
+
+
+
+#' @describeIn FGSEAList Arguments pass through to `RankedList` method.
+#' @export
+setMethod(
+    f = "FGSEAList",
+    signature = signature("DESeqAnalysis"),
+    definition = `FGSEAList,DESeqAnalysis`
 )
