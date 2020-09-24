@@ -76,6 +76,7 @@ NULL
         files <- lapply(
             X = contrastNames,
             FUN = function(contrast) {
+                cli_alert(sprintf("Exporting results for {.var %s}.", contrast))
                 files <- lapply(
                     X = collectionNames,
                     FUN = function(collection) {
@@ -100,16 +101,16 @@ NULL
         names(files) <- contrastNames
         ## Optionally, export additional results in a nested collection
         ## directory, containing gene expression information from DESeqResults.
-        if (!isFALSE(geneSetNames)) {
-            if (isTRUE(geneSetNames)) {
-                geneSetNames <- collectionNames
+        if (!isFALSE(geneSetResults)) {
+            if (isTRUE(geneSetResults)) {
+                geneSetResults <- collectionNames
             }
-            assert(isSubset(geneSetNames, collectionNames))
+            assert(isSubset(geneSetResults, collectionNames))
             lapply(
                 X = contrastNames,
                 FUN = function(contrast) {
                     lapply(
-                        X = geneSetNames,
+                        X = geneSetResults,
                         FUN = function(collection) {
                             cli_alert(sprintf(
                                 "Exporting results for {.var %s} {.var %s}.",

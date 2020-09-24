@@ -45,7 +45,9 @@ NULL
         rownames <- .matchGenesToIDs(object, set = set, genes = genes)
         if (!hasLength(rownames)) return(NULL)
         deseq <- `DESeqAnalysis,FGSEAList`(object)
-        res <- results(object = deseq, i = contrast, extra = TRUE)
+        suppressMessages({
+            res <- results(object = deseq, i = contrast, extra = TRUE)
+        })
         res <- res[rownames, ]
         res <- res[!is.na(res[["padj"]]), ]
         rl <- RankedList(object)
@@ -54,7 +56,6 @@ NULL
             isSubset(valueCol, colnames(res)),
             isSubset(res[["geneName"]], names(rl[[contrast]]))
         )
-        cli_alert(sprintf("Arranging by {.var %s} column.", valueCol))
         idx <- order(res[[valueCol]], decreasing = TRUE)
         res <- res[idx, ]
         res
