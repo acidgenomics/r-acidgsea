@@ -103,43 +103,43 @@ NULL
         if (!isFALSE(geneSetNames)) {
             if (isTRUE(geneSetNames)) {
                 geneSetNames <- collectionNames
-                lapply(
-                    X = contrastNames,
-                    FUN = function(contrast) {
-                        lapply(
-                            X = geneSetNames,
-                            FUN = function(collection) {
-                                cli_alert("Exporting results per gene set.")
-                                sets <- geneSetNames(
-                                    object = object,
-                                    collection = collection
-                                )
-                                lapply(
-                                    X = sets,
-                                    FUN = function(set) {
-                                        res <- geneSetResults(
-                                            object = object,
-                                            contrast = contrast,
-                                            collection = collection,
-                                            set = set
-                                        )
-                                        if (!hasLength(res)) return(NULL)
-                                        export(
-                                            object = res,
-                                            file = file.path(
-                                                dir,
-                                                contrast,
-                                                collection,
-                                                paste0(tolower(set), ".csv")
-                                            )
-                                        )
-                                    }
-                                )
-                            }
-                        )
-                    }
-                )
             }
+            lapply(
+                X = contrastNames,
+                FUN = function(contrast) {
+                    lapply(
+                        X = geneSetNames,
+                        FUN = function(collection) {
+                            cli_alert("Exporting results per gene set.")
+                            sets <- geneSetNames(
+                                object = object,
+                                collection = collection
+                            )
+                            lapply(
+                                X = sets,
+                                FUN = function(set) {
+                                    res <- geneSetResults(
+                                        object = object,
+                                        contrast = contrast,
+                                        collection = collection,
+                                        set = set
+                                    )
+                                    if (!hasLength(res)) return(NULL)
+                                    export(
+                                        object = res,
+                                        file = file.path(
+                                            dir,
+                                            contrast,
+                                            collection,
+                                            paste0(tolower(set), ".csv")
+                                        )
+                                    )
+                                }
+                            )
+                        }
+                    )
+                }
+            )
         }
         invisible(files)
     }
