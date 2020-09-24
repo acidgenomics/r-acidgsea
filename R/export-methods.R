@@ -104,13 +104,17 @@ NULL
             if (isTRUE(geneSetNames)) {
                 geneSetNames <- collectionNames
             }
+            assert(isSubset(geneSetNames, collectionNames))
             lapply(
                 X = contrastNames,
                 FUN = function(contrast) {
                     lapply(
                         X = geneSetNames,
                         FUN = function(collection) {
-                            cli_alert("Exporting results per gene set.")
+                            cli_alert(sprintf(
+                                "Exporting results for {.var %s} {.var %s}.",
+                                contrast, collection
+                            ))
                             sets <- geneSetNames(
                                 object = object,
                                 collection = collection
