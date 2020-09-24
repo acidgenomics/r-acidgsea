@@ -19,8 +19,12 @@
 #' 2. Gene set.
 #'
 #' @inheritParams pipette::export
-#' @param geneSetResults `logical(1)`.
-#'   Export expression CSV files per gene set.
+#' @param geneSetResults `logical(1)` or `character`.
+#'   Export per-gene set expression including log fold change values generated
+#'   from DESeq2. Can be slow when processing all MSigDB collections, so
+#'   disabled by default. Alternatively, can declare specific collections to
+#'   process, as a `character` vector, such as `"h"` for the hallmark
+#'   gene set collection.
 #' @param ... Additional arguments.
 #'
 #' @examples
@@ -59,23 +63,22 @@ NULL
         call <- standardizeCall()
         assert(
             isString(name, nullOK = TRUE),
-            isFlag(geneSetResults)
+            isFlag(geneSetResults) || isCharacter(geneSetResults)
         )
         if (is.null(name)) {
             name <- as.character(call[["object"]])
         }
-        ## Note that we're combining the dir with name, so we can set
-        ## subdirectories for each slotted data type (e.g. `DESeqDataSet`).
         dir <- initDir(file.path(dir, name))
         cli_alert(sprintf("Exporting to '{.path %s}'.", dir))
+        contrastNames <- contrastNames(object)
         collectionNames <- collectionNames(object)
+        ## Always export the FGSEA results per contrast / per collection.
         files <- lapply(
-            X = collectionNames,
-            FUN = function(collection) {
-                contrastNames <- contrastNames(object)
+            X = contrastNames,
+            FUN = function(contrast) {
                 files <- lapply(
-                    X = contrastNames,
-                    FUN = function(contrast) {
+                    X = collectionNames,
+                    FUN = function(collection) {
                         out <- export(
                             object = results(
                                 object = object,
@@ -88,40 +91,54 @@ NULL
                                 paste0(collection, ".csv")
                             )
                         )
-                        if (isTRUE(geneSetResults)) {
-                            cli_alert("Exporting results per gene set.")
-                            sets <- geneSetNames(
-                                object = object,
-                                collection = collection
-                            )
-                            lapply(
-                                X = sets,
-                                FUN = function(set) {
-                                    export(
-                                        object = geneSetResults(
-                                            object = object,
-                                            contrast = contrast,
-                                            collection = collection,
-                                            set = set
-                                        ),
-                                        file = file.path(
-                                            dir,
-                                            contrast,
-                                            collection,
-                                            paste0(tolower(set), ".csv")
-                                        )
-                                    )
-                                }
-                            )
-                        }
                         out
                     }
                 )
-                names(files) <- contrastNames
-                files
+                names(files) <- collectionNames
             }
         )
-        names(files) <- collectionNames
+        names(files) <- contrastNames
+        ## Optionally, export additional results in a nested collection
+        ## directory, containing gene expression information from DESeqResults.
+        if (!isFALSE(geneSetNames)) {
+            if (isTRUE(geneSetNames)) {
+                geneSetNames <- collectionNames
+                lapply(
+                    X = contrastNames,
+                    FUN = function(contrast) {
+                        lapply(
+                            X = geneSetNames,
+                            FUN = function(collection) {
+                                cli_alert("Exporting results per gene set.")
+                                sets <- geneSetNames(
+                                    object = object,
+                                    collection = collection
+                                )
+                                lapply(
+                                    X = sets,
+                                    FUN = function(set) {
+                                        export(
+                                            object = geneSetResults(
+                                                object = object,
+                                                contrast = contrast,
+                                                collection = collection,
+                                                set = set
+                                            ),
+                                            file = file.path(
+                                                dir,
+                                                contrast,
+                                                collection,
+                                                paste0(tolower(set), ".csv")
+                                            )
+                                        )
+                                    }
+                                )
+                            }
+                        )
+                    }
+                )
+            }
+        }
         invisible(files)
     }
 
