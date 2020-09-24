@@ -117,13 +117,15 @@ NULL
                                 lapply(
                                     X = sets,
                                     FUN = function(set) {
+                                        res <- geneSetResults(
+                                            object = object,
+                                            contrast = contrast,
+                                            collection = collection,
+                                            set = set
+                                        )
+                                        if (!hasLength(res)) return(NULL)
                                         export(
-                                            object = geneSetResults(
-                                                object = object,
-                                                contrast = contrast,
-                                                collection = collection,
-                                                set = set
-                                            ),
+                                            object = res,
                                             file = file.path(
                                                 dir,
                                                 contrast,
