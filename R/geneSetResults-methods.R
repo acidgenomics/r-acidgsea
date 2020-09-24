@@ -1,6 +1,6 @@
 #' @name geneSetResults
 #' @inherit acidgenerics::geneSetResults
-#' @note Updated 2020-09-23.
+#' @note Updated 2020-09-24.
 #' @inheritParams params
 #' @inheritParams acidroxygen::params
 #' @param ... Additional arguments.
@@ -25,7 +25,7 @@ NULL
 
 
 
-## Updated 2020-09-23.
+## Updated 2020-09-24.
 `geneSetResults,FGSEAList` <-  # nolint
     function(
         object,
@@ -43,19 +43,22 @@ NULL
         )
         genes <- geneSet(object, collection = collection, set = set)
         rownames <- .matchGenesToIDs(object, set = set, genes = genes)
+        if (!hasLength(rownames)) return(NULL)
         deseq <- `DESeqAnalysis,FGSEAList`(object)
-        res <- results(object = deseq, i = contrast, extra = TRUE)
-        out <- res[rownames, ]
+        suppressMessages({
+            res <- results(object = deseq, i = contrast, extra = TRUE)
+        })
+        res <- res[rownames, ]
+        res <- res[!is.na(res[["padj"]]), ]
         rl <- RankedList(object)
         valueCol <- metadata(rl)[["value"]]
         assert(
-            isSubset(valueCol, colnames(out)),
-            isSubset(out[["geneName"]], names(rl[[contrast]]))
+            isSubset(valueCol, colnames(res)),
+            isSubset(res[["geneName"]], names(rl[[contrast]]))
         )
-        cli_alert(sprintf("Arranging by {.var %s} column.", valueCol))
-        idx <- order(out[[valueCol]], decreasing = TRUE)
-        out <- out[idx, ]
-        out
+        idx <- order(res[[valueCol]], decreasing = TRUE)
+        res <- res[idx, ]
+        res
     }
 
 

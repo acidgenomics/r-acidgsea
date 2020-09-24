@@ -3,7 +3,7 @@
 #' Class containing parameterized fast GSEA results.
 #'
 #' @export
-#' @note Updated 2020-09-23.
+#' @note Updated 2020-09-24.
 #'
 #' @return `FGSEAList`.
 setClass(
@@ -39,7 +39,7 @@ setValidity(
                     ## "sessionInfo"
                     "alpha",
                     "collections",
-                    ## > "deseq",  # 0.4.0
+                    "deseq",
                     "geneSetFiles",
                     "rankedList",
                     "version"
@@ -51,7 +51,7 @@ setValidity(
                 x = names(object),
                 y = names(metadata(object)[["collections"]])
             ),
-            ## > is(metadata(object)[["deseq"]], "DESeqAnalysis"),  # 0.4.0
+            is(metadata(object)[["deseq"]], "DESeqAnalysis"),
             isCharacter(metadata(object)[["geneSetFiles"]]),
             identical(
                 x = names(object),
@@ -62,10 +62,7 @@ setValidity(
                 x = names(object[[1L]]),
                 y = names(metadata(object)[["rankedList"]])
             ),
-            is(
-                metadata(metadata(object)[["rankedList"]])[["gene2symbol"]],
-                "Gene2Symbol"
-            )
+            validObject(metadata(object)[["rankedList"]])
         )
     }
 )
@@ -77,7 +74,7 @@ setValidity(
 #' Class containing parameterized ranked gene lists.
 #'
 #' @export
-#' @note Updated 2020-09-23.
+#' @note Updated 2020-09-24.
 #'
 #' @return `RankedList`.
 setClass(
@@ -99,13 +96,11 @@ setValidity(
                 x = c("gene2symbol", "value", "version"),
                 y = names(metadata(object))
             ),
-            ## These checks break backward compatiblity. Consider enabling in a
-            ## future release for tighter checks.
-            ## > is(metadata(object)[["gene2symbol"]], "Gene2Symbol"),
-            ## > isSubset(
-            ## >     x = names(object[[1L]]),
-            ## >     y = metadata(object)[["gene2symbol"]][["geneName"]]
-            ## > ),
+            is(metadata(object)[["gene2symbol"]], "Gene2Symbol"),
+            isSubset(
+                x = names(object[[1L]]),
+                y = metadata(object)[["gene2symbol"]][["geneName"]]
+            ),
             isSubset(
                 x = metadata(object)[["value"]],
                 y = eval(formals(`RankedList,DESeqAnalysis`)[["value"]])

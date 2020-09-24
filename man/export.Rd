@@ -18,8 +18,12 @@ Name to use on disk. If \code{NULL}, will use the name of the object instead.}
 \item{dir}{\code{character(1)}.
 Directory path.}
 
-\item{geneSetResults}{\code{logical(1)}.
-Export expression CSV files per gene set.}
+\item{geneSetResults}{\code{logical(1)} or \code{character}.
+Export per-gene set expression including log fold change values generated
+from DESeq2. Can be slow when processing all MSigDB collections, so
+disabled by default. Alternatively, can declare specific collections to
+process, as a \code{character} vector, such as \code{"h"} for the hallmark
+gene set collection.}
 
 \item{...}{Additional arguments.}
 }
