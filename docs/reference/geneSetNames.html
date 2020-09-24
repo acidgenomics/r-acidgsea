@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ranked list of genes — RankedList-class • acidgsea</title>
+<title>Gene set names — geneSetNames • acidgsea</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Ranked list of genes — RankedList-class" />
-<meta property="og:description" content="Class containing parameterized ranked gene lists." />
+<meta property="og:title" content="Gene set names — geneSetNames" />
+<meta property="og:description" content="Gene set names" />
 
 
 
@@ -122,24 +122,51 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Ranked list of genes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/AllClasses.R'><code>R/AllClasses.R</code></a></small>
-    <div class="hidden name"><code>RankedList-class.Rd</code></div>
+    <h1>Gene set names</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/geneSetNames-methods.R'><code>R/geneSetNames-methods.R</code></a></small>
+    <div class="hidden name"><code>geneSetNames.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Class containing parameterized ranked gene lists.</p>
+    <p>Gene set names</p>
     </div>
 
+    <pre class="usage"><span class='fu'>geneSetNames</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
 
+<span class='co'># S4 method for FGSEAList</span>
+<span class='fu'>geneSetNames</span>(<span class='kw'>object</span>, <span class='kw'>collection</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>object</th>
+      <td><p>Object.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
+    </tr>
+    <tr>
+      <th>collection</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Gene set collection name.
+Typically refers to <code>h</code> (hallmark), <code>c1</code>-<code>c7</code> collections from MSigDb.
+Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></code> on <code>FGSEAList</code> object.</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>RankedList</code>.</p>
+    <p><code>character</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-09-24.</p>
+    <p>Updated 2020-09-23.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
+<span class='fu'>geneSetNames</span>(object = <span class='kw'>fgsea</span>, collection = <span class='st'>"h"</span>)
+</div><div class='output co'>#&gt; [1] "HALLMARK_GLYCOLYSIS"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
