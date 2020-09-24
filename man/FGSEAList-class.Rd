@@ -11,5 +11,5 @@
 Class containing parameterized fast GSEA results.
 }
 \note{
-Updated 2020-09-23.
+Updated 2020-09-24.
 }
