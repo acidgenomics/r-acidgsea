@@ -49,7 +49,7 @@ We recommend using one of the following:
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2020-09-23.
+Updated 2020-09-24.
 }
 \section{Gene symbol multi-mapping}{
 

@@ -1,6 +1,6 @@
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2020-09-23.
+#' @note Updated 2020-09-24.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -34,7 +34,9 @@ NULL
 
 
 
-## Updated 2020-09-23.
+#' Return `SimpleList` to generate `RankedList`.
+#' @note Updated 2020-09-24.
+#' @noRd
 `RankedList,DataFrame` <-  # nolint
     function(
         object,
@@ -92,12 +94,14 @@ NULL
         metadata(out)[["version"]] <- .version
         metadata(out)[["value"]] <- value
         metadata(out)[["gene2symbol"]] <- gene2symbol
-        new(Class = "RankedList", out)
+        out
     }
 
 
 
-## Updated 2020-09-23.
+#' Automatically handle `DESeqResults` columns, passing to `DataFrame` method.
+#' @note Updated 2020-09-23.
+#' @noRd
 `RankedList,DESeqResults` <-  # nolint
     function(
         object,
@@ -118,7 +122,9 @@ NULL
 
 
 
-## Updated 2020-09-23.
+#' Primary `RankedList` generator.
+#' @note Updated 2020-09-23.
+#' @noRd
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
@@ -153,7 +159,7 @@ NULL
             gene2symbol = gene2symbol,
             value = value
         )
-        ## Extract the required metadata from the first slotted RankedList
+        ## Extract the required metadata from the first slotted return object
         ## defined from DESeqResults method.
         meta <- metadata(list[[1L]])
         ## Now loop across the DESeqResults method return and unlist, so we

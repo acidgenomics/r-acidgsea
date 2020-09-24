@@ -55,7 +55,7 @@
 #' Handle situation where DESeq object doesn't contain all symbols defined in
 #' the gene set.
 #'
-#' @note Updated 2020-09-23.
+#' @note Updated 2020-09-24.
 #' @noRd
 .matchGenesToIDs <- function(object, set, genes) {
     assert(
@@ -66,16 +66,8 @@
     suppressMessages({
         g2s <- Gene2Symbol(object)
     })
-    idx <- match(x = genes, table = g2s[["geneName"]])
-
-    if (any(is.na(idx))) {
-        n <- sum(is.na(idx))
-        cli_alert_warning(sprintf(
-            "%d %s in {.var %s } gene set missing from RNA-seq results.",
-            n, ngettext(n = n, msg1 = "gene", msg2 = "genes"), set
-        ))
-    }
-    idx <- na.omit(idx)
+    idx <- na.omit(match(x = genes, table = g2s[["geneName"]]))
+    if (!hasLength(idx)) return(NULL)
     g2s <- g2s[idx, ]
     assert(hasRows(g2s))
     out <- g2s[["geneID"]]

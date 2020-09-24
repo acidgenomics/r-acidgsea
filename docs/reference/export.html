@@ -155,8 +155,12 @@ Directory path.</p></td>
     </tr>
     <tr>
       <th>geneSetResults</th>
-      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
-Export expression CSV files per gene set.</p></td>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code> or <code>character</code>.
+Export per-gene set expression including log fold change values generated
+from DESeq2. Can be slow when processing all MSigDB collections, so
+disabled by default. Alternatively, can declare specific collections to
+process, as a <code>character</code> vector, such as <code>"h"</code> for the hallmark
+gene set collection.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -198,7 +202,7 @@ organize by:</p><ol>
     dir = <span class='st'>"example"</span>,
     geneSetResults = <span class='fl'>FALSE</span>
 )
-</div><div class='output co'>#&gt; <span class='message'>→ Exporting to '<span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea</span><span>'.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> at </span><span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea/condition_B_vs_A</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom_write()`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> at </span><span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea/treatment_D_vs_C</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom_write()`</span><span>.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"example"</span>, <span class='st'>"fgsea"</span>)))
+</div><div class='output co'>#&gt; <span class='message'>→ Exporting to '<span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea</span><span>'.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting results for </span><span style='color: #000000;background-color: #BBBBBB;'>`condition_B_vs_A`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> at </span><span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea/condition_B_vs_A</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom_write()`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting results for </span><span style='color: #000000;background-color: #BBBBBB;'>`treatment_D_vs_C`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> at </span><span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea/treatment_D_vs_C</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom_write()`</span><span>.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"example"</span>, <span class='st'>"fgsea"</span>)))
 </div><div class='output co'>#&gt; [1] "condition_B_vs_A" "treatment_D_vs_C"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"example"</span>, recursive = <span class='fl'>TRUE</span>)
 </div></span></pre>
   </div>
