@@ -10,7 +10,7 @@
 #' @inheritParams acidroxygen::params
 #' @inheritParams params
 #' @param value `character(1)`.
-#'   Value type to use for GSEA.
+#'   Value type to use for GSEA ranked list.
 #'   Currently supported:
 #'
 #'   1. `stat`: Wald test statistic. This column is returned by `results()`
