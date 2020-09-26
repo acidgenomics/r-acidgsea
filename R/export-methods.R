@@ -80,7 +80,7 @@ NULL
                 files <- lapply(
                     X = collectionNames,
                     FUN = function(collection) {
-                        out <- export(
+                        export(
                             object = results(
                                 object = object,
                                 contrast = contrast,
@@ -92,10 +92,10 @@ NULL
                                 paste0(collection, ".csv")
                             )
                         )
-                        out
                     }
                 )
                 names(files) <- collectionNames
+                files
             }
         )
         names(files) <- contrastNames
