@@ -133,19 +133,17 @@
 
     <pre class="usage"><span class='fu'>FGSEAList</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
 
-<span class='co'># S4 method for RankedList</span>
+<span class='co'># S4 method for DESeqAnalysis</span>
 <span class='fu'>FGSEAList</span>(
   <span class='kw'>object</span>,
   <span class='kw'>geneSetFiles</span>,
+  value = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"stat"</span>, <span class='st'>"log2FoldChange"</span>, <span class='st'>"padj"</span>),
   nPerm = <span class='fl'>1000L</span>,
   minSize = <span class='fl'>15L</span>,
   maxSize = <span class='fl'>500L</span>,
   alphaThreshold = <span class='fl'>0.05</span>,
   BPPARAM = <span class='kw'>BiocParallel</span>::<span class='fu'><a href='https://rdrr.io/pkg/BiocParallel/man/register.html'>bpparam</a></span>()
-)
-
-<span class='co'># S4 method for DESeqAnalysis</span>
-<span class='fu'>FGSEAList</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)</pre>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,6 +161,19 @@
       <td><p><code>character</code>.
 Gene set file paths (i.e. GMT files).
 MSigDB files are recommended by default.</p></td>
+    </tr>
+    <tr>
+      <th>value</th>
+      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code>.
+Value type to use for GSEA ranked list.
+Currently supported:</p><ol>
+<li><p><code>stat</code>: Wald test statistic. This column is returned by <code><a href='results.html'>results()</a></code>
+but is removed in <code><a href='https://rdrr.io/pkg/DESeq2/man/lfcShrink.html'>DESeq2::lfcShrink()</a></code> return, currently.</p></li>
+<li><p><code>log2FoldChange</code>: Shrunken log2 fold change. Note that this option
+requires <code><a href='https://rdrr.io/pkg/DESeq2/man/lfcShrink.html'>DESeq2::lfcShrink()</a></code> return to be slotted.</p></li>
+<li><p><code>padj</code>: Adjusted <em>P</em> value. This don't provide directional ranks, but
+is offered as a legacy option. Not generally recommended.</p></li>
+</ol></td>
     </tr>
     <tr>
       <th>nPerm</th>
@@ -225,11 +236,12 @@ We recommend using one of the following:</p><ul>
     object = <span class='kw'>deseq</span>,
     geneSetFiles = <span class='kw'>geneSetFiles</span>
 )
-</div><div class='output co'>#&gt; <span class='message'>→ Running parameterized fast GSEA.</span></div><div class='output co'>#&gt; <span class='message'>Gene set files:</span></div><div class='output co'>#&gt; <span class='message'>● h</span></div><div class='output co'>#&gt; <span class='message'>Contrasts:</span></div><div class='output co'>#&gt; <span class='message'>● condition_B_vs_A</span></div><div class='output co'>#&gt; <span class='message'>● treatment_D_vs_C</span></div><div class='output co'>#&gt; <span class='message'>→ Importing <span style='color: #0000BB;'>h.all.v7.0.symbols.gmt</span><span> at </span><span style='color: #0000BB;'>/private/var/folders/l1/8y8sjzmn15v49jgrqglghcfr0000gn/T/RtmpuK2WeK/temp_libpath510b2b19e997/acidgsea/extdata/msigdb/7.0/msigdb_v7.0_GMTs</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Importing </span><span style='color: #0000BB;'>h.all.v7.0.symbols.gmt</span><span> at </span><span style='color: #0000BB;'>/private/var/folders/l1/8y8sjzmn15v49jgrqglghcfr0000gn/T/RtmpuK2WeK/temp_libpath510b2b19e997/acidgsea/extdata/msigdb/7.0/msigdb_v7.0_GMTs</span><span> using </span><span style='color: #0000BB;'>readr</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`read_lines()`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>Collection: h</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> Testing 50 pathways.</span></div><div class='output co'>#&gt; <span class='message'>Contrast: condition_B_vs_A</span></div><div class='output co'>#&gt; <span class='message'>Contrast: treatment_D_vs_C</span></div><div class='output co'>#&gt; <span class='error'>Error in validObject(.Object): invalid class "FGSEAList" object: isSubset(x = c("alpha", "collections", "deseq", "geneSetFiles",  .... is not TRUE.</span>
-#&gt; <span class='error'>Cause: 'c("alpha", "collections", "deseq", "geneSetFiles", "rankedList", "version")' has elements not in 'names(metadata(object))': deseq</span>
-#&gt; <span class='error'></span>
-#&gt; <span class='error'>is(metadata(object)[["deseq"]], "DESeqAnalysis") is not TRUE.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>fgsea</span>)
-</div><div class='output co'>#&gt; <span class='error'>Error in print(fgsea): object 'fgsea' not found</span></div></span></pre>
+</div><div class='output co'>#&gt; <span class='message'>→ Running parameterized fast GSEA.</span></div><div class='output co'>#&gt; <span class='message'>Gene set files:</span></div><div class='output co'>#&gt; <span class='message'>● h</span></div><div class='output co'>#&gt; <span class='message'>Contrasts:</span></div><div class='output co'>#&gt; <span class='message'>● condition_B_vs_A</span></div><div class='output co'>#&gt; <span class='message'>● treatment_D_vs_C</span></div><div class='output co'>#&gt; <span class='message'>→ Importing <span style='color: #0000BB;'>h.all.v7.0.symbols.gmt</span><span> at </span><span style='color: #0000BB;'>/private/var/folders/l1/8y8sjzmn15v49jgrqglghcfr0000gn/T/RtmprRAwRv/temp_libpath5bd63eaeaf89/acidgsea/extdata/msigdb/7.0/msigdb_v7.0_GMTs</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Importing </span><span style='color: #0000BB;'>h.all.v7.0.symbols.gmt</span><span> at </span><span style='color: #0000BB;'>/private/var/folders/l1/8y8sjzmn15v49jgrqglghcfr0000gn/T/RtmprRAwRv/temp_libpath5bd63eaeaf89/acidgsea/extdata/msigdb/7.0/msigdb_v7.0_GMTs</span><span> using </span><span style='color: #0000BB;'>readr</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`read_lines()`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>Collection: h</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> Testing 50 pathways.</span></div><div class='output co'>#&gt; <span class='message'>Contrast: condition_B_vs_A</span></div><div class='output co'>#&gt; <span class='message'>Contrast: treatment_D_vs_C</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='kw'>fgsea</span>)
+</div><div class='output co'>#&gt; FGSEAList 0.4.0 of length 1
+#&gt; collectionNames: h
+#&gt; contrastNames(2): condition_B_vs_A treatment_D_vs_C
+#&gt; alphaThreshold: 0.05
+#&gt; rankedList: stat</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
