@@ -177,13 +177,46 @@ Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></cod
     contrast = <span class='st'>"condition_B_vs_A"</span>,
     collection = <span class='st'>"h"</span>
 )
-</div><div class='output co'>#&gt; DataFrame with 1 row and 8 columns
-#&gt;               pathway      pval      padj        es       nes nMoreExtreme
-#&gt;           &lt;character&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;    &lt;numeric&gt;
-#&gt; 1 HALLMARK_GLYCOLYSIS 0.0288889 0.0288889  0.531474   1.60146           12
-#&gt;        size                                         leadingEdge
-#&gt;   &lt;integer&gt;                                         &lt;character&gt;
-#&gt; 1        15 FKBP4, B4GALT7, GCLC, RRAGD, SLC25A13, PSMC4, TKTL1</div></pre>
+</div><div class='output co'>#&gt; DataFrame with 17 rows and 8 columns
+#&gt;                                pathway      pval      padj        es       nes
+#&gt;                            &lt;character&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+#&gt; 1              HALLMARK_G2M_CHECKPOINT  0.302632  0.643092 -0.372957 -1.111939
+#&gt; 2                   HALLMARK_APOPTOSIS  0.217949  0.617521  0.405084  1.205317
+#&gt; 3     HALLMARK_ESTROGEN_RESPONSE_EARLY  0.032967  0.560440  0.528277  1.571874
+#&gt; 4      HALLMARK_ESTROGEN_RESPONSE_LATE  0.204380  0.617521  0.400578  1.243653
+#&gt; 5   HALLMARK_INTERFERON_GAMMA_RESPONSE  0.680222  0.913607  0.291066  0.839119
+#&gt; ...                                ...       ...       ...       ...       ...
+#&gt; 13                 HALLMARK_GLYCOLYSIS  0.869963  0.913607  0.223793  0.731462
+#&gt; 14            HALLMARK_HEME_METABOLISM  0.125230  0.617521  0.402602  1.296562
+#&gt; 15        HALLMARK_IL2_STAT5_SIGNALING  0.434498  0.820718 -0.336589 -1.030554
+#&gt; 16        HALLMARK_ALLOGRAFT_REJECTION  0.149123  0.617521 -0.428709 -1.278158
+#&gt; 17          HALLMARK_KRAS_SIGNALING_UP  0.828508  0.913607 -0.233739 -0.751857
+#&gt;     nMoreExtreme      size
+#&gt;        &lt;numeric&gt; &lt;integer&gt;
+#&gt; 1            137        16
+#&gt; 2            118        17
+#&gt; 3             17        17
+#&gt; 4            111        20
+#&gt; 5            367        15
+#&gt; ...          ...       ...
+#&gt; 13           474        24
+#&gt; 14            67        23
+#&gt; 15           198        18
+#&gt; 16            67        16
+#&gt; 17           371        21
+#&gt;                                                      leadingEdge
+#&gt;                                                      &lt;character&gt;
+#&gt; 1                     ARID4A, MNAT1, TACC3, SLC12A2, FOXN3, UPF1
+#&gt; 2                                   FAS, BID, BRCA1, CASP8, CD44
+#&gt; 3             CALCR, ALDH3B1, MED24, CYP26B1, FOXC1, CD44, RRP12
+#&gt; 4                 CALCR, ALDH3B1, CYP26B1, CACNA2D2, FOXC1, CD44
+#&gt; 5                     FAS, PFKP, CASP8, CFH, EIF2AK2, LCP2, CD38
+#&gt; ...                                                          ...
+#&gt; 13                                 PFKP, MED24, PSMC4, ME1, CD44
+#&gt; 14               RBM5, SLC4A1, LAMP2, DCUN1D1, CDC27, AGPAT4, XK
+#&gt; 15                                          CAPG, IKZF2, TNFRSF9
+#&gt; 16                                       CAPG, CD4, ITGAL, BCAT1
+#&gt; 17  GABRA3, TNFRSF1B, SEMA3B, FLT4, TFPI, HDAC9, ADGRA2, SDCCAG8</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -1,7 +1,10 @@
-## acidgsea 0.4.0 (2020-09-24)
+## acidgsea 0.4.0 (2020-09-26)
 
 ### Major changes
 
+- `FGSEAList`: Reworked primary method to use `DESeqAnalysis` instead of
+  `RankedList` as input. The `RankedList` object is now calculated automatically
+  internally.
 - Now slotting gene sets inside the `FGSEAList` object.
 - `gmtFiles` argument has been renamed to `geneSetFiles`.
 

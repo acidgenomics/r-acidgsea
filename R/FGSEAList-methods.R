@@ -1,3 +1,8 @@
+#' @include RankedList-methods.R
+NULL
+
+
+
 #' Parameterized fast gene set enrichment analysis (GSEA)
 #'
 #' Extends the functionality of [fgsea::fgsea()].
@@ -5,6 +10,7 @@
 #' @name FGSEAList
 #' @note Updated 2020-09-23.
 #'
+#' @inheritParams RankedList
 #' @inheritParams params
 #' @inheritParams acidroxygen::params
 #' @param nPerm `integer(1)`.
@@ -46,26 +52,34 @@ NULL
 
 
 
-## Updated 2020-09-17.
-`FGSEAList,RankedList` <-  # nolint
+## Updated 2020-09-25.
+`FGSEAList,DESeqAnalysis` <-  # nolint
     function(
         object,
         geneSetFiles,
+        value,
         nPerm = 1000L,
         minSize = 15L,
         maxSize = 500L,
         alphaThreshold = 0.05,
         BPPARAM = BiocParallel::bpparam()  # nolint
     ) {
+        validObject(object)
         assert(
             allAreFiles(geneSetFiles),
             hasNames(geneSetFiles),
             isInt(nPerm),
             isAlpha(alphaThreshold)
         )
-        validObject(object)
-        contrasts <- names(object)
-        stats <- as.list(object)
+        value <- match.arg(value)
+        rankedList <- RankedList(
+            object = object,
+            value = value,
+            BPPARAM = BPPARAM
+        )
+        validObject(rankedList)
+        contrasts <- names(rankedList)
+        stats <- as.list(rankedList)
         cli_alert("Running parameterized fast GSEA.")
         cli_text("Gene set files:")
         cli_ul(names(geneSetFiles))
@@ -114,38 +128,19 @@ NULL
             minSize = minSize,
             maxSize = maxSize,
             alpha = alphaThreshold,
-            rankedList = object,
+            deseq = object,
+            rankedList = rankedList,
             geneSetFiles = geneSetFiles,
             collections = collections,
             call = standardizeCall(),
             sessionInfo = session_info()
         )
+        out
         new(Class = "FGSEAList", out)
     }
 
-
-
-#' @rdname FGSEAList
-#' @export
-setMethod(
-    f = "FGSEAList",
-    signature = signature("RankedList"),
-    definition = `FGSEAList,RankedList`
-)
-
-
-
-## Updated 2020-09-23.
-`FGSEAList,DESeqAnalysis` <-  # nolint
-    function(object, ...) {
-        validObject(object)
-        out <- FGSEAList(
-            object = RankedList(object),
-            ...
-        )
-        metadata(out)[["deseq"]] <- object
-        out
-    }
+formals(`FGSEAList,DESeqAnalysis`)[["value"]] <-
+    formals(`RankedList,DESeqAnalysis`)[["value"]]
 
 
 
