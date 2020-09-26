@@ -1,20 +1,20 @@
 ## Example *Homo sapiens* GSEA analysis.
-## Updated 2020-09-23.
+## Updated 2020-09-26.
 
 library(usethis)
-library(basejump)       # 0.12.14
+library(basejump)       # 0.12.15
 library(DESeq2)         # 1.28.1
 library(DESeqAnalysis)  # 0.3.6
 
 ## Restrict to 3 MB.
-limit <- structure(4e6, class = "object_size")
+limit <- structure(3e6, class = "object_size")
 
 gr <- makeGRangesFromEnsembl(organism = "Homo sapiens", release = 100L)
-gr <- head(gr, n = 500L)
+gr <- head(gr, n = 1000L)
 gr <- droplevels(gr)
 mcols(gr) <- mcols(gr)[c("geneID", "geneName")]
 object.size(gr)
-## 219080 bytes
+## 336128 bytes
 
 ## DESeqDataSet
 dds <- makeExampleDESeqDataSet(n = length(gr), m = 12L)
@@ -29,7 +29,7 @@ dds$treatment
 ##  [1] C C C D D D C C C D D D
 ## Levels: C D
 object.size(dds)
-## 539304 bytes
+## 938352 bytes
 
 ## DESeqTransform
 dt <- varianceStabilizingTransformation(dds)
@@ -63,7 +63,7 @@ deseq <- DESeqAnalysis(
     lfcShrink = NULL
 )
 object.size(deseq)
-## 1128008 bytes
+## 1962104 bytes
 
 ## Just using hallmark in minimal example.
 geneSetFiles <- system.file(
