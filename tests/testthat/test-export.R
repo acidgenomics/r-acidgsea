@@ -9,14 +9,16 @@ test_that("FGSEAList", {
     expect_identical(
         object = files,
         expected = list(
-            h = list(
-                "condition_B_vs_A" = realpath(file.path(
+            "condition_B_vs_A" = list(
+                "h" = realpath(file.path(
                     "example",
                     "fgsea",
                     "condition_B_vs_A",
                     "h.csv"
-                )),
-                "treatment_D_vs_C" = realpath(file.path(
+                ))
+            ),
+            "treatment_D_vs_C" = list(
+                "h" = realpath(file.path(
                     "example",
                     "fgsea",
                     "treatment_D_vs_C",
@@ -57,13 +59,15 @@ test_that("name argument", {
     expect_identical(
         object = files,
         expected = list(
-            h = list(
-                "condition_B_vs_A" = realpath(file.path(
+            "condition_B_vs_A" = list(
+                "h" = realpath(file.path(
                     "XXX",
                     "condition_B_vs_A",
                     "h.csv"
-                )),
-                "treatment_D_vs_C" = realpath(file.path(
+                ))
+            ),
+            "treatment_D_vs_C" = list(
+                "h" = realpath(file.path(
                     "XXX",
                     "treatment_D_vs_C",
                     "h.csv"
