@@ -1,3 +1,9 @@
+## acidgsea 0.4.1 (2020-10-01)
+
+### Minor changes
+
+- Migrated generics to acidgenerics: `geneSetNames`, `plotLFC`, `plotNES`.
+
 ## acidgsea 0.4.0 (2020-09-26)
 
 ### Major changes

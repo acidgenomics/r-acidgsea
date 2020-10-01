@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
       </span>
     </div>
 
@@ -131,10 +131,10 @@
     <p>Export data out of R and write to disk.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>export</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>export</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>export</span>(<span class='kw'>object</span>, name = <span class='kw'>NULL</span>, dir = <span class='st'>"."</span>, geneSetResults = <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>export</span><span class='op'>(</span><span class='va'>object</span>, name <span class='op'>=</span> <span class='cn'>NULL</span>, dir <span class='op'>=</span> <span class='st'>"."</span>, geneSetResults <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -194,16 +194,16 @@ organize by:</p><ol>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>fgsea</span><span class='op'>)</span>
 
 <span class='co'>## FGSEAList ====</span>
-<span class='fu'>export</span>(
-    object = <span class='kw'>fgsea</span>,
-    dir = <span class='st'>"example"</span>,
-    geneSetResults = <span class='fl'>FALSE</span>
-)
-</div><div class='output co'>#&gt; <span class='message'>→ Exporting to '<span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea</span><span>'.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting results for </span><span style='color: #000000;background-color: #BBBBBB;'>`condition_B_vs_A`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> at </span><span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea/condition_B_vs_A</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom_write()`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting results for </span><span style='color: #000000;background-color: #BBBBBB;'>`treatment_D_vs_C`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> at </span><span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea/treatment_D_vs_C</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom_write()`</span><span>.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='st'>"example"</span>, <span class='st'>"fgsea"</span>)))
-</div><div class='output co'>#&gt; [1] "condition_B_vs_A" "treatment_D_vs_C"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='st'>"example"</span>, recursive = <span class='fl'>TRUE</span>)
+<span class='fu'>export</span><span class='op'>(</span>
+    object <span class='op'>=</span> <span class='va'>fgsea</span>,
+    dir <span class='op'>=</span> <span class='st'>"example"</span>,
+    geneSetResults <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>→ Exporting to '<span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea</span><span>'.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting results for </span><span style='color: #000000;background-color: #BBBBBB;'>`condition_B_vs_A`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> at </span><span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea/condition_B_vs_A</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom_write()`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting results for </span><span style='color: #000000;background-color: #BBBBBB;'>`treatment_D_vs_C`</span><span>.</span></div><div class='output co'>#&gt; <span class='message'>→ Exporting </span><span style='color: #0000BB;'>h.csv</span><span> at </span><span style='color: #0000BB;'>/Users/mike/git/monorepo/r-packages/acidgsea/docs/reference/example/fgsea/treatment_D_vs_C</span><span> using </span><span style='color: #0000BB;'>vroom</span><span>::</span><span style='color: #000000;background-color: #BBBBBB;'>`vroom_write()`</span><span>.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='st'>"example"</span>, <span class='st'>"fgsea"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "condition_B_vs_A" "treatment_D_vs_C"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span><span class='op'>(</span><span class='st'>"example"</span>, recursive <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
