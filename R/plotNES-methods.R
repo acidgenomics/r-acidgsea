@@ -1,12 +1,10 @@
-#' Plot normalized enrichment scores of a collection
-#'
 #' @name plotNES
-#' @note Updated 2020-09-22.
+#' @inherit acidgenerics::plotNES
+#' @note Updated 2020-10-01.
 #'
 #' @inheritParams params
 #' @inheritParams acidroxygen::params
-#'
-#' @return `ggplot`.
+#' @param ... Additional arguments.
 #'
 #' @seealso Inspired by example in Stephen Turner's
 #' [DESeq to fgsea guide](https://stephenturner.github.io/deseq-to-fgsea/).
@@ -18,6 +16,15 @@
 #'     contrast = "condition_B_vs_A",
 #'     collection = "h"
 #' )
+NULL
+
+
+
+#' @rdname plotNES
+#' @name plotNES
+#' @importFrom acidgenerics plotNES
+#' @usage plotNES(object, ...)
+#' @export
 NULL
 
 
