@@ -17,36 +17,3 @@ setGeneric(
         standardGeneric("RankedList")
     }
 )
-
-
-
-#' @rdname geneSetNames
-#' @export
-setGeneric(
-    name = "geneSetNames",
-    def = function(object, ...) {
-        standardGeneric("geneSetNames")
-    }
-)
-
-
-
-#' @rdname plotLFC
-#' @export
-setGeneric(
-    name = "plotLFC",
-    def = function(object, ...) {
-        standardGeneric("plotLFC")
-    }
-)
-
-
-
-#' @rdname plotNES
-#' @export
-setGeneric(
-    name = "plotNES",
-    def = function(object, ...) {
-        standardGeneric("plotNES")
-    }
-)

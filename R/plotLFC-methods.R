@@ -1,7 +1,6 @@
-#' Plot log2 fold change distributions
-#'
 #' @name plotLFC
-#' @note Updated 2020-09-23.
+#' @inherit acidgenerics::plotLFC
+#' @note Updated 2020-10-01.
 #'
 #' @inheritParams params
 #' @inheritParams acidroxygen::params
@@ -10,8 +9,7 @@
 #'   If `NULL`, plot all contrasts.
 #' @param points `logical(1)`.
 #'   Show individual data points.
-#'
-#' @return `ggplot`.
+#' @param ... Additional arguments.
 #'
 #' @examples
 #' data(fgsea)
@@ -20,6 +18,15 @@
 #'     collection = "h",
 #'     set = "HALLMARK_P53_PATHWAY"
 #' )
+NULL
+
+
+
+#' @rdname plotLFC
+#' @name plotLFC
+#' @importFrom acidgenerics plotLFC
+#' @usage plotLFC(object, ...)
+#' @export
 NULL
 
 
