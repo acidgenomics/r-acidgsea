@@ -35,6 +35,7 @@ NULL
 
 
 #' Return `SimpleList` to generate `RankedList`.
+#'
 #' @note Updated 2020-09-24.
 #' @noRd
 `RankedList,DataFrame` <-  # nolint
@@ -100,13 +101,14 @@ NULL
 
 
 #' Automatically handle `DESeqResults` columns, passing to `DataFrame` method.
-#' @note Updated 2020-09-23.
+#'
+#' @note Updated 2020-10-10.
 #' @noRd
 `RankedList,DESeqResults` <-  # nolint
     function(
         object,
         gene2symbol,
-        value = c("stat", "log2FoldChange", "padj")
+        value
     ) {
         validObject(object)
         assert(is(object, "DESeqResults"))
@@ -120,9 +122,12 @@ NULL
         out
     }
 
+formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
+
 
 
 #' Primary `RankedList` generator.
+#'
 #' @note Updated 2020-09-23.
 #' @noRd
 `RankedList,DESeqAnalysis` <-  # nolint
