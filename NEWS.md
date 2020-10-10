@@ -1,4 +1,8 @@
-## acidgsea 0.4.1 (2020-10-01)
+## acidgsea 0.5.0 (2020-10-10)
+
+### Major changes
+
+- Renamed package to AcidGSEA from acidgsea.
 
 ### Minor changes
 
