@@ -1,5 +1,5 @@
 #' @name Gene2Symbol
-#' @inherit basejump::Gene2Symbol
+#' @inherit AcidGenomes::Gene2Symbol
 #' @note Updated 2020-09-23.
 #' @inheritParams params
 #' @param ... Additional arguments.
