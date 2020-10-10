@@ -1,8 +1,3 @@
-#' @include RankedList-methods.R
-NULL
-
-
-
 #' Parameterized fast gene set enrichment analysis (GSEA)
 #'
 #' Extends the functionality of [fgsea::fgsea()].
@@ -139,8 +134,7 @@ NULL
         new(Class = "FGSEAList", out)
     }
 
-formals(`FGSEAList,DESeqAnalysis`)[["value"]] <-
-    formals(`RankedList,DESeqAnalysis`)[["value"]]
+formals(`FGSEAList,DESeqAnalysis`)[["value"]] <- .rankedListValue
 
 
 
