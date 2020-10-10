@@ -50,13 +50,6 @@ Suggests:
     acidtest (>= 0.3.2),
     rmarkdown,
     testthat
-Remotes:
-    acidgenomics/DESeqAnalysis,
-    acidgenomics/acidgenerics,
-    acidgenomics/acidplots,
-    acidgenomics/acidtest,
-    acidgenomics/basejump,
-    acidgenomics/goalie
 biocViews:
     GeneExpression,
     GeneSetEnrichment,

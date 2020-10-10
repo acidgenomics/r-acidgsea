@@ -5,7 +5,7 @@ data(
 )
 data(
     matrix_lfc,
-    package = "acidtest",
+    package = "AcidTest",
     envir = environment()
 )
 data(

@@ -29,5 +29,5 @@
 #' @importFrom rlang !! sym
 #' @importFrom sessioninfo session_info
 #' @importFrom stats reorder
-#' @importFrom utils globalVariables
+#' @importFrom utils packageName packageVersion
 NULL
