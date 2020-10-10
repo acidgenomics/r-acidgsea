@@ -12,15 +12,6 @@ NULL
 
 
 
-#' @rdname geneSetNames
-#' @name geneSetNames
-#' @importFrom AcidGenerics geneSetNames
-#' @usage geneSetNames(object, ...)
-#' @export
-NULL
-
-
-
 `geneSetNames,FGSEAList` <-  # nolint
     function(object, collection) {
         validObject(object)

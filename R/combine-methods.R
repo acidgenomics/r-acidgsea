@@ -19,15 +19,6 @@ NULL
 
 
 
-#' @rdname combine
-#' @name combine
-#' @importFrom BiocGenerics combine
-#' @usage combine(x, y, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-09-17.
 `combine,FGSEAList` <-  # nolint
     function(x, y) {

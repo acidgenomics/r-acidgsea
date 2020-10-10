@@ -20,15 +20,6 @@ NULL
 
 
 
-#' @rdname plotNES
-#' @name plotNES
-#' @importFrom AcidGenerics plotNES
-#' @usage plotNES(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-09-22.
 `plotNES,FGSEAList` <-  # nolint
     function(

@@ -18,15 +18,6 @@ NULL
 
 
 
-#' @rdname plotEnrichedGeneSets
-#' @name plotEnrichedGeneSets
-#' @importFrom AcidGenerics plotEnrichedGeneSets
-#' @usage plotEnrichedGeneSets(object, ...)
-#' @export
-NULL
-
-
-
 ## Modified 2020-09-21.
 `plotEnrichedGeneSets,FGSEAList` <-  # nolint
     function(

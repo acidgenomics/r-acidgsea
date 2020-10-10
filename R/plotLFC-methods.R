@@ -22,15 +22,6 @@ NULL
 
 
 
-#' @rdname plotLFC
-#' @name plotLFC
-#' @importFrom AcidGenerics plotLFC
-#' @usage plotLFC(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-09-23.
 `plotLFC,FGSEAList` <-  # nolint
     function(

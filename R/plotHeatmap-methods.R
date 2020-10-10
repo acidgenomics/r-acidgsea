@@ -18,15 +18,6 @@ NULL
 
 
 
-#' @rdname plotHeatmap
-#' @name plotHeatmap
-#' @importFrom AcidGenerics plotHeatmap
-#' @usage plotHeatmap(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-09-23.
 `plotHeatmap,FGSEAList` <-  # nolint
     function(

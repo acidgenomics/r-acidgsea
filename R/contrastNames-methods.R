@@ -14,22 +14,6 @@ NULL
 
 
 
-#' @rdname contrastNames
-#' @name contrastNames
-#' @importFrom AcidGenerics contrastNames
-#' @usage contrastNames(object, ...)
-#' @export
-NULL
-
-#' @rdname contrastNames
-#' @name contrastNames<-
-#' @importFrom AcidGenerics contrastNames<-
-#' @usage contrastNames(object, ...) <- value
-#' @export
-NULL
-
-
-
 ## Updated 2019-07-24.
 `contrastNames,FGSEAList` <-  # nolint
     function(object) {

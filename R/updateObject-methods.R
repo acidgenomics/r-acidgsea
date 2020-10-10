@@ -26,15 +26,6 @@ NULL
 
 
 
-#' @rdname updateObject
-#' @name updateObject
-#' @importFrom BiocGenerics updateObject
-#' @usage updateObject(object, ..., verbose = FALSE)
-#' @export
-NULL
-
-
-
 ## Updated 2020-09-23.
 `updateObject,FGSEAList` <-  # nolint
     function(

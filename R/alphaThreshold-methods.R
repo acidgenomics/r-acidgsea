@@ -12,22 +12,6 @@ NULL
 
 
 
-#' @rdname alphaThreshold
-#' @name alphaThreshold
-#' @importFrom AcidGenerics alphaThreshold
-#' @usage alphaThreshold(object, ...)
-#' @export
-NULL
-
-#' @rdname alphaThreshold
-#' @name alphaThreshold<-
-#' @importFrom AcidGenerics alphaThreshold<-
-#' @usage alphaThreshold(object, ...) <- value
-#' @export
-NULL
-
-
-
 ## Updated 2020-08-05.
 `alphaThreshold,FGSEAList` <-  # nolint
     function(object) {

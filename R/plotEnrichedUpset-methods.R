@@ -16,15 +16,6 @@ NULL
 
 
 
-#' @rdname plotEnrichedUpset
-#' @name plotEnrichedUpset
-#' @importFrom AcidGenerics plotEnrichedUpset
-#' @usage plotEnrichedUpset(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-08-05.
 `plotEnrichedUpset,FGSEAList` <-  # nolint
     function(

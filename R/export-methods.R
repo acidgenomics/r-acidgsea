@@ -42,15 +42,6 @@ NULL
 
 
 
-#' @rdname export
-#' @name export
-#' @importFrom AcidGenerics export
-#' @usage export(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-09-23.
 `export,FGSEAList` <-  # nolint
     function(
