@@ -30,15 +30,6 @@ NULL
 
 
 
-#' @rdname plotGeneSet
-#' @name plotGeneSet
-#' @importFrom AcidGenerics plotGeneSet
-#' @usage plotGeneSet(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-09-18.
 `plotGeneSet,FGSEAList` <-  # nolint
     function(

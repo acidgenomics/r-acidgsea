@@ -16,15 +16,6 @@ NULL
 
 
 
-#' @rdname results
-#' @name results
-#' @importFrom AcidGenerics results
-#' @usage results(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-09-23.
 `results,FGSEAList` <-  # nolint
     function(

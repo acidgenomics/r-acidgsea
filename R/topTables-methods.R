@@ -23,15 +23,6 @@ NULL
 
 
 
-#' @rdname topTables
-#' @name topTables
-#' @importFrom AcidGenerics topTables
-#' @usage topTables(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-09-18.
 `topTables,FGSEAList` <-  # nolint
     function(

@@ -19,15 +19,6 @@ NULL
 
 
 
-#' @rdname convertToHuman
-#' @name convertToHuman
-#' @importFrom AcidGenerics convertToHuman
-#' @usage convertToHuman(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-03-17.
 `convertToHuman,DESeqAnalysis` <-  # nolint
     function(object, map = NULL) {

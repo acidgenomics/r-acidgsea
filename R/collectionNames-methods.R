@@ -11,22 +11,6 @@ NULL
 
 
 
-#' @rdname collectionNames
-#' @name collectionNames
-#' @importFrom AcidGenerics collectionNames
-#' @usage collectionNames(object, ...)
-#' @export
-NULL
-
-#' @rdname collectionNames
-#' @name collectionNames<-
-#' @importFrom AcidGenerics collectionNames<-
-#' @usage collectionNames(object, ...) <- value
-#' @export
-NULL
-
-
-
 ## Updated 2019-07-24.
 `collectionNames,FGSEAList` <-  # nolint
     function(object) {

@@ -30,15 +30,6 @@ NULL
 
 
 
-#' @rdname enrichedGeneSets
-#' @name enrichedGeneSets
-#' @importFrom AcidGenerics enrichedGeneSets
-#' @usage enrichedGeneSets(object, ...)
-#' @export
-NULL
-
-
-
 #' Enriched gene sets
 #'
 #' Assuming fgsea input by default currently.

@@ -12,22 +12,6 @@ NULL
 
 
 
-#' @rdname nesThreshold
-#' @name nesThreshold
-#' @importFrom AcidGenerics nesThreshold
-#' @usage nesThreshold(object, ...)
-#' @export
-NULL
-
-#' @rdname nesThreshold
-#' @name nesThreshold<-
-#' @importFrom AcidGenerics nesThreshold<-
-#' @usage nesThreshold(object, ...) <- value
-#' @export
-NULL
-
-
-
 ## Updated 2020-08-05.
 `nesThreshold,FGSEAList` <-  # nolint
     function(object) {

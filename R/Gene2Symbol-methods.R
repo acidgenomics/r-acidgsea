@@ -10,15 +10,6 @@ NULL
 
 
 
-#' @rdname Gene2Symbol
-#' @name Gene2Symbol
-#' @importFrom basejump Gene2Symbol
-#' @usage Gene2Symbol(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-09-23.
 `Gene2Symbol,RankedList` <-  # nolint
     function(object) {

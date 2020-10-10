@@ -14,15 +14,6 @@ NULL
 
 
 
-#' @rdname geneSet
-#' @name geneSet
-#' @importFrom AcidGenerics geneSet
-#' @usage geneSet(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-09-21.
 `geneSet,FGSEAList` <-  # nolint
     function(

@@ -15,15 +15,6 @@ NULL
 
 
 
-#' @rdname leadingEdge
-#' @name leadingEdge
-#' @importFrom AcidGenerics leadingEdge
-#' @usage leadingEdge(object, ...)
-#' @export
-NULL
-
-
-
 ## Updated 2020-09-21.
 `leadingEdge,FGSEAList` <-  # nolint
     function(
