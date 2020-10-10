@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gene set results — geneSetResults • acidgsea</title>
+<title>Gene set results — geneSetResults • AcidGSEA</title>
 
 
 <!-- jquery -->
@@ -73,8 +73,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <a class="navbar-link" href="../index.html">AcidGSEA</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -92,8 +92,17 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<li>
-  <a href="../articles/acidgsea.html">Get started</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/acidgsea.html">acidgsea</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -104,7 +113,7 @@
   </a>
 </li>
 <li>
-  <a href="https://github.com/acidgenomics/acidgsea/">
+  <a href="https://github.com/acidgenomics/AcidGSEA/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -123,7 +132,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Gene set results</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/geneSetResults-methods.R'><code>R/geneSetResults-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/AcidGSEA/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/AcidGSEA/blob/master/R/geneSetResults-methods.R'><code>R/geneSetResults-methods.R</code></a></small>
     <div class="hidden name"><code>geneSetResults.Rd</code></div>
     </div>
 
@@ -185,54 +194,54 @@ For example, <code>"HALLMARK_ADIPOGENESIS"</code>.</p></td>
 </div><div class='output co'>#&gt; log2 fold change (MLE): condition B vs A 
 #&gt; Wald test p-value: condition B vs A 
 #&gt; DataFrame with 10 rows and 20 columns
-#&gt;                   baseMean log2FoldChange     lfcSE        stat    pvalue
-#&gt;                  &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;
-#&gt; ENSG00000026103  36.933397      1.2231115  0.515521  2.37257190 0.0176647
-#&gt; ENSG00000023892   3.284778      2.8303206  1.599640  1.76934857 0.0768357
-#&gt; ENSG00000065357   8.488621      1.1066992  1.121684  0.98664041 0.3238190
-#&gt; ENSG00000063177  29.735215      0.1389932  0.595075  0.23357258 0.8153168
-#&gt; ENSG00000042445  13.375901      0.1459411  0.738199  0.19769889 0.8432807
-#&gt; ENSG00000058262 144.390433      0.0584002  0.345518  0.16902213 0.8657792
-#&gt; ENSG00000064115   0.565441      0.0270735  3.255813  0.00831543 0.9933653
-#&gt; ENSG00000059728  51.403234     -0.1912520  0.555110 -0.34452990 0.7304478
-#&gt; ENSG00000055163   3.735314     -0.6937197  1.396626 -0.49671103 0.6193928
-#&gt; ENSG00000030110  32.464897     -0.3257709  0.560854 -0.58084813 0.5613428
+#&gt;                  baseMean log2FoldChange     lfcSE        stat    pvalue
+#&gt;                 &lt;numeric&gt;      &lt;numeric&gt; &lt;numeric&gt;   &lt;numeric&gt; &lt;numeric&gt;
+#&gt; ENSG00000042445  11.23386     1.28042912  0.861611  1.48608706  0.137256
+#&gt; ENSG00000063177  61.61676     0.43394522  0.454954  0.95382197  0.340174
+#&gt; ENSG00000023892   4.06516     1.25478273  1.392570  0.90105520  0.367559
+#&gt; ENSG00000058262  16.48795     0.28305073  0.805972  0.35119186  0.725444
+#&gt; ENSG00000065357  13.82788     0.00416166  0.882459  0.00471598  0.996237
+#&gt; ENSG00000059728   3.27207    -0.77639603  1.571613 -0.49401214  0.621298
+#&gt; ENSG00000030110  81.07001    -0.32004506  0.550454 -0.58142011  0.560957
+#&gt; ENSG00000026103  46.40676    -0.45391949  0.499220 -0.90925797  0.363214
+#&gt; ENSG00000055163   7.02377    -1.46825412  1.104465 -1.32938032  0.183723
+#&gt; ENSG00000064115  83.03783    -0.69797644  0.477258 -1.46247191  0.143612
 #&gt;                      padj          geneID    geneName   sample1    sample2
 #&gt;                 &lt;numeric&gt;     &lt;character&gt; &lt;character&gt; &lt;numeric&gt;  &lt;numeric&gt;
-#&gt; ENSG00000026103  0.963833 ENSG00000026103         FAS  13.81170  18.137520
-#&gt; ENSG00000023892  0.963833 ENSG00000023892        DEF6   0.00000   0.954606
-#&gt; ENSG00000065357  0.972580 ENSG00000065357        DGKA   0.00000   8.591457
-#&gt; ENSG00000063177  0.987300 ENSG00000063177       RPL18  18.41560  37.229647
-#&gt; ENSG00000042445  0.987300 ENSG00000042445      RETSAT  14.73248  10.500670
-#&gt; ENSG00000058262  0.987300 ENSG00000058262     SEC61A1 186.91834 152.737012
-#&gt; ENSG00000064115  0.998515 ENSG00000064115      TM7SF3   0.00000   0.954606
-#&gt; ENSG00000059728  0.987300 ENSG00000059728        MXD1  75.50396  63.004018
-#&gt; ENSG00000055163  0.972580 ENSG00000055163      CYFIP2   2.76234   7.636851
-#&gt; ENSG00000030110  0.972580 ENSG00000030110        BAK1  13.81170  32.456615
-#&gt;                   sample3   sample4   sample5   sample6    sample7   sample8
-#&gt;                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt;
-#&gt; ENSG00000026103  30.29344 61.999620 44.734184 40.224542  61.441492   37.4895
-#&gt; ENSG00000023892   1.89334  6.781208  1.944965  5.746363   0.930932   18.2641
-#&gt; ENSG00000065357   5.68002  5.812464  2.917447 12.450454   6.516522   19.2254
-#&gt; ENSG00000063177  43.54682 16.468649 20.422128 29.689543  39.099131   32.6832
-#&gt; ENSG00000042445  11.36004 30.999810  6.807376  9.577272   6.516522   16.3416
-#&gt; ENSG00000058262 166.61393 95.905662 91.413333 70.871813 175.015159  121.1200
-#&gt; ENSG00000064115   0.00000  0.968744  0.972482  0.000000   0.930932    0.0000
-#&gt; ENSG00000059728  39.76014 46.499715 25.284539 45.970906  15.825839   95.1657
-#&gt; ENSG00000055163  11.36004  0.968744  2.917447  0.957727   0.930932   11.5352
-#&gt; ENSG00000030110  62.48023 29.062322 26.257021 22.985453  14.894907   38.4508
-#&gt;                    sample9   sample10   sample11  sample12
-#&gt;                  &lt;numeric&gt;  &lt;numeric&gt;  &lt;numeric&gt; &lt;numeric&gt;
-#&gt; ENSG00000026103  46.234933  41.449329  14.312181  33.07231
-#&gt; ENSG00000023892   0.983722   0.963938   0.954145   0.00000
-#&gt; ENSG00000065357   4.918610  29.882074   2.862436   3.00657
-#&gt; ENSG00000063177  37.381435   9.639379  18.128763  54.11832
-#&gt; ENSG00000042445  17.706996   8.675441  15.266327  12.02629
-#&gt; ENSG00000058262 231.174665 134.951304 113.543307 192.42070
-#&gt; ENSG00000064115   0.000000   0.000000   0.954145   2.00438
-#&gt; ENSG00000059728  45.251211  52.052646  34.349236  78.17091
-#&gt; ENSG00000055163   0.983722   0.000000   4.770727   0.00000
-#&gt; ENSG00000030110  33.446547  45.305081  34.349236  36.07888</div></pre>
+#&gt; ENSG00000042445  0.987076 ENSG00000042445      RETSAT   9.31312   0.952797
+#&gt; ENSG00000063177  0.987076 ENSG00000063177       RPL18  49.35955  44.781443
+#&gt; ENSG00000023892  0.987076 ENSG00000023892        DEF6   5.58787   4.763983
+#&gt; ENSG00000058262  0.987076 ENSG00000058262     SEC61A1   6.51919  20.008730
+#&gt; ENSG00000065357  0.999414 ENSG00000065357        DGKA  14.90100  36.206273
+#&gt; ENSG00000059728  0.987076 ENSG00000059728        MXD1   7.45050   0.000000
+#&gt; ENSG00000030110  0.987076 ENSG00000030110        BAK1 118.27667 102.902040
+#&gt; ENSG00000026103  0.987076 ENSG00000026103         FAS  33.52724  82.893310
+#&gt; ENSG00000055163  0.987076 ENSG00000055163      CYFIP2  18.62625   2.858390
+#&gt; ENSG00000064115  0.987076 ENSG00000064115      TM7SF3 189.05640  70.506953
+#&gt;                   sample3   sample4   sample5   sample6   sample7   sample8
+#&gt;                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+#&gt; ENSG00000042445  6.539268   7.82554 31.058191  6.643669  14.27016  14.82361
+#&gt; ENSG00000063177 47.643235  46.95324 57.263539 71.182172 103.69649  39.52964
+#&gt; ENSG00000023892  0.934181   1.95639  0.970568  0.949096  19.97822   6.91769
+#&gt; ENSG00000058262  9.341811  34.23674  3.882274 17.083721  20.92957   5.92945
+#&gt; ENSG00000065357  0.934181   6.84735  8.735116 15.185530  31.39435  12.84713
+#&gt; ENSG00000059728  7.473449   0.00000  0.970568  0.000000   4.75672   3.95296
+#&gt; ENSG00000030110 81.273754  79.23359 77.645477 47.454781  84.66961  56.32973
+#&gt; ENSG00000026103 43.906511  73.36444 33.969896 40.811112  35.19972  42.49436
+#&gt; ENSG00000055163  2.802543   6.84735 20.381938 14.236434   1.90269   1.97648
+#&gt; ENSG00000064115 74.734487  83.14636 75.704340 73.080363  46.61585  53.36501
+#&gt;                   sample9  sample10  sample11  sample12
+#&gt;                 &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
+#&gt; ENSG00000042445  11.79784  12.96691   10.7173   7.89790
+#&gt; ENSG00000063177  48.17453 109.29251   67.2267  54.29809
+#&gt; ENSG00000023892   0.00000   1.85242    4.8715   0.00000
+#&gt; ENSG00000058262  16.71361  27.78623    8.7687  26.65542
+#&gt; ENSG00000065357   7.86523   5.55725   15.5888   9.87238
+#&gt; ENSG00000059728   0.00000   1.85242    1.9486  10.85962
+#&gt; ENSG00000030110 101.26483 122.25941   11.6916  89.83865
+#&gt; ENSG00000026103  39.32615  53.72004   24.3575  53.31085
+#&gt; ENSG00000055163   4.91577   1.85242    0.9743   6.91067
+#&gt; ENSG00000064115 106.18060  41.67935   93.5328  88.85142</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
