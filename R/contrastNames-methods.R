@@ -1,5 +1,5 @@
 #' @name contrastNames
-#' @inherit acidgenerics::contrastNames
+#' @inherit AcidGenerics::contrastNames
 #' @note Updated 2020-03-18.
 #'
 #' @inheritParams params
@@ -16,14 +16,14 @@ NULL
 
 #' @rdname contrastNames
 #' @name contrastNames
-#' @importFrom acidgenerics contrastNames
+#' @importFrom AcidGenerics contrastNames
 #' @usage contrastNames(object, ...)
 #' @export
 NULL
 
 #' @rdname contrastNames
 #' @name contrastNames<-
-#' @importFrom acidgenerics contrastNames<-
+#' @importFrom AcidGenerics contrastNames<-
 #' @usage contrastNames(object, ...) <- value
 #' @export
 NULL

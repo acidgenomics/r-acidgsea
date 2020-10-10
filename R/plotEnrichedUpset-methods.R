@@ -1,8 +1,8 @@
 #' @name plotEnrichedUpset
-#' @inherit acidgenerics::plotEnrichedUpset
+#' @inherit AcidGenerics::plotEnrichedUpset
 #' @note Updated 2020-08-05.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @inheritParams params
 #' @param ... Additional arguments.
 #'
@@ -18,7 +18,7 @@ NULL
 
 #' @rdname plotEnrichedUpset
 #' @name plotEnrichedUpset
-#' @importFrom acidgenerics plotEnrichedUpset
+#' @importFrom AcidGenerics plotEnrichedUpset
 #' @usage plotEnrichedUpset(object, ...)
 #' @export
 NULL

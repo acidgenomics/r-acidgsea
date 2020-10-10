@@ -1,8 +1,8 @@
 #' @name geneSetResults
-#' @inherit acidgenerics::geneSetResults
+#' @inherit AcidGenerics::geneSetResults
 #' @note Updated 2020-09-24.
 #' @inheritParams params
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
@@ -18,7 +18,7 @@ NULL
 
 #' @rdname geneSetResults
 #' @name geneSetResults
-#' @importFrom acidgenerics geneSetResults
+#' @importFrom AcidGenerics geneSetResults
 #' @usage geneSetResults(object, ...)
 #' @export
 NULL

@@ -1,5 +1,5 @@
 #' @name results
-#' @inherit acidgenerics::results
+#' @inherit AcidGenerics::results
 #' @note Updated 2020-09-23.
 #' @inheritParams params
 #' @param ... Additional arguments.
@@ -18,7 +18,7 @@ NULL
 
 #' @rdname results
 #' @name results
-#' @importFrom acidgenerics results
+#' @importFrom AcidGenerics results
 #' @usage results(object, ...)
 #' @export
 NULL

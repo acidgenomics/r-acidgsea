@@ -1,8 +1,8 @@
 #' @name plotEnrichedGeneSets
-#' @inherit acidgenerics::plotEnrichedGeneSets
+#' @inherit AcidGenerics::plotEnrichedGeneSets
 #' @note Updated 2020-09-21.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @inheritParams params
 #' @param ... Additional arguments.
 #'
@@ -20,7 +20,7 @@ NULL
 
 #' @rdname plotEnrichedGeneSets
 #' @name plotEnrichedGeneSets
-#' @importFrom acidgenerics plotEnrichedGeneSets
+#' @importFrom AcidGenerics plotEnrichedGeneSets
 #' @usage plotEnrichedGeneSets(object, ...)
 #' @export
 NULL

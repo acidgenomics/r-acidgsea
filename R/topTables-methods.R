@@ -1,5 +1,5 @@
 #' @name topTables
-#' @inherit acidgenerics::topTables
+#' @inherit AcidGenerics::topTables
 #' @note Updated 2020-09-18.
 #'
 #' @description Top tables of significantly enriched pathways.
@@ -25,7 +25,7 @@ NULL
 
 #' @rdname topTables
 #' @name topTables
-#' @importFrom acidgenerics topTables
+#' @importFrom AcidGenerics topTables
 #' @usage topTables(object, ...)
 #' @export
 NULL

@@ -1,5 +1,5 @@
 #' @name nesThreshold
-#' @inherit acidgenerics::nesThreshold
+#' @inherit AcidGenerics::nesThreshold
 #' @note Updated 2020-09-21.
 #' @param ... Additional arguments.
 #' @examples
@@ -14,14 +14,14 @@ NULL
 
 #' @rdname nesThreshold
 #' @name nesThreshold
-#' @importFrom acidgenerics nesThreshold
+#' @importFrom AcidGenerics nesThreshold
 #' @usage nesThreshold(object, ...)
 #' @export
 NULL
 
 #' @rdname nesThreshold
 #' @name nesThreshold<-
-#' @importFrom acidgenerics nesThreshold<-
+#' @importFrom AcidGenerics nesThreshold<-
 #' @usage nesThreshold(object, ...) <- value
 #' @export
 NULL

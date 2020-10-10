@@ -15,7 +15,7 @@ plotLFC(object, ...)
   geom = c("boxplot", "boxplot"),
   points = TRUE,
   color = getOption(x = "acid.color.discrete", default = getOption(x =
-    "ggplot2.discrete.colour", default = acidplots::scale_color_synesthesia_d()))
+    "ggplot2.discrete.colour", default = AcidPlots::scale_color_synesthesia_d()))
 )
 }
 \arguments{

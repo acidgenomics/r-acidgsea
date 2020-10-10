@@ -2,7 +2,7 @@
 
 ### Minor changes
 
-- Migrated generics to acidgenerics: `geneSetNames`, `plotLFC`, `plotNES`.
+- Migrated generics to AcidGenerics: `geneSetNames`, `plotLFC`, `plotNES`.
 
 ## acidgsea 0.4.0 (2020-09-26)
 
@@ -44,7 +44,7 @@
 
 ### Minor changes
 
-- Removed UpSetR dependency, based on update to acidplots package.
+- Removed UpSetR dependency, based on update to AcidPlots package.
 - Removed `plotCounts` method, in favor of `plotHeatmap` usage.
 
 ## acidgsea 0.3.0 (2020-05-24)
@@ -212,7 +212,7 @@
 
 ### Minor changes
 
-- Switch to importing graphics code from [acidplots][] package instead of now
+- Switch to importing graphics code from [AcidPlots][] package instead of now
   defunct minimalism package. Default ggplot2 theme has been renamed from
   `theme_paperwhite` to `acid_theme_light`.
 
@@ -306,5 +306,5 @@
 Initial release.
 
 [Acid Genomics]: https://acidgenomics.com/
-[acidplots]: https://acidplots.acidgenomics.com/
+[AcidPlots]: https://AcidPlots.acidgenomics.com/
 [basejump]: https://basejump.acidgenomics.com/

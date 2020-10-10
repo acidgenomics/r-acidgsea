@@ -1,5 +1,5 @@
 #' @name leadingEdge
-#' @inherit acidgenerics::leadingEdge
+#' @inherit AcidGenerics::leadingEdge
 #' @note Updated 2020-09-21.
 #' @inheritParams params
 #' @param ... Additional arguments.
@@ -17,7 +17,7 @@ NULL
 
 #' @rdname leadingEdge
 #' @name leadingEdge
-#' @importFrom acidgenerics leadingEdge
+#' @importFrom AcidGenerics leadingEdge
 #' @usage leadingEdge(object, ...)
 #' @export
 NULL

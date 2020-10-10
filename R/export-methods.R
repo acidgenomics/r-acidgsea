@@ -1,5 +1,5 @@
 #' @name export
-#' @inherit acidgenerics::export
+#' @inherit AcidGenerics::export
 #' @note Updated 2020-09-23.
 #'
 #' @section On-disk structure:
@@ -44,7 +44,7 @@ NULL
 
 #' @rdname export
 #' @name export
-#' @importFrom acidgenerics export
+#' @importFrom AcidGenerics export
 #' @usage export(object, ...)
 #' @export
 NULL

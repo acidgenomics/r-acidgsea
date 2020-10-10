@@ -1,8 +1,8 @@
 #' @name plotGeneSet
-#' @inherit acidgenerics::plotGeneSet
+#' @inherit AcidGenerics::plotGeneSet
 #' @note Updated 2020-09-21.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @inheritParams params
 #' @param colors `character(5)`.
 #'   Named character color vector indicating:
@@ -32,7 +32,7 @@ NULL
 
 #' @rdname plotGeneSet
 #' @name plotGeneSet
-#' @importFrom acidgenerics plotGeneSet
+#' @importFrom AcidGenerics plotGeneSet
 #' @usage plotGeneSet(object, ...)
 #' @export
 NULL
@@ -48,8 +48,8 @@ NULL
         set,
         colors = c(
             line = "black",
-            min = acidplots::purpleOrange(n = 2L)[[1L]],
-            max = acidplots::purpleOrange(n = 2L)[[2L]],
+            min = AcidPlots::purpleOrange(n = 2L)[[1L]],
+            max = AcidPlots::purpleOrange(n = 2L)[[2L]],
             ticks = "black",
             yintercept = "black"
         )

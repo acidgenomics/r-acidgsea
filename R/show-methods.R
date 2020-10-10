@@ -4,7 +4,7 @@
 #' @inherit methods::show return
 #' @note Updated 2020-09-22.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #'
 #' @examples
 #' data(fgsea)
