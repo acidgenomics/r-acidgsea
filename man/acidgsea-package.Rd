@@ -2,7 +2,7 @@
 % Please edit documentation in R/package.R
 \docType{package}
 \name{AcidGSEA-package}
-\title{acidgsea}
+\title{AcidGSEA}
 \description{
 Perform parameterized fast gene set enrichment analysis (GSEA) on multiple
 differential expression contrasts.
@@ -11,8 +11,8 @@ differential expression contrasts.
 Useful links:
 \itemize{
   \item \url{https://acidgsea.acidgenomics.com/}
-  \item \url{https://github.com/acidgenomics/acidgsea/}
-  \item Report bugs at \url{https://github.com/acidgenomics/acidgsea/issues/}
+  \item \url{https://github.com/acidgenomics/AcidGSEA/}
+  \item Report bugs at \url{https://github.com/acidgenomics/AcidGSEA/issues/}
 }
 
 }
