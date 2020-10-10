@@ -17,8 +17,8 @@ Authors@R: c(
     ))
 URL:
     https://acidgsea.acidgenomics.com/,
-    https://github.com/acidgenomics/acidgsea/
-BugReports: https://github.com/acidgenomics/acidgsea/issues/
+    https://github.com/acidgenomics/AcidGSEA/
+BugReports: https://github.com/acidgenomics/AcidGSEA/issues/
 License: GPL-3
 Encoding: UTF-8
 LazyData: false

@@ -1,4 +1,4 @@
-#' acidgsea
+#' AcidGSEA
 #'
 #' Perform parameterized fast gene set enrichment analysis (GSEA) on multiple
 #' differential expression contrasts.

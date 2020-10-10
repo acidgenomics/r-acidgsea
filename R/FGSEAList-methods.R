@@ -34,7 +34,7 @@
 #'     "7.0",
 #'     "msigdb_v7.0_GMTs",
 #'     "h.all.v7.0.symbols.gmt",
-#'     package = "acidgsea",
+#'     package = "AcidGSEA",
 #'     mustWork = TRUE
 #' )
 #' names(geneSetFiles) <- "h"

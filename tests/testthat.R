@@ -1,3 +1,3 @@
 library(testthat)
-library(acidgsea)
-test_check("acidgsea")
+library(AcidGSEA)
+test_check("AcidGSEA")
