@@ -21,7 +21,8 @@
 #'
 #' @examples
 #' AcidGSEATestsURL
-AcidGSEATestsURL <- paste0(
-    "https://tests.acidgenomics.com/AcidGSEA/",
-    "v", .version$major, ".", .version$minor  # nolint
-)
+AcidGSEATestsURL <-
+    paste0(
+        "https://tests.acidgenomics.com/AcidGSEA/",
+        "v", .version$major, ".", .version$minor  # nolint
+    )
