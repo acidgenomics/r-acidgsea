@@ -1,4 +1,4 @@
-## acidgsea 0.5.0 (2020-10-10)
+## AcidGSEA 0.5.0 (2020-10-10)
 
 ### Major changes
 

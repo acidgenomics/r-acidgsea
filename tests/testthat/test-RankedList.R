@@ -3,7 +3,7 @@ context("RankedList")
 values <- eval(methodFormals(
     f = "RankedList",
     signature = "DESeqAnalysis",
-    package = "acidgsea"
+    package = "AcidGSEA"
 )[["value"]])
 test_that("DESeqAnalysis", {
     for (value in values) {
