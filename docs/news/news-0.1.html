@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Version 0.1 • acidgsea</title>
+<title>Version 0.1 • AcidGSEA</title>
 
 
 <!-- jquery -->
@@ -72,8 +72,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <a class="navbar-link" href="../index.html">AcidGSEA</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -91,8 +91,17 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<li>
-  <a href="../articles/acidgsea.html">Get started</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/acidgsea.html">acidgsea</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -103,7 +112,7 @@
   </a>
 </li>
 <li>
-  <a href="https://github.com/acidgenomics/acidgsea/">
+  <a href="https://github.com/acidgenomics/AcidGSEA/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -148,9 +157,9 @@
     <div id="pfgsea-012-2019-04-10" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-012-2019-04-10" class="anchor"></a>pfgsea 0.1.2 (2019-04-10)</h2>
-<div id="major-changes-9" class="section level3">
+<div id="major-changes-10" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-9" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-10" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Deleted <code>list</code> to <code>FGSEAList</code> coercion method.</li>
 </ul>
@@ -216,9 +225,9 @@
 <code>plotEnrichedUpset</code>: Utility function that makes it easy to compare enrichment groups across contrasts, via an UpSet plot.</li>
 </ul>
 </div>
-<div id="major-changes-8" class="section level3">
+<div id="major-changes-9" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-8" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-9" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Added <code>combine</code> method support for <code>FGSEAList</code>, allowing us to easily combine GSEA results from multiple datasets. Primarily intended for downstream visualization using an UpSet plot (see <code>plotEnrichedUpset</code>).</li>
 </ul>
@@ -234,9 +243,9 @@
     <div id="pfgsea-017-2019-04-30" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-017-2019-04-30" class="anchor"></a>pfgsea 0.1.7 (2019-04-30)</h2>
-<div id="major-changes-7" class="section level3">
+<div id="major-changes-8" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-7" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-8" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Reworked language to use “collection” consistently instead of mixing/matching “geneSet” and “pathway”, which isn’t appropriate. Relevant function arguments have been updated to reflect this change.</li>
 <li>Now exporting <code>collectionNames</code> instead of <code>pathwayNames</code>.</li>
@@ -308,9 +317,9 @@
     <div id="pfgsea-0113-2019-08-28" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-0113-2019-08-28" class="anchor"></a>pfgsea 0.1.13 (2019-08-28)</h2>
-<div id="major-changes-6" class="section level3">
+<div id="major-changes-7" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-6" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-7" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Reworked internal code to no longer depend on dplyr.</li>
 <li>Improved internal handling using <code>DataFrame</code> rather than <code>data.table</code>.</li>
@@ -341,9 +350,9 @@
 <code>plotCounts</code>, <code>plotHeatmap</code>: Added initial <code>FGSEAList</code> method support.</li>
 </ul>
 </div>
-<div id="major-changes-5" class="section level3">
+<div id="major-changes-6" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-5" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-6" class="anchor"></a>Major changes</h3>
 <ul>
 <li>
 <code>plotGSEATable</code>: Made defunct, since this visualization doesn’t render very reliably in R Markdown output. Consider using a heatmap approach instead.</li>

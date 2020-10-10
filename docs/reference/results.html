@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Results — results • acidgsea</title>
+<title>Results — results • AcidGSEA</title>
 
 
 <!-- jquery -->
@@ -73,8 +73,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
+        <a class="navbar-link" href="../index.html">AcidGSEA</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -92,8 +92,17 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<li>
-  <a href="../articles/acidgsea.html">Get started</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/acidgsea.html">acidgsea</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -104,7 +113,7 @@
   </a>
 </li>
 <li>
-  <a href="https://github.com/acidgenomics/acidgsea/">
+  <a href="https://github.com/acidgenomics/AcidGSEA/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -123,7 +132,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Results</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/results-methods.R'><code>R/results-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/AcidGSEA/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/AcidGSEA/blob/master/R/results-methods.R'><code>R/results-methods.R</code></a></small>
     <div class="hidden name"><code>results.Rd</code></div>
     </div>
 
@@ -180,43 +189,43 @@ Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></cod
 </div><div class='output co'>#&gt; DataFrame with 17 rows and 8 columns
 #&gt;                                pathway      pval      padj        es       nes
 #&gt;                            &lt;character&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt; &lt;numeric&gt;
-#&gt; 1              HALLMARK_G2M_CHECKPOINT  0.302632  0.643092 -0.372957 -1.111939
-#&gt; 2                   HALLMARK_APOPTOSIS  0.217949  0.617521  0.405084  1.205317
-#&gt; 3     HALLMARK_ESTROGEN_RESPONSE_EARLY  0.032967  0.560440  0.528277  1.571874
-#&gt; 4      HALLMARK_ESTROGEN_RESPONSE_LATE  0.204380  0.617521  0.400578  1.243653
-#&gt; 5   HALLMARK_INTERFERON_GAMMA_RESPONSE  0.680222  0.913607  0.291066  0.839119
+#&gt; 1              HALLMARK_G2M_CHECKPOINT  0.440367  0.799746 -0.338703 -0.996549
+#&gt; 2                   HALLMARK_APOPTOSIS  0.852050  0.965657  0.252539  0.716722
+#&gt; 3     HALLMARK_ESTROGEN_RESPONSE_EARLY  0.360544  0.799746 -0.349993 -1.051832
+#&gt; 4      HALLMARK_ESTROGEN_RESPONSE_LATE  0.517483  0.799746  0.323846  0.966437
+#&gt; 5   HALLMARK_INTERFERON_GAMMA_RESPONSE  0.352246  0.799746 -0.372488 -1.081297
 #&gt; ...                                ...       ...       ...       ...       ...
-#&gt; 13                 HALLMARK_GLYCOLYSIS  0.869963  0.913607  0.223793  0.731462
-#&gt; 14            HALLMARK_HEME_METABOLISM  0.125230  0.617521  0.402602  1.296562
-#&gt; 15        HALLMARK_IL2_STAT5_SIGNALING  0.434498  0.820718 -0.336589 -1.030554
-#&gt; 16        HALLMARK_ALLOGRAFT_REJECTION  0.149123  0.617521 -0.428709 -1.278158
-#&gt; 17          HALLMARK_KRAS_SIGNALING_UP  0.828508  0.913607 -0.233739 -0.751857
+#&gt; 13                 HALLMARK_GLYCOLYSIS 0.6346154  0.877294 -0.270454 -0.895799
+#&gt; 14            HALLMARK_HEME_METABOLISM 0.2376068  0.799746  0.380089  1.176135
+#&gt; 15        HALLMARK_IL2_STAT5_SIGNALING 0.3672055  0.799746 -0.346874 -1.059756
+#&gt; 16        HALLMARK_ALLOGRAFT_REJECTION 0.6903670  0.877294 -0.281502 -0.828250
+#&gt; 17          HALLMARK_KRAS_SIGNALING_UP 0.0675991  0.799746 -0.444516 -1.434232
 #&gt;     nMoreExtreme      size
 #&gt;        &lt;numeric&gt; &lt;integer&gt;
-#&gt; 1            137        16
-#&gt; 2            118        17
-#&gt; 3             17        17
-#&gt; 4            111        20
-#&gt; 5            367        15
+#&gt; 1            191        16
+#&gt; 2            477        17
+#&gt; 3            158        17
+#&gt; 4            295        20
+#&gt; 5            148        15
 #&gt; ...          ...       ...
-#&gt; 13           474        24
-#&gt; 14            67        23
-#&gt; 15           198        18
-#&gt; 16            67        16
-#&gt; 17           371        21
-#&gt;                                                      leadingEdge
-#&gt;                                                      &lt;character&gt;
-#&gt; 1                     ARID4A, MNAT1, TACC3, SLC12A2, FOXN3, UPF1
-#&gt; 2                                   FAS, BID, BRCA1, CASP8, CD44
-#&gt; 3             CALCR, ALDH3B1, MED24, CYP26B1, FOXC1, CD44, RRP12
-#&gt; 4                 CALCR, ALDH3B1, CYP26B1, CACNA2D2, FOXC1, CD44
-#&gt; 5                     FAS, PFKP, CASP8, CFH, EIF2AK2, LCP2, CD38
-#&gt; ...                                                          ...
-#&gt; 13                                 PFKP, MED24, PSMC4, ME1, CD44
-#&gt; 14               RBM5, SLC4A1, LAMP2, DCUN1D1, CDC27, AGPAT4, XK
-#&gt; 15                                          CAPG, IKZF2, TNFRSF9
-#&gt; 16                                       CAPG, CD4, ITGAL, BCAT1
-#&gt; 17  GABRA3, TNFRSF1B, SEMA3B, FLT4, TFPI, HDAC9, ADGRA2, SDCCAG8</div></pre>
+#&gt; 13           263        24
+#&gt; 14           138        23
+#&gt; 15           158        18
+#&gt; 16           300        16
+#&gt; 17            28        21
+#&gt;                                                           leadingEdge
+#&gt;                                                           &lt;character&gt;
+#&gt; 1                                             POLQ, DBF4, CUL1, HMGB3
+#&gt; 2                                    TNFRSF12A, RETSAT, CREBBP, BRCA1
+#&gt; 3                                                      ELOVL5, IL17RB
+#&gt; 4         CD9, PTGER3, LAMC2, CALCR, LTF, FKBP4, PRKAR2B, CCN5, FOXC1
+#&gt; 5   MTHFD2, FAS, SLAMF7, CD74, CASP8, LAP3, OGFR, LCP2, CD38, EIF2AK2
+#&gt; ...                                                               ...
+#&gt; 13                             PHKA2, RRAGD, SLC25A13, ME1, DCN, GCLC
+#&gt; 14    DCUN1D1, FOXJ2, PIGQ, KDM7A, ATP6V0A1, SLC4A1, E2F2, RBM5, GCLM
+#&gt; 15                     CAPG, IKZF2, RRAGD, TRAF1, KLF6, PLPP1, IFNGR1
+#&gt; 16                          CAPG, FAS, HDAC9, IFNGR1, FGR, CD74, NOS2
+#&gt; 17        TMEM176A, ADGRA2, GABRA3, FLT4, USH1C, TRAF1, HDAC9, SEMA3B</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
