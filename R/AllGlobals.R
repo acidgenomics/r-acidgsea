@@ -2,7 +2,7 @@ globalVariables(".")
 
 
 
-.version <- packageVersion("acidgsea")
+.version <- packageVersion(packageName())
 
 #' acidgsea test data URL
 #' @keywords internal
