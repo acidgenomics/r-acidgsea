@@ -4,7 +4,7 @@
 \alias{Gene2Symbol}
 \alias{Gene2Symbol,RankedList-method}
 \alias{Gene2Symbol,FGSEAList-method}
-\title{Gene-to-symbol mappings}
+\title{Objects exported from other packages}
 \usage{
 Gene2Symbol(object, ...)
 
@@ -17,11 +17,35 @@ Gene2Symbol(object, ...)
 
 \item{...}{Additional arguments.}
 }
-\value{
-\code{Gene2Symbol}.
-}
 \description{
-Gene-to-symbol mappings
+These objects are imported from other packages. Follow the links
+below to see their documentation.
+
+\describe{
+  \item{AcidBase}{\code{\link[AcidBase]{barcodePattern}}, \code{\link[AcidBase]{basenameSansExt}}, \code{\link[AcidBase]{compress}}, \code{\link[AcidBase:extPattern]{compressExtPattern}}, \code{\link[AcidBase:compress]{decompress}}, \code{\link[AcidBase]{dots}}, \code{\link[AcidBase]{extPattern}}, \code{\link[AcidBase]{fileExt}}, \code{\link[AcidBase]{formalsList}}, \code{\link[AcidBase]{genomeMetadataNames}}, \code{\link[AcidBase]{initDir}}, \code{\link[AcidBase]{lanePattern}}, \code{\link[AcidBase]{matchArgsToDoCall}}, \code{\link[AcidBase]{metadataBlacklist}}, \code{\link[AcidBase:methodDefinition]{methodFormals}}, \code{\link[AcidBase:methodDefinition]{methodFunction}}, \code{\link[AcidBase]{metricsCols}}, \code{\link[AcidBase]{pasteURL}}, \code{\link[AcidBase]{printString}}, \code{\link[AcidBase]{realpath}}, \code{\link[AcidBase]{requireNamespaces}}, \code{\link[AcidBase]{showSlotInfo}}, \code{\link[AcidBase]{standardizeCall}}, \code{\link[AcidBase]{updateMessage}}}
+
+  \item{AcidGenomes}{\code{\link[AcidGenomes]{Ensembl2Entrez}}, \code{\link[AcidGenomes:Ensembl2Entrez]{Entrez2Ensembl}}, \code{\link[AcidGenomes]{Gene2Symbol}}, \code{\link[AcidGenomes]{HGNC}}, \code{\link[AcidGenomes]{HGNC2Ensembl}}, \code{\link[AcidGenomes]{MGI2Ensembl}}, \code{\link[AcidGenomes]{Tx2Gene}}, \code{\link[AcidGenomes:makeGRangesFromEnsembl]{annotable}}, \code{\link[AcidGenomes:currentGenomeVersion]{currentEnsemblVersion}}, \code{\link[AcidGenomes:currentGenomeVersion]{currentFlyBaseVersion}}, \code{\link[AcidGenomes:currentGenomeVersion]{currentGencodeVersion}}, \code{\link[AcidGenomes:currentGenomeVersion]{currentRefSeqVersion}}, \code{\link[AcidGenomes:currentGenomeVersion]{currentWormBaseVersion}}, \code{\link[AcidGenomes]{detectOrganism}}, \code{\link[AcidGenomes]{emptyRanges}}, \code{\link[AcidGenomes]{geneNames}}, \code{\link[AcidGenomes]{geneSynonyms}}, \code{\link[AcidGenomes]{getEnsDb}}, \code{\link[AcidGenomes]{importTx2Gene}}, \code{\link[AcidGenomes]{makeGRangesFromEnsDb}}, \code{\link[AcidGenomes]{makeGRangesFromEnsembl}}, \code{\link[AcidGenomes]{makeGRangesFromGFF}}, \code{\link[AcidGenomes:makeGRangesFromGFF]{makeGRangesFromGTF}}, \code{\link[AcidGenomes:makeGene2Symbol]{makeGene2SymbolFromEnsDb}}, \code{\link[AcidGenomes:makeGene2Symbol]{makeGene2SymbolFromEnsembl}}, \code{\link[AcidGenomes:makeGene2Symbol]{makeGene2SymbolFromGFF}}, \code{\link[AcidGenomes:makeGene2Symbol]{makeGene2SymbolFromGTF}}, \code{\link[AcidGenomes:makeProtein2Gene]{makeProtein2GeneFromEnsembl}}, \code{\link[AcidGenomes:makeTx2Gene]{makeTx2GeneFromEnsDb}}, \code{\link[AcidGenomes:makeTx2Gene]{makeTx2GeneFromEnsembl}}, \code{\link[AcidGenomes]{makeTx2GeneFromFASTA}}, \code{\link[AcidGenomes:makeTx2Gene]{makeTx2GeneFromGFF}}, \code{\link[AcidGenomes:makeTx2Gene]{makeTx2GeneFromGTF}}, \code{\link[AcidGenomes]{mapEnsemblReleaseToURL}}, \code{\link[AcidGenomes]{mapHumanOrthologs}}, \code{\link[AcidGenomes]{mapUCSCBuildToEnsembl}}, \code{\link[AcidGenomes]{organism}}, \code{\link[AcidGenomes:organism]{organism<-}}, \code{\link[AcidGenomes:stripTranscriptVersions]{stripGeneVersions}}, \code{\link[AcidGenomes]{stripTranscriptVersions}}}
+
+  \item{AcidPlyr}{\code{\link[AcidPlyr:join]{antiJoin}}, \code{\link[AcidPlyr:join]{fullJoin}}, \code{\link[AcidPlyr:join]{innerJoin}}, \code{\link[AcidPlyr:join]{leftJoin}}, \code{\link[AcidPlyr:mutate]{mutateAll}}, \code{\link[AcidPlyr:mutate]{mutateAt}}, \code{\link[AcidPlyr:mutate]{mutateIf}}, \code{\link[AcidPlyr:join]{rightJoin}}, \code{\link[AcidPlyr:select]{selectIf}}, \code{\link[AcidPlyr:join]{semiJoin}}, \code{\link[AcidPlyr]{splitByLevel}}, \code{\link[AcidPlyr:mutate]{transmuteAt}}, \code{\link[AcidPlyr:mutate]{transmuteIf}}}
+
+  \item{GenomicRanges}{\code{\link[GenomicRanges:GRanges-class]{GRanges}}, \code{\link[GenomicRanges:GRangesList-class]{GRangesList}}}
+
+  \item{IRanges}{\code{\link[IRanges:IRanges-constructor]{IRanges}}}
+
+  \item{magrittr}{\code{\link[magrittr:exposition]{\%$\%}}, \code{\link[magrittr:compound]{\%<>\%}}, \code{\link[magrittr:pipe]{\%>\%}}, \code{\link[magrittr:tee]{\%T>\%}}}
+
+  \item{pipette}{\code{\link[pipette:coerce-SummarizedExperiment]{as.SummarizedExperiment}}, \code{\link[pipette:coerce-data.frame]{as.data.frame}}, \code{\link[pipette:coerce-data.table]{as.data.table}}, \code{\link[pipette:coerce-tbl_df]{as_tibble}}, \code{\link[pipette]{assignAndSaveData}}, \code{\link[pipette]{atomize}}, \code{\link[pipette]{cacheURL}}, \code{\link[pipette:coerce-list]{coerceToList}}, \code{\link[pipette]{decode}}, \code{\link[pipette]{encode}}, \code{\link[pipette]{export}}, \code{\link[pipette]{factorize}}, \code{\link[pipette]{getURLDirList}}, \code{\link[pipette]{import}}, \code{\link[pipette]{loadData}}, \code{\link[pipette]{loadDataAsName}}, \code{\link[pipette]{loadRemoteData}}, \code{\link[pipette]{localOrRemoteFile}}, \code{\link[pipette]{metadata2}}, \code{\link[pipette:metadata2]{metadata2<-}}, \code{\link[pipette]{naStrings}}, \code{\link[pipette]{removeNA}}, \code{\link[pipette]{sanitizeNA}}, \code{\link[pipette]{sanitizePercent}}, \code{\link[pipette]{saveData}}, \code{\link[pipette]{transmit}}}
+
+  \item{S4Vectors}{\code{\link[S4Vectors:DataFrame-class]{DataFrame}}, \code{\link[S4Vectors:SimpleList-class]{SimpleList}}, \code{\link[S4Vectors:Vector-class]{mcols}}, \code{\link[S4Vectors:Vector-class]{mcols<-}}, \code{\link[S4Vectors:Annotated-class]{metadata}}, \code{\link[S4Vectors:Annotated-class]{metadata<-}}}
+
+  \item{SingleCellExperiment}{\code{\link[SingleCellExperiment]{reducedDims}}, \code{\link[SingleCellExperiment:reducedDims]{reducedDims<-}}}
+
+  \item{SummarizedExperiment}{\code{\link[SummarizedExperiment:SummarizedExperiment-class]{assay}}, \code{\link[SummarizedExperiment:SummarizedExperiment-class]{assay<-}}, \code{\link[SummarizedExperiment:SummarizedExperiment-class]{assayNames}}, \code{\link[SummarizedExperiment:SummarizedExperiment-class]{assays}}, \code{\link[SummarizedExperiment:SummarizedExperiment-class]{assays<-}}, \code{\link[SummarizedExperiment:SummarizedExperiment-class]{colData}}, \code{\link[SummarizedExperiment:SummarizedExperiment-class]{colData<-}}, \code{\link[SummarizedExperiment:SummarizedExperiment-class]{rowData}}, \code{\link[SummarizedExperiment:SummarizedExperiment-class]{rowData<-}}, \code{\link[SummarizedExperiment:RangedSummarizedExperiment-class]{rowRanges}}, \code{\link[SummarizedExperiment:RangedSummarizedExperiment-class]{rowRanges<-}}}
+
+  \item{syntactic}{\code{\link[syntactic:deprecated]{camel}}, \code{\link[syntactic]{capitalize}}, \code{\link[syntactic:deprecated]{dotted}}, \code{\link[syntactic:deprecated]{kebab}}, \code{\link[syntactic]{kebabCase}}, \code{\link[syntactic]{makeDimnames}}, \code{\link[syntactic]{makeLabel}}, \code{\link[syntactic]{makeNames}}, \code{\link[syntactic]{makeTitle}}, \code{\link[syntactic]{makeWords}}, \code{\link[syntactic:deprecated]{snake}}, \code{\link[syntactic:deprecated]{upperCamel}}}
+
+  \item{tibble}{\code{\link[tibble:rownames]{column_to_rownames}}, \code{\link[tibble:rownames]{rownames_to_column}}, \code{\link[tibble]{tibble}}}
+}
 }
 \note{
 Updated 2020-09-23.
@@ -29,7 +53,4 @@ Updated 2020-09-23.
 \examples{
 data(fgsea)
 Gene2Symbol(fgsea)
-}
-\seealso{
-\code{\link[basejump:makeGene2Symbol]{makeGene2Symbol()}}.
 }

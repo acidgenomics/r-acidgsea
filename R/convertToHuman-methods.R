@@ -1,5 +1,5 @@
 #' @name convertToHuman
-#' @inherit acidgenerics::convertToHuman
+#' @inherit AcidGenerics::convertToHuman
 #' @note Updated 2020-09-21.
 #'
 #' @inheritParams params
@@ -21,7 +21,7 @@ NULL
 
 #' @rdname convertToHuman
 #' @name convertToHuman
-#' @importFrom acidgenerics convertToHuman
+#' @importFrom AcidGenerics convertToHuman
 #' @usage convertToHuman(object, ...)
 #' @export
 NULL

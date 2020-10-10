@@ -12,8 +12,8 @@ plotGeneSet(object, ...)
   collection,
   contrast,
   set,
-  colors = c(line = "black", min = acidplots::purpleOrange(n = 2L)[[1L]], max =
-    acidplots::purpleOrange(n = 2L)[[2L]], ticks = "black", yintercept = "black")
+  colors = c(line = "black", min = AcidPlots::purpleOrange(n = 2L)[[1L]], max =
+    AcidPlots::purpleOrange(n = 2L)[[2L]], ticks = "black", yintercept = "black")
 )
 }
 \arguments{

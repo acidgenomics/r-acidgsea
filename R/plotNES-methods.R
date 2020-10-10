@@ -1,9 +1,9 @@
 #' @name plotNES
-#' @inherit acidgenerics::plotNES
+#' @inherit AcidGenerics::plotNES
 #' @note Updated 2020-10-01.
 #'
 #' @inheritParams params
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @seealso Inspired by example in Stephen Turner's
@@ -22,7 +22,7 @@ NULL
 
 #' @rdname plotNES
 #' @name plotNES
-#' @importFrom acidgenerics plotNES
+#' @importFrom AcidGenerics plotNES
 #' @usage plotNES(object, ...)
 #' @export
 NULL

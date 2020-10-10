@@ -1,5 +1,5 @@
 #' @name geneSetNames
-#' @inherit acidgenerics::geneSetNames
+#' @inherit AcidGenerics::geneSetNames
 #' @note Updated 2020-10-01.
 #'
 #' @inheritParams params
@@ -14,7 +14,7 @@ NULL
 
 #' @rdname geneSetNames
 #' @name geneSetNames
-#' @importFrom acidgenerics geneSetNames
+#' @importFrom AcidGenerics geneSetNames
 #' @usage geneSetNames(object, ...)
 #' @export
 NULL

@@ -1,9 +1,9 @@
 #' @name plotLFC
-#' @inherit acidgenerics::plotLFC
+#' @inherit AcidGenerics::plotLFC
 #' @note Updated 2020-10-01.
 #'
 #' @inheritParams params
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param contrast `character` or `NULL`.
 #'   Contrast name.
 #'   If `NULL`, plot all contrasts.
@@ -24,7 +24,7 @@ NULL
 
 #' @rdname plotLFC
 #' @name plotLFC
-#' @importFrom acidgenerics plotLFC
+#' @importFrom AcidGenerics plotLFC
 #' @usage plotLFC(object, ...)
 #' @export
 NULL
