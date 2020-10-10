@@ -2,9 +2,9 @@
 ## Updated 2020-09-26.
 
 library(usethis)
-library(basejump)       # 0.12.15
+library(basejump)       # 0.13.2
 library(DESeq2)         # 1.28.1
-library(DESeqAnalysis)  # 0.3.6
+library(DESeqAnalysis)  # 0.3.9
 
 ## Restrict to 3 MB.
 limit <- structure(3e6, class = "object_size")
@@ -14,7 +14,7 @@ gr <- head(gr, n = 1000L)
 gr <- droplevels(gr)
 mcols(gr) <- mcols(gr)[c("geneID", "geneName")]
 object.size(gr)
-## 336128 bytes
+## 336296 bytes
 
 ## DESeqDataSet
 dds <- makeExampleDESeqDataSet(n = length(gr), m = 12L)
@@ -29,7 +29,7 @@ dds$treatment
 ##  [1] C C C D D D C C C D D D
 ## Levels: C D
 object.size(dds)
-## 938352 bytes
+## 938520 bytes
 
 ## DESeqTransform
 dt <- varianceStabilizingTransformation(dds)
@@ -63,7 +63,7 @@ deseq <- DESeqAnalysis(
     lfcShrink = NULL
 )
 object.size(deseq)
-## 1962104 bytes
+## 1962440 bytes
 
 ## Just using hallmark in minimal example.
 geneSetFiles <- system.file(
