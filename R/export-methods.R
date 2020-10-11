@@ -1,5 +1,5 @@
 #' @name export
-#' @inherit acidgenerics::export
+#' @inherit AcidGenerics::export
 #' @note Updated 2020-09-23.
 #'
 #' @section On-disk structure:
@@ -38,15 +38,6 @@
 #' )
 #' sort(list.files(file.path("example", "fgsea")))
 #' unlink("example", recursive = TRUE)
-NULL
-
-
-
-#' @rdname export
-#' @name export
-#' @importFrom acidgenerics export
-#' @usage export(object, ...)
-#' @export
 NULL
 
 

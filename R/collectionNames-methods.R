@@ -1,5 +1,5 @@
 #' @name collectionNames
-#' @inherit acidgenerics::collectionNames
+#' @inherit AcidGenerics::collectionNames
 #' @note Updated 2020-09-17.
 #' @param ... Additional arguments.
 #' @examples
@@ -7,22 +7,6 @@
 #'
 #' ## FGSEAList ====
 #' collectionNames(fgsea)
-NULL
-
-
-
-#' @rdname collectionNames
-#' @name collectionNames
-#' @importFrom acidgenerics collectionNames
-#' @usage collectionNames(object, ...)
-#' @export
-NULL
-
-#' @rdname collectionNames
-#' @name collectionNames<-
-#' @importFrom acidgenerics collectionNames<-
-#' @usage collectionNames(object, ...) <- value
-#' @export
 NULL
 
 

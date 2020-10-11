@@ -2,7 +2,7 @@
 #' @inherit BiocGenerics::combine return title
 #' @note Updated 2020-09-17.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
 #' @examples
@@ -15,15 +15,6 @@
 #' contrastNames(y) <- paste0("y_", contrastNames(y))
 #' c <- combine(x, y)
 #' c
-NULL
-
-
-
-#' @rdname combine
-#' @name combine
-#' @importFrom BiocGenerics combine
-#' @usage combine(x, y, ...)
-#' @export
 NULL
 
 

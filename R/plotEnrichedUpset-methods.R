@@ -1,8 +1,8 @@
 #' @name plotEnrichedUpset
-#' @inherit acidgenerics::plotEnrichedUpset
+#' @inherit AcidGenerics::plotEnrichedUpset
 #' @note Updated 2020-08-05.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @inheritParams params
 #' @param ... Additional arguments.
 #'
@@ -12,15 +12,6 @@
 #' ## FGSEAList ====
 #' alphaThreshold(fgsea) <- 0.9
 #' plotEnrichedUpset(fgsea, collection = "h")
-NULL
-
-
-
-#' @rdname plotEnrichedUpset
-#' @name plotEnrichedUpset
-#' @importFrom acidgenerics plotEnrichedUpset
-#' @usage plotEnrichedUpset(object, ...)
-#' @export
 NULL
 
 

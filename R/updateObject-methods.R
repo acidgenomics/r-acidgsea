@@ -3,7 +3,7 @@
 #' @inherit BiocGenerics::updateObject
 #' @note Updated 2020-09-23.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param alphaThreshold `number(1)`.
 #'   Alpha level used for GSEA.
 #'   Note that this is not necessarily the alpha level used to generate
@@ -22,15 +22,6 @@
 #'
 #' ## FGSEAList ====
 #' updateObject(fgsea)
-NULL
-
-
-
-#' @rdname updateObject
-#' @name updateObject
-#' @importFrom BiocGenerics updateObject
-#' @usage updateObject(object, ..., verbose = FALSE)
-#' @export
 NULL
 
 

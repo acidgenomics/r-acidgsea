@@ -1,5 +1,5 @@
 #' @name topTables
-#' @inherit acidgenerics::topTables
+#' @inherit AcidGenerics::topTables
 #' @note Updated 2020-09-18.
 #'
 #' @description Top tables of significantly enriched pathways.
@@ -19,15 +19,6 @@
 #' ## FGSEAList ====
 #' alphaThreshold(fgsea) <- 0.9
 #' topTables(fgsea, collection = "h")
-NULL
-
-
-
-#' @rdname topTables
-#' @name topTables
-#' @importFrom acidgenerics topTables
-#' @usage topTables(object, ...)
-#' @export
 NULL
 
 

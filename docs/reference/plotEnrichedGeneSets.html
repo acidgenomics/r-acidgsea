@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot enriched gene sets — plotEnrichedGeneSets • acidgsea</title>
+<title>Plot enriched gene sets — plotEnrichedGeneSets • AcidGSEA</title>
 
 
 <!-- jquery -->
@@ -73,8 +73,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <a class="navbar-link" href="../index.html">AcidGSEA</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -92,8 +92,17 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<li>
-  <a href="../articles/acidgsea.html">Get started</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/acidgsea.html">acidgsea</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -104,7 +113,7 @@
   </a>
 </li>
 <li>
-  <a href="https://github.com/acidgenomics/acidgsea/">
+  <a href="https://github.com/acidgenomics/AcidGSEA/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -123,7 +132,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot enriched gene sets</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/plotEnrichedGeneSets-methods.R'><code>R/plotEnrichedGeneSets-methods.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/AcidGSEA/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/AcidGSEA/blob/master/R/plotEnrichedGeneSets-methods.R'><code>R/plotEnrichedGeneSets-methods.R</code></a></small>
     <div class="hidden name"><code>plotEnrichedGeneSets.Rd</code></div>
     </div>
 
@@ -131,16 +140,16 @@
     <p>Plot enriched gene sets</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plotEnrichedGeneSets</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>plotEnrichedGeneSets</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>plotEnrichedGeneSets</span>(
-  <span class='kw'>object</span>,
-  <span class='kw'>collection</span>,
-  direction = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"both"</span>, <span class='st'>"up"</span>, <span class='st'>"down"</span>),
-  n = <span class='fl'>10L</span>,
-  headerLevel = <span class='fl'>3L</span>
-)</pre>
+<span class='fu'>plotEnrichedGeneSets</span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  <span class='va'>collection</span>,
+  direction <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"both"</span>, <span class='st'>"up"</span>, <span class='st'>"down"</span><span class='op'>)</span>,
+  n <span class='op'>=</span> <span class='fl'>10L</span>,
+  headerLevel <span class='op'>=</span> <span class='fl'>3L</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -188,27 +197,27 @@ Markdown header level.</p></td>
     <div class='dont-index'><p><code><a href='plotGeneSet.html'>plotGeneSet()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
-<span class='fu'><a href='alphaThreshold.html'>alphaThreshold</a></span>(<span class='kw'>fgsea</span>) <span class='op'>&lt;-</span> <span class='fl'>0.9</span>
-<span class='fu'>plotEnrichedGeneSets</span>(<span class='kw'>fgsea</span>, collection = <span class='st'>"h"</span>, n = <span class='fl'>1L</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>fgsea</span><span class='op'>)</span>
+<span class='fu'><a href='alphaThreshold.html'>alphaThreshold</a></span><span class='op'>(</span><span class='va'>fgsea</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fl'>0.9</span>
+<span class='fu'>plotEnrichedGeneSets</span><span class='op'>(</span><span class='va'>fgsea</span>, collection <span class='op'>=</span> <span class='st'>"h"</span>, n <span class='op'>=</span> <span class='fl'>1L</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ### condition_B_vs_A {.tabset}
-#&gt; </div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> 6 upregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 3 downregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='output co'>#&gt; 
+#&gt; </div><div class='output co'>#&gt; <span class='message'><span style='color: #00BBBB;'>ℹ</span><span> 5 upregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 9 downregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='output co'>#&gt; 
 #&gt; 
-#&gt; #### HALLMARK_ESTROGEN_RESPONSE_EARLY
+#&gt; #### HALLMARK_APICAL_JUNCTION
 #&gt; </div><div class='img'><img src='plotEnrichedGeneSets-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
-#&gt; #### HALLMARK_ALLOGRAFT_REJECTION
+#&gt; #### HALLMARK_KRAS_SIGNALING_UP
 #&gt; </div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; ### treatment_D_vs_C {.tabset}
-#&gt; </div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 7 upregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 3 downregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='img'><img src='plotEnrichedGeneSets-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; </div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 6 upregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BBBB;'>ℹ</span><span> 8 downregulated gene sets detected (alpha &lt; 0.9; nes &gt; 0).</span></div><div class='img'><img src='plotEnrichedGeneSets-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
-#&gt; #### HALLMARK_APICAL_JUNCTION
+#&gt; #### HALLMARK_ESTROGEN_RESPONSE_LATE
 #&gt; </div><div class='img'><img src='plotEnrichedGeneSets-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
-#&gt; #### HALLMARK_IL2_STAT5_SIGNALING
+#&gt; #### HALLMARK_KRAS_SIGNALING_UP
 #&gt; </div><div class='img'><img src='plotEnrichedGeneSets-4.png' alt='' width='700' height='433' /></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

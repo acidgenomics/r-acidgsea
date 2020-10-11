@@ -1,14 +1,14 @@
 #' @importClassesFrom DESeqAnalysis DESeqAnalysis
 #' @importMethodsFrom DESeqAnalysis coerce plotCounts
 #'
+#' @importFrom AcidBase formalsList
+#' @importFrom AcidPlots acid_theme_light plotUpset
 #' @importFrom BiocParallel bplapply bpparam
 #' @importFrom DESeqAnalysis DESeqAnalysis contrastName contrastSamples
 #' @importFrom IRanges SplitDataFrameList unsplit
 #' @importFrom S4Vectors DataFrame SimpleList complete.cases head lapply mcols
 #'   mcols<- metadata metadata<- na.omit order split tail unique
 #' @importFrom SummarizedExperiment rowRanges rowRanges<-
-#' @importFrom acidbase formalsList
-#' @importFrom acidplots acid_theme_light plotUpset
 #' @importFrom basejump Gene2Symbol aggregateRows as_tibble camelCase export
 #'   import initDir leftJoin makeNames mapGenesToRownames markdownHeader
 #'   matchArgsToDoCall matchHumanOrthologs melt selectIf showHeader showSlotInfo
@@ -29,5 +29,5 @@
 #' @importFrom rlang !! sym
 #' @importFrom sessioninfo session_info
 #' @importFrom stats reorder
-#' @importFrom utils globalVariables
+#' @importFrom utils packageName packageVersion
 NULL

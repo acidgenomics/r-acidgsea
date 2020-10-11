@@ -1,5 +1,5 @@
 #' @name leadingEdge
-#' @inherit acidgenerics::leadingEdge
+#' @inherit AcidGenerics::leadingEdge
 #' @note Updated 2020-09-21.
 #' @inheritParams params
 #' @param ... Additional arguments.
@@ -11,15 +11,6 @@
 #'     collection = "h",
 #'     set = "HALLMARK_P53_PATHWAY"
 #' )
-NULL
-
-
-
-#' @rdname leadingEdge
-#' @name leadingEdge
-#' @importFrom acidgenerics leadingEdge
-#' @usage leadingEdge(object, ...)
-#' @export
 NULL
 
 

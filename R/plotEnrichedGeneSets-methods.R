@@ -1,8 +1,8 @@
 #' @name plotEnrichedGeneSets
-#' @inherit acidgenerics::plotEnrichedGeneSets
+#' @inherit AcidGenerics::plotEnrichedGeneSets
 #' @note Updated 2020-09-21.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @inheritParams params
 #' @param ... Additional arguments.
 #'
@@ -14,15 +14,6 @@
 #' data(fgsea)
 #' alphaThreshold(fgsea) <- 0.9
 #' plotEnrichedGeneSets(fgsea, collection = "h", n = 1L)
-NULL
-
-
-
-#' @rdname plotEnrichedGeneSets
-#' @name plotEnrichedGeneSets
-#' @importFrom acidgenerics plotEnrichedGeneSets
-#' @usage plotEnrichedGeneSets(object, ...)
-#' @export
 NULL
 
 

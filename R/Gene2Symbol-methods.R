@@ -1,20 +1,11 @@
 #' @name Gene2Symbol
-#' @inherit basejump::Gene2Symbol
+#' @inherit AcidGenomes::Gene2Symbol
 #' @note Updated 2020-09-23.
 #' @inheritParams params
 #' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
 #' Gene2Symbol(fgsea)
-NULL
-
-
-
-#' @rdname Gene2Symbol
-#' @name Gene2Symbol
-#' @importFrom basejump Gene2Symbol
-#' @usage Gene2Symbol(object, ...)
-#' @export
 NULL
 
 

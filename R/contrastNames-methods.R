@@ -1,5 +1,5 @@
 #' @name contrastNames
-#' @inherit acidgenerics::contrastNames
+#' @inherit AcidGenerics::contrastNames
 #' @note Updated 2020-03-18.
 #'
 #' @inheritParams params
@@ -10,22 +10,6 @@
 #'
 #' ## FGSEAList ====
 #' contrastNames(fgsea)
-NULL
-
-
-
-#' @rdname contrastNames
-#' @name contrastNames
-#' @importFrom acidgenerics contrastNames
-#' @usage contrastNames(object, ...)
-#' @export
-NULL
-
-#' @rdname contrastNames
-#' @name contrastNames<-
-#' @importFrom acidgenerics contrastNames<-
-#' @usage contrastNames(object, ...) <- value
-#' @export
 NULL
 
 

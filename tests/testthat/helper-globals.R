@@ -5,12 +5,12 @@ data(
 )
 data(
     matrix_lfc,
-    package = "acidtest",
+    package = "AcidTest",
     envir = environment()
 )
 data(
     fgsea,
-    package = "acidgsea",
+    package = "AcidGSEA",
     envir = environment()
 )
 

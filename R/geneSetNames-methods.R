@@ -1,11 +1,9 @@
-#' Gene set names
-#'
 #' @name geneSetNames
-#' @note Updated 2020-09-23.
+#' @inherit AcidGenerics::geneSetNames
+#' @note Updated 2020-10-01.
 #'
 #' @inheritParams params
-#'
-#' @return `character`.
+#' @param ... Additional arguments.
 #'
 #' @examples
 #' data(fgsea)

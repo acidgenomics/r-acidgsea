@@ -1,8 +1,3 @@
-#' @include RankedList-methods.R
-NULL
-
-
-
 #' Parameterized fast gene set enrichment analysis (GSEA)
 #'
 #' Extends the functionality of [fgsea::fgsea()].
@@ -12,7 +7,7 @@ NULL
 #'
 #' @inheritParams RankedList
 #' @inheritParams params
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @param nPerm `integer(1)`.
 #'   Number of permutations.
 #'   Minimial possible nominal *P* value is about 1/`nPerm`.
@@ -39,7 +34,7 @@ NULL
 #'     "7.0",
 #'     "msigdb_v7.0_GMTs",
 #'     "h.all.v7.0.symbols.gmt",
-#'     package = "acidgsea",
+#'     package = "AcidGSEA",
 #'     mustWork = TRUE
 #' )
 #' names(geneSetFiles) <- "h"
@@ -139,8 +134,7 @@ NULL
         new(Class = "FGSEAList", out)
     }
 
-formals(`FGSEAList,DESeqAnalysis`)[["value"]] <-
-    formals(`RankedList,DESeqAnalysis`)[["value"]]
+formals(`FGSEAList,DESeqAnalysis`)[["value"]] <- .rankedListValue
 
 
 

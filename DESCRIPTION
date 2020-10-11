@@ -1,9 +1,9 @@
-Package: acidgsea
+Package: AcidGSEA
 Title: Acid Genomics GSEA
 Description: Perform parameterized gene set enrichment analysis (GSEA)
     on multiple differential expression contrasts.
-Version: 0.4.0
-Date: 2020-09-26
+Version: 0.5.0
+Date: 2020-10-10
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -17,28 +17,28 @@ Authors@R: c(
     ))
 URL:
     https://acidgsea.acidgenomics.com/,
-    https://github.com/acidgenomics/acidgsea/
-BugReports: https://github.com/acidgenomics/acidgsea/issues/
+    https://github.com/acidgenomics/AcidGSEA/
+BugReports: https://github.com/acidgenomics/AcidGSEA/issues/
 License: GPL-3
 Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 4.0),
-    basejump (>= 0.12.15),
-    DESeqAnalysis (>= 0.3.8)
+    basejump (>= 0.13.2),
+    DESeqAnalysis (>= 0.3.9)
 Imports:
+    AcidBase (>= 0.2.3),
+    AcidGenerics (>= 0.4.0),
+    AcidPlots (>= 0.3.0),
     BiocGenerics,
     BiocParallel,
     IRanges,
     S4Vectors,
     SummarizedExperiment,
-    acidbase (>= 0.1.14),
-    acidgenerics (>= 0.3.12),
-    acidplots (>= 0.2.35),
     cli (>= 2.0),
     fgsea (>= 1.14),
     ggplot2 (>= 3.3),
-    goalie (>= 0.4.8),
+    goalie (>= 0.4.9),
     knitr (>= 1.25),
     methods,
     rlang (>= 0.4),
@@ -46,17 +46,10 @@ Imports:
     stats,
     utils
 Suggests:
+    AcidTest (>= 0.4.0),
     BiocStyle,
-    acidtest (>= 0.3.2),
     rmarkdown,
     testthat
-Remotes:
-    acidgenomics/DESeqAnalysis,
-    acidgenomics/acidgenerics,
-    acidgenomics/acidplots,
-    acidgenomics/acidtest,
-    acidgenomics/basejump,
-    acidgenomics/goalie
 biocViews:
     GeneExpression,
     GeneSetEnrichment,
@@ -64,39 +57,3 @@ biocViews:
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
-Collate: 
-    'AllClasses.R'
-    'AllGenerics.R'
-    'AllGlobals.R'
-    'DESeqAnalysis-methods.R'
-    'RankedList-methods.R'
-    'FGSEAList-methods.R'
-    'Gene2Symbol-methods.R'
-    'alphaThreshold-methods.R'
-    'collectionNames-methods.R'
-    'combine-methods.R'
-    'contrastNames-methods.R'
-    'convertToHuman-methods.R'
-    'data.R'
-    'deprecated.R'
-    'enrichedGeneSets-methods.R'
-    'export-methods.R'
-    'geneSet-methods.R'
-    'geneSetNames-methods.R'
-    'geneSetResults-methods.R'
-    'imports.R'
-    'internal.R'
-    'leadingEdge-methods.R'
-    'nesThreshold-methods.R'
-    'package.R'
-    'params.R'
-    'plotEnrichedGeneSets-methods.R'
-    'plotEnrichedUpset-methods.R'
-    'plotGeneSet-methods.R'
-    'plotHeatmap-methods.R'
-    'plotLFC-methods.R'
-    'plotNES-methods.R'
-    'results-methods.R'
-    'show-methods.R'
-    'topTables-methods.R'
-    'updateObject-methods.R'

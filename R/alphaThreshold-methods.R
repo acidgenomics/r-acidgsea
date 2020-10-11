@@ -1,5 +1,5 @@
 #' @name alphaThreshold
-#' @inherit acidgenerics::alphaThreshold
+#' @inherit AcidGenerics::alphaThreshold
 #' @note Updated 2020-08-05.
 #' @param ... Additional arguments.
 #' @examples
@@ -8,22 +8,6 @@
 #' ## FGSEAList ====
 #' alphaThreshold(fgsea) <- 0.1
 #' alphaThreshold(fgsea)
-NULL
-
-
-
-#' @rdname alphaThreshold
-#' @name alphaThreshold
-#' @importFrom acidgenerics alphaThreshold
-#' @usage alphaThreshold(object, ...)
-#' @export
-NULL
-
-#' @rdname alphaThreshold
-#' @name alphaThreshold<-
-#' @importFrom acidgenerics alphaThreshold<-
-#' @usage alphaThreshold(object, ...) <- value
-#' @export
 NULL
 
 

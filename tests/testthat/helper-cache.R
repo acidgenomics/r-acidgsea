@@ -19,7 +19,7 @@ mapply(
     },
     file = files,
     MoreArgs = list(
-        remoteDir = acidgseaTestsURL,
+        remoteDir = AcidGSEATestsURL,
         envir = environment()
     )
 )
