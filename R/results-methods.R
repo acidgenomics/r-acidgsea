@@ -1,5 +1,5 @@
 #' @name results
-#' @inherit acidgenerics::results
+#' @inherit AcidGenerics::results
 #' @note Updated 2020-09-23.
 #' @inheritParams params
 #' @param ... Additional arguments.
@@ -12,15 +12,6 @@
 #'     contrast = "condition_B_vs_A",
 #'     collection = "h"
 #' )
-NULL
-
-
-
-#' @rdname results
-#' @name results
-#' @importFrom acidgenerics results
-#' @usage results(object, ...)
-#' @export
 NULL
 
 

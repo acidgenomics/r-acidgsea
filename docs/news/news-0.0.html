@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Version 0.0 • acidgsea</title>
+<title>Version 0.0 • AcidGSEA</title>
 
 
 <!-- jquery -->
@@ -72,8 +72,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <a class="navbar-link" href="../index.html">AcidGSEA</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -91,8 +91,17 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<li>
-  <a href="../articles/acidgsea.html">Get started</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/acidgsea.html">acidgsea</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -103,7 +112,7 @@
   </a>
 </li>
 <li>
-  <a href="https://github.com/acidgenomics/acidgsea/">
+  <a href="https://github.com/acidgenomics/AcidGSEA/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -133,16 +142,16 @@
     <div id="pfgsea-002-2018-12-14" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-002-2018-12-14" class="anchor"></a>pfgsea 0.0.2 (2018-12-14)</h2>
-<div id="major-changes-12" class="section level3">
+<div id="major-changes-13" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-12" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-13" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Switched to using goalie for assert checks instead of assertive.</li>
 </ul>
 </div>
-<div id="minor-changes-19" class="section level3">
+<div id="minor-changes-20" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-19" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-20" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Added README.</li>
 <li>Set up lintr checks.</li>
@@ -161,9 +170,9 @@
 <li>statsList: Return preranked GSEA stats list.</li>
 </ul>
 </div>
-<div id="major-changes-11" class="section level3">
+<div id="major-changes-12" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-11" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-12" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Added FGSEA R Markdown template.</li>
 </ul>
@@ -172,9 +181,9 @@
     <div id="pfgsea-004-2019-01-15" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-004-2019-01-15" class="anchor"></a>pfgsea 0.0.4 (2019-01-15)</h2>
-<div id="minor-changes-18" class="section level3">
+<div id="minor-changes-19" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-18" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-19" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Documentation fixes and other code cleanup to pass lintr checks.</li>
 </ul>
@@ -183,9 +192,9 @@
     <div id="pfgsea-005-2019-02-04" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-005-2019-02-04" class="anchor"></a>pfgsea 0.0.5 (2019-02-04)</h2>
-<div id="major-changes-10" class="section level3">
+<div id="major-changes-11" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-10" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-11" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Now exporting <code>FGSEAList</code> and <code>RankedList</code> S4 classes.</li>
 <li>Reworked <code><a href="../reference/defunct.html">plotEnrichment()</a></code>, <code><a href="../reference/defunct.html">plotGSEATable()</a></code>, and <code><a href="../reference/topTables.html">topTables()</a></code> to use <code>FGSEAList</code> object.</li>
@@ -197,9 +206,9 @@
     <div id="pfgsea-006-2019-03-11" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-006-2019-03-11" class="anchor"></a>pfgsea 0.0.6 (2019-03-11)</h2>
-<div id="minor-changes-17" class="section level3">
+<div id="minor-changes-18" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-17" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-18" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Improved parameterized object passthrough in R Markdown template.</li>
 <li>Added Travis CI and AppVeyor CI coverage.</li>
@@ -209,9 +218,9 @@
     <div id="pfgsea-007-2019-03-18" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-007-2019-03-18" class="anchor"></a>pfgsea 0.0.7 (2019-03-18)</h2>
-<div id="minor-changes-16" class="section level3">
+<div id="minor-changes-17" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-16" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-17" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Updated basejump and DESeqAnalysis dependencies.</li>
 </ul>

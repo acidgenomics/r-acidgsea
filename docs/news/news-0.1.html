@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Version 0.1 • acidgsea</title>
+<title>Version 0.1 • AcidGSEA</title>
 
 
 <!-- jquery -->
@@ -72,8 +72,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <a class="navbar-link" href="../index.html">AcidGSEA</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -91,8 +91,17 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<li>
-  <a href="../articles/acidgsea.html">Get started</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/acidgsea.html">acidgsea</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -103,7 +112,7 @@
   </a>
 </li>
 <li>
-  <a href="https://github.com/acidgenomics/acidgsea/">
+  <a href="https://github.com/acidgenomics/AcidGSEA/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -136,9 +145,9 @@
     <div id="pfgsea-011-2019-04-01" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-011-2019-04-01" class="anchor"></a>pfgsea 0.1.1 (2019-04-01)</h2>
-<div id="minor-changes-15" class="section level3">
+<div id="minor-changes-16" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-15" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-16" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>NAMESPACE updates to reflect changes in <a href="https://basejump.acidgenomics.com/">basejump</a> package.</li>
 <li>Now importing <code>theme_paperwhite</code> from minimalism package.</li>
@@ -148,16 +157,16 @@
     <div id="pfgsea-012-2019-04-10" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-012-2019-04-10" class="anchor"></a>pfgsea 0.1.2 (2019-04-10)</h2>
-<div id="major-changes-9" class="section level3">
+<div id="major-changes-10" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-9" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-10" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Deleted <code>list</code> to <code>FGSEAList</code> coercion method.</li>
 </ul>
 </div>
-<div id="minor-changes-14" class="section level3">
+<div id="minor-changes-15" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-14" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-15" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>pfgsea</code>: Renamed <code>bpparam</code> argument to <code>BPPARAM</code>, to match Bioconductor. Also now reexporting <code><a href="https://rdrr.io/pkg/BiocParallel/man/register.html">BiocParallel::bpparam</a></code>.</li>
@@ -170,9 +179,9 @@
     <div id="pfgsea-013-2019-04-17" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-013-2019-04-17" class="anchor"></a>pfgsea 0.1.3 (2019-04-17)</h2>
-<div id="minor-changes-13" class="section level3">
+<div id="minor-changes-14" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-13" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-14" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Updated Travis CI configuration to use <code>rnaseq</code> Docker image.</li>
 <li>Miscellaneous documentation improvements.</li>
@@ -182,20 +191,20 @@
     <div id="pfgsea-014-2019-04-23" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-014-2019-04-23" class="anchor"></a>pfgsea 0.1.4 (2019-04-23)</h2>
-<div id="minor-changes-12" class="section level3">
+<div id="minor-changes-13" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-12" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-13" class="anchor"></a>Minor changes</h3>
 <ul>
-<li>Switch to importing graphics code from <a href="https://acidplots.acidgenomics.com/">acidplots</a> package instead of now defunct minimalism package. Default ggplot2 theme has been renamed from <code>theme_paperwhite</code> to <code>acid_theme_light</code>.</li>
+<li>Switch to importing graphics code from <a href="https://AcidPlots.acidgenomics.com/">AcidPlots</a> package instead of now defunct minimalism package. Default ggplot2 theme has been renamed from <code>theme_paperwhite</code> to <code>acid_theme_light</code>.</li>
 </ul>
 </div>
 </div>
     <div id="pfgsea-015-2019-04-25" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-015-2019-04-25" class="anchor"></a>pfgsea 0.1.5 (2019-04-25)</h2>
-<div id="minor-changes-11" class="section level3">
+<div id="minor-changes-12" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-11" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-12" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>S4 generic reexport documentation fixes.</li>
 </ul>
@@ -216,16 +225,16 @@
 <code>plotEnrichedUpset</code>: Utility function that makes it easy to compare enrichment groups across contrasts, via an UpSet plot.</li>
 </ul>
 </div>
-<div id="major-changes-8" class="section level3">
+<div id="major-changes-9" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-8" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-9" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Added <code>combine</code> method support for <code>FGSEAList</code>, allowing us to easily combine GSEA results from multiple datasets. Primarily intended for downstream visualization using an UpSet plot (see <code>plotEnrichedUpset</code>).</li>
 </ul>
 </div>
-<div id="minor-changes-10" class="section level3">
+<div id="minor-changes-11" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-10" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-11" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Improved <code>show</code> method support for <code>FGSEAList</code>, showing <code>pathwayNames</code> and <code>contrastNames</code> more clearly.</li>
 </ul>
@@ -234,9 +243,9 @@
     <div id="pfgsea-017-2019-04-30" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-017-2019-04-30" class="anchor"></a>pfgsea 0.1.7 (2019-04-30)</h2>
-<div id="major-changes-7" class="section level3">
+<div id="major-changes-8" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-7" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-8" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Reworked language to use “collection” consistently instead of mixing/matching “geneSet” and “pathway”, which isn’t appropriate. Relevant function arguments have been updated to reflect this change.</li>
 <li>Now exporting <code>collectionNames</code> instead of <code>pathwayNames</code>.</li>
@@ -255,9 +264,9 @@
 <li>Initial method support for <code>convertToHuman</code>, which allows for easy ortholog conversion to HUGO (HGNC) identifiers.</li>
 </ul>
 </div>
-<div id="minor-changes-9" class="section level3">
+<div id="minor-changes-10" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-9" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-10" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Improved <code>render.R</code> script for looping multiple <code>DESeqAnalysis</code> objects.</li>
 <li>Improved dockerized Travis CI checks.</li>
@@ -280,9 +289,9 @@
     <div id="pfgsea-0110-2019-07-17" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-0110-2019-07-17" class="anchor"></a>pfgsea 0.1.10 (2019-07-17)</h2>
-<div id="minor-changes-8" class="section level3">
+<div id="minor-changes-9" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-8" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-9" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Updated basejump dependency.</li>
 <li>Improved Travis CI docker configuration.</li>
@@ -296,9 +305,9 @@
     <div id="pfgsea-0112-2019-07-30" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-0112-2019-07-30" class="anchor"></a>pfgsea 0.1.12 (2019-07-30)</h2>
-<div id="minor-changes-7" class="section level3">
+<div id="minor-changes-8" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-7" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-8" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Updated basejump dependency versions.</li>
 <li>Updated working examples and improved documentation.</li>
@@ -308,9 +317,9 @@
     <div id="pfgsea-0113-2019-08-28" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-0113-2019-08-28" class="anchor"></a>pfgsea 0.1.13 (2019-08-28)</h2>
-<div id="major-changes-6" class="section level3">
+<div id="major-changes-7" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-6" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-7" class="anchor"></a>Major changes</h3>
 <ul>
 <li>Reworked internal code to no longer depend on dplyr.</li>
 <li>Improved internal handling using <code>DataFrame</code> rather than <code>data.table</code>.</li>
@@ -320,9 +329,9 @@
     <div id="pfgsea-0114-2019-10-11" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-0114-2019-10-11" class="anchor"></a>pfgsea 0.1.14 (2019-10-11)</h2>
-<div id="minor-changes-6" class="section level3">
+<div id="minor-changes-7" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-6" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-7" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>
 <code>export</code>: Updated internal code to handle <code>leadingEdge</code> as <code>list</code> class.</li>
@@ -341,9 +350,9 @@
 <code>plotCounts</code>, <code>plotHeatmap</code>: Added initial <code>FGSEAList</code> method support.</li>
 </ul>
 </div>
-<div id="major-changes-5" class="section level3">
+<div id="major-changes-6" class="section level3">
 <h3 class="hasAnchor">
-<a href="#major-changes-5" class="anchor"></a>Major changes</h3>
+<a href="#major-changes-6" class="anchor"></a>Major changes</h3>
 <ul>
 <li>
 <code>plotGSEATable</code>: Made defunct, since this visualization doesn’t render very reliably in R Markdown output. Consider using a heatmap approach instead.</li>
@@ -353,9 +362,9 @@
     <div id="pfgsea-0116-2020-01-20" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-0116-2020-01-20" class="anchor"></a>pfgsea 0.1.16 (2020-01-20)</h2>
-<div id="minor-changes-5" class="section level3">
+<div id="minor-changes-6" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-5" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-6" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>NAMESPACE update required for changes in basejump v0.12.</li>
 </ul>
@@ -364,9 +373,9 @@
     <div id="pfgsea-0117-2020-01-27" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pfgsea-0117-2020-01-27" class="anchor"></a>pfgsea 0.1.17 (2020-01-27)</h2>
-<div id="minor-changes-4" class="section level3">
+<div id="minor-changes-5" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minor-changes-4" class="anchor"></a>Minor changes</h3>
+<a href="#minor-changes-5" class="anchor"></a>Minor changes</h3>
 <ul>
 <li>Now using cli package for interactive messages.</li>
 </ul>

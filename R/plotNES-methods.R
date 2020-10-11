@@ -1,12 +1,10 @@
-#' Plot normalized enrichment scores of a collection
-#'
 #' @name plotNES
-#' @note Updated 2020-09-22.
+#' @inherit AcidGenerics::plotNES
+#' @note Updated 2020-10-01.
 #'
 #' @inheritParams params
-#' @inheritParams acidroxygen::params
-#'
-#' @return `ggplot`.
+#' @inheritParams AcidRoxygen::params
+#' @param ... Additional arguments.
 #'
 #' @seealso Inspired by example in Stephen Turner's
 #' [DESeq to fgsea guide](https://stephenturner.github.io/deseq-to-fgsea/).

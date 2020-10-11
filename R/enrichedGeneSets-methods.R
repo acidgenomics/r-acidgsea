@@ -3,10 +3,10 @@
 #' Enriched pathways from gene set collections.
 #'
 #' @name enrichedGeneSets
-#' @inherit acidgenerics::enrichedGeneSets
+#' @inherit AcidGenerics::enrichedGeneSets
 #' @note Updated 2020-09-18.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @inheritParams params
 #' @param ... Additional arguments.
 #'
@@ -26,15 +26,6 @@
 #'     collection = "h",
 #'     direction = "up"
 #' )
-NULL
-
-
-
-#' @rdname enrichedGeneSets
-#' @name enrichedGeneSets
-#' @importFrom acidgenerics enrichedGeneSets
-#' @usage enrichedGeneSets(object, ...)
-#' @export
 NULL
 
 

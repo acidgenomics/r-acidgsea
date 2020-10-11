@@ -7,7 +7,7 @@
 #' Multiple gene IDs can map to a gene symbol (e.g. *Homo sapiens* HGNC names).
 #' In this event, we're averaging the stat values using `mean()` internally.
 #'
-#' @inheritParams acidroxygen::params
+#' @inheritParams AcidRoxygen::params
 #' @inheritParams params
 #' @param value `character(1)`.
 #'   Value type to use for GSEA ranked list.
@@ -27,7 +27,7 @@
 #' print(x)
 #'
 #' ## FGSEAList ====
-#' data(fgsea, package = "acidgsea")
+#' data(fgsea, package = "AcidGSEA")
 #' x <- RankedList(fgsea)
 #' print(x)
 NULL
@@ -35,6 +35,7 @@ NULL
 
 
 #' Return `SimpleList` to generate `RankedList`.
+#'
 #' @note Updated 2020-09-24.
 #' @noRd
 `RankedList,DataFrame` <-  # nolint
@@ -100,13 +101,14 @@ NULL
 
 
 #' Automatically handle `DESeqResults` columns, passing to `DataFrame` method.
-#' @note Updated 2020-09-23.
+#'
+#' @note Updated 2020-10-10.
 #' @noRd
 `RankedList,DESeqResults` <-  # nolint
     function(
         object,
         gene2symbol,
-        value = c("stat", "log2FoldChange", "padj")
+        value
     ) {
         validObject(object)
         assert(is(object, "DESeqResults"))
@@ -120,9 +122,12 @@ NULL
         out
     }
 
+formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
+
 
 
 #' Primary `RankedList` generator.
+#'
 #' @note Updated 2020-09-23.
 #' @noRd
 `RankedList,DESeqAnalysis` <-  # nolint

@@ -3,7 +3,7 @@
 \name{plotNES}
 \alias{plotNES}
 \alias{plotNES,FGSEAList-method}
-\title{Plot normalized enrichment scores of a collection}
+\title{Plot normalized enrichment score}
 \usage{
 plotNES(object, ...)
 
@@ -12,14 +12,12 @@ plotNES(object, ...)
   contrast,
   collection,
   fill = getOption(x = "acid.fill.discrete", default = getOption(x =
-    "ggplot2.discrete.fill", default = acidplots::scale_fill_synesthesia_d())),
+    "ggplot2.discrete.fill", default = AcidPlots::scale_fill_synesthesia_d())),
   flip = getOption(x = "acid.flip", default = TRUE)
 )
 }
 \arguments{
 \item{object}{Object.}
-
-\item{...}{Additional arguments.}
 
 \item{contrast}{\code{character(1)}.
 Contrast name.}
@@ -39,15 +37,17 @@ To set the discrete fill palette globally, use:\preformatted{options(acid.fill.d
 
 \item{flip}{\code{logical(1)}.
 Flip x and y axes. Recommended for plots containing many samples.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \code{ggplot}.
 }
 \description{
-Plot normalized enrichment scores of a collection
+Plot normalized enrichment score
 }
 \note{
-Updated 2020-09-22.
+Updated 2020-10-01.
 }
 \examples{
 data(fgsea)

@@ -1,5 +1,5 @@
 #' @name geneSet
-#' @inherit acidgenerics::geneSet
+#' @inherit AcidGenerics::geneSet
 #' @note Updated 2020-09-21.
 #' @inheritParams params
 #' @param ... Additional arguments.
@@ -10,15 +10,6 @@
 #'     collection = "h",
 #'     set = "HALLMARK_P53_PATHWAY"
 #' )
-NULL
-
-
-
-#' @rdname geneSet
-#' @name geneSet
-#' @importFrom acidgenerics geneSet
-#' @usage geneSet(object, ...)
-#' @export
 NULL
 
 

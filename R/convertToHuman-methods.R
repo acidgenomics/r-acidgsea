@@ -1,5 +1,5 @@
 #' @name convertToHuman
-#' @inherit acidgenerics::convertToHuman
+#' @inherit AcidGenerics::convertToHuman
 #' @note Updated 2020-09-21.
 #'
 #' @inheritParams params
@@ -15,15 +15,6 @@
 #'
 #' ## DESeqAnalysis ====
 #' convertToHuman(deseq)
-NULL
-
-
-
-#' @rdname convertToHuman
-#' @name convertToHuman
-#' @importFrom acidgenerics convertToHuman
-#' @usage convertToHuman(object, ...)
-#' @export
 NULL
 
 

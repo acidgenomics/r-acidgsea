@@ -1,5 +1,5 @@
 #' @name nesThreshold
-#' @inherit acidgenerics::nesThreshold
+#' @inherit AcidGenerics::nesThreshold
 #' @note Updated 2020-09-21.
 #' @param ... Additional arguments.
 #' @examples
@@ -8,22 +8,6 @@
 #' ## FGSEAList ====
 #' nesThreshold(fgsea) <- 0.1
 #' nesThreshold(fgsea)
-NULL
-
-
-
-#' @rdname nesThreshold
-#' @name nesThreshold
-#' @importFrom acidgenerics nesThreshold
-#' @usage nesThreshold(object, ...)
-#' @export
-NULL
-
-#' @rdname nesThreshold
-#' @name nesThreshold<-
-#' @importFrom acidgenerics nesThreshold<-
-#' @usage nesThreshold(object, ...) <- value
-#' @export
 NULL
 
 

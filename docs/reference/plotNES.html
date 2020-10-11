@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot normalized enrichment scores of a collection — plotNES • acidgsea</title>
+<title>Plot normalized enrichment score — plotNES • AcidGSEA</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Plot normalized enrichment scores of a collection — plotNES" />
-<meta property="og:description" content="Plot normalized enrichment scores of a collection" />
+<meta property="og:title" content="Plot normalized enrichment score — plotNES" />
+<meta property="og:description" content="Plot normalized enrichment score" />
 
 
 
@@ -73,8 +73,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">acidgsea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <a class="navbar-link" href="../index.html">AcidGSEA</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -92,8 +92,17 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-<li>
-  <a href="../articles/acidgsea.html">Get started</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/acidgsea.html">acidgsea</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -104,7 +113,7 @@
   </a>
 </li>
 <li>
-  <a href="https://github.com/acidgenomics/acidgsea/">
+  <a href="https://github.com/acidgenomics/AcidGSEA/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -122,26 +131,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot normalized enrichment scores of a collection</h1>
-    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/acidgsea/blob/master/R/plotNES-methods.R'><code>R/plotNES-methods.R</code></a></small>
+    <h1>Plot normalized enrichment score</h1>
+    <small class="dont-index">Source: <a href='https://github.com/acidgenomics/AcidGSEA/blob/master/R/AllGenerics.R'><code>R/AllGenerics.R</code></a>, <a href='https://github.com/acidgenomics/AcidGSEA/blob/master/R/plotNES-methods.R'><code>R/plotNES-methods.R</code></a></small>
     <div class="hidden name"><code>plotNES.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plot normalized enrichment scores of a collection</p>
+    <p>Plot normalized enrichment score</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plotNES</span>(<span class='kw'>object</span>, <span class='kw'>...</span>)
+    <pre class="usage"><span class='fu'>plotNES</span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S4 method for FGSEAList</span>
-<span class='fu'>plotNES</span>(
-  <span class='kw'>object</span>,
-  <span class='kw'>contrast</span>,
-  <span class='kw'>collection</span>,
-  fill = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(x = <span class='st'>"acid.fill.discrete"</span>, default = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(x =
-    <span class='st'>"ggplot2.discrete.fill"</span>, default = <span class='kw'>acidplots</span>::<span class='fu'><a href='https://rdrr.io/pkg/acidplots/man/synesthesia.html'>scale_fill_synesthesia_d</a></span>())),
-  flip = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(x = <span class='st'>"acid.flip"</span>, default = <span class='fl'>TRUE</span>)
-)</pre>
+<span class='fu'>plotNES</span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  <span class='va'>contrast</span>,
+  <span class='va'>collection</span>,
+  fill <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"acid.fill.discrete"</span>, default <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span>x <span class='op'>=</span>
+    <span class='st'>"ggplot2.discrete.fill"</span>, default <span class='op'>=</span> <span class='fu'>AcidPlots</span><span class='fu'>::</span><span class='fu'><a href='https://acidplots.acidgenomics.com/reference/synesthesia.html'>scale_fill_synesthesia_d</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,
+  flip <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"acid.flip"</span>, default <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,10 +158,6 @@
     <tr>
       <th>object</th>
       <td><p>Object.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
     </tr>
     <tr>
       <th>contrast</th>
@@ -172,13 +177,17 @@ Can obtain using <code><a href='collectionNames.html'>collectionNames()</a></cod
 Desired ggplot2 fill scale. Must supply discrete values. When set to
 <code>NULL</code>, the default ggplot2 color palette will be used. If manual color
 definitions are desired, we recommend using <code><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>ggplot2::scale_fill_manual()</a></code>.</p>
-<p>To set the discrete fill palette globally, use:</p><pre><span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(acid.fill.discrete = <span class='kw'>ggplot2</span>::<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_viridis.html'>scale_fill_viridis_d</a></span>())
+<p>To set the discrete fill palette globally, use:</p><pre><span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>acid.fill.discrete <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_viridis.html'>scale_fill_viridis_d</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </pre></td>
     </tr>
     <tr>
       <th>flip</th>
       <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical(1)</a></code>.
 Flip x and y axes. Recommended for plots containing many samples.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
 
@@ -187,19 +196,19 @@ Flip x and y axes. Recommended for plots containing many samples.</p></td>
     <p><code>ggplot</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Updated 2020-09-22.</p>
+    <p>Updated 2020-10-01.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Inspired by example in Stephen Turner's
 <a href='https://stephenturner.github.io/deseq-to-fgsea/'>DESeq to fgsea guide</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>fgsea</span>)
-<span class='fu'>plotNES</span>(
-    object = <span class='kw'>fgsea</span>,
-    contrast = <span class='st'>"condition_B_vs_A"</span>,
-    collection = <span class='st'>"h"</span>
-)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>fgsea</span><span class='op'>)</span>
+<span class='fu'>plotNES</span><span class='op'>(</span>
+    object <span class='op'>=</span> <span class='va'>fgsea</span>,
+    contrast <span class='op'>=</span> <span class='st'>"condition_B_vs_A"</span>,
+    collection <span class='op'>=</span> <span class='st'>"h"</span>
+<span class='op'>)</span>
 </div><div class='img'><img src='plotNES-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

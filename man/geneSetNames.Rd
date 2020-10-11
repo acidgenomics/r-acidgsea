@@ -12,12 +12,12 @@ geneSetNames(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Additional arguments.}
-
 \item{collection}{\code{character(1)}.
 Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+
+\item{...}{Additional arguments.}
 }
 \value{
 \code{character}.
@@ -26,7 +26,7 @@ Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 Gene set names
 }
 \note{
-Updated 2020-09-23.
+Updated 2020-10-01.
 }
 \examples{
 data(fgsea)
