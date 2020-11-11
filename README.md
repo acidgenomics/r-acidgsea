@@ -1,8 +1,5 @@
 # AcidGSEA
 
-[![Repo status: active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Travis CI build status](https://travis-ci.com/acidgenomics/acidgsea.svg?branch=master)](https://travis-ci.com/acidgenomics/acidgsea)
-
 Perform parameterized gene set enrichment analysis (GSEA) on multiple differential expression contrasts.
 
 [AcidGSEA][] currently extends the functionality of [fgsea][].
