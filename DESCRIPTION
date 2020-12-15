@@ -30,7 +30,6 @@ Imports:
     AcidBase (>= 0.2.6),
     AcidGenerics (>= 0.5.0),
     AcidPlots (>= 0.3.0),
-    BiocGenerics,
     BiocParallel,
     IRanges,
     S4Vectors,
