@@ -75,18 +75,18 @@ NULL
         validObject(rankedList)
         contrasts <- names(rankedList)
         stats <- as.list(rankedList)
-        cli_alert("Running parameterized fast GSEA.")
-        cli_text("Gene set files:")
-        cli_ul(names(geneSetFiles))
-        cli_text("Contrasts:")
-        cli_ul(contrasts)
+        alert("Running parameterized fast GSEA.")
+        txt("Gene set files:")
+        ul(names(geneSetFiles))
+        txt("Contrasts:")
+        ul(contrasts)
         collections <- lapply(X = geneSetFiles, FUN = import)
         list <- mapply(
             name = names(collections),
             pathways = collections,
             FUN = function(name, pathways) {
-                cli_dl(c("Collection" = name))
-                cli_alert_info(sprintf(
+                dl(c("Collection" = name))
+                alertInfo(sprintf(
                     "Testing %d pathways.",
                     length(pathways)
                 ))
@@ -94,7 +94,7 @@ NULL
                     contrast = contrasts,
                     stats = stats,
                     FUN = function(contrast, stats) {
-                        cli_dl(c("Contrast" = contrast))
+                        dl(c("Contrast" = contrast))
                         suppressWarnings({
                             data <- fgsea::fgsea(
                                 pathways = pathways,
