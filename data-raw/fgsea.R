@@ -1,15 +1,20 @@
-## Example *Homo sapiens* GSEA analysis.
-## Updated 2020-09-26.
-
-library(usethis)
-library(basejump)       # 0.13.2
-library(DESeq2)         # 1.28.1
-library(DESeqAnalysis)  # 0.3.9
+suppressPackageStartupMessages({
+    library(usethis)
+    library(basejump)       # 0.13.2
+    library(DESeq2)         # 1.28.1
+    library(DESeqAnalysis)  # 0.3.9
+})
 
 ## Restrict to 3 MB.
 limit <- structure(3e6, class = "object_size")
 
-gr <- makeGRangesFromEnsembl(organism = "Homo sapiens", release = 100L)
+gr <- makeGRangesFromEnsembl(
+    organism = "Homo sapiens",
+    level = "genes",
+    release = 100L,
+    ignoreVersion = TRUE
+)
+gr <- as(gr, "GRanges")
 gr <- head(gr, n = 1000L)
 gr <- droplevels(gr)
 mcols(gr) <- mcols(gr)[c("geneId", "geneName")]
