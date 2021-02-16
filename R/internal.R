@@ -55,7 +55,7 @@
 #' Handle situation where DESeq object doesn't contain all symbols defined in
 #' the gene set.
 #'
-#' @note Updated 2020-09-24.
+#' @note Updated 2021-02-16.
 #' @noRd
 .matchGenesToIDs <- function(object, set, genes) {
     assert(
@@ -66,11 +66,12 @@
     suppressMessages({
         g2s <- Gene2Symbol(object)
     })
+    colnames(g2s) <- camelCase(colnames(g2s), strict = TRUE)
     idx <- na.omit(match(x = genes, table = g2s[["geneName"]]))
     if (!hasLength(idx)) return(NULL)
-    g2s <- g2s[idx, ]
+    g2s <- g2s[idx, , drop = FALSE]
     assert(hasRows(g2s))
-    out <- g2s[["geneID"]]
+    out <- g2s[["geneId"]]
     assert(isCharacter(out))
     out
 }
