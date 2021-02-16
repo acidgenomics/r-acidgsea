@@ -18,7 +18,7 @@
 #' 1. Contrast
 #' 2. Gene set.
 #'
-#' @inheritParams pipette::export
+#' @inheritParams AcidExperiment::export
 #' @param geneSetResults `logical(1)` or `character`.
 #'   Export per-gene set expression including log fold change values generated
 #'   from DESeq2. Can be slow when processing all MSigDB collections, so
