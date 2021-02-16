@@ -9,7 +9,6 @@
 #' @importClassesFrom DESeqAnalysis DESeqAnalysis
 #' @importMethodsFrom DESeqAnalysis coerce plotCounts
 #'
-#' @importFrom AcidBase formalsList
 #' @importFrom AcidPlots acid_theme_light plotUpset
 #' @importFrom BiocParallel bplapply bpparam
 #' @importFrom DESeqAnalysis DESeqAnalysis contrastName contrastSamples
@@ -18,7 +17,7 @@
 #'   mcols<- metadata metadata<- na.omit order split tail unique
 #' @importFrom SummarizedExperiment rowRanges rowRanges<-
 #' @importFrom basejump Gene2Symbol aggregateRows alert alertInfo alertWarning
-#'   as_tibble camelCase dl export import initDir leftJoin makeNames
+#'   as_tibble camelCase dl export formalsList import initDir leftJoin makeNames
 #'   mapGenesToRownames markdownHeader matchArgsToDoCall matchHumanOrthologs
 #'   melt selectIf showHeader showSlotInfo standardizeCall txt ul
 #' @importFrom fgsea calcGseaStat fgsea
