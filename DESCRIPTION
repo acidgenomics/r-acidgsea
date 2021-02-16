@@ -26,11 +26,7 @@ Depends: R (>= 4.0)
 Imports:
     AcidGenerics (>= 0.4.0),
     AcidPlots (>= 0.3.0),
-    BiocGenerics,
     DESeqAnalysis (>= 0.3.11),
-    IRanges,
-    S4Vectors,
-    SummarizedExperiment,
     basejump (>= 0.14.8),
     fgsea (>= 1.16),
     ggplot2 (>= 3.3),

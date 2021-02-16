@@ -10,17 +10,14 @@
 #' @importMethodsFrom DESeqAnalysis coerce plotCounts
 #'
 #' @importFrom AcidPlots acid_theme_light plotUpset
-#' @importFrom BiocParallel bplapply bpparam
 #' @importFrom DESeqAnalysis DESeqAnalysis contrastName contrastSamples
-#' @importFrom IRanges SplitDataFrameList unsplit
-#' @importFrom S4Vectors DataFrame SimpleList complete.cases head lapply mcols
-#'   mcols<- metadata metadata<- na.omit order split tail unique
-#' @importFrom SummarizedExperiment rowRanges rowRanges<-
-#' @importFrom basejump Gene2Symbol aggregateRows alert alertInfo alertWarning
-#'   as_tibble camelCase dl export formalsList import initDir leftJoin makeNames
-#'   mapGenesToRownames markdownHeader matchArgsToDoCall matchHumanOrthologs
-#'   melt packageName packageVersion requireNamespaces reorder selectIf
-#'   session_info showHeader showSlotInfo standardizeCall txt ul
+#' @importFrom basejump DataFrame Gene2Symbol SimpleList SplitDataFrameList
+#'   aggregateRows alert alertInfo alertWarning as_tibble camelCase
+#'   complete.cases dl export formalsList head import initDir lapply leftJoin
+#'   makeNames mapGenesToRownames markdownHeader matchHumanOrthologs mcols
+#'   mcols<- melt metadata metadata<- na.omit order packageName packageVersion
+#'   requireNamespaces reorder rowRanges rowRanges<- selectIf session_info
+#'   showHeader showSlotInfo split standardizeCall tail txt ul unique unsplit
 #' @importFrom fgsea calcGseaStat fgsea
 #' @importFrom ggplot2 aes coord_flip geom_boxplot geom_col geom_hline
 #'   geom_jitter geom_line geom_point geom_segment geom_violin ggplot labs
@@ -34,6 +31,10 @@
 "_PACKAGE"
 
 
+
+## FIXME NEED TO REMOVE THESE
+#' @importFrom BiocParallel bplapply bpparam
+NULL
 
 ## FIXME NEED TO REEXPORT THESE IN ACIDPLOTS...
 #' @importFrom rlang !! sym
