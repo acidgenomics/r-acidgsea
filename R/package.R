@@ -9,7 +9,7 @@
 #' @importClassesFrom DESeqAnalysis DESeqAnalysis
 #' @importMethodsFrom DESeqAnalysis coerce plotCounts
 #'
-#' @importFrom AcidPlots acid_theme_light plotUpset
+#' @importFrom AcidPlots !! acid_theme_light plotUpset sym
 #' @importFrom DESeqAnalysis DESeqAnalysis contrastName contrastSamples
 #' @importFrom basejump DataFrame Gene2Symbol SimpleList SplitDataFrameList
 #'   aggregateRows alert alertInfo alertWarning as_tibble camelCase
@@ -34,8 +34,4 @@
 
 ## FIXME NEED TO REMOVE THESE
 #' @importFrom BiocParallel bplapply bpparam
-NULL
-
-## FIXME NEED TO REEXPORT THESE IN ACIDPLOTS...
-#' @importFrom rlang !! sym
 NULL
