@@ -1,3 +1,16 @@
+## Updated 2021-02-12.
+.bplapply <-
+    {
+        if (isInstalled("BiocParallel")) {
+            x <- quote(BiocParallel::bplapply)
+        } else {
+            x <- quote(lapply)
+        }
+        x
+    }
+
+
+
 #' RankedList values
 #'
 #' @note Updated 2020-10-10.

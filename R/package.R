@@ -24,8 +24,8 @@
 #' @importFrom goalie allAreAtomic allAreFiles areDisjointSets areSameLength
 #'   areSetEqual assert bapply hasColnames hasLength hasNames hasNoDuplicates
 #'   hasRownames hasRows isAFile isAll isAlpha isAny isCharacter isFile isFlag
-#'   isGGScale isHeaderLevel isInt isNumber isNonNegative isScalarInteger
-#'   isString isSubset validate
+#'   isGGScale isHeaderLevel isInstalled isInt isNumber isNonNegative
+#'   isScalarInteger isString isSubset validate
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity show
 #'   slot slot<- validObject
 "_PACKAGE"
