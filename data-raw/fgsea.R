@@ -12,7 +12,7 @@ limit <- structure(3e6, class = "object_size")
 gr <- makeGRangesFromEnsembl(organism = "Homo sapiens", release = 100L)
 gr <- head(gr, n = 1000L)
 gr <- droplevels(gr)
-mcols(gr) <- mcols(gr)[c("geneID", "geneName")]
+mcols(gr) <- mcols(gr)[c("geneId", "geneName")]
 object.size(gr)
 ## 336296 bytes
 
