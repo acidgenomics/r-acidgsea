@@ -36,7 +36,7 @@ NULL
 
 #' Return `SimpleList` to generate `RankedList`.
 #'
-#' @note Updated 2020-09-24.
+#' @note Updated 2021-02-16.
 #' @noRd
 `RankedList,DataFrame` <-  # nolint
     function(
@@ -68,7 +68,7 @@ NULL
             dupes <- which(duplicated(x[["geneName"]]))
             dupes <- as.character(x[["geneName"]][dupes])
             dupes <- sort(unique(dupes))
-            cli_alert(sprintf(
+            alert(sprintf(
                 fmt = "Averaging '%s' value for %d gene %s: %s.",
                 value,
                 length(dupes),
