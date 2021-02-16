@@ -22,19 +22,16 @@ BugReports: https://github.com/acidgenomics/AcidGSEA/issues/
 License: GPL-3
 Encoding: UTF-8
 LazyData: false
-Depends:
-    R (>= 4.0),
-    basejump (>= 0.14.8),
-    DESeqAnalysis (>= 0.3.11)
+Depends: R (>= 4.0)
 Imports:
-    AcidBase (>= 0.2.3),
     AcidGenerics (>= 0.4.0),
     AcidPlots (>= 0.3.0),
     BiocGenerics,
+    DESeqAnalysis (>= 0.3.11),
     IRanges,
     S4Vectors,
     SummarizedExperiment,
-    cli (>= 2.0),
+    basejump (>= 0.14.8),
     fgsea (>= 1.16),
     ggplot2 (>= 3.3),
     goalie (>= 0.4.9),
@@ -46,7 +43,6 @@ Imports:
     utils
 Suggests:
     AcidTest (>= 0.4.0),
-    BiocParallel,
     rmarkdown,
     testthat
 biocViews:
