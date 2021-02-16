@@ -42,10 +42,10 @@ If \code{FALSE}, plot all genes in the gene set.}
 \item{...}{Additional arguments.}
 }
 \value{
-\code{pheatmap}.
+Plot.
 }
 \description{
-Construct a simple heatmap.
+Heatmap
 }
 \note{
 Updated 2020-09-23.
