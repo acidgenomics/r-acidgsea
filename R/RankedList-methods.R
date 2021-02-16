@@ -1,6 +1,6 @@
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2020-09-24.
+#' @note Updated 2021-02-16.
 #'
 #' @section Gene symbol multi-mapping:
 #'
