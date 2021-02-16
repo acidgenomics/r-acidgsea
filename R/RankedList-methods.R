@@ -128,14 +128,10 @@ formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
 
 #' Primary `RankedList` generator.
 #'
-#' @note Updated 2020-09-23.
+#' @note Updated 2021-02-16.
 #' @noRd
 `RankedList,DESeqAnalysis` <-  # nolint
-    function(
-        object,
-        value,
-        BPPARAM = BiocParallel::bpparam()  # nolint
-    ) {
+    function(object, value) {
         validObject(object)
         value <- match.arg(value)
         ## Extract the DESeqResults list.
@@ -157,11 +153,10 @@ formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
             )
         })
         ## Get parameterized GSEA list values for each DESeqResults contrast.
-        ## FIXME RETHINK THIS; USE IRANGES APPROACH INSTEAD FOR SPEED?
+        bplapply <- .eval(bplapply)
         list <- bplapply(
             X = resultsList,
             FUN = `RankedList,DESeqResults`,
-            BPPARAM = BPPARAM,
             gene2symbol = gene2symbol,
             value = value
         )
