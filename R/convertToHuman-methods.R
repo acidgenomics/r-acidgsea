@@ -19,7 +19,7 @@ NULL
 
 
 
-## Updated 2020-03-17.
+## Updated 2021-02-16.
 `convertToHuman,DESeqAnalysis` <-  # nolint
     function(object, map = NULL) {
         validObject(object)
@@ -32,6 +32,8 @@ NULL
         ## Attempt to use the row ranges to map gene identifiers.
         ## Don't assume gene identifiers are defined as row names.
         rr <- rowRanges(data)
+        ## Enforcing strict camel case, as of 2021-02-16.
+        colnames(mcols(rr)) <- camelCase(colnames(mcols(rr)), strict = TRUE)
         ## Get the organism and Ensembl release from DESeqDataSet.
         rrMeta <- metadata(rr)
         ## This step shouldn't get hit but it's useful to keep as a check.
@@ -59,10 +61,10 @@ NULL
             return(object)
         }
         ## Now we're ready to match the human orthologs.
-        genes <- as.character(mcols(rr)[["geneID"]])
+        genes <- as.character(mcols(rr)[["geneId"]])
         if (!hasLength(genes)) {
             ## nocov start
-            stop("'geneID' column not defined in DESeqDataSet 'rowRanges'.")
+            stop("'geneId' column not defined in DESeqDataSet 'rowRanges'.")
             ## nocov end
         }
         ## Note that this step can time out, so we're allowing map passthrough,
@@ -77,7 +79,7 @@ NULL
                 is(map, "DataFrame"),
                 identical(
                     x = sort(colnames(map)),
-                    y = c("geneID", "geneName", "hgncID", "hgncName")
+                    y = c("geneId", "geneName", "hgncId", "hgncName")
                 )
             )
         }
@@ -88,7 +90,7 @@ NULL
         ## as the row names, but are defined in row ranges. This isn't very
         ## common but is accounted for in our unit testing.
         rownames(map) <- rownames(data)
-        keep <- !is.na(map[["hgncID"]])
+        keep <- !is.na(map[["hgncId"]])
         assert(any(keep))
         cli_alert_info(sprintf(
             "Matched %d / %d genes to human orthologs.",
@@ -110,7 +112,7 @@ NULL
         results <- filterList(results)
         lfcShrink <- filterList(lfcShrink)
         ## Remap the human ortholog gene identifiers onto the row names.
-        genes <- map[["hgncID"]]
+        genes <- map[["hgncId"]]
         assignRownames <- function(x, value) {
             lapply(
                 X = x,
@@ -123,9 +125,9 @@ NULL
         results <- assignRownames(results, genes)
         lfcShrink <- assignRownames(results, genes)
         ## Update gene-to-symbol mappings defined in rowRanges.
-        mcols(rowRanges(data))[["geneID"]] <- map[["hgncID"]]
+        mcols(rowRanges(data))[["geneId"]] <- map[["hgncId"]]
         mcols(rowRanges(data))[["geneName"]] <- map[["hgncName"]]
-        mcols(rowRanges(transform))[["geneID"]] <- map[["hgncID"]]
+        mcols(rowRanges(transform))[["geneId"]] <- map[["hgncId"]]
         mcols(rowRanges(transform))[["geneName"]] <- map[["hgncName"]]
         out <- DESeqAnalysis(
             data = data,
