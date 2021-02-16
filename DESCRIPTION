@@ -24,13 +24,13 @@ Encoding: UTF-8
 LazyData: false
 Depends: R (>= 4.0)
 Imports:
-    AcidGenerics (>= 0.4.0),
-    AcidPlots (>= 0.3.0),
+    AcidGenerics (>= 0.5.14),
+    AcidPlots (>= 0.3.3),
     DESeqAnalysis (>= 0.3.11),
     basejump (>= 0.14.8),
     fgsea (>= 1.16),
     ggplot2 (>= 3.3),
-    goalie (>= 0.4.9),
+    goalie (>= 0.4.14),
     methods
 Suggests:
     AcidTest (>= 0.4.0),
