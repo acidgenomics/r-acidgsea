@@ -1,6 +1,6 @@
 #' @name topTables
 #' @inherit AcidGenerics::topTables
-#' @note Updated 2020-09-18.
+#' @note Updated 2021-02-16.
 #'
 #' @description Top tables of significantly enriched pathways.
 #'
@@ -23,7 +23,7 @@ NULL
 
 
 
-## Updated 2020-09-18.
+## Updated 2021-02-16.
 `topTables,FGSEAList` <-  # nolint
     function(
         object,
@@ -31,6 +31,7 @@ NULL
         n = 10L,
         headerLevel = 3L
     ) {
+        requireNamespaces("knitr")
         validObject(object)
         assert(
             isString(collection),
@@ -104,9 +105,9 @@ NULL
                 up <- data[idx, , drop = FALSE]
                 up <- head(up, n = n)
                 if (hasRows(up)) {
-                    print(kable(as.data.frame(up), digits = 3L))
+                    print(knitr::kable(as.data.frame(up), digits = 3L))
                 } else {
-                    cli_alert_info("No upregulated gene sets.")  # nocov
+                    alertInfo("No upregulated gene sets.")  # nocov
                 }
                 ## Downregulated gene sets.
                 markdownHeader(

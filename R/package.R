@@ -19,7 +19,8 @@
 #' @importFrom basejump Gene2Symbol aggregateRows alert alertInfo alertWarning
 #'   as_tibble camelCase dl export formalsList import initDir leftJoin makeNames
 #'   mapGenesToRownames markdownHeader matchArgsToDoCall matchHumanOrthologs
-#'   melt selectIf showHeader showSlotInfo standardizeCall txt ul
+#'   melt packageName packageVersion requireNamespaces reorder selectIf
+#'   session_info showHeader showSlotInfo standardizeCall txt ul
 #' @importFrom fgsea calcGseaStat fgsea
 #' @importFrom ggplot2 aes coord_flip geom_boxplot geom_col geom_hline
 #'   geom_jitter geom_line geom_point geom_segment geom_violin ggplot labs
@@ -28,11 +29,12 @@
 #'   hasRownames hasRows isAFile isAll isAlpha isAny isCharacter isFile isFlag
 #'   isGGScale isHeaderLevel isInt isNumber isNonNegative isScalarInteger
 #'   isString isSubset validate
-#' @importFrom knitr kable
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity show
 #'   slot slot<- validObject
-#' @importFrom rlang !! sym
-#' @importFrom sessioninfo session_info
-#' @importFrom stats reorder
-#' @importFrom utils packageName packageVersion
 "_PACKAGE"
+
+
+
+## FIXME NEED TO REEXPORT THESE IN ACIDPLOTS...
+#' @importFrom rlang !! sym
+NULL
