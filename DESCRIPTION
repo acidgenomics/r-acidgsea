@@ -34,6 +34,7 @@ Imports:
     methods
 Suggests:
     AcidTest (>= 0.4.0),
+    BiocParallel,
     knitr,
     rmarkdown,
     testthat
