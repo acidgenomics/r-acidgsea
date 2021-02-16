@@ -36,7 +36,7 @@ NULL
             isSubset("leadingEdge", colnames(data))
         )
         data <- as(data, "DataFrame")
-        data <- camelCase(data)
+        data <- camelCase(data, strict = TRUE)
         ## Coerce "leadingEdge" list column to string.
         data[["leadingEdge"]] <-
             unlist(lapply(X = data[["leadingEdge"]], FUN = toString))
