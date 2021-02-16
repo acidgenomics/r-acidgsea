@@ -33,7 +33,13 @@ NULL
         ## Don't assume gene identifiers are defined as row names.
         rr <- rowRanges(data)
         ## Enforcing strict camel case, as of 2021-02-16.
-        colnames(mcols(rr)) <- camelCase(colnames(mcols(rr)), strict = TRUE)
+        if (!(identical(
+            colnames(mcols(rr)),
+            camelCase(colnames(mcols(rr)), strict = TRUE)
+        ))) {
+            alert("Reformatting mcols into strict lower camel case.")
+            colnames(mcols(rr)) <- camelCase(colnames(mcols(rr)), strict = TRUE)
+        }
         ## Get the organism and Ensembl release from DESeqDataSet.
         rrMeta <- metadata(rr)
         ## This step shouldn't get hit but it's useful to keep as a check.
