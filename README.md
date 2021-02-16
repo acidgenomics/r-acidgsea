@@ -21,6 +21,20 @@ install.packages(
 )
 ```
 
+### [Docker][] method
+
+```sh
+image="acidgenomics/r-acidgsea"
+workdir="/mnt/work"
+docker pull "$image"
+docker run -it \
+    --volume="${PWD}:${workdir}" \
+    --workdir="$workdir" \
+    "$image" \
+    R
+```
+
 [acidgsea]: https://acidgsea.acidgenomics.com/
+[docker]: https://www.docker.com/
 [fgsea]: https://bioconductor.org/packages/fgsea/
 [r]: https://www.r-project.org
