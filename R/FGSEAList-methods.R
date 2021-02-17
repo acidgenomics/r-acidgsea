@@ -27,7 +27,7 @@
 #' @return `FGSEAList`.
 #'
 #' @examples
-#' data(deseq)
+#' data(deseq, package = "DESeqAnalysis")
 #' geneSetFiles <- system.file(
 #'     "extdata",
 #'     "msigdb",
