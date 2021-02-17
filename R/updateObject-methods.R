@@ -1,6 +1,6 @@
 #' @name updateObject
 #' @author Michael Steinbaugh
-#' @inherit BiocGenerics::updateObject
+#' @inherit AcidGenerics::updateObject
 #' @note Updated 2021-02-17.
 #'
 #' @inheritParams AcidRoxygen::params
