@@ -1,6 +1,6 @@
 #' @name convertToHuman
 #' @inherit AcidGenerics::convertToHuman
-#' @note Updated 2021-02-16.
+#' @note Updated 2021-02-17.
 #'
 #' @inheritParams params
 #' @param map `DataFrame`, or `NULL`.
@@ -19,7 +19,7 @@ NULL
 
 
 
-## Updated 2021-02-16.
+## Updated 2021-02-17.
 `convertToHuman,DESeqAnalysis` <-  # nolint
     function(object, map = NULL) {
         validObject(object)
@@ -76,7 +76,9 @@ NULL
         ## Note that this step can time out, so we're allowing map passthrough,
         ## which can help when working on multiple objects.
         if (is.null(map)) {
-            map <- matchHumanOrthologs(
+            ## FIXME This step is failing with mm_deseq.
+            ## Need to update AcidGenomes and/or AcidPlyr to resolve this.
+            map <- mapHumanOrthologs(
                 genes = genes,
                 organism = organism,
                 ensemblRelease = ensemblRelease
