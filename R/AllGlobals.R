@@ -36,6 +36,6 @@
 #' AcidGSEATestsURL
 AcidGSEATestsURL <-  # nolint
     paste0(
-        "https://tests.acidgenomics.com/AcidGSEA/",
+        "https://r.acidgenomics.com/testdata/acidgsea/",
         "v", .version$major, ".", .version$minor  # nolint
     )
