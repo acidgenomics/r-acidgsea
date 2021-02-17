@@ -3,29 +3,27 @@
 \name{combine}
 \alias{combine}
 \alias{combine,FGSEAList,FGSEAList-method}
-\title{Combining or merging different Bioconductor data structures}
+\title{Combine multiple objects}
 \usage{
 combine(x, y, ...)
 
 \S4method{combine}{FGSEAList,FGSEAList}(x, y)
 }
 \arguments{
-\item{x}{Object.}
+\item{x}{Primary object.}
 
-\item{y}{Object.}
+\item{y}{Secondary object.}
 
 \item{...}{Additional arguments.}
 }
 \value{
-A single value of the same class as the most specific common ancestor
-  (in class terms) of the input values. This will contain the
-  appropriate combination of the data in the input values.
+Modified object.
 }
 \description{
-Combining or merging different Bioconductor data structures
+Combine multiple objects
 }
 \note{
-Updated 2020-09-17.
+Updated 2021-02-17.
 }
 \examples{
 data(fgsea)

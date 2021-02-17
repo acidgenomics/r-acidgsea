@@ -54,7 +54,7 @@ NULL
 
 #' @rdname combine
 #' @name combine
-#' @importFrom BiocGenerics combine
+#' @importFrom AcidGenerics combine
 #' @usage combine(x, y, ...)
 #' @export
 NULL
@@ -239,7 +239,7 @@ NULL
 
 #' @rdname updateObject
 #' @name updateObject
-#' @importFrom BiocGenerics updateObject
+#' @importFrom AcidGenerics updateObject
 #' @usage updateObject(object, ..., verbose = FALSE)
 #' @export
 NULL
