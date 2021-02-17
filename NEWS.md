@@ -4,6 +4,7 @@
 
 - Reworked and simplified NAMESPACE and package dependencies, following
   basejump v0.14 release series update.
+- Removed BiocParallel as a required import.
 
 ## AcidGSEA 0.5.0 (2020-10-10)
 
