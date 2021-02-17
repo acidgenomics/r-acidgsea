@@ -76,8 +76,6 @@ NULL
         ## Note that this step can time out, so we're allowing map passthrough,
         ## which can help when working on multiple objects.
         if (is.null(map)) {
-            ## FIXME This step is failing with mm_deseq.
-            ## Need to update AcidGenomes and/or AcidPlyr to resolve this.
             map <- mapHumanOrthologs(
                 genes = genes,
                 organism = organism,
