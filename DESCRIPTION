@@ -33,7 +33,7 @@ Imports:
     goalie (>= 0.4.14),
     methods
 Suggests:
-    AcidTest (>= 0.4.0),
+    AcidTest (>= 0.4.3),
     BiocParallel,
     knitr,
     rmarkdown,
