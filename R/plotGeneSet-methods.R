@@ -1,6 +1,6 @@
 #' @name plotGeneSet
 #' @inherit AcidGenerics::plotGeneSet
-#' @note Updated 2020-09-21.
+#' @note Updated 2021-02-17.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @inheritParams params
@@ -30,7 +30,7 @@ NULL
 
 
 
-## Updated 2020-09-18.
+## Updated 2021-02-17.
 `plotGeneSet,FGSEAList` <-  # nolint
     function(
         object,
@@ -65,7 +65,7 @@ NULL
             set = set
         )
         if (!any(names(stats) %in% pathway)) {
-            cli_alert_warning("No intersection in ranked list and gene set.")
+            alertWarning("No intersection in ranked list and gene set.")
             return(invisible(NULL))
         }
         rnk <- rank(-stats)

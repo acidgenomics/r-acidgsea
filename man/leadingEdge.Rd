@@ -34,7 +34,7 @@ Elements of gene set that correspond to leading edge.
 Leading edge genes
 }
 \note{
-Updated 2020-09-21.
+Updated 2021-02-17.
 }
 \examples{
 data(fgsea)

@@ -37,7 +37,9 @@ Supports looping across multiple DEG results, and adds a Markdown header for
 each contrast.
 }
 \note{
-Updated 2021-02-16.
+Requires the knitr package to be installed.
+
+Updated 2021-02-17.
 }
 \examples{
 data(fgsea)

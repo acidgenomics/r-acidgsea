@@ -1,7 +1,7 @@
 #' @name updateObject
 #' @author Michael Steinbaugh
 #' @inherit BiocGenerics::updateObject
-#' @note Updated 2020-09-23.
+#' @note Updated 2021-02-17.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param alphaThreshold `number(1)`.
@@ -26,7 +26,7 @@ NULL
 
 
 
-## Updated 2020-09-23.
+## Updated 2021-02-17.
 `updateObject,FGSEAList` <-  # nolint
     function(
         object,
@@ -55,7 +55,7 @@ NULL
         g2s <- metadata(rl)[["gene2symbol"]]
         if (!is(g2s, "Gene2Symbol")) {
             if (isTRUE(verbose)) {
-                cli_alert("Slotting Gene2Symbol in internal RankedList.")
+                alert("Slotting Gene2Symbol in internal RankedList.")
             }
             suppressMessages({
                 metadata(rl)[["gene2symbol"]] <-
@@ -74,7 +74,7 @@ NULL
         ## Slot gene set files if undefined.
         if (!isSubset("collections", names(metadata(object)))) {
             if (isTRUE(verbose)) {
-                cli_alert("Importing gene set collections into object.")
+                alert("Importing gene set collections into object.")
             }
             assert(isSubset("geneSetFiles", names(metadata(object))))
             geneSetFiles <- metadata(object)[["geneSetFiles"]]
@@ -92,7 +92,7 @@ NULL
         ## Slot alpha threshold if undefined.
         if (!isSubset("alpha", names(metadata(object)))) {
             if (isTRUE(verbose)) {
-                cli_alert_warning(
+                alertWarning(
                     "Object does not contain alpha used to perform GSEA."
                 )
             }
@@ -100,7 +100,7 @@ NULL
                 alphaThreshold <- 0.05
             }
             if (isTRUE(verbose)) {
-                cli_alert(paste0(
+                alert(paste0(
                     "Assigning alpha of ", alphaThreshold,
                     " into {.fun alphaThreshold}."
                 ))

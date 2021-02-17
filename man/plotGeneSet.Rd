@@ -50,7 +50,7 @@ Named character color vector indicating:
 Plot gene set enrichment
 }
 \note{
-Updated 2020-09-21.
+Updated 2021-02-17.
 }
 \examples{
 data(fgsea)

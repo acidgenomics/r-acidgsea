@@ -1,6 +1,6 @@
 #' @name leadingEdge
 #' @inherit AcidGenerics::leadingEdge
-#' @note Updated 2020-09-21.
+#' @note Updated 2021-02-17.
 #' @inheritParams params
 #' @param ... Additional arguments.
 #' @examples
@@ -37,7 +37,7 @@ NULL
         data <- as(data, "DataFrame")
         keep <- match(set, table = data[["pathway"]])
         if (!isInt(keep)) {
-            cli_alert_warning(sprintf("Failed to match '%s' set.", set))
+            alertWarning(sprintf("Failed to match '%s' set.", set))
             return(NULL)
         }
         genes <- unlist(unname(data[keep, "leadingEdge"]))

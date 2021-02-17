@@ -1,6 +1,6 @@
 #' @name convertToHuman
 #' @inherit AcidGenerics::convertToHuman
-#' @note Updated 2020-09-21.
+#' @note Updated 2021-02-16.
 #'
 #' @inheritParams params
 #' @param map `DataFrame`, or `NULL`.
@@ -57,13 +57,13 @@ NULL
             isString(organism),
             isScalarInteger(ensemblRelease)
         )
-        cli_alert_info(sprintf(
+        alertInfo(sprintf(
             "%s (Ensembl %d) detected.",
             organism, ensemblRelease
         ))
         ## Early return on Homo sapiens.
         if (identical(organism, "Homo sapiens")) {
-            cli_alert_warning("Returning unmodified.")
+            alertWarning("Returning unmodified.")
             return(object)
         }
         ## Now we're ready to match the human orthologs.
@@ -98,7 +98,7 @@ NULL
         rownames(map) <- rownames(data)
         keep <- !is.na(map[["hgncId"]])
         assert(any(keep))
-        cli_alert_info(sprintf(
+        alertInfo(sprintf(
             "Matched %d / %d genes to human orthologs.",
             sum(keep, na.rm = TRUE),
             nrow(map)
