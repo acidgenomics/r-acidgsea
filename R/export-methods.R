@@ -1,6 +1,6 @@
 #' @name export
 #' @inherit AcidGenerics::export
-#' @note Updated 2020-09-23.
+#' @note Updated 2021-02-17.
 #'
 #' @section On-disk structure:
 #'
@@ -60,14 +60,14 @@ NULL
             name <- as.character(call[["object"]])
         }
         dir <- initDir(file.path(dir, name))
-        cli_alert(sprintf("Exporting to '{.path %s}'.", dir))
+        alert(sprintf("Exporting to '{.path %s}'.", dir))
         contrastNames <- contrastNames(object)
         collectionNames <- collectionNames(object)
         ## Always export the FGSEA results per contrast / per collection.
         files <- lapply(
             X = contrastNames,
             FUN = function(contrast) {
-                cli_alert(sprintf("Exporting results for {.var %s}.", contrast))
+                alert(sprintf("Exporting results for {.var %s}.", contrast))
                 files <- lapply(
                     X = collectionNames,
                     FUN = function(collection) {
@@ -103,7 +103,7 @@ NULL
                     lapply(
                         X = geneSetResults,
                         FUN = function(collection) {
-                            cli_alert(sprintf(
+                            alert(sprintf(
                                 "Exporting results for {.var %s} {.var %s}.",
                                 contrast, collection
                             ))

@@ -1,6 +1,6 @@
 #' @name plotEnrichedUpset
 #' @inherit AcidGenerics::plotEnrichedUpset
-#' @note Updated 2020-08-05.
+#' @note Updated 2021-02-17.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @inheritParams params
@@ -16,7 +16,7 @@ NULL
 
 
 
-## Updated 2020-08-05.
+## Updated 2021-02-17.
 `plotEnrichedUpset,FGSEAList` <-  # nolint
     function(
         object,
@@ -59,7 +59,7 @@ NULL
         ## Otherwise, UpSetR will return array of at least two dimensions error.
         if (sum(bapply(X = listInput, FUN = hasLength)) < 2L) {
             ## nocov start
-            cli_alert_warning(
+            alertWarning(
                 "Less than 2 enriched sets returned. Skipping plot."
             )
             return(invisible(NULL))

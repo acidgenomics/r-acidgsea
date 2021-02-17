@@ -110,7 +110,7 @@ NULL
         alphaThreshold,
         nesThreshold
     )
-    cli_alert_info(status)
+    alertInfo(status)
     egs
 }
 

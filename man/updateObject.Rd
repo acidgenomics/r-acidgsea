@@ -96,7 +96,7 @@ Updating objects is primarily useful when an object has been
   \code{object} cannot be determined by accessing known slots.
 }
 \note{
-Updated 2020-09-23.
+Updated 2021-02-17.
 }
 \examples{
 data(fgsea)
