@@ -120,7 +120,7 @@ NULL
                 down <- data[idx, , drop = FALSE]
                 down <- head(down, n = n)
                 if (hasRows(down)) {
-                    print(kable(as.data.frame(down), digits = 3L))
+                    print(knitr::kable(as.data.frame(down), digits = 3L))
                 } else {
                     alertInfo("No downregulated gene sets.")  # nocov
                 }
