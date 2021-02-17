@@ -24,6 +24,7 @@ mapply(
     )
 )
 if (!isTRUE(dir.exists(file.path("~", "msigdb")))) {
+    message(sprintf("Copying test data to '%s'.", "~/msigdb"))
     file.copy(
         from = normalizePath(
             file.path("..", "..", "inst", "extdata", "msigdb")
