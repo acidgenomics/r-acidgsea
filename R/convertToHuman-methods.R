@@ -87,7 +87,7 @@ NULL
                 is(map, "DataFrame"),
                 identical(
                     x = sort(colnames(map)),
-                    y = c("geneId", "geneName", "hgncId", "hgncName")
+                    y = c("geneId", "geneName", "humanGeneId", "humanGeneName")
                 )
             )
         }
@@ -98,7 +98,7 @@ NULL
         ## as the row names, but are defined in row ranges. This isn't very
         ## common but is accounted for in our unit testing.
         rownames(map) <- rownames(data)
-        keep <- !is.na(map[["hgncId"]])
+        keep <- !is.na(map[["humanGeneId"]])
         assert(any(keep))
         alertInfo(sprintf(
             "Matched %d / %d genes to human orthologs.",
@@ -120,7 +120,7 @@ NULL
         results <- filterList(results)
         lfcShrink <- filterList(lfcShrink)
         ## Remap the human ortholog gene identifiers onto the row names.
-        genes <- map[["hgncId"]]
+        genes <- map[["humanGeneId"]]
         assignRownames <- function(x, value) {
             lapply(
                 X = x,
@@ -133,10 +133,14 @@ NULL
         results <- assignRownames(results, genes)
         lfcShrink <- assignRownames(results, genes)
         ## Update gene-to-symbol mappings defined in rowRanges.
-        mcols(rowRanges(data))[["geneId"]] <- map[["hgncId"]]
-        mcols(rowRanges(data))[["geneName"]] <- map[["hgncName"]]
-        mcols(rowRanges(transform))[["geneId"]] <- map[["hgncId"]]
-        mcols(rowRanges(transform))[["geneName"]] <- map[["hgncName"]]
+        mcols(rowRanges(data))[["geneId"]] <-
+            map[["humanGeneId"]]
+        mcols(rowRanges(data))[["geneName"]] <-
+            map[["humanGeneName"]]
+        mcols(rowRanges(transform))[["geneId"]] <-
+            mcols(rowRanges(data))[["geneName"]]
+        mcols(rowRanges(transform))[["geneName"]] <-
+            mcols(rowRanges(data))[["geneName"]]
         out <- DESeqAnalysis(
             data = data,
             transform = transform,

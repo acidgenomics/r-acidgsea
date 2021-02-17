@@ -1,6 +1,5 @@
 context("convertToHuman")
 
-skip_on_docker()
 skip_if_not(hasInternet(url = "https://ensembl.org/"))
 
 test_that("Human (already)", {
