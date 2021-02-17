@@ -29,9 +29,3 @@
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity show
 #'   slot slot<- validObject
 "_PACKAGE"
-
-
-
-## FIXME NEED TO REMOVE THESE
-#' @importFrom BiocParallel bplapply bpparam
-NULL

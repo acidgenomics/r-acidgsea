@@ -56,8 +56,7 @@ NULL
         nPerm = 1000L,
         minSize = 15L,
         maxSize = 500L,
-        alphaThreshold = 0.05,
-        BPPARAM = BiocParallel::bpparam()  # nolint
+        alphaThreshold = 0.05
     ) {
         validObject(object)
         assert(
@@ -67,11 +66,7 @@ NULL
             isAlpha(alphaThreshold)
         )
         value <- match.arg(value)
-        rankedList <- RankedList(
-            object = object,
-            value = value,
-            BPPARAM = BPPARAM
-        )
+        rankedList <- RankedList(object = object, value = value)
         validObject(rankedList)
         contrasts <- names(rankedList)
         stats <- as.list(rankedList)
@@ -101,8 +96,7 @@ NULL
                                 stats = stats,
                                 nperm = nPerm,
                                 minSize = minSize,
-                                maxSize = maxSize,
-                                BPPARAM = BPPARAM
+                                maxSize = maxSize
                             )
                         })
                         assert(is(data, "data.table"))
