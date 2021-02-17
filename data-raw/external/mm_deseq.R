@@ -1,5 +1,5 @@
 ## Minimal mouse DESeqDataSet to for testing human ortholog matching.
-## Updated 2020-03-16.
+## Updated 2021-02-17.
 
 library(pryr)
 library(basejump)  # 0.12.4
