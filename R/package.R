@@ -14,8 +14,8 @@
 #' @importFrom basejump DataFrame Gene2Symbol SimpleList SplitDataFrameList
 #'   aggregateRows alert alertInfo alertWarning as_tibble camelCase
 #'   complete.cases dl export formalsList head import initDir lapply leftJoin
-#'   makeNames mapGenesToRownames markdownHeader matchHumanOrthologs mcols
-#'   mcols<- melt metadata metadata<- na.omit order packageName packageVersion
+#'   makeNames mapGenesToRownames mapHumanOrthologs markdownHeader mcols mcols<-
+#'   melt metadata metadata<- na.omit order packageName packageVersion
 #'   requireNamespaces reorder rowRanges rowRanges<- selectIf session_info
 #'   showHeader showSlotInfo split standardizeCall tail txt ul unique unsplit
 #' @importFrom fgsea calcGseaStat fgsea
