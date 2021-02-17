@@ -66,7 +66,7 @@ Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 Updated 2020-09-23.
 }
 \examples{
-data(deseq)
+data(deseq, package = "DESeqAnalysis")
 geneSetFiles <- system.file(
     "extdata",
     "msigdb",
