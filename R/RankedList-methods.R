@@ -1,3 +1,7 @@
+## FIXME NEED TO RETHINK THE CLASS RETURN HERE...
+
+
+
 #' @name RankedList
 #' @inherit RankedList-class title description return
 #' @note Updated 2021-03-04.
@@ -34,10 +38,7 @@ NULL
 
 
 
-#' Return `SimpleList` to generate `RankedList`.
-#'
-#' @note Updated 2021-03-04.
-#' @noRd
+## Updated 2021-03-04.
 `RankedList,DataFrame` <-  # nolint
     function(
         object,
@@ -100,15 +101,24 @@ NULL
                 "value" = value
             )
         )
-        out
+        new(Class = "RankedList", out)
     }
 
+formals(`RankedList,DataFrame`)[["value"]] <- .rankedListValue
 
 
-#' Automatically handle `DESeqResults` columns, passing to `DataFrame` method.
-#'
-#' @note Updated 2021-03-03.
-#' @noRd
+
+#' @rdname RankedList
+#' @export
+setMethod(
+    f = "RankedList",
+    signature = signature("DataFrame"),
+    definition = `RankedList,DataFrame`
+)
+
+
+
+## Updated 2021-03-04.
 `RankedList,DESeqResults` <-  # nolint
     function(
         object,
@@ -116,18 +126,15 @@ NULL
         value
     ) {
         validObject(object)
-        assert(is(object, "DESeqResults"))
-        out <- `RankedList,DataFrame`(
+        out <- RankedList(
             object = as(object, "DataFrame"),
             gene2symbol = gene2symbol,
             value = match.arg(value)
         )
-        ## Ensure return contains contrast name.
-        name <- tryCatch(
+        names(out) <- tryCatch(
             expr = contrastName(object),
-            error = function(e) "unknown"
+            error = function(e) NULL
         )
-        names(out) <- name
         out
     }
 
@@ -145,10 +152,7 @@ setMethod(
 
 
 
-#' Primary `RankedList` generator.
-#'
-#' @note Updated 2021-02-16.
-#' @noRd
+## Updated 2021-03-04.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(object, value) {
         validObject(object)
@@ -175,7 +179,7 @@ setMethod(
         bplapply <- eval(.bplapply)
         list <- bplapply(
             X = resultsList,
-            FUN = `RankedList,DESeqResults`,
+            FUN = RankedList,
             gene2symbol = gene2symbol,
             value = value
         )

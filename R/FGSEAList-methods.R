@@ -1,10 +1,3 @@
-## FIXME NEED TO SUPPORT DESEQRESULTS HERE.
-## FIXME RANKEDLIST NEEDS TO SUPPORT DESEQRESULTS...
-## FIXME RANKEDLIST DOES WORK...
-## FIXME NEED TO PROVIDE METHOD SUPPORT FOR RANKEDLIST?
-
-
-
 #' Parameterized fast gene set enrichment analysis (GSEA)
 #'
 #' Extends the functionality of [fgsea::fgsea()].
