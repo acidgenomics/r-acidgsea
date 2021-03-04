@@ -50,7 +50,6 @@ setValidity(
                 x = names(object),
                 y = names(metadata(object)[["collections"]])
             ),
-            is(metadata(object)[["deseq"]], "DESeqAnalysis"),
             isCharacter(metadata(object)[["geneSetFiles"]]),
             identical(
                 x = names(object),

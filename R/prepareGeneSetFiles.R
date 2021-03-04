@@ -8,6 +8,10 @@
 #'
 #' @param dir `character(1)`.
 #'   Directory name containing MSigDb release.
+#' @param pattern `character(1)`.
+#'   Glob string to use for pattern matching against gene set files.
+#'   Passed to `list.files` internally.
+#'   Intended primarily to match files from MSigDb.
 #'
 #' @examples
 #' dir <- system.file(
@@ -20,9 +24,12 @@
 #' )
 #' files <- prepareGeneSetFiles(dir)
 #' print(files)
-prepareGeneSetFiles <- function(dir) {
+prepareGeneSetFiles <- function(
+    dir,
+    pattern = "*.all.*.symbols.gmt"
+) {
+    assert(isString(pattern))
     dir <- realpath(dir)
-    pattern <- "*.all.*.symbols.gmt"
     files <- sort(list.files(
         path = dir,
         pattern = pattern,

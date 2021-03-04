@@ -28,16 +28,15 @@
 #'
 #' @examples
 #' data(deseq, package = "DESeqAnalysis")
-#' geneSetFiles <- system.file(
-#'     "extdata",
-#'     "msigdb",
-#'     "7.0",
-#'     "msigdb_v7.0_GMTs",
-#'     "h.all.v7.0.symbols.gmt",
-#'     package = "AcidGSEA",
-#'     mustWork = TRUE
+#' geneSetFiles <- prepareGeneSetFiles(
+#'     dir = system.file(
+#'         "extdata",
+#'         "msigdb",
+#'         "7.0",
+#'         "msigdb_v7.0_GMTs",
+#'         package = "AcidGSEA"
+#'     )
 #' )
-#' names(geneSetFiles) <- "h"
 #' fgsea <- FGSEAList(
 #'     object = deseq,
 #'     geneSetFiles = geneSetFiles
@@ -64,7 +63,6 @@ NULL
             isInt(nPerm),
             isAlpha(alphaThreshold)
         )
-        value <- match.arg(value)
         contrasts <- names(object)
         stats <- as.list(object)
         alert("Running parameterized fast GSEA.")
