@@ -35,6 +35,7 @@ Imports:
 Suggests:
     AcidTest (>= 0.4.3),
     BiocParallel,
+    knitr,
     rmarkdown,
     testthat
 biocViews:
