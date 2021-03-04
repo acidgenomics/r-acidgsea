@@ -107,8 +107,8 @@ setValidity(
             isSubset(
                 x = metadata(object)[["value"]],
                 y = eval(formals(`RankedList,DESeqAnalysis`)[["value"]])
-            ),
-            is(metadata(object)[["version"]], "package_version")
+            )
+            ## > is(metadata(object)[["packageVersion"]], "package_version")
         )
     }
 )
