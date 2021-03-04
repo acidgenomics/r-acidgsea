@@ -2,11 +2,21 @@
 % Please edit documentation in R/AllGenerics.R, R/FGSEAList-methods.R
 \name{FGSEAList}
 \alias{FGSEAList}
+\alias{FGSEAList,RankedList-method}
 \alias{FGSEAList,DESeqResults-method}
 \alias{FGSEAList,DESeqAnalysis-method}
 \title{Parameterized fast gene set enrichment analysis (GSEA)}
 \usage{
 FGSEAList(object, ...)
+
+\S4method{FGSEAList}{RankedList}(
+  object,
+  geneSetFiles,
+  nPerm = 1000L,
+  minSize = 15L,
+  maxSize = 500L,
+  alphaThreshold = 0.05
+)
 
 \S4method{FGSEAList}{DESeqResults}(
   object,
@@ -22,21 +32,9 @@ FGSEAList(object, ...)
 
 \item{...}{Arguments pass through to \code{RankedList} method.}
 
-\item{gene2symbol}{\code{Gene2Symbol}.
-Gene-to-symbol mappings. Must contain \code{geneId} and \code{geneName} columns. See
-\code{Gene2Symbol} for more information.}
-
-\item{value}{\code{character(1)}.
-Value type to use for GSEA ranked list.
-Currently supported:
-\enumerate{
-\item \code{stat}: Wald test statistic. This column is returned by \code{results()}
-but is removed in \code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} return, currently.
-\item \code{log2FoldChange}: Shrunken log2 fold change. Note that this option
-requires \code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} return to be slotted.
-\item \code{padj}: Adjusted \emph{P} value. This don't provide directional ranks, but
-is offered as a legacy option. Not generally recommended.
-}}
+\item{geneSetFiles}{\code{character}.
+Gene set file paths (i.e. GMT files).
+MSigDB files are recommended by default.}
 
 \item{nPerm}{\code{integer(1)}.
 Number of permutations.
@@ -55,6 +53,22 @@ Alpha level cutoff.
 Stored internally in \code{\link[=alphaThreshold]{alphaThreshold()}}.
 Applied only to plots and enriched gene set exports, but does not affect
 the actual GSEA enrichment calculation.}
+
+\item{gene2symbol}{\code{Gene2Symbol}.
+Gene-to-symbol mappings. Must contain \code{geneId} and \code{geneName} columns. See
+\code{Gene2Symbol} for more information.}
+
+\item{value}{\code{character(1)}.
+Value type to use for GSEA ranked list.
+Currently supported:
+\enumerate{
+\item \code{stat}: Wald test statistic. This column is returned by \code{results()}
+but is removed in \code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} return, currently.
+\item \code{log2FoldChange}: Shrunken log2 fold change. Note that this option
+requires \code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} return to be slotted.
+\item \code{padj}: Adjusted \emph{P} value. This don't provide directional ranks, but
+is offered as a legacy option. Not generally recommended.
+}}
 }
 \value{
 \code{FGSEAList}.
