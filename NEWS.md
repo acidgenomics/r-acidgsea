@@ -1,3 +1,18 @@
+## AcidGSEA 0.6.1 (2021-03-04)
+
+### New functions
+
+- `prepareGeneSetFiles`: MSigDb utility function for easy matching of default
+  GMT gene files to use for GSEA. Matches the symbol files by default.
+
+### Major changes
+
+- `RankedList` and `FGSEAList` method support has been improved for minimal
+  `DESeqResults` and `DataFrame` objects. These approaches are intended
+  primarily for analysis of files from collaborators where we don't necessarily
+  have the complete set of DESeq2 analysis files, and therefore cannot
+  construct a `DESeqAnalysis` object.
+
 ## AcidGSEA 0.6.0 (2021-02-17)
 
 ### Major changes
