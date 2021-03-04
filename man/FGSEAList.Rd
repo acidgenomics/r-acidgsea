@@ -81,16 +81,15 @@ Updated 2021-03-04.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")
-geneSetFiles <- system.file(
-    "extdata",
-    "msigdb",
-    "7.0",
-    "msigdb_v7.0_GMTs",
-    "h.all.v7.0.symbols.gmt",
-    package = "AcidGSEA",
-    mustWork = TRUE
+geneSetFiles <- prepareGeneSetFiles(
+    dir = system.file(
+        "extdata",
+        "msigdb",
+        "7.0",
+        "msigdb_v7.0_GMTs",
+        package = "AcidGSEA"
+    )
 )
-names(geneSetFiles) <- "h"
 fgsea <- FGSEAList(
     object = deseq,
     geneSetFiles = geneSetFiles

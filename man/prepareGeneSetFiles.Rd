@@ -4,11 +4,16 @@
 \alias{prepareGeneSetFiles}
 \title{Prepare gene set files}
 \usage{
-prepareGeneSetFiles(dir)
+prepareGeneSetFiles(dir, pattern = "*.all.*.symbols.gmt")
 }
 \arguments{
 \item{dir}{\code{character(1)}.
 Directory name containing MSigDb release.}
+
+\item{pattern}{\code{character(1)}.
+Glob string to use for pattern matching against gene set files.
+Passed to \code{list.files} internally.
+Intended primarily to match files from MSigDb.}
 }
 \description{
 Prepare gene set files
