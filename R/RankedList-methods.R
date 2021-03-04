@@ -1,3 +1,8 @@
+## NOTE Consider adding method support for matrix here, which is useful
+## for a table of values across multiple contrasts.
+
+
+
 #' @name RankedList
 #' @inherit RankedList-class title description return
 #' @note Updated 2021-03-04.
