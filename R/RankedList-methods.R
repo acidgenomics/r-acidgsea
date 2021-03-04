@@ -126,6 +126,16 @@ formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
 
 
 
+#' @rdname RankedList
+#' @export
+setMethod(
+    f = "RankedList",
+    signature = signature("DESeqResults"),
+    definition = `RankedList,DESeqResults`
+)
+
+
+
 #' Primary `RankedList` generator.
 #'
 #' @note Updated 2021-02-16.
