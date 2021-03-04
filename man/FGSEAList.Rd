@@ -2,29 +2,29 @@
 % Please edit documentation in R/AllGenerics.R, R/FGSEAList-methods.R
 \name{FGSEAList}
 \alias{FGSEAList}
+\alias{FGSEAList,DESeqResults-method}
 \alias{FGSEAList,DESeqAnalysis-method}
 \title{Parameterized fast gene set enrichment analysis (GSEA)}
 \usage{
 FGSEAList(object, ...)
 
-\S4method{FGSEAList}{DESeqAnalysis}(
+\S4method{FGSEAList}{DESeqResults}(
   object,
-  geneSetFiles,
+  gene2symbol,
   value = c("stat", "log2FoldChange", "padj"),
-  nPerm = 1000L,
-  minSize = 15L,
-  maxSize = 500L,
-  alphaThreshold = 0.05
+  ...
 )
+
+\S4method{FGSEAList}{DESeqAnalysis}(object, value = c("stat", "log2FoldChange", "padj"), ...)
 }
 \arguments{
 \item{object}{Object.}
 
 \item{...}{Arguments pass through to \code{RankedList} method.}
 
-\item{geneSetFiles}{\code{character}.
-Gene set file paths (i.e. GMT files).
-MSigDB files are recommended by default.}
+\item{gene2symbol}{\code{Gene2Symbol}.
+Gene-to-symbol mappings. Must contain \code{geneId} and \code{geneName} columns. See
+\code{Gene2Symbol} for more information.}
 
 \item{value}{\code{character(1)}.
 Value type to use for GSEA ranked list.
@@ -63,7 +63,7 @@ the actual GSEA enrichment calculation.}
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2020-09-23.
+Updated 2021-03-04.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")

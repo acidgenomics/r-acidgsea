@@ -43,7 +43,7 @@ is offered as a legacy option. Not generally recommended.
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2021-02-16.
+Updated 2021-03-04.
 }
 \section{Gene symbol multi-mapping}{
 
