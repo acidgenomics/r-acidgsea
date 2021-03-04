@@ -126,6 +126,16 @@ NULL
 
 
 
+#' @rdname FGSEAList
+#' @export
+setMethod(
+    f = "FGSEAList",
+    signature = signature("RankedList"),
+    definition = `FGSEAList,RankedList`
+)
+
+
+
 ## Updated 2021-03-04.
 `FGSEAList,DESeqResults` <-  # nolint
     function(
