@@ -3,7 +3,7 @@
 #' Class containing parameterized fast GSEA results.
 #'
 #' @export
-#' @note Updated 2020-09-24.
+#' @note Updated 2021-03-03.
 #'
 #' @return `FGSEAList`.
 setClass(
@@ -31,18 +31,17 @@ setValidity(
             ),
             isSubset(
                 x = c(
-                    ## "call"
-                    ## "date"
-                    ## "maxSize"
-                    ## "minSize"
-                    ## "nPerm"
-                    ## "sessionInfo"
+                    ## > "call"
+                    ## > "date"
+                    ## > "maxSize"
+                    ## > "minSize"
+                    ## > "nPerm"
+                    ## > "packageVersion"
+                    ## > "sessionInfo"
                     "alpha",
                     "collections",
-                    "deseq",
                     "geneSetFiles",
-                    "rankedList",
-                    "version"
+                    "rankedList"
                 ),
                 y = names(metadata(object))
             ),
@@ -74,7 +73,7 @@ setValidity(
 #' Class containing parameterized ranked gene lists.
 #'
 #' @export
-#' @note Updated 2020-09-24.
+#' @note Updated 2021-03-04.
 #'
 #' @return `RankedList`.
 setClass(
@@ -93,7 +92,11 @@ setValidity(
             ## gene2symbol metadata is now optional, but still recommended.
             ## This check was removed to allow RankedList support for matrix.
             isSubset(
-                x = c("gene2symbol", "value", "version"),
+                x = c(
+                    ## > "packageVersion"
+                    "gene2symbol",
+                    "value"
+                ),
                 y = names(metadata(object))
             ),
             is(metadata(object)[["gene2symbol"]], "Gene2Symbol"),

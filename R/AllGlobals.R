@@ -11,19 +11,17 @@
 
 
 
+## Updated 2021-03-04.
+.pkgName <- packageName()
+.pkgVersion <- packageVersion(.pkgName)
+
+
+
 #' RankedList values
 #'
 #' @note Updated 2020-10-10.
 #' @noRd
 .rankedListValue <- c("stat", "log2FoldChange", "padj")
-
-
-
-#' Package version
-#'
-#' @note Updated 2020-10-10.
-#' @noRd
-.version <- packageVersion(packageName())
 
 
 
@@ -37,5 +35,5 @@
 AcidGSEATestsURL <-  # nolint
     paste0(
         "https://r.acidgenomics.com/testdata/acidgsea/",
-        "v", .version$major, ".", .version$minor  # nolint
+        "v", .pkgVersion$major, ".", .pkgVersion$minor  # nolint
     )

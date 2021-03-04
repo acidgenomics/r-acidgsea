@@ -1,6 +1,6 @@
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2021-02-16.
+#' @note Updated 2021-03-04.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -36,7 +36,7 @@ NULL
 
 #' Return `SimpleList` to generate `RankedList`.
 #'
-#' @note Updated 2021-02-16.
+#' @note Updated 2021-03-04.
 #' @noRd
 `RankedList,DataFrame` <-  # nolint
     function(
@@ -92,9 +92,14 @@ NULL
         x <- sort(x, decreasing = TRUE)
         ## Return ranked list.
         out <- SimpleList(x)
-        metadata(out)[["version"]] <- .version
-        metadata(out)[["value"]] <- value
-        metadata(out)[["gene2symbol"]] <- gene2symbol
+        metadata(out) <- append(
+            x = metadata(out),
+            values = list(
+                "gene2symbol" = gene2symbol,
+                "packageVersion" = .pkgVersion,
+                "value" = value
+            )
+        )
         out
     }
 
@@ -102,7 +107,7 @@ NULL
 
 #' Automatically handle `DESeqResults` columns, passing to `DataFrame` method.
 #'
-#' @note Updated 2020-10-10.
+#' @note Updated 2021-03-03.
 #' @noRd
 `RankedList,DESeqResults` <-  # nolint
     function(
@@ -118,7 +123,11 @@ NULL
             value = match.arg(value)
         )
         ## Ensure return contains contrast name.
-        names(out) <- contrastName(object)
+        name <- tryCatch(
+            expr = contrastName(object),
+            error = function(e) "unknown"
+        )
+        names(out) <- name
         out
     }
 
