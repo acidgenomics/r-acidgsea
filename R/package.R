@@ -15,7 +15,7 @@
 #'   aggregateRows alert alertInfo alertWarning as_tibble camelCase
 #'   complete.cases dl export formalsList head import initDir lapply leftJoin
 #'   makeNames mapGenesToRownames mapHumanOrthologs markdownHeader mcols mcols<-
-#'   melt metadata metadata<- na.omit order packageName packageVersion
+#'   melt metadata metadata<- na.omit order packageName packageVersion realpath
 #'   requireNamespaces reorder rowRanges rowRanges<- selectIf session_info
 #'   showHeader showSlotInfo split standardizeCall tail txt ul unique unsplit
 #' @importFrom fgsea calcGseaStat fgsea
