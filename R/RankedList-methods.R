@@ -1,7 +1,3 @@
-## FIXME NEED TO RETHINK THE CLASS RETURN HERE...
-
-
-
 #' @name RankedList
 #' @inherit RankedList-class title description return
 #' @note Updated 2021-03-04.
