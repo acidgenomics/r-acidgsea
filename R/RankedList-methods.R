@@ -74,8 +74,9 @@ NULL
                 assert(is(gene2symbol, "Gene2Symbol"))
                 x <- as(object, "DataFrame")
                 y <- as(gene2symbol, "DataFrame")
-                ## Join the gene-to-symbol mappings, so we can convert Ensembl gene IDs
-                ## to gene symbols, for use with GSEA MSigDb GMT files.
+                ## Join the gene-to-symbol mappings, so we can convert Ensembl
+                ## gene identifiers to gene symbols, for use with GSEA MSigDb
+                ## GMT files.
                 x[["rowname"]] <- rownames(x)
                 y[["rowname"]] <- rownames(y)
                 x <- leftJoin(x, y, by = "rowname")
