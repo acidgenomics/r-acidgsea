@@ -1,6 +1,8 @@
 ## NOTE Consider adding method support for matrix here, which is useful
 ## for a table of values across multiple contrasts.
 
+## NOTE Consider adding an "entrezId" key type for DESeqAnalysis class.
+
 
 
 #' @name RankedList
@@ -117,13 +119,11 @@ NULL
         x <- sort(x, decreasing = TRUE)
         ## Return ranked list.
         out <- SimpleList(x)
-        metadata(out) <- append(
-            x = metadata(out),
-            values = list(
-                "gene2symbol" = gene2symbol,
-                "packageVersion" = .pkgVersion,
-                "value" = value
-            )
+        metadata(out) <- list(
+            "gene2symbol" = gene2symbol,
+            "keyType" = keyType,
+            "packageVersion" = .pkgVersion,
+            "value" = value
         )
         new(Class = "RankedList", out)
     }
@@ -178,32 +178,89 @@ setMethod(
 
 
 
+## FIXME NEED TO ADD SUPPORT FOR ENTREZID MODE...
+
 ## Updated 2021-03-04.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
         value,
-        keyType = c("geneName", "geneId")
+        keyType = c("geneName", "geneId", "entrezId")
     ) {
         validObject(object)
         value <- match.arg(value)
         keyType <- match.arg(keyType)
-        ## Extract the DESeqResults list.
-        if (identical(value, "log2FoldChange")) {
-            ## Note that we're requiring shrunken LFCs if the user wants to
-            ## return those values instead of using Wald test statistic.
-            resultsList <- slot(object, "lfcShrink")
-        } else {
-            resultsList <- slot(object, "results")
-        }
+        gene2symbol <- NULL
+        ## Extract the DESeqResults list. Note that we're requiring shrunken
+        ## LFCs if the user wants to return those values instead of using the
+        ## Wald test statistic ("stat").
+        resultsList <- slot(
+            object = object,
+            name = ifelse(
+                test = identical(value, "log2FoldChange"),
+                yes = "lfcShrink",
+                no = "results"
+            )
+        )
         assert(is(resultsList, "list"))
-        ## Get the gene-to-symbol mappings. We're returning in long format so we
-        ## can average the values for each gene symbol, since for some genomes
-        ## gene IDs multi-map to symbols.
-        gene2symbol <- switch(
+        ## Entrez identifier mapping mode.
+        switch(
             EXPR = keyType,
-            "geneId" = NULL,
+            "entrezId" = {
+                dds <- as(object, "DESeqDataSet")
+                rowData <- rowData(dds)
+                if (hasColnames(rowData)) {
+                    colnames(rowData) <-
+                        camelCase(colnames(rowData), strict = TRUE)
+                }
+                if (!isSubset("entrezId", colnames(rowData))) {
+                    stop("Object does not contain Entrez identifiers.")
+                }
+                g2e <- IntegerList(rowData[["entrezId"]])
+                names(g2e) <- rownames(rowData)
+                keep <- !all(is.na(g2e))
+                g2e <- g2e[keep, , drop = FALSE]
+                ## For genes that don't map 1:1, use the oldest identifier.
+                g2e <- IntegerList(lapply(
+                    X = g2e,
+                    FUN = function(x) {
+                        head(sort(na.omit(x)), n = 1L)
+                    }
+                ))
+                g2e <- unlist(g2e, use.names = TRUE)
+                assert(!any(is.na(g2e)))
+                ## Replace the rownames in results list with Entrez identifiers.
+                idx <- match(
+                    x = names(g2e),
+                    table = rownames(resultsList[[1L]])
+                )
+                assert(identical(length(idx), length(g2e)))
+                if (length(idx) < nrow(dds)) {
+                    n <- nrow(dds) - length(idx)
+                    alertWarning(sprintf(
+                        "Dropping %d %s without an Entrez identifier.",
+                        n,
+                        ngettext(
+                            n = n,
+                            msg1 = "gene",
+                            msg2 = "genes"
+                        )
+                    ))
+                }
+                resultsList <- lapply(
+                    X = resultsList,
+                    FUN = function(x) {
+                        x <- x[idx, , drop = FALSE]
+                        rownames(x) <- unname(g2e)
+                        x
+                    }
+                )
+                keyType <- "geneId"
+            },
             "geneName" = {
+                ## Get the gene-to-symbol mappings. We're returning in long
+                ## format so we can average the values for each gene symbol,
+                ## since for some genomes gene IDs multi-map to symbols.
                 suppressMessages({
                     gene2symbol <- Gene2Symbol(
                         object = as(object, "DESeqDataSet"),
@@ -217,8 +274,9 @@ setMethod(
         list <- bplapply(
             X = resultsList,
             FUN = RankedList,
-            gene2symbol = gene2symbol,
-            value = value
+            value = value,
+            keyType = keyType,
+            gene2symbol = gene2symbol
         )
         ## Extract the required metadata from the first slotted return object
         ## defined from DESeqResults method.
