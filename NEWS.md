@@ -13,6 +13,13 @@
   have the complete set of DESeq2 analysis files, and therefore cannot
   construct a `DESeqAnalysis` object.
 
+### Minor changes
+
+- `RankedList` now supports `keyType`, which defaults to gene name (a.k.a.
+  symbol), but now also supports original gene identifier. This alternative
+  option is useful when working with the clusterProfiler package and is used
+  in the bcbioRNASeq template.
+
 ## AcidGSEA 0.6.0 (2021-02-17)
 
 ### Major changes

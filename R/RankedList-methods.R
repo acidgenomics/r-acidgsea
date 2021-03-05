@@ -14,6 +14,11 @@
 #'
 #' @inheritParams AcidRoxygen::params
 #' @inheritParams params
+#' @param keyType `character(1)`.
+#'   Key type:
+#'   - Gene name (a.k.a. symbol; e.g. "TSPAN6").
+#'     *Recommended by default.*
+#'   - Gene identifier (e.g. "ENSG00000000003").
 #' @param value `character(1)`.
 #'   Value type to use for GSEA ranked list.
 #'   Currently supported:
@@ -43,52 +48,69 @@ NULL
 `RankedList,DataFrame` <-  # nolint
     function(
         object,
-        gene2symbol,
-        value
+        value,
+        keyType = c("geneName", "geneId"),
+        gene2symbol = NULL
     ) {
         validObject(object)
         validObject(gene2symbol)
         assert(
             is(object, "DataFrame"),
-            is(gene2symbol, "Gene2Symbol"),
+            is(gene2symbol, "Gene2Symbol") || is.null(gene2symbol),
             isSubset(value, colnames(object))
         )
-        x <- as(object, "DataFrame")
-        y <- as(gene2symbol, "DataFrame")
-        ## Join the gene-to-symbol mappings, so we can convert Ensembl gene IDs
-        ## to gene symbols, for use with GSEA MSigDb GMT files.
-        x[["rowname"]] <- rownames(x)
-        y[["rowname"]] <- rownames(y)
-        x <- leftJoin(x, y, by = "rowname")
-        x <- x[, c("geneName", value), drop = FALSE]
-        x <- x[complete.cases(x), , drop = FALSE]
-        x <- unique(x)
-        ## Average the value per gene symbol, if necessary.
-        x[["geneName"]] <- as.factor(x[["geneName"]])
-        if (any(duplicated(x[["geneName"]]))) {
-            rownames(x) <- NULL
-            dupes <- which(duplicated(x[["geneName"]]))
-            dupes <- as.character(x[["geneName"]][dupes])
-            dupes <- sort(unique(dupes))
-            alert(sprintf(
-                fmt = "Averaging '%s' value for %d gene %s: %s.",
-                value,
-                length(dupes),
-                ngettext(
-                    n = length(dupes),
-                    msg1 = "symbol",
-                    msg2 = "symbols"
-                ),
-                toString(dupes, width = 100L)
-            ))
-        }
-        ## Split by the gene symbol.
-        x <- split(x = x, f = x[["geneName"]])
-        ## Calculate mean expression per symbol.
-        x <- vapply(
-            X = x[, value],
-            FUN = mean,
-            FUN.VALUE = numeric(1L)
+        keyType <- match.arg(keyType)
+        switch(
+            EXPR = keyType,
+            "geneId" = {
+                assert(
+                    hasRownames(object),
+                    hasNoDuplicates(rownames(object))
+                )
+                x <- as(object, "DataFrame")[[value]]
+                names(x) <- rownames(object)
+            },
+            "geneName" = {
+                assert(is(gene2symbol, "Gene2Symbol"))
+                x <- as(object, "DataFrame")
+                y <- as(gene2symbol, "DataFrame")
+                ## Join the gene-to-symbol mappings, so we can convert Ensembl gene IDs
+                ## to gene symbols, for use with GSEA MSigDb GMT files.
+                x[["rowname"]] <- rownames(x)
+                y[["rowname"]] <- rownames(y)
+                x <- leftJoin(x, y, by = "rowname")
+                x <- x[, c("geneName", value), drop = FALSE]
+                x <- x[complete.cases(x), , drop = FALSE]
+                x <- unique(x)
+                ## Average the value per gene symbol, if necessary.
+                x[["geneName"]] <- as.factor(x[["geneName"]])
+                if (any(duplicated(x[["geneName"]]))) {
+                    rownames(x) <- NULL
+                    dupes <- which(duplicated(x[["geneName"]]))
+                    dupes <- as.character(x[["geneName"]][dupes])
+                    dupes <- sort(unique(dupes))
+                    alert(sprintf(
+                        fmt = "Averaging '%s' value for %d gene %s: %s.",
+                        value,
+                        length(dupes),
+                        ngettext(
+                            n = length(dupes),
+                            msg1 = "symbol",
+                            msg2 = "symbols"
+                        ),
+                        toString(dupes, width = 100L)
+                    ))
+                }
+                ## Split by the gene symbol.
+                x <- split(x = x, f = x[["geneName"]])
+                ## Calculate mean expression per symbol.
+                x <- vapply(
+                    X = x[, value],
+                    FUN = mean,
+                    FUN.VALUE = numeric(1L),
+                    USE.NAMES = TRUE
+                )
+            }
         )
         ## Arrange from positive to negative.
         x <- sort(x, decreasing = TRUE)
@@ -123,14 +145,16 @@ setMethod(
 `RankedList,DESeqResults` <-  # nolint
     function(
         object,
-        gene2symbol,
-        value
+        value,
+        keyType = c("geneName", "geneId"),
+        gene2symbol
     ) {
         validObject(object)
         out <- RankedList(
             object = as(object, "DataFrame"),
-            gene2symbol = gene2symbol,
-            value = match.arg(value)
+            value = match.arg(value),
+            keyType = match.arg(keyType),
+            gene2symbol = gene2symbol
         )
         names(out) <- tryCatch(
             expr = contrastName(object),
@@ -155,9 +179,14 @@ setMethod(
 
 ## Updated 2021-03-04.
 `RankedList,DESeqAnalysis` <-  # nolint
-    function(object, value) {
+    function(
+        object,
+        value,
+        keyType = c("geneName", "geneId")
+    ) {
         validObject(object)
         value <- match.arg(value)
+        keyType <- match.arg(keyType)
         ## Extract the DESeqResults list.
         if (identical(value, "log2FoldChange")) {
             ## Note that we're requiring shrunken LFCs if the user wants to
@@ -170,12 +199,18 @@ setMethod(
         ## Get the gene-to-symbol mappings. We're returning in long format so we
         ## can average the values for each gene symbol, since for some genomes
         ## gene IDs multi-map to symbols.
-        suppressMessages({
-            gene2symbol <- Gene2Symbol(
-                object = as(object, "DESeqDataSet"),
-                format = "unmodified"
-            )
-        })
+        gene2symbol <- switch(
+            EXPR = keyType,
+            "geneId" = NULL,
+            "geneName" = {
+                suppressMessages({
+                    gene2symbol <- Gene2Symbol(
+                        object = as(object, "DESeqDataSet"),
+                        format = "unmodified"
+                    )
+                })
+            }
+        )
         ## Get parameterized GSEA list values for each DESeqResults contrast.
         bplapply <- eval(.bplapply)
         list <- bplapply(
