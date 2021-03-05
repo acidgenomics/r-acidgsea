@@ -112,7 +112,7 @@ setValidity(
                 isSubset(
                     x = names(object[[1L]]),
                     y = metadata(object)[["gene2symbol"]][["geneName"]]
-                ),
+                )
             )
             if (!isTRUE(ok)) return(ok)
         }
