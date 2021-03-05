@@ -27,7 +27,7 @@ RankedList(object, ...)
 \S4method{RankedList}{DESeqAnalysis}(
   object,
   value = c("stat", "log2FoldChange", "padj"),
-  keyType = c("geneName", "geneId")
+  keyType = c("geneName", "geneId", "entrezId")
 )
 
 \S4method{RankedList}{FGSEAList}(object)
