@@ -26,7 +26,7 @@ Depends: R (>= 4.0)
 Imports:
     AcidGenerics (>= 0.5.17),
     AcidPlots (>= 0.3.5),
-    DESeqAnalysis (>= 0.3.13),
+    DESeqAnalysis (>= 0.3.12),
     basejump (>= 0.14.16),
     fgsea (>= 1.16),
     ggplot2 (>= 3.3),
