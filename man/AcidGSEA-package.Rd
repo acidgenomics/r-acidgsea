@@ -10,9 +10,9 @@ differential expression contrasts.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://acidgsea.acidgenomics.com/}
-  \item \url{https://github.com/acidgenomics/AcidGSEA/}
-  \item Report bugs at \url{https://github.com/acidgenomics/AcidGSEA/issues/}
+  \item \url{https://r.acidgenomics.com/packages/acidgsea/}
+  \item \url{https://github.com/acidgenomics/r-acidgsea/}
+  \item Report bugs at \url{https://github.com/acidgenomics/r-acidgsea/issues/}
 }
 
 }
