@@ -48,7 +48,7 @@ Plot.
 Heatmap
 }
 \note{
-Updated 2020-09-23.
+Updated 2021-03-16.
 }
 \examples{
 data(fgsea)

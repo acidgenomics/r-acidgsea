@@ -33,7 +33,7 @@ For example, \code{"HALLMARK_ADIPOGENESIS"}.}
 Gene set results
 }
 \note{
-Updated 2020-09-24.
+Updated 2021-03-16.
 }
 \examples{
 data(fgsea)

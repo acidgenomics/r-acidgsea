@@ -3,7 +3,7 @@
 #' Class containing parameterized fast GSEA results.
 #'
 #' @export
-#' @note Updated 2021-03-03.
+#' @note Updated 2021-03-16.
 #'
 #' @return `FGSEAList`.
 setClass(
@@ -33,6 +33,7 @@ setValidity(
                 x = c(
                     ## > "call"
                     ## > "date"
+                    ## > "deseq" (only created from DESeqAnalysis)
                     ## > "maxSize"
                     ## > "minSize"
                     ## > "nPerm"

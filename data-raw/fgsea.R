@@ -1,5 +1,6 @@
 suppressPackageStartupMessages({
     library(usethis)
+    library(goalie)
     library(basejump)       # 0.14.17
     library(DESeq2)         # 1.30.1
     library(DESeqAnalysis)  # 0.4.0
@@ -90,9 +91,10 @@ fgsea <- FGSEAList(
     alphaThreshold = 0.99
 )
 validObject(fgsea)
-stopifnot(
+assert(
     object.size(fgsea) < limit,
-    hasRows(fgsea[[1L]][[1L]])
+    hasRows(fgsea[[1L]][[1L]]),
+    is(metadata(fgsea)[["deseq"]], "DESeqAnalysis")
 )
 
 use_data(fgsea, overwrite = TRUE, compress = "xz")

@@ -3,7 +3,7 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @name FGSEAList
-#' @note Updated 2021-03-04.
+#' @note Updated 2021-03-16.
 #'
 #' @inheritParams RankedList
 #' @inheritParams params
@@ -165,7 +165,7 @@ setMethod(
 
 
 
-## Updated 2021-03-04.
+## Updated 2021-03-16.
 `FGSEAList,DESeqAnalysis` <-  # nolint
     function(object, value, ...) {
         validObject(object)
@@ -173,7 +173,9 @@ setMethod(
             object = object,
             value = match.arg(value)
         )
-        FGSEAList(object = rl, ...)
+        out <- FGSEAList(object = rl, ...)
+        metadata(out)[["deseq"]] <- object
+        out
     }
 
 formals(`FGSEAList,DESeqAnalysis`)[["value"]] <- .rankedListValue

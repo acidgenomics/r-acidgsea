@@ -77,7 +77,7 @@ is offered as a legacy option. Not generally recommended.
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2021-03-04.
+Updated 2021-03-16.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")
