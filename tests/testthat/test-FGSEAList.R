@@ -2,7 +2,12 @@ context("FGSEAList")
 
 skip_if_not(dir.exists(file.path("~", "msigdb")))
 
-deseq <- metadata(fgsea)[["deseq"]]
+data(
+    deseq,
+    package = "DESeqAnalysis",
+    envir = environment()
+)
+
 geneSetFiles <- metadata(fgsea)[["geneSetFiles"]]
 
 test_that("RankedList", {
