@@ -1,6 +1,6 @@
 #' @name export
 #' @inherit AcidGenerics::export
-#' @note Updated 2021-02-17.
+#' @note Updated 2021-03-16.
 #'
 #' @section On-disk structure:
 #'
@@ -42,7 +42,7 @@ NULL
 
 
 
-## Updated 2020-09-23.
+## Updated 2021-03-16.
 `export,FGSEAList` <-  # nolint
     function(
         object,
@@ -71,12 +71,14 @@ NULL
                 files <- lapply(
                     X = collectionNames,
                     FUN = function(collection) {
+                        res <- results(
+                            object = object,
+                            contrast = contrast,
+                            collection = collection
+                        )
+                        if (!hasRows(res)) return(NULL)
                         export(
-                            object = results(
-                                object = object,
-                                contrast = contrast,
-                                collection = collection
-                            ),
+                            object = res,
                             file = file.path(
                                 dir,
                                 contrast,
@@ -120,7 +122,7 @@ NULL
                                         collection = collection,
                                         set = set
                                     )
-                                    if (!hasLength(res)) return(NULL)
+                                    if (!hasRows(res)) return(NULL)
                                     export(
                                         object = res,
                                         file = file.path(
