@@ -178,8 +178,6 @@ setMethod(
 
 
 
-## FIXME NEED TO ADD SUPPORT FOR ENTREZID MODE...
-
 ## Updated 2021-03-04.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(

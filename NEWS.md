@@ -1,3 +1,11 @@
+## AcidGSEA 0.6.2 (2021-03-16)
+
+### Minor changes
+
+- Updated basejump dependencies.
+- Resaved example `fgsea` object (`FGSEAList`).
+- Updated unit tests.
+
 ## AcidGSEA 0.6.1 (2021-03-04)
 
 ### New functions
