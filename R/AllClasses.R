@@ -72,7 +72,7 @@ setValidity(
 #' Class containing parameterized ranked gene lists.
 #'
 #' @export
-#' @note Updated 2021-03-04.
+#' @note Updated 2021-03-16.
 #'
 #' @return `RankedList`.
 setClass(
@@ -90,8 +90,8 @@ setValidity(
             hasNames(object[[1L]]),
             isSubset(
                 x = c(
-                    "keyType",
-                    "packageVersion",
+                    ## > "keyType",
+                    ## > "packageVersion",
                     "value"
                 ),
                 y = names(metadata(object))
@@ -99,8 +99,8 @@ setValidity(
             isSubset(
                 x = metadata(object)[["value"]],
                 y = eval(formals(`RankedList,DESeqAnalysis`)[["value"]])
-            ),
-            is(metadata(object)[["packageVersion"]], "package_version")
+            )
+            ## > is(metadata(object)[["packageVersion"]], "package_version")
         )
         if (!isTRUE(ok)) return(ok)
         if (identical(metadata(object)[["keyType"]], "geneName")) {
