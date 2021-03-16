@@ -15,11 +15,12 @@ gr <- makeGRangesFromEnsembl(
     ignoreVersion = TRUE
 )
 gr <- as(gr, "GRanges")
+gr <- gr[sort(names(gr))]
 gr <- head(gr, n = 1000L)
 gr <- droplevels(gr)
 mcols(gr) <- mcols(gr)[c("geneId", "geneName")]
 object.size(gr)
-## 329856 bytes
+## 337624 bytes
 
 ## DESeqDataSet
 dds <- makeExampleDESeqDataSet(n = length(gr), m = 12L)
@@ -34,7 +35,7 @@ dds$treatment
 ##  [1] C C C D D D C C C D D D
 ## Levels: C D
 object.size(dds)
-## 932080 bytes
+## 939848 bytes
 
 ## DESeqTransform
 dt <- varianceStabilizingTransformation(dds)
@@ -68,19 +69,20 @@ deseq <- DESeqAnalysis(
     lfcShrink = NULL
 )
 object.size(deseq)
-## 1949280 bytes
+## 1965104 bytes
 
 ## Just using hallmark in minimal example.
-geneSetFiles <- system.file(
-    "extdata",
-    "msigdb",
-    "7.0",
-    "msigdb_v7.0_GMTs",
-    "h.all.v7.0.symbols.gmt",
-    package = "AcidGSEA",
-    mustWork = TRUE
+geneSetFiles <- prepareGeneSetFiles(
+    dir = system.file(
+        "extdata",
+        "msigdb",
+        "7.0",
+        "msigdb_v7.0_GMTs",
+        package = "AcidGSEA",
+        mustWork = TRUE
+    ),
+    pattern = "*.all.*.symbols.gmt"
 )
-names(geneSetFiles) <- "h"
 
 fgsea <- FGSEAList(
     object = deseq,
@@ -88,6 +90,9 @@ fgsea <- FGSEAList(
     alphaThreshold = 0.99
 )
 validObject(fgsea)
-stopifnot(object.size(fgsea) < limit)
+stopifnot(
+    object.size(fgsea) < limit,
+    hasRows(fgsea[[1L]][[1L]])
+)
 
 use_data(fgsea, overwrite = TRUE, compress = "xz")
