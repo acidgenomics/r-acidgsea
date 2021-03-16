@@ -1,8 +1,8 @@
 suppressPackageStartupMessages({
     library(usethis)
-    library(basejump)       # 0.13.2
-    library(DESeq2)         # 1.28.1
-    library(DESeqAnalysis)  # 0.3.9
+    library(basejump)       # 0.14.17
+    library(DESeq2)         # 1.30.1
+    library(DESeqAnalysis)  # 0.4.0
 })
 
 ## Restrict to 3 MB.
@@ -19,7 +19,7 @@ gr <- head(gr, n = 1000L)
 gr <- droplevels(gr)
 mcols(gr) <- mcols(gr)[c("geneId", "geneName")]
 object.size(gr)
-## 336296 bytes
+## 329856 bytes
 
 ## DESeqDataSet
 dds <- makeExampleDESeqDataSet(n = length(gr), m = 12L)
@@ -34,7 +34,7 @@ dds$treatment
 ##  [1] C C C D D D C C C D D D
 ## Levels: C D
 object.size(dds)
-## 938520 bytes
+## 932080 bytes
 
 ## DESeqTransform
 dt <- varianceStabilizingTransformation(dds)
@@ -68,7 +68,7 @@ deseq <- DESeqAnalysis(
     lfcShrink = NULL
 )
 object.size(deseq)
-## 1962440 bytes
+## 1949280 bytes
 
 ## Just using hallmark in minimal example.
 geneSetFiles <- system.file(
