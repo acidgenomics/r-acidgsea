@@ -1,9 +1,11 @@
 #' @name geneSetResults
 #' @inherit AcidGenerics::geneSetResults
-#' @note Updated 2020-09-24.
-#' @inheritParams params
+#' @note Updated 2021-03-16.
+#'
 #' @inheritParams AcidRoxygen::params
+#' @inheritParams params
 #' @param ... Additional arguments.
+#'
 #' @examples
 #' data(fgsea)
 #' geneSetResults(
@@ -16,7 +18,7 @@ NULL
 
 
 
-## Updated 2020-09-24.
+## Updated 2021-03-16.
 `geneSetResults,FGSEAList` <-  # nolint
     function(
         object,
@@ -35,7 +37,7 @@ NULL
         genes <- geneSet(object, collection = collection, set = set)
         rownames <- .matchGenesToIDs(object, set = set, genes = genes)
         if (!hasLength(rownames)) return(NULL)
-        deseq <- `DESeqAnalysis,FGSEAList`(object)
+        deseq <- .getDESeqAnalysis(object)
         suppressMessages({
             res <- results(object = deseq, i = contrast, extra = TRUE)
         })

@@ -1,6 +1,6 @@
 #' @name plotHeatmap
 #' @inherit AcidPlots::plotHeatmap description return title
-#' @note Updated 2020-09-23.
+#' @note Updated 2021-03-16.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @inheritParams params
@@ -18,7 +18,7 @@ NULL
 
 
 
-## Updated 2020-09-23.
+## Updated 2021-03-16.
 `plotHeatmap,FGSEAList` <-  # nolint
     function(
         object,
@@ -51,7 +51,7 @@ NULL
         ## Plot the log counts from DESeqTransform object.
         genes <- geneSet(object, collection = collection, set = set)
         rownames <- .matchGenesToIDs(object, set = set, genes = genes)
-        deseq <- `DESeqAnalysis,FGSEAList`(object)
+        deseq <- .getDESeqAnalysis(object)
         dt <- as(deseq, "DESeqTransform")
         dt <- dt[rownames, ]
         if (isTRUE(contrastSamples)) {

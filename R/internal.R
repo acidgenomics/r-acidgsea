@@ -1,3 +1,26 @@
+#' Get optional slotted DESeqAnalysis from a RankedList object
+#'
+#' @note Updated 2021-03-16.
+#' @noRd
+#'
+#' @details
+#' Intentionally error with an informative error message.
+.getDESeqAnalysis <-  # nolint
+    function(object) {
+        assert(is(object, "FGSEAList"))
+        deseq <- metadata(object)[["deseq"]]
+        if (!is(deseq, "DESeqAnalysis")) {
+            stop(paste(
+                "'FGSEAList' does not contain 'DESeqAnalysis'",
+                "in 'deseq' 'metadata()' slot."
+            ))
+        }
+        deseq
+    }
+
+
+
+
 #' Get the top up- and down-regulated pathways from FGSEA results
 #'
 #' @note Updated 2020-03-18.
