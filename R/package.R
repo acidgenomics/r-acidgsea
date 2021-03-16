@@ -1,7 +1,3 @@
-## FIXME Rethink the usage of `contrastNames` here.
-
-
-
 #' AcidGSEA
 #'
 #' Perform parameterized fast gene set enrichment analysis (GSEA) on multiple
@@ -9,7 +5,7 @@
 #'
 #' @aliases NULL
 #' @keywords internal
-
+#'
 #' @importClassesFrom DESeqAnalysis DESeqAnalysis
 #' @importMethodsFrom DESeqAnalysis coerce plotCounts
 #'
