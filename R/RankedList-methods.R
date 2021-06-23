@@ -7,7 +7,7 @@
 
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2021-03-04.
+#' @note Updated 2021-06-22.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -73,12 +73,18 @@ NULL
                 names(x) <- rownames(object)
             },
             "geneName" = {
-                assert(is(gene2symbol, "Gene2Symbol"))
+                assert(
+                    is(gene2symbol, "Gene2Symbol"),
+                    hasRownames(gene2symbol)
+                )
                 x <- as(object, "DataFrame")
                 y <- as(gene2symbol, "DataFrame")
                 ## Join the gene-to-symbol mappings, so we can convert Ensembl
                 ## gene identifiers to gene symbols, for use with GSEA MSigDb
                 ## GMT files.
+                cols <- setdiff(colnames(x), colnames(y))
+                assert(hasLength(cols))
+                x <- x[, cols]
                 x[["rowname"]] <- rownames(x)
                 y[["rowname"]] <- rownames(y)
                 x <- leftJoin(x, y, by = "rowname")
