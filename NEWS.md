@@ -1,4 +1,4 @@
-## AcidGSEA 0.6.3 (2021-06-22)
+## AcidGSEA 0.6.3 (2021-06-28)
 
 ### Minor changes
 
