@@ -23,23 +23,3 @@ mapply(
         envir = environment()
     )
 )
-if (!isTRUE(dir.exists(file.path("~", "msigdb")))) {
-    message(sprintf("Copying test data to '%s'.", "~/msigdb"))
-    file.copy(
-        from = normalizePath(
-            file.path("..", "..", "inst", "extdata", "msigdb")
-        ),
-        to = "~",
-        overwrite = FALSE,
-        recursive = TRUE
-    )
-    stopifnot(file.exists(
-        file.path(
-            "~",
-            "msigdb",
-            "7.0",
-            "msigdb_v7.0_GMTs",
-            "h.all.v7.0.symbols.gmt"
-        )
-    ))
-}

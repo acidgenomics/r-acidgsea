@@ -1,19 +1,15 @@
 context("FGSEAList")
 
-skip_if_not(dir.exists(file.path("~", "msigdb")))
-
 data(
     deseq,
     package = "DESeqAnalysis",
     envir = environment()
 )
 
-geneSetFiles <- metadata(fgsea)[["geneSetFiles"]]
-
 test_that("RankedList", {
     x <- FGSEAList(
         object = deseq,
-        geneSetFiles = geneSetFiles
+        geneSetFiles = c("h" = file.path("cache", "h.all.v7.0.symbols.gmt"))
     )
     expect_s4_class(x, "FGSEAList")
 })

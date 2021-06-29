@@ -68,7 +68,7 @@ Gene-to-symbol mappings. Must contain \code{geneId} and \code{geneName} columns.
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2021-03-04.
+Updated 2021-06-22.
 }
 \section{Gene symbol multi-mapping}{
 
