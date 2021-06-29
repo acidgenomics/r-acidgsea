@@ -8,13 +8,19 @@
 An object of class \code{function} of length 1.
 }
 \usage{
-fgsea
+data(fgsea)
 }
 \description{
 FGSEAList example data
 }
+\note{
+Updated 2021-06-29.
+}
 \examples{
 data(fgsea)
 print(fgsea)
+}
+\author{
+Michael Steinbaugh
 }
 \keyword{datasets}
