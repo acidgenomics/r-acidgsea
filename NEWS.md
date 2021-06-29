@@ -1,9 +1,10 @@
-## AcidGSEA 0.6.3 (2021-06-28)
+## AcidGSEA 0.6.3 (2021-06-29)
 
 ### Minor changes
 
 - `RankedList`: Improved column name sanitization and handling for input
   `DESeqResults` object, avoiding conflicts with `Gene2Symbol` object.
+- Improved unit tests to no longer rely on gene sets saved in `~/msigdb`.
 
 ## AcidGSEA 0.6.2 (2021-03-16)
 
