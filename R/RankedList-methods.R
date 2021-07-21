@@ -252,7 +252,6 @@ formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
         )
         ## Get parameterized GSEA list values for each DESeqResults contrast.
         bplapply <- eval(.bplapply)
-        ## FIXME This step is currently failling for F1000 example dataset.
         list <- bplapply(
             X = resultsList,
             FUN = RankedList,
