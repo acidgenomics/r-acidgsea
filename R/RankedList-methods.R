@@ -7,7 +7,7 @@
 
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2021-06-22.
+#' @note Updated 2021-07-21.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -65,6 +65,7 @@ NULL
         switch(
             EXPR = keyType,
             "geneId" = {
+                ## FIXME This step is failing for F1000 example dataset.
                 assert(
                     hasRownames(object),
                     hasNoDuplicates(rownames(object))
@@ -75,6 +76,8 @@ NULL
             "geneName" = {
                 assert(
                     is(gene2symbol, "Gene2Symbol"),
+                    ## FIXME Need to update goalie to NOT fail when DataFrame
+                    ## contains numeric rownames.
                     hasRownames(gene2symbol)
                 )
                 x <- as(object, "DataFrame")
@@ -138,16 +141,6 @@ formals(`RankedList,DataFrame`)[["value"]] <- .rankedListValue
 
 
 
-#' @rdname RankedList
-#' @export
-setMethod(
-    f = "RankedList",
-    signature = signature("DataFrame"),
-    definition = `RankedList,DataFrame`
-)
-
-
-
 ## Updated 2021-03-04.
 `RankedList,DESeqResults` <-  # nolint
     function(
@@ -174,15 +167,7 @@ formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
 
 
 
-#' @rdname RankedList
-#' @export
-setMethod(
-    f = "RankedList",
-    signature = signature("DESeqResults"),
-    definition = `RankedList,DESeqResults`
-)
-
-
+## FIXME This doesn't seem to be working for our F1000 example.
 
 ## Updated 2021-03-04.
 `RankedList,DESeqAnalysis` <-  # nolint
@@ -275,6 +260,7 @@ setMethod(
         )
         ## Get parameterized GSEA list values for each DESeqResults contrast.
         bplapply <- eval(.bplapply)
+        ## FIXME This step is currently failling for F1000 example dataset.
         list <- bplapply(
             X = resultsList,
             FUN = RankedList,
@@ -303,16 +289,6 @@ formals(`RankedList,DESeqAnalysis`)[["value"]] <-
 
 
 
-#' @rdname RankedList
-#' @export
-setMethod(
-    f = "RankedList",
-    signature = signature("DESeqAnalysis"),
-    definition = `RankedList,DESeqAnalysis`
-)
-
-
-
 ## Updated 2020-09-23.
 `RankedList,FGSEAList` <-  # nolint
     function(object) {
@@ -322,6 +298,30 @@ setMethod(
     }
 
 
+
+#' @rdname RankedList
+#' @export
+setMethod(
+    f = "RankedList",
+    signature = signature("DataFrame"),
+    definition = `RankedList,DataFrame`
+)
+
+#' @rdname RankedList
+#' @export
+setMethod(
+    f = "RankedList",
+    signature = signature("DESeqResults"),
+    definition = `RankedList,DESeqResults`
+)
+
+#' @rdname RankedList
+#' @export
+setMethod(
+    f = "RankedList",
+    signature = signature("DESeqAnalysis"),
+    definition = `RankedList,DESeqAnalysis`
+)
 
 #' @rdname RankedList
 #' @export
