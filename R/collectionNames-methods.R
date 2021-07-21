@@ -19,16 +19,6 @@ NULL
 
 
 
-#' @rdname collectionNames
-#' @export
-setMethod(
-    f = "collectionNames",
-    signature = signature("FGSEAList"),
-    definition = `collectionNames,FGSEAList`
-)
-
-
-
 ## Updated 2020-09-17.
 `collectionNames<-,FGSEAList,character` <-  # nolint
     function(object, value) {
@@ -44,6 +34,14 @@ setMethod(
     }
 
 
+
+#' @rdname collectionNames
+#' @export
+setMethod(
+    f = "collectionNames",
+    signature = signature("FGSEAList"),
+    definition = `collectionNames,FGSEAList`
+)
 
 #' @rdname collectionNames
 #' @export

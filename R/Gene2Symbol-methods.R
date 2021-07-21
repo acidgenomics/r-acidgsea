@@ -44,16 +44,6 @@ NULL
 
 
 
-#' @rdname Gene2Symbol
-#' @export
-setMethod(
-    f = "Gene2Symbol",
-    signature = signature("RankedList"),
-    definition = `Gene2Symbol,RankedList`
-)
-
-
-
 ## Updated 2020-09-23.
 `Gene2Symbol,FGSEAList` <-  # nolint
     function(object) {
@@ -61,6 +51,14 @@ setMethod(
     }
 
 
+
+#' @rdname Gene2Symbol
+#' @export
+setMethod(
+    f = "Gene2Symbol",
+    signature = signature("RankedList"),
+    definition = `Gene2Symbol,RankedList`
+)
 
 #' @rdname Gene2Symbol
 #' @export

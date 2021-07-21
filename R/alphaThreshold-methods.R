@@ -22,16 +22,6 @@ NULL
 
 
 
-#' @rdname alphaThreshold
-#' @export
-setMethod(
-    f = "alphaThreshold",
-    signature = signature("FGSEAList"),
-    definition = `alphaThreshold,FGSEAList`
-)
-
-
-
 ## Updated 2020-08-05.
 `alphaThreshold<-,FGSEAList,numeric` <-  # nolint
     function(object, value) {
@@ -41,6 +31,14 @@ setMethod(
     }
 
 
+
+#' @rdname alphaThreshold
+#' @export
+setMethod(
+    f = "alphaThreshold",
+    signature = signature("FGSEAList"),
+    definition = `alphaThreshold,FGSEAList`
+)
 
 #' @rdname alphaThreshold
 #' @export
