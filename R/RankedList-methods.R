@@ -1,8 +1,6 @@
 ## NOTE Consider adding method support for matrix here, which is useful
 ## for a table of values across multiple contrasts.
 
-## NOTE Consider adding an "entrezId" key type for DESeqAnalysis class.
-
 
 
 #' @name RankedList
@@ -46,7 +44,7 @@ NULL
 
 
 
-## Updated 2021-03-04.
+## Updated 2021-07-21.
 `RankedList,DataFrame` <-  # nolint
     function(
         object,
@@ -65,19 +63,13 @@ NULL
         switch(
             EXPR = keyType,
             "geneId" = {
-                ## FIXME This step is failing for F1000 example dataset.
-                assert(
-                    hasRownames(object),
-                    hasNoDuplicates(rownames(object))
-                )
-                x <- as(object, "DataFrame")[[value]]
-                names(x) <- rownames(object)
+                assert(hasRownames(object))
+                x <- object
+                x[["geneId"]] <- rownames(x)
             },
             "geneName" = {
                 assert(
                     is(gene2symbol, "Gene2Symbol"),
-                    ## FIXME Need to update goalie to NOT fail when DataFrame
-                    ## contains numeric rownames.
                     hasRownames(gene2symbol)
                 )
                 x <- as(object, "DataFrame")
@@ -91,43 +83,45 @@ NULL
                 x[["rowname"]] <- rownames(x)
                 y[["rowname"]] <- rownames(y)
                 x <- leftJoin(x, y, by = "rowname")
-                x <- x[, c("geneName", value), drop = FALSE]
-                x <- x[complete.cases(x), , drop = FALSE]
-                x <- unique(x)
-                ## Average the value per gene symbol, if necessary.
-                x[["geneName"]] <- as.factor(x[["geneName"]])
-                if (any(duplicated(x[["geneName"]]))) {
-                    rownames(x) <- NULL
-                    dupes <- which(duplicated(x[["geneName"]]))
-                    dupes <- as.character(x[["geneName"]][dupes])
-                    dupes <- sort(unique(dupes))
-                    alert(sprintf(
-                        fmt = "Averaging '%s' value for %d gene %s: %s.",
-                        value,
-                        length(dupes),
-                        ngettext(
-                            n = length(dupes),
-                            msg1 = "symbol",
-                            msg2 = "symbols"
-                        ),
-                        toString(dupes, width = 100L)
-                    ))
-                }
-                ## Split by the gene symbol.
-                x <- split(x = x, f = x[["geneName"]])
-                ## Calculate mean expression per symbol.
-                x <- vapply(
-                    X = x[, value],
-                    FUN = mean,
-                    FUN.VALUE = numeric(1L),
-                    USE.NAMES = TRUE
-                )
             }
         )
+        rownames(x) <- NULL
+        x <- x[, c(keyType, value), drop = FALSE]
+        x <- x[complete.cases(x), , drop = FALSE]
+        x <- unique(x)
+        ## Average the value per key (e.g. gene symbol), if necessary.
+        if (any(duplicated(x[[keyType]]))) {
+            x[[keyType]] <- as.factor(x[[keyType]])
+            dupes <- which(duplicated(x[[keyType]]))
+            dupes <- as.character(x[[keyType]][dupes])
+            dupes <- unique(dupes)
+            alert(sprintf(
+                fmt = "Averaging '%s' value for %d %s: %s.",
+                value,
+                length(dupes),
+                ngettext(
+                    n = length(dupes),
+                    msg1 = "gene",
+                    msg2 = "genes"
+                ),
+                toString(dupes, width = 100L)
+            ))
+            x <- split(x = x, f = x[[keyType]])
+            ## Calculate mean expression per key.
+            out <- vapply(
+                X = x[, value],
+                FUN = mean,
+                FUN.VALUE = numeric(1L),
+                USE.NAMES = TRUE
+            )
+        } else {
+            out <- x[[value]]
+            names(out) <- x[[keyType]]
+        }
         ## Arrange from positive to negative.
-        x <- sort(x, decreasing = TRUE)
+        out <- sort(out, decreasing = TRUE)
         ## Return ranked list.
-        out <- SimpleList(x)
+        out <- SimpleList(out)
         metadata(out) <- list(
             "gene2symbol" = gene2symbol,
             "keyType" = keyType,
@@ -166,8 +160,6 @@ formals(`RankedList,DataFrame`)[["value"]] <- .rankedListValue
 formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
 
 
-
-## FIXME This doesn't seem to be working for our F1000 example.
 
 ## Updated 2021-03-04.
 `RankedList,DESeqAnalysis` <-  # nolint
@@ -209,7 +201,7 @@ formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
                 names(g2e) <- rownames(rowData)
                 keep <- !all(is.na(g2e))
                 g2e <- g2e[keep, , drop = FALSE]
-                ## For genes that don't map 1:1, use the oldest identifier.
+                ## For genes that don't map 1:1, use oldest Entrez identifier.
                 g2e <- IntegerList(lapply(
                     X = g2e,
                     FUN = function(x) {
