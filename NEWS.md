@@ -1,3 +1,10 @@
+## AcidGSEA 0.6.4 (2021-07-21)
+
+### Minor changes
+
+- `RankedList`: Improved handling of duplicate Entrez gene identifiers, such
+  as is the case in the bcbioRNASeq F1000 example dataset.
+
 ## AcidGSEA 0.6.3 (2021-06-29)
 
 ### Minor changes
