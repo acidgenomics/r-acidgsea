@@ -25,16 +25,6 @@ NULL
 
 
 
-#' @rdname nesThreshold
-#' @export
-setMethod(
-    f = "nesThreshold",
-    signature = signature("FGSEAList"),
-    definition = `nesThreshold,FGSEAList`
-)
-
-
-
 ## Updated 2020-08-05.
 `nesThreshold<-,FGSEAList,numeric` <-  # nolint
     function(object, value) {
@@ -44,6 +34,14 @@ setMethod(
     }
 
 
+
+#' @rdname nesThreshold
+#' @export
+setMethod(
+    f = "nesThreshold",
+    signature = signature("FGSEAList"),
+    definition = `nesThreshold,FGSEAList`
+)
 
 #' @rdname nesThreshold
 #' @export

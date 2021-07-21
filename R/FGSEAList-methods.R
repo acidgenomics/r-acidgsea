@@ -124,16 +124,6 @@ NULL
 
 
 
-#' @rdname FGSEAList
-#' @export
-setMethod(
-    f = "FGSEAList",
-    signature = signature("RankedList"),
-    definition = `FGSEAList,RankedList`
-)
-
-
-
 ## Updated 2021-03-04.
 `FGSEAList,DESeqResults` <-  # nolint
     function(
@@ -155,16 +145,6 @@ formals(`FGSEAList,DESeqResults`)[["value"]] <- .rankedListValue
 
 
 
-#' @rdname FGSEAList
-#' @export
-setMethod(
-    f = "FGSEAList",
-    signature = signature("DESeqResults"),
-    definition = `FGSEAList,DESeqResults`
-)
-
-
-
 ## Updated 2021-03-16.
 `FGSEAList,DESeqAnalysis` <-  # nolint
     function(object, value, ...) {
@@ -181,6 +161,22 @@ setMethod(
 formals(`FGSEAList,DESeqAnalysis`)[["value"]] <- .rankedListValue
 
 
+
+#' @rdname FGSEAList
+#' @export
+setMethod(
+    f = "FGSEAList",
+    signature = signature("RankedList"),
+    definition = `FGSEAList,RankedList`
+)
+
+#' @rdname FGSEAList
+#' @export
+setMethod(
+    f = "FGSEAList",
+    signature = signature("DESeqResults"),
+    definition = `FGSEAList,DESeqResults`
+)
 
 #' @rdname FGSEAList
 #' @export

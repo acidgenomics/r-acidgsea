@@ -4,6 +4,7 @@
 
 - `RankedList`: Improved handling of duplicate Entrez gene identifiers, such
   as is the case in the bcbioRNASeq F1000 example dataset.
+- Reorganized and consolidated S4 method exports.
 
 ## AcidGSEA 0.6.3 (2021-06-29)
 
