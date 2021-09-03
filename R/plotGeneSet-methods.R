@@ -14,7 +14,7 @@
 #'   - Ticks color.
 #' @param ... Additional arguments.
 #'
-#' @seealso Modified version of [fgsea::plotEnrichment()].
+#' @seealso Modified version of `fgsea::plotEnrichment()`.
 #'
 #' @return `ggplot`.
 #'

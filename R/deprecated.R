@@ -14,28 +14,10 @@ NULL
 
 
 
-## v0.1.7 ======================================================================
-#' @rdname defunct
-#' @export
-plotEnrichment <- function(...) {
-    .Defunct("plotEnrichedGeneSets")
-}
-
-
-
-## v0.1.15 =====================================================================
-#' @rdname defunct
-#' @export
-plotGSEATable <- function(...) {
-    .Defunct()
-}
-
-
-
 ## v0.2.0 =====================================================================
 #' @rdname deprecated
 #' @export
-pfgsea <- function(...) {
+rgpfgsea <- function(...) {
     .Deprecated("FGSEAList")
     FGSEAList(...)
 }
