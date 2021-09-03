@@ -13,10 +13,10 @@ convertToHuman(object, ...)
 \item{object}{Object.}
 
 \item{map}{\code{DataFrame}, or \code{NULL}.
-Ortholog mappings data frame returned by \code{\link[=matchHumanOrthologs]{matchHumanOrthologs()}}. Since
+Ortholog mappings data frame returned by \code{mapHumanOrthologs()}. Since
 this function depends on the BioMart API and has a tendancy to time out,
 we're allowing passthrough of a cached object here instead. If left \code{NULL},
-then `\code{\link[=matchHumanOrthologs]{matchHumanOrthologs()}} will be called internally.}
+then \code{mapHumanOrthologs()} will be called internally.}
 
 \item{...}{Additional arguments.}
 }
