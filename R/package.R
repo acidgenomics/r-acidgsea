@@ -18,7 +18,7 @@
 #'   markdownHeader mcols mcols<- melt metadata metadata<- na.omit order
 #'   packageName packageVersion realpath requireNamespaces reorder rowRanges
 #'   rowRanges<- selectIf session_info showHeader showSlotInfo split
-#'   standardizeCall tail txt ul unique unlist unsplit
+#'   standardizeCall tail toInlineString txt ul unique unlist unsplit
 #' @importFrom fgsea calcGseaStat fgsea
 #' @importFrom ggplot2 aes coord_flip geom_boxplot geom_col geom_hline
 #'   geom_jitter geom_line geom_point geom_segment geom_violin ggplot labs

@@ -26,7 +26,7 @@ NULL
 
 
 
-## Updated 2021-02-17.
+## Updated 2021-09-03.
 `updateObject,FGSEAList` <-  # nolint
     function(
         object,
@@ -38,17 +38,22 @@ NULL
         assert(isFlag(verbose))
         ## Slot DESeqAnalysis object, if necessary.
         if (is.null(metadata(object)[["deseq"]])) {
-            if (!is(deseq, "DESeqAnalysis")) {
-                stop(paste(
-                    "Define required DESeqAnalysis object using 'deseq'",
-                    "argument to update the object."
-                ))
-            }
-            assert(is(deseq, "DESeqAnalysis"))
+            assert(
+                is(deseq, "DESeqAnalysis"),
+                msg = sprintf(
+                    paste(
+                        "Define required '%s' object using '%s'",
+                        "argument to update the object."
+                    ),
+                    "DESeqAnalysis", "deseq"
+                )
+            )
             metadata(object)[["deseq"]] <- deseq
-        } else if (!is.null(deseq)) {
-            stop("DESeqAnalysis is already defined in object.")
         }
+        assert(
+            is.null(deseq),
+            msg = "DESeqAnalysis is already defined in object."
+        )
         ## Ensure the RankedList contains gene-to-symbol mappings.
         rl <- metadata(object)[["rankedList"]]
         assert(is(rl, "RankedList"))
@@ -78,12 +83,13 @@ NULL
             }
             assert(isSubset("geneSetFiles", names(metadata(object))))
             geneSetFiles <- metadata(object)[["geneSetFiles"]]
-            if (!allAreFiles(geneSetFiles)) {
-                stop(sprintf(
+            assert(
+                allAreFiles(geneSetFiles),
+                msg = sprintf(
                     "Required gene set files: %s.",
-                    toString(geneSetFiles)
-                ))
-            }
+                    toInlineString(geneSetFiles)
+                )
+            )
             suppressMessages({
                 collections <- lapply(X = geneSetFiles, FUN = import)
             })
@@ -100,15 +106,18 @@ NULL
                 alphaThreshold <- 0.05
             }
             if (isTRUE(verbose)) {
-                alert(paste0(
-                    "Assigning alpha of ", alphaThreshold,
-                    " into {.fun alphaThreshold}."
+                alert(sprintf(
+                    "Assigning alpha of {.val %s} into {.fun %s}.",
+                    as.character(alphaThreshold), "alphaThreshold"
                 ))
             }
             alphaThreshold(object) <- alphaThreshold
-        } else if (!is.null(alphaThreshold)) {
-            stop("alphaThreshold is already defined in object.")
+            alphaThreshold <- NULL
         }
+        assert(
+            is.null(alphaThreshold),
+            msg = "alphaThreshold is already defined in object."
+        )
         metadata(object) <- Filter(f = Negate(is.null), x = metadata(object))
         validObject(object)
         object

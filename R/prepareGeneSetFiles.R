@@ -37,8 +37,11 @@ prepareGeneSetFiles <- function(
         recursive = FALSE
     ))
     if (!hasLength(files)) {
-        stop(sprintf(
-            "Failed to locate GMT files matching '%s' pattern in '%s'.",
+        abort(sprintf(
+            fmt = paste(
+                "Failed to locate GMT files matching {.val %s}",
+                "pattern in {.path %s}."
+            ),
             pattern, dir
         ))
     }
