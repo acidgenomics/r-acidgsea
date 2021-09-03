@@ -4,10 +4,10 @@
 #'
 #' @inheritParams params
 #' @param map `DataFrame`, or `NULL`.
-#'   Ortholog mappings data frame returned by [matchHumanOrthologs()]. Since
+#'   Ortholog mappings data frame returned by `mapHumanOrthologs()`. Since
 #'   this function depends on the BioMart API and has a tendancy to time out,
 #'   we're allowing passthrough of a cached object here instead. If left `NULL`,
-#'   then `[matchHumanOrthologs()] will be called internally.
+#'   then `mapHumanOrthologs()` will be called internally.
 #' @param ... Additional arguments.
 #'
 #' @examples
