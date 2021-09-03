@@ -24,18 +24,18 @@ Encoding: UTF-8
 LazyData: false
 Depends:
     R (>= 4.0),
-    basejump (>= 0.14.19)
+    basejump (>= 0.14.21.9000)
 Imports:
-    AcidGenerics (>= 0.5.18),
-    AcidPlots (>= 0.3.7),
-    DESeqAnalysis (>= 0.4.2),
-    fgsea (>= 1.16),
+    AcidGenerics (>= 0.5.19.9000),
+    AcidPlots (>= 0.3.9),
+    DESeqAnalysis (>= 0.4.4.9000),
+    fgsea (>= 1.18.0),
     ggplot2 (>= 3.3.5),
-    goalie (>= 0.5.2),
+    goalie (>= 0.5.4),
     methods
 Suggests:
     AcidTest (>= 0.4.3),
-    BiocParallel (>= 1.26),
+    BiocParallel (>= 1.26.0),
     knitr,
     rmarkdown,
     testthat
