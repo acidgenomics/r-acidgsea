@@ -161,7 +161,7 @@ formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
 
 
 
-## Updated 2021-03-04.
+## Updated 2021-09-03.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
@@ -194,9 +194,10 @@ formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
                     colnames(rowData) <-
                         camelCase(colnames(rowData), strict = TRUE)
                 }
-                if (!isSubset("entrezId", colnames(rowData))) {
-                    stop("Object does not contain Entrez identifiers.")
-                }
+                assert(
+                    isSubset("entrezId", colnames(rowData)),
+                    msg = "Object does not contain Entrez identifiers."
+                )
                 g2e <- IntegerList(rowData[["entrezId"]])
                 names(g2e) <- rownames(rowData)
                 keep <- !all(is.na(g2e))

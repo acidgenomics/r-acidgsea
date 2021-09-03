@@ -1,6 +1,6 @@
 #' Get optional slotted DESeqAnalysis from a RankedList object
 #'
-#' @note Updated 2021-03-16.
+#' @note Updated 2021-09-03.
 #' @noRd
 #'
 #' @details
@@ -9,12 +9,13 @@
     function(object) {
         assert(is(object, "FGSEAList"))
         deseq <- metadata(object)[["deseq"]]
-        if (!is(deseq, "DESeqAnalysis")) {
-            stop(paste(
-                "'FGSEAList' does not contain 'DESeqAnalysis'",
-                "in 'deseq' 'metadata()' slot."
-            ))
-        }
+        assert(
+            is(deseq, "DESeqAnalysis"),
+            msg = sprintf(
+                "'%s' does not contain '%s' in '%s' '%s' slot.",
+                "FGSEAList", "DESeqAnalysis", "deseq", "metadata()"
+            )
+        )
         deseq
     }
 

@@ -42,15 +42,16 @@ NULL
         }
         ## Get the organism and Ensembl release from DESeqDataSet.
         rrMeta <- metadata(rr)
-        ## This step shouldn't get hit but it's useful to keep as a check.
-        if (!isSubset(c("organism", "ensemblRelease"), names(rrMeta))) {
-            ## nocov start
-            stop(
-                "Internal DESeqDataSet does not contain necessary metadata.\n",
-                "Check 'metadata(rowRanges(data))'."
+        assert(
+            isSubset(
+                x = c("organism", "ensemblRelease"),
+                y = names(rrMeta)
+            ),
+            msg = sprintf(
+                "Internal %s doesn't contain necessary metadata.\nCheck '%s'.",
+                "DESeqDataSet", "metadata(rowRanges(data))"
             )
-            ## nocov end
-        }
+        )
         organism <- rrMeta[["organism"]]
         ensemblRelease <- rrMeta[["ensemblRelease"]]
         assert(
@@ -68,11 +69,13 @@ NULL
         }
         ## Now we're ready to match the human orthologs.
         genes <- as.character(mcols(rr)[["geneId"]])
-        if (!hasLength(genes)) {
-            ## nocov start
-            stop("'geneId' column not defined in DESeqDataSet 'rowRanges'.")
-            ## nocov end
-        }
+        assert(
+            hasLength(genes),
+            msg = sprintf(
+                "'%s' column not defined in %s '%s'.",
+                "geneId", "DESeqDataSet", "rowRanges"
+            )
+        )
         ## Note that this step can time out, so we're allowing map passthrough,
         ## which can help when working on multiple objects.
         if (is.null(map)) {
