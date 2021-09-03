@@ -49,6 +49,7 @@ NULL
                 )
             )
             metadata(object)[["deseq"]] <- deseq
+            deseq <- NULL
         }
         assert(
             is.null(deseq),
@@ -60,7 +61,10 @@ NULL
         g2s <- metadata(rl)[["gene2symbol"]]
         if (!is(g2s, "Gene2Symbol")) {
             if (isTRUE(verbose)) {
-                alert("Slotting Gene2Symbol in internal RankedList.")
+                alert(sprintf(
+                    "Slotting {.cls %s} in internal {.cls %s}.",
+                    "Gene2Symbol", "RankedList"
+                ))
             }
             suppressMessages({
                 metadata(rl)[["gene2symbol"]] <-
@@ -116,7 +120,9 @@ NULL
         }
         assert(
             is.null(alphaThreshold),
-            msg = "alphaThreshold is already defined in object."
+            msg = sprintf(
+                "'%s' is already defined in object.", "alphaThreshold"
+            )
         )
         metadata(object) <- Filter(f = Negate(is.null), x = metadata(object))
         validObject(object)
