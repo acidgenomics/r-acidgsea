@@ -62,5 +62,5 @@ plotGeneSet(
 )
 }
 \seealso{
-Modified version of \code{\link[fgsea:plotEnrichment]{fgsea::plotEnrichment()}}.
+Modified version of \code{fgsea::plotEnrichment()}.
 }
