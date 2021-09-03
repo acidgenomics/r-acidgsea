@@ -104,7 +104,7 @@ NULL
                     msg1 = "gene",
                     msg2 = "genes"
                 ),
-                toString(dupes, width = 100L)
+                toInlineString(dupes, n = 5L)
             ))
             x <- split(x = x, f = x[[keyType]])
             ## Calculate mean expression per key.
