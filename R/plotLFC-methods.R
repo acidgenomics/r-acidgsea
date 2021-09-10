@@ -1,6 +1,6 @@
 #' @name plotLFC
 #' @inherit AcidGenerics::plotLFC
-#' @note Updated 2020-10-01.
+#' @note Updated 2021-09-10.
 #'
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
@@ -12,6 +12,7 @@
 #' @param ... Additional arguments.
 #'
 #' @examples
+#' ## FGSEAList ====
 #' data(fgsea)
 #' plotLFC(
 #'     object = fgsea,
@@ -22,7 +23,7 @@ NULL
 
 
 
-## Updated 2020-09-23.
+## Updated 2021-09-10.
 `plotLFC,FGSEAList` <-  # nolint
     function(
         object,
@@ -31,7 +32,10 @@ NULL
         set,
         geom = c("boxplot", "boxplot"),
         points = TRUE,
-        color
+        labels = list(
+            "title" = "log2 fold change",
+            "subtitle" = NULL
+        )
     ) {
         validObject(object)
         if (is.null(contrast)) {
@@ -40,18 +44,18 @@ NULL
         assert(
             isCharacter(contrast),
             isSubset(contrast, contrastNames(object)),
-            isGGScale(color, scale = "discrete", aes = "colour", nullOK = TRUE),
             isFlag(points)
         )
         geom <- match.arg(geom)
+        labels <- matchLabels(labels)
         suppressMessages({
             list <- mapply(
                 contrast = contrast,
                 FUN = geneSetResults,
                 MoreArgs = list(
-                    object = object,
-                    collection = collection,
-                    set = set
+                    "object" = object,
+                    "collection" = collection,
+                    "set" = set
                 ),
                 SIMPLIFY = FALSE,
                 USE.NAMES = TRUE
@@ -77,13 +81,19 @@ NULL
         p <- p + switch(
             EXPR = geom,
             "boxplot" = geom_boxplot(
-                color = "black",
+                mapping = aes(
+                    color = !!sym("colname")
+                ),
                 fill = NA,
-                outlier.shape = NA
+                outlier.shape = NA,
+                show.legend = FALSE
             ),
             "violin" = geom_violin(
-                color = "black",
-                fill = NA
+                mapping = aes(
+                    color = !!sym("colname")
+                ),
+                fill = NA,
+                show.legend = FALSE
             )
         )
         if (isTRUE(points)) {
@@ -92,15 +102,13 @@ NULL
                 show.legend = FALSE
             )
         }
-        ## Color.
-        if (is(color, "ScaleDiscrete")) {
-            p <- p + color
-        }
-        p <- p +
-            labs(
-                x = "contrast",
-                y = "log2 fold change"
-            )
+        ## Labels.
+        labels[["x"]] <- "contrast"
+        labels[["y"]] <-"log2 fold change"
+        p <- p + do.call(what = labs, args = labels)
+        ## Color palette.
+        p <- p + autoDiscreteColorScale()
+        ## Return.
         p
     }
 
