@@ -9,7 +9,8 @@
 #' @importClassesFrom DESeqAnalysis DESeqAnalysis
 #' @importMethodsFrom DESeqAnalysis coerce plotCounts
 #'
-#' @importFrom AcidPlots !! acid_theme_light plotUpset sym
+#' @importFrom AcidPlots !! acid_theme_light autoDiscreteColorScale
+#'   autoDiscreteFillScale plotUpset matchLabels sym
 #' @importFrom DESeqAnalysis DESeqAnalysis contrastName contrastSamples
 #' @importFrom basejump DataFrame Gene2Symbol IntegerList SimpleList
 #'   SplitDataFrameList abort alert alertInfo alertWarning as_tibble camelCase
@@ -25,8 +26,8 @@
 #' @importFrom goalie allAreAtomic allAreFiles areDisjointSets areSameLength
 #'   areSetEqual assert bapply hasColnames hasLength hasNames hasNoDuplicates
 #'   hasRownames hasRows isAFile isAll isAlpha isAny isCharacter isFile isFlag
-#'   isGGScale isHeaderLevel isInstalled isInt isNumber isNonNegative
-#'   isScalarInteger isString isSubset validate
+#'   isHeaderLevel isInstalled isInt isNumber isNonNegative isScalarInteger
+#'   isString isSubset validate
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity show
 #'   slot slot<- validObject
 "_PACKAGE"
