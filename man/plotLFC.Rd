@@ -14,9 +14,7 @@ plotLFC(object, ...)
   set,
   geom = c("boxplot", "boxplot"),
   points = TRUE,
-  labels = list(title = "log2 fold change", subtitle = NULL),
-  color = getOption(x = "acid.color.discrete", default = getOption(x =
-    "ggplot2.discrete.colour", default = AcidPlots::scale_color_synesthesia_d()))
+  labels = list(title = "log2 fold change", subtitle = NULL)
 )
 }
 \arguments{
@@ -45,14 +43,6 @@ Show individual data points.}
 \item{labels}{\code{list}.
 ggplot2 labels.
 See \code{\link[ggplot2:labs]{ggplot2::labs()}} for details.}
-
-\item{color}{\code{ScaleDiscrete}.
-Desired ggplot2 color scale. Must supply discrete values. When set \code{NULL},
-the default ggplot2 color palette will be used. If manual color definitions
-are desired, we recommend using \code{ggplot2::scale_color_manual()}.
-
-To set the discrete color palette globally, use:\preformatted{options(acid.color.discrete = ggplot2::scale_color_viridis_d())
-}}
 
 \item{...}{Additional arguments.}
 }
