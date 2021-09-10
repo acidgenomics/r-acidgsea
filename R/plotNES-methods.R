@@ -1,6 +1,6 @@
 #' @name plotNES
 #' @inherit AcidGenerics::plotNES
-#' @note Updated 2020-10-01.
+#' @note Updated 2021-09-10.
 #'
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
@@ -10,6 +10,7 @@
 #' [DESeq to fgsea guide](https://stephenturner.github.io/deseq-to-fgsea/).
 #'
 #' @examples
+#' ## FGSEAList ====
 #' data(fgsea)
 #' plotNES(
 #'     object = fgsea,
@@ -20,20 +21,18 @@ NULL
 
 
 
-## Updated 2020-09-22.
+## Updated 2021-09-10.
 `plotNES,FGSEAList` <-  # nolint
     function(
         object,
         contrast,
         collection,
-        fill,
         flip
     ) {
         validObject(object)
         assert(
             isString(contrast),
             isString(collection),
-            isGGScale(fill, scale = "discrete", aes = "fill", nullOK = TRUE),
             isFlag(flip)
         )
         data <- as_tibble(results(
@@ -60,9 +59,7 @@ NULL
                 title = collection
             )
         ## Fill.
-        if (is(fill, "ScaleDiscrete")) {
-            p <- p + fill
-        }
+        p <- p + autoDiscreteFillScale()
         ## Flip.
         if (isTRUE(flip)) {
             p <- p + coord_flip()
@@ -70,8 +67,8 @@ NULL
         p
     }
 
-formals(`plotNES,FGSEAList`)[c("fill", "flip")] <-
-    formalsList[c("fill.discrete", "flip")]
+formals(`plotNES,FGSEAList`)[["flip"]] <-
+    formalsList[["flip"]]
 
 
 

@@ -11,8 +11,6 @@ plotNES(object, ...)
   object,
   contrast,
   collection,
-  fill = getOption(x = "acid.fill.discrete", default = getOption(x =
-    "ggplot2.discrete.fill", default = AcidPlots::scale_fill_synesthesia_d())),
   flip = getOption(x = "acid.flip", default = TRUE)
 )
 }
@@ -27,14 +25,6 @@ Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 
-\item{fill}{\code{ggproto}/\code{ScaleDiscrete}.
-Desired ggplot2 fill scale. Must supply discrete values. When set to
-\code{NULL}, the default ggplot2 color palette will be used. If manual color
-definitions are desired, we recommend using \code{ggplot2::scale_fill_manual()}.
-
-To set the discrete fill palette globally, use:\preformatted{options(acid.fill.discrete = ggplot2::scale_fill_viridis_d())
-}}
-
 \item{flip}{\code{logical(1)}.
 Flip x and y axes. Recommended for plots containing many samples.}
 
@@ -47,9 +37,10 @@ Flip x and y axes. Recommended for plots containing many samples.}
 Plot normalized enrichment score
 }
 \note{
-Updated 2020-10-01.
+Updated 2021-09-10.
 }
 \examples{
+## FGSEAList ====
 data(fgsea)
 plotNES(
     object = fgsea,

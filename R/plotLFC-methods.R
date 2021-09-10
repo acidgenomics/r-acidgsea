@@ -112,8 +112,6 @@ NULL
         p
     }
 
-formals(`plotLFC,FGSEAList`)[["color"]] <- formalsList[["color.discrete"]]
-
 
 
 #' @rdname plotLFC
