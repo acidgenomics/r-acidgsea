@@ -37,7 +37,7 @@ Flip x and y axes. Recommended for plots containing many samples.}
 Plot normalized enrichment score
 }
 \note{
-Updated 2021-09-10.
+Updated 2021-09-24.
 }
 \examples{
 ## FGSEAList ====
