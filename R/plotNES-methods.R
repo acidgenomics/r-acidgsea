@@ -1,6 +1,6 @@
 #' @name plotNES
 #' @inherit AcidGenerics::plotNES
-#' @note Updated 2021-09-10.
+#' @note Updated 2021-09-24.
 #'
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
@@ -21,13 +21,13 @@ NULL
 
 
 
-## Updated 2021-09-10.
+## Updated 2021-09-24.
 `plotNES,FGSEAList` <-  # nolint
     function(
         object,
         contrast,
         collection,
-        flip
+        flip = getOption(x = "acid.flip", default = TRUE)
     ) {
         validObject(object)
         assert(
@@ -66,9 +66,6 @@ NULL
         }
         p
     }
-
-formals(`plotNES,FGSEAList`)[["flip"]] <-
-    formalsList[["flip"]]
 
 
 

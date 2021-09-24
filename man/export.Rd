@@ -2,15 +2,21 @@
 % Please edit documentation in R/AllGenerics.R, R/export-methods.R
 \name{export}
 \alias{export}
-\alias{export,FGSEAList-method}
-\title{Export}
+\alias{export,FGSEAList,ANY,ANY-method}
+\title{Objects exported from other packages}
 \usage{
 export(object, ...)
 
-\S4method{export}{FGSEAList}(object, name = NULL, dir = ".", geneSetResults = FALSE)
+\S4method{export}{FGSEAList,ANY,ANY}(object, con, format, name = NULL, dir = ".", geneSetResults = FALSE)
 }
 \arguments{
-\item{object}{Object.}
+\item{object}{Object.
+An object supporting \code{dim()}, or a supported class capable of being coerced
+to \code{data.frame}, to be written to disk.}
+
+\item{con}{FIXME}
+
+\item{format}{FIXME}
 
 \item{name}{\code{character(1)}.
 Name to use on disk. If \code{NULL}, will use the name of the object instead.}
@@ -27,14 +33,18 @@ gene set collection.}
 
 \item{...}{Additional arguments.}
 }
-\value{
-Invisibily return file paths, either as \code{list} or \code{character}.
-}
 \description{
-Export data out of R and write to disk.
+These objects are imported from other packages. Follow the links
+below to see their documentation.
+
+\describe{
+  \item{IRanges}{\code{\link[IRanges:AtomicList-class]{CharacterList}}, \code{\link[IRanges:DataFrameList-class]{DataFrameList}}, \code{\link[IRanges:AtomicList-class]{FactorList}}, \code{\link[IRanges:IRanges-constructor]{IRanges}}, \code{\link[IRanges:AtomicList-class]{IntegerList}}, \code{\link[IRanges:AtomicList-class]{LogicalList}}, \code{\link[IRanges:AtomicList-class]{NumericList}}, \code{\link[IRanges:AtomicList-class]{RleList}}, \code{\link[IRanges:DataFrameList-class]{SplitDataFrameList}}}
+
+  \item{S4Vectors}{\code{\link[S4Vectors:DataFrame-class]{DataFrame}}, \code{\link[S4Vectors:Factor-class]{Factor}}, \code{\link[S4Vectors:LLint-class]{LLint}}, \code{\link[S4Vectors:List-class]{List}}, \code{\link[S4Vectors:Rle-class]{Rle}}, \code{\link[S4Vectors:SimpleList-class]{SimpleList}}}
+}
 }
 \note{
-Updated 2021-03-16.
+Updated 2021-09-24.
 }
 \section{On-disk structure}{
 

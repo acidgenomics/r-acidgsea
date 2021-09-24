@@ -1,6 +1,10 @@
+## FIXME Need to rework using BiocIO approach.
+
+
+
 #' @name export
 #' @inherit AcidGenerics::export
-#' @note Updated 2021-03-16.
+#' @note Updated 2021-09-24.
 #'
 #' @section On-disk structure:
 #'
@@ -46,6 +50,8 @@ NULL
 `export,FGSEAList` <-  # nolint
     function(
         object,
+        con,  # FIXME
+        format,  # FIXME
         name = NULL,
         dir = ".",
         geneSetResults = FALSE
@@ -148,6 +154,10 @@ NULL
 #' @export
 setMethod(
     f = "export",
-    signature = signature("FGSEAList"),
+    signature = signature(
+        object = "FGSEAList",
+        con = "ANY",  # FIXME
+        format = "ANY"  # FIXME
+    ),
     definition = `export,FGSEAList`
 )

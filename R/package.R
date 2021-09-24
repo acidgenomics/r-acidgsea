@@ -14,9 +14,9 @@
 #' @importFrom DESeqAnalysis DESeqAnalysis contrastName contrastSamples
 #' @importFrom basejump DataFrame Gene2Symbol IntegerList SimpleList
 #'   SplitDataFrameList abort alert alertInfo alertWarning as_tibble camelCase
-#'   complete.cases dl export formalsList head import initDir lapply leftJoin
-#'   makeNames mapGenesToRownames mapHumanOrthologs markdownHeader mcols mcols<-
-#'   melt metadata metadata<- na.omit order packageName packageVersion realpath
+#'   complete.cases dl export head import initDir lapply leftJoin makeNames
+#'   mapGenesToRownames mapHumanOrthologs markdownHeader mcols mcols<- melt
+#'   metadata metadata<- na.omit order packageName packageVersion realpath
 #'   requireNamespaces reorder rowRanges rowRanges<- selectIf session_info
 #'   showHeader showSlotInfo split standardizeCall tail toInlineString txt ul
 #'   unique unlist unsplit
