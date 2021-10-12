@@ -103,7 +103,9 @@ setValidity(
             )
             ## > is(metadata(object)[["packageVersion"]], "package_version")
         )
-        if (!isTRUE(ok)) return(ok)
+        if (!isTRUE(ok)) {
+            return(ok)
+        }
         if (identical(metadata(object)[["keyType"]], "geneName")) {
             ok <- validate(
                 isSubset(
@@ -115,7 +117,9 @@ setValidity(
                     y = metadata(object)[["gene2symbol"]][["geneName"]]
                 )
             )
-            if (!isTRUE(ok)) return(ok)
+            if (!isTRUE(ok)) {
+                return(ok)
+            }
         }
         TRUE
     }

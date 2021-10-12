@@ -82,7 +82,9 @@ NULL
                             contrast = contrast,
                             collection = collection
                         )
-                        if (!hasRows(res)) return(NULL)
+                        if (!hasRows(res)) {
+                            return(NULL)
+                        }
                         export(
                             object = res,
                             file = file.path(
@@ -128,7 +130,9 @@ NULL
                                         collection = collection,
                                         set = set
                                     )
-                                    if (!hasRows(res)) return(NULL)
+                                    if (!hasRows(res)) {
+                                        return(NULL)
+                                    }
                                     export(
                                         object = res,
                                         file = file.path(
