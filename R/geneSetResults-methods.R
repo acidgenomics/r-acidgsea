@@ -36,7 +36,9 @@ NULL
         )
         genes <- geneSet(object, collection = collection, set = set)
         rownames <- .matchGenesToIDs(object, set = set, genes = genes)
-        if (!hasLength(rownames)) return(NULL)
+        if (!hasLength(rownames)) {
+            return(NULL)
+        }
         deseq <- .getDESeqAnalysis(object)
         suppressMessages({
             res <- results(object = deseq, i = contrast, extra = TRUE)

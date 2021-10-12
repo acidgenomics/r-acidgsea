@@ -92,7 +92,9 @@
     })
     colnames(g2s) <- camelCase(colnames(g2s), strict = TRUE)
     idx <- na.omit(match(x = genes, table = g2s[["geneName"]]))
-    if (!hasLength(idx)) return(NULL)
+    if (!hasLength(idx)) {
+        return(NULL)
+    }
     g2s <- g2s[idx, , drop = FALSE]
     assert(hasRows(g2s))
     out <- g2s[["geneId"]]
