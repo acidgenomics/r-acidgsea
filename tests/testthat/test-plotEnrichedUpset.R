@@ -7,5 +7,5 @@ test_that("FGSEAList", {
         object = object,
         collection = "h"
     )
-    expect_s3_class(object, "upset")
+    expect_s3_class(object, "ggplot")
 })
