@@ -1,35 +1,40 @@
-context("export")
+context("export : FGSEAList")
+
+testdir <- file.path(tempdir(), "example")
+
+## FIXME Need to add support for this.
+test_that("New 'con' BiocIO approach, instead of deprecated 'dir'", {
+})
 
 test_that("FGSEAList", {
-    files <- export(
-        object = fgsea,
-        dir = "example",
-        geneSetResults = FALSE
+    unlink(testdir, recursive = TRUE)
+    object <- fgsea
+    out <- export(
+        object = object,
+        dir = testdir
     )
+    prefix <- file.path(testdir, "object")
     expect_identical(
-        object = files,
+        object = out,
         expected = list(
             "condition_B_vs_A" = list(
                 "h" = realpath(file.path(
-                    "example",
-                    "fgsea",
+                    prefix,
                     "condition_B_vs_A",
                     "h.csv"
                 ))
             ),
             "treatment_D_vs_C" = list(
                 "h" = realpath(file.path(
-                    "example",
-                    "fgsea",
+                    prefix,
                     "treatment_D_vs_C",
                     "h.csv"
                 ))
             )
         )
     )
-    expect_identical(sort(list.files("example")), "fgsea")
     expect_identical(
-        object = sort(list.files(file.path("example", "fgsea"))),
+        object = sort(list.files(prefix)),
         expected = c(
             "condition_B_vs_A",
             "treatment_D_vs_C"
@@ -37,8 +42,7 @@ test_that("FGSEAList", {
     )
     expect_true(all(file.exists(
         file.path(
-            "example",
-            "fgsea",
+            prefix,
             c(
                 "condition_B_vs_A",
                 "treatment_D_vs_C"
@@ -46,7 +50,7 @@ test_that("FGSEAList", {
             "h.csv"
         )
     )))
-    unlink("example", recursive = TRUE)
+    unlink(testdir, recursive = TRUE)
 })
 
 test_that("name argument", {
