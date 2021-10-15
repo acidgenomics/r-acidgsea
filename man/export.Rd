@@ -2,12 +2,23 @@
 % Please edit documentation in R/AllGenerics.R, R/export-methods.R
 \name{export}
 \alias{export}
-\alias{export,FGSEAList,ANY,ANY-method}
+\alias{export,FGSEAList,character,missingOrNULL-method}
+\alias{export,FGSEAList,missingOrNULL,missingOrNULL-method}
 \title{Objects exported from other packages}
 \usage{
-export(object, ...)
+export(object, con, format, ...)
 
-\S4method{export}{FGSEAList,ANY,ANY}(object, con, format, name = NULL, dir = ".", geneSetResults = FALSE)
+\S4method{export}{FGSEAList,character,missingOrNULL}(
+  object,
+  con,
+  format,
+  geneSetResults = FALSE,
+  compress = getOption(x = "acid.export.compress", default = FALSE),
+  overwrite = getOption(x = "acid.overwrite", default = TRUE),
+  quiet = getOption(x = "acid.quiet", default = FALSE)
+)
+
+\S4method{export}{FGSEAList,missingOrNULL,missingOrNULL}(object, con, format, name = NULL, dir, ...)
 }
 \arguments{
 \item{object}{Object.
@@ -21,18 +32,27 @@ Alternatively, can leave unset and use \code{ext} and \code{dir} arguments inste
 \item{format}{\code{character(1)}, \code{missing}, or \code{NULL}.
 Output file format extension.}
 
-\item{name}{\code{character(1)}.
-Name to use on disk. If \code{NULL}, will use the name of the object instead.}
-
-\item{dir}{\code{character(1)}.
-Directory path.}
-
 \item{geneSetResults}{\code{logical(1)} or \code{character}.
 Export per-gene set expression including log fold change values generated
 from DESeq2. Can be slow when processing all MSigDB collections, so
 disabled by default. Alternatively, can declare specific collections to
 process, as a \code{character} vector, such as \code{"h"} for the hallmark
 gene set collection.}
+
+\item{compress}{\code{logical(1)}.
+Apply gzip compression to all files.}
+
+\item{overwrite}{\code{logical(1)}.
+Overwrite existing file on disk.}
+
+\item{quiet}{\code{logical(1)}.
+Perform command quietly, suppressing messages.}
+
+\item{name}{\code{character(1)}.
+Name to use on disk. If \code{NULL}, will use the name of the object instead.}
+
+\item{dir}{\code{character(1)}.
+Directory path.}
 
 \item{...}{Additional arguments.}
 }
@@ -49,12 +69,13 @@ below to see their documentation.
 }
 }
 \note{
-Updated 2021-09-24.
+Updated 2021-10-15.
 }
 \section{On-disk structure}{
 
 
-Example: \code{fgsea/mutant_vs_control/c1.csv}
+Example:\if{html}{\out{<div class="sourceCode r">}}\preformatted{file.path("object", "mutant_vs_control", "c1.csv")
+}\if{html}{\out{</div>}}
 
 S4 object is currently structured by:
 \enumerate{
@@ -75,11 +96,11 @@ organize by:
 data(fgsea)
 
 ## FGSEAList ====
+object <- fgsea
+con <- file.path(tempdir(), "example")
 export(
-    object = fgsea,
-    dir = "example",
-    geneSetResults = FALSE
+    object = object,
+    con = con
 )
-sort(list.files(file.path("example", "fgsea")))
-unlink("example", recursive = TRUE)
+unlink(con, recursive = TRUE)
 }
