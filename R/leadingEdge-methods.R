@@ -51,6 +51,6 @@ NULL
 #' @export
 setMethod(
     f = "leadingEdge",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `leadingEdge,FGSEAList`
 )

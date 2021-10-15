@@ -14,9 +14,12 @@ export(object, ...)
 An object supporting \code{dim()}, or a supported class capable of being coerced
 to \code{data.frame}, to be written to disk.}
 
-\item{con}{FIXME}
+\item{con}{\code{character(1)}, \code{missing}, or \code{NULL}.
+File path.
+Alternatively, can leave unset and use \code{ext} and \code{dir} arguments instead.}
 
-\item{format}{FIXME}
+\item{format}{\code{character(1)}, \code{missing}, or \code{NULL}.
+Output file format extension.}
 
 \item{name}{\code{character(1)}.
 Name to use on disk. If \code{NULL}, will use the name of the object instead.}
@@ -38,6 +41,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
+  \item{GenomicRanges}{\code{\link[GenomicRanges:GRanges-class]{GRanges}}, \code{\link[GenomicRanges:GRangesList-class]{GRangesList}}}
+
   \item{IRanges}{\code{\link[IRanges:AtomicList-class]{CharacterList}}, \code{\link[IRanges:DataFrameList-class]{DataFrameList}}, \code{\link[IRanges:AtomicList-class]{FactorList}}, \code{\link[IRanges:IRanges-constructor]{IRanges}}, \code{\link[IRanges:AtomicList-class]{IntegerList}}, \code{\link[IRanges:AtomicList-class]{LogicalList}}, \code{\link[IRanges:AtomicList-class]{NumericList}}, \code{\link[IRanges:AtomicList-class]{RleList}}, \code{\link[IRanges:DataFrameList-class]{SplitDataFrameList}}}
 
   \item{S4Vectors}{\code{\link[S4Vectors:DataFrame-class]{DataFrame}}, \code{\link[S4Vectors:Factor-class]{Factor}}, \code{\link[S4Vectors:LLint-class]{LLint}}, \code{\link[S4Vectors:List-class]{List}}, \code{\link[S4Vectors:Rle-class]{Rle}}, \code{\link[S4Vectors:SimpleList-class]{SimpleList}}}

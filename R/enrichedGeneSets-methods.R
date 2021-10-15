@@ -159,6 +159,6 @@ NULL
 #' @export
 setMethod(
     f = "enrichedGeneSets",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `enrichedGeneSets,FGSEAList`
 )

@@ -39,7 +39,7 @@ NULL
 #' @export
 setMethod(
     f = "nesThreshold",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `nesThreshold,FGSEAList`
 )
 

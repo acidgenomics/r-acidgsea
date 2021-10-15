@@ -27,7 +27,10 @@ NULL
         object,
         contrast,
         collection,
-        flip = getOption(x = "acid.flip", default = TRUE)
+        flip = getOption(
+            x = "acid.flip",
+            default = TRUE
+        )
     ) {
         validObject(object)
         assert(
@@ -73,6 +76,6 @@ NULL
 #' @export
 setMethod(
     f = "plotNES",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `plotNES,FGSEAList`
 )

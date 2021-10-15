@@ -112,6 +112,6 @@ NULL
 #' @export
 setMethod(
     f = "plotEnrichedGeneSets",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `plotEnrichedGeneSets,FGSEAList`
 )

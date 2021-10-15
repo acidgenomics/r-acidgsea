@@ -143,6 +143,6 @@ NULL
 #' @export
 setMethod(
     f = "plotGeneSet",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `plotGeneSet,FGSEAList`
 )

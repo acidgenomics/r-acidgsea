@@ -136,6 +136,6 @@ NULL
 #' @export
 setMethod(
     f = "topTables",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `topTables,FGSEAList`
 )

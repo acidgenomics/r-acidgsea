@@ -45,7 +45,7 @@ NULL
 #' @export
 setMethod(
     f = "contrastNames",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `contrastNames,FGSEAList`
 )
 

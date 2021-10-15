@@ -62,6 +62,6 @@ NULL
 #' @export
 setMethod(
     f = "geneSetResults",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `geneSetResults,FGSEAList`
 )

@@ -135,6 +135,6 @@ NULL
 #' @export
 setMethod(
     f = "updateObject",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `updateObject,FGSEAList`
 )

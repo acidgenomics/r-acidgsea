@@ -50,6 +50,6 @@ NULL
 #' @export
 setMethod(
     f = "results",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `results,FGSEAList`
 )
