@@ -16,10 +16,10 @@
 #'   SplitDataFrameList abort alert alertInfo alertWarning as_tibble camelCase
 #'   complete.cases dl export head import initDir lapply leftJoin makeNames
 #'   mapGenesToRownames mapHumanOrthologs markdownHeader mcols mcols<- melt
-#'   metadata metadata<- na.omit order packageName packageVersion realpath
-#'   requireNamespaces reorder rowRanges rowRanges<- selectIf session_info
-#'   showHeader showSlotInfo split standardizeCall tail toInlineString txt ul
-#'   unique unlist unsplit
+#'   metadata metadata<- methodFunction na.omit order packageName packageVersion
+#'   realpath requireNamespaces reorder rowRanges rowRanges<- selectIf
+#'   session_info showHeader showSlotInfo split standardizeCall tail
+#'   toInlineString txt ul unique unlist unsplit
 #' @importFrom fgsea calcGseaStat fgsea
 #' @importFrom ggplot2 aes coord_flip geom_boxplot geom_col geom_hline
 #'   geom_jitter geom_line geom_point geom_segment geom_violin ggplot labs

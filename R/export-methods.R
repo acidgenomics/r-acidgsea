@@ -1,14 +1,14 @@
-## FIXME Need to rework using BiocIO approach.
-
-
-
 #' @name export
 #' @inherit AcidGenerics::export
-#' @note Updated 2021-09-24.
+#' @note Updated 2021-10-15.
 #'
 #' @section On-disk structure:
 #'
-#' Example: `fgsea/mutant_vs_control/c1.csv`
+#' Example:
+#'
+#' ```r
+#' file.path("object", "mutant_vs_control", "c1.csv")
+#' ```
 #'
 #' S4 object is currently structured by:
 #'
@@ -35,45 +35,71 @@
 #' data(fgsea)
 #'
 #' ## FGSEAList ====
+#' object <- fgsea
+#' con <- file.path(tempdir(), "example")
 #' export(
-#'     object = fgsea,
-#'     dir = "example",
-#'     geneSetResults = FALSE
+#'     object = object,
+#'     con = con
 #' )
-#' sort(list.files(file.path("example", "fgsea")))
-#' unlink("example", recursive = TRUE)
+#' unlink(con, recursive = TRUE)
 NULL
 
 
 
-## Updated 2021-03-16.
+## Updated 2021-10-15.
 `export,FGSEAList` <-  # nolint
     function(
         object,
         con,  # FIXME
-        format,  # FIXME
-        name = NULL,
-        dir = ".",
-        geneSetResults = FALSE
+        format,  # NULL
+        geneSetResults = FALSE,
+        compress = getOption(
+            x = "acid.export.compress",
+            default = FALSE
+        ),
+        overwrite = getOption(
+            x = "acid.overwrite",
+            default = TRUE
+        ),
+        quiet = getOption(
+            x = "acid.quiet",
+            default = FALSE
+        )
     ) {
         validObject(object)
-        call <- standardizeCall()
-        assert(
-            isString(name, nullOK = TRUE),
-            isFlag(geneSetResults) || isCharacter(geneSetResults)
-        )
-        if (is.null(name)) {
-            name <- as.character(call[["object"]])
+        if (missing(format)) {
+            format <- NULL
         }
-        dir <- initDir(file.path(dir, name))
-        alert(sprintf("Exporting to '{.path %s}'.", dir))
+        assert(
+            isString(con),
+            is.null(format),
+            isFlag(geneSetResults) || isCharacter(geneSetResults),
+            isFlag(compress),
+            isFlag(overwrite),
+            isFlag(quiet)
+        )
+        dir <- initDir(con)
+        if (isFALSE(quiet)) {
+            alert(sprintf(
+                "Exporting {.cls %s} to '{.path %s}'.",
+                "FGSEAList", dir
+            ))
+        }
+        ext <- ".csv"
+        if (isTRUE(compress)) {
+            ext <- paste(ext, ".gz")
+        }
         contrastNames <- contrastNames(object)
         collectionNames <- collectionNames(object)
         ## Always export the FGSEA results per contrast / per collection.
         files <- lapply(
             X = contrastNames,
             FUN = function(contrast) {
-                alert(sprintf("Exporting results for {.var %s}.", contrast))
+                if (isFALSE(quiet)) {
+                    alert(sprintf(
+                        "Exporting results for {.var %s}.", contrast
+                    ))
+                }
                 files <- lapply(
                     X = collectionNames,
                     FUN = function(collection) {
@@ -87,11 +113,13 @@ NULL
                         }
                         export(
                             object = res,
-                            file = file.path(
+                            con = file.path(
                                 dir,
                                 contrast,
-                                paste0(collection, ".csv")
-                            )
+                                paste0(collection, ext)
+                            ),
+                            overwrite = overwrite,
+                            quiet = quiet
                         )
                     }
                 )
@@ -113,10 +141,15 @@ NULL
                     lapply(
                         X = geneSetResults,
                         FUN = function(collection) {
-                            alert(sprintf(
-                                "Exporting results for {.var %s} {.var %s}.",
-                                contrast, collection
-                            ))
+                            if (isFALSE(quiet)) {
+                                alert(sprintf(
+                                    paste(
+                                        "Exporting results for",
+                                        "{.var %s} {.var %s}."
+                                    ),
+                                    contrast, collection
+                                ))
+                            }
                             sets <- geneSetNames(
                                 object = object,
                                 collection = collection
@@ -135,12 +168,14 @@ NULL
                                     }
                                     export(
                                         object = res,
-                                        file = file.path(
+                                        con = file.path(
                                             dir,
                                             contrast,
                                             collection,
-                                            paste0(tolower(set), ".csv")
-                                        )
+                                            paste0(tolower(set), ext)
+                                        ),
+                                        overwrite = overwrite,
+                                        quiet = quiet
                                     )
                                 }
                             )
@@ -154,14 +189,40 @@ NULL
 
 
 
+## Updated 2021-10-15.
+`export,FGSEAList,deprecated` <-  # nolint
+    methodFunction(
+        f = "export",
+        signature = signature(
+            object = "SummarizedExperiment",
+            con = "missingOrNULL",
+            format = "missingOrNULL"
+        ),
+        package = "basejump"
+    )
+
+
+
 #' @rdname export
 #' @export
 setMethod(
     f = "export",
     signature = signature(
         object = "FGSEAList",
-        con = "ANY",  # FIXME
-        format = "ANY"  # FIXME
+        con = "character",
+        format = "missingOrNULL"
     ),
     definition = `export,FGSEAList`
+)
+
+#' @rdname export
+#' @export
+setMethod(
+    f = "export",
+    signature = signature(
+        object = "FGSEAList",
+        con = "missingOrNULL",
+        format = "missingOrNULL"
+    ),
+    definition = `export,FGSEAList,deprecated`
 )
