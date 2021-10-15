@@ -50,7 +50,7 @@ NULL
 `export,FGSEAList` <-  # nolint
     function(
         object,
-        con,  # FIXME
+        con,
         format,  # NULL
         geneSetResults = FALSE,
         compress = getOption(
