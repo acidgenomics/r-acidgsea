@@ -104,7 +104,7 @@ NULL
         }
         ## Labels.
         labels[["x"]] <- "contrast"
-        labels[["y"]] <-"log2 fold change"
+        labels[["y"]] <- "log2 fold change"
         p <- p + do.call(what = labs, args = labels)
         ## Color palette.
         p <- p + autoDiscreteColorScale()
