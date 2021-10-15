@@ -1,6 +1,6 @@
 #' @name convertToHuman
 #' @inherit AcidGenerics::convertToHuman
-#' @note Updated 2021-02-17.
+#' @note Updated 2021-10-15.
 #'
 #' @inheritParams params
 #' @param map `DataFrame`, or `NULL`.
@@ -19,7 +19,7 @@ NULL
 
 
 
-## Updated 2021-02-17.
+## Updated 2021-10-15.
 `convertToHuman,DESeqAnalysis` <-  # nolint
     function(object, map = NULL) {
         validObject(object)
@@ -37,30 +37,24 @@ NULL
             colnames(mcols(rr)),
             camelCase(colnames(mcols(rr)), strict = TRUE)
         ))) {
-            alert("Reformatting mcols into strict lower camel case.")
             colnames(mcols(rr)) <- camelCase(colnames(mcols(rr)), strict = TRUE)
         }
         ## Get the organism and Ensembl release from DESeqDataSet.
         rrMeta <- metadata(rr)
         assert(
-            isSubset(
-                x = c("organism", "ensemblRelease"),
-                y = names(rrMeta)
-            ),
+            rrMeta[["provider"]] == "Ensembl",
+            isOrganism(rrMeta[["organism"]]),
+            isInt(rrMeta[["release"]]),
             msg = sprintf(
                 "Internal %s doesn't contain necessary metadata.\nCheck '%s'.",
                 "DESeqDataSet", "metadata(rowRanges(data))"
             )
         )
         organism <- rrMeta[["organism"]]
-        ensemblRelease <- rrMeta[["ensemblRelease"]]
-        assert(
-            isString(organism),
-            isScalarInteger(ensemblRelease)
-        )
+        ensemblRelease <- rrMeta[["release"]]
         alertInfo(sprintf(
-            "%s (Ensembl %d) detected.",
-            organism, ensemblRelease
+            "{.emph %s} (%s %d) genome detected.",
+            organism, "Ensembl", ensemblRelease
         ))
         ## Early return on Homo sapiens.
         if (identical(organism, "Homo sapiens")) {
