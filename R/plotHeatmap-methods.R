@@ -72,6 +72,6 @@ NULL
 #' @export
 setMethod(
     f = "plotHeatmap",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `plotHeatmap,FGSEAList`
 )

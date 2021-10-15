@@ -36,7 +36,7 @@ NULL
 #' @export
 setMethod(
     f = "alphaThreshold",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `alphaThreshold,FGSEAList`
 )
 

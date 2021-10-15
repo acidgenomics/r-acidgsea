@@ -166,15 +166,15 @@ formals(`FGSEAList,DESeqAnalysis`)[["value"]] <- .rankedListValue
 #' @export
 setMethod(
     f = "FGSEAList",
-    signature = signature("RankedList"),
-    definition = `FGSEAList,RankedList`
+    signature = signature(object = "DESeqAnalysis"),
+    definition = `FGSEAList,DESeqAnalysis`
 )
 
 #' @rdname FGSEAList
 #' @export
 setMethod(
     f = "FGSEAList",
-    signature = signature("DESeqResults"),
+    signature = signature(object = "DESeqResults"),
     definition = `FGSEAList,DESeqResults`
 )
 
@@ -182,6 +182,6 @@ setMethod(
 #' @export
 setMethod(
     f = "FGSEAList",
-    signature = signature("DESeqAnalysis"),
-    definition = `FGSEAList,DESeqAnalysis`
+    signature = signature(object = "RankedList"),
+    definition = `FGSEAList,RankedList`
 )

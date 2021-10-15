@@ -26,8 +26,8 @@ NULL
         validObject(object)
         direction <- match.arg(direction)
         args <- list(
-            object = object,
-            collection = collection
+            "object" = object,
+            "collection" = collection
         )
         ## Upregulated gene sets.
         if (isSubset(direction, c("both", "up"))) {
@@ -78,6 +78,6 @@ NULL
 #' @export
 setMethod(
     f = "plotEnrichedUpset",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `plotEnrichedUpset,FGSEAList`
 )

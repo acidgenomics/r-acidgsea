@@ -2,15 +2,15 @@
 % Please edit documentation in R/AllGenerics.R, R/Gene2Symbol-methods.R
 \name{Gene2Symbol}
 \alias{Gene2Symbol}
-\alias{Gene2Symbol,RankedList-method}
 \alias{Gene2Symbol,FGSEAList-method}
+\alias{Gene2Symbol,RankedList-method}
 \title{Gene-to-symbol mappings}
 \usage{
 Gene2Symbol(object, ...)
 
-\S4method{Gene2Symbol}{RankedList}(object)
-
 \S4method{Gene2Symbol}{FGSEAList}(object)
+
+\S4method{Gene2Symbol}{RankedList}(object)
 }
 \arguments{
 \item{object}{Object.}

@@ -56,14 +56,14 @@ NULL
 #' @export
 setMethod(
     f = "Gene2Symbol",
-    signature = signature("RankedList"),
-    definition = `Gene2Symbol,RankedList`
+    signature = signature(object = "FGSEAList"),
+    definition = `Gene2Symbol,FGSEAList`
 )
 
 #' @rdname Gene2Symbol
 #' @export
 setMethod(
     f = "Gene2Symbol",
-    signature = signature("FGSEAList"),
-    definition = `Gene2Symbol,FGSEAList`
+    signature = signature(object = "RankedList"),
+    definition = `Gene2Symbol,RankedList`
 )

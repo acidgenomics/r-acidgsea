@@ -44,7 +44,7 @@ NULL
 
 
 
-## Updated 2021-07-21.
+## Updated 2021-10-13.
 `RankedList,DataFrame` <-  # nolint
     function(
         object,
@@ -295,7 +295,7 @@ formals(`RankedList,DESeqAnalysis`)[["value"]] <-
 #' @export
 setMethod(
     f = "RankedList",
-    signature = signature("DataFrame"),
+    signature = signature(object = "DataFrame"),
     definition = `RankedList,DataFrame`
 )
 
@@ -303,15 +303,7 @@ setMethod(
 #' @export
 setMethod(
     f = "RankedList",
-    signature = signature("DESeqResults"),
-    definition = `RankedList,DESeqResults`
-)
-
-#' @rdname RankedList
-#' @export
-setMethod(
-    f = "RankedList",
-    signature = signature("DESeqAnalysis"),
+    signature = signature(object = "DESeqAnalysis"),
     definition = `RankedList,DESeqAnalysis`
 )
 
@@ -319,6 +311,14 @@ setMethod(
 #' @export
 setMethod(
     f = "RankedList",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "DESeqResults"),
+    definition = `RankedList,DESeqResults`
+)
+
+#' @rdname RankedList
+#' @export
+setMethod(
+    f = "RankedList",
+    signature = signature(object = "FGSEAList"),
     definition = `RankedList,FGSEAList`
 )

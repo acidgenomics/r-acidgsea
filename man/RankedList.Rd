@@ -3,8 +3,8 @@
 \name{RankedList}
 \alias{RankedList}
 \alias{RankedList,DataFrame-method}
-\alias{RankedList,DESeqResults-method}
 \alias{RankedList,DESeqAnalysis-method}
+\alias{RankedList,DESeqResults-method}
 \alias{RankedList,FGSEAList-method}
 \title{Ranked list of genes}
 \usage{
@@ -17,17 +17,17 @@ RankedList(object, ...)
   gene2symbol = NULL
 )
 
+\S4method{RankedList}{DESeqAnalysis}(
+  object,
+  value = c("stat", "log2FoldChange", "padj"),
+  keyType = c("geneName", "geneId", "entrezId")
+)
+
 \S4method{RankedList}{DESeqResults}(
   object,
   value = c("stat", "log2FoldChange", "padj"),
   keyType = c("geneName", "geneId"),
   gene2symbol
-)
-
-\S4method{RankedList}{DESeqAnalysis}(
-  object,
-  value = c("stat", "log2FoldChange", "padj"),
-  keyType = c("geneName", "geneId", "entrezId")
 )
 
 \S4method{RankedList}{FGSEAList}(object)

@@ -118,6 +118,6 @@ NULL
 #' @export
 setMethod(
     f = "plotLFC",
-    signature = signature("FGSEAList"),
+    signature = signature(object = "FGSEAList"),
     definition = `plotLFC,FGSEAList`
 )
