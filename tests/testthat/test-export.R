@@ -1,3 +1,8 @@
+## FIXME Need to check that leadingEdge column is exported correctly
+## and contains toString formatted output.
+
+
+
 context("export : FGSEAList")
 
 testdir <- file.path(tempdir(), "example")

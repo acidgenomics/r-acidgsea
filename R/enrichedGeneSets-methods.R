@@ -116,6 +116,8 @@ NULL
 
 
 
+## FIXME Allow the user to pass in positional collection here.
+
 ## @seealso `DESeqAnalysis::plotDEGUpset()`, for looping inspiration.
 ## Updated 2020-09-18.
 `enrichedGeneSets,FGSEAList` <-  # nolint

@@ -29,42 +29,7 @@ NULL
 
 
 
-## FIXME Rework this directly into main `results` function...
 
-## Updated 2021-10-19.
-.resultsForAllContrasts <- function(
-    object,
-    collection
-) {
-    assert(
-        is(object, "FGSEAList"),
-        isString(collection)
-    )
-    df <- do.call(
-        what = rbind,
-        args = lapply(
-            X = contrastNames(object),
-            FUN = function(contrast) {
-                df <- results(
-                    object = object,
-                    contrast = contrast,
-                    collection = collection
-                )
-                df[["contrast"]] <- contrast
-                df
-            }
-        )
-    )
-    assert(
-        is(df, "DataFrame"),
-        isSubset(
-            x = c("nes", "padj", "pathway"),
-            y = colnames(df)
-        )
-    )
-    metadata(df)[["collection"]] <- collection
-    df
-}
 
 
 
@@ -109,6 +74,7 @@ NULL
 
 
         ## FIXME Rework this as multi-contrast support.
+        ## FIXME Rework this into a single call, and check for "contrast" column.
         if (identical(contrast, "all")) {
             alert("Plotting multiple contrasts.")
             data <- .resultsForAllContrasts(
