@@ -1,8 +1,3 @@
-## FIXME Allow user to look up by position.
-## FIXME Allow results extract of multiple contrasts here.
-
-
-
 #' @name results
 #' @inherit AcidGenerics::results
 #' @note Updated 2021-10-19.
@@ -20,6 +15,51 @@
 NULL
 
 
+
+## FIXME Rework this directly into main `results` function...
+## FIXME Allow user to look up by position.
+## FIXME Allow results extract of multiple contrasts here.
+## FIXME Slot multiContrast in metadata here?
+
+## Updated 2021-10-19.
+.resultsForAllContrasts <- function(
+    object,
+    collection
+) {
+    assert(
+        is(object, "FGSEAList"),
+        isString(collection)
+    )
+    df <- do.call(
+        what = rbind,
+        args = lapply(
+            X = contrastNames(object),
+            FUN = function(contrast) {
+                df <- results(
+                    object = object,
+                    contrast = contrast,
+                    collection = collection
+                )
+                df[["contrast"]] <- contrast
+                df
+            }
+        )
+    )
+    assert(
+        is(df, "DataFrame"),
+        isSubset(
+            x = c("nes", "padj", "pathway"),
+            y = colnames(df)
+        )
+    )
+    metadata(df)[["collection"]] <- collection
+    df
+}
+
+
+## FIXME Support input of "all" or specific contrasts.
+## FIXME Need to slot contrast and collection in metadata here...
+## FIXME Rethink our approach that works on leading edge.
 
 ## Updated 2021-10-19.
 `results,FGSEAList` <-  # nolint
@@ -43,11 +83,12 @@ NULL
             )
         )
         data <- as(data, "DataFrame")
-        data <- camelCase(data, strict = TRUE)
-        ## Coerce "leadingEdge" list column to string.
-        data[["leadingEdge"]] <-
-            unlist(lapply(X = data[["leadingEdge"]], FUN = toString))
-        assert(allAreAtomic(data))
+        colnames(data) <- camelCase(colnames(data), strict = TRUE)
+        ## Coerce the "leadingEdge" list column to a character string.
+        ## FIXME Consider NOT doing this, as we may want to keep the formatting.
+        ## FIXME Don't do this here, but rework in pipette export method.
+        ## > data[["leadingEdge"]] <-
+        ## >     unlist(lapply(X = data[["leadingEdge"]], FUN = toString))
         data
     }
 

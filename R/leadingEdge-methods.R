@@ -1,3 +1,7 @@
+## FIXME Rethink this, unit test?
+
+
+
 #' @name leadingEdge
 #' @inherit AcidGenerics::leadingEdge
 #' @note Updated 2021-02-17.
@@ -14,6 +18,8 @@
 NULL
 
 
+## FIXME Allow the user to pass in positional contrast or collection.
+## FIXME Inform the user in the results call what we matched...
 
 ## Updated 2020-09-21.
 `leadingEdge,FGSEAList` <-  # nolint
@@ -40,6 +46,7 @@ NULL
             alertWarning(sprintf("Failed to match '%s' set.", set))
             return(NULL)
         }
+        ## FIXME Need to check that this is a defined list column.
         genes <- unlist(unname(data[keep, "leadingEdge"]))
         assert(isCharacter(genes))
         genes
