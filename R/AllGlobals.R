@@ -1,3 +1,9 @@
+## Updated 2021-03-04.
+.pkgName <- packageName()
+.pkgVersion <- packageVersion(.pkgName)
+
+
+
 ## Updated 2021-02-12.
 .bplapply <-
     {
@@ -8,20 +14,6 @@
         }
         x
     }
-
-
-
-## Updated 2021-03-04.
-.pkgName <- packageName()
-.pkgVersion <- packageVersion(.pkgName)
-
-
-
-#' RankedList values
-#'
-#' @note Updated 2020-10-10.
-#' @noRd
-.rankedListValue <- c("stat", "log2FoldChange", "padj")
 
 
 

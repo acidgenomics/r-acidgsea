@@ -62,7 +62,7 @@ NULL
     function(
         object,
         value,
-        keyType = c("geneName", "geneId"),
+        keyType = c("geneName", "geneId"),  # FIXME Can we take this out?
         gene2symbol = NULL
     ) {
         validObject(object)
@@ -70,6 +70,8 @@ NULL
         assert(
             is(object, "DataFrame"),
             is(gene2symbol, "Gene2Symbol") || is.null(gene2symbol),
+            isString(value),  # FIXME Rework
+            isString(keyType),
             isSubset(value, colnames(object))
         )
         keyType <- match.arg(keyType)
@@ -144,15 +146,13 @@ NULL
         new(Class = "RankedList", out)
     }
 
-formals(`RankedList,DataFrame`)[["value"]] <- .rankedListValue
 
 
-
-## Updated 2021-03-04.
+## Updated 2021-10-19.
 `RankedList,DESeqResults` <-  # nolint
     function(
         object,
-        value,
+        value = c("stat", "log2FoldChange", "padj"),
         keyType = c("geneName", "geneId"),
         gene2symbol
     ) {
@@ -170,17 +170,16 @@ formals(`RankedList,DataFrame`)[["value"]] <- .rankedListValue
         out
     }
 
-formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
-
 
 
 ## FIXME Inform the user about what type of keyType we're using for matching.
+## FIXME What do we do with Ensembl-to-Entrez matches that aren't 1:1?
 
 ## Updated 2021-10-19.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
-        value,
+        value = c("stat", "log2FoldChange", "padj"),
         keyType = c("geneName", "geneId", "entrezId")
     ) {
         validObject(object)
@@ -290,9 +289,6 @@ formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
         metadata(out) <- meta
         new(Class = "RankedList", out)
     }
-
-formals(`RankedList,DESeqAnalysis`)[["value"]] <-
-    formals(`RankedList,DESeqResults`)[["value"]]
 
 
 
