@@ -30,7 +30,7 @@ FGSEAList(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{...}{Arguments pass through to \code{RankedList} method.}
+\item{...}{Additional arguments.}
 
 \item{value}{\code{character(1)}.
 Value type to use for GSEA ranked list.
@@ -77,7 +77,7 @@ the actual GSEA enrichment calculation.}
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2021-03-16.
+Updated 2021-10-19.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")
