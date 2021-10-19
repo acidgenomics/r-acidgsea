@@ -5,6 +5,9 @@
 ## here. Default behavior is to average.
 
 ## FIXME Need to add code coverage for duplicate handling.
+## FIXME Increase the verbosity about matching here.
+## FIXME Consider reworking how we handle Entrez identifier matching from
+## input data that contains Ensembl identifiers.
 
 
 
@@ -49,7 +52,10 @@ NULL
 
 
 
-## Updated 2021-10-13.
+## FIXME Don't set the keyType as "geneName" or "geneId" here?.
+## FIXME Rework this, consider not reexporting...too generic...
+
+## Updated 2021-10-19.
 `RankedList,DataFrame` <-  # nolint
     function(
         object,
@@ -166,7 +172,9 @@ formals(`RankedList,DESeqResults`)[["value"]] <- .rankedListValue
 
 
 
-## Updated 2021-09-03.
+## FIXME Inform the user about what type of keyType we're using for matching.
+
+## Updated 2021-10-19.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
@@ -296,8 +304,10 @@ formals(`RankedList,DESeqAnalysis`)[["value"]] <-
 
 
 
-#' @rdname RankedList
-#' @export
+## FIXME Does this work OK if we don't export?
+## > #' @rdname RankedList
+## > #' @export
+
 setMethod(
     f = "RankedList",
     signature = signature(object = "DataFrame"),
