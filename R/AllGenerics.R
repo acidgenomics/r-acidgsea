@@ -7,8 +7,6 @@ setGeneric(
     }
 )
 
-
-
 #' @rdname RankedList
 #' @export
 setGeneric(
@@ -19,6 +17,13 @@ setGeneric(
 )
 
 
+
+#' @rdname Gene2Symbol
+#' @name Gene2Symbol
+#' @importFrom basejump Gene2Symbol
+#' @usage Gene2Symbol(object, ...)
+#' @export
+NULL
 
 #' @rdname alphaThreshold
 #' @name alphaThreshold
@@ -34,8 +39,6 @@ NULL
 #' @export
 NULL
 
-
-
 #' @rdname collectionNames
 #' @name collectionNames
 #' @importFrom AcidGenerics collectionNames
@@ -50,16 +53,12 @@ NULL
 #' @export
 NULL
 
-
-
 #' @rdname combine
 #' @name combine
 #' @importFrom AcidGenerics combine
 #' @usage combine(x, y, ...)
 #' @export
 NULL
-
-
 
 #' @rdname contrastNames
 #' @name contrastNames
@@ -75,16 +74,12 @@ NULL
 #' @export
 NULL
 
-
-
 #' @rdname convertToHuman
 #' @name convertToHuman
 #' @importFrom AcidGenerics convertToHuman
 #' @usage convertToHuman(object, ...)
 #' @export
 NULL
-
-
 
 #' @rdname enrichedGeneSets
 #' @name enrichedGeneSets
@@ -93,25 +88,12 @@ NULL
 #' @export
 NULL
 
-
-
 #' @rdname export
 #' @name export
 #' @importFrom AcidGenerics export
 #' @usage export(object, con, format, ...)
 #' @export
 NULL
-
-
-
-#' @rdname Gene2Symbol
-#' @name Gene2Symbol
-#' @importFrom basejump Gene2Symbol
-#' @usage Gene2Symbol(object, ...)
-#' @export
-NULL
-
-
 
 #' @rdname geneSet
 #' @name geneSet
@@ -120,16 +102,12 @@ NULL
 #' @export
 NULL
 
-
-
 #' @rdname geneSetNames
 #' @name geneSetNames
 #' @importFrom AcidGenerics geneSetNames
 #' @usage geneSetNames(object, ...)
 #' @export
 NULL
-
-
 
 #' @rdname geneSetResults
 #' @name geneSetResults
@@ -138,16 +116,12 @@ NULL
 #' @export
 NULL
 
-
-
 #' @rdname leadingEdge
 #' @name leadingEdge
 #' @importFrom AcidGenerics leadingEdge
 #' @usage leadingEdge(object, ...)
 #' @export
 NULL
-
-
 
 #' @rdname nesThreshold
 #' @name nesThreshold
@@ -163,16 +137,12 @@ NULL
 #' @export
 NULL
 
-
-
 #' @rdname plotEnrichedGeneSets
 #' @name plotEnrichedGeneSets
 #' @importFrom AcidGenerics plotEnrichedGeneSets
 #' @usage plotEnrichedGeneSets(object, ...)
 #' @export
 NULL
-
-
 
 #' @rdname plotEnrichedUpset
 #' @name plotEnrichedUpset
@@ -181,16 +151,12 @@ NULL
 #' @export
 NULL
 
-
-
 #' @rdname plotGeneSet
 #' @name plotGeneSet
 #' @importFrom AcidGenerics plotGeneSet
 #' @usage plotGeneSet(object, ...)
 #' @export
 NULL
-
-
 
 #' @rdname plotHeatmap
 #' @name plotHeatmap
@@ -199,16 +165,12 @@ NULL
 #' @export
 NULL
 
-
-
 #' @rdname plotLFC
 #' @name plotLFC
 #' @importFrom AcidGenerics plotLFC
 #' @usage plotLFC(object, ...)
 #' @export
 NULL
-
-
 
 #' @rdname plotNES
 #' @name plotNES
@@ -217,8 +179,6 @@ NULL
 #' @export
 NULL
 
-
-
 #' @rdname results
 #' @name results
 #' @importFrom AcidGenerics results
@@ -226,16 +186,12 @@ NULL
 #' @export
 NULL
 
-
-
 #' @rdname topTables
 #' @name topTables
 #' @importFrom AcidGenerics topTables
 #' @usage topTables(object, ...)
 #' @export
 NULL
-
-
 
 #' @rdname updateObject
 #' @name updateObject
