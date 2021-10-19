@@ -42,9 +42,9 @@ Value type to use for GSEA ranked list.
 Currently supported:
 \enumerate{
 \item \code{stat}: Wald test statistic. This column is returned by \code{results()}
-but is removed in \code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} return, currently.
+but is removed in \code{DESeq2::lfcShrink()} return, currently.
 \item \code{log2FoldChange}: Shrunken log2 fold change. Note that this option
-requires \code{\link[DESeq2:lfcShrink]{DESeq2::lfcShrink()}} return to be slotted.
+requires \code{DESeq2::lfcShrink()} return to be slotted.
 \item \code{padj}: Adjusted \emph{P} value. This don't provide directional ranks, but
 is offered as a legacy option. Not generally recommended.
 }}
@@ -68,13 +68,13 @@ Gene-to-symbol mappings. Must contain \code{geneId} and \code{geneName} columns.
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2021-07-21.
+Updated 2021-10-19.
 }
 \section{Gene symbol multi-mapping}{
 
 
 Multiple gene IDs can map to a gene symbol (e.g. \emph{Homo sapiens} HGNC names).
-In this event, we're averaging the stat values using \code{mean()} internally.
+In this event, we're averaging the values using \code{mean()} internally.
 }
 
 \examples{

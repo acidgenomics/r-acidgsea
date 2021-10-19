@@ -1,3 +1,9 @@
+## FIXME Add option to match via Entrez IDs instead of gene symbols.
+## FIXME Rethink our symbol averaging expression approach.
+##       Consider allowing the user to set this?
+
+
+
 #' Parameterized fast gene set enrichment analysis (GSEA)
 #'
 #' Extends the functionality of [fgsea::fgsea()].

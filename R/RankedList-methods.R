@@ -1,16 +1,21 @@
 ## NOTE Consider adding method support for matrix here, which is useful
 ## for a table of values across multiple contrasts.
 
+## FIXME Allow the user to set how to handle duplicate identifiers / symbols
+## here. Default behavior is to average.
+
+## FIXME Need to add code coverage for duplicate handling.
+
 
 
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2021-07-21.
+#' @note Updated 2021-10-19.
 #'
 #' @section Gene symbol multi-mapping:
 #'
 #' Multiple gene IDs can map to a gene symbol (e.g. *Homo sapiens* HGNC names).
-#' In this event, we're averaging the stat values using `mean()` internally.
+#' In this event, we're averaging the values using `mean()` internally.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @inheritParams params
@@ -24,9 +29,9 @@
 #'   Currently supported:
 #'
 #'   1. `stat`: Wald test statistic. This column is returned by `results()`
-#'      but is removed in [DESeq2::lfcShrink()] return, currently.
+#'      but is removed in `DESeq2::lfcShrink()` return, currently.
 #'   2. `log2FoldChange`: Shrunken log2 fold change. Note that this option
-#'      requires [DESeq2::lfcShrink()] return to be slotted.
+#'      requires `DESeq2::lfcShrink()` return to be slotted.
 #'   3. `padj`: Adjusted *P* value. This don't provide directional ranks, but
 #'      is offered as a legacy option. Not generally recommended.
 #'

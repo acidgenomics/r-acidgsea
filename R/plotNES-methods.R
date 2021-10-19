@@ -1,6 +1,10 @@
+## FIXME Add an option here to plot all contrasts.
+
+
+
 #' @name plotNES
 #' @inherit AcidGenerics::plotNES
-#' @note Updated 2021-09-24.
+#' @note Updated 2021-10-19.
 #'
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
@@ -21,7 +25,7 @@ NULL
 
 
 
-## Updated 2021-09-24.
+## Updated 2021-10-19.
 `plotNES,FGSEAList` <-  # nolint
     function(
         object,
@@ -38,31 +42,75 @@ NULL
             isString(collection),
             isFlag(flip)
         )
-        data <- as_tibble(results(
-            object = object,
-            contrast = contrast,
-            collection = collection
-        ))
-        alpha <- alphaThreshold(object)
-        assert(isSubset(c("nes", "padj", "pathway"), colnames(data)))
-        data[["sig"]] <- data[["padj"]] < alpha
-        p <- ggplot(
-            data = data,
-            mapping = aes(
-                x = reorder(!!sym("pathway"), !!sym("nes")),
-                y = !!sym("nes")
-            )) +
-            geom_col(
-                mapping = aes(fill = !!sym("sig"))
-            ) +
-            labs(
-                x = "pathway",
-                y = "normalized enrichment score",
-                fill = paste0("padj < ", alpha),
-                title = collection
+        if (identical(contrast, "all")) {
+            data <- do.call(
+                what = rbind,
+                args = lapply(
+                    X = contrastNames(object),
+                    FUN = function(contrast) {
+                        df <- results(
+                            object = object,
+                            contrast = contrast,
+                            collection = collection
+                        )
+                        df[["contrast"]] <- contrast
+                        df
+                    }
+                )
             )
+            data <- as_tibble(data)
+            assert(isSubset(
+                x = c("nes", "padj", "pathway"),
+                y = colnames(data)
+            ))
+
+
+
+
+        } else {
+            data <- results(
+                object = object,
+                contrast = contrast,
+                collection = collection
+            )
+            data <- as_tibble(data)
+            assert(isSubset(
+                x = c("nes", "padj", "pathway"),
+                y = colnames(data)
+            ))
+            alpha <- alphaThreshold(object)
+            data[["sig"]] <- data[["padj"]] < alpha
+            ## FIXME Rather than colors, can we selectively decrease the
+            ## opacity of non-significant elements here?
+            p <- ggplot(
+                data = data,
+                mapping = aes(
+                    x = reorder(!!sym("pathway"), !!sym("nes")),
+                    y = !!sym("nes")
+                )) +
+                geom_col(
+                    mapping = aes(fill = !!sym("sig"))
+                ) +
+                labs(
+                    x = "pathway",
+                    y = "normalized enrichment score",
+                    fill = paste0("padj < ", alpha),
+                    title = collection
+                )
+        }
+
+
+
+
+
         ## Fill.
         p <- p + autoDiscreteFillScale()
+
+
+
+
+
+
         ## Flip.
         if (isTRUE(flip)) {
             p <- p + coord_flip()
