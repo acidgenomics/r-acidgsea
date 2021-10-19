@@ -1,5 +1,3 @@
-## NOTE Consider adding method support for matrix here, which is useful
-## for a table of values across multiple contrasts.
 ## FIXME Allow the user to set how to handle duplicate identifiers / symbols
 ## here. Default behavior is to average.
 ## FIXME Need to add code coverage for duplicate handling.
@@ -8,6 +6,11 @@
 ## input data that contains Ensembl identifiers.
 ## FIXME Can we add support for edgeR analysis here?
 ## FIXME Consider adding support for limma as well.
+## FIXME Exclude identifiers that are scaffolds, etc.
+## FIXME Ensure we exclude scaffolds and stuff that shouldn't be averaged here
+## by default....
+## FIXME Consider adding method support for matrix here, which is useful
+## for a table of values across multiple contrasts.
 
 
 
@@ -172,6 +175,7 @@ NULL
 
 ## FIXME Inform the user about what type of keyType we're using for matching.
 ## FIXME What do we do with Ensembl-to-Entrez matches that aren't 1:1?
+## FIXME Consider defaulting here to entrezId.
 
 ## Updated 2021-10-19.
 `RankedList,DESeqAnalysis` <-  # nolint
@@ -197,6 +201,7 @@ NULL
         )
         assert(is(resultsList, "list"))
         ## Entrez identifier mapping mode.
+        ## FIXME We should inform the user how many genes matched...
         switch(
             EXPR = keyType,
             "entrezId" = {
@@ -208,7 +213,13 @@ NULL
                 }
                 assert(
                     isSubset("entrezId", colnames(rowData)),
-                    msg = "Object does not contain Entrez identifiers."
+                    msg = sprintf(
+                        paste(
+                            "Object does not contain Entrez identifiers.",
+                            "Re-run with {.arg %s} value other than {.val %s}."
+                        ),
+                        "keyType", "entrezId"
+                    )
                 )
                 g2e <- IntegerList(rowData[["entrezId"]])
                 names(g2e) <- rownames(rowData)
@@ -221,8 +232,11 @@ NULL
                         head(sort(na.omit(x)), n = 1L)
                     }
                 ))
-                g2e <- unlist(g2e, use.names = TRUE)
-                assert(!any(is.na(g2e)))
+                g2e <- unlist(x = g2e, recursive = FALSE, use.names = TRUE)
+                assert(
+                    is.integer(g2e),
+                    !any(is.na(g2e))
+                )
                 ## Replace the rownames in results list with Entrez identifiers.
                 idx <- match(
                     x = names(g2e),
@@ -230,15 +244,29 @@ NULL
                 )
                 assert(identical(length(idx), length(g2e)))
                 if (length(idx) < nrow(dds)) {
-                    n <- nrow(dds) - length(idx)
-                    alertWarning(sprintf(
-                        "Dropping %d %s without an Entrez identifier.",
+                    n <- length(idx)
+                    alertInfo(sprintf(
+                        "Mapping %s %s from %s to %s.",
                         n,
                         ngettext(
                             n = n,
                             msg1 = "gene",
                             msg2 = "genes"
-                        )
+                        ),
+                        "Ensembl", "Entrez"
+                    ))
+                    length(idx)
+                    n <- nrow(dds) - length(idx)
+                    alertWarning(sprintf(
+                        "Dropping %d %s %s without %s identifier.",
+                        n,
+                        "Ensembl",
+                        ngettext(
+                            n = n,
+                            msg1 = "gene",
+                            msg2 = "genes"
+                        ),
+                        "Entrez"
                     ))
                 }
                 resultsList <- lapply(
