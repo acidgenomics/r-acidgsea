@@ -9,7 +9,7 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @name FGSEAList
-#' @note Updated 2021-03-16.
+#' @note Updated 2021-10-19.
 #'
 #' @inheritParams RankedList
 #' @inheritParams params
@@ -28,7 +28,7 @@
 #'   Stored internally in [alphaThreshold()].
 #'   Applied only to plots and enriched gene set exports, but does not affect
 #'   the actual GSEA enrichment calculation.
-#' @param ... Arguments pass through to `RankedList` method.
+#' @param ... Additional arguments.
 #'
 #' @return `FGSEAList`.
 #'
@@ -135,7 +135,7 @@ NULL
     function(
         object,
         gene2symbol,
-        value,
+        value = c("stat", "log2FoldChange", "padj"),
         ...
     ) {
         validObject(object)
@@ -147,13 +147,15 @@ NULL
         FGSEAList(object = rl, ...)
     }
 
-formals(`FGSEAList,DESeqResults`)[["value"]] <- .rankedListValue
 
 
-
-## Updated 2021-03-16.
+## Updated 2021-10-19.
 `FGSEAList,DESeqAnalysis` <-  # nolint
-    function(object, value, ...) {
+    function(
+        object,
+        value = c("stat", "log2FoldChange", "padj"),
+        ...
+    ) {
         validObject(object)
         rl <- RankedList(
             object = object,
@@ -163,8 +165,6 @@ formals(`FGSEAList,DESeqResults`)[["value"]] <- .rankedListValue
         metadata(out)[["deseq"]] <- object
         out
     }
-
-formals(`FGSEAList,DESeqAnalysis`)[["value"]] <- .rankedListValue
 
 
 
