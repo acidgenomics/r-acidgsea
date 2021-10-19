@@ -1,5 +1,8 @@
 ## FIXME Add an option here to plot all contrasts.
 ## FIXME Allow the user to input specific contrasts.
+## FIXME Also allow the user to select which pathways to plot.
+## This is super useful for non-hallmark gene sets...
+## FIXME Allow user to pick specific gene sets from collection.
 
 
 
@@ -82,6 +85,8 @@ NULL
         )
     ) {
         validObject(object)
+        multiContrast <- FALSE
+        ## FIXME Rework contrast input here, supporting multiple.
         assert(
             isScalar(contrast),
             isScalar(collection),
@@ -94,6 +99,13 @@ NULL
         if (!isString(collection)) {
             collection <- collectionNames(object)[[collection]]
         }
+
+
+
+
+
+
+
         ## FIXME Rework this as multi-contrast support.
         if (identical(contrast, "all")) {
             alert("Plotting multiple contrasts.")
@@ -129,8 +141,7 @@ NULL
             data = data,
             mapping = aes(
                 x = reorder(!!sym("pathway"), !!sym("nes")),
-                y = !!sym("nes"),
-                alpha = !!sym("opacity")
+                y = !!sym("nes")
             )
         ) +
             ## See also:
@@ -139,10 +150,11 @@ NULL
         if (identical(contrast, "all")) {
             p <- p +
                 geom_boxplot(
-                    color = "gray75",
+                    color = "gray50",
                     fill = NA,
                     outlier.color = NA,
-                    show.legend = FALSE
+                    show.legend = FALSE,
+                    size = 0.25
                 ) +
                 geom_point(
                     mapping = aes(
@@ -156,7 +168,7 @@ NULL
                 scale_shape_manual(
                     values = c(
                         "FALSE" = 1L,  # open circle
-                        "TRUE" = 16L   # filled circle
+                        "TRUE" = 16L  # filled circle
                     )
                 )
         } else {
@@ -172,6 +184,7 @@ NULL
         p <- p +
             geom_hline(
                 color = "black",
+                linetype = "dashed",
                 size = 0.5,
                 yintercept = 0L
             )
