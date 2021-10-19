@@ -1,4 +1,8 @@
-## AcidGSEA 0.6.5 (UNRELEASED)
+## AcidGSEA 0.7.0 (UNRELEASED)
+
+### Major changes
+
+- Support for multiple contrasts: `plotNES`, `plotGeneSet`, `results`.
 
 ## AcidGSEA 0.6.4 (2021-07-21)
 

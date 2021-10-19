@@ -29,6 +29,8 @@ NULL
 
 
 
+## FIXME Rework this directly into main `results` function...
+
 ## Updated 2021-10-19.
 .resultsForAllContrasts <- function(
     object,
