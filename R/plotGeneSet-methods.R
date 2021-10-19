@@ -1,3 +1,7 @@
+## FIXME Support multiple contrasts here.
+
+
+
 #' @name plotGeneSet
 #' @inherit AcidGenerics::plotGeneSet
 #' @note Updated 2021-02-17.
