@@ -1,6 +1,10 @@
 #+TITLE: AcidGSEA
 #+STARTUP: content
 * Development
+** TODO Explore alternative approaches to averaging gene symbols. Should we
+   rework our default approach to map to Entrez gene identifiers instead? Is
+   this less problematic? Alternatively, can we select for unique gene symbols
+   that don't map to gene scaffolds, non-coding genes? Think about this one...
 ** TODO Compare results against GSEA Java client and gseapy Python approach.
 ** TODO `convertToHuman: May need to ensure that GenomicRanges are sorted by
    identifier name, or we may need to filter out scaffold identifiers.
