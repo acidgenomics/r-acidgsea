@@ -130,19 +130,21 @@ NULL
 
 
 
-## Updated 2021-03-04.
+## Updated 2021-10-19.
 `FGSEAList,DESeqResults` <-  # nolint
     function(
         object,
-        gene2symbol,
         value = c("stat", "log2FoldChange", "padj"),
+        keyType = c("geneName", "geneId"),
+        gene2symbol,
         ...
     ) {
         validObject(object)
         rl <- RankedList(
             object = object,
-            gene2symbol = gene2symbol,
-            value = match.arg(value)
+            value = match.arg(value),
+            keyType = match.arg(keyType),
+            gene2symbol = gene2symbol
         )
         FGSEAList(object = rl, ...)
     }
@@ -154,12 +156,14 @@ NULL
     function(
         object,
         value = c("stat", "log2FoldChange", "padj"),
+        keyType = c("geneName", "geneId", "entrezId"),
         ...
     ) {
         validObject(object)
         rl <- RankedList(
             object = object,
-            value = match.arg(value)
+            value = match.arg(value),
+            keyType = match.arg(keyType)
         )
         out <- FGSEAList(object = rl, ...)
         metadata(out)[["deseq"]] <- object
