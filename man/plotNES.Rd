@@ -11,7 +11,8 @@ plotNES(object, ...)
   object,
   contrast,
   collection,
-  flip = getOption(x = "acid.flip", default = TRUE)
+  flip = getOption(x = "acid.flip", default = TRUE),
+  labels = list(title = TRUE, subtitle = NULL)
 )
 }
 \arguments{
@@ -27,6 +28,10 @@ Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 
 \item{flip}{\code{logical(1)}.
 Flip x and y axes. Recommended for plots containing many samples.}
+
+\item{labels}{\code{list}.
+ggplot2 labels.
+See \code{\link[ggplot2:labs]{ggplot2::labs()}} for details.}
 
 \item{...}{Additional arguments.}
 }

@@ -1,6 +1,10 @@
+## FIXME Allow user to look up by position.
+
+
+
 #' @name results
 #' @inherit AcidGenerics::results
-#' @note Updated 2020-09-23.
+#' @note Updated 2021-10-19.
 #' @inheritParams params
 #' @param ... Additional arguments.
 #' @examples
@@ -16,7 +20,7 @@ NULL
 
 
 
-## Updated 2020-09-23.
+## Updated 2021-10-19.
 `results,FGSEAList` <-  # nolint
     function(
         object,
@@ -25,15 +29,17 @@ NULL
     ) {
         validObject(object)
         assert(
-            isString(contrast),
-            isSubset(contrast, contrastNames(object)),
-            isString(collection),
-            isSubset(collection, collectionNames(object))
+            isScalar(contrast),
+            isScalar(collection)
         )
         data <- object[[collection]][[contrast]]
         assert(
             is(data, "data.table"),
-            isSubset("leadingEdge", colnames(data))
+            isSubset("leadingEdge", colnames(data)),
+            msg = sprintf(
+                "Failed to extract results for {.cls %s}.",
+                "FGSEAList"
+            )
         )
         data <- as(data, "DataFrame")
         data <- camelCase(data, strict = TRUE)
