@@ -1,3 +1,6 @@
+#+TITLE: AcidGSEA
+#+STARTUP: content
+* Development
 ** TODO Compare results against GSEA Java client and gseapy Python approach.
 ** TODO `convertToHuman: May need to ensure that GenomicRanges are sorted by
    identifier name, or we may need to filter out scaffold identifiers.
