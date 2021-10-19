@@ -1,6 +1,7 @@
 #+TITLE: AcidGSEA
 #+STARTUP: content
 * Development
+** TODO Work on adding support for edgeR DGEList and limma into RankedList.
 ** TODO Explore alternative approaches to averaging gene symbols. Should we
    rework our default approach to map to Entrez gene identifiers instead? Is
    this less problematic? Alternatively, can we select for unique gene symbols

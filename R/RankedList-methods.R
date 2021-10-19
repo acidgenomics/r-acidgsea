@@ -9,6 +9,8 @@
 ## FIXME Consider reworking how we handle Entrez identifier matching from
 ## input data that contains Ensembl identifiers.
 
+## FIXME Can we add support for edgeR analysis here?
+## FIXME Consider adding support for limma as well.
 
 
 #' @name RankedList
