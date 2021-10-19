@@ -23,10 +23,11 @@
 #' @importFrom fgsea calcGseaStat fgsea
 #' @importFrom ggplot2 aes coord_flip geom_boxplot geom_col geom_hline
 #'   geom_jitter geom_line geom_point geom_segment geom_violin ggplot labs
+#'   scale_alpha_identity scale_shape_manual
 #' @importFrom goalie allAreAtomic allAreFiles areDisjointSets areSameLength
 #'   areSetEqual assert bapply hasColnames hasLength hasNames hasNoDuplicates
 #'   hasRownames hasRows isAFile isAll isAlpha isAny isCharacter isFile isFlag
-#'   isHeaderLevel isInstalled isInt isNumber isNonNegative isOrganism
+#'   isHeaderLevel isInstalled isInt isNumber isNonNegative isOrganism isScalar
 #'   isScalarInteger isString isSubset validate
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity show
 #'   slot slot<- validObject

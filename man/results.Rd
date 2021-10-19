@@ -29,7 +29,7 @@ Varies, depending on the method.
 Results
 }
 \note{
-Updated 2020-09-23.
+Updated 2021-10-19.
 }
 \examples{
 data(fgsea)
