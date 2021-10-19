@@ -2,20 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/RankedList-methods.R
 \name{RankedList}
 \alias{RankedList}
-\alias{RankedList,DataFrame-method}
 \alias{RankedList,DESeqAnalysis-method}
 \alias{RankedList,DESeqResults-method}
 \alias{RankedList,FGSEAList-method}
 \title{Ranked list of genes}
 \usage{
 RankedList(object, ...)
-
-\S4method{RankedList}{DataFrame}(
-  object,
-  value = c("stat", "log2FoldChange", "padj"),
-  keyType = c("geneName", "geneId"),
-  gene2symbol = NULL
-)
 
 \S4method{RankedList}{DESeqAnalysis}(
   object,
