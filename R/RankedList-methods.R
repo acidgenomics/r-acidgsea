@@ -1,16 +1,14 @@
 ## NOTE Consider adding method support for matrix here, which is useful
 ## for a table of values across multiple contrasts.
-
 ## FIXME Allow the user to set how to handle duplicate identifiers / symbols
 ## here. Default behavior is to average.
-
 ## FIXME Need to add code coverage for duplicate handling.
 ## FIXME Increase the verbosity about matching here.
 ## FIXME Consider reworking how we handle Entrez identifier matching from
 ## input data that contains Ensembl identifiers.
-
 ## FIXME Can we add support for edgeR analysis here?
 ## FIXME Consider adding support for limma as well.
+
 
 
 #' @name RankedList
@@ -58,7 +56,7 @@ NULL
 ## FIXME Rework this, consider not reexporting...too generic...
 
 ## Updated 2021-10-19.
-`RankedList,DataFrame` <-  # nolint
+`.RankedList,DataFrame` <-  # nolint
     function(
         object,
         value,
@@ -309,7 +307,7 @@ NULL
 setMethod(
     f = "RankedList",
     signature = signature(object = "DataFrame"),
-    definition = `RankedList,DataFrame`
+    definition = `.RankedList,DataFrame`
 )
 
 #' @rdname RankedList

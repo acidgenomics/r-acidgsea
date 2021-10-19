@@ -9,12 +9,18 @@
 \usage{
 FGSEAList(object, ...)
 
-\S4method{FGSEAList}{DESeqAnalysis}(object, value = c("stat", "log2FoldChange", "padj"), ...)
+\S4method{FGSEAList}{DESeqAnalysis}(
+  object,
+  value = c("stat", "log2FoldChange", "padj"),
+  keyType = c("geneName", "geneId", "entrezId"),
+  ...
+)
 
 \S4method{FGSEAList}{DESeqResults}(
   object,
-  gene2symbol,
   value = c("stat", "log2FoldChange", "padj"),
+  keyType = c("geneName", "geneId"),
+  gene2symbol,
   ...
 )
 
@@ -42,6 +48,14 @@ but is removed in \code{DESeq2::lfcShrink()} return, currently.
 requires \code{DESeq2::lfcShrink()} return to be slotted.
 \item \code{padj}: Adjusted \emph{P} value. This don't provide directional ranks, but
 is offered as a legacy option. Not generally recommended.
+}}
+
+\item{keyType}{\code{character(1)}.
+Key type:
+\itemize{
+\item Gene name (a.k.a. symbol; e.g. "TSPAN6").
+\emph{Recommended by default.}
+\item Gene identifier (e.g. "ENSG00000000003").
 }}
 
 \item{gene2symbol}{\code{Gene2Symbol}.
