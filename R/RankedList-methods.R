@@ -14,6 +14,18 @@
 ## FIXME Rename keyType to "entrez" or "symbols" here....simpler
 ## FIXME Assign names from gene set files automatically.
 ## FIXME Need to rethink our geneId, entrezId approach here...
+## FIXME Don't set the keyType as "geneName" or "geneId" here?.
+## FIXME Rework this, consider not reexporting...too generic...
+## FIXME Change the gene2symbol to rowData here.
+## FIXME rowData MUST contain geneName, geneId, entrezId.
+## FIXME Drop elements that map to scaffolds here...
+## FIXME Check Entrez identifier metadata here...
+## FIXME Can we get information on Entrez version for the gene sets here?
+## Maybe we can improve our identifier matching a bit...
+## FIXME Switch to using `EntrezGeneInfo()` approach here to map input against
+## MSigDB sets...
+## FIXMECensor Entrez identifiers that are no longer active.
+## FIXME Always require rowRanges.
 
 
 
@@ -43,33 +55,19 @@ NULL
 
 
 
-## FIXME Don't set the keyType as "geneName" or "geneId" here?.
-## FIXME Rework this, consider not reexporting...too generic...
-## FIXME Change the gene2symbol to rowData here.
-## FIXME rowData MUST contain geneName, geneId, entrezId.
-## FIXME Drop elements that map to scaffolds here...
-## FIXME Check Entrez identifier metadata here...
-## FIXME Can we get information on Entrez version for the gene sets here?
-## Maybe we can improve our identifier matching a bit...
-## FIXME Switch to using `EntrezGeneInfo()` approach here to map input against
-## MSigDB sets...
-## FIXMECensor Entrez identifiers that are no longer active.
-
-
-
 ## Updated 2021-10-20.
 `.RankedList,DataFrame` <-  # nolint
     function(
         object,
         value,
         keyType = c("geneName", "entrezId"),  # FIXME Can we take this out?
-        gene2symbol = NULL  # FIXME Rework to rowData
+        rowRanges
     ) {
         validObject(object)
-        validObject(gene2symbol)
+        validObject(rowRanges)
         assert(
             is(object, "DataFrame"),
-            is(gene2symbol, "Gene2Symbol") || is.null(gene2symbol),
+            is(rowRanges, "GenomicRanges"),
             isString(value),  # FIXME Rework
             isString(keyType),
             isSubset(value, colnames(object))
@@ -78,13 +76,15 @@ NULL
         switch(
             EXPR = keyType,
             "geneId" = {
+
+                ## FIXME Rework this to "entrezId" approach.
+                ## FIXME Require that this is defined in mcols of metadata...
                 assert(hasRownames(object))
                 x <- object
                 x[["geneId"]] <- rownames(x)
             },
             "symbol" = {
                 ## FIXME Rework this, not requiring Gene2Symbol...
-
                 assert(
                     is(gene2symbol, "Gene2Symbol"),
                     hasRownames(gene2symbol)
