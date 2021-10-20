@@ -148,28 +148,28 @@ NULL
 
 
 
-## FIXME Need to rework input, don't use gene2symbol here...
-## FIXME Change the gene2symbol to rowData???
-
 ## Updated 2021-10-20.
 `RankedList,DESeqResults` <-  # nolint
     function(
         object,
         rowRanges,
-        keyType = c("symbol", "entrez"),
+        keyType = c("geneName", "entrezId"),
         value = c("stat", "log2FoldChange", "padj")
     ) {
         validObject(object)
-        ## FIXME Rework gene2symbol
         out <- RankedList(
             object = as(object, "DataFrame"),
+            rowRanges = rowRanges,
             value = match.arg(value),
-            keyType = match.arg(keyType),
-            gene2symbol = gene2symbol  # FIXME
+            keyType = match.arg(keyType)
         )
         names(out) <- tryCatch(
-            expr = contrastName(object),
-            error = function(e) NULL
+            expr = {
+                contrastName(object)
+            },
+            error = function(e) {
+                NULL
+            }
         )
         out
     }
@@ -188,11 +188,12 @@ NULL
     function(
         object,
         value = c("stat", "log2FoldChange", "padj"),
-        keyType = c("geneName", "geneId", "entrezId")
+        keyType = c("geneName", "entrezId")
     ) {
         validObject(object)
         value <- match.arg(value)
         keyType <- match.arg(keyType)
+        ## FIXME Rework this approach.
         gene2symbol <- NULL
         ## Extract the DESeqResults list. Note that we're requiring shrunken
         ## LFCs if the user wants to return those values instead of using the
