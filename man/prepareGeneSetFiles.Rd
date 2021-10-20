@@ -6,7 +6,7 @@
 \usage{
 prepareGeneSetFiles(
   dir,
-  keyType = c("symbols", "entrez"),
+  keyType = c("entrezId", "geneName"),
   ext = "gmt",
   recursive = FALSE
 )
@@ -15,7 +15,12 @@ prepareGeneSetFiles(
 \item{dir}{\code{character(1)}.
 Directory name containing MSigDb release.}
 
-\item{keyType}{\verb{character(1). Gene identifier format. Defaults to }"symbols"\verb{, corresponding to gene names (e.g. }"TP53"\verb{). Also supports Entrez identifiers, via }"entrez"\verb{(e.g.}7157`).}
+\item{keyType}{`character(1).
+Gene identifier format:
+\itemize{
+\item \code{"entrezId"}: Entrez identifiers (e.g. \code{7157}).
+\item \code{"geneName"}: Gene names (a.k.a. symbols; e.g. \code{"TP53"}).
+}}
 
 \item{ext}{\code{character(1)}.
 Gene set file extension.
@@ -42,7 +47,7 @@ dir <- system.file(
     package = "AcidGSEA",
     mustWork = TRUE
 )
-files <- prepareGeneSetFiles(dir, keyType = "symbols")
+files <- prepareGeneSetFiles(dir, keyType = "geneName")
 print(files)
 }
 \seealso{
