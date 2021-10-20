@@ -26,9 +26,9 @@
 #'   scale_alpha_identity scale_shape_manual
 #' @importFrom goalie allAreAtomic allAreFiles areDisjointSets areSameLength
 #'   areSetEqual assert bapply hasColnames hasLength hasNames hasNoDuplicates
-#'   hasRownames hasRows isAFile isAll isAlpha isAny isCharacter isFile isFlag
-#'   isHeaderLevel isInstalled isInt isNumber isNonNegative isOrganism isScalar
-#'   isScalarInteger isString isSubset validate
+#'   hasRownames hasRows isADir isAFile isAll isAlpha isAny isCharacter isFile
+#'   isFlag isHeaderLevel isInstalled isInt isNumber isNonNegative isOrganism
+#'   isScalar isScalarInteger isString isSubset validate
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity show
 #'   slot slot<- validObject
 "_PACKAGE"

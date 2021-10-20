@@ -42,7 +42,7 @@ dir <- system.file(
     package = "AcidGSEA",
     mustWork = TRUE
 )
-files <- prepareGeneSetFiles(dir)
+files <- prepareGeneSetFiles(dir, keyType = "symbols")
 print(files)
 }
 \seealso{

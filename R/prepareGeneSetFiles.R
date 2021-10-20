@@ -31,7 +31,7 @@
 #'     package = "AcidGSEA",
 #'     mustWork = TRUE
 #' )
-#' files <- prepareGeneSetFiles(dir)
+#' files <- prepareGeneSetFiles(dir, keyType = "symbols")
 #' print(files)
 prepareGeneSetFiles <- function(
     dir,

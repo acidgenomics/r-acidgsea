@@ -11,6 +11,8 @@
 ## by default....
 ## FIXME Consider adding method support for matrix here, which is useful
 ## for a table of values across multiple contrasts.
+## FIXME Rename keyType to "entrez" or "symbols" here....simpler
+## FIXME Assign names from gene set files automatically.
 
 
 
@@ -176,8 +178,11 @@ NULL
 ## FIXME Inform the user about what type of keyType we're using for matching.
 ## FIXME What do we do with Ensembl-to-Entrez matches that aren't 1:1?
 ## FIXME Consider defaulting here to entrezId.
+## FIXME Define the RankedList pattern here based on geneId.
+## FIXME geneId is too vague here, is this ever used?
+## FIXME rename keyType to "entrez" and "symbols"
 
-## Updated 2021-10-19.
+## Updated 2021-10-20.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
