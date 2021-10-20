@@ -18,7 +18,7 @@ RankedList(object, ...)
 \S4method{RankedList}{DESeqResults}(
   object,
   value = c("stat", "log2FoldChange", "padj"),
-  keyType = c("geneName", "geneId"),
+  keyType = c("symbol", "entrez"),
   gene2symbol
 )
 
@@ -60,7 +60,7 @@ Gene-to-symbol mappings. Must contain \code{geneId} and \code{geneName} columns.
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2021-10-19.
+Updated 2021-10-20.
 }
 \section{Gene symbol multi-mapping}{
 
