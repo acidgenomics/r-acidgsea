@@ -26,6 +26,12 @@
 ## MSigDB sets...
 ## FIXMECensor Entrez identifiers that are no longer active.
 ## FIXME Always require rowRanges.
+## FIXME Inform the user about what type of keyType we're using for matching.
+## FIXME What do we do with Ensembl-to-Entrez matches that aren't 1:1?
+## FIXME Consider defaulting here to entrezId.
+## FIXME Define the RankedList pattern here based on geneId.
+## FIXME geneId is too vague here, is this ever used?
+## FIXME rename keyType to "entrez" and "symbols"
 
 
 
@@ -176,25 +182,16 @@ NULL
 
 
 
-## FIXME Inform the user about what type of keyType we're using for matching.
-## FIXME What do we do with Ensembl-to-Entrez matches that aren't 1:1?
-## FIXME Consider defaulting here to entrezId.
-## FIXME Define the RankedList pattern here based on geneId.
-## FIXME geneId is too vague here, is this ever used?
-## FIXME rename keyType to "entrez" and "symbols"
-
 ## Updated 2021-10-20.
 `RankedList,DESeqAnalysis` <-  # nolint
     function(
         object,
-        value = c("stat", "log2FoldChange", "padj"),
-        keyType = c("geneName", "entrezId")
+        keyType = c("geneName", "entrezId"),
+        value = c("stat", "log2FoldChange", "padj")
     ) {
         validObject(object)
-        value <- match.arg(value)
-        keyType <- match.arg(keyType)
-        ## FIXME Rework this approach.
-        gene2symbol <- NULL
+        dds <- as(object, "DESeqDataSet")
+        rowRanges <- rowRanges(dds)
         ## Extract the DESeqResults list. Note that we're requiring shrunken
         ## LFCs if the user wants to return those values instead of using the
         ## Wald test statistic ("stat").
@@ -207,105 +204,14 @@ NULL
             )
         )
         assert(is(resultsList, "list"))
-        ## Entrez identifier mapping mode.
-        ## FIXME We should inform the user how many genes matched...
-        switch(
-            EXPR = keyType,
-            "entrezId" = {
-                dds <- as(object, "DESeqDataSet")
-                rowData <- rowData(dds)
-                if (hasColnames(rowData)) {
-                    colnames(rowData) <-
-                        camelCase(colnames(rowData), strict = TRUE)
-                }
-                assert(
-                    isSubset("entrezId", colnames(rowData)),
-                    msg = sprintf(
-                        paste(
-                            "Object does not contain Entrez identifiers.",
-                            "Re-run with {.arg %s} value other than {.val %s}."
-                        ),
-                        "keyType", "entrezId"
-                    )
-                )
-                g2e <- IntegerList(rowData[["entrezId"]])
-                names(g2e) <- rownames(rowData)
-                keep <- !all(is.na(g2e))
-                g2e <- g2e[keep, , drop = FALSE]
-                ## For genes that don't map 1:1, use oldest Entrez identifier.
-                g2e <- IntegerList(lapply(
-                    X = g2e,
-                    FUN = function(x) {
-                        head(sort(na.omit(x)), n = 1L)
-                    }
-                ))
-                g2e <- unlist(x = g2e, recursive = FALSE, use.names = TRUE)
-                assert(
-                    is.integer(g2e),
-                    !any(is.na(g2e))
-                )
-                ## Replace the rownames in results list with Entrez identifiers.
-                idx <- match(
-                    x = names(g2e),
-                    table = rownames(resultsList[[1L]])
-                )
-                assert(identical(length(idx), length(g2e)))
-                if (length(idx) < nrow(dds)) {
-                    n <- length(idx)
-                    alertInfo(sprintf(
-                        "Mapping %s %s from %s to %s.",
-                        n,
-                        ngettext(
-                            n = n,
-                            msg1 = "gene",
-                            msg2 = "genes"
-                        ),
-                        "Ensembl", "Entrez"
-                    ))
-                    length(idx)
-                    n <- nrow(dds) - length(idx)
-                    alertWarning(sprintf(
-                        "Dropping %d %s %s without %s identifier.",
-                        n,
-                        "Ensembl",
-                        ngettext(
-                            n = n,
-                            msg1 = "gene",
-                            msg2 = "genes"
-                        ),
-                        "Entrez"
-                    ))
-                }
-                resultsList <- lapply(
-                    X = resultsList,
-                    FUN = function(x) {
-                        x <- x[idx, , drop = FALSE]
-                        rownames(x) <- unname(g2e)
-                        x
-                    }
-                )
-                keyType <- "geneId"
-            },
-            "geneName" = {
-                ## Get the gene-to-symbol mappings. We're returning in long
-                ## format so we can average the values for each gene symbol,
-                ## since for some genomes gene IDs multi-map to symbols.
-                suppressMessages({
-                    gene2symbol <- Gene2Symbol(  # FIXME
-                        object = as(object, "DESeqDataSet"),  # FIXME
-                        format = "unmodified"
-                    )
-                })
-            }
-        )
         ## Get parameterized GSEA list values for each DESeqResults contrast.
         bplapply <- eval(.bplapply)
         list <- bplapply(
             X = resultsList,
             FUN = RankedList,
-            value = value,
-            keyType = keyType,
-            gene2symbol = gene2symbol  # FIXME
+            rowRanges = rowRanges,
+            keyType = match.arg(keyType),
+            value = match.arg(value)
         )
         ## Extract the required metadata from the first slotted return object
         ## defined from DESeqResults method.
@@ -320,7 +226,6 @@ NULL
         )
         out <- SimpleList(list)
         metadata(out) <- meta
-        ## FIXME Need to ensure "value" and "keyType" are slotted in metadata.
         new(Class = "RankedList", out)
     }
 
