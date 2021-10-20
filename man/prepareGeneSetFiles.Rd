@@ -4,25 +4,34 @@
 \alias{prepareGeneSetFiles}
 \title{Prepare gene set files}
 \usage{
-prepareGeneSetFiles(dir, pattern = "*.all.*.symbols.gmt")
+prepareGeneSetFiles(
+  dir,
+  keyType = c("symbols", "entrez"),
+  ext = "gmt",
+  recursive = FALSE
+)
 }
 \arguments{
 \item{dir}{\code{character(1)}.
 Directory name containing MSigDb release.}
 
-\item{pattern}{\code{character(1)}.
-Glob string to use for pattern matching against gene set files.
-Passed to \code{list.files} internally.
-Intended primarily to match files from MSigDb.}
+\item{keyType}{\verb{character(1). Gene identifier format. Defaults to }"symbols"\verb{, corresponding to gene names (e.g. }"TP53"\verb{). Also supports Entrez identifiers, via }"entrez"\verb{(e.g.}7157`).}
+
+\item{ext}{\code{character(1)}.
+Gene set file extension.
+Case insensitive.}
+
+\item{recursive}{\code{logical(1)}.
+Whether to search for gene set files recursively in \code{dir} argument.}
 }
 \description{
 Prepare gene set files
 }
 \details{
-For example, intended for MSigDb releases.
+Intended primarily to match GMT files from MSigDb.
 }
 \note{
-Updated 2021-03-04.
+Updated 2021-10-20.
 }
 \examples{
 dir <- system.file(
@@ -35,4 +44,10 @@ dir <- system.file(
 )
 files <- prepareGeneSetFiles(dir)
 print(files)
+}
+\seealso{
+\itemize{
+\item https://www.gsea-msigdb.org/gsea/msigdb/
+\item https://www.ncbi.nlm.nih.gov/gene/
+}
 }

@@ -1,17 +1,26 @@
 #' Prepare gene set files
 #'
 #' @details
-#' For example, intended for MSigDb releases.
+#'  Intended primarily to match GMT files from MSigDb.
 #'
-#' @note Updated 2021-03-04.
+#' @note Updated 2021-10-20.
 #' @export
 #'
 #' @param dir `character(1)`.
 #'   Directory name containing MSigDb release.
-#' @param pattern `character(1)`.
-#'   Glob string to use for pattern matching against gene set files.
-#'   Passed to `list.files` internally.
-#'   Intended primarily to match files from MSigDb.
+#' @param keyType `character(1).
+#'   Gene identifier format.
+#'   Defaults to `"symbols"`, corresponding to gene names (e.g. `"TP53"`).
+#'   Also supports Entrez identifiers, via `"entrez"` (e.g. `7157`).
+#' @param ext `character(1)`.
+#'   Gene set file extension.
+#'   Case insensitive.
+#' @param recursive `logical(1)`.
+#'   Whether to search for gene set files recursively in `dir` argument.
+#'
+#' @seealso
+#' - https://www.gsea-msigdb.org/gsea/msigdb/
+#' - https://www.ncbi.nlm.nih.gov/gene/
 #'
 #' @examples
 #' dir <- system.file(
@@ -26,36 +35,46 @@
 #' print(files)
 prepareGeneSetFiles <- function(
     dir,
-    pattern = "*.all.*.symbols.gmt"
+    keyType = c("symbols", "entrez"),
+    ext = "gmt",
+    recursive = FALSE
 ) {
-    assert(isString(pattern))
+    assert(
+        isADir(dir),
+        isString(ext),
+        isFlag(recursive)
+    )
+    keyType <- match.arg(keyType)
     dir <- realpath(dir)
     files <- sort(list.files(
         path = dir,
-        pattern = pattern,
+        pattern = paste0("*.", keyType, "\\.", ext, "$"),
         full.names = TRUE,
-        recursive = FALSE
+        recursive = recursive,
+        ignore.case = TRUE
     ))
+    files <- realpath(files)
     if (!hasLength(files)) {
         abort(sprintf(
             fmt = paste(
-                "Failed to locate GMT files matching {.val %s}",
-                "pattern in {.path %s}."
+                "Failed to locate %s files matching",
+                "{.arg %s} {.val %s} in {.path %s}."
             ),
-            pattern, dir
+            toupper(ext), "keyType", keyType, dir
         ))
     }
-    names <- vapply(
-        X = strsplit(
-            x = basename(files),
-            split = ".",
-            fixed = TRUE
+    alertInfo(sprintf(
+        "Detected %d %s %s of {.var %s} {.val %s} in {.path %s}.",
+        length(files),
+        toupper(ext),
+        ngettext(
+            n = length(files),
+            msg1 = "file",
+            msg2 = "files"
         ),
-        FUN = `[[`,
-        1L,
-        FUN.VALUE = character(1L),
-        USE.NAMES = FALSE
-    )
-    names(files) <- names
+        "keyType", keyType,
+        dir
+    ))
+    names(files) <- snakeCase(basenameSansExt(files))
     files
 }
