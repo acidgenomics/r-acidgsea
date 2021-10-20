@@ -10,8 +10,8 @@
 #'   Directory name containing MSigDb release.
 #' @param keyType `character(1).
 #'   Gene identifier format:
-#'   - `"entrez"`: Entrez identifiers (e.g. `7157`).
-#'   - `"symbols"`: Gene names (e.g. `"TP53"`).
+#'   - `"entrezId"`: Entrez identifiers (e.g. `7157`).
+#'   - `"geneName"`: Gene names (a.k.a. symbols; e.g. `"TP53"`).
 #' @param ext `character(1)`.
 #'   Gene set file extension.
 #'   Case insensitive.
@@ -31,11 +31,11 @@
 #'     package = "AcidGSEA",
 #'     mustWork = TRUE
 #' )
-#' files <- prepareGeneSetFiles(dir, keyType = "symbols")
+#' files <- prepareGeneSetFiles(dir, keyType = "geneName")
 #' print(files)
 prepareGeneSetFiles <- function(
     dir,
-    keyType = c("entrez", "symbols"),
+    keyType = c("entrezId", "geneName"),
     ext = "gmt",
     recursive = FALSE
 ) {
