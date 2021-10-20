@@ -32,7 +32,7 @@
 #' print(files)
 prepareGeneSetFiles <- function(
     dir,
-    keyType = c("entrezId", "geneName"),
+    keyType = c("geneName", "entrezId"),
     ext = "gmt",
     recursive = FALSE
 ) {

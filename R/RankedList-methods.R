@@ -32,6 +32,8 @@
 ## FIXME Define the RankedList pattern here based on geneId.
 ## FIXME geneId is too vague here, is this ever used?
 ## FIXME rename keyType to "entrez" and "symbols"
+## FIXME Add support and code coverage for direct NCBI Entrez / RefSeq input.
+## FIXME Add support for edgeR and vroom here, based on DataFrame.
 
 
 
@@ -61,6 +63,9 @@ NULL
 
 
 
+## Assuming Ensembl/GENCODE-annotated input here.
+## Support for direct NCBI Entrez/RefSeq-annotated input requires a future
+## package update, and is currently considered an edge case.
 ## Updated 2021-10-20.
 `.RankedList,DataFrame` <-  # nolint
     function(
@@ -71,24 +76,116 @@ NULL
     ) {
         validObject(object)
         validObject(rowRanges)
+        ## FIXME Currently expecting Ensembl-processed input here.
+        ## Direct NCBI Entrez/RefSeq-processed input requires package update.
+        ensemblPattern <- "^ENSG[[:digit:]]{11}"
+        ## FIXME Note that this approach should only be used for Ensembl.
+        validSeqnames <- c(seq(from = 1L, to = 21L, by = 1L), "X", "Y", "MT")
         assert(
             is(object, "DataFrame"),
             is(rowRanges, "GenomicRanges"),
+            identical(organism(rowRanges), "Homo sapiens"),
+            any(grepl(pattern = ensemblPattern, x = names(rowRanges))),
+            isSubset(validSeqnames, levels(seqnames(rowRanges))),
+            isSubset("geneName", colnames(mcols(rowRanges))),
             isString(value),
-            isSubset(value, colnames(object))
+            isSubset(value, colnames(object)),
+            hasRownames(object),
+            identical(rownames(object), names(rowRanges))
         )
         keyType <- match.arg(keyType)
+        object <- as(object, "DataFrame")
+        rowRanges <- as(rowRanges, "GenomicRanges")
+        ## Discard genes that don't map to primary seqnames. This helps us
+        ## remove clutter of unwanted haplotype scaffolds, etc.
+        keep <- seqnames(rowRanges) %in% validSeqnames
+        if (isTRUE(sum(keep) < length(keep))) {
+            pctKeep <- sum(keep) / length(keep)
+            alertInfo(sprintf(
+                "%s%% of genes mapped to primary seqnames (%d / %d).",
+                prettyNum(
+                    x = round(x = pctKeep * 100L, digits = 2L),
+                    scientific = FALSE
+                ),
+                sum(keep),
+                length(keep)
+            ))
+            ## Fail if a certain number of genes don't pass threshold.
+            assert(isInRange(x = pctKeep, lower = 0.5, upper = 1L))
+        }
+        rowRanges <- rowRanges[keep]
+        rowRanges <- droplevels(rowRanges)
+        assert(
+            allAreMatchingRegex(
+                x = names(rowRanges),
+                pattern = ensemblPattern
+            ),
+            ## Currently only supporting GRCh38.
+            ## Move on from GRCh37 already.
+            allAreMatchingRegex(
+                ## FIXME Import this from basejump, following update.
+                x = GenomeInfoDb::genome(rowRanges),
+                pattern = "^GRCh38"
+            )
+        )
+        rowData <- as.DataFrame(rowRanges)
+        object <- object[names(rowRanges), , drop = FALSE]
         switch(
             EXPR = keyType,
             "entrezId" = {
-                ## FIXME Rework this to "entrezId" approach.
-                ## FIXME Require that this is defined in mcols of metadata...
-                assert(hasRownames(object))
-                x <- object
-                x[["geneId"]] <- rownames(x)
+                assert(
+                    isSubset("entrezId", colnames(rowData)),
+                    is(rowData[["entrezId"]], "List") ||
+                        is.list(rowData[["entrezId"]]),
+                    msg = sprintf(
+                        paste(
+                            "{.cls %s} does not contain Entrez identifiers.",
+                            "Re-run with {.arg %s} value other than {.val %s}."
+                        ),
+                        "rowRanges", "keyType", "entrezId"
+                    )
+                )
+                g2e <- IntegerList(rowData[["entrezId"]])
+                names(g2e) <- rownames(rowData)
+                keep <- !all(is.na(g2e))
+                g2e <- g2e[keep, , drop = FALSE]
+                ## For genes that don't map 1:1, use oldest Entrez identifier.
+                g2e <- IntegerList(lapply(
+                    X = g2e,
+                    FUN = function(x) {
+                        head(sort(na.omit(x)), n = 1L)
+                    }
+                ))
+                g2e <- unlist(x = g2e, recursive = FALSE, use.names = TRUE)
+                assert(
+                    is.integer(g2e),
+                    !any(is.na(g2e))
+                )
+                idx <- match(x = names(g2e), table = rownames(object))
+                assert(
+                    identical(length(idx), length(g2e)),
+                    !any(is.na(idx))
+                )
+                if (length(idx) < nrow(object)) {
+                    pctKeep <- length(idx) / nrow(object)
+                    alertInfo(sprintf(
+                        "Mapping %s%% of genes from %s to %s (%d / %d).",
+                        prettyNum(
+                            x = round(x = pctKeep * 100L, digits = 2L),
+                            scientific = FALSE
+                        ),
+                        "Ensembl", "Entrez",
+                        length(idx), nrow(object)
+                    ))
+                    ## Fail if a certain number of genes don't pass threshold.
+                    assert(isInRange(x = pctKeep, lower = 0.5, upper = 1L))
+                }
+                object <- object[idx, , drop = FALSE]
+                object[[keyType]] <- unname(g2e)
             },
             "geneName" = {
                 ## FIXME Rework this, not requiring Gene2Symbol...
+                ## FIXME Work on the object names here...
                 assert(
                     is(gene2symbol, "Gene2Symbol"),  # FIXME
                     hasRownames(gene2symbol)  # FIXME
@@ -106,6 +203,7 @@ NULL
                 x <- leftJoin(x, y, by = "rowname")
             }
         )
+        x <- object
         rownames(x) <- NULL
         x <- x[, c(keyType, value), drop = FALSE]
         x <- x[complete.cases(x), , drop = FALSE]
@@ -113,11 +211,10 @@ NULL
         ## Average the value per key (e.g. gene symbol), if necessary.
         if (any(duplicated(x[[keyType]]))) {
             x[[keyType]] <- as.factor(x[[keyType]])
-            dupes <- which(duplicated(x[[keyType]]))
-            dupes <- as.character(x[[keyType]][dupes])
-            dupes <- unique(dupes)
+            dupes <- x[[keyType]][which(duplicated(x[[keyType]]))]
+            dupes <- as.character(sort(unique(dupes)))
             alert(sprintf(
-                fmt = "Averaging '%s' value for %d %s: %s.",
+                fmt = "Averaging {.arg %s} for %d %s: %s.",
                 value,
                 length(dupes),
                 ngettext(
@@ -125,7 +222,7 @@ NULL
                     msg1 = "gene",
                     msg2 = "genes"
                 ),
-                toInlineString(dupes, n = 5L)
+                toInlineString(dupes, n = 10L)
             ))
             x <- split(x = x, f = x[[keyType]])
             ## Calculate mean expression per key.
@@ -149,6 +246,9 @@ NULL
             "packageVersion" = .pkgVersion,
             "value" = value
         )
+        if (identical(keyType, "entrezId")) {
+            metadata(out)[["ensembl2Entrez"]] <- g2e
+        }
         new(Class = "RankedList", out)
     }
 

@@ -11,8 +11,8 @@ FGSEAList(object, ...)
 
 \S4method{FGSEAList}{DESeqAnalysis}(
   object,
+  keyType = c("entrezId", "geneName"),
   value = c("stat", "log2FoldChange", "padj"),
-  keyType = c("geneName", "entrezId"),
   ...
 )
 
@@ -38,6 +38,13 @@ FGSEAList(object, ...)
 
 \item{...}{Additional arguments.}
 
+\item{keyType}{`character(1).
+Gene identifier format:
+\itemize{
+\item \code{"entrezId"}: Entrez identifiers (e.g. \code{7157}).
+\item \code{"geneName"}: Gene names (a.k.a. symbols; e.g. \code{"TP53"}).
+}}
+
 \item{value}{\code{character(1)}.
 Value type to use for GSEA ranked list.
 
@@ -49,13 +56,6 @@ but is removed in \code{DESeq2::lfcShrink()} return, currently.
 requires \code{DESeq2::lfcShrink()} return to be slotted.
 \item \code{padj}: Adjusted \emph{P} value. This don't provide directional ranks, but
 is offered as a legacy option. Not generally recommended.
-}}
-
-\item{keyType}{`character(1).
-Gene identifier format:
-\itemize{
-\item \code{"entrezId"}: Entrez identifiers (e.g. \code{7157}).
-\item \code{"geneName"}: Gene names (a.k.a. symbols; e.g. \code{"TP53"}).
 }}
 
 \item{rowRanges}{\code{GRanges} or \code{GRangesList}.

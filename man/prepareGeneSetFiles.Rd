@@ -6,7 +6,7 @@
 \usage{
 prepareGeneSetFiles(
   dir,
-  keyType = c("entrezId", "geneName"),
+  keyType = c("geneName", "entrezId"),
   ext = "gmt",
   recursive = FALSE
 )
