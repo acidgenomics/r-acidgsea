@@ -59,8 +59,8 @@ NULL
 `.RankedList,DataFrame` <-  # nolint
     function(
         object,
+        keyType = c("geneName", "entrezId"),
         value,
-        keyType = c("geneName", "entrezId"),  # FIXME Can we take this out?
         rowRanges
     ) {
         validObject(object)
@@ -68,8 +68,6 @@ NULL
         assert(
             is(object, "DataFrame"),
             is(rowRanges, "GenomicRanges"),
-            isString(value),  # FIXME Rework
-            isString(keyType),
             isSubset(value, colnames(object))
         )
         keyType <- match.arg(keyType)
@@ -86,8 +84,8 @@ NULL
             "symbol" = {
                 ## FIXME Rework this, not requiring Gene2Symbol...
                 assert(
-                    is(gene2symbol, "Gene2Symbol"),
-                    hasRownames(gene2symbol)
+                    is(gene2symbol, "Gene2Symbol"),  # FIXME
+                    hasRownames(gene2symbol)  # FIXME
                 )
                 x <- as(object, "DataFrame")
                 y <- as(gene2symbol, "DataFrame")
@@ -140,7 +138,7 @@ NULL
         ## Return ranked list.
         out <- SimpleList(out)
         metadata(out) <- list(
-            "gene2symbol" = gene2symbol,
+            "gene2symbol" = gene2symbol,  # FIXME
             "keyType" = keyType,
             "packageVersion" = .pkgVersion,
             "value" = value
@@ -157,16 +155,17 @@ NULL
 `RankedList,DESeqResults` <-  # nolint
     function(
         object,
-        value = c("stat", "log2FoldChange", "padj"),
         keyType = c("symbol", "entrez"),
-        gene2symbol  # FIXME Rework this to rowData
+        value = c("stat", "log2FoldChange", "padj"),
+        rowRanges
     ) {
         validObject(object)
+        ## FIXME Rework gene2symbol
         out <- RankedList(
             object = as(object, "DataFrame"),
             value = match.arg(value),
             keyType = match.arg(keyType),
-            gene2symbol = gene2symbol
+            gene2symbol = gene2symbol  # FIXME
         )
         names(out) <- tryCatch(
             expr = contrastName(object),
@@ -291,8 +290,8 @@ NULL
                 ## format so we can average the values for each gene symbol,
                 ## since for some genomes gene IDs multi-map to symbols.
                 suppressMessages({
-                    gene2symbol <- Gene2Symbol(
-                        object = as(object, "DESeqDataSet"),
+                    gene2symbol <- Gene2Symbol(  # FIXME
+                        object = as(object, "DESeqDataSet"),  # FIXME
                         format = "unmodified"
                     )
                 })
@@ -305,7 +304,7 @@ NULL
             FUN = RankedList,
             value = value,
             keyType = keyType,
-            gene2symbol = gene2symbol
+            gene2symbol = gene2symbol  # FIXME
         )
         ## Extract the required metadata from the first slotted return object
         ## defined from DESeqResults method.
@@ -320,6 +319,7 @@ NULL
         )
         out <- SimpleList(list)
         metadata(out) <- meta
+        ## FIXME Need to ensure "value" and "keyType" are slotted in metadata.
         new(Class = "RankedList", out)
     }
 

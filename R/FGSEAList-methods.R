@@ -1,6 +1,7 @@
 ## FIXME Add option to match via Entrez IDs instead of gene symbols.
 ## FIXME Rethink our symbol averaging expression approach.
 ##       Consider allowing the user to set this?
+## FIXME Rework internal handling of gene2symbol as rowRanges instead.
 
 
 
@@ -52,11 +53,14 @@ NULL
 
 
 
+## FIXME Require keyType here.
+## FIXME We need to define keyType accessor generic here.
+
 ## Updated 2021-03-04.
 `FGSEAList,RankedList` <-  # nolint
     function(
         object,
-        geneSetFiles,
+        geneSetFiles,  # FIXME Rework
         nPerm = 1000L,
         minSize = 15L,
         maxSize = 500L,
@@ -65,10 +69,11 @@ NULL
         validObject(object)
         assert(
             allAreFiles(geneSetFiles),
-            hasNames(geneSetFiles),
+            hasNames(geneSetFiles),  # FIXME Take this out (see below).
             isInt(nPerm),
             isAlpha(alphaThreshold)
         )
+        ## FIXME Assign the names from geneSetFiles automatically if necessary.
         contrasts <- names(object)
         stats <- as.list(object)
         alert("Running parameterized fast GSEA.")
@@ -130,33 +135,37 @@ NULL
 
 
 
-## Updated 2021-10-19.
+## FIXME Need to rework keyType and gene2symbol here.
+
+## Updated 2021-10-20.
 `FGSEAList,DESeqResults` <-  # nolint
     function(
         object,
-        value = c("stat", "log2FoldChange", "padj"),
         keyType = c("geneName", "geneId"),
-        gene2symbol,
+        value = c("stat", "log2FoldChange", "padj"),
+        rowRanges,
         ...
     ) {
         validObject(object)
         rl <- RankedList(
             object = object,
-            value = match.arg(value),
             keyType = match.arg(keyType),
-            gene2symbol = gene2symbol
+            value = match.arg(value),
+            rowRanges = rowRanges
         )
-        FGSEAList(object = rl, ...)
+        FGSEAList(rl, ...)
     }
 
 
 
-## Updated 2021-10-19.
+## FIXME Need to rework keyType here.
+
+## Updated 2021-10-20.
 `FGSEAList,DESeqAnalysis` <-  # nolint
     function(
         object,
         value = c("stat", "log2FoldChange", "padj"),
-        keyType = c("geneName", "geneId", "entrezId"),
+        keyType = c("geneName", "entrezId"),
         ...
     ) {
         validObject(object)
@@ -165,7 +174,7 @@ NULL
             value = match.arg(value),
             keyType = match.arg(keyType)
         )
-        out <- FGSEAList(object = rl, ...)
+        out <- FGSEAList(rl, ...)
         metadata(out)[["deseq"]] <- object
         out
     }

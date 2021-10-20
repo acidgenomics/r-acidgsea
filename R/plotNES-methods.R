@@ -8,7 +8,7 @@
 
 #' @name plotNES
 #' @inherit AcidGenerics::plotNES
-#' @note Updated 2021-10-19.
+#' @note Updated 2021-10-20.
 #'
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
