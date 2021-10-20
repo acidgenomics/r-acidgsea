@@ -53,10 +53,11 @@ NULL
 
 
 
-## FIXME Require keyType here.
-## FIXME We need to define keyType accessor generic here.
+## FIXME Get the keyType from metadata here.
+## FIXME Ensure that gene sets match expected metadata...parse the first
+## one and check for identifiers...
 
-## Updated 2021-03-04.
+## Updated 2021-10-20.
 `FGSEAList,RankedList` <-  # nolint
     function(
         object,
@@ -164,15 +165,15 @@ NULL
 `FGSEAList,DESeqAnalysis` <-  # nolint
     function(
         object,
+        keyType = c("entrezId", "geneName"),
         value = c("stat", "log2FoldChange", "padj"),
-        keyType = c("geneName", "entrezId"),
         ...
     ) {
         validObject(object)
         rl <- RankedList(
             object = object,
-            value = match.arg(value),
-            keyType = match.arg(keyType)
+            keyType = match.arg(keyType),
+            value = match.arg(value)
         )
         out <- FGSEAList(rl, ...)
         metadata(out)[["deseq"]] <- object
