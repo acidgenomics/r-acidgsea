@@ -9,9 +9,9 @@
 #' @param dir `character(1)`.
 #'   Directory name containing MSigDb release.
 #' @param keyType `character(1).
-#'   Gene identifier format.
-#'   Defaults to `"symbols"`, corresponding to gene names (e.g. `"TP53"`).
-#'   Also supports Entrez identifiers, via `"entrez"` (e.g. `7157`).
+#'   Gene identifier format:
+#'   - `"entrez"`: Entrez identifiers (e.g. `7157`).
+#'   - `"symbols"`: Gene names (e.g. `"TP53"`).
 #' @param ext `character(1)`.
 #'   Gene set file extension.
 #'   Case insensitive.
@@ -35,7 +35,7 @@
 #' print(files)
 prepareGeneSetFiles <- function(
     dir,
-    keyType = c("symbols", "entrez"),
+    keyType = c("entrez", "symbols"),
     ext = "gmt",
     recursive = FALSE
 ) {
