@@ -40,6 +40,7 @@ FGSEAList(object, ...)
 
 \item{value}{\code{character(1)}.
 Value type to use for GSEA ranked list.
+
 Currently supported:
 \enumerate{
 \item \code{stat}: Wald test statistic. This column is returned by \code{results()}
@@ -50,12 +51,11 @@ requires \code{DESeq2::lfcShrink()} return to be slotted.
 is offered as a legacy option. Not generally recommended.
 }}
 
-\item{keyType}{\code{character(1)}.
-Key type:
+\item{keyType}{`character(1).
+Gene identifier format:
 \itemize{
-\item Gene name (a.k.a. symbol; e.g. "TSPAN6").
-\emph{Recommended by default.}
-\item Gene identifier (e.g. "ENSG00000000003").
+\item \code{"entrezId"}: Entrez identifiers (e.g. \code{7157}).
+\item \code{"geneName"}: Gene names (a.k.a. symbols; e.g. \code{"TP53"}).
 }}
 
 \item{gene2symbol}{\code{Gene2Symbol}.

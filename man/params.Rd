@@ -25,6 +25,13 @@ MSigDB files are recommended by default.}
 \item{headerLevel}{\code{integer(1)}.
 Markdown header level.}
 
+\item{keyType}{`character(1).
+Gene identifier format:
+\itemize{
+\item \code{"entrezId"}: Entrez identifiers (e.g. \code{7157}).
+\item \code{"geneName"}: Gene names (a.k.a. symbols; e.g. \code{"TP53"}).
+}}
+
 \item{leadingEdge}{\code{logical(1)}.
 Visualize only the leading edge genes returned by GSEA.
 If \code{FALSE}, plot all genes in the gene set.}
@@ -63,7 +70,18 @@ Gene stats list.}
 \item{theme}{\code{theme}/\code{gg}.
 ggplot2 theme.}
 
-\item{value}{Value to assign.}
+\item{value}{\code{character(1)}.
+Value type to use for GSEA ranked list.
+
+Currently supported:
+\enumerate{
+\item \code{stat}: Wald test statistic. This column is returned by \code{results()}
+but is removed in \code{DESeq2::lfcShrink()} return, currently.
+\item \code{log2FoldChange}: Shrunken log2 fold change. Note that this option
+requires \code{DESeq2::lfcShrink()} return to be slotted.
+\item \code{padj}: Adjusted \emph{P} value. This don't provide directional ranks, but
+is offered as a legacy option. Not generally recommended.
+}}
 
 \item{...}{Additional arguments.}
 }
