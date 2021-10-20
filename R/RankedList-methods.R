@@ -13,12 +13,13 @@
 ## for a table of values across multiple contrasts.
 ## FIXME Rename keyType to "entrez" or "symbols" here....simpler
 ## FIXME Assign names from gene set files automatically.
+## FIXME Need to rethink our geneId, entrezId approach here...
 
 
 
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2021-10-19.
+#' @note Updated 2021-10-20.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -59,14 +60,18 @@ NULL
 
 ## FIXME Don't set the keyType as "geneName" or "geneId" here?.
 ## FIXME Rework this, consider not reexporting...too generic...
+## FIXME Change the gene2symbol to rowData here.
+## FIXME rowData MUST contain geneName, geneId, entrezId.
+## FIXME Drop elements that map to scaffolds here...
+## FIXME Check Entrez identifier metadata here...
 
-## Updated 2021-10-19.
+## Updated 2021-10-20.
 `.RankedList,DataFrame` <-  # nolint
     function(
         object,
         value,
-        keyType = c("geneName", "geneId"),  # FIXME Can we take this out?
-        gene2symbol = NULL
+        keyType = c("symbol", "entrez"),  # FIXME Can we take this out?
+        gene2symbol = NULL  # FIXME Rework to rowData
     ) {
         validObject(object)
         validObject(gene2symbol)
@@ -151,13 +156,16 @@ NULL
 
 
 
-## Updated 2021-10-19.
+## FIXME Need to rework input, don't use gene2symbol here...
+## FIXME Change the gene2symbol to rowData???
+
+## Updated 2021-10-20.
 `RankedList,DESeqResults` <-  # nolint
     function(
         object,
         value = c("stat", "log2FoldChange", "padj"),
-        keyType = c("geneName", "geneId"),
-        gene2symbol
+        keyType = c("symbol", "entrez"),
+        gene2symbol  # FIXME Rework this to rowData
     ) {
         validObject(object)
         out <- RankedList(
@@ -323,11 +331,14 @@ NULL
 
 
 
-## Updated 2020-09-23.
+## Updated 2021-10-20.
 `RankedList,FGSEAList` <-  # nolint
     function(object) {
         rl <- metadata(object)[["rankedList"]]
-        assert(is(rl, "RankedList"))
+        assert(
+            is(rl, "RankedList"),
+            msg = sprintf("{.cls %s} is not defined in object.", "RankedList")
+        )
         rl
     }
 
