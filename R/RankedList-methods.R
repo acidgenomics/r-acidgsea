@@ -59,29 +59,29 @@ NULL
 `.RankedList,DataFrame` <-  # nolint
     function(
         object,
+        rowRanges,
         keyType = c("geneName", "entrezId"),
-        value,
-        rowRanges
+        value
     ) {
         validObject(object)
         validObject(rowRanges)
         assert(
             is(object, "DataFrame"),
             is(rowRanges, "GenomicRanges"),
+            isString(value),
             isSubset(value, colnames(object))
         )
         keyType <- match.arg(keyType)
         switch(
             EXPR = keyType,
-            "geneId" = {
-
+            "entrezId" = {
                 ## FIXME Rework this to "entrezId" approach.
                 ## FIXME Require that this is defined in mcols of metadata...
                 assert(hasRownames(object))
                 x <- object
                 x[["geneId"]] <- rownames(x)
             },
-            "symbol" = {
+            "geneName" = {
                 ## FIXME Rework this, not requiring Gene2Symbol...
                 assert(
                     is(gene2symbol, "Gene2Symbol"),  # FIXME
@@ -138,8 +138,8 @@ NULL
         ## Return ranked list.
         out <- SimpleList(out)
         metadata(out) <- list(
-            "gene2symbol" = gene2symbol,  # FIXME
             "keyType" = keyType,
+            "packageName" = .pkgName,
             "packageVersion" = .pkgVersion,
             "value" = value
         )
@@ -155,9 +155,9 @@ NULL
 `RankedList,DESeqResults` <-  # nolint
     function(
         object,
+        rowRanges,
         keyType = c("symbol", "entrez"),
-        value = c("stat", "log2FoldChange", "padj"),
-        rowRanges
+        value = c("stat", "log2FoldChange", "padj")
     ) {
         validObject(object)
         ## FIXME Rework gene2symbol

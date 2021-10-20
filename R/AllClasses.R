@@ -3,7 +3,7 @@
 #' Class containing parameterized fast GSEA results.
 #'
 #' @export
-#' @note Updated 2021-03-16.
+#' @note Updated 2021-10-20.
 #'
 #' @return `FGSEAList`.
 setClass(
@@ -37,6 +37,7 @@ setValidity(
                     ## > "maxSize"
                     ## > "minSize"
                     ## > "nPerm"
+                    ## > "packageName"
                     ## > "packageVersion"
                     ## > "sessionInfo"
                     "alpha",
@@ -86,40 +87,22 @@ setValidity(
         ok <- validate(
             is.numeric(object[[1L]]),
             ## Check that this is sorted from high to low.
-            identical(object[[1L]], sort(object[[1L]], decreasing = TRUE)),
+            identical(
+                x = object[[1L]],
+                y = sort(object[[1L]], decreasing = TRUE)
+            ),
             ## Rank vector must be named.
             hasNames(object[[1L]]),
             isSubset(
                 x = c(
-                    ## > "keyType",
-                    ## > "packageVersion",
+                    "keyType",
                     "value"
                 ),
                 y = names(metadata(object))
-            ),
-            isSubset(
-                x = metadata(object)[["value"]],
-                y = eval(formals(`RankedList,DESeqAnalysis`)[["value"]])
             )
-            ## > is(metadata(object)[["packageVersion"]], "package_version")
         )
         if (!isTRUE(ok)) {
             return(ok)
-        }
-        if (identical(metadata(object)[["keyType"]], "geneName")) {
-            ok <- validate(
-                isSubset(
-                    x = "gene2symbol",
-                    y = names(metadata(object))
-                ),
-                isSubset(
-                    x = names(object[[1L]]),
-                    y = metadata(object)[["gene2symbol"]][["geneName"]]
-                )
-            )
-            if (!isTRUE(ok)) {
-                return(ok)
-            }
         }
         TRUE
     }

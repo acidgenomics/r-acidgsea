@@ -12,15 +12,15 @@ FGSEAList(object, ...)
 \S4method{FGSEAList}{DESeqAnalysis}(
   object,
   value = c("stat", "log2FoldChange", "padj"),
-  keyType = c("geneName", "geneId", "entrezId"),
+  keyType = c("geneName", "entrezId"),
   ...
 )
 
 \S4method{FGSEAList}{DESeqResults}(
   object,
-  value = c("stat", "log2FoldChange", "padj"),
   keyType = c("geneName", "geneId"),
-  gene2symbol,
+  value = c("stat", "log2FoldChange", "padj"),
+  rowRanges,
   ...
 )
 
@@ -58,9 +58,9 @@ Gene identifier format:
 \item \code{"geneName"}: Gene names (a.k.a. symbols; e.g. \code{"TP53"}).
 }}
 
-\item{gene2symbol}{\code{Gene2Symbol}.
-Gene-to-symbol mappings. Must contain \code{geneId} and \code{geneName} columns. See
-\code{Gene2Symbol} for more information.}
+\item{rowRanges}{\code{GRanges} or \code{GRangesList}.
+Genomic ranges (e.g. genome annotations). Metadata describing the assay
+rows.}
 
 \item{geneSetFiles}{\code{character}.
 Gene set file paths (i.e. GMT files).

@@ -17,9 +17,9 @@ RankedList(object, ...)
 
 \S4method{RankedList}{DESeqResults}(
   object,
-  value = c("stat", "log2FoldChange", "padj"),
+  rowRanges,
   keyType = c("symbol", "entrez"),
-  gene2symbol
+  value = c("stat", "log2FoldChange", "padj")
 )
 
 \S4method{RankedList}{FGSEAList}(object)
@@ -49,9 +49,9 @@ Gene identifier format:
 \item \code{"geneName"}: Gene names (a.k.a. symbols; e.g. \code{"TP53"}).
 }}
 
-\item{gene2symbol}{\code{Gene2Symbol}.
-Gene-to-symbol mappings. Must contain \code{geneId} and \code{geneName} columns. See
-\code{Gene2Symbol} for more information.}
+\item{rowRanges}{\code{GRanges} or \code{GRangesList}.
+Genomic ranges (e.g. genome annotations). Metadata describing the assay
+rows.}
 }
 \value{
 \code{RankedList}.

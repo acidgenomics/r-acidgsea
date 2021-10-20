@@ -42,7 +42,7 @@ See \code{\link[ggplot2:labs]{ggplot2::labs()}} for details.}
 Plot normalized enrichment score
 }
 \note{
-Updated 2021-10-19.
+Updated 2021-10-20.
 }
 \examples{
 ## FGSEAList ====
