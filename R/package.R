@@ -55,6 +55,10 @@
 #'   MSigDB files are recommended by default.
 #' @param headerLevel `integer(1)`.
 #'   Markdown header level.
+#' @param keyType `character(1).
+#'   Gene identifier format:
+#'   - `"entrezId"`: Entrez identifiers (e.g. `7157`).
+#'   - `"geneName"`: Gene names (a.k.a. symbols; e.g. `"TP53"`).
 #' @param leadingEdge `logical(1)`.
 #'   Visualize only the leading edge genes returned by GSEA.
 #'   If `FALSE`, plot all genes in the gene set.
@@ -84,6 +88,16 @@
 #'   Gene stats list.
 #' @param theme `theme`/`gg`.
 #'   ggplot2 theme.
-#' @param value Value to assign.
+#' @param value `character(1)`.
+#'   Value type to use for GSEA ranked list.
+#'
+#'   Currently supported:
+#'
+#'   1. `stat`: Wald test statistic. This column is returned by `results()`
+#'      but is removed in `DESeq2::lfcShrink()` return, currently.
+#'   2. `log2FoldChange`: Shrunken log2 fold change. Note that this option
+#'      requires `DESeq2::lfcShrink()` return to be slotted.
+#'   3. `padj`: Adjusted *P* value. This don't provide directional ranks, but
+#'      is offered as a legacy option. Not generally recommended.
 #' @param ... Additional arguments.
 NULL

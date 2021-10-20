@@ -26,23 +26,8 @@
 #' Multiple gene IDs can map to a gene symbol (e.g. *Homo sapiens* HGNC names).
 #' In this event, we're averaging the values using `mean()` internally.
 #'
-#' @inheritParams AcidRoxygen::params
 #' @inheritParams params
-#' @param keyType `character(1)`.
-#'   Key type:
-#'   - Gene name (a.k.a. symbol; e.g. "TSPAN6").
-#'     *Recommended by default.*
-#'   - Gene identifier (e.g. "ENSG00000000003").
-#' @param value `character(1)`.
-#'   Value type to use for GSEA ranked list.
-#'   Currently supported:
-#'
-#'   1. `stat`: Wald test statistic. This column is returned by `results()`
-#'      but is removed in `DESeq2::lfcShrink()` return, currently.
-#'   2. `log2FoldChange`: Shrunken log2 fold change. Note that this option
-#'      requires `DESeq2::lfcShrink()` return to be slotted.
-#'   3. `padj`: Adjusted *P* value. This don't provide directional ranks, but
-#'      is offered as a legacy option. Not generally recommended.
+#' @inheritParams AcidRoxygen::params
 #'
 #' @examples
 #' ## DESeqAnalysis ====
@@ -64,13 +49,20 @@ NULL
 ## FIXME rowData MUST contain geneName, geneId, entrezId.
 ## FIXME Drop elements that map to scaffolds here...
 ## FIXME Check Entrez identifier metadata here...
+## FIXME Can we get information on Entrez version for the gene sets here?
+## Maybe we can improve our identifier matching a bit...
+## FIXME Switch to using `EntrezGeneInfo()` approach here to map input against
+## MSigDB sets...
+## FIXMECensor Entrez identifiers that are no longer active.
+
+
 
 ## Updated 2021-10-20.
 `.RankedList,DataFrame` <-  # nolint
     function(
         object,
         value,
-        keyType = c("symbol", "entrez"),  # FIXME Can we take this out?
+        keyType = c("geneName", "entrezId"),  # FIXME Can we take this out?
         gene2symbol = NULL  # FIXME Rework to rowData
     ) {
         validObject(object)
@@ -90,7 +82,9 @@ NULL
                 x <- object
                 x[["geneId"]] <- rownames(x)
             },
-            "geneName" = {
+            "symbol" = {
+                ## FIXME Rework this, not requiring Gene2Symbol...
+
                 assert(
                     is(gene2symbol, "Gene2Symbol"),
                     hasRownames(gene2symbol)
