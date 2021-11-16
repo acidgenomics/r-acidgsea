@@ -33,7 +33,7 @@
 ## FIXME geneId is too vague here, is this ever used?
 ## FIXME rename keyType to "entrez" and "symbols"
 ## FIXME Add support and code coverage for direct NCBI Entrez / RefSeq input.
-## FIXME Add support for edgeR and vroom here, based on DataFrame.
+## FIXME Add support for edgeR and limma/voom here, based on DataFrame.
 
 
 
