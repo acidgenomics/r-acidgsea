@@ -11,3 +11,44 @@
    identifier name, or we may need to filter out scaffold identifiers.
    Otherwise, could potentially run into unwanted matches:
    e.g. "FH" vs. "LRG_504".
+** TODO Rework object to store gene sets directly in the object.
+    Currently relies on external file paths, which breaks easily.
+** TODO Need to include which contrast is running in output.
+** TODO Need to improve export message too.
+** TODO Finish adding the heatmap support and release update.
+** TODO Does topTables have lfcShrink support?
+** TODO Add support for PC3, PC4, etc. in plotPCA.
+    Refer to bcbio-rnaseq code repo (roryk) for inspiration on this point.
+** TODO Shade P values (by opacity) in MA and volcano plot?
+** TODO Remove incorrect rowRanges metadata in example object.
+** TODO Stash the date automatically in metadata.
+    Consider also saving sessionInfo?
+** TODO Need to rethink the humanize support step here.
+    Make `humanize()` a separate function call, and add method support.
+    Dispatch onto SummarizedExperiment for DESeqDataSet and DESeqTransform.
+    Need to define an internal humanize method here for DESeqResults.
+** TODO Check DESeqResults and lfcShrink consistency in validity check.
+** TODO Check that all stashed res objects use the same alpha level cutoff as a validity check
+** TODO Add a tighter assert check to ensure that `lfcShrink` contains shrunken values.
+    Can use `priorInfo` to test for this.
+** TODO Need to slot DESeqAnalysis package version in object.
+    Define a `metadata` list and slot prototype metadata.
+** TODO Check for metadata mismatch in DESeqTransform (e.g. interestingGroups) and update automatically in `DESeqAnalysis()` call.
+** TODO `export()`: humanize mode needs to ALWAYS include `geneID` and `geneName` columns.
+** TODO Add plotting support for `svalue` column generated from DESeq2, when shrinkage is applied.
+** TODO Adaptation of plotMA() to show how much the lfcShrink() function affects the LFC shrinkage.
+** TODO Need to add dendrogram support for getting a module of enriched genes.
+** TODO GSEA table messes up when rendered inside an R Markdown header block.
+** TODO Switch to using "collection" instead of "geneSet" or "pathway".
+** TODO Use "pathway" or "geneSet" as argument?
+    Need to figure out the language here.
+** TODO Compare Broad GSEA pre-ranked to fgsea.
+    https://bioinformatics.stackexchange.com/questions/149/are-fgsea-and-broad-institute-gsea-equivalent
+** TODO Add clusterProfiler GSEA function support.
+** TODO `topTables()` conflicts with basejump?
+** TODO `pfgsea()`: Switch to `matchArgsToDoCall()` approach here too, so the formals are clearer.
+** TODO `statsList()`: Work toward returning as `List` instead.
+    We can stash metadata in the `metadata()` slot.
+    Particularly useful is including the value type here.
+** TODO Look into using GSEABase classes.
+    Use `GSEABase::getGmt()`.
