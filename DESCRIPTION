@@ -3,7 +3,7 @@ Title: Acid Genomics GSEA
 Description: Perform parameterized gene set enrichment analysis (GSEA)
     on multiple differential expression contrasts.
 Version: 0.7.0.9000
-Date: 2021-10-20
+Date: 2021-12-06
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -23,22 +23,22 @@ License: AGPL-3
 Encoding: UTF-8
 LazyData: false
 Depends:
-    R (>= 4.0),
-    basejump (>= 0.15.0)
+    R (>= 4.1),
+    basejump (>= 0.15.0.9000)
 Imports:
-    AcidGenerics (>= 0.6.0),
-    AcidPlots (>= 0.4.0),
-    DESeqAnalysis (>= 0.4.5),
-    fgsea (>= 1.18.0),
+    AcidGenerics (>= 0.6.0.9000),
+    AcidPlots (>= 0.4.0.9000),
+    DESeqAnalysis (>= 0.4.5.9000),
+    fgsea (>= 1.20.0),
     ggplot2 (>= 3.3.5),
-    goalie (>= 0.6.0),
+    goalie (>= 0.6.0.9000),
     methods
 Suggests:
-    AcidTest (>= 0.5.0),
-    BiocParallel (>= 1.26.0),
-    knitr,
-    rmarkdown,
-    testthat
+    AcidTest (>= 0.5.0.9000),
+    BiocParallel (>= 1.28.0),
+    knitr (>= 1.36),
+    rmarkdown (>= 2.11),
+    testthat (>= 3.1.1)
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Additional_repositories: https://r.acidgenomics.com
