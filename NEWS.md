@@ -2,6 +2,7 @@
 
 ### Major changes
 
+- Split out basejump dependencies into individual packages.
 - Support for multiple contrasts: `plotNES`, `plotGeneSet`, `results`.
 
 ## AcidGSEA 0.6.4 (2021-07-21)

@@ -14,7 +14,7 @@ NULL
 #'   makeNames mapGenesToRownames melt nesThreshold nesThreshold<-
 #'   plotEnrichedGeneSets plotEnrichedUpset plotGeneSet plotHeatmap plotLFC
 #'   plotNES plotUpset results selectIf showHeader topTables
-#' @importFrom BiocGenerics combine lapply order unique unlist unsplit
+#' @importFrom BiocGenerics combine lapply order organism unique unlist unsplit
 #'   updateObject
 #' @importFrom S4Vectors complete.cases head mcols mcols<- metadata metadata<-
 #'   na.omit split tail
