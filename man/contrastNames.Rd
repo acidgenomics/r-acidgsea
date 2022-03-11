@@ -8,7 +8,6 @@
 \title{Contrast names}
 \usage{
 contrastNames(object, ...)
-
 contrastNames(object, ...) <- value
 
 \S4method{contrastNames}{FGSEAList}(object)

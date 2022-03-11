@@ -4,7 +4,7 @@
 \alias{export}
 \alias{export,FGSEAList,character,missingOrNULL-method}
 \alias{export,FGSEAList,missingOrNULL,missingOrNULL-method}
-\title{Objects exported from other packages}
+\title{Export}
 \usage{
 export(object, con, format, ...)
 
@@ -56,20 +56,15 @@ Directory path.}
 
 \item{...}{Additional arguments.}
 }
-\description{
-These objects are imported from other packages. Follow the links
-below to see their documentation.
-
-\describe{
-  \item{GenomicRanges}{\code{\link[GenomicRanges:GRanges-class]{GRanges}}, \code{\link[GenomicRanges:GRangesList-class]{GRangesList}}}
-
-  \item{IRanges}{\code{\link[IRanges:AtomicList-class]{CharacterList}}, \code{\link[IRanges:DataFrameList-class]{DataFrameList}}, \code{\link[IRanges:AtomicList-class]{FactorList}}, \code{\link[IRanges:IRanges-constructor]{IRanges}}, \code{\link[IRanges:AtomicList-class]{IntegerList}}, \code{\link[IRanges:AtomicList-class]{LogicalList}}, \code{\link[IRanges:AtomicList-class]{NumericList}}, \code{\link[IRanges:AtomicList-class]{RleList}}, \code{\link[IRanges:DataFrameList-class]{SplitDataFrameList}}}
-
-  \item{S4Vectors}{\code{\link[S4Vectors:DataFrame-class]{DataFrame}}, \code{\link[S4Vectors:Factor-class]{Factor}}, \code{\link[S4Vectors:LLint-class]{LLint}}, \code{\link[S4Vectors:List-class]{List}}, \code{\link[S4Vectors:Rle-class]{Rle}}, \code{\link[S4Vectors:SimpleList-class]{SimpleList}}}
+\value{
+Invisible \code{character}.
+File path(s).
 }
+\description{
+Export
 }
 \note{
-Updated 2021-10-15.
+Updated 2022-03-11.
 }
 \section{On-disk structure}{
 

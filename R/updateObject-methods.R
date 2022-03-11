@@ -1,7 +1,8 @@
+#' Update object
+#'
 #' @name updateObject
 #' @author Michael Steinbaugh
-#' @inherit AcidGenerics::updateObject
-#' @note Updated 2021-02-17.
+#' @note Updated 2022-03-11.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param alphaThreshold `number(1)`.

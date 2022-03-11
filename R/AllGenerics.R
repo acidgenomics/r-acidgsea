@@ -1,5 +1,5 @@
-#' @rdname FGSEAList
 #' @export
+#' @rdname FGSEAList
 setGeneric(
     name = "FGSEAList",
     def = function(object, ...) {
@@ -7,8 +7,14 @@ setGeneric(
     }
 )
 
-#' @rdname RankedList
 #' @export
+#' @name Gene2Symbol
+#' @rdname Gene2Symbol
+#' @usage Gene2Symbol(object, ...)
+NULL
+
+#' @export
+#' @rdname RankedList
 setGeneric(
     name = "RankedList",
     def = function(object, ...) {
@@ -16,186 +22,140 @@ setGeneric(
     }
 )
 
-
-
-#' @rdname Gene2Symbol
-#' @name Gene2Symbol
-#' @importFrom basejump Gene2Symbol
-#' @usage Gene2Symbol(object, ...)
-#' @export
-NULL
-
-#' @rdname alphaThreshold
+#' @aliases alphaThreshold<-
+#' @export alphaThreshold alphaThreshold<-
 #' @name alphaThreshold
-#' @importFrom AcidGenerics alphaThreshold
-#' @usage alphaThreshold(object, ...)
-#' @export
-NULL
-
 #' @rdname alphaThreshold
-#' @name alphaThreshold<-
-#' @importFrom AcidGenerics alphaThreshold<-
-#' @usage alphaThreshold(object, ...) <- value
-#' @export
+#' @usage
+#' alphaThreshold(object, ...)
+#' alphaThreshold(object, ...) <- value
 NULL
 
-#' @rdname collectionNames
+#' @aliases collectionNames<-
+#' @export collectionNames collectionNames<-
 #' @name collectionNames
-#' @importFrom AcidGenerics collectionNames
-#' @usage collectionNames(object, ...)
-#' @export
-NULL
-
 #' @rdname collectionNames
-#' @name collectionNames<-
-#' @importFrom AcidGenerics collectionNames<-
-#' @usage collectionNames(object, ...) <- value
-#' @export
+#' @usage
+#' collectionNames(object, ...)
+#' collectionNames(object, ...) <- value
 NULL
 
-#' @rdname combine
+#' @export
 #' @name combine
-#' @importFrom AcidGenerics combine
+#' @rdname combine
 #' @usage combine(x, y, ...)
-#' @export
 NULL
 
-#' @rdname contrastNames
+#' @aliases contrastNames<-
+#' @export contrastNames contrastNames<-
 #' @name contrastNames
-#' @importFrom AcidGenerics contrastNames
-#' @usage contrastNames(object, ...)
-#' @export
-NULL
-
 #' @rdname contrastNames
-#' @name contrastNames<-
-#' @importFrom AcidGenerics contrastNames<-
-#' @usage contrastNames(object, ...) <- value
-#' @export
+#' @usage
+#' contrastNames(object, ...)
+#' contrastNames(object, ...) <- value
 NULL
 
-#' @rdname convertToHuman
+#' @export
 #' @name convertToHuman
-#' @importFrom AcidGenerics convertToHuman
+#' @rdname convertToHuman
 #' @usage convertToHuman(object, ...)
-#' @export
 NULL
 
-#' @rdname enrichedGeneSets
+#' @export
 #' @name enrichedGeneSets
-#' @importFrom AcidGenerics enrichedGeneSets
+#' @rdname enrichedGeneSets
 #' @usage enrichedGeneSets(object, ...)
-#' @export
 NULL
 
-#' @rdname export
+#' @export
 #' @name export
-#' @importFrom AcidGenerics export
+#' @rdname export
 #' @usage export(object, con, format, ...)
-#' @export
 NULL
 
-#' @rdname geneSet
+#' @export
 #' @name geneSet
-#' @importFrom AcidGenerics geneSet
+#' @rdname geneSet
 #' @usage geneSet(object, ...)
-#' @export
 NULL
 
-#' @rdname geneSetNames
+#' @export
 #' @name geneSetNames
-#' @importFrom AcidGenerics geneSetNames
+#' @rdname geneSetNames
 #' @usage geneSetNames(object, ...)
-#' @export
 NULL
 
-#' @rdname geneSetResults
+#' @export
 #' @name geneSetResults
-#' @importFrom AcidGenerics geneSetResults
+#' @rdname geneSetResults
 #' @usage geneSetResults(object, ...)
-#' @export
 NULL
 
-#' @rdname leadingEdge
+#' @export
 #' @name leadingEdge
-#' @importFrom AcidGenerics leadingEdge
+#' @rdname leadingEdge
 #' @usage leadingEdge(object, ...)
-#' @export
 NULL
 
-#' @rdname nesThreshold
+#' @aliases nesThreshold<-
+#' @export nesThreshold nesThreshold<-
 #' @name nesThreshold
-#' @importFrom AcidGenerics nesThreshold
-#' @usage nesThreshold(object, ...)
-#' @export
-NULL
-
 #' @rdname nesThreshold
-#' @name nesThreshold<-
-#' @importFrom AcidGenerics nesThreshold<-
-#' @usage nesThreshold(object, ...) <- value
-#' @export
+#' @usage
+#' nesThreshold(object, ...)
+#' nesThreshold(object, ...) <- value
 NULL
 
-#' @rdname plotEnrichedGeneSets
+#' @export
 #' @name plotEnrichedGeneSets
-#' @importFrom AcidGenerics plotEnrichedGeneSets
+#' @rdname plotEnrichedGeneSets
 #' @usage plotEnrichedGeneSets(object, ...)
-#' @export
 NULL
 
-#' @rdname plotEnrichedUpset
+#' @export
 #' @name plotEnrichedUpset
-#' @importFrom AcidGenerics plotEnrichedUpset
+#' @rdname plotEnrichedUpset
 #' @usage plotEnrichedUpset(object, ...)
-#' @export
 NULL
 
-#' @rdname plotGeneSet
+#' @export
 #' @name plotGeneSet
-#' @importFrom AcidGenerics plotGeneSet
+#' @rdname plotGeneSet
 #' @usage plotGeneSet(object, ...)
-#' @export
 NULL
 
-#' @rdname plotHeatmap
+#' @export
 #' @name plotHeatmap
-#' @importFrom AcidGenerics plotHeatmap
+#' @rdname plotHeatmap
 #' @usage plotHeatmap(object, ...)
-#' @export
 NULL
 
-#' @rdname plotLFC
+#' @export
 #' @name plotLFC
-#' @importFrom AcidGenerics plotLFC
+#' @rdname plotLFC
 #' @usage plotLFC(object, ...)
-#' @export
 NULL
 
-#' @rdname plotNES
+#' @export
 #' @name plotNES
-#' @importFrom AcidGenerics plotNES
+#' @rdname plotNES
 #' @usage plotNES(object, ...)
-#' @export
 NULL
 
-#' @rdname results
+#' @export
 #' @name results
-#' @importFrom AcidGenerics results
+#' @rdname results
 #' @usage results(object, ...)
-#' @export
 NULL
 
-#' @rdname topTables
+#' @export
 #' @name topTables
-#' @importFrom AcidGenerics topTables
+#' @rdname topTables
 #' @usage topTables(object, ...)
-#' @export
 NULL
 
-#' @rdname updateObject
-#' @name updateObject
-#' @importFrom AcidGenerics updateObject
-#' @usage updateObject(object, ..., verbose = FALSE)
 #' @export
+#' @name updateObject
+#' @rdname updateObject
+#' @usage updateObject(object, ..., verbose = FALSE)
 NULL

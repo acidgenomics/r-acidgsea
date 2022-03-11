@@ -8,7 +8,6 @@
 \title{Normalized enrichment score (NES) threshold}
 \usage{
 nesThreshold(object, ...)
-
 nesThreshold(object, ...) <- value
 
 \S4method{nesThreshold}{FGSEAList}(object)

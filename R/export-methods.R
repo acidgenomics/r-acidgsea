@@ -1,6 +1,7 @@
 #' @name export
-#' @inherit AcidGenerics::export
-#' @note Updated 2021-10-15.
+#'
+#' @inherit pipette::export description return title
+#' @note Updated 2022-03-11.
 #'
 #' @section On-disk structure:
 #'

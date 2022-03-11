@@ -8,7 +8,6 @@
 \title{Gene set collection names}
 \usage{
 collectionNames(object, ...)
-
 collectionNames(object, ...) <- value
 
 \S4method{collectionNames}{FGSEAList}(object)
