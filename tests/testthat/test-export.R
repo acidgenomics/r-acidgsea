@@ -51,6 +51,32 @@ test_that("New 'con' BiocIO approach, instead of deprecated 'dir'", {
             "h.csv"
         )
     )))
+    df <- import(file.path(prefix, "condition_B_vs_A", "h.csv"))
+    l <- as.list(df[1L, ])
+    expect_identical(
+        object = l[c("pathway", "leadingEdge")],
+        expected = list(
+            "pathway" = "HALLMARK_G2M_CHECKPOINT",
+            "leadingEdge" = toString(c(
+                "E2F2",
+                "ARID4A",
+                "UPF1",
+                "MNAT1",
+                "PAFAH1B1",
+                "CUL1",
+                "POLQ",
+                "TACC3",
+                "DBF4",
+                "HMGB3",
+                "CDC27",
+                "FOXN3",
+                "SLC12A2",
+                "POLA2",
+                "LIG3",
+                "CUL3"
+            ))
+        )
+    )
     unlink(testdir, recursive = TRUE)
 })
 

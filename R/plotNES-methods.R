@@ -1,11 +1,3 @@
-## FIXME Add an option here to plot all contrasts.
-## FIXME Allow the user to input specific contrasts.
-## FIXME Also allow the user to select which pathways to plot.
-## This is super useful for non-hallmark gene sets...
-## FIXME Allow user to pick specific gene sets from collection.
-
-
-
 #' @name plotNES
 #' @inherit AcidGenerics::plotNES
 #' @note Updated 2021-10-20.
@@ -29,13 +21,6 @@ NULL
 
 
 
-
-
-
-
-## FIXME Allow the user to set title and subtitle here.
-## FIXME Allow the user to select which contrasts to plot.
-
 ## Updated 2021-10-19.
 `plotNES,FGSEAList` <-  # nolint
     function(
@@ -53,7 +38,6 @@ NULL
     ) {
         validObject(object)
         multiContrast <- FALSE
-        ## FIXME Rework contrast input here, supporting multiple.
         assert(
             isScalar(contrast),
             isScalar(collection),
@@ -66,15 +50,6 @@ NULL
         if (!isString(collection)) {
             collection <- collectionNames(object)[[collection]]
         }
-
-
-
-
-
-
-
-        ## FIXME Rework this as multi-contrast support.
-        ## FIXME Rework this into a single call, and check for "contrast" column.
         if (identical(contrast, "all")) {
             alert("Plotting multiple contrasts.")
             data <- .resultsForAllContrasts(

@@ -1,6 +1,38 @@
 #+TITLE: AcidGSEA
 #+STARTUP: content
 * Development
+** TODO `RankedList` rework.
+    - Currently expecting Ensembl-processed input here.
+    - Direct NCBI Entrez/RefSeq-processed input requires package update.
+    - Rework to not require gene2symbol input here?
+** TODO `FGSEAList` rework.
+    - Need to rework 'keyType' and 'gene2symbol' here.
+    - Rework `geneSetFiles` argument. Assign the names from geneSetFiles automatically if necessary.
+    - Add option to match via Entrez IDs instead of gene symbols.
+    - Rethink our symbol averaging expression approach.
+      Consider allowing the user to set this?
+    - Rework internal handling of gene2symbol as rowRanges instead.
+    - Get the keyType from metadata here.
+    - Ensure that gene sets match expected metadata...parse the first one and check for identifiers...
+** TODO `leadingEdge` rework?
+    - Rethink this, unit test?
+    - Allow the user to pass in positional contrast or collection.
+    - Inform the user in the results call what we matched...
+** TODO `plotGeneSet` rework.
+    - Support multiple contrasts here.
+** TODO `plotNES` rework.
+    - Allow the user to set title and subtitle here.
+    - Allow the user to select which contrasts to plot.
+    - Rework contrast input here, supporting multiple.
+    - Rework this as multi-contrast support.
+    - Rework this into a single call, and check for "contrast" column.
+    - Add an option here to plot all contrasts.
+    - Allow the user to input specific contrasts.
+    - Also allow the user to select which pathways to plot. This is super useful for non-hallmark gene sets...
+    - Allow user to pick specific gene sets from collection.
+
+
+
 ** TODO `rankedList` rework.
     - Allow the user to set how to handle duplicate identifiers / symbols here. Default behavior is to average.
     - Need to add code coverage for duplicate handling.
@@ -34,6 +66,15 @@
     - rename keyType to "entrez" and "symbols"
     - Add support and code coverage for direct NCBI Entrez / RefSeq input.
     - Add support for edgeR and limma/voom here, based on DataFrame.
+** TODO `results,FGSEAList` rework.
+    - Support input of "all" or specific contrasts.
+    - Need to slot contrast and collection in metadata here...
+    - Rethink our approach that works on leading edge.
+** TODO `.resultsForAllContrasts` rework.
+    - Rework this directly into main `results` function...
+    - Allow user to look up by position.
+    - Allow results extract of multiple contrasts here.
+    - Slot multiContrast in metadata here?
 ** TODO `enrichedGeneSets`: Allow user to pass in positional collection.
     See also `DESeqAnalysis::plotDEGUpset()`, for looping inspiration.
 ** TODO Rework object to store gene sets directly in the object.

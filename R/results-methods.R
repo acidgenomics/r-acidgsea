@@ -16,11 +16,6 @@ NULL
 
 
 
-## FIXME Rework this directly into main `results` function...
-## FIXME Allow user to look up by position.
-## FIXME Allow results extract of multiple contrasts here.
-## FIXME Slot multiContrast in metadata here?
-
 ## Updated 2021-10-19.
 .resultsForAllContrasts <- function(
     object,
@@ -57,9 +52,6 @@ NULL
 }
 
 
-## FIXME Support input of "all" or specific contrasts.
-## FIXME Need to slot contrast and collection in metadata here...
-## FIXME Rethink our approach that works on leading edge.
 
 ## Updated 2021-10-19.
 `results,FGSEAList` <-  # nolint
@@ -85,10 +77,13 @@ NULL
         data <- as(data, "DataFrame")
         colnames(data) <- camelCase(colnames(data), strict = TRUE)
         ## Coerce the "leadingEdge" list column to a character string.
-        ## FIXME Consider NOT doing this, as we may want to keep the formatting.
-        ## FIXME Don't do this here, but rework in pipette export method.
-        ## > data[["leadingEdge"]] <-
-        ## >     unlist(lapply(X = data[["leadingEdge"]], FUN = toString))
+        data[["leadingEdge"]] <- unlist(
+            x = lapply(
+                X = data[["leadingEdge"]],
+                FUN = toString
+            ),
+            recursive = FALSE
+        )
         data
     }
 

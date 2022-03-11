@@ -2,12 +2,15 @@
 % Please edit documentation in R/AllGenerics.R, R/RankedList-methods.R
 \name{RankedList}
 \alias{RankedList}
+\alias{RankedList,DataFrame-method}
 \alias{RankedList,DESeqAnalysis-method}
 \alias{RankedList,DESeqResults-method}
 \alias{RankedList,FGSEAList-method}
 \title{Ranked list of genes}
 \usage{
 RankedList(object, ...)
+
+\S4method{RankedList}{DataFrame}(object, rowRanges, keyType = c("geneName", "entrezId"), value)
 
 \S4method{RankedList}{DESeqAnalysis}(
   object,
@@ -29,6 +32,10 @@ RankedList(object, ...)
 
 \item{...}{Additional arguments.}
 
+\item{rowRanges}{\code{GRanges} or \code{GRangesList}.
+Genomic ranges (e.g. genome annotations). Metadata describing the assay
+rows.}
+
 \item{keyType}{`character(1).
 Gene identifier format:
 \itemize{
@@ -48,10 +55,6 @@ requires \code{DESeq2::lfcShrink()} return to be slotted.
 \item \code{padj}: Adjusted \emph{P} value. This don't provide directional ranks, but
 is offered as a legacy option. Not generally recommended.
 }}
-
-\item{rowRanges}{\code{GRanges} or \code{GRangesList}.
-Genomic ranges (e.g. genome annotations). Metadata describing the assay
-rows.}
 }
 \value{
 \code{RankedList}.

@@ -1,10 +1,3 @@
-## FIXME Add option to match via Entrez IDs instead of gene symbols.
-## FIXME Rethink our symbol averaging expression approach.
-##       Consider allowing the user to set this?
-## FIXME Rework internal handling of gene2symbol as rowRanges instead.
-
-
-
 #' Parameterized fast gene set enrichment analysis (GSEA)
 #'
 #' Extends the functionality of [fgsea::fgsea()].
@@ -53,15 +46,11 @@ NULL
 
 
 
-## FIXME Get the keyType from metadata here.
-## FIXME Ensure that gene sets match expected metadata...parse the first
-## one and check for identifiers...
-
 ## Updated 2021-10-20.
 `FGSEAList,RankedList` <-  # nolint
     function(
         object,
-        geneSetFiles,  # FIXME Rework
+        geneSetFiles,
         nPerm = 1000L,
         minSize = 15L,
         maxSize = 500L,
@@ -70,11 +59,10 @@ NULL
         validObject(object)
         assert(
             allAreFiles(geneSetFiles),
-            hasNames(geneSetFiles),  # FIXME Take this out (see below).
+            hasNames(geneSetFiles),
             isInt(nPerm),
             isAlpha(alphaThreshold)
         )
-        ## FIXME Assign the names from geneSetFiles automatically if necessary.
         contrasts <- names(object)
         stats <- as.list(object)
         alert("Running parameterized fast GSEA.")
@@ -136,8 +124,6 @@ NULL
 
 
 
-## FIXME Need to rework keyType and gene2symbol here.
-
 ## Updated 2021-10-20.
 `FGSEAList,DESeqResults` <-  # nolint
     function(
@@ -158,8 +144,6 @@ NULL
     }
 
 
-
-## FIXME Need to rework keyType here.
 
 ## Updated 2021-10-20.
 `FGSEAList,DESeqAnalysis` <-  # nolint
