@@ -8,7 +8,6 @@
 \title{Alpha threshold}
 \usage{
 alphaThreshold(object, ...)
-
 alphaThreshold(object, ...) <- value
 
 \S4method{alphaThreshold}{FGSEAList}(object)

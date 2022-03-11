@@ -33,7 +33,7 @@ Modified object.
 Update object
 }
 \note{
-Updated 2021-02-17.
+Updated 2022-03-11.
 }
 \examples{
 data(fgsea)

@@ -1,6 +1,8 @@
 #+TITLE: AcidGSEA
 #+STARTUP: content
 * Development
+** TODO Rework object to store gene sets directly in the object.
+    Currently relies on external file paths, which breaks easily.
 ** TODO Work on adding support for edgeR DGEList and limma into RankedList.
 ** TODO Explore alternative approaches to averaging gene symbols. Should we
    rework our default approach to map to Entrez gene identifiers instead? Is

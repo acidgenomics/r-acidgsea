@@ -10,9 +10,9 @@ combine(x, y, ...)
 \S4method{combine}{FGSEAList,FGSEAList}(x, y)
 }
 \arguments{
-\item{x}{Primary object.}
+\item{x}{Object.}
 
-\item{y}{Secondary object.}
+\item{y}{Object.}
 
 \item{...}{Additional arguments.}
 }
@@ -23,7 +23,7 @@ Modified object.
 Combine multiple objects
 }
 \note{
-Updated 2021-02-17.
+Updated 2022-03-11.
 }
 \examples{
 data(fgsea)
