@@ -1,5 +1,5 @@
 ---
-## Updated 2021-12-14.
+## Updated 2022-03-11.
 params:
   title: "Gene Set Enrichment Analysis"
   
@@ -25,6 +25,7 @@ bibliography: bibliography.bib
 
 ```{r setup, message=FALSE}
 suppressPackageStartupMessages({
+    library(basejump)
     library(AcidGSEA)
 })
 prepareTemplate()

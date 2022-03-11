@@ -1,6 +1,41 @@
 #+TITLE: AcidGSEA
 #+STARTUP: content
 * Development
+** TODO `rankedList` rework.
+    - Allow the user to set how to handle duplicate identifiers / symbols here. Default behavior is to average.
+    - Need to add code coverage for duplicate handling.
+    - Increase the verbosity about matching here.
+    - Consider reworking how we handle Entrez identifier matching from input
+      data that contains Ensembl identifiers.
+    - Can we add support for edgeR analysis here?
+    - Consider adding support for limma as well.
+    - Exclude identifiers that are scaffolds, etc.
+    - Ensure we exclude scaffolds and stuff that shouldn't be averaged here by default.
+    - Consider adding method support for matrix here, which is useful for a table of values across multiple contrasts.
+    - Rename keyType to "entrez" or "symbols" here....simpler
+    - Assign names from gene set files automatically.
+    - Need to rethink our geneId, entrezId approach here...
+    - Don't set the keyType as "geneName" or "geneId" here?.
+    - Rework this, consider not reexporting...too generic...
+    - Change the gene2symbol to rowData here.
+    - rowData MUST contain geneName, geneId, entrezId.
+    - Drop elements that map to scaffolds here...
+    - Check Entrez identifier metadata here...
+    - Can we get information on Entrez version for the gene sets here? Maybe we can improve our identifier matching a bit...
+    - Switch to using `EntrezGeneInfo()` approach here to map input against
+    - MSigDB sets...
+    - Censor Entrez identifiers that are no longer active.
+    - Always require rowRanges.
+    - Inform the user about what type of keyType we're using for matching.
+    - What do we do with Ensembl-to-Entrez matches that aren't 1:1?
+    - Consider defaulting here to entrezId.
+    - Define the RankedList pattern here based on geneId.
+    - geneId is too vague here, is this ever used?
+    - rename keyType to "entrez" and "symbols"
+    - Add support and code coverage for direct NCBI Entrez / RefSeq input.
+    - Add support for edgeR and limma/voom here, based on DataFrame.
+** TODO `enrichedGeneSets`: Allow user to pass in positional collection.
+    See also `DESeqAnalysis::plotDEGUpset()`, for looping inspiration.
 ** TODO Rework object to store gene sets directly in the object.
     Currently relies on external file paths, which breaks easily.
 ** TODO Work on adding support for edgeR DGEList and limma into RankedList.
