@@ -37,10 +37,8 @@ NULL
     ) {
         validObject(object)
         validObject(rowRanges)
-        ## FIXME Currently expecting Ensembl-processed input here.
-        ## Direct NCBI Entrez/RefSeq-processed input requires package update.
         ensemblPattern <- "^ENSG[[:digit:]]{11}"
-        ## FIXME Note that this approach should only be used for Ensembl.
+        ## These seqnames are only valid for Ensembl.
         validSeqnames <- c(seq(from = 1L, to = 21L, by = 1L), "X", "Y", "MT")
         assert(
             is(object, "DataFrame"),
@@ -84,7 +82,6 @@ NULL
             ## Currently only supporting GRCh38.
             ## Move on from GRCh37 already.
             allAreMatchingRegex(
-                ## FIXME Import this from basejump, following update.
                 x = GenomeInfoDb::genome(rowRanges),
                 pattern = "^GRCh38"
             )
@@ -145,11 +142,9 @@ NULL
                 object[[keyType]] <- unname(g2e)
             },
             "geneName" = {
-                ## FIXME Rework this, not requiring Gene2Symbol...
-                ## FIXME Work on the object names here...
                 assert(
-                    is(gene2symbol, "Gene2Symbol"),  # FIXME
-                    hasRownames(gene2symbol)  # FIXME
+                    is(gene2symbol, "Gene2Symbol"),
+                    hasRownames(gene2symbol)
                 )
                 x <- as(object, "DataFrame")
                 y <- as(gene2symbol, "DataFrame")
@@ -305,10 +300,8 @@ NULL
 
 
 
-## FIXME Does this work OK if we don't export?
-## > #' @rdname RankedList
-## > #' @export
-
+#' @rdname RankedList
+#' @export
 setMethod(
     f = "RankedList",
     signature = signature(object = "DataFrame"),
