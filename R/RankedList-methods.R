@@ -1,6 +1,11 @@
+## FIXME Example rowRanges contains "geneID" in mcols, instead of "geneId".
+## FIXME Need to resave example DESeqAnalysis object here.
+
+
+
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2021-10-20.
+#' @note Updated 2022-03-11.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -24,10 +29,14 @@ NULL
 
 
 
-## Assuming Ensembl/GENCODE-annotated input here.
+## FIXME Assuming Ensembl/GENCODE-annotated input here.
 ## Support for direct NCBI Entrez/RefSeq-annotated input requires a future
 ## package update, and is currently considered an edge case.
-## Updated 2021-10-20.
+
+## FIXME Support for NCBI Entrez identifier input is very useful for
+## DepMapAnalysis integration, so we need to think about improving this....
+
+## Updated 2022-03-11.
 `.RankedList,DataFrame` <-  # nolint
     function(
         object,
@@ -219,11 +228,14 @@ NULL
         value = c("stat", "log2FoldChange", "padj")
     ) {
         validObject(object)
+        keyType <- match.arg(keyType)
+        value <- match.arg(value)
+        object <- as(object, "DataFrame")
         out <- RankedList(
-            object = as(object, "DataFrame"),
+            object = object,
             rowRanges = rowRanges,
-            value = match.arg(value),
-            keyType = match.arg(keyType)
+            value = value,
+            keyType = keyType
         )
         names(out) <- tryCatch(
             expr = {
@@ -246,6 +258,8 @@ NULL
         value = c("stat", "log2FoldChange", "padj")
     ) {
         validObject(object)
+        keyType <- match.arg(keyType)
+        value <- match.arg(value)
         dds <- as(object, "DESeqDataSet")
         rowRanges <- rowRanges(dds)
         ## Extract the DESeqResults list. Note that we're requiring shrunken
@@ -266,8 +280,8 @@ NULL
             X = resultsList,
             FUN = RankedList,
             rowRanges = rowRanges,
-            keyType = match.arg(keyType),
-            value = match.arg(value)
+            keyType = keyType,
+            value = value
         )
         ## Extract the required metadata from the first slotted return object
         ## defined from DESeqResults method.
