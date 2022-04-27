@@ -304,7 +304,7 @@ NULL
 ## Updated 2022-04-27.
 `RankedList,DESeqAnalysis` <- # nolint
     function(object,
-             keyType = c("geneName", "geneId", "entrezId"),
+             keyType = c("geneName", "entrezId"),
              value = c("stat", "log2FoldChange"),
              proteinCodingOnly = FALSE) {
         validObject(object)

@@ -7,7 +7,7 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @name FGSEAList
-#' @note Updated 2021-10-19.
+#' @note Updated 2022-04-27.
 #'
 #' @inheritParams RankedList
 #' @inheritParams params
@@ -86,11 +86,17 @@ NULL
                     "Testing %d pathways.",
                     length(pathways)
                 ))
+                geneIds <- sort(unique(unlist(
+                    x = pathways,
+                    recursive = TRUE,
+                    use.names = FALSE
+                )))
                 mapply(
                     contrast = contrasts,
                     stats = stats,
                     FUN = function(contrast, stats) {
                         dl(c("Contrast" = contrast))
+                        assert(areIntersectingSets(names(stats), geneIds))
                         suppressWarnings({
                             data <- fgsea::fgsea(
                                 pathways = pathways,
@@ -130,36 +136,40 @@ NULL
 
 
 
-## Updated 2021-10-20.
+## Updated 2022-04-27.
 `FGSEAList,DESeqResults` <- # nolint
     function(object,
-             keyType = c("geneName", "geneId"),
-             value = c("stat", "log2FoldChange", "padj"),
+             keyType = c("geneName", "entrezId"),
+             value = c("stat", "log2FoldChange"),
              rowRanges,
+             proteinCodingOnly = FALSE,
              ...) {
         validObject(object)
         rl <- RankedList(
             object = object,
             keyType = match.arg(keyType),
             value = match.arg(value),
-            rowRanges = rowRanges
+            rowRanges = rowRanges,
+            proteinCodingOnly = proteinCodingOnly
         )
         FGSEAList(rl, ...)
     }
 
 
 
-## Updated 2021-10-20.
+## Updated 2022-04-27.
 `FGSEAList,DESeqAnalysis` <- # nolint
     function(object,
-             keyType = c("entrezId", "geneName"),
-             value = c("stat", "log2FoldChange", "padj"),
+             keyType = c("geneName", "entrezId"),
+             value = c("stat", "log2FoldChange"),
+             proteinCodingOnly = FALSE,
              ...) {
         validObject(object)
         rl <- RankedList(
             object = object,
             keyType = match.arg(keyType),
-            value = match.arg(value)
+            value = match.arg(value),
+            proteinCodingOnly = proteinCodingOnly
         )
         out <- FGSEAList(rl, ...)
         metadata(out)[["deseq"]] <- object

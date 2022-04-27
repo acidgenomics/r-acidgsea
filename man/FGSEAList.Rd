@@ -11,16 +11,18 @@ FGSEAList(object, ...)
 
 \S4method{FGSEAList}{DESeqAnalysis}(
   object,
-  keyType = c("entrezId", "geneName"),
-  value = c("stat", "log2FoldChange", "padj"),
+  keyType = c("geneName", "entrezId"),
+  value = c("stat", "log2FoldChange"),
+  proteinCodingOnly = FALSE,
   ...
 )
 
 \S4method{FGSEAList}{DESeqResults}(
   object,
-  keyType = c("geneName", "geneId"),
-  value = c("stat", "log2FoldChange", "padj"),
+  keyType = c("geneName", "entrezId"),
+  value = c("stat", "log2FoldChange"),
   rowRanges,
+  proteinCodingOnly = FALSE,
   ...
 )
 
@@ -58,6 +60,9 @@ requires \code{DESeq2::lfcShrink()} return to be slotted.
 is offered as a legacy option. Not generally recommended.
 }}
 
+\item{proteinCodingOnly}{\code{logical(1)}.
+Restrict to protein coding genes only.}
+
 \item{rowRanges}{\code{GenomicRanges} or \code{GenomicRangesList}.
 Genomic ranges (e.g. genome annotations). Metadata describing the assay
 rows.}
@@ -91,7 +96,7 @@ the actual GSEA enrichment calculation.}
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2021-10-19.
+Updated 2022-04-27.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")

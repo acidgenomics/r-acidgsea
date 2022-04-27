@@ -61,11 +61,11 @@ NULL
 #' geom_jitter geom_line geom_point geom_segment geom_violin ggplot labs
 #' scale_alpha_identity scale_shape_manual
 #' @importFrom goalie allAreAtomic allAreFiles allAreMatchingRegex
-#' areDisjointSets areSameLength areSetEqual assert bapply hasColnames
-#' hasLength hasNames hasNoDuplicates hasRownames hasRows isADir isAFile isAll
-#' isAlpha isAny isCharacter isFile isFlag isHeaderLevel isInRange isInstalled
-#' isInt isMatchingRegex isNumber isNonNegative isOrganism isScalar
-#' isScalarInteger isString isSubset validate
+#' areDisjointSets areIntersectingSets areSameLength areSetEqual assert bapply
+#' hasColnames hasLength hasNames hasNoDuplicates hasRownames hasRows isADir
+#' isAFile isAll isAlpha isAny isCharacter isFile isFlag isHeaderLevel
+#' isInRange isInstalled isInt isMatchingRegex isNumber isNonNegative
+#' isOrganism isScalar isScalarInteger isString isSubset validate
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity slot
 #' slot<- validObject
 #' @importFrom sessioninfo session_info
