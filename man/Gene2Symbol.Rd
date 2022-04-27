@@ -3,14 +3,11 @@
 \name{Gene2Symbol}
 \alias{Gene2Symbol}
 \alias{Gene2Symbol,FGSEAList-method}
-\alias{Gene2Symbol,RankedList-method}
 \title{Gene-to-symbol mappings}
 \usage{
 Gene2Symbol(object, ...)
 
 \S4method{Gene2Symbol}{FGSEAList}(object)
-
-\S4method{Gene2Symbol}{RankedList}(object)
 }
 \arguments{
 \item{object}{Object.}
@@ -24,7 +21,7 @@ Gene2Symbol(object, ...)
 Gene-to-symbol mappings
 }
 \note{
-Updated 2020-09-23.
+Updated 2022-04-27.
 }
 \examples{
 data(fgsea)

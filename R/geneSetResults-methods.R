@@ -33,7 +33,7 @@ NULL
             isString(set)
         )
         genes <- geneSet(object, collection = collection, set = set)
-        rownames <- .matchGenesToIDs(object, set = set, genes = genes)
+        rownames <- .matchGenesToIds(object, set = set, genes = genes)
         if (!hasLength(rownames)) {
             return(NULL)
         }

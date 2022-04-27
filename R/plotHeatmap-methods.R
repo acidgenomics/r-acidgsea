@@ -48,7 +48,7 @@ NULL
         }
         ## Plot the log counts from DESeqTransform object.
         genes <- geneSet(object, collection = collection, set = set)
-        rownames <- .matchGenesToIDs(object, set = set, genes = genes)
+        rownames <- .matchGenesToIds(object, set = set, genes = genes)
         deseq <- .getDESeqAnalysis(object)
         dt <- as(deseq, "DESeqTransform")
         dt <- dt[rownames, ]

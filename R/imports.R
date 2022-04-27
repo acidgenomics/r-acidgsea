@@ -8,8 +8,8 @@ NULL
 # S4 generics and methods ======================================================
 
 #' @importFrom AcidGenerics Gene2Symbol alphaThreshold alphaThreshold<-
-#' as.DataFrame camelCase collectionNames collectionNames<- contrastName
-#' contrastNames contrastNames<- contrastSamples convertToHuman
+#' as.DESeqDataSet as.DataFrame camelCase collectionNames collectionNames<-
+#' contrastName contrastNames contrastNames<- contrastSamples convertToHuman
 #' enrichedGeneSets geneSet geneSetNames geneSetResults leadingEdge leftJoin
 #' makeNames mapGenesToRownames melt nesThreshold nesThreshold<-
 #' plotEnrichedGeneSets plotEnrichedUpset plotGeneSet plotHeatmap plotLFC
@@ -28,8 +28,8 @@ NULL
 #' @importMethodsFrom AcidExperiment Gene2Symbol export mapGenesToRownames
 #' @importMethodsFrom AcidPlots plotHeatmap plotUpset
 #' @importMethodsFrom AcidPlyr leftJoin melt selectIf
-#' @importMethodsFrom DESeqAnalysis coerce contrastName contrastSamples
-#' plotCounts results
+#' @importMethodsFrom DESeqAnalysis as.DESeqDataSet coerce contrastName
+#' contrastSamples plotCounts results
 #' @importMethodsFrom pipette as.DataFrame export import
 #' @importMethodsFrom syntactic camelCase makeNames snakeCase
 NULL

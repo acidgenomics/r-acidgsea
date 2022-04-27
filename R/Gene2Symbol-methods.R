@@ -1,6 +1,6 @@
 #' @name Gene2Symbol
 #' @inherit AcidGenomes::Gene2Symbol
-#' @note Updated 2020-09-23.
+#' @note Updated 2022-04-27.
 #' @inheritParams params
 #' @param ... Additional arguments.
 #' @examples
@@ -10,15 +10,27 @@ NULL
 
 
 
-## Updated 2021-02-16.
-`Gene2Symbol,RankedList` <- # nolint
+## Updated 2022-04-27.
+`Gene2Symbol,FGSEAList` <- # nolint
     function(object) {
         validObject(object)
-        g2s <- metadata(object)[["gene2symbol"]]
-        assert(is(g2s, "Gene2Symbol"))
-        validObject(g2s)
+        assert(
+            is(metadata(object)[["deseq"]], "DESeqAnalysis"),
+            msg = sprintf(
+                "{.var %s} not defined in object.",
+                "DESeqAnalysis"
+            )
+        )
+        deseq <- metadata(object)[["deseq"]]
+        suppressMessages({
+            g2s <- Gene2Symbol(
+                object = as.DESeqDataSet(deseq),
+                format = "unmodified"
+            )
+        })
+        rl <- RankedList(object)[[1L]]
         ## Subset first keeping duplicates, so we can inform the user.
-        keep <- g2s[["geneName"]] %in% names(object[[1L]])
+        keep <- g2s[["geneName"]] %in% names(rl)
         g2s <- g2s[keep, , drop = FALSE]
         if (any(duplicated(g2s[["geneName"]]))) {
             n <- sum(duplicated(g2s[["geneName"]]))
@@ -33,7 +45,7 @@ NULL
             ))
         }
         ## Now keep only the first gene ID match.
-        idx <- match(x = names(object[[1L]]), table = g2s[["geneName"]])
+        idx <- match(x = names(rl), table = g2s[["geneName"]])
         assert(!any(is.na(idx)))
         g2s <- g2s[idx, , drop = FALSE]
         rownames(g2s) <- NULL
@@ -44,26 +56,10 @@ NULL
 
 
 
-## Updated 2020-09-23.
-`Gene2Symbol,FGSEAList` <- # nolint
-    function(object) {
-        Gene2Symbol(RankedList(object))
-    }
-
-
-
 #' @rdname Gene2Symbol
 #' @export
 setMethod(
     f = "Gene2Symbol",
     signature = signature(object = "FGSEAList"),
     definition = `Gene2Symbol,FGSEAList`
-)
-
-#' @rdname Gene2Symbol
-#' @export
-setMethod(
-    f = "Gene2Symbol",
-    signature = signature(object = "RankedList"),
-    definition = `Gene2Symbol,RankedList`
 )
