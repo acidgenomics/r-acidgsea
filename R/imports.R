@@ -46,8 +46,8 @@ NULL
 
 ## Standard functions ==========================================================
 
-#' @importFrom AcidBase initDir methodFunction realpath requireNamespaces
-#' showSlotInfo standardizeCall
+#' @importFrom AcidBase basenameSansExt initDir methodFunction realpath
+#' requireNamespaces showSlotInfo standardizeCall
 #' @importFrom AcidCLI abort alert alertInfo alertWarning dl toInlineString
 #' txt ul
 #' @importFrom AcidGenomes mapHumanOrthologs
