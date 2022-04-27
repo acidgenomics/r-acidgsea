@@ -39,12 +39,17 @@ each contrast.
 \note{
 Requires the knitr package to be installed.
 
-Updated 2021-02-17.
+Updated 2022-04-27.
 }
 \examples{
 data(fgsea)
 
 ## FGSEAList ====
-alphaThreshold(fgsea) <- 0.9
-topTables(fgsea, collection = "h")
+object <- fgsea
+alphaThreshold(object) <- 0.9
+collection <- collectionNames(object)[[1L]]
+topTables(
+    object = object,
+    collection = collection
+)
 }

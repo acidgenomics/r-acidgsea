@@ -36,8 +36,7 @@ Output file format extension.}
 Export per-gene set expression including log fold change values generated
 from DESeq2. Can be slow when processing all MSigDB collections, so
 disabled by default. Alternatively, can declare specific collections to
-process, as a \code{character} vector, such as \code{"h"} for the hallmark
-gene set collection.}
+process (see \code{collectionNames} for supported values).}
 
 \item{compress}{\code{logical(1)}.
 Apply gzip compression to all files.}

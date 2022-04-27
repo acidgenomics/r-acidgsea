@@ -1,6 +1,6 @@
 #' @name plotNES
 #' @inherit AcidGenerics::plotNES
-#' @note Updated 2021-10-20.
+#' @note Updated 2022-04-27.
 #'
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
@@ -10,12 +10,16 @@
 #' [DESeq to fgsea guide](https://stephenturner.github.io/deseq-to-fgsea/).
 #'
 #' @examples
-#' ## FGSEAList ====
 #' data(fgsea)
+#'
+#' ## FGSEAList ====
+#' object <- fgsea
+#' contrast <- contrastNames(object)[[1L]]
+#' collection <- collectionNames(object)[[1L]]
 #' plotNES(
-#'     object = fgsea,
-#'     contrast = "condition_B_vs_A",
-#'     collection = "h"
+#'     object = object,
+#'     contrast = contrast,
+#'     collection = collection
 #' )
 NULL
 

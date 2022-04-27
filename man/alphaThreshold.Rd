@@ -29,12 +29,13 @@ Alpha cutoff level.
 Alpha threshold
 }
 \note{
-Updated 2020-08-05.
+Updated 2022-04-27.
 }
 \examples{
 data(fgsea)
 
 ## FGSEAList ====
-alphaThreshold(fgsea) <- 0.1
-alphaThreshold(fgsea)
+object <- fgsea
+alphaThreshold(object) <- 0.1
+alphaThreshold(object)
 }

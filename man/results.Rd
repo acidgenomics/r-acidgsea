@@ -29,15 +29,18 @@ Varies, depending on the method.
 Results
 }
 \note{
-Updated 2021-10-19.
+Updated 2022-04-27.
 }
 \examples{
 data(fgsea)
 
 ## FGSEAList ====
+object <- fgsea
+contrast <- contrastNames(object)[[1L]]
+collection <- collectionNames(object)[[1L]]
 results(
     object = fgsea,
-    contrast = "condition_B_vs_A",
-    collection = "h"
+    contrast = contrast,
+    collection = collection
 )
 }

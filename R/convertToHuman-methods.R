@@ -1,6 +1,6 @@
 #' @name convertToHuman
 #' @inherit AcidGenerics::convertToHuman
-#' @note Updated 2021-10-15.
+#' @note Updated 2022-04-27.
 #'
 #' @inheritParams params
 #' @param ... Additional arguments.
@@ -15,7 +15,8 @@
 #' data(deseq, package = "DESeqAnalysis")
 #'
 #' ## DESeqAnalysis ====
-#' convertToHuman(deseq)
+#' object <- deseq
+#' convertToHuman(object)
 NULL
 
 

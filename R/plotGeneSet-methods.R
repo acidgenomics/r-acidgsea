@@ -20,11 +20,17 @@
 #'
 #' @examples
 #' data(fgsea)
+#'
+#' ## FGSEAList ====
+#' object <- fgsea
+#' contrast <- contrastNames(object)[[1L]]
+#' collection <- collectionNames(object)[[1L]]
+#' set <- geneSetNames(object = object, collection = collection)[[1L]]
 #' plotGeneSet(
-#'     object = fgsea,
-#'     collection = "h",
-#'     contrast = "condition_B_vs_A",
-#'     set = "HALLMARK_P53_PATHWAY"
+#'     object = object,
+#'     collection = collection,
+#'     contrast = contrast,
+#'     set = set
 #' )
 NULL
 

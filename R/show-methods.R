@@ -2,7 +2,7 @@
 #'
 #' @name show
 #' @inherit methods::show return
-#' @note Updated 2020-09-22.
+#' @note Updated 2022-04-27.
 #'
 #' @inheritParams AcidRoxygen::params
 #'
@@ -10,7 +10,8 @@
 #' data(fgsea)
 #'
 #' ## FGSEAList ====
-#' show(fgsea)
+#' object <- fgsea
+#' show(object)
 NULL
 
 

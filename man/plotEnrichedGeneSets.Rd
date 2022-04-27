@@ -41,12 +41,20 @@ Markdown header level.}
 Plot enriched gene sets
 }
 \note{
-Updated 2020-09-21.
+Updated 2022-04-27.
 }
 \examples{
 data(fgsea)
-alphaThreshold(fgsea) <- 0.9
-plotEnrichedGeneSets(fgsea, collection = "h", n = 1L)
+
+## FGSEAList ====
+object <- fgsea
+alphaThreshold(object) <- 0.9
+collection <- collectionNames(object)[[1L]]
+plotEnrichedGeneSets(
+    object = object,
+    collection = collection,
+    n = 1L
+)
 }
 \seealso{
 \code{\link[=plotGeneSet]{plotGeneSet()}}.

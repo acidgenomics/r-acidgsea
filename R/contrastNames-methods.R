@@ -1,6 +1,6 @@
 #' @name contrastNames
 #' @inherit AcidGenerics::contrastNames
-#' @note Updated 2020-03-18.
+#' @note Updated 2022-04-27.
 #'
 #' @inheritParams params
 #' @param ... Additional arguments.
@@ -9,7 +9,8 @@
 #' data(fgsea)
 #'
 #' ## FGSEAList ====
-#' contrastNames(fgsea)
+#' object <- fgsea
+#' contrastNames(object)
 NULL
 
 

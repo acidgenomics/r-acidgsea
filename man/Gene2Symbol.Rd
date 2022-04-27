@@ -25,7 +25,11 @@ Updated 2022-04-27.
 }
 \examples{
 data(fgsea)
-Gene2Symbol(fgsea)
+
+## FGSEAList ====
+object <- fgsea
+g2s <- Gene2Symbol(object)
+print(g2s)
 }
 \seealso{
 \code{\link[AcidGenomes:makeGene2Symbol]{makeGene2Symbol()}}.

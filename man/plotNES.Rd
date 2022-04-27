@@ -42,15 +42,19 @@ See \code{ggplot2::labs()} for details.}
 Plot normalized enrichment score
 }
 \note{
-Updated 2021-10-20.
+Updated 2022-04-27.
 }
 \examples{
-## FGSEAList ====
 data(fgsea)
+
+## FGSEAList ====
+object <- fgsea
+contrast <- contrastNames(object)[[1L]]
+collection <- collectionNames(object)[[1L]]
 plotNES(
-    object = fgsea,
-    contrast = "condition_B_vs_A",
-    collection = "h"
+    object = object,
+    contrast = contrast,
+    collection = collection
 )
 }
 \seealso{

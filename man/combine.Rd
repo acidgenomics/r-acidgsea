@@ -23,15 +23,15 @@ Modified object.
 Combine multiple objects
 }
 \note{
-Updated 2022-03-11.
+Updated 2022-04-27.
 }
 \examples{
 data(fgsea)
 
 ## FGSEAList ====
 x <- fgsea
-contrastNames(x) <- paste0("x_", contrastNames(x))
 y <- fgsea
+contrastNames(x) <- paste0("x_", contrastNames(x))
 contrastNames(y) <- paste0("y_", contrastNames(y))
 c <- combine(x, y)
 c
