@@ -79,9 +79,9 @@
 #' Handle situation where DESeq object doesn't contain all symbols defined in
 #' the gene set.
 #'
-#' @note Updated 2021-02-16.
+#' @note Updated 2022-04-27.
 #' @noRd
-.matchGenesToIDs <- function(object, set, genes) {
+.matchGenesToIds <- function(object, set, genes) {
     assert(
         is(object, "FGSEAList"),
         isString(set),
