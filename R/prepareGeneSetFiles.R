@@ -38,45 +38,45 @@ prepareGeneSetFiles <-
              keyType = c("geneName", "entrezId"),
              ext = "gmt",
              recursive = FALSE) {
-    assert(
-        isADir(dir),
-        isString(ext),
-        isFlag(recursive)
-    )
-    keyType <- match.arg(keyType)
-    keyType2 <- switch(
-        EXPR = keyType,
-        "entrezId" = "entrez",
-        "geneName" = "symbols"
-    )
-    dir <- realpath(dir)
-    files <- sort(list.files(
-        path = dir,
-        pattern = paste0("*.", keyType2, "\\.", ext, "$"),
-        full.names = TRUE,
-        recursive = recursive,
-        ignore.case = TRUE
-    ))
-    assert(
-        hasLength(files),
-        msg = sprintf(
-            "Failed to detect any gene sets in {.dir %s}.",
-            dir
+        assert(
+            isADir(dir),
+            isString(ext),
+            isFlag(recursive)
         )
-    )
-    files <- realpath(files)
-    alertInfo(sprintf(
-        "Detected %d %s %s of {.var %s} {.val %s} in {.path %s}.",
-        length(files),
-        toupper(ext),
-        ngettext(
-            n = length(files),
-            msg1 = "file",
-            msg2 = "files"
-        ),
-        "keyType", keyType,
-        dir
-    ))
-    names(files) <- snakeCase(basenameSansExt(files))
-    files
-}
+        keyType <- match.arg(keyType)
+        keyType2 <- switch(
+            EXPR = keyType,
+            "entrezId" = "entrez",
+            "geneName" = "symbols"
+        )
+        dir <- realpath(dir)
+        files <- sort(list.files(
+            path = dir,
+            pattern = paste0("*.", keyType2, "\\.", ext, "$"),
+            full.names = TRUE,
+            recursive = recursive,
+            ignore.case = TRUE
+        ))
+        assert(
+            hasLength(files),
+            msg = sprintf(
+                "Failed to detect any gene sets in {.dir %s}.",
+                dir
+            )
+        )
+        files <- realpath(files)
+        alertInfo(sprintf(
+            "Detected %d %s %s of {.var %s} {.val %s} in {.path %s}.",
+            length(files),
+            toupper(ext),
+            ngettext(
+                n = length(files),
+                msg1 = "file",
+                msg2 = "files"
+            ),
+            "keyType", keyType,
+            dir
+        ))
+        names(files) <- snakeCase(basenameSansExt(files))
+        files
+    }
