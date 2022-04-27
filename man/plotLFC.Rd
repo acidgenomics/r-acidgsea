@@ -53,14 +53,18 @@ See \code{ggplot2::labs()} for details.}
 Plot log2 fold change distributions
 }
 \note{
-Updated 2021-09-10.
+Updated 2022-04-27.
 }
 \examples{
-## FGSEAList ====
 data(fgsea)
+
+## FGSEAList ====
+object <- fgsea
+collection <- collectionNames(object)[[1L]]
+set <- geneSetNames(object = object, collection = collection)[[1L]]
 plotLFC(
-    object = fgsea,
-    collection = "h",
-    set = "HALLMARK_P53_PATHWAY"
+    object = object,
+    collection = collection,
+    set = set
 )
 }

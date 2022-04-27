@@ -30,8 +30,7 @@
 #' Export per-gene set expression including log fold change values generated
 #' from DESeq2. Can be slow when processing all MSigDB collections, so
 #' disabled by default. Alternatively, can declare specific collections to
-#' process, as a `character` vector, such as `"h"` for the hallmark
-#' gene set collection.
+#' process (see `collectionNames` for supported values).
 #'
 #' @examples
 #' data(fgsea)

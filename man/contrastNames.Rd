@@ -28,11 +28,12 @@ contrastNames(object, ...) <- value
 Contrast names
 }
 \note{
-Updated 2020-03-18.
+Updated 2022-04-27.
 }
 \examples{
 data(fgsea)
 
 ## FGSEAList ====
-contrastNames(fgsea)
+object <- fgsea
+contrastNames(object)
 }

@@ -30,16 +30,18 @@ Named list containing significant gene sets per contrast.
 Enriched pathways from gene set collections.
 }
 \note{
-Updated 2020-09-18.
+Updated 2022-04-27.
 }
 \examples{
 data(fgsea)
 
 ## FGSEAList ====
-alphaThreshold(fgsea) <- 0.7
+object <- fgsea
+alphaThreshold(object) <- 0.7
+collection <- collectionNames(object)[[1L]]
 enrichedGeneSets(
-    object = fgsea,
-    collection = "h",
+    object = object,
+    collection = collection,
     direction = "up"
 )
 }

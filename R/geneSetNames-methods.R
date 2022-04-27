@@ -1,17 +1,22 @@
 #' @name geneSetNames
 #' @inherit AcidGenerics::geneSetNames
-#' @note Updated 2020-10-01.
+#' @note Updated 2022-04-27.
 #'
 #' @inheritParams params
 #' @param ... Additional arguments.
 #'
 #' @examples
 #' data(fgsea)
-#' geneSetNames(object = fgsea, collection = "h")
+#'
+#' ## FGSEAList ====
+#' object <- fgsea
+#' collection <- collectionNames(object)[[1L]]
+#' head(geneSetNames(object = object, collection = collection))
 NULL
 
 
 
+## Updated 2022-04-27.
 `geneSetNames,FGSEAList` <- # nolint
     function(object, collection) {
         validObject(object)

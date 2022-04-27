@@ -1,7 +1,7 @@
 #' Combine multiple objects
 #'
 #' @name combine
-#' @note Updated 2022-03-11.
+#' @note Updated 2022-04-27.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
@@ -13,8 +13,8 @@
 #'
 #' ## FGSEAList ====
 #' x <- fgsea
-#' contrastNames(x) <- paste0("x_", contrastNames(x))
 #' y <- fgsea
+#' contrastNames(x) <- paste0("x_", contrastNames(x))
 #' contrastNames(y) <- paste0("y_", contrastNames(y))
 #' c <- combine(x, y)
 #' c

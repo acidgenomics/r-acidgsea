@@ -26,9 +26,13 @@ Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
 Gene set names
 }
 \note{
-Updated 2020-10-01.
+Updated 2022-04-27.
 }
 \examples{
 data(fgsea)
-geneSetNames(object = fgsea, collection = "h")
+
+## FGSEAList ====
+object <- fgsea
+collection <- collectionNames(object)[[1L]]
+head(geneSetNames(object = object, collection = collection))
 }

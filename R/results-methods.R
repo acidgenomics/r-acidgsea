@@ -1,16 +1,19 @@
 #' @name results
 #' @inherit AcidGenerics::results
-#' @note Updated 2021-10-19.
+#' @note Updated 2022-04-27.
 #' @inheritParams params
 #' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
 #'
 #' ## FGSEAList ====
+#' object <- fgsea
+#' contrast <- contrastNames(object)[[1L]]
+#' collection <- collectionNames(object)[[1L]]
 #' results(
 #'     object = fgsea,
-#'     contrast = "condition_B_vs_A",
-#'     collection = "h"
+#'     contrast = contrast,
+#'     collection = collection
 #' )
 NULL
 

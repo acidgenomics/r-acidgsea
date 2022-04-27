@@ -2,7 +2,7 @@
 #'
 #' @name updateObject
 #' @author Michael Steinbaugh
-#' @note Updated 2022-03-11.
+#' @note Updated 2022-04-27.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
@@ -25,12 +25,14 @@
 #' data(fgsea)
 #'
 #' ## FGSEAList ====
-#' updateObject(fgsea)
+#' object <- fgsea
+#' object <- updateObject(object)
+#' print(object)
 NULL
 
 
 
-## Updated 2021-09-03.
+## Updated 2022-04-27.
 `updateObject,FGSEAList` <- # nolint
     function(object,
              deseq = NULL,
@@ -57,26 +59,6 @@ NULL
             is.null(deseq),
             msg = "DESeqAnalysis is already defined in object."
         )
-        ## Ensure the RankedList contains gene-to-symbol mappings.
-        rl <- metadata(object)[["rankedList"]]
-        assert(is(rl, "RankedList"))
-        g2s <- metadata(rl)[["gene2symbol"]]
-        if (!is(g2s, "Gene2Symbol")) {
-            if (isTRUE(verbose)) {
-                alert(sprintf(
-                    "Slotting {.cls %s} in internal {.cls %s}.",
-                    "Gene2Symbol", "RankedList"
-                ))
-            }
-            suppressMessages({
-                metadata(rl)[["gene2symbol"]] <-
-                    Gene2Symbol(
-                        object = as(deseq, "DESeqDataSet"),
-                        format = "unmodified"
-                    )
-            })
-            metadata(object)[["rankedList"]] <- rl
-        }
         ## Rename `gmtFiles` to `geneSetFiles`. Changed in v0.4 (2020-09).
         if (isSubset("gmtFiles", names(metadata(object)))) {
             metadata(object)[["geneSetFiles"]] <- metadata(object)[["gmtFiles"]]

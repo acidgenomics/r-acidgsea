@@ -5,7 +5,11 @@
 #' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
-#' Gene2Symbol(fgsea)
+#'
+#' ## FGSEAList ====
+#' object <- fgsea
+#' g2s <- Gene2Symbol(object)
+#' print(g2s)
 NULL
 
 

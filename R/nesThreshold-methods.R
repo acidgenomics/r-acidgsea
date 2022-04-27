@@ -1,13 +1,14 @@
 #' @name nesThreshold
 #' @inherit AcidGenerics::nesThreshold
-#' @note Updated 2020-09-21.
+#' @note Updated 2022-04-27.
 #' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
 #'
 #' ## FGSEAList ====
-#' nesThreshold(fgsea) <- 0.1
-#' nesThreshold(fgsea)
+#' object <- fgsea
+#' nesThreshold(object) <- 0.1
+#' nesThreshold(object)
 NULL
 
 

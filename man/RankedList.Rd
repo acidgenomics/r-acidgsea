@@ -78,13 +78,16 @@ In this event, we're averaging the values using \code{mean()} internally.
 }
 
 \examples{
-## DESeqAnalysis ====
 data(deseq, package = "DESeqAnalysis")
-x <- RankedList(deseq)
-print(x)
+data(fgsea)
+
+## DESeqAnalysis ====
+object <- deseq
+rl <- RankedList(object)
+print(rl)
 
 ## FGSEAList ====
-data(fgsea, package = "AcidGSEA")
-x <- RankedList(fgsea)
-print(x)
+object <- fgsea
+rl <- RankedList(object)
+print(rl)
 }

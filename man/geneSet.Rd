@@ -30,13 +30,19 @@ For example, \code{"HALLMARK_ADIPOGENESIS"}.}
 Gene set
 }
 \note{
-Updated 2020-09-21.
+Updated 2022-04-27.
 }
 \examples{
 data(fgsea)
-geneSet(
-    object = fgsea,
-    collection = "h",
-    set = "HALLMARK_P53_PATHWAY"
+
+## FGSEAList ====
+object <- fgsea
+collection <- collectionNames(object)[[1L]]
+set <- geneSetNames(object = object, collection = collection)[[1L]]
+x <- geneSet(
+    object = object,
+    collection = collection,
+    set = set
 )
+head(x)
 }

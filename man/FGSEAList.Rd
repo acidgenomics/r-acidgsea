@@ -100,6 +100,9 @@ Updated 2022-04-27.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")
+
+## DESeqAnalysis ====
+object <- deseq
 geneSetFiles <- prepareGeneSetFiles(
     dir = system.file(
         "extdata",
@@ -110,7 +113,7 @@ geneSetFiles <- prepareGeneSetFiles(
     )
 )
 fgsea <- FGSEAList(
-    object = deseq,
+    object = object,
     geneSetFiles = geneSetFiles
 )
 print(fgsea)

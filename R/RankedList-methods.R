@@ -18,15 +18,18 @@
 #' Restrict to protein coding genes only.
 #'
 #' @examples
-#' ## DESeqAnalysis ====
 #' data(deseq, package = "DESeqAnalysis")
-#' x <- RankedList(deseq)
-#' print(x)
+#' data(fgsea)
+#'
+#' ## DESeqAnalysis ====
+#' object <- deseq
+#' rl <- RankedList(object)
+#' print(rl)
 #'
 #' ## FGSEAList ====
-#' data(fgsea, package = "AcidGSEA")
-#' x <- RankedList(fgsea)
-#' print(x)
+#' object <- fgsea
+#' rl <- RankedList(object)
+#' print(rl)
 NULL
 
 

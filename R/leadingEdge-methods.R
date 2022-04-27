@@ -1,15 +1,21 @@
 #' @name leadingEdge
 #' @inherit AcidGenerics::leadingEdge
-#' @note Updated 2021-02-17.
+#' @note Updated 2022-04-27.
 #' @inheritParams params
 #' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
+#'
+#' ## FGSEAList ====
+#' object <- fgsea
+#' contrast <- contrastNames(object)[[1L]]
+#' collection <- collectionNames(object)[[1L]]
+#' set <- geneSetNames(object = object, collection = collection)[[1L]]
 #' leadingEdge(
-#'     object = fgsea,
-#'     contrast = "condition_B_vs_A",
-#'     collection = "h",
-#'     set = "HALLMARK_P53_PATHWAY"
+#'     object = object,
+#'     contrast = contrast,
+#'     collection = collection,
+#'     set = set
 #' )
 NULL
 

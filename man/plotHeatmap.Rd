@@ -52,10 +52,16 @@ Updated 2021-03-16.
 }
 \examples{
 data(fgsea)
+
+## FGSEAList ====
+object <- fgsea
+contrast <- contrastNames(object)[[1L]]
+collection <- collectionNames(object)[[1L]]
+set <- geneSetNames(object = object, collection = collection)[[1L]]
 plotHeatmap(
-    object = fgsea,
-    contrast = "condition_B_vs_A",
-    collection = "h",
-    set = "HALLMARK_P53_PATHWAY"
+    object = object,
+    contrast = contrast,
+    collection = collection,
+    set = set
 )
 }

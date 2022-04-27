@@ -10,6 +10,7 @@
   values from haplotype scaffold gene identifiers. Also added support for
   `proteinCodingOnly`, to enable analysis of protein coding genes only, which
   is disabled by default.
+- Reworked our internal Gene2Symbol handling for plot functions.
 
 ## Minor changes
 

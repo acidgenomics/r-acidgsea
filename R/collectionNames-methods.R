@@ -1,12 +1,13 @@
 #' @name collectionNames
 #' @inherit AcidGenerics::collectionNames
-#' @note Updated 2020-09-17.
+#' @note Updated 2022-04-27.
 #' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
 #'
 #' ## FGSEAList ====
-#' collectionNames(fgsea)
+#' object <- fgsea
+#' collectionNames(object)
 NULL
 
 

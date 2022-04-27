@@ -1,6 +1,6 @@
 #' @name plotLFC
 #' @inherit AcidGenerics::plotLFC
-#' @note Updated 2021-09-10.
+#' @note Updated 2022-04-27.
 #'
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
@@ -14,12 +14,16 @@
 #' Show individual data points.
 #'
 #' @examples
-#' ## FGSEAList ====
 #' data(fgsea)
+#'
+#' ## FGSEAList ====
+#' object <- fgsea
+#' collection <- collectionNames(object)[[1L]]
+#' set <- geneSetNames(object = object, collection = collection)[[1L]]
 #' plotLFC(
-#'     object = fgsea,
-#'     collection = "h",
-#'     set = "HALLMARK_P53_PATHWAY"
+#'     object = object,
+#'     collection = collection,
+#'     set = set
 #' )
 NULL
 

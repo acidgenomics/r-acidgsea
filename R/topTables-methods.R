@@ -1,7 +1,7 @@
 #' @name topTables
 #' @inherit AcidGenerics::topTables
 #' @note Requires the knitr package to be installed.
-#' @note Updated 2021-02-17.
+#' @note Updated 2022-04-27.
 #'
 #' @description Top tables of significantly enriched pathways.
 #'
@@ -18,8 +18,13 @@
 #' data(fgsea)
 #'
 #' ## FGSEAList ====
-#' alphaThreshold(fgsea) <- 0.9
-#' topTables(fgsea, collection = "h")
+#' object <- fgsea
+#' alphaThreshold(object) <- 0.9
+#' collection <- collectionNames(object)[[1L]]
+#' topTables(
+#'     object = object,
+#'     collection = collection
+#' )
 NULL
 
 

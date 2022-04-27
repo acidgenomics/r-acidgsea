@@ -4,7 +4,7 @@
 #'
 #' @name enrichedGeneSets
 #' @inherit AcidGenerics::enrichedGeneSets
-#' @note Updated 2020-09-18.
+#' @note Updated 2022-04-27.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @inheritParams params
@@ -20,10 +20,12 @@
 #' data(fgsea)
 #'
 #' ## FGSEAList ====
-#' alphaThreshold(fgsea) <- 0.7
+#' object <- fgsea
+#' alphaThreshold(object) <- 0.7
+#' collection <- collectionNames(object)[[1L]]
 #' enrichedGeneSets(
-#'     object = fgsea,
-#'     collection = "h",
+#'     object = object,
+#'     collection = collection,
 #'     direction = "up"
 #' )
 NULL
@@ -116,13 +118,16 @@ NULL
 
 
 
-## Updated 2020-09-18.
+## Updated 2022-04-27.
 `enrichedGeneSets,FGSEAList` <- # nolint
     function(object,
              collection,
              direction = c("both", "up", "down")) {
         validObject(object)
-        assert(isString(collection))
+        assert(
+            isString(collection),
+            isSubset(collection, names(object))
+        )
         direction <- match.arg(direction)
         alphaThreshold <- alphaThreshold(object)
         nesThreshold <- nesThreshold(object)

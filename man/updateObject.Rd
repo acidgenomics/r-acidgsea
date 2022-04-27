@@ -33,13 +33,15 @@ Modified object.
 Update object
 }
 \note{
-Updated 2022-03-11.
+Updated 2022-04-27.
 }
 \examples{
 data(fgsea)
 
 ## FGSEAList ====
-updateObject(fgsea)
+object <- fgsea
+object <- updateObject(object)
+print(object)
 }
 \author{
 Michael Steinbaugh

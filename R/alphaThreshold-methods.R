@@ -1,13 +1,14 @@
 #' @name alphaThreshold
 #' @inherit AcidGenerics::alphaThreshold
-#' @note Updated 2020-08-05.
+#' @note Updated 2022-04-27.
 #' @param ... Additional arguments.
 #' @examples
 #' data(fgsea)
 #'
 #' ## FGSEAList ====
-#' alphaThreshold(fgsea) <- 0.1
-#' alphaThreshold(fgsea)
+#' object <- fgsea
+#' alphaThreshold(object) <- 0.1
+#' alphaThreshold(object)
 NULL
 
 

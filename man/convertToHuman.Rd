@@ -28,11 +28,12 @@ Features (i.e. rownames) will be remapped to human genes.
 Convert data set by mapping to human orthologs
 }
 \note{
-Updated 2021-10-15.
+Updated 2022-04-27.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")
 
 ## DESeqAnalysis ====
-convertToHuman(deseq)
+object <- deseq
+convertToHuman(object)
 }
