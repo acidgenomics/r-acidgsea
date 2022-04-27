@@ -31,7 +31,7 @@ Flip x and y axes. Recommended for plots containing many samples.}
 
 \item{labels}{\code{list}.
 ggplot2 labels.
-See \code{\link[ggplot2:labs]{ggplot2::labs()}} for details.}
+See \code{ggplot2::labs()} for details.}
 
 \item{...}{Additional arguments.}
 }

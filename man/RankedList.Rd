@@ -10,19 +10,21 @@
 \usage{
 RankedList(object, ...)
 
-\S4method{RankedList}{DataFrame}(object, rowRanges, keyType = c("geneName", "entrezId"), value)
+\S4method{RankedList}{DataFrame}(object, rowRanges, keyType, value, proteinCodingOnly)
 
 \S4method{RankedList}{DESeqAnalysis}(
   object,
-  keyType = c("geneName", "entrezId"),
-  value = c("stat", "log2FoldChange", "padj")
+  keyType = c("geneName", "geneId", "entrezId"),
+  value = c("stat", "log2FoldChange"),
+  proteinCodingOnly = FALSE
 )
 
 \S4method{RankedList}{DESeqResults}(
   object,
   rowRanges,
-  keyType = c("geneName", "entrezId"),
-  value = c("stat", "log2FoldChange", "padj")
+  keyType,
+  value = c("stat", "log2FoldChange"),
+  proteinCodingOnly = FALSE
 )
 
 \S4method{RankedList}{FGSEAList}(object)
@@ -32,7 +34,7 @@ RankedList(object, ...)
 
 \item{...}{Additional arguments.}
 
-\item{rowRanges}{\code{GRanges} or \code{GRangesList}.
+\item{rowRanges}{\code{GenomicRanges} or \code{GenomicRangesList}.
 Genomic ranges (e.g. genome annotations). Metadata describing the assay
 rows.}
 
@@ -55,6 +57,9 @@ requires \code{DESeq2::lfcShrink()} return to be slotted.
 \item \code{padj}: Adjusted \emph{P} value. This don't provide directional ranks, but
 is offered as a legacy option. Not generally recommended.
 }}
+
+\item{proteinCodingOnly}{\code{logical(1)}.
+Restrict to protein coding genes only.}
 }
 \value{
 \code{RankedList}.
@@ -63,7 +68,7 @@ is offered as a legacy option. Not generally recommended.
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2021-10-20.
+Updated 2022-04-27.
 }
 \section{Gene symbol multi-mapping}{
 

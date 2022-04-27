@@ -32,6 +32,7 @@ Imports:
     AcidPlots (>= 0.4.0),
     BiocGenerics,
     DESeqAnalysis (>= 0.4.5),
+    GenomeInfoDb,
     IRanges,
     S4Vectors,
     SummarizedExperiment,

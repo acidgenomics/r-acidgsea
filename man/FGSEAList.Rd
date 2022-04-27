@@ -58,7 +58,7 @@ requires \code{DESeq2::lfcShrink()} return to be slotted.
 is offered as a legacy option. Not generally recommended.
 }}
 
-\item{rowRanges}{\code{GRanges} or \code{GRangesList}.
+\item{rowRanges}{\code{GenomicRanges} or \code{GenomicRangesList}.
 Genomic ranges (e.g. genome annotations). Metadata describing the assay
 rows.}
 
