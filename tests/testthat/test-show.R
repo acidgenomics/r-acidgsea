@@ -1,6 +1,7 @@
 context("show")
 
 test_that("FGSEAList", {
-    output <- capture.output(show(fgsea))
+    object <- fgsea
+    output <- capture.output(show(object))
     expect_match(head(output, n = 1L), "FGSEAList")
 })
