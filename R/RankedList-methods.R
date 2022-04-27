@@ -1,5 +1,4 @@
-## FIXME Example rowRanges contains "geneID" in mcols, instead of "geneId".
-## FIXME Need to resave example DESeqAnalysis object here.
+## NOTE Need to add support for RefSeq-aligned DESeq2 output.
 
 
 
@@ -15,6 +14,9 @@
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
 #'
+#' @param proteinCodingOnly `logical(1)`.
+#' Restrict to protein coding genes only.
+#'
 #' @examples
 #' ## DESeqAnalysis ====
 #' data(deseq, package = "DESeqAnalysis")
@@ -29,41 +31,145 @@ NULL
 
 
 
-## FIXME Assuming Ensembl/GENCODE-annotated input here.
-## Support for direct NCBI Entrez/RefSeq-annotated input requires a future
-## package update, and is currently considered an edge case.
+#' Map DESeqResults to defined gene names (symbols)
+#'
+#' Join the gene-to-symbol mappings, so we can convert Ensembl gene identifiers
+#' to gene symbols, for use with GSEA MSigDb GMT files.
+#'
+#' @note Updated 2022-04-27.
+#' @noRd
+.mapGeneNames <-
+    function(object, rowRanges) {
+        assert(
+            is(object, "DataFrame"),
+            is(rowRanges, "GenomicRanges"),
+            identical(rownames(object), names(rowRanges))
+        )
+        suppressMessages({
+            g2s <- Gene2Symbol(object = rowRanges, format = "unmodified")
+        })
+        x <- as(object, "DataFrame")
+        y <- as(g2s, "DataFrame")
+        cols <- setdiff(colnames(x), colnames(y))
+        assert(hasLength(cols))
+        x <- x[, cols]
+        x[["rowname"]] <- rownames(x)
+        y[["rowname"]] <- rownames(y)
+        out <- leftJoin(x, y, by = "rowname")
+        out[["rowname"]] <- NULL
+        out
+    }
 
-## FIXME Support for NCBI Entrez identifier input is very useful for
-## DepMapAnalysis integration, so we need to think about improving this....
 
-## Updated 2022-03-11.
+
+## Updated 2022-04-27.
+.mapEnsemblToEntrez <-
+    function(object, rowRanges) {
+        assert(
+            is(object, "DataFrame"),
+            is(rowRanges, "GenomicRanges"),
+            identical(rownames(object), names(rowRanges))
+        )
+        rowData <- as.DataFrame(rowRanges)
+        assert(
+            isSubset("entrezId", colnames(rowData)),
+            is(rowData[["entrezId"]], "List") ||
+                is.list(rowData[["entrezId"]]),
+            msg = sprintf(
+                paste(
+                    "{.cls %s} does not contain Entrez identifiers.",
+                    "Re-run with {.arg %s} value other than {.val %s}."
+                ),
+                "rowRanges", "keyType", "entrezId"
+            )
+        )
+        g2e <- IntegerList(rowData[["entrezId"]])
+        names(g2e) <- rownames(rowData)
+        keep <- !all(is.na(g2e))
+        g2e <- g2e[keep, , drop = FALSE]
+        ## For genes that don't map 1:1, use oldest Entrez identifier.
+        g2e <- IntegerList(lapply(
+            X = g2e,
+            FUN = function(x) {
+                head(sort(na.omit(x)), n = 1L)
+            }
+        ))
+        g2e <- unlist(x = g2e, recursive = FALSE, use.names = TRUE)
+        assert(
+            is.integer(g2e),
+            !any(is.na(g2e))
+        )
+        idx <- match(x = names(g2e), table = rownames(object))
+        assert(
+            identical(length(idx), length(g2e)),
+            !any(is.na(idx))
+        )
+        if (length(idx) < nrow(object)) {
+            pctKeep <- length(idx) / nrow(object)
+            alertInfo(sprintf(
+                "Mapping %s%% of genes from %s to %s (%d / %d).",
+                prettyNum(
+                    x = round(x = pctKeep * 100L, digits = 2L),
+                    scientific = FALSE
+                ),
+                "Ensembl", "Entrez",
+                length(idx), nrow(object)
+            ))
+            ## Fail if a certain number of genes don't pass threshold.
+            assert(isInRange(x = pctKeep, lower = 0.5, upper = 1L))
+        }
+        out <- object[idx, , drop = FALSE]
+        out[["ensemblId"]] <- names(g2e)
+        out[["entrezId"]] <- unname(g2e)
+        out
+    }
+
+
+
+## Updated 2022-04-27.
 `.RankedList,DataFrame` <- # nolint
     function(object,
              rowRanges,
-             keyType = c("geneName", "entrezId"),
-             value) {
+             keyType,
+             value,
+             proteinCodingOnly) {
         validObject(object)
         validObject(rowRanges)
-        ensemblPattern <- "^ENSG[[:digit:]]{11}"
-        ## These seqnames are only valid for Ensembl.
-        validSeqnames <- c(seq(from = 1L, to = 21L, by = 1L), "X", "Y", "MT")
         assert(
             is(object, "DataFrame"),
             is(rowRanges, "GenomicRanges"),
             identical(organism(rowRanges), "Homo sapiens"),
-            any(grepl(pattern = ensemblPattern, x = names(rowRanges))),
-            isSubset(validSeqnames, levels(seqnames(rowRanges))),
-            isSubset("geneName", colnames(mcols(rowRanges))),
+            isString(keyType),
+            isSubset(keyType, colnames(mcols(rowRanges))),
+            isSubset("geneId", colnames(mcols(rowRanges))),
             isString(value),
             isSubset(value, colnames(object)),
             hasRownames(object),
-            identical(rownames(object), names(rowRanges))
+            identical(rownames(object), names(rowRanges)),
+            isFlag(proteinCodingOnly)
         )
-        keyType <- match.arg(keyType)
         object <- as(object, "DataFrame")
         rowRanges <- as(rowRanges, "GenomicRanges")
-        ## Discard genes that don't map to primary seqnames. This helps us
-        ## remove clutter of unwanted haplotype scaffolds, etc.
+        ## Only Ensembl/GENCODE reference genome is currently supported.
+        ## Working on adding direct NCBI / RefSeq Entrez identifier support
+        ## in a future release.
+        ensemblPattern <- "^ENSG[[:digit:]]{11}"
+        if (!any(isMatchingRegex(
+            x = as.character(mcols(rowRanges)[["geneId"]]),
+            pattern = ensemblPattern
+        ))) {
+            stop("Only Ensembl/GENCODE reference genome currently supported.")
+        }
+        ## Currently only supporting GRCh38. Move on from GRCh37 already.
+        assert(
+            allAreMatchingRegex(
+                x = genome(rowRanges),
+                pattern = "^GRCh38"
+            )
+        )
+        ## These seqnames are only valid for Ensembl. Rework this when we add
+        ## support for RefSeq genome.
+        validSeqnames <- c(seq(from = 1L, to = 21L, by = 1L), "X", "Y", "MT")
         keep <- seqnames(rowRanges) %in% validSeqnames
         if (isTRUE(sum(keep) < length(keep))) {
             pctKeep <- sum(keep) / length(keep)
@@ -76,97 +182,45 @@ NULL
                 sum(keep),
                 length(keep)
             ))
-            ## Fail if a certain number of genes don't pass threshold.
-            assert(isInRange(x = pctKeep, lower = 0.5, upper = 1L))
+            assert(isInRange(x = pctKeep, lower = 0.7, upper = 1L))
+            rowRanges <- rowRanges[keep]
         }
-        rowRanges <- rowRanges[keep]
-        rowRanges <- droplevels(rowRanges)
-        assert(
-            allAreMatchingRegex(
-                x = names(rowRanges),
-                pattern = ensemblPattern
-            ),
-            ## Currently only supporting GRCh38.
-            ## Move on from GRCh37 already.
-            allAreMatchingRegex(
-                x = GenomeInfoDb::genome(rowRanges),
-                pattern = "^GRCh38"
-            )
-        )
-        rowData <- as.DataFrame(rowRanges)
+        ## Restrict to protein coding genes only, if desired.
+        if (isTRUE(proteinCodingOnly)) {
+            assert(isSubset("geneBiotype", colnames(mcols(rowRanges))))
+            keep <- mcols(rowRanges)[["geneBiotype"]] == "protein_coding"
+            if (isTRUE(sum(keep) < length(keep))) {
+                pctKeep <- sum(keep) / length(keep)
+                alertInfo(sprintf(
+                    "%s%% of genes are protein coding (%d / %d).",
+                    prettyNum(
+                        x = round(x = pctKeep * 100L, digits = 2L),
+                        scientific = FALSE
+                    ),
+                    sum(keep),
+                    length(keep)
+                ))
+                assert(isInRange(x = pctKeep, lower = 0.5, upper = 1L))
+                rowRanges <- rowRanges[keep]
+            }
+        }
+        assert(isSubset(names(rowRanges), rownames(object)))
         object <- object[names(rowRanges), , drop = FALSE]
-        switch(
+        x <- switch(
             EXPR = keyType,
             "entrezId" = {
-                assert(
-                    isSubset("entrezId", colnames(rowData)),
-                    is(rowData[["entrezId"]], "List") ||
-                        is.list(rowData[["entrezId"]]),
-                    msg = sprintf(
-                        paste(
-                            "{.cls %s} does not contain Entrez identifiers.",
-                            "Re-run with {.arg %s} value other than {.val %s}."
-                        ),
-                        "rowRanges", "keyType", "entrezId"
-                    )
+                .mapEnsemblToEntrez(
+                    object = object,
+                    rowRanges = rowRanges
                 )
-                g2e <- IntegerList(rowData[["entrezId"]])
-                names(g2e) <- rownames(rowData)
-                keep <- !all(is.na(g2e))
-                g2e <- g2e[keep, , drop = FALSE]
-                ## For genes that don't map 1:1, use oldest Entrez identifier.
-                g2e <- IntegerList(lapply(
-                    X = g2e,
-                    FUN = function(x) {
-                        head(sort(na.omit(x)), n = 1L)
-                    }
-                ))
-                g2e <- unlist(x = g2e, recursive = FALSE, use.names = TRUE)
-                assert(
-                    is.integer(g2e),
-                    !any(is.na(g2e))
-                )
-                idx <- match(x = names(g2e), table = rownames(object))
-                assert(
-                    identical(length(idx), length(g2e)),
-                    !any(is.na(idx))
-                )
-                if (length(idx) < nrow(object)) {
-                    pctKeep <- length(idx) / nrow(object)
-                    alertInfo(sprintf(
-                        "Mapping %s%% of genes from %s to %s (%d / %d).",
-                        prettyNum(
-                            x = round(x = pctKeep * 100L, digits = 2L),
-                            scientific = FALSE
-                        ),
-                        "Ensembl", "Entrez",
-                        length(idx), nrow(object)
-                    ))
-                    ## Fail if a certain number of genes don't pass threshold.
-                    assert(isInRange(x = pctKeep, lower = 0.5, upper = 1L))
-                }
-                object <- object[idx, , drop = FALSE]
-                object[[keyType]] <- unname(g2e)
             },
             "geneName" = {
-                assert(
-                    is(gene2symbol, "Gene2Symbol"),
-                    hasRownames(gene2symbol)
+                .mapGeneNames(
+                    object = object,
+                    rowRanges = rowRanges
                 )
-                x <- as(object, "DataFrame")
-                y <- as(gene2symbol, "DataFrame")
-                ## Join the gene-to-symbol mappings, so we can convert Ensembl
-                ## gene identifiers to gene symbols, for use with GSEA MSigDb
-                ## GMT files.
-                cols <- setdiff(colnames(x), colnames(y))
-                assert(hasLength(cols))
-                x <- x[, cols]
-                x[["rowname"]] <- rownames(x)
-                y[["rowname"]] <- rownames(y)
-                x <- leftJoin(x, y, by = "rowname")
             }
         )
-        x <- object
         rownames(x) <- NULL
         x <- x[, c(keyType, value), drop = FALSE]
         x <- x[complete.cases(x), , drop = FALSE]
@@ -217,21 +271,22 @@ NULL
 
 
 
-## Updated 2021-10-20.
+## Updated 2022-04-27.
 `RankedList,DESeqResults` <- # nolint
     function(object,
              rowRanges,
-             keyType = c("geneName", "entrezId"),
-             value = c("stat", "log2FoldChange", "padj")) {
+             keyType,
+             value = c("stat", "log2FoldChange"),
+             proteinCodingOnly = FALSE) {
         validObject(object)
-        keyType <- match.arg(keyType)
         value <- match.arg(value)
-        object <- as(object, "DataFrame")
+        df <- as(object, "DataFrame")
         out <- RankedList(
-            object = object,
+            object = df,
             rowRanges = rowRanges,
             value = value,
-            keyType = keyType
+            keyType = keyType,
+            proteinCodingOnly = proteinCodingOnly
         )
         names(out) <- tryCatch(
             expr = {
@@ -246,15 +301,17 @@ NULL
 
 
 
-## Updated 2021-10-20.
+## Updated 2022-04-27.
 `RankedList,DESeqAnalysis` <- # nolint
     function(object,
-             keyType = c("geneName", "entrezId"),
-             value = c("stat", "log2FoldChange", "padj")) {
+             keyType = c("geneName", "geneId", "entrezId"),
+             value = c("stat", "log2FoldChange"),
+             proteinCodingOnly = FALSE) {
         validObject(object)
         keyType <- match.arg(keyType)
         value <- match.arg(value)
         dds <- as(object, "DESeqDataSet")
+        assert(identical(organism(dds), "Homo sapiens"))
         rowRanges <- rowRanges(dds)
         ## Extract the DESeqResults list. Note that we're requiring shrunken
         ## LFCs if the user wants to return those values instead of using the
@@ -275,7 +332,8 @@ NULL
             FUN = RankedList,
             rowRanges = rowRanges,
             keyType = keyType,
-            value = value
+            value = value,
+            proteinCodingOnly = proteinCodingOnly
         )
         ## Extract the required metadata from the first slotted return object
         ## defined from DESeqResults method.
