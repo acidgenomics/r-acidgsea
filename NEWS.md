@@ -1,9 +1,28 @@
-## AcidGSEA 0.7.0 (UNRELEASED)
+## AcidGSEA 0.7.0 (2022-04-27)
 
 ### Major changes
 
 - Split out basejump dependencies into individual packages.
-- Support for multiple contrasts: `plotNES`, `plotGeneSet`, `results`.
+- Added support for multiple contrasts: `plotNES`, `plotGeneSet`, `results`.
+- `export` method now confirms to BiocIO approach, using `con` argument.
+- `RankedList`: Tightned up Ensembl reference genome filtering, checking for
+  gene identifiers from primary chromosomes, to avoid unwanted averaging of
+  values from haplotype scaffold gene identifiers. Also added support for
+  `proteinCodingOnly`, to enable analysis of protein coding genes only, which
+  is disabled by default.
+
+### Minor changes
+
+- `FGSEAList` and `RankedList`: Reworked default formals for `keyType`
+  and `value`.
+- Added basejump as a dependency to R Markdown template.
+- Relaxed gene-to-symbol class checks for `RankedList` S4 class.
+- Improved rich text formatting for CLI messages, where applicable.
+- Added an additional assert check for gene identifier overlap prior to
+  internal `fgsea` handoff.
+- `plotLFC`: Improved labeling of axes.
+- `prepareGeneSetFiles`: Reworked file name detection for MSigDb.
+- Improved internal code for returning results for all contrasts.
 
 ## AcidGSEA 0.6.4 (2021-07-21)
 
