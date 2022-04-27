@@ -42,7 +42,7 @@ Imports:
     ggplot2,
     goalie (>= 0.6.0),
     methods,
-    pipette (>= 0.8.1),
+    pipette (>= 0.8.0),
     sessioninfo,
     stats,
     syntactic (>= 0.5.1),
