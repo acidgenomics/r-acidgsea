@@ -5,15 +5,14 @@
 
 
 ## Updated 2021-02-12.
-.bplapply <-
-    {
-        if (isInstalled("BiocParallel")) {
-            x <- quote(BiocParallel::bplapply)
-        } else {
-            x <- quote(lapply)
-        }
-        x
+.bplapply <- {
+    if (isInstalled("BiocParallel")) {
+        x <- quote(BiocParallel::bplapply)
+    } else {
+        x <- quote(lapply)
     }
+    x
+}
 
 
 
@@ -24,8 +23,8 @@
 #'
 #' @examples
 #' AcidGSEATestsURL
-AcidGSEATestsURL <-  # nolint
+AcidGSEATestsURL <- # nolint
     paste0(
         "https://r.acidgenomics.com/testdata/acidgsea/",
-        "v", .pkgVersion$major, ".", .pkgVersion$minor  # nolint
+        "v", .pkgVersion$major, ".", .pkgVersion$minor # nolint
     )

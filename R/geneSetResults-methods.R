@@ -19,13 +19,11 @@ NULL
 
 
 ## Updated 2021-03-16.
-`geneSetResults,FGSEAList` <-  # nolint
-    function(
-        object,
-        contrast,
-        collection,
-        set
-    ) {
+`geneSetResults,FGSEAList` <- # nolint
+    function(object,
+             contrast,
+             collection,
+             set) {
         validObject(object)
         assert(
             isString(contrast),

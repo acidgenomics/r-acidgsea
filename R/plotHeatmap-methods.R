@@ -19,16 +19,14 @@ NULL
 
 
 ## Updated 2021-03-16.
-`plotHeatmap,FGSEAList` <-  # nolint
-    function(
-        object,
-        contrast,
-        contrastSamples = TRUE,
-        collection,
-        set,
-        leadingEdge = FALSE,
-        ...
-    ) {
+`plotHeatmap,FGSEAList` <- # nolint
+    function(object,
+             contrast,
+             contrastSamples = TRUE,
+             collection,
+             set,
+             leadingEdge = FALSE,
+             ...) {
         validObject(object)
         assert(
             isString(contrast),

@@ -1,9 +1,9 @@
 suppressPackageStartupMessages({
     library(usethis)
     library(goalie)
-    library(basejump)       # 0.14.17
-    library(DESeq2)         # 1.30.1
-    library(DESeqAnalysis)  # 0.4.0
+    library(basejump) # 0.14.17
+    library(DESeq2) # 1.30.1
+    library(DESeqAnalysis) # 0.4.0
 })
 
 ## Restrict to 3 MB.
@@ -30,10 +30,10 @@ design(dds) <- ~ condition + treatment + condition:treatment
 rowRanges(dds) <- gr
 dds <- DESeq(dds)
 dds$condition
-##  [1] A A A A A A B B B B B B
+## [1] A A A A A A B B B B B B
 ## Levels: A B
 dds$treatment
-##  [1] C C C D D D C C C D D D
+## [1] C C C D D D C C C D D D
 ## Levels: C D
 object.size(dds)
 ## 939848 bytes

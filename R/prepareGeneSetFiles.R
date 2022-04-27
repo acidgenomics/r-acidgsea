@@ -1,19 +1,22 @@
 #' Prepare gene set files
 #'
 #' @details
-#'  Intended primarily to match GMT files from MSigDb.
+#' Intended primarily to match GMT files from MSigDb.
 #'
 #' @note Updated 2021-10-20.
 #' @export
 #'
 #' @inheritParams params
+#'
 #' @param dir `character(1)`.
-#'   Directory name containing MSigDb release.
+#' Directory name containing MSigDb release.
+#'
 #' @param ext `character(1)`.
-#'   Gene set file extension.
-#'   Case insensitive.
+#' Gene set file extension.
+#' Case insensitive.
+#'
 #' @param recursive `logical(1)`.
-#'   Whether to search for gene set files recursively in `dir` argument.
+#' Whether to search for gene set files recursively in `dir` argument.
 #'
 #' @seealso
 #' - https://www.gsea-msigdb.org/gsea/msigdb/
@@ -30,12 +33,10 @@
 #' )
 #' files <- prepareGeneSetFiles(dir, keyType = "geneName")
 #' print(files)
-prepareGeneSetFiles <- function(
-    dir,
-    keyType = c("geneName", "entrezId"),
-    ext = "gmt",
-    recursive = FALSE
-) {
+prepareGeneSetFiles <- function(dir,
+                                keyType = c("geneName", "entrezId"),
+                                ext = "gmt",
+                                recursive = FALSE) {
     assert(
         isADir(dir),
         isString(ext),

@@ -5,13 +5,13 @@
 #' @inheritParams AcidRoxygen::params
 #' @inheritParams params
 #' @param colors `character(5)`.
-#'   Named character color vector indicating:
+#' Named character color vector indicating:
 #'
-#'   - Line color.
-#'   - Minimum (negative) threshold line color.
-#'   - Maximum (positive) threhsold color.
-#'   - Y intercept at origin color.
-#'   - Ticks color.
+#' - Line color.
+#' - Minimum (negative) threshold line color.
+#' - Maximum (positive) threhsold color.
+#' - Y intercept at origin color.
+#' - Ticks color.
 #' @param ... Additional arguments.
 #'
 #' @seealso Modified version of `fgsea::plotEnrichment()`.
@@ -31,20 +31,18 @@ NULL
 
 
 ## Updated 2021-02-17.
-`plotGeneSet,FGSEAList` <-  # nolint
-    function(
-        object,
-        collection,
-        contrast,
-        set,
-        colors = c(
-            line = "black",
-            min = AcidPlots::purpleOrange(n = 2L)[[1L]],
-            max = AcidPlots::purpleOrange(n = 2L)[[2L]],
-            ticks = "black",
-            yintercept = "black"
-        )
-    ) {
+`plotGeneSet,FGSEAList` <- # nolint
+    function(object,
+             collection,
+             contrast,
+             set,
+             colors = c(
+                 line = "black",
+                 min = AcidPlots::purpleOrange(n = 2L)[[1L]],
+                 max = AcidPlots::purpleOrange(n = 2L)[[2L]],
+                 ticks = "black",
+                 yintercept = "black"
+             )) {
         validObject(object)
         assert(
             isString(collection),
@@ -71,7 +69,7 @@ NULL
         rnk <- rank(-stats)
         ord <- order(rnk)
         statsAdj <- stats[ord]
-        statsAdj <- sign(statsAdj) * (abs(statsAdj) ^ gseaParam)
+        statsAdj <- sign(statsAdj) * (abs(statsAdj)^gseaParam)
         statsAdj <- statsAdj / max(abs(statsAdj))
         pathway <- unname(as.vector(na.omit(match(pathway, names(statsAdj)))))
         pathway <- sort(pathway)

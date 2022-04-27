@@ -5,16 +5,19 @@
 #' @note Updated 2022-03-11.
 #'
 #' @inheritParams AcidRoxygen::params
-#' @param alphaThreshold `number(1)`.
-#'   Alpha level used for GSEA.
-#'   Note that this is not necessarily the alpha level used to generate
-#'   `DESeqResults` object.
-#' @param deseq `DESeqAnalysis` or `NULL`.
-#'   Update object by slotting `DESeqAnalysis`, if necessary.
-#'   This was added to object in 2020-09.
-#' @param verbose `logical(1)`.
-#'   Whether information about the update should be reported.
 #' @param ... Additional arguments.
+#'
+#' @param alphaThreshold `number(1)`.
+#' Alpha level used for GSEA.
+#' Note that this is not necessarily the alpha level used to generate
+#' `DESeqResults` object.
+#'
+#' @param deseq `DESeqAnalysis` or `NULL`.
+#' Update object by slotting `DESeqAnalysis`, if necessary.
+#' This was added to object in 2020-09.
+#'
+#' @param verbose `logical(1)`.
+#' Whether information about the update should be reported.
 #'
 #' @return Modified object.
 #'
@@ -28,14 +31,12 @@ NULL
 
 
 ## Updated 2021-09-03.
-`updateObject,FGSEAList` <-  # nolint
-    function(
-        object,
-        deseq = NULL,
-        alphaThreshold = NULL,
-        ...,
-        verbose = FALSE
-    ) {
+`updateObject,FGSEAList` <- # nolint
+    function(object,
+             deseq = NULL,
+             alphaThreshold = NULL,
+             ...,
+             verbose = FALSE) {
         assert(isFlag(verbose))
         ## Slot DESeqAnalysis object, if necessary.
         if (is.null(metadata(object)[["deseq"]])) {

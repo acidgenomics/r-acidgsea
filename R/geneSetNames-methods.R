@@ -12,7 +12,7 @@ NULL
 
 
 
-`geneSetNames,FGSEAList` <-  # nolint
+`geneSetNames,FGSEAList` <- # nolint
     function(object, collection) {
         validObject(object)
         assert(

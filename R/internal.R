@@ -5,7 +5,7 @@
 #'
 #' @details
 #' Intentionally error with an informative error message.
-.getDESeqAnalysis <-  # nolint
+.getDESeqAnalysis <- # nolint
     function(object) {
         assert(is(object, "FGSEAList"))
         deseq <- metadata(object)[["deseq"]]
@@ -29,7 +29,7 @@
 #'
 #' @param ... Passthrough arguments to `.enrichedGeneSets`.
 #' @param n `integer(1)`.
-#'   Number of upregulated and downregulated sets (each) to return.
+#' Number of upregulated and downregulated sets (each) to return.
 #'
 #' @examples
 #' data(fgsea)

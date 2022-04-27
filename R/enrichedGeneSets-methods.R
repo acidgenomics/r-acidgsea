@@ -34,7 +34,7 @@ NULL
 #'
 #' Assuming fgsea input by default currently.
 #'
-#' @note Updated 2020-03-18.
+#' @note Updated 2022-04-27.
 #' @noRd
 #'
 #' @seealso `DESeqAnalysis::deg`.
@@ -50,79 +50,77 @@ NULL
 #'     alphaCol = "padj",
 #'     nesCol = "NES"
 #' )
-.enrichedGeneSets <- function(
-    object,
-    alphaThreshold,
-    nesThreshold,
-    direction,
-    idCol,          # pathway
-    alphaCol,       # padj
-    nesCol          # NES
-) {
-    data <- as(object, "DataFrame")
-    assert(
-        isString(idCol),
-        isString(alphaCol),
-        isString(nesCol),
-        isSubset(c(idCol, alphaCol, nesCol), colnames(data))
-    )
-    direction <- match.arg(direction, choices = c("both", "up", "down"))
-    data <- data[, c(idCol, nesCol, alphaCol)]
-    ## Apply alpha cutoff.
-    keep <- which(data[[alphaCol]] < alphaThreshold)
-    data <- data[keep, , drop = FALSE]
-    ## Apply NES threshold cutoff.
-    if (nesThreshold > 0L) {
-        keep <- which(abs(data[[nesCol]]) > nesThreshold)
+.enrichedGeneSets <-
+    function(object,
+             alphaThreshold,
+             nesThreshold,
+             direction,
+             idCol, # pathway
+             alphaCol, # padj
+             nesCol # NES
+    ) {
+        data <- as(object, "DataFrame")
+        assert(
+            isString(idCol),
+            isString(alphaCol),
+            isString(nesCol),
+            isSubset(c(idCol, alphaCol, nesCol), colnames(data))
+        )
+        direction <- match.arg(direction, choices = c("both", "up", "down"))
+        data <- data[, c(idCol, nesCol, alphaCol)]
+        ## Apply alpha cutoff.
+        keep <- which(data[[alphaCol]] < alphaThreshold)
         data <- data[keep, , drop = FALSE]
+        ## Apply NES threshold cutoff.
+        if (nesThreshold > 0L) {
+            keep <- which(abs(data[[nesCol]]) > nesThreshold)
+            data <- data[keep, , drop = FALSE]
+        }
+        ## Apply directional filtering.
+        if (identical(direction, "up")) {
+            keep <- which(data[[nesCol]] > 0L)
+            data <- data[keep, , drop = FALSE]
+        } else if (identical(direction, "down")) {
+            keep <- which(data[[nesCol]] < 0L)
+            data <- data[keep, , drop = FALSE]
+        }
+        ## Arrange table by adjusted P value and NES score.
+        if (identical(direction, "down")) {
+            data <- data[order(data[["padj"]], data[["NES"]]), , drop = FALSE]
+        } else {
+            ## Note that we're arranging from high (positive) to low (negative)
+            ## NES value when direction is up or both.
+            data <- data[order(data[["padj"]], -data[["NES"]]), , drop = FALSE]
+        }
+        egs <- data[[idCol]]
+        status <- sprintf(
+            fmt = "%d %s %s detected (alpha < %g; nes > %g).",
+            length(egs),
+            switch(
+                EXPR = direction,
+                up = "upregulated",
+                down = "downregulated",
+                both = "enriched"
+            ),
+            ngettext(
+                n = length(egs),
+                msg1 = "gene set",
+                msg2 = "gene sets"
+            ),
+            alphaThreshold,
+            nesThreshold
+        )
+        alertInfo(status)
+        egs
     }
-    ## Apply directional filtering.
-    if (identical(direction, "up")) {
-        keep <- which(data[[nesCol]] > 0L)
-        data <- data[keep, , drop = FALSE]
-    } else if (identical(direction, "down")) {
-        keep <- which(data[[nesCol]] < 0L)
-        data <- data[keep, , drop = FALSE]
-    }
-    ## Arrange table by adjusted P value and NES score.
-    if (identical(direction, "down")) {
-        data <- data[order(data[["padj"]], data[["NES"]]), , drop = FALSE]
-    } else {
-        ## Note that we're arranging from high (positive) to low (negative)
-        ## NES value when direction is up or both.
-        data <- data[order(data[["padj"]], -data[["NES"]]), , drop = FALSE]
-    }
-    egs <- data[[idCol]]
-    status <- sprintf(
-        fmt = "%d %s %s detected (alpha < %g; nes > %g).",
-        length(egs),
-        switch(
-            EXPR = direction,
-            up = "upregulated",
-            down = "downregulated",
-            both = "enriched"
-        ),
-        ngettext(
-            n = length(egs),
-            msg1 = "gene set",
-            msg2 = "gene sets"
-        ),
-        alphaThreshold,
-        nesThreshold
-    )
-    alertInfo(status)
-    egs
-}
 
 
 
 ## Updated 2020-09-18.
-`enrichedGeneSets,FGSEAList` <-  # nolint
-    function(
-        object,
-        collection,
-        direction = c("both", "up", "down")
-    ) {
+`enrichedGeneSets,FGSEAList` <- # nolint
+    function(object,
+             collection,
+             direction = c("both", "up", "down")) {
         validObject(object)
         assert(isString(collection))
         direction <- match.arg(direction)

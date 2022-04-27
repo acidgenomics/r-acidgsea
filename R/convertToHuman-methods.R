@@ -3,12 +3,13 @@
 #' @note Updated 2021-10-15.
 #'
 #' @inheritParams params
-#' @param map `DataFrame`, or `NULL`.
-#'   Ortholog mappings data frame returned by `mapHumanOrthologs()`. Since
-#'   this function depends on the BioMart API and has a tendancy to time out,
-#'   we're allowing passthrough of a cached object here instead. If left `NULL`,
-#'   then `mapHumanOrthologs()` will be called internally.
 #' @param ... Additional arguments.
+#'
+#' @param map `DataFrame`, or `NULL`.
+#' Ortholog mappings data frame returned by `mapHumanOrthologs()`. Since
+#' this function depends on the BioMart API and has a tendancy to time out,
+#' we're allowing passthrough of a cached object here instead. If left `NULL`,
+#' then `mapHumanOrthologs()` will be called internally.
 #'
 #' @examples
 #' data(deseq, package = "DESeqAnalysis")
@@ -20,7 +21,7 @@ NULL
 
 
 ## Updated 2021-10-15.
-`convertToHuman,DESeqAnalysis` <-  # nolint
+`convertToHuman,DESeqAnalysis` <- # nolint
     function(object, map = NULL) {
         validObject(object)
         assert(isAny(map, c("DataFrame", "NULL")))

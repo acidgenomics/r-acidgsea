@@ -15,12 +15,10 @@ NULL
 
 
 ## Updated 2020-09-21.
-`geneSet,FGSEAList` <-  # nolint
-    function(
-        object,
-        collection,
-        set
-    ) {
+`geneSet,FGSEAList` <- # nolint
+    function(object,
+             collection,
+             set) {
         validObject(object)
         assert(
             isString(collection),

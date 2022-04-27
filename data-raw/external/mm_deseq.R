@@ -2,7 +2,7 @@
 ## Updated 2021-02-17.
 
 library(pryr)
-library(basejump)  # 0.12.4
+library(basejump) # 0.12.4
 
 data(deseq, package = "DESeqAnalysis")
 object <- deseq

@@ -24,13 +24,14 @@
 #' 2. Gene set.
 #'
 #' @inheritParams AcidExperiment::export
-#' @param geneSetResults `logical(1)` or `character`.
-#'   Export per-gene set expression including log fold change values generated
-#'   from DESeq2. Can be slow when processing all MSigDB collections, so
-#'   disabled by default. Alternatively, can declare specific collections to
-#'   process, as a `character` vector, such as `"h"` for the hallmark
-#'   gene set collection.
 #' @param ... Additional arguments.
+#'
+#' @param geneSetResults `logical(1)` or `character`.
+#' Export per-gene set expression including log fold change values generated
+#' from DESeq2. Can be slow when processing all MSigDB collections, so
+#' disabled by default. Alternatively, can declare specific collections to
+#' process, as a `character` vector, such as `"h"` for the hallmark
+#' gene set collection.
 #'
 #' @examples
 #' data(fgsea)
@@ -48,25 +49,23 @@ NULL
 
 
 ## Updated 2021-10-15.
-`export,FGSEAList` <-  # nolint
-    function(
-        object,
-        con,
-        format,  # NULL
-        geneSetResults = FALSE,
-        compress = getOption(
-            x = "acid.export.compress",
-            default = FALSE
-        ),
-        overwrite = getOption(
-            x = "acid.overwrite",
-            default = TRUE
-        ),
-        quiet = getOption(
-            x = "acid.quiet",
-            default = FALSE
-        )
-    ) {
+`export,FGSEAList` <- # nolint
+    function(object,
+             con,
+             format, # NULL
+             geneSetResults = FALSE,
+             compress = getOption(
+                 x = "acid.export.compress",
+                 default = FALSE
+             ),
+             overwrite = getOption(
+                 x = "acid.overwrite",
+                 default = TRUE
+             ),
+             quiet = getOption(
+                 x = "acid.quiet",
+                 default = FALSE
+             )) {
         validObject(object)
         if (missing(format)) {
             format <- NULL
@@ -191,7 +190,7 @@ NULL
 
 
 ## Updated 2021-10-15.
-`export,FGSEAList,deprecated` <-  # nolint
+`export,FGSEAList,deprecated` <- # nolint
     methodFunction(
         f = "export",
         signature = signature(

@@ -25,13 +25,11 @@ NULL
 
 
 ## Updated 2021-02-17.
-`topTables,FGSEAList` <-  # nolint
-    function(
-        object,
-        collection,
-        n = 10L,
-        headerLevel = 3L
-    ) {
+`topTables,FGSEAList` <- # nolint
+    function(object,
+             collection,
+             n = 10L,
+             headerLevel = 3L) {
         requireNamespaces("knitr")
         validObject(object)
         assert(
@@ -66,22 +64,20 @@ NULL
         data <- object[[collection]]
         assert(identical(names(data), names(up)))
         invisible(mapply(
-            name = names(data),     # contrast name
-            data = data,            # fgsta data.table output
-            up = up,                # upregulated pathways
-            down = down,            # downregulated pathways
+            name = names(data), # contrast name
+            data = data, # fgsta data.table output
+            up = up, # upregulated pathways
+            down = down, # downregulated pathways
             MoreArgs = list(
                 headerLevel = headerLevel,
                 n = n
             ),
-            FUN = function(
-                name,
-                data,
-                up,
-                down,
-                n,
-                headerLevel
-            ) {
+            FUN = function(name,
+                           data,
+                           up,
+                           down,
+                           n,
+                           headerLevel) {
                 idCol <- "pathway"
                 dropCols <- c("ES", "nMoreExtreme", "pval")
                 markdownHeader(
@@ -108,7 +104,7 @@ NULL
                 if (hasRows(up)) {
                     print(knitr::kable(as.data.frame(up), digits = 3L))
                 } else {
-                    alertInfo("No upregulated gene sets.")  # nocov
+                    alertInfo("No upregulated gene sets.") # nocov
                 }
                 ## Downregulated gene sets.
                 markdownHeader(
@@ -122,7 +118,7 @@ NULL
                 if (hasRows(down)) {
                     print(knitr::kable(as.data.frame(down), digits = 3L))
                 } else {
-                    alertInfo("No downregulated gene sets.")  # nocov
+                    alertInfo("No downregulated gene sets.") # nocov
                 }
             },
             SIMPLIFY = FALSE,
