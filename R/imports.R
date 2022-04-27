@@ -13,7 +13,7 @@ NULL
 #' enrichedGeneSets geneSet geneSetNames geneSetResults leadingEdge leftJoin
 #' makeNames mapGenesToRownames melt nesThreshold nesThreshold<-
 #' plotEnrichedGeneSets plotEnrichedUpset plotGeneSet plotHeatmap plotLFC
-#' plotNES plotUpset results selectIf showHeader topTables
+#' plotNES plotUpset results selectIf showHeader snakeCase topTables
 #' @importFrom BiocGenerics %in% combine lapply order organism unique unlist
 #' unsplit updateObject
 #' @importFrom GenomeInfoDb genome seqnames
@@ -31,7 +31,7 @@ NULL
 #' @importMethodsFrom DESeqAnalysis coerce contrastName contrastSamples
 #' plotCounts results
 #' @importMethodsFrom pipette as.DataFrame export import
-#' @importMethodsFrom syntactic camelCase makeNames
+#' @importMethodsFrom syntactic camelCase makeNames snakeCase
 NULL
 
 

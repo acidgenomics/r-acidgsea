@@ -263,9 +263,6 @@ NULL
             "packageVersion" = .pkgVersion,
             "value" = value
         )
-        if (identical(keyType, "entrezId")) {
-            metadata(out)[["ensembl2Entrez"]] <- g2e
-        }
         new(Class = "RankedList", out)
     }
 
