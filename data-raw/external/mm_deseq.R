@@ -15,7 +15,7 @@ rr <- makeGRangesFromEnsembl(
     release = 99L
 )
 rr <- rr[1L:nrow(object@data)]
-rr <- droplevels(rr)
+rr <- droplevels2(rr)
 ## Ensure that the names match, otherwise we'll hit a validity check failure.
 names(rr) <- rownames(object@data)
 rowRanges(object@data) <- rr
