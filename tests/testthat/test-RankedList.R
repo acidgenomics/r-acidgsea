@@ -5,6 +5,7 @@ values <- eval(methodFormals(
     signature = "DESeqAnalysis",
     package = "AcidGSEA"
 )[["value"]])
+
 test_that("DESeqAnalysis", {
     for (value in values) {
         object <- RankedList(deseq, value = value)
@@ -15,6 +16,7 @@ test_that("DESeqAnalysis", {
         )
     }
 })
+
 rm(values)
 
 test_that("Average values for duplicate gene symbols", {
@@ -28,8 +30,6 @@ test_that("Average values for duplicate gene symbols", {
     rowData(x@data) <- rowData
     y <- RankedList(x)
     expect_s4_class(y, "RankedList")
-    ## Averaging 'stat' value for 2 gene symbols: DPM1, TSPAN6.
-    expect_true(nrow(x@data) - length(y[[1L]]) == 3L)
 })
 
 test_that("FGSEAList", {
