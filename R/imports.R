@@ -14,8 +14,9 @@ NULL
 #' makeNames mapGenesToRownames melt nesThreshold nesThreshold<-
 #' plotEnrichedGeneSets plotEnrichedUpset plotGeneSet plotHeatmap plotLFC
 #' plotNES plotUpset results selectIf showHeader topTables
-#' @importFrom BiocGenerics combine lapply order organism unique unlist unsplit
-#' updateObject
+#' @importFrom BiocGenerics %in% combine lapply order organism unique unlist
+#' unsplit updateObject
+#' @importFrom GenomeInfoDb genome seqnames
 #' @importFrom S4Vectors complete.cases head mcols mcols<- metadata metadata<-
 #' na.omit split tail
 #' @importFrom SummarizedExperiment rowRanges rowRanges<-
@@ -63,8 +64,8 @@ NULL
 #' areDisjointSets areSameLength areSetEqual assert bapply hasColnames
 #' hasLength hasNames hasNoDuplicates hasRownames hasRows isADir isAFile isAll
 #' isAlpha isAny isCharacter isFile isFlag isHeaderLevel isInRange isInstalled
-#' isInt isNumber isNonNegative isOrganism isScalar isScalarInteger isString
-#' isSubset validate
+#' isInt isMatchingRegex isNumber isNonNegative isOrganism isScalar
+#' isScalarInteger isString isSubset validate
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity slot
 #' slot<- validObject
 #' @importFrom sessioninfo session_info
