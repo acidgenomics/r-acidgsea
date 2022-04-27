@@ -58,7 +58,7 @@ prepareGeneSetFiles <-
         ignore.case = TRUE
     ))
     assert(
-        hasLength(xxx),
+        hasLength(files),
         msg = sprintf(
             "Failed to detect any gene sets in {.dir %s}.",
             dir
