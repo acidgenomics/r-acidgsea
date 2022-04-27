@@ -1,6 +1,6 @@
-## AcidGSEA 0.7.0 (2022-04-27)
+# AcidGSEA 0.7.0 (2022-04-27)
 
-### Major changes
+## Major changes
 
 - Split out basejump dependencies into individual packages.
 - Added support for multiple contrasts: `plotNES`, `plotGeneSet`, `results`.
@@ -11,7 +11,7 @@
   `proteinCodingOnly`, to enable analysis of protein coding genes only, which
   is disabled by default.
 
-### Minor changes
+## Minor changes
 
 - `FGSEAList` and `RankedList`: Reworked default formals for `keyType`
   and `value`.
@@ -24,38 +24,38 @@
 - `prepareGeneSetFiles`: Reworked file name detection for MSigDb.
 - Improved internal code for returning results for all contrasts.
 
-## AcidGSEA 0.6.4 (2021-07-21)
+# AcidGSEA 0.6.4 (2021-07-21)
 
-### Minor changes
+## Minor changes
 
 - `RankedList`: Improved handling of duplicate Entrez gene identifiers, such
   as is the case in the bcbioRNASeq F1000 example dataset.
 - Reorganized and consolidated S4 method exports.
 
-## AcidGSEA 0.6.3 (2021-06-29)
+# AcidGSEA 0.6.3 (2021-06-29)
 
-### Minor changes
+## Minor changes
 
 - `RankedList`: Improved column name sanitization and handling for input
   `DESeqResults` object, avoiding conflicts with `Gene2Symbol` object.
 - Improved unit tests to no longer rely on gene sets saved in `~/msigdb`.
 
-## AcidGSEA 0.6.2 (2021-03-16)
+# AcidGSEA 0.6.2 (2021-03-16)
 
-### Minor changes
+## Minor changes
 
 - Updated basejump dependencies.
 - Resaved example `fgsea` object (`FGSEAList`).
 - Updated unit tests.
 
-## AcidGSEA 0.6.1 (2021-03-04)
+# AcidGSEA 0.6.1 (2021-03-04)
 
-### New functions
+## New functions
 
 - `prepareGeneSetFiles`: MSigDb utility function for easy matching of default
   GMT gene files to use for GSEA. Matches the symbol files by default.
 
-### Major changes
+## Major changes
 
 - `RankedList` and `FGSEAList` method support has been improved for minimal
   `DESeqResults` and `DataFrame` objects. These approaches are intended
@@ -63,34 +63,34 @@
   have the complete set of DESeq2 analysis files, and therefore cannot
   construct a `DESeqAnalysis` object.
 
-### Minor changes
+## Minor changes
 
 - `RankedList` now supports `keyType`, which defaults to gene name (a.k.a.
   symbol), but now also supports original gene identifier. This alternative
   option is useful when working with the clusterProfiler package and is used
   in the bcbioRNASeq template.
 
-## AcidGSEA 0.6.0 (2021-02-17)
+# AcidGSEA 0.6.0 (2021-02-17)
 
-### Major changes
+## Major changes
 
 - Reworked and simplified NAMESPACE and package dependencies, following
   basejump v0.14 release series update.
 - Removed BiocParallel as a required import.
 
-## AcidGSEA 0.5.0 (2020-10-10)
+# AcidGSEA 0.5.0 (2020-10-10)
 
-### Major changes
+## Major changes
 
 - Renamed package to AcidGSEA from acidgsea.
 
-### Minor changes
+## Minor changes
 
 - Migrated generics to AcidGenerics: `geneSetNames`, `plotLFC`, `plotNES`.
 
-## acidgsea 0.4.0 (2020-09-26)
+# acidgsea 0.4.0 (2020-09-26)
 
-### Major changes
+## Major changes
 
 - `FGSEAList`: Reworked primary method to use `DESeqAnalysis` instead of
   `RankedList` as input. The `RankedList` object is now calculated automatically
@@ -98,42 +98,42 @@
 - Now slotting gene sets inside the `FGSEAList` object.
 - `gmtFiles` argument has been renamed to `geneSetFiles`.
 
-### New functions
+## New functions
 
 - `geneSetResults`: Extract gene set expression values (from `DESeqResults`).
 - `leadingEdge`: New accessor that returns leading edge genes from GSEA run.
 - `results`: Extract GSEA results from object (from `fgsea` return).
 
-## acidgsea 0.3.2 (2020-08-05)
+# acidgsea 0.3.2 (2020-08-05)
 
-### Major changes
+## Major changes
 
 - Simplified internal handling of alpha (now consistently referfed to as
   "alphaThreshold") and nesThreshold.
 - Added `alphaThreshold` and `nesThreshold` S4 generic support.
 - These name chanages better match the syntax used in DESeqAnalysis v0.3.
 
-## acidgsea 0.3.1 (2020-07-24)
+# acidgsea 0.3.1 (2020-07-24)
 
-### New functions
+## New functions
 
 - `plotGeneSet`: Split out internal gene set plotting code used previously in
   `plotEnrichedGeneSets`. This is a modified variant of `fgsea::plotEnrichment`
   that allows for additional color customization.
 
-### Major changes
+## Major changes
 
 - Updated minimum R dependency to 4.0.
 - `plotEnrichedGeneSets`: Now calls new `plotGeneSet` function internally.
 
-### Minor changes
+## Minor changes
 
 - Removed UpSetR dependency, based on update to AcidPlots package.
 - Removed `plotCounts` method, in favor of `plotHeatmap` usage.
 
-## acidgsea 0.3.0 (2020-05-24)
+# acidgsea 0.3.0 (2020-05-24)
 
-### Major changes
+## Major changes
 
 - `FGSEAList`: Converted function to an S4 generic. Previously the main arguemnt
   was named `rankedList`, but this has been renamed to `object`. A `RankedList`
@@ -141,7 +141,7 @@
   change was necessary for adding GSEA support in pointillism single-cell
   RNA-seq analysis toolkit.
 
-### Minor changes
+## Minor changes
 
 - `RankedList`: Added support for `DataFrame` class, which is used inside
   pointillism package update.
@@ -149,17 +149,17 @@
   Using this for cluster matrix in pointillism for scRNA-seq using output
   from edgeR (or DESeq2) for per-cluster marker analysis.
 
-## acidgsea 0.2.1 (2020-05-12)
+# acidgsea 0.2.1 (2020-05-12)
 
-### Minor changes
+## Minor changes
 
 - Split out `setValidity` from `setClass` for S4 class definitions.
 - `updateObject`: Added support for `...` and `verbose` arguments defined in the
   S4 generic.
 
-## acidgsea 0.2.0 (2020-03-18)
+# acidgsea 0.2.0 (2020-03-18)
 
-### Major changes
+## Major changes
 
 - Renamed package from "pfgsea" to "acidgsea". Additional GSEA methods including
   the Broad GSEA Preranked algorithm and support for Jean Fan's liger package
@@ -169,7 +169,7 @@
   Affected functions: `enrichedGeneSets`, `plotEnrichedGeneSets`,
   and `plotEnrichedUpset`.
 
-### Minor changes
+## Minor changes
 
 - `convertToHuman`: Updated working example to use Ensembl 99 release, as
   archived releases are currently unavailable via biomaRt until March 24, due
@@ -177,82 +177,82 @@
 - Updated minimal example `gsea` object.
 - Updated unit tests and working examples to reflect package name change.
 
-## pfgsea 0.1.17 (2020-01-27)
+# pfgsea 0.1.17 (2020-01-27)
 
-### Minor changes
+## Minor changes
 
 - Now using cli package for interactive messages.
 
-## pfgsea 0.1.16 (2020-01-20)
+# pfgsea 0.1.16 (2020-01-20)
 
-### Minor changes
+## Minor changes
 
 - NAMESPACE update required for changes in basejump v0.12.
 
-## pfgsea 0.1.15 (2019-11-20)
+# pfgsea 0.1.15 (2019-11-20)
 
-### New functions
+## New functions
 
 - `plotCounts`, `plotHeatmap`: Added initial `FGSEAList` method support.
 
-### Major changes
+## Major changes
 
 - `plotGSEATable`: Made defunct, since this visualization doesn't render very
   reliably in R Markdown output. Consider using a heatmap approach instead.
 
-## pfgsea 0.1.14 (2019-10-11)
+# pfgsea 0.1.14 (2019-10-11)
 
-### Minor changes
+## Minor changes
 
 - `export`: Updated internal code to handle `leadingEdge` as `list` class.
 - Updated R Markdown template to use "object" as primary param.
 
-## pfgsea 0.1.13 (2019-08-28)
+# pfgsea 0.1.13 (2019-08-28)
 
-### Major changes
+## Major changes
 
 - Reworked internal code to no longer depend on dplyr.
 - Improved internal handling using `DataFrame` rather than `data.table`.
 
-## pfgsea 0.1.12 (2019-07-30)
+# pfgsea 0.1.12 (2019-07-30)
 
-### Minor changes
+## Minor changes
 
 - Updated basejump dependency versions.
 - Updated working examples and improved documentation.
 
-## pfgsea 0.1.11 (2019-07-24)
+# pfgsea 0.1.11 (2019-07-24)
 
-## pfgsea 0.1.10 (2019-07-17)
+# pfgsea 0.1.10 (2019-07-17)
 
-### Minor changes
+## Minor changes
 
 - Updated basejump dependency.
 - Improved Travis CI docker configuration.
 
-## pfgsea 0.1.9 (2019-06-26)
+# pfgsea 0.1.9 (2019-06-26)
 
-### New functions
+## New functions
 
 - `convertToHuman`: Utility that maps orthologs onto human genes, so we can
   perform GSEA. Added `map` argument support, to speed up multiple calls.
 
-## pfgsea 0.1.8 (2019-06-12)
+# pfgsea 0.1.8 (2019-06-12)
 
-### New functions
+## New functions
 
 - Initial method support for `convertToHuman`, which allows for easy ortholog
   conversion to HUGO (HGNC) identifiers.
 
-### Minor changes
+## Minor changes
 
 - Improved `render.R` script for looping multiple `DESeqAnalysis` objects.
 - Improved dockerized Travis CI checks.
 - Improved code coverage checks for `export` method.
 
-## pfgsea 0.1.7 (2019-04-30)
+# pfgsea 0.1.7 (2019-04-30)
 
-### Major changes
+## Major changes
 
 - Reworked language to use "collection" consistently instead of mixing/matching
   "geneSet" and "pathway", which isn't appropriate. Relevant function arguments
@@ -263,9 +263,9 @@
   overlap across collections, since these are often completely different
   classes (e.g. c1-c7 will never have overlap).
 
-## pfgsea 0.1.6 (2019-04-29)
+# pfgsea 0.1.6 (2019-04-29)
 
-### New functions
+## New functions
 
 - `pathwayNames`, `contrastNames`: Accessor functions for pathway (e.g. MSigDb)
   and differential expression contrast names.
@@ -275,45 +275,45 @@
 - `plotEnrichedUpset`: Utility function that makes it easy to compare enrichment
   groups across contrasts, via an UpSet plot.
 
-### Major changes
+## Major changes
 
 - Added `combine` method support for `FGSEAList`, allowing us to easily combine
   GSEA results from multiple datasets. Primarily intended for downstream
   visualization using an UpSet plot (see `plotEnrichedUpset`).
 
-### Minor changes
+## Minor changes
 
 - Improved `show` method support for `FGSEAList`, showing `pathwayNames` and
   `contrastNames` more clearly.
 
-## pfgsea 0.1.5 (2019-04-25)
+# pfgsea 0.1.5 (2019-04-25)
 
-### Minor changes
+## Minor changes
 
 - S4 generic reexport documentation fixes.
 
-## pfgsea 0.1.4 (2019-04-23)
+# pfgsea 0.1.4 (2019-04-23)
 
-### Minor changes
+## Minor changes
 
 - Switch to importing graphics code from [AcidPlots][] package instead of now
   defunct minimalism package. Default ggplot2 theme has been renamed from
   `theme_paperwhite` to `acid_theme_light`.
 
-## pfgsea 0.1.3 (2019-04-17)
+# pfgsea 0.1.3 (2019-04-17)
 
-### Minor changes
+## Minor changes
 
 - Updated Travis CI configuration to use `rnaseq` Docker image.
 - Miscellaneous documentation improvements.
 
-## pfgsea 0.1.2 (2019-04-10)
+# pfgsea 0.1.2 (2019-04-10)
 
-### Major changes
+## Major changes
 
 - Deleted `list` to `FGSEAList` coercion method.
 
-### Minor changes
+## Minor changes
 
 - `pfgsea`: Renamed `bpparam` argument to `BPPARAM`, to match Bioconductor.
   Also now reexporting `BiocParallel::bpparam`.
@@ -321,34 +321,34 @@
 - Added documentation working examples, using `gsea` data.
 - Updated NAMESPACE for `theme_paperwhite`. Now reexporting this function.
 
-## pfgsea 0.1.1 (2019-04-01)
+# pfgsea 0.1.1 (2019-04-01)
 
-### Minor changes
+## Minor changes
 
 - NAMESPACE updates to reflect changes in [basejump][] package.
 - Now importing `theme_paperwhite` from minimalism package.
 
-## pfgsea 0.1.0 (2019-03-23)
+# pfgsea 0.1.0 (2019-03-23)
 
 - Initial stable release.
 - Moved code to [Acid Genomics][].
 
-## pfgsea 0.0.7 (2019-03-18)
+# pfgsea 0.0.7 (2019-03-18)
 
-### Minor changes
+## Minor changes
 
 - Updated basejump and DESeqAnalysis dependencies.
 
-## pfgsea 0.0.6 (2019-03-11)
+# pfgsea 0.0.6 (2019-03-11)
 
-### Minor changes
+## Minor changes
 
 - Improved parameterized object passthrough in R Markdown template.
 - Added Travis CI and AppVeyor CI coverage.
 
-## pfgsea 0.0.5 (2019-02-04)
+# pfgsea 0.0.5 (2019-02-04)
 
-### Major changes
+## Major changes
 
 - Now exporting `FGSEAList` and `RankedList` S4 classes.
 - Reworked `plotEnrichment()`, `plotGSEATable()`, and `topTables()` to use
@@ -356,36 +356,36 @@
 - Renamed `statsList()` to `RankedList()`, and switched to S4 method approach.
 - Updated R Markdown template to reflect these function reworkings.
 
-## pfgsea 0.0.4 (2019-01-15)
+# pfgsea 0.0.4 (2019-01-15)
 
-### Minor changes
+## Minor changes
 
 - Documentation fixes and other code cleanup to pass lintr checks.
 
-## pfgsea 0.0.3 (2018-12-17)
+# pfgsea 0.0.3 (2018-12-17)
 
-### New functions
+## New functions
 
 - statsList: Return preranked GSEA stats list.
 
-### Major changes
+## Major changes
 
 - Added FGSEA R Markdown template.
 
-## pfgsea 0.0.2 (2018-12-14)
+# pfgsea 0.0.2 (2018-12-14)
 
-### Major changes
+## Major changes
 
 - Switched to using goalie for assert checks instead of assertive.
 
-### Minor changes
+## Minor changes
 
 - Added README.
 - Set up lintr checks.
 - Set up pkgdown website.
 - Miscellaneous documentation improvements.
 
-## pfgsea 0.0.1 (2018-11-26)
+# pfgsea 0.0.1 (2018-11-26)
 
 Initial release.
 
