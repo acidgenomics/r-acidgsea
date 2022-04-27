@@ -8,21 +8,25 @@
 #' @inheritParams RankedList
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
-#' @param nPerm `integer(1)`.
-#'   Number of permutations.
-#'   Minimial possible nominal *P* value is about 1/`nPerm`.
-#' @param minSize `integer(1)`.
-#'   Minimal size of a gene set to test.
-#'   All pathways below the threshold are excluded.
-#' @param maxSize `integer(1)`/`Inf`.
-#'   Maximal size of a gene set to test.
-#'   All pathways above the threshold are excluded.
-#' @param alphaThreshold `numeric(1)`.
-#'   Alpha level cutoff.
-#'   Stored internally in [alphaThreshold()].
-#'   Applied only to plots and enriched gene set exports, but does not affect
-#'   the actual GSEA enrichment calculation.
 #' @param ... Additional arguments.
+#'
+#' @param nPerm `integer(1)`.
+#' Number of permutations.
+#' Minimial possible nominal *P* value is about 1/`nPerm`.
+#'
+#' @param minSize `integer(1)`.
+#' Minimal size of a gene set to test.
+#' All pathways below the threshold are excluded.
+#'
+#' @param maxSize `integer(1)`/`Inf`.
+#' Maximal size of a gene set to test.
+#' All pathways above the threshold are excluded.
+#'
+#' @param alphaThreshold `numeric(1)`.
+#' Alpha level cutoff.
+#' Stored internally in [alphaThreshold()].
+#' Applied only to plots and enriched gene set exports, but does not affect
+#' the actual GSEA enrichment calculation.
 #'
 #' @return `FGSEAList`.
 #'
@@ -47,15 +51,13 @@ NULL
 
 
 ## Updated 2021-10-20.
-`FGSEAList,RankedList` <-  # nolint
-    function(
-        object,
-        geneSetFiles,
-        nPerm = 1000L,
-        minSize = 15L,
-        maxSize = 500L,
-        alphaThreshold = 0.05
-    ) {
+`FGSEAList,RankedList` <- # nolint
+    function(object,
+             geneSetFiles,
+             nPerm = 1000L,
+             minSize = 15L,
+             maxSize = 500L,
+             alphaThreshold = 0.05) {
         validObject(object)
         assert(
             allAreFiles(geneSetFiles),
@@ -125,14 +127,12 @@ NULL
 
 
 ## Updated 2021-10-20.
-`FGSEAList,DESeqResults` <-  # nolint
-    function(
-        object,
-        keyType = c("geneName", "geneId"),
-        value = c("stat", "log2FoldChange", "padj"),
-        rowRanges,
-        ...
-    ) {
+`FGSEAList,DESeqResults` <- # nolint
+    function(object,
+             keyType = c("geneName", "geneId"),
+             value = c("stat", "log2FoldChange", "padj"),
+             rowRanges,
+             ...) {
         validObject(object)
         rl <- RankedList(
             object = object,
@@ -146,13 +146,11 @@ NULL
 
 
 ## Updated 2021-10-20.
-`FGSEAList,DESeqAnalysis` <-  # nolint
-    function(
-        object,
-        keyType = c("entrezId", "geneName"),
-        value = c("stat", "log2FoldChange", "padj"),
-        ...
-    ) {
+`FGSEAList,DESeqAnalysis` <- # nolint
+    function(object,
+             keyType = c("entrezId", "geneName"),
+             value = c("stat", "log2FoldChange", "padj"),
+             ...) {
         validObject(object)
         rl <- RankedList(
             object = object,

@@ -17,49 +17,46 @@ NULL
 
 
 ## Updated 2021-10-19.
-.resultsForAllContrasts <- function(
-    object,
-    collection
-) {
-    assert(
-        is(object, "FGSEAList"),
-        isString(collection)
-    )
-    df <- do.call(
-        what = rbind,
-        args = lapply(
-            X = contrastNames(object),
-            FUN = function(contrast) {
-                df <- results(
-                    object = object,
-                    contrast = contrast,
-                    collection = collection
-                )
-                df[["contrast"]] <- contrast
-                df
-            }
+.resultsForAllContrasts <-
+    function(object,
+             collection) {
+        assert(
+            is(object, "FGSEAList"),
+            isString(collection)
         )
-    )
-    assert(
-        is(df, "DataFrame"),
-        isSubset(
-            x = c("nes", "padj", "pathway"),
-            y = colnames(df)
+        df <- do.call(
+            what = rbind,
+            args = lapply(
+                X = contrastNames(object),
+                FUN = function(contrast) {
+                    df <- results(
+                        object = object,
+                        contrast = contrast,
+                        collection = collection
+                    )
+                    df[["contrast"]] <- contrast
+                    df
+                }
+            )
         )
-    )
-    metadata(df)[["collection"]] <- collection
-    df
-}
+        assert(
+            is(df, "DataFrame"),
+            isSubset(
+                x = c("nes", "padj", "pathway"),
+                y = colnames(df)
+            )
+        )
+        metadata(df)[["collection"]] <- collection
+        df
+    }
 
 
 
 ## Updated 2021-10-19.
-`results,FGSEAList` <-  # nolint
-    function(
-        object,
-        contrast,
-        collection
-    ) {
+`results,FGSEAList` <- # nolint
+    function(object,
+             contrast,
+             collection) {
         validObject(object)
         assert(
             isScalar(contrast),

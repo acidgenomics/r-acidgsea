@@ -5,7 +5,7 @@
 
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2022-03-11.
+#' @note Updated 2022-04-27.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -37,13 +37,11 @@ NULL
 ## DepMapAnalysis integration, so we need to think about improving this....
 
 ## Updated 2022-03-11.
-`.RankedList,DataFrame` <-  # nolint
-    function(
-        object,
-        rowRanges,
-        keyType = c("geneName", "entrezId"),
-        value
-    ) {
+`.RankedList,DataFrame` <- # nolint
+    function(object,
+             rowRanges,
+             keyType = c("geneName", "entrezId"),
+             value) {
         validObject(object)
         validObject(rowRanges)
         ensemblPattern <- "^ENSG[[:digit:]]{11}"
@@ -220,13 +218,11 @@ NULL
 
 
 ## Updated 2021-10-20.
-`RankedList,DESeqResults` <-  # nolint
-    function(
-        object,
-        rowRanges,
-        keyType = c("geneName", "entrezId"),
-        value = c("stat", "log2FoldChange", "padj")
-    ) {
+`RankedList,DESeqResults` <- # nolint
+    function(object,
+             rowRanges,
+             keyType = c("geneName", "entrezId"),
+             value = c("stat", "log2FoldChange", "padj")) {
         validObject(object)
         keyType <- match.arg(keyType)
         value <- match.arg(value)
@@ -251,12 +247,10 @@ NULL
 
 
 ## Updated 2021-10-20.
-`RankedList,DESeqAnalysis` <-  # nolint
-    function(
-        object,
-        keyType = c("geneName", "entrezId"),
-        value = c("stat", "log2FoldChange", "padj")
-    ) {
+`RankedList,DESeqAnalysis` <- # nolint
+    function(object,
+             keyType = c("geneName", "entrezId"),
+             value = c("stat", "log2FoldChange", "padj")) {
         validObject(object)
         keyType <- match.arg(keyType)
         value <- match.arg(value)
@@ -302,7 +296,7 @@ NULL
 
 
 ## Updated 2021-10-20.
-`RankedList,FGSEAList` <-  # nolint
+`RankedList,FGSEAList` <- # nolint
     function(object) {
         rl <- metadata(object)[["rankedList"]]
         assert(

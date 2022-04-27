@@ -23,7 +23,7 @@ NULL
 
 
 ## Updated 2020-09-17.
-`combine,FGSEAList` <-  # nolint
+`combine,FGSEAList` <- # nolint
     function(x, y) {
         validObject(x)
         validObject(y)

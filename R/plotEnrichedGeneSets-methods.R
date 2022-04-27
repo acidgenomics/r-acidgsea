@@ -19,14 +19,12 @@ NULL
 
 
 ## Modified 2020-09-21.
-`plotEnrichedGeneSets,FGSEAList` <-  # nolint
-    function(
-        object,
-        collection,
-        direction = c("both", "up", "down"),
-        n = 10L,
-        headerLevel = 3L
-    ) {
+`plotEnrichedGeneSets,FGSEAList` <- # nolint
+    function(object,
+             collection,
+             direction = c("both", "up", "down"),
+             n = 10L,
+             headerLevel = 3L) {
         validObject(object)
         assert(
             isString(collection),
@@ -47,14 +45,12 @@ NULL
                 direction = direction,
                 n = n
             ),
-            FUN = function(
-                contrast,
-                data,
-                alphaThreshold,
-                nesThreshold,
-                direction,
-                n
-            ) {
+            FUN = function(contrast,
+                           data,
+                           alphaThreshold,
+                           nesThreshold,
+                           direction,
+                           n) {
                 markdownHeader(
                     text = contrast,
                     level = headerLevel,
@@ -72,7 +68,7 @@ NULL
                     nesCol = "NES"
                 )
                 if (!hasLength(sets)) {
-                    return(invisible(NULL))  # nocov
+                    return(invisible(NULL)) # nocov
                 }
                 ## Using an `mapply()` call here so we can pass the pathway
                 ## names in easily into the `markdownHeader()` call.
@@ -83,12 +79,10 @@ NULL
                         contrast = contrast,
                         headerLevel = headerLevel + 1L
                     ),
-                    FUN = function(
-                        set,
-                        collection,
-                        contrast,
-                        headerLevel
-                    ) {
+                    FUN = function(set,
+                                   collection,
+                                   contrast,
+                                   headerLevel) {
                         markdownHeader(set, level = headerLevel, asis = TRUE)
                         p <- plotGeneSet(
                             object,

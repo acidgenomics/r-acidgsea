@@ -16,7 +16,7 @@ NULL
 
 
 ## Updated 2020-09-22.
-`show,FGSEAList` <-  # nolint
+`show,FGSEAList` <- # nolint
     function(object) {
         showHeader(object)
         list <- list(

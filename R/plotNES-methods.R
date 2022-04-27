@@ -22,20 +22,18 @@ NULL
 
 
 ## Updated 2021-10-19.
-`plotNES,FGSEAList` <-  # nolint
-    function(
-        object,
-        contrast,
-        collection,
-        flip = getOption(
-            x = "acid.flip",
-            default = TRUE
-        ),
-        labels = list(
-            title = TRUE,
-            subtitle = NULL
-        )
-    ) {
+`plotNES,FGSEAList` <- # nolint
+    function(object,
+             contrast,
+             collection,
+             flip = getOption(
+                 x = "acid.flip",
+                 default = TRUE
+             ),
+             labels = list(
+                 title = TRUE,
+                 subtitle = NULL
+             )) {
         validObject(object)
         multiContrast <- FALSE
         assert(
@@ -110,8 +108,8 @@ NULL
                 autoDiscreteColorScale() +
                 scale_shape_manual(
                     values = c(
-                        "FALSE" = 1L,  # open circle
-                        "TRUE" = 16L  # filled circle
+                        "FALSE" = 1L, # open circle
+                        "TRUE" = 16L # filled circle
                     )
                 )
         } else {

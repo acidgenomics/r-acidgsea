@@ -4,12 +4,14 @@
 #'
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
-#' @param contrast `character` or `NULL`.
-#'   Contrast name.
-#'   If `NULL`, plot all contrasts.
-#' @param points `logical(1)`.
-#'   Show individual data points.
 #' @param ... Additional arguments.
+#'
+#' @param contrast `character` or `NULL`.
+#' Contrast name.
+#' If `NULL`, plot all contrasts.
+#'
+#' @param points `logical(1)`.
+#' Show individual data points.
 #'
 #' @examples
 #' ## FGSEAList ====
@@ -24,19 +26,17 @@ NULL
 
 
 ## Updated 2021-09-10.
-`plotLFC,FGSEAList` <-  # nolint
-    function(
-        object,
-        contrast = NULL,
-        collection,
-        set,
-        geom = c("boxplot", "boxplot"),
-        points = TRUE,
-        labels = list(
-            "title" = "log2 fold change",
-            "subtitle" = NULL
-        )
-    ) {
+`plotLFC,FGSEAList` <- # nolint
+    function(object,
+             contrast = NULL,
+             collection,
+             set,
+             geom = c("boxplot", "boxplot"),
+             points = TRUE,
+             labels = list(
+                 "title" = "log2 fold change",
+                 "subtitle" = NULL
+             )) {
         validObject(object)
         if (is.null(contrast)) {
             contrast <- contrastNames(object)

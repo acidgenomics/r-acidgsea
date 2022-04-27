@@ -17,12 +17,10 @@ NULL
 
 
 ## Updated 2021-02-17.
-`plotEnrichedUpset,FGSEAList` <-  # nolint
-    function(
-        object,
-        collection,
-        direction = c("both", "up", "down")
-    ) {
+`plotEnrichedUpset,FGSEAList` <- # nolint
+    function(object,
+             collection,
+             direction = c("both", "up", "down")) {
         validObject(object)
         direction <- match.arg(direction)
         args <- list(

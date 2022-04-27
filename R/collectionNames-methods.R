@@ -12,7 +12,7 @@ NULL
 
 
 ## Updated 2019-07-24.
-`collectionNames,FGSEAList` <-  # nolint
+`collectionNames,FGSEAList` <- # nolint
     function(object) {
         names(object)
     }
@@ -20,7 +20,7 @@ NULL
 
 
 ## Updated 2020-09-17.
-`collectionNames<-,FGSEAList,character` <-  # nolint
+`collectionNames<-,FGSEAList,character` <- # nolint
     function(object, value) {
         assert(
             isCharacter(value),

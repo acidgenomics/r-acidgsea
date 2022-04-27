@@ -13,7 +13,7 @@ NULL
 
 
 ## Updated 2020-08-05.
-`nesThreshold,FGSEAList` <-  # nolint
+`nesThreshold,FGSEAList` <- # nolint
     function(object) {
         value <- metadata(object)[["nesThreshold"]]
         if (is.null(value)) {
@@ -26,7 +26,7 @@ NULL
 
 
 ## Updated 2020-08-05.
-`nesThreshold<-,FGSEAList,numeric` <-  # nolint
+`nesThreshold<-,FGSEAList,numeric` <- # nolint
     function(object, value) {
         assert(isNumber(value), isNonNegative(value))
         metadata(object)[["nesThreshold"]] <- value

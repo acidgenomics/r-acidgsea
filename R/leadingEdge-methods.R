@@ -16,13 +16,11 @@ NULL
 
 
 ## Updated 2020-09-21.
-`leadingEdge,FGSEAList` <-  # nolint
-    function(
-        object,
-        contrast,
-        collection,
-        set
-    ) {
+`leadingEdge,FGSEAList` <- # nolint
+    function(object,
+             contrast,
+             collection,
+             set) {
         validObject(object)
         assert(
             isString(contrast),

@@ -11,7 +11,7 @@ NULL
 
 
 ## Updated 2021-02-16.
-`Gene2Symbol,RankedList` <-  # nolint
+`Gene2Symbol,RankedList` <- # nolint
     function(object) {
         validObject(object)
         g2s <- metadata(object)[["gene2symbol"]]
@@ -45,7 +45,7 @@ NULL
 
 
 ## Updated 2020-09-23.
-`Gene2Symbol,FGSEAList` <-  # nolint
+`Gene2Symbol,FGSEAList` <- # nolint
     function(object) {
         Gene2Symbol(RankedList(object))
     }

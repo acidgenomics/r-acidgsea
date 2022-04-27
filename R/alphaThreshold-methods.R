@@ -13,7 +13,7 @@ NULL
 
 
 ## Updated 2020-08-05.
-`alphaThreshold,FGSEAList` <-  # nolint
+`alphaThreshold,FGSEAList` <- # nolint
     function(object) {
         value <- metadata(object)[["alpha"]]
         assert(isAlpha(value))
@@ -23,7 +23,7 @@ NULL
 
 
 ## Updated 2020-08-05.
-`alphaThreshold<-,FGSEAList,numeric` <-  # nolint
+`alphaThreshold<-,FGSEAList,numeric` <- # nolint
     function(object, value) {
         assert(isAlpha(value))
         metadata(object)[["alpha"]] <- value
