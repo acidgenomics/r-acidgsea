@@ -1,8 +1,14 @@
 context("plotEnrichedGeneSets")
 
 test_that("FGSEAList", {
+    object <- fgsea
+    collection <- collectionNames(object)[[1L]]
     output <- capture.output({
-        plotEnrichedGeneSets(fgsea, collection = "h", n = 1L)
+        plotEnrichedGeneSets(
+            object = object,
+            collection = collection,
+            n = 1L
+        )
     })
     expect_identical(
         object = output[[3L]],

@@ -1,10 +1,13 @@
 context("geneSet")
 
 test_that("FGSEAList", {
-    object <- geneSet(
-        object = fgsea,
-        collection = "h",
-        set = "HALLMARK_P53_PATHWAY"
+    object <- fgsea
+    collection <- collectionNames(object)[[1L]]
+    set <- geneSetNames(object = object, collection = collection)[[1L]]
+    x <- geneSet(
+        object = object,
+        collection = collection,
+        set = set
     )
-    expect_is(object, "character")
+    expect_is(x, "character")
 })

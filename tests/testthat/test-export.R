@@ -14,17 +14,17 @@ test_that("New 'con' BiocIO approach, instead of deprecated 'dir'", {
         object = out,
         expected = list(
             "condition_B_vs_A" = list(
-                "h" = realpath(file.path(
+                "h_all_v7_0_symbols" = realpath(file.path(
                     prefix,
                     "condition_B_vs_A",
-                    "h.csv"
+                    "h_all_v7_0_symbols.csv"
                 ))
             ),
             "treatment_D_vs_C" = list(
-                "h" = realpath(file.path(
+                "h_all_v7_0_symbols" = realpath(file.path(
                     prefix,
                     "treatment_D_vs_C",
-                    "h.csv"
+                    "h_all_v7_0_symbols.csv"
                 ))
             )
         )
@@ -43,32 +43,27 @@ test_that("New 'con' BiocIO approach, instead of deprecated 'dir'", {
                 "condition_B_vs_A",
                 "treatment_D_vs_C"
             ),
-            "h.csv"
+            "h_all_v7_0_symbols.csv"
         )
     )))
-    df <- import(file.path(prefix, "condition_B_vs_A", "h.csv"))
+    df <- import(con = file.path(
+        prefix,
+        "condition_B_vs_A",
+        "h_all_v7_0_symbols.csv"
+    ))
     l <- as.list(df[1L, ])
     expect_identical(
         object = l[c("pathway", "leadingEdge")],
         expected = list(
             "pathway" = "HALLMARK_G2M_CHECKPOINT",
             "leadingEdge" = toString(c(
-                "E2F2",
-                "ARID4A",
-                "UPF1",
-                "MNAT1",
-                "PAFAH1B1",
-                "CUL1",
-                "POLQ",
-                "TACC3",
                 "DBF4",
-                "HMGB3",
+                "UPF1",
                 "CDC27",
-                "FOXN3",
-                "SLC12A2",
-                "POLA2",
-                "LIG3",
-                "CUL3"
+                "POLQ",
+                "ARID4A",
+                "PAFAH1B1",
+                "MNAT1"
             ))
         )
     )
@@ -87,17 +82,17 @@ test_that("Deprecated : 'dir' argument, no 'name'", {
         object = out,
         expected = list(
             "condition_B_vs_A" = list(
-                "h" = realpath(file.path(
+                "h_all_v7_0_symbols" = realpath(file.path(
                     prefix,
                     "condition_B_vs_A",
-                    "h.csv"
+                    "h_all_v7_0_symbols.csv"
                 ))
             ),
             "treatment_D_vs_C" = list(
-                "h" = realpath(file.path(
+                "h_all_v7_0_symbols" = realpath(file.path(
                     prefix,
                     "treatment_D_vs_C",
-                    "h.csv"
+                    "h_all_v7_0_symbols.csv"
                 ))
             )
         )
@@ -116,7 +111,7 @@ test_that("Deprecated : 'dir' argument, no 'name'", {
                 "condition_B_vs_A",
                 "treatment_D_vs_C"
             ),
-            "h.csv"
+            "h_all_v7_0_symbols.csv"
         )
     )))
     unlink(testdir, recursive = TRUE)

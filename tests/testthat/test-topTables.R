@@ -3,10 +3,11 @@ context("topTables")
 test_that("FGSEAList", {
     object <- fgsea
     alphaThreshold(object) <- 0.99
+    collection <- collectionNames(object)[[1L]]
     output <- capture.output({
         topTables(
             object = object,
-            collection = "h"
+            collection = collection
         )
     })
     output <- toString(output)

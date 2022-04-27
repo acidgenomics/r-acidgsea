@@ -2,10 +2,11 @@ context("enrichedGeneSets : FGSEAList")
 
 object <- fgsea
 alphaThreshold(object) <- 0.7
+collection <- collectionNames(object)[[1L]]
 
 args <- list(
     object = object,
-    collection = "h"
+    collection = collection
 )
 
 test_that("Upregulated gene sets", {
