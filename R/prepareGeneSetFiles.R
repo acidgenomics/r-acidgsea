@@ -33,34 +33,38 @@
 #' )
 #' files <- prepareGeneSetFiles(dir, keyType = "geneName")
 #' print(files)
-prepareGeneSetFiles <- function(dir,
-                                keyType = c("geneName", "entrezId"),
-                                ext = "gmt",
-                                recursive = FALSE) {
+prepareGeneSetFiles <-
+    function(dir,
+             keyType = c("geneName", "entrezId"),
+             ext = "gmt",
+             recursive = FALSE) {
     assert(
         isADir(dir),
         isString(ext),
         isFlag(recursive)
     )
     keyType <- match.arg(keyType)
+    keyType2 <- switch(
+        EXPR = keyType,
+        "entrezId" = "entrez",
+        "geneName" = "symbols"
+    )
     dir <- realpath(dir)
     files <- sort(list.files(
         path = dir,
-        pattern = paste0("*.", keyType, "\\.", ext, "$"),
+        pattern = paste0("*.", keyType2, "\\.", ext, "$"),
         full.names = TRUE,
         recursive = recursive,
         ignore.case = TRUE
     ))
+    assert(
+        hasLength(xxx),
+        msg = sprintf(
+            "Failed to detect any gene sets in {.dir %s}.",
+            dir
+        )
+    )
     files <- realpath(files)
-    if (!hasLength(files)) {
-        abort(sprintf(
-            fmt = paste(
-                "Failed to locate %s files matching",
-                "{.arg %s} {.val %s} in {.path %s}."
-            ),
-            toupper(ext), "keyType", keyType, dir
-        ))
-    }
     alertInfo(sprintf(
         "Detected %d %s %s of {.var %s} {.val %s} in {.path %s}.",
         length(files),

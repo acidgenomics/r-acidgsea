@@ -1,3 +1,7 @@
+## FIXME Inform / error if too many genes in gene set aren't defined...
+
+
+
 #' Parameterized fast gene set enrichment analysis (GSEA)
 #'
 #' Extends the functionality of [fgsea::fgsea()].
