@@ -3,7 +3,7 @@ Title: Acid Genomics GSEA
 Description: Perform parameterized gene set enrichment analysis (GSEA)
     on multiple differential expression contrasts.
 Version: 0.7.1.9000
-Date: 2022-04-27
+Date: 2022-04-28
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
@@ -24,33 +24,33 @@ Encoding: UTF-8
 LazyData: false
 Depends: R (>= 4.2)
 Imports:
-    AcidBase (>= 0.5.0),
-    AcidCLI (>= 0.2.0),
-    AcidExperiment (>= 0.3.0),
-    AcidGenerics (>= 0.6.0),
-    AcidGenomes (>= 0.3.0),
-    AcidMarkdown (>= 0.1.6),
-    AcidPlots (>= 0.4.0),
-    AcidPlyr (>= 0.2.0),
+    AcidBase,
+    AcidCLI,
+    AcidExperiment,
+    AcidGenerics,
+    AcidGenomes,
+    AcidMarkdown,
+    AcidPlots,
+    AcidPlyr,
     BiocGenerics,
-    DESeqAnalysis (>= 0.4.5),
+    DESeqAnalysis,
     GenomeInfoDb,
     IRanges,
     S4Vectors,
     SummarizedExperiment,
     fgsea,
     ggplot2,
-    goalie (>= 0.6.0),
+    goalie,
     methods,
-    pipette (>= 0.8.1),
+    pipette,
     sessioninfo,
     stats,
-    syntactic (>= 0.5.1),
+    syntactic,
     utils
 Suggests:
-    AcidTest (>= 0.5.0),
+    AcidTest,
     BiocParallel,
-    basejump (>= 0.15.0),
+    basejump,
     knitr,
     rmarkdown,
     testthat
