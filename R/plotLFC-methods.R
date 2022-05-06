@@ -74,9 +74,8 @@ NULL
         )
         assert(is.matrix(lfc))
         rownames(lfc) <- rownames(list[[1L]])
-        data <- as_tibble(melt(lfc))
         p <- ggplot(
-            data = data,
+            data = as.data.frame(data),
             mapping = aes(
                 x = !!sym("colname"),
                 y = !!sym("value")
