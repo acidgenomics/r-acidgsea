@@ -1,3 +1,10 @@
+# AcidGSEA 0.8.0 (2022-05-06)
+
+## Major changes
+
+- Package now requires R 4.2 / Bioconductor 3.15.
+- Compatibility fixes for breaking changes in pipette package.
+
 # AcidGSEA 0.7.0 (2022-04-27)
 
 ## Major changes
