@@ -1,8 +1,3 @@
-## FIXME This needs to put the adjusted P value in the plot subtitle.
-## When showing this, also include the alpha cutoff.
-
-
-
 #' @name plotGeneSet
 #' @inherit AcidGenerics::plotGeneSet
 #' @note Updated 2021-02-17.
