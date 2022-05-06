@@ -38,7 +38,6 @@ NULL
 
 ## S3 generics =================================================================
 
-#' @importFrom pipette as_tibble
 #' @importFrom stats reorder
 NULL
 

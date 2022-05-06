@@ -69,7 +69,6 @@ NULL
                 collection = collection
             )
         }
-        data <- as_tibble(data)
         keep <- abs(data[["nes"]]) > 0L
         data <- data[keep, ]
         alpha <- alphaThreshold(object)
@@ -87,7 +86,7 @@ NULL
             no = "down"
         )
         p <- ggplot(
-            data = data,
+            data = as.data.frame(data),
             mapping = aes(
                 x = reorder(!!sym("pathway"), !!sym("nes")),
                 y = !!sym("nes")
