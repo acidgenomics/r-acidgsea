@@ -1,7 +1,3 @@
-## FIXME Need to indicate the alpha level cutoff on the plot.
-
-
-
 #' @name plotNES
 #' @inherit AcidGenerics::plotNES
 #' @note Updated 2022-04-27.

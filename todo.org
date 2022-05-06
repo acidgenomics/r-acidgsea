@@ -1,6 +1,7 @@
 #+TITLE: AcidGSEA
 #+STARTUP: content
 * Development
+** TODO Consider including alpha cutoff in subtitle for `plotGeneSet` and `plotNES`.
 ** TODO `RankedList` rework.
     - Currently expecting Ensembl-processed input here.
     - Direct NCBI Entrez/RefSeq-processed input requires package update.
@@ -30,9 +31,6 @@
     - Allow the user to input specific contrasts.
     - Also allow the user to select which pathways to plot. This is super useful for non-hallmark gene sets...
     - Allow user to pick specific gene sets from collection.
-
-
-
 ** TODO `rankedList` rework.
     - Allow the user to set how to handle duplicate identifiers / symbols here. Default behavior is to average.
     - Need to add code coverage for duplicate handling.
