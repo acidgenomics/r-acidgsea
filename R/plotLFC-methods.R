@@ -65,15 +65,15 @@ NULL
                 USE.NAMES = TRUE
             )
         })
-        lfc <- vapply(
+        data <- vapply(
             X = list,
             FUN = `[[`,
             "log2FoldChange",
             FUN.VALUE = numeric(length(list[[1L]][["log2FoldChange"]])),
             USE.NAMES = TRUE
         )
-        assert(is.matrix(lfc))
-        rownames(lfc) <- rownames(list[[1L]])
+        assert(is.matrix(data))
+        rownames(data) <- rownames(list[[1L]])
         p <- ggplot(
             data = as.data.frame(data),
             mapping = aes(
