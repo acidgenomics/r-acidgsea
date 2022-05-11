@@ -1,5 +1,5 @@
 ---
-## Updated 2022-03-11.
+## Updated 2022-05-11.
 params:
   title: "Gene Set Enrichment Analysis"
   
@@ -17,7 +17,7 @@ params:
   
   output_dir: !r file.path("results", Sys.Date(), "gsea")
   
-title: "`r params$title`"
+title: "`r params[["title"]]`"
 author: "`r getOption('author')`"
 date: "`r Sys.Date()`"
 bibliography: bibliography.bib
@@ -44,17 +44,17 @@ Note that we have switched to MSigDB 7.0 (August 2019) from 6.2.
 Import the `FGSEAList` S4 class object. This single object contains everything we need to visualize the GSEA results.
 
 ```{r load-object}
-if (is.character(params$object)) {
-    file <- params$object
+if (is.character(params[["object"]])) {
+    file <- params[["object"]]
     object <- import(file)
-    name <- params$name
+    name <- params[["name"]]
     if (!isTRUE(nzchar(name))) {
       name <- basenameSansExt(file)
     }
     rm(file)
 } else {
-    object <- params$object
-    name <- params$name
+    object <- params[["object"]]
+    name <- params[["name"]]
 }
 stopifnot(
     is(object, "FGSEAList"),
@@ -109,7 +109,7 @@ Here we are exporting the GSEA tables from the object, organized per contrast.
 export(
     object = object,
     name = name,
-    dir = params$output_dir
+    dir = params[["output_dir"]]
 )
 ```
 
@@ -125,8 +125,8 @@ The `fgsea::gmtPathways()` function will take a GMT file from MSigDb and turn it
 topTables(
     object = object,
     collection = "h",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -136,8 +136,8 @@ topTables(
 plotEnrichedGeneSets(
     object = object,
     collection = "h",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -158,8 +158,8 @@ plotEnrichedUpset(
 topTables(
     object = object,
     collection = "c1",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -169,8 +169,8 @@ topTables(
 plotEnrichedGeneSets(
     object = object,
     collection = "c1",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -191,8 +191,8 @@ plotEnrichedUpset(
 topTables(
     object = object,
     collection = "c2",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -202,8 +202,8 @@ topTables(
 plotEnrichedGeneSets(
     object = object,
     collection = "c2",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -224,8 +224,8 @@ plotEnrichedUpset(
 topTables(
     object = object,
     collection = "c3",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -235,8 +235,8 @@ topTables(
 plotEnrichedGeneSets(
     object = object,
     collection = "c3",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -257,8 +257,8 @@ plotEnrichedUpset(
 topTables(
     object = object,
     collection = "c4",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -268,8 +268,8 @@ topTables(
 plotEnrichedGeneSets(
     object = object,
     collection = "c4",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -290,8 +290,8 @@ plotEnrichedUpset(
 topTables(
     object = object,
     collection = "c5",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -301,8 +301,8 @@ topTables(
 plotEnrichedGeneSets(
     object = object,
     collection = "c5",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -323,8 +323,8 @@ plotEnrichedUpset(
 topTables(
     object = object,
     collection = "c6",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -334,8 +334,8 @@ topTables(
 plotEnrichedGeneSets(
     object = object,
     collection = "c6",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -356,8 +356,8 @@ plotEnrichedUpset(
 topTables(
     object = object,
     collection = "c7",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
@@ -367,8 +367,8 @@ topTables(
 plotEnrichedGeneSets(
     object = object,
     collection = "c7",
-    n = params$n_pathways,
-    headerLevel = 3
+    n = params[["n_pathways"]],
+    headerLevel = 3L
 )
 ```
 
