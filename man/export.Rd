@@ -68,7 +68,9 @@ Updated 2022-03-11.
 \section{On-disk structure}{
 
 
-Example:\if{html}{\out{<div class="sourceCode r">}}\preformatted{file.path("object", "mutant_vs_control", "c1.csv")
+Example:
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{file.path("object", "mutant_vs_control", "c1.csv")
 }\if{html}{\out{</div>}}
 
 S4 object is currently structured by:

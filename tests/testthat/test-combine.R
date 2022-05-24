@@ -1,5 +1,3 @@
-context("combine")
-
 test_that("FGSEAList", {
     x <- fgsea
     y <- x

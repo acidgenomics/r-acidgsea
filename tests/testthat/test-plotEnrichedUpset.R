@@ -1,5 +1,3 @@
-context("plotEnrichedUpset")
-
 test_that("FGSEAList", {
     object <- fgsea
     alphaThreshold(object) <- 0.9

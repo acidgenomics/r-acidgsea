@@ -1,5 +1,3 @@
-context("geneSet")
-
 test_that("FGSEAList", {
     object <- fgsea
     collection <- collectionNames(object)[[1L]]

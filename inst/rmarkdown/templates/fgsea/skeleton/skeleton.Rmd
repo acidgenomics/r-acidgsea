@@ -1,5 +1,5 @@
 ---
-## Updated 2022-05-11.
+## Updated 2022-05-24.
 params:
   title: "Gene Set Enrichment Analysis"
   
@@ -17,7 +17,7 @@ params:
   
   output_dir: !r file.path("results", Sys.Date(), "gsea")
   
-title: "`r params[["title"]]`"
+title: "`r params[['title']]`"
 author: "`r getOption('author')`"
 date: "`r Sys.Date()`"
 bibliography: bibliography.bib
@@ -122,7 +122,7 @@ The `fgsea::gmtPathways()` function will take a GMT file from MSigDb and turn it
 ## Top tables {.tabset}
 
 ```{r h-top-tables, results="asis"}
-topTables(
+markdownTables(
     object = object,
     collection = "h",
     n = params[["n_pathways"]],
@@ -155,7 +155,7 @@ plotEnrichedUpset(
 ## Top tables {.tabset}
 
 ```{r c1-top-tables, results="asis"}
-topTables(
+markdownTables(
     object = object,
     collection = "c1",
     n = params[["n_pathways"]],
@@ -188,7 +188,7 @@ plotEnrichedUpset(
 ## Top tables {.tabset}
 
 ```{r c2-top-tables, results="asis"}
-topTables(
+markdownTables(
     object = object,
     collection = "c2",
     n = params[["n_pathways"]],
@@ -221,7 +221,7 @@ plotEnrichedUpset(
 ## Top tables {.tabset}
 
 ```{r c3-top-tables, results="asis"}
-topTables(
+markdownTables(
     object = object,
     collection = "c3",
     n = params[["n_pathways"]],
@@ -254,7 +254,7 @@ plotEnrichedUpset(
 ## Top tables {.tabset}
 
 ```{r c4-top-tables, results="asis"}
-topTables(
+markdownTables(
     object = object,
     collection = "c4",
     n = params[["n_pathways"]],
@@ -287,7 +287,7 @@ plotEnrichedUpset(
 ## Top tables {.tabset}
 
 ```{r c5-top-tables, results="asis"}
-topTables(
+markdownTables(
     object = object,
     collection = "c5",
     n = params[["n_pathways"]],
@@ -320,7 +320,7 @@ plotEnrichedUpset(
 ## Top tables {.tabset}
 
 ```{r c6-top-tables, results="asis"}
-topTables(
+markdownTables(
     object = object,
     collection = "c6",
     n = params[["n_pathways"]],
@@ -353,7 +353,7 @@ plotEnrichedUpset(
 ## Top tables {.tabset}
 
 ```{r c7-top-tables, results="asis"}
-topTables(
+markdownTables(
     object = object,
     collection = "c7",
     n = params[["n_pathways"]],

@@ -1,18 +1,15 @@
-#' @name topTables
-#' @inherit AcidGenerics::topTables
-#' @note Requires the knitr package to be installed.
-#' @note Updated 2022-04-27.
-#'
-#' @description Top tables of significantly enriched pathways.
+#' @name markdownTables
+#' @inherit AcidGenerics::markdownTables
+#' @note Updated 2022-05-24.
 #'
 #' @details
+#' Top tables of significantly enriched pathways.
+#'
 #' Supports looping across multiple DEG results, and adds a Markdown header for
 #' each contrast.
 #'
 #' @inheritParams params
 #' @param ... Additional arguments.
-#'
-#' @return Markdown output.
 #'
 #' @examples
 #' data(fgsea)
@@ -21,7 +18,7 @@
 #' object <- fgsea
 #' alphaThreshold(object) <- 0.9
 #' collection <- collectionNames(object)[[1L]]
-#' topTables(
+#' markdownTables(
 #'     object = object,
 #'     collection = collection
 #' )
@@ -29,15 +26,15 @@ NULL
 
 
 
-## Updated 2021-02-17.
-`topTables,FGSEAList` <- # nolint
+## Updated 2022-05-24.
+`markdownTables,FGSEAList` <- # nolint
     function(object,
              collection,
              n = 10L,
              headerLevel = 3L) {
-        requireNamespaces("knitr")
-        validObject(object)
         assert(
+            requireNamespaces("knitr"),
+            validObject(object),
             isString(collection),
             isInt(n),
             isHeaderLevel(headerLevel)
@@ -68,16 +65,16 @@ NULL
         ## Loop across the contrasts.
         data <- object[[collection]]
         assert(identical(names(data), names(up)))
-        invisible(mapply(
+        invisible(Map(
             name = names(data), # contrast name
             data = data, # fgsta data.table output
             up = up, # upregulated pathways
             down = down, # downregulated pathways
             MoreArgs = list(
-                headerLevel = headerLevel,
-                n = n
+                "headerLevel" = headerLevel,
+                "n" = n
             ),
-            FUN = function(name,
+            f = function(name,
                            data,
                            up,
                            down,
@@ -125,18 +122,16 @@ NULL
                 } else {
                     alertInfo("No downregulated gene sets.") # nocov
                 }
-            },
-            SIMPLIFY = FALSE,
-            USE.NAMES = FALSE
+            }
         ))
     }
 
 
 
-#' @rdname topTables
+#' @rdname markdownTables
 #' @export
 setMethod(
-    f = "topTables",
+    f = "markdownTables",
     signature = signature(object = "FGSEAList"),
-    definition = `topTables,FGSEAList`
+    definition = `markdownTables,FGSEAList`
 )

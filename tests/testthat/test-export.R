@@ -1,5 +1,3 @@
-context("export : FGSEAList")
-
 testdir <- file.path(tempdir(), "example")
 
 test_that("New 'con' BiocIO approach, instead of deprecated 'dir'", {

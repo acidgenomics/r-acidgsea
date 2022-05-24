@@ -97,6 +97,12 @@ NULL
 #' @usage leadingEdge(object, ...)
 NULL
 
+#' @export
+#' @name markdownTables
+#' @rdname markdownTables
+#' @usage markdownTables(object, ...)
+NULL
+
 #' @aliases nesThreshold<-
 #' @export nesThreshold nesThreshold<-
 #' @name nesThreshold
@@ -146,12 +152,6 @@ NULL
 #' @name results
 #' @rdname results
 #' @usage results(object, ...)
-NULL
-
-#' @export
-#' @name topTables
-#' @rdname topTables
-#' @usage topTables(object, ...)
 NULL
 
 #' @export
