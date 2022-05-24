@@ -76,10 +76,10 @@ NULL
         txt("Contrasts:")
         ul(contrasts)
         collections <- lapply(X = geneSetFiles, FUN = import)
-        list <- mapply(
+        list <- Map(
             name = names(collections),
             pathways = collections,
-            FUN = function(name, pathways) {
+            f = function(name, pathways) {
                 dl(c("Collection" = name))
                 alertInfo(sprintf(
                     "Testing %d pathways.",
@@ -90,10 +90,10 @@ NULL
                     recursive = TRUE,
                     use.names = FALSE
                 )))
-                mapply(
+                Map(
                     contrast = contrasts,
                     stats = stats,
-                    FUN = function(contrast, stats) {
+                    f = function(contrast, stats) {
                         dl(c("Contrast" = contrast))
                         assert(areIntersectingSets(names(stats), geneIds))
                         suppressWarnings({
@@ -107,13 +107,9 @@ NULL
                         })
                         assert(is(data, "data.table"))
                         data
-                    },
-                    SIMPLIFY = FALSE,
-                    USE.NAMES = TRUE
+                    }
                 )
-            },
-            SIMPLIFY = FALSE,
-            USE.NAMES = TRUE
+            }
         )
         out <- SimpleList(list)
         metadata(out) <- list(

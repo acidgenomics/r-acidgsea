@@ -100,12 +100,12 @@ NULL
         g2e <- unlist(x = g2e, recursive = FALSE, use.names = TRUE)
         assert(
             is.integer(g2e),
-            !any(is.na(g2e))
+            !anyNA(g2e)
         )
         idx <- match(x = names(g2e), table = rownames(object))
         assert(
             identical(length(idx), length(g2e)),
-            !any(is.na(idx))
+            !anyNA(idx)
         )
         if (length(idx) < nrow(object)) {
             pctKeep <- length(idx) / nrow(object)
@@ -229,7 +229,7 @@ NULL
         x <- x[complete.cases(x), , drop = FALSE]
         x <- unique(x)
         ## Average the value per key (e.g. gene symbol), if necessary.
-        if (any(duplicated(x[[keyType]]))) {
+        if (anyDuplicated(x[[keyType]]) > 0L) {
             x[[keyType]] <- as.factor(x[[keyType]])
             dupes <- x[[keyType]][which(duplicated(x[[keyType]]))]
             dupes <- as.character(sort(unique(dupes)))

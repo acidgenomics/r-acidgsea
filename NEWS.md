@@ -1,3 +1,14 @@
+# AcidGSEA 0.8.1 (2022-05-24)
+
+## Major changes
+
+- Reworked `topTables` as `markdownTables`, following updated conventions used
+  in other Acid Genomics packages, such as AcidMarkdown and DESeqAnalysis.
+
+## Minor changes
+
+- Updated lintr checks and testthat unit tests.
+
 # AcidGSEA 0.8.0 (2022-05-06)
 
 ## Major changes

@@ -8,8 +8,8 @@ test_that("DESeqAnalysis", {
     for (value in values) {
         object <- RankedList(deseq, value = value)
         expect_s4_class(object, "RankedList")
-        expect_identical(
-            object = names(object),
+        expect_named(
+            object = object,
             expected = c("condition_B_vs_A", "treatment_D_vs_C")
         )
     }
@@ -33,8 +33,8 @@ test_that("Average values for duplicate gene symbols", {
 test_that("FGSEAList", {
     object <- RankedList(fgsea)
     expect_s4_class(object, "RankedList")
-    expect_identical(
-        object = names(object),
+    expect_named(
+        object = object,
         expected = c(
             "condition_B_vs_A",
             "treatment_D_vs_C"

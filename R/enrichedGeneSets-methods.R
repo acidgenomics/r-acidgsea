@@ -137,19 +137,17 @@ NULL
             hasNames(collection)
         )
         suppressMessages({
-            out <- mapply(
+            out <- Map(
                 object = collection,
                 MoreArgs = list(
-                    alphaThreshold = alphaThreshold,
-                    nesThreshold = nesThreshold,
-                    direction = direction,
-                    idCol = "pathway",
-                    alphaCol = "padj",
-                    nesCol = "NES"
+                    "alphaThreshold" = alphaThreshold,
+                    "nesThreshold" = nesThreshold,
+                    "direction" = direction,
+                    "idCol" = "pathway",
+                    "alphaCol" = "padj",
+                    "nesCol" = "NES"
                 ),
-                FUN = .enrichedGeneSets,
-                SIMPLIFY = FALSE,
-                USE.NAMES = TRUE
+                f = .enrichedGeneSets
             )
         })
         out

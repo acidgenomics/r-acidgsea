@@ -36,7 +36,7 @@ NULL
         ## Subset first keeping duplicates, so we can inform the user.
         keep <- g2s[["geneName"]] %in% names(rl)
         g2s <- g2s[keep, , drop = FALSE]
-        if (any(duplicated(g2s[["geneName"]]))) {
+        if (anyDuplicated(g2s[["geneName"]]) > 0L) {
             n <- sum(duplicated(g2s[["geneName"]]))
             alertWarning(sprintf(
                 "%d duplicate gene %s detected. Returning first gene ID match.",
@@ -50,7 +50,7 @@ NULL
         }
         ## Now keep only the first gene ID match.
         idx <- match(x = names(rl), table = g2s[["geneName"]])
-        assert(!any(is.na(idx)))
+        assert(!anyNA(idx))
         g2s <- g2s[idx, , drop = FALSE]
         rownames(g2s) <- NULL
         assert(is(g2s, "Gene2Symbol"))

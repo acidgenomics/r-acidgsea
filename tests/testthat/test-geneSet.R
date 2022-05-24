@@ -7,5 +7,5 @@ test_that("FGSEAList", {
         collection = collection,
         set = set
     )
-    expect_is(x, "character")
+    expect_type(x, "character")
 })

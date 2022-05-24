@@ -53,16 +53,14 @@ NULL
         geom <- match.arg(geom)
         labels <- matchLabels(labels)
         suppressMessages({
-            list <- mapply(
+            list <- Map(
                 contrast = contrast,
-                FUN = geneSetResults,
+                f = geneSetResults,
                 MoreArgs = list(
                     "object" = object,
                     "collection" = collection,
                     "set" = set
-                ),
-                SIMPLIFY = FALSE,
-                USE.NAMES = TRUE
+                )
             )
         })
         lfc <- vapply(
