@@ -1,5 +1,3 @@
-context("RankedList")
-
 values <- eval(methodFormals(
     f = "RankedList",
     signature = "DESeqAnalysis",

@@ -1,5 +1,3 @@
-context("collectionNames")
-
 test_that("FGSEAList", {
     expect_identical(
         object = collectionNames(fgsea),

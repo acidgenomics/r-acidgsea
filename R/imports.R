@@ -11,9 +11,9 @@ NULL
 #' as.DESeqDataSet as.DataFrame camelCase collectionNames collectionNames<-
 #' contrastName contrastNames contrastNames<- contrastSamples convertToHuman
 #' enrichedGeneSets geneSet geneSetNames geneSetResults leadingEdge leftJoin
-#' makeNames mapGenesToRownames melt nesThreshold nesThreshold<-
+#' makeNames mapGenesToRownames markdownTables melt nesThreshold nesThreshold<-
 #' plotEnrichedGeneSets plotEnrichedUpset plotGeneSet plotHeatmap plotLFC
-#' plotNES plotUpset results selectIf showHeader snakeCase topTables
+#' plotNES plotUpset results selectIf showHeader snakeCase
 #' @importFrom BiocGenerics %in% combine lapply order organism unique unlist
 #' unsplit updateObject
 #' @importFrom GenomeInfoDb genome seqnames

@@ -1,5 +1,3 @@
-context("FGSEAList")
-
 data(
     deseq,
     package = "DESeqAnalysis",
