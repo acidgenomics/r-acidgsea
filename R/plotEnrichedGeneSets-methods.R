@@ -54,11 +54,11 @@ NULL
                 "n" = n
             ),
             f = function(contrast,
-                           data,
-                           alphaThreshold,
-                           nesThreshold,
-                           direction,
-                           n) {
+                         data,
+                         alphaThreshold,
+                         nesThreshold,
+                         direction,
+                         n) {
                 markdownHeader(
                     text = contrast,
                     level = headerLevel,
@@ -88,9 +88,9 @@ NULL
                         "headerLevel" = headerLevel + 1L
                     ),
                     f = function(set,
-                                   collection,
-                                   contrast,
-                                   headerLevel) {
+                                 collection,
+                                 contrast,
+                                 headerLevel) {
                         markdownHeader(set, level = headerLevel, asis = TRUE)
                         p <- plotGeneSet(
                             object,
