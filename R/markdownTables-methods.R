@@ -75,11 +75,11 @@ NULL
                 "n" = n
             ),
             f = function(name,
-                           data,
-                           up,
-                           down,
-                           n,
-                           headerLevel) {
+                         data,
+                         up,
+                         down,
+                         n,
+                         headerLevel) {
                 idCol <- "pathway"
                 dropCols <- c("ES", "nMoreExtreme", "pval")
                 markdownHeader(
