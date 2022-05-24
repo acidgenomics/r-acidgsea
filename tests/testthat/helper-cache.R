@@ -7,8 +7,8 @@ files <- c(
     "h.all.v7.0.symbols.gmt",
     "mm_deseq.rds"
 )
-mapply(
-    FUN = function(remoteDir, file, envir) {
+Map(
+    f = function(remoteDir, file, envir) {
         destfile <- file.path("cache", file)
         if (!file.exists(destfile)) {
             utils::download.file(
@@ -19,7 +19,7 @@ mapply(
     },
     file = files,
     MoreArgs = list(
-        remoteDir = AcidGSEATestsURL,
-        envir = environment()
+        "remoteDir" = AcidGSEATestsURL,
+        "envir" = environment()
     )
 )

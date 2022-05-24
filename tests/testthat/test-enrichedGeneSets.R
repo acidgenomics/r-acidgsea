@@ -29,12 +29,12 @@ test_that("Enriched in both directions", {
         args = c(args, direction = "both")
     )
     expect_type(object, "list")
-    expect_identical(
-        object = names(object),
+    expect_named(
+        object = object,
         expected = c(
             "condition_B_vs_A",
             "treatment_D_vs_C"
         )
     )
-    expect_is(object[[1L]], "character")
+    expect_type(object[[1L]], "character")
 })

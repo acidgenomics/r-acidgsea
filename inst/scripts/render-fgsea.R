@@ -1,15 +1,16 @@
 ## Render multiple fast GSEA reports.
-## Updated 2020-03-18.
-
-library(rmarkdown)
-
+## Updated 2022-05-24.
+## nolint start
+suppressPackageStartupMessages({
+    library(rmarkdown)
+})
+## nolint end
 templateFile <- "fgsea.Rmd"
 stopifnot(file.exists(templateFile))
-
 ## Load the FGSEAList objects.
 datasets <- c(
-    name1 = "fgsealist1",
-    name2 = "fgsealist2"
+    "name1" = "fgsealist1",
+    "name2" = "fgsealist2"
 )
 objectFiles <- file.path(
     "rds",
@@ -18,13 +19,11 @@ objectFiles <- file.path(
 )
 names(objectFiles) <- names(datasets)
 stopifnot(all(file.exists(objectFiles)))
-
 outputDir <- file.path("results", Sys.Date(), "fgsea")
-
-invisible(mapply(
+invisible(Map(
     name = names(objectFiles),
     file = objectFiles,
-    FUN = function(name, file) {
+    f = function(name, file) {
         message(sprintf(
             "Rendering '%s'\nFile: %s",
             name, file
@@ -43,7 +42,5 @@ invisible(mapply(
             clean = TRUE,
             envir = new.env()
         )
-    },
-    SIMPLIFY = FALSE,
-    USE.NAMES = FALSE
+    }
 ))

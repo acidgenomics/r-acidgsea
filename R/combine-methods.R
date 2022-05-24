@@ -46,19 +46,17 @@ NULL
             ),
             areDisjointSets(
                 x = names(metadata(x)[["rankedList"]]),
-                y = names(metadata(y)[["rankedList"]]),
+                y = names(metadata(y)[["rankedList"]])
             )
         )
         ## Update the `listData` slot. Note that using `c()` directly here as
         ## `FUN` argument will prefix with `x.` and `y.`, which we don't want.
-        listData <- mapply(
+        listData <- Map(
             x = slot(x, "listData"),
             y = slot(y, "listData"),
-            FUN = function(x, y) {
+            f = function(x, y) {
                 c(x, y)
-            },
-            SIMPLIFY = FALSE,
-            USE.NAMES = TRUE
+            }
         )
         ## Update the `rankedList` data stashed in `metadata`.
         rankedList <- c(

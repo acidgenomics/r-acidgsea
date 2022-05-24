@@ -1,14 +1,16 @@
+## nolint start
 suppressPackageStartupMessages({
     library(devtools)
     library(usethis)
     library(goalie)
-    library(basejump) # 0.14.17
-    library(DESeq2) # 1.30.1
-    library(DESeqAnalysis) # 0.4.0
+    library(basejump)
+    library(DESeq2)
+    library(DESeqAnalysis)
 })
+## nolint end
 load_all()
 ## Restrict to 3 MB.
-limit <- structure(3e6, class = "object_size")
+limit <- structure(3e6L, class = "object_size")
 gr <- makeGRangesFromEnsembl(
     organism = "Homo sapiens",
     level = "genes",
@@ -22,17 +24,10 @@ gr <- droplevels2(gr)
 mcols(gr) <- mcols(gr)[c("geneId", "geneName")]
 ## DESeqDataSet
 dds <- makeExampleDESeqDataSet(n = length(gr), m = 12L)
-dds$treatment <- as.factor(x = rep(c("C", "D"), each = 3L))
+colData(dds)[["treatment"]] <- as.factor(x = rep(c("C", "D"), each = 3L))
 design(dds) <- ~ condition + treatment + condition:treatment
 rowRanges(dds) <- gr
 dds <- DESeq(dds)
-## > dds$condition
-## [1] A A A A A A B B B B B B
-## Levels: A B
-## > dds$treatment
-## [1] C C C D D D C C C D D D
-## Levels: C D
-## DESeqTransform
 dt <- varianceStabilizingTransformation(dds)
 contrasts <- list(
     "condition_B_vs_A" = c(
@@ -46,12 +41,10 @@ contrasts <- list(
         denominator = "C"
     )
 )
-res <- mapply(
-    FUN = DESeq2::results,
+res <- Map(
+    f = DESeq2::results,
     contrast = contrasts,
-    MoreArgs = list(object = dds),
-    SIMPLIFY = FALSE,
-    USE.NAMES = TRUE
+    MoreArgs = list("object" = dds)
 )
 ## DESeqAnalysis
 deseq <- DESeqAnalysis(

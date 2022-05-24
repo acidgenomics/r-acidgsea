@@ -44,16 +44,16 @@ NULL
         nesThreshold <- nesThreshold(object)
         direction <- match.arg(direction)
         data <- object[[collection]]
-        invisible(mapply(
+        invisible(Map(
             contrast = names(data),
             data = data,
             MoreArgs = list(
-                alphaThreshold = alphaThreshold,
-                nesThreshold = nesThreshold,
-                direction = direction,
-                n = n
+                "alphaThreshold" = alphaThreshold,
+                "nesThreshold" = nesThreshold,
+                "direction" = direction,
+                "n" = n
             ),
-            FUN = function(contrast,
+            f = function(contrast,
                            data,
                            alphaThreshold,
                            nesThreshold,
@@ -80,14 +80,14 @@ NULL
                 }
                 ## Using an `mapply()` call here so we can pass the pathway
                 ## names in easily into the `markdownHeader()` call.
-                mapply(
+                Map(
                     set = sets,
                     MoreArgs = list(
-                        collection = collection,
-                        contrast = contrast,
-                        headerLevel = headerLevel + 1L
+                        "collection" = collection,
+                        "contrast" = contrast,
+                        "headerLevel" = headerLevel + 1L
                     ),
-                    FUN = function(set,
+                    f = function(set,
                                    collection,
                                    contrast,
                                    headerLevel) {

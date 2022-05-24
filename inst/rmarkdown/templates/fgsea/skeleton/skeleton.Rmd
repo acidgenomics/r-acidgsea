@@ -24,12 +24,14 @@ bibliography: bibliography.bib
 ---
 
 ```{r setup, message=FALSE}
+## nolint start
 suppressPackageStartupMessages({
     library(basejump)
     library(AcidGSEA)
 })
+## nolint end
 prepareTemplate()
-source("_setup.R")
+source("_setup.R") # nolint
 ## This is required for tabset R Markdown headers to work in `lapply()` call.
 knitr::opts_chunk[["set"]](message = FALSE)
 ```

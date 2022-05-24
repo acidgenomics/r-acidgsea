@@ -39,7 +39,6 @@ NULL
                  subtitle = NULL
              )) {
         validObject(object)
-        multiContrast <- FALSE
         assert(
             isScalar(contrast),
             isScalar(collection),
