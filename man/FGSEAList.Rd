@@ -11,7 +11,7 @@ FGSEAList(object, ...)
 
 \S4method{FGSEAList}{DESeqAnalysis}(
   object,
-  keyType = c("geneName", "entrezId"),
+  keyType = c("geneName", "geneId", "entrezId", "ensemblId", "rowname"),
   value = c("stat", "log2FoldChange"),
   proteinCodingOnly = FALSE,
   ...
@@ -19,7 +19,7 @@ FGSEAList(object, ...)
 
 \S4method{FGSEAList}{DESeqResults}(
   object,
-  keyType = c("geneName", "entrezId"),
+  keyType = c("geneName", "geneId", "entrezId", "ensemblId", "rowname"),
   value = c("stat", "log2FoldChange"),
   rowRanges,
   proteinCodingOnly = FALSE,
