@@ -28,7 +28,7 @@ Features (i.e. rownames) will be remapped to human genes.
 Convert data set by mapping to human orthologs
 }
 \note{
-Updated 2022-04-27.
+Updated 2022-05-25.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")
