@@ -14,7 +14,7 @@ RankedList(object, ...)
 
 \S4method{RankedList}{DESeqAnalysis}(
   object,
-  keyType = c("geneName", "entrezId"),
+  keyType = c("geneName", "geneId", "entrezId", "ensemblId", "rowname"),
   value = c("stat", "log2FoldChange"),
   proteinCodingOnly = FALSE
 )
@@ -22,7 +22,7 @@ RankedList(object, ...)
 \S4method{RankedList}{DESeqResults}(
   object,
   rowRanges,
-  keyType,
+  keyType = c("geneName", "geneId", "entrezId", "ensemblId", "rowname"),
   value = c("stat", "log2FoldChange"),
   proteinCodingOnly = FALSE
 )
@@ -68,7 +68,7 @@ Restrict to protein coding genes only.}
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2022-04-27.
+Updated 2022-05-25.
 }
 \section{Gene symbol multi-mapping}{
 
