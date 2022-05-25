@@ -1,6 +1,6 @@
 #' @name convertToHuman
 #' @inherit AcidGenerics::convertToHuman
-#' @note Updated 2022-04-27.
+#' @note Updated 2022-05-25.
 #'
 #' @inheritParams params
 #' @param ... Additional arguments.
@@ -21,11 +21,13 @@ NULL
 
 
 
-## Updated 2021-10-15.
+## Updated 2022-05-25.
 `convertToHuman,DESeqAnalysis` <- # nolint
     function(object, map = NULL) {
-        validObject(object)
-        assert(isAny(map, c("DataFrame", "NULL")))
+        assert(
+            validObject(object),
+            isAny(map, c("DataFrame", "NULL"))
+        )
         ## Break out the slots of the object.
         data <- as(object, "DESeqDataSet")
         transform <- as(object, "DESeqTransform")

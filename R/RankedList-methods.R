@@ -4,7 +4,7 @@
 
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2022-04-27.
+#' @note Updated 2022-05-25.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -129,7 +129,7 @@ NULL
 
 
 
-## Updated 2022-04-27.
+## Updated 2022-05-25.
 `.RankedList,DataFrame` <- # nolint
     function(object,
              rowRanges,
@@ -141,7 +141,6 @@ NULL
         assert(
             is(object, "DataFrame"),
             is(rowRanges, "GenomicRanges"),
-            identical(organism(rowRanges), "Homo sapiens"),
             isString(keyType),
             isSubset(keyType, colnames(mcols(rowRanges))),
             isSubset("geneId", colnames(mcols(rowRanges))),
@@ -153,40 +152,28 @@ NULL
         )
         object <- as(object, "DataFrame")
         rowRanges <- as(rowRanges, "GenomicRanges")
-        ## Only Ensembl/GENCODE reference genome is currently supported.
-        ## Working on adding direct NCBI / RefSeq Entrez identifier support
-        ## in a future release.
+        organism <- organism(rowRanges)
         ensemblPattern <- "^ENSG[[:digit:]]{11}"
-        if (!any(isMatchingRegex(
+        if (any(isMatchingRegex(
             x = as.character(mcols(rowRanges)[["geneId"]]),
             pattern = ensemblPattern
         ))) {
-            stop("Only Ensembl/GENCODE reference genome currently supported.")
-        }
-        ## Currently only supporting GRCh38. Move on from GRCh37 already.
-        assert(
-            allAreMatchingRegex(
-                x = genome(rowRanges),
-                pattern = "^GRCh38"
-            )
-        )
-        ## These seqnames are only valid for Ensembl. Rework this when we add
-        ## support for RefSeq genome.
-        validSeqnames <- c(seq(from = 1L, to = 21L, by = 1L), "X", "Y", "MT")
-        keep <- seqnames(rowRanges) %in% validSeqnames
-        if (isTRUE(sum(keep) < length(keep))) {
-            pctKeep <- sum(keep) / length(keep)
-            alertInfo(sprintf(
-                "%s%% of genes mapped to primary seqnames (%d / %d).",
-                prettyNum(
-                    x = round(x = pctKeep * 100L, digits = 2L),
-                    scientific = FALSE
-                ),
-                sum(keep),
-                length(keep)
-            ))
-            assert(isInRange(x = pctKeep, lower = 0.7, upper = 1L))
-            rowRanges <- rowRanges[keep]
+            validSeqnames <- c(seq(from = 1L, to = 21L, by = 1L), "X", "Y", "MT")
+            keep <- seqnames(rowRanges) %in% validSeqnames
+            if (isTRUE(sum(keep) < length(keep))) {
+                pctKeep <- sum(keep) / length(keep)
+                alertInfo(sprintf(
+                    "%s%% of genes mapped to primary seqnames (%d / %d).",
+                    prettyNum(
+                        x = round(x = pctKeep * 100L, digits = 2L),
+                        scientific = FALSE
+                    ),
+                    sum(keep),
+                    length(keep)
+                ))
+                assert(isInRange(x = pctKeep, lower = 0.7, upper = 1L))
+                rowRanges <- rowRanges[keep]
+            }
         }
         ## Restrict to protein coding genes only, if desired.
         if (isTRUE(proteinCodingOnly)) {
@@ -311,7 +298,6 @@ NULL
         keyType <- match.arg(keyType)
         value <- match.arg(value)
         dds <- as(object, "DESeqDataSet")
-        assert(identical(organism(dds), "Homo sapiens"))
         rowRanges <- rowRanges(dds)
         ## Extract the DESeqResults list. Note that we're requiring shrunken
         ## LFCs if the user wants to return those values instead of using the
