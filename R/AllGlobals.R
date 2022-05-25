@@ -16,6 +16,20 @@
 
 
 
+#' Supported key types for RankedList
+#'
+#' @note Updated 2022-05-25.
+#' @noRd
+.keyType <- quote(c(
+    "geneName",
+    "geneId",
+    "entrezId",
+    "ensemblId",
+    "rowname"
+))
+
+
+
 #' AcidGSEA test data URL
 #'
 #' @keywords internal
