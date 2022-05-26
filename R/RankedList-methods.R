@@ -137,11 +137,7 @@ NULL
         x <- lapply(
             X = x,
             FUN = function(x) {
-                x <- na.omit(x)
-                if (identical(length(x), 0L)) {
-                    return(NA)
-                }
-                sort(x)[[1L]]
+                sort(x = x, decreasing = FALSE, na.last = TRUE)[[1L]]
             }
         )
         x <- unlist(x = x, recursive = FALSE, use.names = FALSE)
