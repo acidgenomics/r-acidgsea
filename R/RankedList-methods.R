@@ -53,7 +53,10 @@ NULL
             sum(keep),
             length(keep)
         ))
-        assert(isInRange(x = pctKeep, lower = 0.5, upper = 1L))
+        assert(
+            isInRange(x = pctKeep, lower = 0.3, upper = 1L),
+            msg = "Failed to map at least 30% of protein coding genes."
+        )
         rowRanges <- rowRanges[keep]
     }
     rowRanges
@@ -74,7 +77,7 @@ NULL
     assert(is(rowRanges, "GenomicRanges"))
     organism <- organism(rowRanges)
     if (!identical(organism, "Homo sapiens")) {
-        return(organism)
+        return(rowRanges)
     }
     ## These are the conventions used by Ensembl and GENCODE.
     validSeqnames <- c(
@@ -314,7 +317,7 @@ NULL
 
 
 
-## Updated 2022-05-25.
+## Updated 2022-05-26.
 `RankedList,DESeqAnalysis` <- # nolint
     function(object,
              keyType,
