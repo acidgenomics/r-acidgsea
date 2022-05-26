@@ -232,6 +232,7 @@ NULL
                         keyType
                     )
                 )
+                keys <- mcols(rowRanges)[["geneId"]]
             } else {
                 assert(
                     isSubset(keyType, colnames(mcols(rowRanges))),
@@ -272,7 +273,9 @@ NULL
         df <- df[complete.cases(df), , drop = FALSE]
         df <- unique(df)
         if (isSubset(keyType, c("ensemblId", "geneId"))) {
-            df[["key"]] <- stripGeneVersions(df[["key"]])
+            suppressMessages({
+                df[["key"]] <- stripGeneVersions(df[["key"]])
+            })
         }
         ## Average the value per key (e.g. gene symbol), if necessary.
         if (anyDuplicated(df[["key"]]) > 0L) {
