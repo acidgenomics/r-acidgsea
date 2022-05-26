@@ -212,8 +212,8 @@ NULL
                 keys <- .unlistGenes(rowRanges = rowRanges, keyType = keyType)
             } else if (
                 !isSubset(keyType, colnames(mcols(rowRanges))) &&
-                isSubset(keyType, c("ensemblId", "entrezId")) &&
-                isSubset("geneId", colnames(mcols(rowRanges)))
+                    isSubset(keyType, c("ensemblId", "entrezId")) &&
+                    isSubset("geneId", colnames(mcols(rowRanges)))
             ) {
                 assert(
                     identical(
