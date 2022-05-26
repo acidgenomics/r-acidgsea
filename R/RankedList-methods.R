@@ -1,4 +1,14 @@
 ## NOTE Need to add support for RefSeq-aligned DESeq2 output.
+## FIXME Add back support for "ensemblId" return...
+## In this case, look for "ensemblId" column first, then "geneId", and in the
+## case of geneId, perform identifier grep match...
+## FIXME Also allow user to simply return "geneId" column?
+##
+## FIXME Need to add/improve support for these keyType arguments:
+## - geneId
+## - geneName
+## - ensemblId
+## - rowname
 
 
 
@@ -34,168 +44,294 @@ NULL
 
 
 
-#' Map DESeqResults to defined gene names (symbols)
+#' Detect default key type
 #'
-#' Join the gene-to-symbol mappings, so we can convert Ensembl gene identifiers
-#' to gene symbols, for use with GSEA MSigDb GMT files.
-#'
-#' @note Updated 2022-04-27.
+#' @note Updated 2022-05-25.
 #' @noRd
-.mapGeneNames <-
-    function(object, rowRanges) {
-        assert(
-            is(object, "DataFrame"),
-            is(rowRanges, "GenomicRanges"),
-            identical(rownames(object), names(rowRanges))
-        )
-        suppressMessages({
-            g2s <- Gene2Symbol(object = rowRanges, format = "unmodified")
-        })
-        x <- as(object, "DataFrame")
-        y <- as(g2s, "DataFrame")
-        cols <- setdiff(colnames(x), colnames(y))
-        assert(hasLength(cols))
-        x <- x[, cols]
-        x[["rowname"]] <- rownames(x)
-        y[["rowname"]] <- rownames(y)
-        out <- leftJoin(x, y, by = "rowname")
-        out[["rowname"]] <- NULL
-        out
+#'
+#' @examples
+#' data(deseq, package = "DESeqAnalysis")
+#'
+#' ## DESeqAnalysis ====
+#' .detectKeyType(mcols(rowRanges(deseq@data))[["geneId"]])
+#' .detectKeyType(rownames(deseq))
+.detectKeyType <- function(x) {
+    if (any(grepl(pattern = "^ENS", x = x))) {
+        return("ensembl")
     }
+    if (any(grepl(pattern = "^[0-9]+$", x = x))) {
+        return("entrez")
+    }
+    alertWarning("Unable to detect gene identifier key type.")
+    NULL
+}
 
 
 
-## Updated 2022-04-27.
-.mapEnsemblToEntrez <-
-    function(object, rowRanges) {
-        assert(
-            is(object, "DataFrame"),
-            is(rowRanges, "GenomicRanges"),
-            identical(rownames(object), names(rowRanges))
-        )
-        rowData <- as.DataFrame(rowRanges)
-        assert(
-            isSubset("entrezId", colnames(rowData)),
-            is(rowData[["entrezId"]], "List") ||
-                is.list(rowData[["entrezId"]]),
-            msg = sprintf(
-                paste(
-                    "{.cls %s} does not contain Entrez identifiers.",
-                    "Re-run with {.arg %s} value other than {.val %s}."
-                ),
-                "rowRanges", "keyType", "entrezId"
-            )
-        )
-        g2e <- IntegerList(rowData[["entrezId"]])
-        names(g2e) <- rownames(rowData)
-        keep <- !all(is.na(g2e))
-        g2e <- g2e[keep, , drop = FALSE]
-        ## For genes that don't map 1:1, use oldest Entrez identifier.
-        g2e <- IntegerList(lapply(
-            X = g2e,
-            FUN = function(x) {
-                head(sort(na.omit(x)), n = 1L)
-            }
+#' Filter row ranges to only contain protein coding genes
+#'
+#' @note Updated 2022-05-26.
+#' @noRd
+#'
+#' @return `GRanges`.
+.filterProteinCoding <- function(rowRanges) {
+    assert(
+        is(rowRanges, "GenomicRanges"),
+        isSubset("geneBiotype", colnames(mcols(rowRanges)))
+    )
+    keep <- mcols(rowRanges)[["geneBiotype"]] == "protein_coding"
+    if (isTRUE(sum(keep) < length(keep))) {
+        pctKeep <- sum(keep) / length(keep)
+        alertInfo(sprintf(
+            "%s%% of genes are protein coding (%d / %d).",
+            prettyNum(
+                x = round(x = pctKeep * 100L, digits = 2L),
+                scientific = FALSE
+            ),
+            sum(keep),
+            length(keep)
         ))
-        g2e <- unlist(x = g2e, recursive = FALSE, use.names = TRUE)
-        assert(
-            is.integer(g2e),
-            !anyNA(g2e)
-        )
-        idx <- match(x = names(g2e), table = rownames(object))
-        assert(
-            identical(length(idx), length(g2e)),
-            !anyNA(idx)
-        )
-        if (length(idx) < nrow(object)) {
-            pctKeep <- length(idx) / nrow(object)
+        assert(isInRange(x = pctKeep, lower = 0.5, upper = 1L))
+        rowRanges <- rowRanges[keep]
+    }
+    rowRanges
+}
+
+
+
+#' Filter row ranges to only keep primary seqnames
+#'
+#' @note Updated 2022-05-26.
+#' @noRd
+#'
+#' @details
+#' Currently only supporting Ensembl chromosomes naming conventions.
+#' Planning on adding RefSeq support in a future update.
+#'
+#' @return `GRanges`.
+.filterSeqnames <- function(rowRanges) {
+    assert(is(rowRanges, "GenomicRanges"))
+    organism <- organism(rowRanges)
+    if (!identical(organism, "Homo sapiens")) {
+        return(organism)
+    }
+    ## FIXME Work on adding support for RefSeq here too.
+    validSeqnames <- c(
+        seq(from = 1L, to = 21L, by = 1L),
+        "X", "Y", "MT"
+    )
+    if (isSubset(validSeqnames, levels(seqnames(rowRanges)))) {
+        keep <- seqnames(rowRanges) %in% validSeqnames
+        if (isTRUE(sum(keep) < length(keep))) {
+            pctKeep <- sum(keep) / length(keep)
             alertInfo(sprintf(
-                "Mapping %s%% of genes from %s to %s (%d / %d).",
+                "%s%% of genes mapped to primary seqnames (%d / %d).",
                 prettyNum(
                     x = round(x = pctKeep * 100L, digits = 2L),
                     scientific = FALSE
                 ),
-                "Ensembl", "Entrez",
-                length(idx), nrow(object)
+                sum(keep),
+                length(keep)
             ))
-            ## Fail if a certain number of genes don't pass threshold.
-            assert(isInRange(x = pctKeep, lower = 0.5, upper = 1L))
+            assert(isInRange(x = pctKeep, lower = 0.7, upper = 1L))
+            rowRanges <- rowRanges[keep]
         }
-        out <- object[idx, , drop = FALSE]
-        out[["ensemblId"]] <- names(g2e)
-        out[["entrezId"]] <- unname(g2e)
-        out
+    }
+    rowRanges
+}
+
+
+
+#' Map gene identifiers from one type to another
+#'
+#' @note Updated 2022-05-26.
+#' @noRd
+#'
+#' @details
+#' Function ensures 1:1 mapping without allowing duplicates.
+#'
+#' @return `DataFrame`
+#' Contains columns defined by `fromCol` and `toCol`.
+#'
+#' @examples
+#' data(deseq, package = "DESeqAnalysis")
+#'
+#' ## DESeqAnalysis ====
+#' object <- results(deseq, i = 1L, lfcShrink = FALSE)
+#' rowRanges <- rowRanges(deseq@data)
+#' x <- .mapGenes(
+#'     object = object,
+#'     rowRanges = rowRanges,
+#'     fromCol = "geneId",
+#'     toCol = "entrezId"
+#' )
+.mapGenes <-
+    function(object,
+             rowRanges,
+             fromCol,
+             toCol) {
+        assert(
+            is(object, "DataFrame"),
+            is(rowRanges, "GenomicRanges"),
+            identical(rownames(object), names(rowRanges)),
+            isString(fromCol),
+            isString(toCol)
+        )
+        rowData <- as.DataFrame(rowRanges)
+        assert(
+            isSubset(c(fromCol, toCol), colnames(rowData)),
+            !is(rowData[[fromCol]], "List"),
+            !anyNA(rowData[[fromCol]]),
+            hasNoDuplicates(rowData[[fromCol]])
+        )
+        from <- decode(rowData[[fromCol]])
+        to <- rowData[[toCol]]
+        if (is(to, "List")) {
+            ## For genes that don't map 1:1, use oldest identifier.
+            to <- lapply(
+                X = to,
+                FUN = function(x) {
+                    x <- na.omit(x)
+                    if (identical(length(x), 0L)) {
+                        return(NA)
+                    }
+                    sort(x)[[1L]]
+                }
+            )
+            to <- unlist(x = to, recursive = FALSE, use.names = FALSE)
+        } else {
+            to <- decode(to)
+        }
+        assert(identical(length(from), length(to)))
+        args <- list()
+        args[[fromCol]] <- from
+        args[[toCol]] <- to
+        args[["row.names"]] <- rownames(object)
+        map <- do.call(what = DataFrame, args = args)
+        map2 <- map[complete.cases(map), ]
+        if (nrow(map2) < nrow(object)) {
+            pctKeep <- nrow(map2) / nrow(object)
+            alertInfo(sprintf(
+                "Mapping %s%% of genes from {.var %s} to {.var %s} (%d / %d).",
+                prettyNum(
+                    x = round(x = pctKeep * 100L, digits = 2L),
+                    scientific = FALSE
+                ),
+                fromCol, toCol,
+                nrow(map2), nrow(object)
+            ))
+            assert(
+                isInRange(x = pctKeep, lower = 0.5, upper = 1L),
+                msg = "Failed to map at least 50% of identifiers."
+            )
+        }
+        map
     }
 
 
 
-## Updated 2022-05-25.
+## FIXME Need to restrict keyType here, and provide handling options...
+## FIXME Consider allowing NULL rowRanges input here.s
+## FIXME In the event of proteinCodingOnly, need to require rowRanges...
+## FIXME Need to figure out when to call .mapGenes internally here.
+
+## Updated 2022-05-26.
 `.RankedList,DataFrame` <- # nolint
     function(object,
              rowRanges,
              keyType,
              value,
              proteinCodingOnly) {
-        validObject(object)
-        validObject(rowRanges)
         assert(
+            validObject(object),
             is(object, "DataFrame"),
-            is(rowRanges, "GenomicRanges"),
+            isAny(rowRanges, c("GenomicRanges", "NULL")),
             isString(keyType),
-            isSubset(keyType, colnames(mcols(rowRanges))),
-            isSubset("geneId", colnames(mcols(rowRanges))),
             isString(value),
             isSubset(value, colnames(object)),
             hasRownames(object),
-            identical(rownames(object), names(rowRanges)),
             isFlag(proteinCodingOnly)
         )
         object <- as(object, "DataFrame")
-        rowRanges <- as(rowRanges, "GenomicRanges")
-        organism <- organism(rowRanges)
-        ensemblPattern <- "^ENSG[[:digit:]]{11}"
-        if (any(isMatchingRegex(
-            x = as.character(mcols(rowRanges)[["geneId"]]),
-            pattern = ensemblPattern
-        ))) {
-            validSeqnames <- c(seq(from = 1L, to = 21L, by = 1L), "X", "Y", "MT")
-            keep <- seqnames(rowRanges) %in% validSeqnames
-            if (isTRUE(sum(keep) < length(keep))) {
-                pctKeep <- sum(keep) / length(keep)
-                alertInfo(sprintf(
-                    "%s%% of genes mapped to primary seqnames (%d / %d).",
-                    prettyNum(
-                        x = round(x = pctKeep * 100L, digits = 2L),
-                        scientific = FALSE
-                    ),
-                    sum(keep),
-                    length(keep)
-                ))
-                assert(isInRange(x = pctKeep, lower = 0.7, upper = 1L))
-                rowRanges <- rowRanges[keep]
-            }
+        if (identical(keyType, "rowname")) {
+            rowRanges <- NULL
         }
-        ## Restrict to protein coding genes only, if desired.
-        if (isTRUE(proteinCodingOnly)) {
-            assert(isSubset("geneBiotype", colnames(mcols(rowRanges))))
-            keep <- mcols(rowRanges)[["geneBiotype"]] == "protein_coding"
-            if (isTRUE(sum(keep) < length(keep))) {
-                pctKeep <- sum(keep) / length(keep)
-                alertInfo(sprintf(
-                    "%s%% of genes are protein coding (%d / %d).",
-                    prettyNum(
-                        x = round(x = pctKeep * 100L, digits = 2L),
-                        scientific = FALSE
-                    ),
-                    sum(keep),
-                    length(keep)
-                ))
-                assert(isInRange(x = pctKeep, lower = 0.5, upper = 1L))
-                rowRanges <- rowRanges[keep]
+        if (is(rowRanges, "GenomicRanges")) {
+            assert(
+                validObject(rowRanges),
+                identical(rownames(object), names(rowRanges)),
+                isSubset(keyType, colnames(mcols(rowRanges))),
+                isSubset("geneId", colnames(mcols(rowRanges)))
+            )
+            rowRanges <- as(rowRanges, "GenomicRanges")
+            rowRanges <- .filterSeqnames(rowRanges)
+            if (isTRUE(proteinCodingOnly)) {
+                rowRanges <- .filterProteinCoding(rowRanges)
             }
+            assert(isSubset(names(rowRanges), rownames(object)))
+            object <- object[names(rowRanges), , drop = FALSE]
+
+
+
+            ## FIXME FIXME Need to apply mapping only if desired target
+            ## is a nested List column.
+            ## FIXME Need to handle edge case of "ensemblId" or "entrezId"
+            ## desired, but only geneId or rowname is present...
+
+            ## FIXME What to do for ensemblId handling here?
+            ## AAAAARGH too confusing...
+
+            switch(
+                EXPR = keyType,
+                "geneId" = {
+                    ## FIXME Also consider allowing geneIdNoVersion?
+                    map <- DataFrame(
+                        "geneId" = mcols(rowRanges)[["geneId"]],
+                        row.names = rownames(object)
+                    )
+                },
+                {
+                    map <- .mapGenes(
+                        object = object,
+                        rowRanges = rowRanges,
+                        fromCol = "geneId",
+                        toCol = keyType
+                    )
+                }
+            )
+            ## Now we need to apply mapping.
+            ## FIXME Only do this when keyType is not "geneId".
+            ## FIXME Otherwise just add the geneId...
+
+        } else {
+            assert(
+                identical(keyType, "rowname"),
+                isFALSE(proteinCodingOnly)
+            )
+            df <- DataFrame(
+                "key" = rownames(object),
+                "value" = object[[value]]
+            )
         }
-        assert(isSubset(names(rowRanges), rownames(object)))
-        object <- object[names(rowRanges), , drop = FALSE]
+
+
+
+
+        ## FIXME Otherwise just create a dataframe with the desired values.
+        ## FIXME Just set a DataFrame with rowname and value otherwise...
+        ## then run complete cases....
+
+
+
+
+
+
+        ## FIXME If user passes in `ensemblId` or `entrezId` and these
+        ## columns aren't defined, see if we can get them from geneId.
+        ## FIXME Don't need to check identifier type, just check seqnames.
+        ## FIXME Rethink this approach, making more general...
+        ## Only do this if the desired keyType is not the default keyType.
+        ## FIXME Rethink this, using a more general `.mapGenes` approach.
         x <- switch(
             EXPR = keyType,
             "entrezId" = {
@@ -205,12 +341,20 @@ NULL
                 )
             },
             "geneName" = {
+                ## FIXME Simplify this, to just use .mapGenes.
                 .mapGeneNames(
                     object = object,
                     rowRanges = rowRanges
                 )
             }
         )
+
+
+
+
+        ## FIXME Rethink this when using "rownames" mapping approach.
+        ## FIXME Consider reworking this approach, if we assign the keyType
+        ## as the rownames in the mapping step...
         rownames(x) <- NULL
         x <- x[, c(keyType, value), drop = FALSE]
         x <- x[complete.cases(x), , drop = FALSE]
@@ -257,22 +401,22 @@ NULL
     }
 
 
+## FIXME Allow NULL rowRanges input here.
 
-## Updated 2022-04-27.
+## Updated 2022-05-25.
 `RankedList,DESeqResults` <- # nolint
     function(object,
-             rowRanges,
+             rowRanges = NULL,
              keyType,
              value = c("stat", "log2FoldChange"),
              proteinCodingOnly = FALSE) {
-        validObject(object)
-        value <- match.arg(value)
+        assert(validObject(object))
         df <- as(object, "DataFrame")
         out <- RankedList(
             object = df,
             rowRanges = rowRanges,
-            value = value,
-            keyType = keyType,
+            value = match.arg(value),
+            keyType = match.arg(keyType),
             proteinCodingOnly = proteinCodingOnly
         )
         names(out) <- tryCatch(
@@ -286,15 +430,18 @@ NULL
         out
     }
 
+formals(`RankedList,DESeqResults`)[["keyType"]] <- # nolint
+    .keyType
 
 
-## Updated 2022-04-27.
+
+## Updated 2022-05-25.
 `RankedList,DESeqAnalysis` <- # nolint
     function(object,
-             keyType = c("geneName", "entrezId"),
+             keyType,
              value = c("stat", "log2FoldChange"),
              proteinCodingOnly = FALSE) {
-        validObject(object)
+        assert(validObject(object))
         keyType <- match.arg(keyType)
         value <- match.arg(value)
         dds <- as(object, "DESeqDataSet")
@@ -337,6 +484,9 @@ NULL
         new(Class = "RankedList", out)
     }
 
+formals(`RankedList,DESeqAnalysis`)[["keyType"]] <- # nolint
+    .keyType
+
 
 
 ## Updated 2021-10-20.
@@ -351,6 +501,8 @@ NULL
     }
 
 
+
+## FIXME Don't export this method.
 
 #' @rdname RankedList
 #' @export

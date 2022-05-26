@@ -14,11 +14,11 @@ NULL
 #' makeNames mapGenesToRownames markdownTables melt nesThreshold nesThreshold<-
 #' plotEnrichedGeneSets plotEnrichedUpset plotGeneSet plotHeatmap plotLFC
 #' plotNES plotUpset results selectIf showHeader snakeCase
-#' @importFrom BiocGenerics %in% combine lapply order organism unique unlist
-#' unsplit updateObject
+#' @importFrom BiocGenerics %in% combine lapply order organism sort unique
+#' unlist unsplit updateObject
 #' @importFrom GenomeInfoDb genome seqnames
-#' @importFrom S4Vectors complete.cases head mcols mcols<- metadata metadata<-
-#' na.omit split tail
+#' @importFrom S4Vectors complete.cases decode head mcols mcols<- metadata
+#' metadata<- na.omit split tail
 #' @importFrom SummarizedExperiment rowRanges rowRanges<-
 #' @importFrom fgsea calcGseaStat fgsea
 #' @importFrom methods coerce show
