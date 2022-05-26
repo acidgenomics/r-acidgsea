@@ -1,3 +1,17 @@
+# AcidGSEA 0.8.2 (2022-05-26)
+
+## Major changes
+
+- `RankedList`: Improved `keyType` support, adding back `"geneId"`, and
+  `"ensemblId"`. Simplified internal code for unlisting nested Entrez identifier
+  keys and ensuring they map 1:1 by oldest identifier.
+- `RankedList`: Function now looks inside `geneId` and checks against `provider`
+  metadata defined in `rowRanges`, in the event that `ensemblId` or `ensemblId`
+  `mcols` are not defined, but the key is in Ensembl or Entrez format.
+- `RankedList`: In the event the user requests `keyType` of `"geneId"` or
+  `"ensemblId"`, we now also call `stripGeneVersions` to sanitize the
+  gene identifiers to remove gene versions.
+
 # AcidGSEA 0.8.1 (2022-05-24)
 
 ## Major changes
