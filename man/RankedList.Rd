@@ -2,7 +2,6 @@
 % Please edit documentation in R/AllGenerics.R, R/RankedList-methods.R
 \name{RankedList}
 \alias{RankedList}
-\alias{RankedList,DataFrame-method}
 \alias{RankedList,DESeqAnalysis-method}
 \alias{RankedList,DESeqResults-method}
 \alias{RankedList,FGSEAList-method}
@@ -10,19 +9,17 @@
 \usage{
 RankedList(object, ...)
 
-\S4method{RankedList}{DataFrame}(object, rowRanges, keyType, value, proteinCodingOnly)
-
 \S4method{RankedList}{DESeqAnalysis}(
   object,
-  keyType = c("geneName", "geneId", "entrezId", "ensemblId", "rowname"),
+  keyType = c("geneName", "ensemblId", "entrezId", "geneId", "rowname"),
   value = c("stat", "log2FoldChange"),
   proteinCodingOnly = FALSE
 )
 
 \S4method{RankedList}{DESeqResults}(
   object,
-  rowRanges = NULL,
-  keyType = c("geneName", "geneId", "entrezId", "ensemblId", "rowname"),
+  rowRanges,
+  keyType = c("geneName", "ensemblId", "entrezId", "geneId", "rowname"),
   value = c("stat", "log2FoldChange"),
   proteinCodingOnly = FALSE
 )
@@ -33,10 +30,6 @@ RankedList(object, ...)
 \item{object}{Object.}
 
 \item{...}{Additional arguments.}
-
-\item{rowRanges}{\code{GenomicRanges} or \code{GenomicRangesList}.
-Genomic ranges (e.g. genome annotations). Metadata describing the assay
-rows.}
 
 \item{keyType}{`character(1).
 Gene identifier format:
@@ -60,6 +53,10 @@ is offered as a legacy option. Not generally recommended.
 
 \item{proteinCodingOnly}{\code{logical(1)}.
 Restrict to protein coding genes only.}
+
+\item{rowRanges}{\code{GenomicRanges} or \code{GenomicRangesList}.
+Genomic ranges (e.g. genome annotations). Metadata describing the assay
+rows.}
 }
 \value{
 \code{RankedList}.
@@ -68,7 +65,7 @@ Restrict to protein coding genes only.}
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2022-05-25.
+Updated 2022-05-26.
 }
 \section{Gene symbol multi-mapping}{
 

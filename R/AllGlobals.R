@@ -22,9 +22,9 @@
 #' @noRd
 .keyType <- quote(c(
     "geneName",
-    "geneId",
-    "entrezId",
     "ensemblId",
+    "entrezId",
+    "geneId",
     "rowname"
 ))
 

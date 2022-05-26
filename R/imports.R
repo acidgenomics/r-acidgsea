@@ -13,7 +13,7 @@ NULL
 #' enrichedGeneSets geneSet geneSetNames geneSetResults leadingEdge leftJoin
 #' makeNames mapGenesToRownames markdownTables melt nesThreshold nesThreshold<-
 #' plotEnrichedGeneSets plotEnrichedUpset plotGeneSet plotHeatmap plotLFC
-#' plotNES plotUpset results selectIf showHeader snakeCase
+#' plotNES plotUpset results selectIf showHeader snakeCase stripGeneVersions
 #' @importFrom BiocGenerics %in% combine lapply order organism sort unique
 #' unlist unsplit updateObject
 #' @importFrom GenomeInfoDb genome seqnames
@@ -26,6 +26,7 @@ NULL
 #'
 #' @importMethodsFrom AcidBase showHeader
 #' @importMethodsFrom AcidExperiment Gene2Symbol export mapGenesToRownames
+#' @importMethodsFrom AcidGenomes stripGeneVersions
 #' @importMethodsFrom AcidPlots plotHeatmap plotUpset
 #' @importMethodsFrom AcidPlyr leftJoin melt selectIf
 #' @importMethodsFrom DESeqAnalysis as.DESeqDataSet coerce contrastName
