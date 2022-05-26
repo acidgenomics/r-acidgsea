@@ -217,9 +217,9 @@ NULL
             ) {
                 assert(
                     identical(
-                        x = .detectKeyType(keys),
+                        x = metadata(rowRanges)[["provider"]],
                         y = switch(
-                            EXPR = metadata(rowRanges)[["provider"]],
+                            EXPR = keyType,
                             "ensemblId" = "Ensembl",
                             "entrezId" = "Entrez"
                         )
