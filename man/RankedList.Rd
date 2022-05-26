@@ -21,7 +21,7 @@ RankedList(object, ...)
 
 \S4method{RankedList}{DESeqResults}(
   object,
-  rowRanges,
+  rowRanges = NULL,
   keyType = c("geneName", "geneId", "entrezId", "ensemblId", "rowname"),
   value = c("stat", "log2FoldChange"),
   proteinCodingOnly = FALSE

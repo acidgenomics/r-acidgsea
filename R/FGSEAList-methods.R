@@ -53,7 +53,7 @@ NULL
 
 
 
-## Updated 2021-10-20.
+## Updated 2022-05-25.
 `FGSEAList,RankedList` <- # nolint
     function(object,
              geneSetFiles,
@@ -61,8 +61,8 @@ NULL
              minSize = 15L,
              maxSize = 500L,
              alphaThreshold = 0.05) {
-        validObject(object)
         assert(
+            validObject(object),
             allAreFiles(geneSetFiles),
             hasNames(geneSetFiles),
             isInt(nPerm),
@@ -131,15 +131,15 @@ NULL
 
 
 
-## Updated 2022-04-27.
+## Updated 2022-05-25.
 `FGSEAList,DESeqResults` <- # nolint
     function(object,
-             keyType = c("geneName", "entrezId"),
+             keyType,
              value = c("stat", "log2FoldChange"),
              rowRanges,
              proteinCodingOnly = FALSE,
              ...) {
-        validObject(object)
+        assert(validObject(object))
         rl <- RankedList(
             object = object,
             keyType = match.arg(keyType),
@@ -150,12 +150,15 @@ NULL
         FGSEAList(rl, ...)
     }
 
+formals(`FGSEAList,DESeqResults`)[["keyType"]] <- # nolint
+    .keyType
 
 
-## Updated 2022-04-27.
+
+## Updated 2022-05-25.
 `FGSEAList,DESeqAnalysis` <- # nolint
     function(object,
-             keyType = c("geneName", "entrezId"),
+             keyType,
              value = c("stat", "log2FoldChange"),
              proteinCodingOnly = FALSE,
              ...) {
@@ -170,6 +173,9 @@ NULL
         metadata(out)[["deseq"]] <- object
         out
     }
+
+formals(`FGSEAList,DESeqAnalysis`)[["keyType"]] <- # nolint
+    .keyType
 
 
 
