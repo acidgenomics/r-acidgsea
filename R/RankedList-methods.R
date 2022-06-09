@@ -270,7 +270,7 @@ NULL
         df <- unique(df)
         if (
             isSubset(keyType, c("ensemblId", "geneId")) &&
-            any(grepl(x = object, pattern = ".", fixed = TRUE))
+                any(grepl(x = object, pattern = ".", fixed = TRUE))
         ) {
             suppressMessages({
                 df[["key"]] <- stripGeneVersions(df[["key"]])
