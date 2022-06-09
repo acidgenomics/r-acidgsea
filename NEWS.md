@@ -1,3 +1,9 @@
+# AcidGSEA 0.8.3 (2022-06-09)
+
+## Minor changes
+
+- Improved support for Windows CI checks, using `tempdir2` and `unlink2`.
+
 # AcidGSEA 0.8.2 (2022-05-26)
 
 ## Major changes
