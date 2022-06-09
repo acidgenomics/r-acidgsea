@@ -1,7 +1,5 @@
-testdir <- file.path(tempdir(), "example")
-
 test_that("New 'con' BiocIO approach, instead of deprecated 'dir'", {
-    unlink(testdir, recursive = TRUE)
+    testdir <- tempdir2()
     object <- fgsea
     out <- export(
         object = object,
@@ -65,11 +63,11 @@ test_that("New 'con' BiocIO approach, instead of deprecated 'dir'", {
             ))
         )
     )
-    unlink(testdir, recursive = TRUE)
+    unlink2(testdir)
 })
 
 test_that("Deprecated : 'dir' argument, no 'name'", {
-    unlink(testdir, recursive = TRUE)
+    testdir <- tempdir2()
     object <- fgsea
     out <- export(
         object = object,
@@ -112,5 +110,5 @@ test_that("Deprecated : 'dir' argument, no 'name'", {
             "h_all_v7_0_symbols.csv"
         )
     )))
-    unlink(testdir, recursive = TRUE)
+    unlink2(testdir)
 })

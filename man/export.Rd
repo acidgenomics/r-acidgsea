@@ -63,7 +63,7 @@ File path(s).
 Export
 }
 \note{
-Updated 2022-03-11.
+Updated 2022-06-09.
 }
 \section{On-disk structure}{
 
@@ -93,10 +93,11 @@ data(fgsea)
 
 ## FGSEAList ====
 object <- fgsea
-con <- file.path(tempdir(), "example")
-export(
+con <- AcidBase::tempdir2()
+out <- export(
     object = object,
     con = con
 )
-unlink(con, recursive = TRUE)
+print(out)
+AcidBase::unlink2(con)
 }
