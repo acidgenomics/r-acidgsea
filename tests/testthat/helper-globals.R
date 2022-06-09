@@ -15,9 +15,11 @@ data(
 )
 
 ## nolint start
+`rowData<-` <- SummarizedExperiment::`rowData<-`
 hasInternet <- goalie::hasInternet
 methodFormals <- AcidBase::methodFormals
 realpath <- AcidBase::realpath
 rowData <- SummarizedExperiment::rowData
-`rowData<-` <- SummarizedExperiment::`rowData<-`
+tempdir2 <- AcidBase::tempdir2
+unlink2 <- AcidBase::unlink2
 ## nolint end

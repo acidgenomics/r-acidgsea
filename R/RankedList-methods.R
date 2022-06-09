@@ -268,7 +268,10 @@ NULL
         df <- decode(df)
         df <- df[complete.cases(df), , drop = FALSE]
         df <- unique(df)
-        if (isSubset(keyType, c("ensemblId", "geneId"))) {
+        if (
+            isSubset(keyType, c("ensemblId", "geneId")) &&
+            any(grepl(x = object, pattern = ".", fixed = TRUE))
+        ) {
             suppressMessages({
                 df[["key"]] <- stripGeneVersions(df[["key"]])
             })
