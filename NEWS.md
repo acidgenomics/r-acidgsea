@@ -429,5 +429,5 @@
 Initial release.
 
 [Acid Genomics]: https://acidgenomics.com/
-[AcidPlots]: https://AcidPlots.acidgenomics.com/
-[basejump]: https://basejump.acidgenomics.com/
+[AcidPlots]: https://r.acidgenomics.com/packages/acidplots/
+[basejump]: https://r.acidgenomics.com/packages/basejump/

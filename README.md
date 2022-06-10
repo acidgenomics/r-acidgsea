@@ -2,7 +2,7 @@
 
 Perform parameterized gene set enrichment analysis (GSEA) on multiple differential expression contrasts.
 
-[AcidGSEA][] currently extends the functionality of [fgsea][].
+Currently extends the functionality of [fgsea][].
 
 ## Installation
 
@@ -35,7 +35,6 @@ docker run -it \
     R
 ```
 
-[acidgsea]: https://acidgsea.acidgenomics.com/
 [docker]: https://www.docker.com/
 [fgsea]: https://bioconductor.org/packages/fgsea/
 [r]: https://www.r-project.org
