@@ -25,8 +25,8 @@ install.packages(
 ### [Docker][] method
 
 ```sh
-image="acidgenomics/r-acidgsea"
-workdir="/mnt/work"
+image='acidgenomics/r-packages:acidgsea'
+workdir='/mnt/work'
 docker pull "$image"
 docker run -it \
     --volume="${PWD}:${workdir}" \
