@@ -34,6 +34,7 @@ name='r-acidgsea'
 conda create --name="$name" "$name"
 conda activate "$name"
 R
+```
 
 ### [Docker][] method
 
