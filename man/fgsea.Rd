@@ -5,7 +5,7 @@
 \alias{fgsea}
 \title{FGSEAList example data}
 \format{
-An object of class \code{function} of length 1.
+An object of class \code{FGSEAList} of length 1.
 }
 \usage{
 data(fgsea)
