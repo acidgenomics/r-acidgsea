@@ -53,6 +53,9 @@ NULL
 
 
 
+## FIXME Consider renaming the usage to `fgsea::fgseaSimple` here.
+## Note that `fgsea::fgsea` has been renamed to a wrapper in Bioconductor 3.15.
+
 ## Updated 2022-05-25.
 `FGSEAList,RankedList` <- # nolint
     function(object,
