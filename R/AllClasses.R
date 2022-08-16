@@ -3,7 +3,7 @@
 #' Class containing parameterized fast GSEA results.
 #'
 #' @export
-#' @note Updated 2021-10-20.
+#' @note Updated 2022-08-16.
 #'
 #' @return `FGSEAList`.
 setClass(
@@ -16,21 +16,23 @@ setValidity(
         validate(
             is.list(object[[1L]]),
             is(object[[1L]][[1L]], "data.table"),
-            identical(
-                x = colnames(object[[1L]][[1L]]),
-                y = c(
-                    "pathway",
-                    "pval",
-                    "padj",
-                    "ES",
-                    "NES",
-                    "nMoreExtreme",
-                    "size",
-                    "leadingEdge"
-                )
-            ),
+            ## FIXME Need to rework this...
+            ##identical(
+            ##    x = colnames(object[[1L]][[1L]]),
+            ##    y = c(
+            ##        "pathway",
+            ##        "pval",
+            ##        "padj",
+            ##        "ES",
+            ##        "NES",
+            ##        "nMoreExtreme",
+            ##        "size",
+            ##        "leadingEdge"
+            ##    )
+            ##),
             isSubset(
                 x = c(
+                    ## > "alpha",
                     ## > "call"
                     ## > "date"
                     ## > "deseq" (only created from DESeqAnalysis)
@@ -40,7 +42,6 @@ setValidity(
                     ## > "packageName"
                     ## > "packageVersion"
                     ## > "sessionInfo"
-                    "alpha",
                     "collections",
                     "geneSetFiles",
                     "rankedList"

@@ -43,7 +43,6 @@ Imports:
     goalie,
     methods,
     pipette,
-    sessioninfo,
     stats,
     syntactic,
     utils

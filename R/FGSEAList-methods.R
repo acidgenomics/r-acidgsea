@@ -3,30 +3,12 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @name FGSEAList
-#' @note Updated 2022-04-27.
+#' @note Updated 2022-08-16.
 #'
 #' @inheritParams RankedList
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
-#'
-#' @param nPerm `integer(1)`.
-#' Number of permutations.
-#' Minimial possible nominal *P* value is about 1/`nPerm`.
-#'
-#' @param minSize `integer(1)`.
-#' Minimal size of a gene set to test.
-#' All pathways below the threshold are excluded.
-#'
-#' @param maxSize `integer(1)`/`Inf`.
-#' Maximal size of a gene set to test.
-#' All pathways above the threshold are excluded.
-#'
-#' @param alphaThreshold `numeric(1)`.
-#' Alpha level cutoff.
-#' Stored internally in [alphaThreshold()].
-#' Applied only to plots and enriched gene set exports, but does not affect
-#' the actual GSEA enrichment calculation.
 #'
 #' @return `FGSEAList`.
 #'
@@ -53,23 +35,17 @@ NULL
 
 
 
-## FIXME Consider renaming the usage to `fgsea::fgseaSimple` here.
-## Note that `fgsea::fgsea` has been renamed to a wrapper in Bioconductor 3.15.
-
 ## Updated 2022-05-25.
 `FGSEAList,RankedList` <- # nolint
     function(object,
              geneSetFiles,
-             nPerm = 1000L,
-             minSize = 15L,
-             maxSize = 500L,
-             alphaThreshold = 0.05) {
+             BPPARAM = BiocParallel::bpparam() # nolint
+        ) {
         assert(
             validObject(object),
             allAreFiles(geneSetFiles),
             hasNames(geneSetFiles),
-            isInt(nPerm),
-            isAlpha(alphaThreshold)
+            isBiocParallelParam(BPPARAM)
         )
         contrasts <- names(object)
         stats <- as.list(object)
@@ -100,12 +76,10 @@ NULL
                         dl(c("Contrast" = contrast))
                         assert(areIntersectingSets(names(stats), geneIds))
                         suppressWarnings({
-                            data <- fgsea::fgsea(
+                            data <- fgsea::fgseaMultilevel(
                                 pathways = pathways,
                                 stats = stats,
-                                nperm = nPerm,
-                                minSize = minSize,
-                                maxSize = maxSize
+                                BPPARAM = BPPARAM
                             )
                         })
                         assert(is(data, "data.table"))
@@ -116,17 +90,13 @@ NULL
         )
         out <- SimpleList(list)
         metadata(out) <- list(
-            "alpha" = alphaThreshold,
             "call" = standardizeCall(),
             "collections" = collections,
             "date" = Sys.Date(),
             "geneSetFiles" = geneSetFiles,
-            "maxSize" = maxSize,
-            "minSize" = minSize,
-            "nPerm" = nPerm,
             "packageVersion" = .pkgVersion,
             "rankedList" = object,
-            "sessionInfo" = session_info()
+            "sessionInfo" = sessionInfo
         )
         out
         new(Class = "FGSEAList", out)

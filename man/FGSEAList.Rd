@@ -26,14 +26,7 @@ FGSEAList(object, ...)
   ...
 )
 
-\S4method{FGSEAList}{RankedList}(
-  object,
-  geneSetFiles,
-  nPerm = 1000L,
-  minSize = 15L,
-  maxSize = 500L,
-  alphaThreshold = 0.05
-)
+\S4method{FGSEAList}{RankedList}(object, geneSetFiles, BPPARAM = BiocParallel::bpparam())
 }
 \arguments{
 \item{object}{Object.}
@@ -71,23 +64,14 @@ rows.}
 Gene set file paths (i.e. GMT files).
 MSigDB files are recommended by default.}
 
-\item{nPerm}{\code{integer(1)}.
-Number of permutations.
-Minimial possible nominal \emph{P} value is about 1/\code{nPerm}.}
-
-\item{minSize}{\code{integer(1)}.
-Minimal size of a gene set to test.
-All pathways below the threshold are excluded.}
-
-\item{maxSize}{\code{integer(1)}/\code{Inf}.
-Maximal size of a gene set to test.
-All pathways above the threshold are excluded.}
-
-\item{alphaThreshold}{\code{numeric(1)}.
-Alpha level cutoff.
-Stored internally in \code{\link[=alphaThreshold]{alphaThreshold()}}.
-Applied only to plots and enriched gene set exports, but does not affect
-the actual GSEA enrichment calculation.}
+\item{BPPARAM}{\code{bpparamClass}.
+BiocParallel parameter to specify the desired processor configuration.\cr
+We recommend using one of the following:
+\itemize{
+\item \link[BiocParallel:register]{bpparam}.
+\item \link[BiocParallel:SerialParam-class]{SerialParam}.
+\item \link[BiocParallel:MulticoreParam-class]{MulticoreParam}.
+}}
 }
 \value{
 \code{FGSEAList}.
@@ -96,7 +80,7 @@ the actual GSEA enrichment calculation.}
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2022-04-27.
+Updated 2022-08-16.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")
