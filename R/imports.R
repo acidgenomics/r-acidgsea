@@ -63,11 +63,10 @@ NULL
 #' @importFrom goalie allAreAtomic allAreFiles allAreMatchingRegex
 #' areDisjointSets areIntersectingSets areSameLength areSetEqual assert bapply
 #' hasColnames hasLength hasNames hasNoDuplicates hasRownames hasRows isADir
-#' isAFile isAll isAlpha isAny isCharacter isFile isFlag isHeaderLevel
-#' isInRange isInstalled isInt isMatchingRegex isNumber isNonNegative
-#' isOrganism isScalar isScalarInteger isString isSubset validate
+#' isAFile isAll isAlpha isAny isBiocParallelParam isCharacter isFile isFlag
+#' isHeaderLevel isInRange isInstalled isInt isMatchingRegex isNumber
+#' isNonNegative isOrganism isScalar isScalarInteger isString isSubset validate
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity slot
 #' slot<- validObject
-#' @importFrom sessioninfo session_info
-#' @importFrom utils packageName packageVersion
+#' @importFrom utils packageName packageVersion sessionInfo
 NULL
