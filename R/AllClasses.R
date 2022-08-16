@@ -16,20 +16,22 @@ setValidity(
         validate(
             is.list(object[[1L]]),
             is(object[[1L]][[1L]], "data.table"),
-            ## FIXME Need to rework this...
-            ##identical(
-            ##    x = colnames(object[[1L]][[1L]]),
-            ##    y = c(
-            ##        "pathway",
-            ##        "pval",
-            ##        "padj",
-            ##        "ES",
-            ##        "NES",
-            ##        "nMoreExtreme",
-            ##        "size",
-            ##        "leadingEdge"
-            ##    )
-            ##),
+            isSubset(
+                x = colnames(object[[1L]][[1L]]),
+                y = c(
+                    "pathway",
+                    "pval",
+                    "padj",
+                    "ES",
+                    "NES",
+                    "size",
+                    "leadingEdge",
+                    ## New columns in Bioconductor 3.15:
+                    "log2err",
+                    ## Legacy columns:
+                    "nMoreExtreme"
+                )
+            ),
             isSubset(
                 x = c(
                     ## > "alpha",
