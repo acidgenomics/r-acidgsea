@@ -1,6 +1,6 @@
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2022-05-26.
+#' @note Updated 2022-08-16.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -270,7 +270,7 @@ NULL
         df <- unique(df)
         if (
             isSubset(keyType, c("ensemblId", "geneId")) &&
-                any(grepl(x = object, pattern = ".", fixed = TRUE))
+                any(grepl(x = df[["key"]], pattern = ".", fixed = TRUE))
         ) {
             suppressMessages({
                 df[["key"]] <- stripGeneVersions(df[["key"]])
