@@ -76,7 +76,7 @@ NULL
                         dl(c("Contrast" = contrast))
                         assert(areIntersectingSets(names(stats), geneIds))
                         suppressWarnings({
-                            data <- fgsea::fgseaMultilevel(
+                            data <- fgsea::fgsea(
                                 pathways = pathways,
                                 stats = stats,
                                 BPPARAM = BPPARAM
