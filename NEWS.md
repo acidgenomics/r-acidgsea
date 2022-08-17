@@ -1,3 +1,19 @@
+# AcidGSEA 0.8.4 (2022-08-17)
+
+## Major changes
+
+- `FGSEAList`: Simplified input to use recommended defaults for fgsea
+  passthrough. Note that fgsea now uses `fgseaMultilevel` by default in
+  Bioconductor 3.15. Object class checks have been updated to reflect this
+  breaking change.
+
+## Minor changes
+
+- `RankedList`: Fix for `ensemblId` handling as input.
+- Simplified `FGSEAList` show method to no longer display alphaThreshold, as
+  this is not required for `fgseaMultilevel` calculations.
+- Resaved example `fgsea` object.
+
 # AcidGSEA 0.8.3 (2022-06-09)
 
 ## Minor changes
