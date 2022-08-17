@@ -3,7 +3,7 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @name FGSEAList
-#' @note Updated 2022-08-16.
+#' @note Updated 2022-08-17.
 #'
 #' @inheritParams RankedList
 #' @inheritParams params
@@ -98,7 +98,7 @@ NULL
             "rankedList" = object,
             "sessionInfo" = sessionInfo
         )
-        out
+        alphaThreshold(out) <- 0.05
         new(Class = "FGSEAList", out)
     }
 
