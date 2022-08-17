@@ -51,15 +51,12 @@ test_that("New 'con' BiocIO approach, instead of deprecated 'dir'", {
     expect_identical(
         object = l[c("pathway", "leadingEdge")],
         expected = list(
-            "pathway" = "HALLMARK_G2M_CHECKPOINT",
+            "pathway" = "HALLMARK_ADIPOGENESIS",
             "leadingEdge" = toString(c(
-                "DBF4",
-                "UPF1",
-                "CDC27",
-                "POLQ",
-                "ARID4A",
-                "PAFAH1B1",
-                "MNAT1"
+                "PHLDB1",
+                "IFNGR1",
+                "MYLK",
+                "RETSAT"
             ))
         )
     )
