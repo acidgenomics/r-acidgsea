@@ -90,6 +90,7 @@ NULL
         )
         out <- SimpleList(list)
         metadata(out) <- list(
+            "alpha" = 0.05,
             "call" = standardizeCall(),
             "collections" = collections,
             "date" = Sys.Date(),
@@ -98,7 +99,6 @@ NULL
             "rankedList" = object,
             "sessionInfo" = sessionInfo
         )
-        alphaThreshold(out) <- 0.05
         new(Class = "FGSEAList", out)
     }
 
