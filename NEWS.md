@@ -10,8 +10,6 @@
 ## Minor changes
 
 - `RankedList`: Fix for `ensemblId` handling as input.
-- Simplified `FGSEAList` show method to no longer display alphaThreshold, as
-  this is not required for `fgseaMultilevel` calculations.
 - Resaved example `fgsea` object.
 
 # AcidGSEA 0.8.3 (2022-06-09)
