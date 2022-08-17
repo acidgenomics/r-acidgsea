@@ -40,7 +40,7 @@ NULL
     function(object,
              geneSetFiles,
              BPPARAM = BiocParallel::bpparam() # nolint
-        ) {
+    ) {
         assert(
             validObject(object),
             allAreFiles(geneSetFiles),
