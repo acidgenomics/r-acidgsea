@@ -17,7 +17,7 @@
 Show an object
 }
 \note{
-Updated 2022-04-27.
+Updated 2022-08-17.
 }
 \examples{
 data(fgsea)

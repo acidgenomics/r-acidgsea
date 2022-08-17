@@ -66,8 +66,7 @@ geneSetFiles <- prepareGeneSetFiles(
 )
 fgsea <- FGSEAList(
     object = deseq,
-    geneSetFiles = geneSetFiles,
-    alphaThreshold = 0.99
+    geneSetFiles = geneSetFiles
 )
 validObject(fgsea)
 assert(

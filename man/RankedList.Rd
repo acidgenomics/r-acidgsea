@@ -65,7 +65,7 @@ rows.}
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2022-05-26.
+Updated 2022-08-16.
 }
 \section{Gene symbol multi-mapping}{
 
