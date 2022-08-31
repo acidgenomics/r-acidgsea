@@ -1,7 +1,7 @@
 #' @name export
 #'
 #' @inherit pipette::export description return title
-#' @note Updated 2022-06-09.
+#' @note Updated 2022-08-31.
 #'
 #' @section On-disk structure:
 #'
@@ -24,6 +24,16 @@
 #' 2. Gene set.
 #'
 #' @inheritParams AcidExperiment::export
+#'
+#' @param object
+#' Object.
+#'
+#' @param con `character(1)`.
+#' Directory path.
+#'
+#' @param format
+#' *Not currently supported.*
+#'
 #' @param ... Additional arguments.
 #'
 #' @param geneSetResults `logical(1)` or `character`.
@@ -48,7 +58,7 @@ NULL
 
 
 
-## Updated 2021-10-15.
+## Updated 2022-08-31.
 `export,FGSEAList` <- # nolint
     function(object,
              con,
@@ -189,20 +199,6 @@ NULL
 
 
 
-## Updated 2021-10-15.
-`export,FGSEAList,deprecated` <- # nolint
-    methodFunction(
-        f = "export",
-        signature = signature(
-            object = "SummarizedExperiment",
-            con = "missingOrNULL",
-            format = "missingOrNULL"
-        ),
-        package = "basejump"
-    )
-
-
-
 #' @rdname export
 #' @export
 setMethod(
@@ -213,16 +209,4 @@ setMethod(
         format = "missingOrNULL"
     ),
     definition = `export,FGSEAList`
-)
-
-#' @rdname export
-#' @export
-setMethod(
-    f = "export",
-    signature = signature(
-        object = "FGSEAList",
-        con = "missingOrNULL",
-        format = "missingOrNULL"
-    ),
-    definition = `export,FGSEAList,deprecated`
 )

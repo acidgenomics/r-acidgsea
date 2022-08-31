@@ -3,7 +3,6 @@
 \name{export}
 \alias{export}
 \alias{export,FGSEAList,character,missingOrNULL-method}
-\alias{export,FGSEAList,missingOrNULL,missingOrNULL-method}
 \title{Export}
 \usage{
 export(object, con, format, ...)
@@ -17,20 +16,14 @@ export(object, con, format, ...)
   overwrite = getOption(x = "acid.overwrite", default = TRUE),
   quiet = getOption(x = "acid.quiet", default = FALSE)
 )
-
-\S4method{export}{FGSEAList,missingOrNULL,missingOrNULL}(object, con, format, name = NULL, dir, ...)
 }
 \arguments{
-\item{object}{Object.
-An object supporting \code{dim()}, or a supported class capable of being coerced
-to \code{data.frame}, to be written to disk.}
+\item{object}{Object.}
 
-\item{con}{\code{character(1)}, \code{missing}, or \code{NULL}.
-File path.
-Alternatively, can leave unset and use \code{ext} and \code{dir} arguments instead.}
+\item{con}{\code{character(1)}.
+Directory path.}
 
-\item{format}{\code{character(1)}, \code{missing}, or \code{NULL}.
-Output file format extension.}
+\item{format}{\emph{Not currently supported.}}
 
 \item{geneSetResults}{\code{logical(1)} or \code{character}.
 Export per-gene set expression including log fold change values generated
@@ -47,12 +40,6 @@ Overwrite existing file on disk.}
 \item{quiet}{\code{logical(1)}.
 Perform command quietly, suppressing messages.}
 
-\item{name}{\code{character(1)}.
-Name to use on disk. If \code{NULL}, will use the name of the object instead.}
-
-\item{dir}{\code{character(1)}.
-Directory path.}
-
 \item{...}{Additional arguments.}
 }
 \value{
@@ -63,7 +50,7 @@ File path(s).
 Export
 }
 \note{
-Updated 2022-06-09.
+Updated 2022-08-31.
 }
 \section{On-disk structure}{
 
