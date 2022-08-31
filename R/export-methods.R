@@ -31,8 +31,9 @@
 #' @param con `character(1)`.
 #' Directory path.
 #'
-#' @param format
-#' *Not currently supported.*
+#' @param format `character(1)`.
+#' Primary output file format.
+#' Either CSV (default) or TSV are supported.
 #'
 #' @param ... Additional arguments.
 #'
@@ -62,7 +63,7 @@ NULL
 `export,FGSEAList` <- # nolint
     function(object,
              con,
-             format, # NULL
+             format = c("csv", "tsv"),
              geneSetResults = FALSE,
              compress = getOption(
                  x = "acid.export.compress",
@@ -77,17 +78,14 @@ NULL
                  default = FALSE
              )) {
         validObject(object)
-        if (missing(format)) {
-            format <- NULL
-        }
         assert(
             isString(con),
-            is.null(format),
             isFlag(geneSetResults) || isCharacter(geneSetResults),
             isFlag(compress),
             isFlag(overwrite),
             isFlag(quiet)
         )
+        format <- match.arg(format)
         dir <- initDir(con)
         if (isFALSE(quiet)) {
             alert(sprintf(
@@ -95,7 +93,7 @@ NULL
                 "FGSEAList", dir
             ))
         }
-        ext <- ".csv"
+        ext <- paste0(".", format)
         if (isTRUE(compress)) {
             ext <- paste(ext, ".gz")
         }
@@ -206,7 +204,7 @@ setMethod(
     signature = signature(
         object = "FGSEAList",
         con = "character",
-        format = "missingOrNULL"
+        format = "character"
     ),
     definition = `export,FGSEAList`
 )
