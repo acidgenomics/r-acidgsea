@@ -42,7 +42,7 @@ test_that("New 'con' BiocIO approach, instead of deprecated 'dir'", {
             "h_all_v7_0_symbols.csv"
         )
     )))
-    df <- import(con = file.path(
+    df <- import(file.path(
         prefix,
         "condition_B_vs_A",
         "h_all_v7_0_symbols.csv"
