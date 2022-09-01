@@ -32,8 +32,7 @@
 #' Directory path.
 #'
 #' @param format `character(1)`.
-#' Primary output file format.
-#' Either CSV (default) or TSV are supported.
+#' *Not currently supported.*
 #'
 #' @param ... Additional arguments.
 #'
@@ -205,6 +204,18 @@ setMethod(
         object = "FGSEAList",
         con = "character",
         format = "character"
+    ),
+    definition = `export,FGSEAList`
+)
+
+#' @rdname export
+#' @export
+setMethod(
+    f = "export",
+    signature = signature(
+        object = "FGSEAList",
+        con = "character",
+        format = "missing"
     ),
     definition = `export,FGSEAList`
 )
