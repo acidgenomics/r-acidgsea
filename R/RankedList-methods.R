@@ -76,38 +76,38 @@ NULL
 #' @return `GRanges`.
 .filterSeqnames <-
     function(rowRanges, threshold = 0.25) {
-    assert(is(rowRanges, "GenomicRanges"))
-    organism <- organism(rowRanges)
-    if (!identical(organism, "Homo sapiens")) {
-        return(rowRanges)
-    }
-    ## These are the conventions used by Ensembl and GENCODE.
-    validSeqnames <- c(seq(from = 1L, to = 21L, by = 1L), "X", "Y", "MT")
-    if (isSubset(validSeqnames, levels(seqnames(rowRanges)))) {
-        keep <- seqnames(rowRanges) %in% validSeqnames
-        if (isTRUE(sum(keep) < length(keep))) {
-            pctKeep <- sum(keep) / length(keep)
-            alertInfo(sprintf(
-                "%s%% of genes mapped to primary seqnames (%d / %d).",
-                prettyNum(
-                    x = round(x = pctKeep * 100L, digits = 2L),
-                    scientific = FALSE
-                ),
-                sum(keep),
-                length(keep)
-            ))
-            assert(
-                isInRange(x = pctKeep, lower = threshold, upper = 1L),
-                msg = paste(
-                    "Failed to map sufficient number",
-                    "of genes to primary seqnames."
-                )
-            )
-            rowRanges <- rowRanges[keep]
+        assert(is(rowRanges, "GenomicRanges"))
+        organism <- organism(rowRanges)
+        if (!identical(organism, "Homo sapiens")) {
+            return(rowRanges)
         }
+        ## These are the conventions used by Ensembl and GENCODE.
+        validSeqnames <- c(seq(from = 1L, to = 21L, by = 1L), "X", "Y", "MT")
+        if (isSubset(validSeqnames, levels(seqnames(rowRanges)))) {
+            keep <- seqnames(rowRanges) %in% validSeqnames
+            if (isTRUE(sum(keep) < length(keep))) {
+                pctKeep <- sum(keep) / length(keep)
+                alertInfo(sprintf(
+                    "%s%% of genes mapped to primary seqnames (%d / %d).",
+                    prettyNum(
+                        x = round(x = pctKeep * 100L, digits = 2L),
+                        scientific = FALSE
+                    ),
+                    sum(keep),
+                    length(keep)
+                ))
+                assert(
+                    isInRange(x = pctKeep, lower = threshold, upper = 1L),
+                    msg = paste(
+                        "Failed to map sufficient number",
+                        "of genes to primary seqnames."
+                    )
+                )
+                rowRanges <- rowRanges[keep]
+            }
+        }
+        rowRanges
     }
-    rowRanges
-}
 
 
 
