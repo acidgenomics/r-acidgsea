@@ -3,11 +3,22 @@
 \name{export}
 \alias{export}
 \alias{export,FGSEAList,character,character-method}
+\alias{export,FGSEAList,character,missing-method}
 \title{Export}
 \usage{
 export(object, con, format, ...)
 
 \S4method{export}{FGSEAList,character,character}(
+  object,
+  con,
+  format = c("csv", "tsv"),
+  geneSetResults = FALSE,
+  compress = getOption(x = "acid.export.compress", default = FALSE),
+  overwrite = getOption(x = "acid.overwrite", default = TRUE),
+  quiet = getOption(x = "acid.quiet", default = FALSE)
+)
+
+\S4method{export}{FGSEAList,character,missing}(
   object,
   con,
   format = c("csv", "tsv"),
@@ -24,8 +35,7 @@ export(object, con, format, ...)
 Directory path.}
 
 \item{format}{\code{character(1)}.
-Primary output file format.
-Either CSV (default) or TSV are supported.}
+\emph{Not currently supported.}}
 
 \item{geneSetResults}{\code{logical(1)} or \code{character}.
 Export per-gene set expression including log fold change values generated
