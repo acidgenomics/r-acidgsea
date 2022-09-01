@@ -1,4 +1,4 @@
-test_that("New 'con' BiocIO approach, instead of deprecated 'dir'", {
+test_that("export", {
     testdir <- tempdir2()
     object <- fgsea
     out <- export(
