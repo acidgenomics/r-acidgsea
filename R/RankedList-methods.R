@@ -1,6 +1,6 @@
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2022-08-16.
+#' @note Updated 2022-08-30.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -32,58 +32,57 @@ NULL
 
 #' Filter row ranges to only contain protein coding genes
 #'
-#' @note Updated 2022-05-26.
+#' @note Updated 2022-08-31.
 #' @noRd
 #'
 #' @return `GRanges`.
-.filterProteinCoding <- function(rowRanges) {
-    assert(
-        is(rowRanges, "GenomicRanges"),
-        isSubset("geneBiotype", colnames(mcols(rowRanges)))
-    )
-    keep <- mcols(rowRanges)[["geneBiotype"]] == "protein_coding"
-    if (isTRUE(sum(keep) < length(keep))) {
-        pctKeep <- sum(keep) / length(keep)
-        alertInfo(sprintf(
-            "%s%% of genes are protein coding (%d / %d).",
-            prettyNum(
-                x = round(x = pctKeep * 100L, digits = 2L),
-                scientific = FALSE
-            ),
-            sum(keep),
-            length(keep)
-        ))
+.filterProteinCoding <-
+    function(rowRanges, threshold = 0.25) {
         assert(
-            isInRange(x = pctKeep, lower = 0.3, upper = 1L),
-            msg = "Failed to map at least 30% of protein coding genes."
+            is(rowRanges, "GenomicRanges"),
+            isSubset("geneBiotype", colnames(mcols(rowRanges)))
         )
-        rowRanges <- rowRanges[keep]
+        keep <- mcols(rowRanges)[["geneBiotype"]] == "protein_coding"
+        if (isTRUE(sum(keep) < length(keep))) {
+            pctKeep <- sum(keep) / length(keep)
+            alertInfo(sprintf(
+                "%s%% of genes are protein coding (%d / %d).",
+                prettyNum(
+                    x = round(x = pctKeep * 100L, digits = 2L),
+                    scientific = FALSE
+                ),
+                sum(keep),
+                length(keep)
+            ))
+            assert(
+                isInRange(x = pctKeep, lower = threshold, upper = 1L),
+                msg = "Failed to map sufficient number of protein coding genes."
+            )
+            rowRanges <- rowRanges[keep]
+        }
+        rowRanges
     }
-    rowRanges
-}
 
 
 
 #' Filter row ranges to only keep primary seqnames
 #'
-#' @note Updated 2022-05-26.
+#' @note Updated 2022-08-31.
 #' @noRd
 #'
 #' @details
 #' Currently only supporting Ensembl chromosomes naming conventions.
 #'
 #' @return `GRanges`.
-.filterSeqnames <- function(rowRanges) {
+.filterSeqnames <-
+    function(rowRanges, threshold = 0.25) {
     assert(is(rowRanges, "GenomicRanges"))
     organism <- organism(rowRanges)
     if (!identical(organism, "Homo sapiens")) {
         return(rowRanges)
     }
     ## These are the conventions used by Ensembl and GENCODE.
-    validSeqnames <- c(
-        seq(from = 1L, to = 21L, by = 1L),
-        "X", "Y", "MT"
-    )
+    validSeqnames <- c(seq(from = 1L, to = 21L, by = 1L), "X", "Y", "MT")
     if (isSubset(validSeqnames, levels(seqnames(rowRanges)))) {
         keep <- seqnames(rowRanges) %in% validSeqnames
         if (isTRUE(sum(keep) < length(keep))) {
@@ -97,7 +96,13 @@ NULL
                 sum(keep),
                 length(keep)
             ))
-            assert(isInRange(x = pctKeep, lower = 0.7, upper = 1L))
+            assert(
+                isInRange(x = pctKeep, lower = threshold, upper = 1L),
+                msg = paste(
+                    "Failed to map sufficient number",
+                    "of genes to primary seqnames."
+                )
+            )
             rowRanges <- rowRanges[keep]
         }
     }
@@ -108,7 +113,7 @@ NULL
 
 #' Unlist and map gene identifiers 1:1
 #'
-#' @note Updated 2022-05-26.
+#' @note Updated 2022-08-31.
 #' @noRd
 #'
 #' @details
@@ -125,7 +130,8 @@ NULL
 #' x <- .unlistGenes(rowRanges = rowRanges, keyType = "entrezId")
 .unlistGenes <-
     function(rowRanges,
-             keyType) {
+             keyType,
+             threshold = 0.25) {
         assert(
             is(rowRanges, "GenomicRanges"),
             isString(keyType),
@@ -156,8 +162,8 @@ NULL
                 keyType, n1, n2
             ))
             assert(
-                isInRange(x = pctKeep, lower = 0.5, upper = 1L),
-                msg = "Failed to map at least 50% of gene identifiers."
+                isInRange(x = pctKeep, lower = threshold, upper = 1L),
+                msg = "Failed to map sufficient number of gene identifiers."
             )
         }
         x
