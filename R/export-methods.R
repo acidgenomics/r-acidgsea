@@ -31,9 +31,8 @@
 #' @param con `character(1)`.
 #' Directory path.
 #'
-#' @param format `character(1)`.
-#' Primary output file format.
-#' Either CSV (default) or TSV are supported.
+#' @param format
+#' *Not currently supported.*
 #'
 #' @param ... Additional arguments.
 #'
@@ -63,7 +62,7 @@ NULL
 `export,FGSEAList` <- # nolint
     function(object,
              con,
-             format = c("csv", "tsv"),
+             format, # NULL
              geneSetResults = FALSE,
              compress = getOption(
                  x = "acid.export.compress",
@@ -78,14 +77,17 @@ NULL
                  default = FALSE
              )) {
         validObject(object)
+        if (missing(format)) {
+            format <- NULL
+        }
         assert(
             isString(con),
+            is.null(format),
             isFlag(geneSetResults) || isCharacter(geneSetResults),
             isFlag(compress),
             isFlag(overwrite),
             isFlag(quiet)
         )
-        format <- match.arg(format)
         dir <- initDir(con)
         if (isFALSE(quiet)) {
             alert(sprintf(
@@ -93,7 +95,7 @@ NULL
                 "FGSEAList", dir
             ))
         }
-        ext <- paste0(".", format)
+        ext <- ".csv"
         if (isTRUE(compress)) {
             ext <- paste(ext, ".gz")
         }
@@ -104,9 +106,7 @@ NULL
             X = contrastNames,
             FUN = function(contrast) {
                 if (isFALSE(quiet)) {
-                    alert(sprintf(
-                        "Exporting results for {.var %s}.", contrast
-                    ))
+                    alert(sprintf("Exporting results for {.var %s}.", contrast))
                 }
                 files <- lapply(
                     X = collectionNames,
@@ -204,19 +204,7 @@ setMethod(
     signature = signature(
         object = "FGSEAList",
         con = "character",
-        format = "character"
-    ),
-    definition = `export,FGSEAList`
-)
-
-#' @rdname export
-#' @export
-setMethod(
-    f = "export",
-    signature = signature(
-        object = "FGSEAList",
-        con = "character",
-        format = "missing"
+        format = "missingOrNULL"
     ),
     definition = `export,FGSEAList`
 )

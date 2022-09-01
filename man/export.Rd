@@ -3,7 +3,7 @@
 \name{export}
 \alias{export}
 \alias{export,FGSEAList,character,character-method}
-\alias{export,FGSEAList,character,missing-method}
+\alias{export,FGSEAList,character,missingOrNULL-method}
 \title{Export}
 \usage{
 export(object, con, format, ...)
@@ -18,7 +18,7 @@ export(object, con, format, ...)
   quiet = getOption(x = "acid.quiet", default = FALSE)
 )
 
-\S4method{export}{FGSEAList,character,missing}(
+\S4method{export}{FGSEAList,character,missingOrNULL}(
   object,
   con,
   format = c("csv", "tsv"),

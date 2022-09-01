@@ -8,9 +8,9 @@ Major changes:
   mapping thresholds. Previous cutoffs were a bit too strict and could result
   in errors with acceptable datasets.
 - `export`: Simplified S4 method to class with `con` and `format` arguments
-  defined as required characters. Improved the documentation to denote that
-  user should specify a directory as `con`, and either `"csv"` or `"tsv"` as
-  the desired output `format`.
+  defined as required `character` and `missingOrNULL`, respectively. Improved
+  the documentation to denote that user should specify a directory as `con`, and
+  either `"csv"` or `"tsv"` as the desired output `format`.
 
 Minor changes:
 
