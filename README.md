@@ -2,8 +2,9 @@
 
 [![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/r-acidgsea/README.html)
 
-Perform parameterized gene set enrichment analysis (GSEA) on multiple differential expression contrasts.
-Currently extends the functionality of [fgsea][].
+Perform parameterized gene set enrichment analysis (GSEA) on multiple
+differential expression contrasts. Currently extends the functionality of
+[fgsea][].
 
 ## Installation
 
@@ -48,6 +49,7 @@ docker run -it \
     R
 ```
 
+[bioconda]: https://bioconda.github.io/
 [conda]: https://conda.io/
 [docker]: https://www.docker.com/
 [fgsea]: https://bioconductor.org/packages/fgsea/
