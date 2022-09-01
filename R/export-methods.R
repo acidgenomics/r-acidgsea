@@ -32,7 +32,8 @@
 #' Directory path.
 #'
 #' @param format `character(1)`.
-#' *Not currently supported.*
+#' Primary output file format.
+#' Either CSV (default) or TSV are supported.
 #'
 #' @param ... Additional arguments.
 #'
