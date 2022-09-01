@@ -35,7 +35,8 @@ export(object, con, format, ...)
 Directory path.}
 
 \item{format}{\code{character(1)}.
-\emph{Not currently supported.}}
+Primary output file format.
+Either CSV (default) or TSV are supported.}
 
 \item{geneSetResults}{\code{logical(1)} or \code{character}.
 Export per-gene set expression including log fold change values generated
