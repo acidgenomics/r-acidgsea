@@ -2,15 +2,15 @@
 % Please edit documentation in R/AllGenerics.R, R/export-methods.R
 \name{export}
 \alias{export}
-\alias{export,FGSEAList,character,missingOrNULL-method}
+\alias{export,FGSEAList,character,character-method}
 \title{Export}
 \usage{
 export(object, con, format, ...)
 
-\S4method{export}{FGSEAList,character,missingOrNULL}(
+\S4method{export}{FGSEAList,character,character}(
   object,
   con,
-  format,
+  format = c("csv", "tsv"),
   geneSetResults = FALSE,
   compress = getOption(x = "acid.export.compress", default = FALSE),
   overwrite = getOption(x = "acid.overwrite", default = TRUE),
@@ -23,7 +23,9 @@ export(object, con, format, ...)
 \item{con}{\code{character(1)}.
 Directory path.}
 
-\item{format}{\emph{Not currently supported.}}
+\item{format}{\code{character(1)}.
+Primary output file format.
+Either CSV (default) or TSV are supported.}
 
 \item{geneSetResults}{\code{logical(1)} or \code{character}.
 Export per-gene set expression including log fold change values generated
