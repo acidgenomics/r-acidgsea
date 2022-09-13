@@ -1,7 +1,7 @@
 #' @name export
 #'
 #' @inherit pipette::export description return title
-#' @note Updated 2022-08-31.
+#' @note Updated 2022-09-13.
 #'
 #' @section On-disk structure:
 #'
@@ -58,11 +58,11 @@ NULL
 
 
 
-## Updated 2022-08-31.
+## Updated 2022-09-13.
 `export,FGSEAList` <- # nolint
     function(object,
              con,
-             format, # NULL
+             format, # missing
              geneSetResults = FALSE,
              compress = getOption(
                  x = "acid.export.compress",
@@ -204,7 +204,7 @@ setMethod(
     signature = signature(
         object = "FGSEAList",
         con = "character",
-        format = "missingOrNULL"
+        format = "missing"
     ),
     definition = `export,FGSEAList`
 )
