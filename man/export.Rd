@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/export-methods.R
 \name{export}
 \alias{export}
-\alias{export,FGSEAList,character,missingOrNULL-method}
+\alias{export,FGSEAList,character,missing-method}
 \title{Export}
 \usage{
 export(object, con, format, ...)
 
-\S4method{export}{FGSEAList,character,missingOrNULL}(
+\S4method{export}{FGSEAList,character,missing}(
   object,
   con,
   format,
@@ -50,7 +50,7 @@ File path(s).
 Export
 }
 \note{
-Updated 2022-08-31.
+Updated 2022-09-13.
 }
 \section{On-disk structure}{
 
