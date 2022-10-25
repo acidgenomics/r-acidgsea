@@ -1,6 +1,15 @@
 # Release notes
 
-## AcidGSEA 0.8.4 (2022-08-31)
+## AcidGSEA 0.8.6 (2022-10-25)
+
+Major changes:
+
+- Hardened package dependency requirements.
+- `export`: Restricting methods, following conventions now defined in pipette
+  0.10.0 update.
+- Using `hasDuplicates` internally from goalie.
+
+## AcidGSEA 0.8.5 (2022-08-31)
 
 Major changes:
 
