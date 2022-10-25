@@ -23,7 +23,8 @@ NULL
 #' @importFrom fgsea calcGseaStat fgsea
 #' @importFrom methods coerce show
 #' @importFrom pipette export import
-#'
+NULL
+
 #' @importMethodsFrom AcidBase showHeader
 #' @importMethodsFrom AcidExperiment Gene2Symbol export mapGenesToRownames
 #' @importMethodsFrom AcidGenomes stripGeneVersions
@@ -62,10 +63,11 @@ NULL
 #' scale_alpha_identity scale_shape_manual
 #' @importFrom goalie allAreAtomic allAreFiles allAreMatchingRegex
 #' areDisjointSets areIntersectingSets areSameLength areSetEqual assert bapply
-#' hasColnames hasLength hasNames hasNoDuplicates hasRownames hasRows isADir
-#' isAFile isAll isAlpha isAny isBiocParallelParam isCharacter isFile isFlag
-#' isHeaderLevel isInRange isInstalled isInt isMatchingRegex isNumber
-#' isNonNegative isOrganism isScalar isScalarInteger isString isSubset validate
+#' hasColnames hasDuplicates hasLength hasNames hasNoDuplicates hasRownames
+#' hasRows isADir isAFile isAll isAlpha isAny isBiocParallelParam isCharacter
+#' isFile isFlag isHeaderLevel isInRange isInstalled isInt isMatchingRegex
+#' isNumber isNonNegative isOrganism isScalar isScalarInteger isString isSubset
+#' validate
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity slot
 #' slot<- validObject
 #' @importFrom utils packageName packageVersion sessionInfo

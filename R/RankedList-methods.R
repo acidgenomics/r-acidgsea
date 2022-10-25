@@ -283,7 +283,7 @@ NULL
             })
         }
         ## Average the value per key (e.g. gene symbol), if necessary.
-        if (anyDuplicated(df[["key"]]) > 0L) {
+        if (hasDuplicates(df[["key"]])) {
             df[["key"]] <- as.factor(df[["key"]])
             dupes <- df[["key"]][which(duplicated(df[["key"]]))]
             dupes <- as.character(sort(unique(dupes)))

@@ -74,9 +74,7 @@ NULL
             no = 0.5
         )
         data[["direction"]] <- ifelse(
-            test = {
-                data[["nes"]] > 0L
-            },
+            test = data[["nes"]] > 0L,
             yes = "up",
             no = "down"
         )
