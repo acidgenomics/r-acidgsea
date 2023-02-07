@@ -32,7 +32,7 @@ Imports:
     AcidMarkdown (>= 0.2.5),
     AcidPlots (>= 0.5.2),
     AcidPlyr (>= 0.3.2),
-    BiocGenerics (>= 0.6.4),
+    BiocGenerics (>= 0.44.0),
     DESeqAnalysis (>= 0.6.6),
     GenomeInfoDb (>= 1.32.4),
     IRanges (>= 2.30.1),
