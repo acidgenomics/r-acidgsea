@@ -48,7 +48,7 @@ NULL
 ## Standard functions ==========================================================
 
 #' @importFrom AcidBase basenameSansExt initDir methodFunction realpath
-#' requireNamespaces showSlotInfo standardizeCall
+#' showSlotInfo standardizeCall
 #' @importFrom AcidCLI abort alert alertInfo alertWarning dl toInlineString
 #' txt ul
 #' @importFrom AcidGenomes mapHumanOrthologs
@@ -67,7 +67,7 @@ NULL
 #' hasRows isADir isAFile isAll isAlpha isAny isBiocParallelParam isCharacter
 #' isFile isFlag isHeaderLevel isInRange isInstalled isInt isMatchingRegex
 #' isNumber isNonNegative isOrganism isScalar isScalarInteger isString isSubset
-#' validate
+#' requireNamespaces validate
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity slot
 #' slot<- validObject
 #' @importFrom utils packageName packageVersion sessionInfo
