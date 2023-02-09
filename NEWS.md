@@ -1,5 +1,12 @@
 # Release notes
 
+## AcidGSEA 0.8.7 (2023-02-09)
+
+Minor changes:
+
+- Updated dependencies to Bioconductor 3.16.
+- Migrated `requireNamespaces` import from AcidBase to goalie.
+
 ## AcidGSEA 0.8.6 (2022-10-25)
 
 Major changes:
