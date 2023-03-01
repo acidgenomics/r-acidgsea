@@ -1,6 +1,6 @@
 #' @name RankedList
 #' @inherit RankedList-class title description return
-#' @note Updated 2022-08-30.
+#' @note Updated 2023-03-01.
 #'
 #' @section Gene symbol multi-mapping:
 #'
@@ -127,7 +127,7 @@ NULL
 #'
 #' ## DESeqAnalysis ====
 #' rowRanges <- rowRanges(deseq@data)
-#' x <- .unlistGenes(rowRanges = rowRanges, keyType = "entrezId")
+#' x <- .unlistGenes(rowRanges = rowRanges, keyType = "ncbiGeneId")
 .unlistGenes <-
     function(rowRanges,
              keyType,
@@ -173,7 +173,7 @@ NULL
 
 #' Prepare RankedList
 #'
-#' @note Updated 2022-05-26.
+#' @note Updated 2023-03-01.
 #' @noRd
 #'
 #' @examples
@@ -217,7 +217,7 @@ NULL
                 keys <- .unlistGenes(rowRanges = rowRanges, keyType = keyType)
             } else if (
                 !isSubset(keyType, colnames(mcols(rowRanges))) &&
-                    isSubset(keyType, c("ensemblId", "entrezId")) &&
+                    isSubset(keyType, c("ensemblGeneId", "ncbiGeneId")) &&
                     isSubset("geneId", colnames(mcols(rowRanges)))
             ) {
                 assert(
@@ -225,8 +225,8 @@ NULL
                         x = metadata(rowRanges)[["provider"]],
                         y = switch(
                             EXPR = keyType,
-                            "ensemblId" = "Ensembl",
-                            "entrezId" = "Entrez"
+                            "ensemblGeneId" = "Ensembl",
+                            "ncbiGeneId" = "RefSeq"
                         )
                     ),
                     msg = sprintf(
