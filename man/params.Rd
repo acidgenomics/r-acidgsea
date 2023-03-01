@@ -28,8 +28,9 @@ Markdown header level.}
 \item{keyType}{`character(1).
 Gene identifier format:
 \itemize{
-\item \code{"entrezId"}: Entrez identifiers (e.g. \code{7157}).
 \item \code{"geneName"}: Gene names (a.k.a. symbols; e.g. \code{"TP53"}).
+\item \verb{"ensemblGeneId}: Ensembl gene identifiers (e.g. \code{"ENSG00000000003"}).
+\item \code{"ncbiGeneId"}: NCBI (Entrez) gene identifiers (e.g. \code{7157}).
 }}
 
 \item{leadingEdge}{\code{logical(1)}.

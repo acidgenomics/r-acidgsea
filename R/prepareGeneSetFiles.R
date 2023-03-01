@@ -35,7 +35,7 @@
 #' print(files)
 prepareGeneSetFiles <-
     function(dir,
-             keyType = c("geneName", "entrezId"),
+             keyType = c("geneName", "ncbiGeneId"),
              ext = "gmt",
              recursive = FALSE) {
         assert(
@@ -46,7 +46,7 @@ prepareGeneSetFiles <-
         keyType <- match.arg(keyType)
         keyType2 <- switch(
             EXPR = keyType,
-            "entrezId" = "entrez",
+            "ncbiGeneId" = "entrez",
             "geneName" = "symbols"
         )
         dir <- realpath(dir)
