@@ -11,7 +11,7 @@ RankedList(object, ...)
 
 \S4method{RankedList}{DESeqAnalysis}(
   object,
-  keyType = c("geneName", "ensemblId", "entrezId", "geneId", "rowname"),
+  keyType = c("geneName", "ensemblGeneId", "ncbiGeneId"),
   value = c("stat", "log2FoldChange"),
   proteinCodingOnly = FALSE
 )
@@ -19,7 +19,7 @@ RankedList(object, ...)
 \S4method{RankedList}{DESeqResults}(
   object,
   rowRanges,
-  keyType = c("geneName", "ensemblId", "entrezId", "geneId", "rowname"),
+  keyType = c("geneName", "ensemblGeneId", "ncbiGeneId"),
   value = c("stat", "log2FoldChange"),
   proteinCodingOnly = FALSE
 )

@@ -18,14 +18,12 @@
 
 #' Supported key types for RankedList
 #'
-#' @note Updated 2022-05-25.
+#' @note Updated 2023-03-01.
 #' @noRd
 .keyType <- quote(c(
     "geneName",
-    "ensemblId",
-    "entrezId",
-    "geneId",
-    "rowname"
+    "ensemblGeneId",
+    "ncbiGeneId"
 ))
 
 
