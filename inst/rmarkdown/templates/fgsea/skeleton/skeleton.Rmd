@@ -1,5 +1,5 @@
 ---
-## Updated 2022-05-24.
+## Updated 2023-03-01.
 params:
   title: "Gene Set Enrichment Analysis"
   
@@ -76,7 +76,7 @@ It requires three features:
 2. named: every number has a name, the corresponding gene ID.
 3. sorted: number should be sorted in decreasing order.
 
-Note that [MSigDb][] requires that the identifiers map either to HGNC names (gene symbols) or Entrez IDs. We prefer to map using the gene symbols, but these are not 1:1 for all Ensembl gene IDs (e.g. ENSG00000000003 = TSPAN6). In the event that there are Ensembl gene IDs per HGNC symbol, we're taking the average of the values here.
+Note that [MSigDb][] requires that the identifiers map either to HGNC names (gene symbols) or NCBI (Entrez) gene identifiers. We prefer to map using the gene symbols, but these are not 1:1 for all Ensembl gene IDs (e.g. ENSG00000000003 = TSPAN6). In the event that there are Ensembl gene IDs per HGNC symbol, we're taking the average of the values here.
 
 # MSigDb GMT files
 
