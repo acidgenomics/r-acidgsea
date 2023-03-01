@@ -34,8 +34,9 @@ RankedList(object, ...)
 \item{keyType}{`character(1).
 Gene identifier format:
 \itemize{
-\item \code{"entrezId"}: Entrez identifiers (e.g. \code{7157}).
 \item \code{"geneName"}: Gene names (a.k.a. symbols; e.g. \code{"TP53"}).
+\item \verb{"ensemblGeneId}: Ensembl gene identifiers (e.g. \code{"ENSG00000000003"}).
+\item \code{"ncbiGeneId"}: NCBI (Entrez) gene identifiers (e.g. \code{7157}).
 }}
 
 \item{value}{\code{character(1)}.
@@ -65,7 +66,7 @@ rows.}
 Class containing parameterized ranked gene lists.
 }
 \note{
-Updated 2022-08-30.
+Updated 2023-03-01.
 }
 \section{Gene symbol multi-mapping}{
 

@@ -26,8 +26,9 @@
 #'
 #' @param keyType `character(1).
 #' Gene identifier format:
-#' - `"entrezId"`: Entrez identifiers (e.g. `7157`).
 #' - `"geneName"`: Gene names (a.k.a. symbols; e.g. `"TP53"`).
+#' - `"ensemblGeneId`: Ensembl gene identifiers (e.g. `"ENSG00000000003"`).
+#' - `"ncbiGeneId"`: NCBI (Entrez) gene identifiers (e.g. `7157`).
 #'
 #' @param leadingEdge `logical(1)`.
 #' Visualize only the leading edge genes returned by GSEA.
