@@ -1,3 +1,7 @@
+## FIXME Consider adding support for `ignoreVersion` here.
+
+
+
 #' @name RankedList
 #' @inherit RankedList-class title description return
 #' @note Updated 2023-03-01.
