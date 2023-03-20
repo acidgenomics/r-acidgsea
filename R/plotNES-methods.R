@@ -1,5 +1,5 @@
+## FIXME This needs to support only plotting the top n terms.
 ## FIXME This needs a normalized enrichment score cutoff filter.
-## FIXME THis needs to support only plotting the top n terms.
 
 
 
