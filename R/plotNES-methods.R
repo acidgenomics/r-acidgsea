@@ -1,3 +1,8 @@
+## FIXME This needs a normalized enrichment score cutoff filter.
+## FIXME THis needs to support only plotting the top n terms.
+
+
+
 #' @name plotNES
 #' @inherit AcidGenerics::plotNES
 #' @note Updated 2022-04-27.
