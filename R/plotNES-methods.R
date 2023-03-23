@@ -69,7 +69,8 @@ NULL
         alpha <- alphaThreshold(object)
         keep <- data[["padj"]] < alpha
         if (!any(keep)) {
-            stop("No gene sets passed significance cutoff.")
+            alertWarning("No gene sets passed significance cutoff.")
+            return(invisible(NULL))
         }
         data <- data[keep, , drop = FALSE]
         data[["direction"]] <- ifelse(
