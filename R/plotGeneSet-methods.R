@@ -1,10 +1,6 @@
-## FIXME Need to label adjusted P value on the plot.
-
-
-
 #' @name plotGeneSet
 #' @inherit AcidGenerics::plotGeneSet
-#' @note Updated 2021-02-17.
+#' @note Updated 2023-03-23.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @inheritParams params
@@ -40,18 +36,18 @@ NULL
 
 
 
-## Updated 2021-02-17.
+## Updated 2023-03-23.
 `plotGeneSet,FGSEAList` <- # nolint
     function(object,
              collection,
              contrast,
              set,
              colors = c(
-                 line = "black",
-                 min = AcidPlots::purpleOrange(n = 2L)[[1L]],
-                 max = AcidPlots::purpleOrange(n = 2L)[[2L]],
-                 ticks = "black",
-                 yintercept = "black"
+                 "line" = "black",
+                 "min" = AcidPlots::purpleOrange(n = 2L)[[1L]],
+                 "max" = AcidPlots::purpleOrange(n = 2L)[[2L]],
+                 "ticks" = "black",
+                 "yintercept" = "black"
              )) {
         validObject(object)
         assert(
@@ -72,7 +68,7 @@ NULL
             collection = collection,
             set = set
         )
-        if (!any(names(stats) %in% pathway)) {
+        if (!areIntersectingSets(names(stats), pathway)) {
             alertWarning("No intersection in ranked list and gene set.")
             return(invisible(NULL))
         }
@@ -96,13 +92,22 @@ NULL
         n <- length(statsAdj)
         xs <- as.vector(rbind(pathway - 1L, pathway))
         ys <- as.vector(rbind(bottoms, tops))
-        toPlot <- data.frame(x = c(0L, xs, n + 1L), y = c(0L, ys, 0L))
+        toPlot <- data.frame(
+            "x" = c(0L, xs, n + 1L),
+            "y" = c(0L, ys, 0L)
+        )
         diff <- (max(tops) - min(bottoms)) / 8L
-        x <- NULL
-        y <- NULL
+        padj <- object[[collection]][[contrast]][["padj"]][
+            match(
+                x = set,
+                table = object[[collection]][[contrast]][["pathway"]]
+            )
+        ]
+        assert(isAlpha(padj))
+        padj2 <- formatC(padj, format = "e", digits = 2L)
         p <- ggplot(
             data = toPlot,
-            mapping = aes(x = x, y = y)
+            mapping = aes(x = !!sym("x"), y = !!sym("y"))
         ) +
             geom_hline(
                 yintercept = 0L,
@@ -112,9 +117,9 @@ NULL
             geom_segment(
                 data = data.frame(x = pathway),
                 mapping = aes(
-                    x = x,
+                    x = !!sym("x"),
                     y = -diff / 2L,
-                    xend = x,
+                    xend = !!sym("x"),
                     yend = diff / 2L
                 ),
                 color = colors[["ticks"]],
@@ -138,7 +143,12 @@ NULL
             ) +
             labs(
                 title = set,
-                subtitle = paste(collection, contrast, sep = " : "),
+                subtitle = paste(
+                    collection,
+                    contrast,
+                    paste("padj", padj2),
+                    sep = "    "
+                ),
                 x = "rank",
                 y = "enrichment score"
             )
