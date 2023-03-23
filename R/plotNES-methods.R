@@ -1,11 +1,6 @@
-## FIXME This needs to support only plotting the top n terms.
-## FIXME This needs a normalized enrichment score cutoff filter.
-
-
-
 #' @name plotNES
 #' @inherit AcidGenerics::plotNES
-#' @note Updated 2022-04-27.
+#' @note Updated 2023-03-23.
 #'
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
@@ -30,7 +25,7 @@ NULL
 
 
 
-## Updated 2021-10-19.
+## Updated 2023-03-23.
 `plotNES,FGSEAList` <- # nolint
     function(object,
              contrast,
@@ -70,14 +65,13 @@ NULL
             )
         }
         keep <- abs(data[["nes"]]) > 0L
-        data <- data[keep, ]
+        data <- data[keep, , drop = FALSE]
         alpha <- alphaThreshold(object)
-        data[["isSignificant"]] <- data[["padj"]] < alpha
-        data[["opacity"]] <- ifelse(
-            test = data[["isSignificant"]],
-            yes = 1.0,
-            no = 0.5
-        )
+        keep <- data[["padj"]] < alpha
+        if (!any(keep)) {
+            stop("No gene sets passed significance cutoff.")
+        }
+        data <- data[keep, , drop = FALSE]
         data[["direction"]] <- ifelse(
             test = data[["nes"]] > 0L,
             yes = "up",
@@ -90,8 +84,6 @@ NULL
                 y = !!sym("nes")
             )
         ) +
-            ## See also:
-            ## https://stackoverflow.com/questions/61200151/
             scale_alpha_identity()
         if (identical(contrast, "all")) {
             p <- p +
@@ -131,7 +123,7 @@ NULL
             geom_hline(
                 color = "black",
                 linetype = "dashed",
-                size = 0.5,
+                linewidth = 0.5,
                 yintercept = 0L
             )
         labels[["x"]] <- "pathway"
