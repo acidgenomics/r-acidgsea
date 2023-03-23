@@ -11,8 +11,9 @@ plotNES(object, ...)
   object,
   contrast,
   collection,
+  n = Inf,
   flip = getOption(x = "acid.flip", default = TRUE),
-  labels = list(title = TRUE, subtitle = NULL)
+  labels = list(title = TRUE, subtitle = TRUE)
 )
 }
 \arguments{
@@ -25,6 +26,9 @@ Contrast name.}
 Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
 Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+
+\item{n}{\code{integer(1)} or \code{Inf}.
+Number of gene sets (regardless of direction) to include in plot.}
 
 \item{flip}{\code{logical(1)}.
 Flip x and y axes. Recommended for plots containing many samples.}
@@ -41,8 +45,12 @@ See \code{ggplot2::labs()} for details.}
 \description{
 Plot normalized enrichment score
 }
+\details{
+Only plots gene sets that pass adjusted \emph{P} value cutoff, defined by
+\code{alphaThreshold}.
+}
 \note{
-Updated 2022-04-27.
+Updated 2023-03-23.
 }
 \examples{
 data(fgsea)

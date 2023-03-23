@@ -147,7 +147,7 @@ NULL
                     collection,
                     contrast,
                     paste("padj", padj2),
-                    sep = "    "
+                    sep = " : "
                 ),
                 x = "rank",
                 y = "enrichment score"
