@@ -2,8 +2,16 @@
 #' @inherit AcidGenerics::plotNES
 #' @note Updated 2023-03-23.
 #'
+#' @details
+#' Only plots gene sets that pass adjusted *P* value cutoff, defined by
+#' `alphaThreshold`.
+#'
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
+#'
+#' @param n `integer(1)` or `Inf`.
+#' Number of gene sets (regardless of direction) to include in plot.
+#'
 #' @param ... Additional arguments.
 #'
 #' @seealso Inspired by example in Stephen Turner's
@@ -30,18 +38,20 @@ NULL
     function(object,
              contrast,
              collection,
+             n = Inf,
              flip = getOption(
                  x = "acid.flip",
                  default = TRUE
              ),
              labels = list(
-                 title = TRUE,
-                 subtitle = NULL
+                 "title" = TRUE,
+                 "subtitle" = TRUE
              )) {
         validObject(object)
         assert(
             isScalar(contrast),
             isScalar(collection),
+            isInt(n),
             isFlag(flip)
         )
         labels <- matchLabels(labels)
@@ -73,6 +83,19 @@ NULL
             return(invisible(NULL))
         }
         data <- data[keep, , drop = FALSE]
+        if (is.finite(n)) {
+            data <- data[
+                order(data[["padj"]], -abs(data[["nes"]])),
+                ,
+                drop = FALSE
+            ]
+            data <- head(data, n = n)
+        }
+        ## Don't plot very large collections (e.g. "msigdb_v7_5_1_symbols").
+        if (nrow(data) > 100L) {
+            alertWarning("Collection is too large to plot.")
+            return(invisible(NULL))
+        }
         data[["direction"]] <- ifelse(
             test = data[["nes"]] > 0L,
             yes = "up",
@@ -135,6 +158,17 @@ NULL
                 yes = "multiple contrasts",
                 no = contrast
             )
+        }
+        if (isTRUE(labels[["subtitle"]])) {
+            subtitle <- paste("padj", "<", alpha)
+            if (is.finite(n)) {
+                subtitle <- paste(
+                    subtitle,
+                    paste("n", "=", n),
+                    sep = " : "
+                )
+            }
+            labels[["subtitle"]] <- subtitle
         }
         p <- p + do.call(what = labs, args = labels)
         ## Flip.
