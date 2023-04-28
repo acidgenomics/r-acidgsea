@@ -85,8 +85,7 @@ NULL
         data <- data[keep, , drop = FALSE]
         if (is.finite(n)) {
             data <- data[
-                order(data[["padj"]], -abs(data[["nes"]])),
-                ,
+                order(data[["padj"]], -abs(data[["nes"]])), ,
                 drop = FALSE
             ]
             data <- head(data, n = n)
