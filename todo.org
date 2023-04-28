@@ -83,7 +83,7 @@
    this less problematic? Alternatively, can we select for unique gene symbols
    that don't map to gene scaffolds, non-coding genes? Think about this one...
 ** TODO Compare results against GSEA Java client and gseapy Python approach.
-** TODO `convertToHuman: May need to ensure that GenomicRanges are sorted by
+** TODO `convertToHuman: May need to ensure that genomic ranges are sorted by
    identifier name, or we may need to filter out scaffold identifiers.
    Otherwise, could potentially run into unwanted matches:
    e.g. "FH" vs. "LRG_504".

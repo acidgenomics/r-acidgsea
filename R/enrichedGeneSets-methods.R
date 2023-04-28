@@ -61,7 +61,7 @@ NULL
              alphaCol, # padj
              nesCol # NES
     ) {
-        data <- as(object, "DataFrame")
+        data <- as(object, "DFrame")
         assert(
             isString(idCol),
             isString(alphaCol),

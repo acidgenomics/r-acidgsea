@@ -17,7 +17,7 @@ gr <- makeGRangesFromEnsembl(
     release = 100L,
     ignoreVersion = TRUE
 )
-gr <- as(gr, "GenomicRanges")
+gr <- as(gr, "GRanges")
 gr <- gr[sort(names(gr))]
 gr <- head(gr, n = 1000L)
 gr <- droplevels2(gr)

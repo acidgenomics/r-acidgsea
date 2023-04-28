@@ -37,8 +37,7 @@ NULL
         )
         data <- object[[collection]][[contrast]]
         assert(is(data, "data.table"))
-        ## Coerce to DataFrame, to use standard subsetting syntax.
-        data <- as(data, "DataFrame")
+        data <- as(data, "DFrame")
         keep <- match(set, table = data[["pathway"]])
         if (!isInt(keep)) {
             alertWarning(sprintf("Failed to match '%s' set.", set))
