@@ -12,7 +12,7 @@ convertToHuman(object, ...)
 \arguments{
 \item{object}{Object.}
 
-\item{map}{\code{DataFrame}, or \code{NULL}.
+\item{map}{\code{DFrame}, or \code{NULL}.
 Ortholog mappings data frame returned by \code{mapHumanOrthologs()}. Since
 this function depends on the BioMart API and has a tendancy to time out,
 we're allowing passthrough of a cached object here instead. If left \code{NULL},
@@ -28,7 +28,7 @@ Features (i.e. rownames) will be remapped to human genes.
 Convert data set by mapping to human orthologs
 }
 \note{
-Updated 2022-05-25.
+Updated 2023-04-28.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")

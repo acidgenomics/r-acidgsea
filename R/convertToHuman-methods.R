@@ -1,11 +1,11 @@
 #' @name convertToHuman
 #' @inherit AcidGenerics::convertToHuman
-#' @note Updated 2022-05-25.
+#' @note Updated 2023-04-28.
 #'
 #' @inheritParams params
 #' @param ... Additional arguments.
 #'
-#' @param map `DataFrame`, or `NULL`.
+#' @param map `DFrame`, or `NULL`.
 #' Ortholog mappings data frame returned by `mapHumanOrthologs()`. Since
 #' this function depends on the BioMart API and has a tendancy to time out,
 #' we're allowing passthrough of a cached object here instead. If left `NULL`,
@@ -26,7 +26,7 @@ NULL
     function(object, map = NULL) {
         assert(
             validObject(object),
-            isAny(map, c("DataFrame", "NULL"))
+            isAny(map, c("DFrame", "NULL"))
         )
         ## Break out the slots of the object.
         data <- as(object, "DESeqDataSet")
@@ -83,7 +83,7 @@ NULL
                 ensemblRelease = ensemblRelease
             )
             assert(
-                is(map, "DataFrame"),
+                is(map, "DFrame"),
                 identical(
                     x = sort(colnames(map)),
                     y = c("geneId", "geneName", "humanGeneId", "humanGeneName")

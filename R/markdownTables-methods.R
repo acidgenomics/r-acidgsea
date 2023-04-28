@@ -87,7 +87,7 @@ NULL
                     level = headerLevel,
                     asis = TRUE
                 )
-                data <- as(data, "DataFrame")
+                data <- as(data, "DFrame")
                 ## Sanitize and minimize the results before printing.
                 ## Drop the nested list columns (e.g. leadingEdge).
                 data <- selectIf(data, is.atomic)

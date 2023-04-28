@@ -43,7 +43,7 @@ NULL
             )
         )
         assert(
-            is(df, "DataFrame"),
+            is(df, "DFrame"),
             isSubset(
                 x = c("nes", "padj", "pathway"),
                 y = colnames(df)
@@ -74,7 +74,7 @@ NULL
                 "FGSEAList"
             )
         )
-        data <- as(data, "DataFrame")
+        data <- as(data, "DFrame")
         colnames(data) <- camelCase(colnames(data), strict = TRUE)
         ## Coerce the "leadingEdge" list column to a character string.
         data[["leadingEdge"]] <- unlist(

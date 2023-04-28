@@ -1,4 +1,5 @@
 ## FIXME Consider adding support for `ignoreVersion` here.
+## FIXME Consider adding numeric vector method support here.
 
 
 
@@ -43,7 +44,7 @@ NULL
 .filterProteinCoding <-
     function(rowRanges, threshold = 0.25) {
         assert(
-            is(rowRanges, "GenomicRanges"),
+            is(rowRanges, "GRanges"),
             isSubset("geneBiotype", colnames(mcols(rowRanges)))
         )
         keep <- mcols(rowRanges)[["geneBiotype"]] == "protein_coding"
@@ -80,7 +81,7 @@ NULL
 #' @return `GRanges`.
 .filterSeqnames <-
     function(rowRanges, threshold = 0.25) {
-        assert(is(rowRanges, "GenomicRanges"))
+        assert(is(rowRanges, "GRanges"))
         organism <- organism(rowRanges)
         if (!identical(organism, "Homo sapiens")) {
             return(rowRanges)
@@ -137,7 +138,7 @@ NULL
              keyType,
              threshold = 0.25) {
         assert(
-            is(rowRanges, "GenomicRanges"),
+            is(rowRanges, "GRanges"),
             isString(keyType),
             isSubset(keyType, colnames(mcols(rowRanges))),
             isAny(mcols(rowRanges)[[keyType]], c("List", "list"))
@@ -177,14 +178,14 @@ NULL
 
 #' Prepare RankedList
 #'
-#' @note Updated 2023-03-01.
+#' @note Updated 2023-04-28.
 #' @noRd
 #'
 #' @examples
 #' data(deseq, package = "DESeqAnalysis")
 #' object <- results(deseq, i = 1L, lfcShrink = FALSE)
 #' rowRanges <- rowRanges(deseq@data)
-`.RankedList,DataFrame` <- # nolint
+`.RankedList,DFrame` <- # nolint
     function(object,
              rowRanges,
              keyType,
@@ -192,25 +193,25 @@ NULL
              proteinCodingOnly) {
         assert(
             validObject(object),
-            is(object, "DataFrame"),
+            is(object, "DFrame"),
             hasRownames(object),
-            isAny(rowRanges, c("GenomicRanges", "NULL")),
+            isAny(rowRanges, c("GRanges", "NULL")),
             isString(keyType),
             isString(value),
             isSubset(value, colnames(object)),
             hasRownames(object),
             isFlag(proteinCodingOnly)
         )
-        object <- as(object, "DataFrame")
+        object <- as(object, "DFrame")
         if (identical(keyType, "rowname")) {
             rowRanges <- NULL
         }
-        if (is(rowRanges, "GenomicRanges")) {
+        if (is(rowRanges, "GRanges")) {
             assert(
                 validObject(rowRanges),
                 identical(rownames(object), names(rowRanges))
             )
-            rowRanges <- as(rowRanges, "GenomicRanges")
+            rowRanges <- as(rowRanges, "GRanges")
             rowRanges <- .filterSeqnames(rowRanges)
             if (isTRUE(proteinCodingOnly)) {
                 rowRanges <- .filterProteinCoding(rowRanges)
@@ -391,8 +392,8 @@ formals(`RankedList,DESeqAnalysis`)[["keyType"]] <- # nolint
              value = c("stat", "log2FoldChange"),
              proteinCodingOnly = FALSE) {
         assert(validObject(object))
-        out <- `.RankedList,DataFrame`(
-            object = as(object, "DataFrame"),
+        out <- `.RankedList,DFrame`(
+            object = as(object, "DFrame"),
             rowRanges = rowRanges,
             value = match.arg(value),
             keyType = match.arg(keyType),
