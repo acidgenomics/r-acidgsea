@@ -1,6 +1,8 @@
 #+TITLE: AcidGSEA
 #+STARTUP: content
 * Development
+** TODO Consider adding support for `ignoreVersion` for RankedList.
+** TODO Consider adding numeric vector method support for RankedList.
 ** TODO Consider including alpha cutoff in subtitle for `plotGeneSet` and `plotNES`.
 ** TODO `RankedList` rework.
     - Currently expecting Ensembl-processed input here.
