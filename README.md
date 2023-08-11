@@ -1,5 +1,6 @@
 # AcidGSEA
 
+![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)
 [![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg?style=flat)](http://bioconda.github.io/recipes/r-acidgsea/README.html)
 
 Perform parameterized gene set enrichment analysis (GSEA) on multiple
