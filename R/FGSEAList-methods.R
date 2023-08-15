@@ -37,10 +37,12 @@ NULL
 
 ## Updated 2022-05-25.
 `FGSEAList,RankedList` <- # nolint
+    ## nolint start
     function(object,
              geneSetFiles,
              BPPARAM = BiocParallel::bpparam() # nolint
     ) {
+        ## nolint end
         assert(
             validObject(object),
             allAreFiles(geneSetFiles),
