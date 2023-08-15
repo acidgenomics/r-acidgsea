@@ -1,5 +1,18 @@
 # Release notes
 
+## AcidGSEA 0.8.9 (2023-08-15)
+
+Minor changes:
+
+- Now requiring R 4.3 / Bioconductor 3.17.
+- Reworked internal ggplot2 code to use data pronouns instead of rlang
+  syntactic sugar.
+- Updated NAMESPACE related to AcidPlots.
+
+## AcidGSEA 0.8.8
+
+FIXME.
+
 ## AcidGSEA 0.8.7 (2023-02-09)
 
 Minor changes:
