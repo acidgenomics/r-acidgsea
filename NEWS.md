@@ -9,9 +9,15 @@ Minor changes:
   syntactic sugar.
 - Updated NAMESPACE related to AcidPlots.
 
-## AcidGSEA 0.8.8
+## AcidGSEA 0.8.8 (2023-04-28)
 
-FIXME.
+Major changes:
+
+- Reworked handling of NCBI (Entrez) gene identifiers.
+- Now classing on `DFrame` instead of `DataFrame` virtual class, where
+  applicable.
+- Also classing on `GRanges` directly instead of `GenomicRanges` virtual class,
+  where applicable.
 
 ## AcidGSEA 0.8.7 (2023-02-09)
 
