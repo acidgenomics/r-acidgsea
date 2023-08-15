@@ -50,19 +50,21 @@ Only plots gene sets that pass adjusted \emph{P} value cutoff, defined by
 \code{alphaThreshold}.
 }
 \note{
-Updated 2023-03-23.
+Updated 2023-08-15.
 }
 \examples{
 data(fgsea)
 
 ## FGSEAList ====
 object <- fgsea
+alphaThreshold(object) <- 0.9
 contrast <- contrastNames(object)[[1L]]
 collection <- collectionNames(object)[[1L]]
 plotNES(
     object = object,
     contrast = contrast,
-    collection = collection
+    collection = collection,
+    n = 10L
 )
 }
 \seealso{
