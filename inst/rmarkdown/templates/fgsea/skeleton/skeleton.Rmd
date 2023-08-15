@@ -51,7 +51,7 @@ if (is.character(params[["object"]])) {
     object <- import(file)
     name <- params[["name"]]
     if (!isTRUE(nzchar(name))) {
-      name <- basenameSansExt(file)
+        name <- basenameSansExt(file)
     }
     rm(file)
 } else {
