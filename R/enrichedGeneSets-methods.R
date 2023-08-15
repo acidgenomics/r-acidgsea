@@ -53,6 +53,7 @@ NULL
 #'     nesCol = "NES"
 #' )
 .enrichedGeneSets <-
+    ## nolint start
     function(object,
              alphaThreshold,
              nesThreshold,
@@ -61,6 +62,7 @@ NULL
              alphaCol, # padj
              nesCol # NES
     ) {
+        ## nolint end
         data <- as(object, "DFrame")
         assert(
             isString(idCol),
