@@ -1,6 +1,6 @@
 #' @name plotLFC
 #' @inherit AcidGenerics::plotLFC
-#' @note Updated 2022-04-27.
+#' @note Updated 2023-08-15.
 #'
 #' @inheritParams params
 #' @inheritParams AcidRoxygen::params
@@ -29,7 +29,7 @@ NULL
 
 
 
-## Updated 2021-09-10.
+## Updated 2023-08-15.
 `plotLFC,FGSEAList` <- # nolint
     function(object,
              contrast = NULL,
@@ -76,15 +76,15 @@ NULL
         p <- ggplot(
             data = as.data.frame(data),
             mapping = aes(
-                x = !!sym("colname"),
-                y = !!sym("value")
+                x = .data[["colname"]],
+                y = .data[["value"]]
             )
         )
         p <- p + switch(
             EXPR = geom,
             "boxplot" = geom_boxplot(
                 mapping = aes(
-                    color = !!sym("colname")
+                    color = .data[["colname"]]
                 ),
                 fill = NA,
                 outlier.shape = NA,
@@ -92,7 +92,7 @@ NULL
             ),
             "violin" = geom_violin(
                 mapping = aes(
-                    color = !!sym("colname")
+                    color = .data[["colname"]]
                 ),
                 fill = NA,
                 show.legend = FALSE
@@ -100,7 +100,7 @@ NULL
         )
         if (isTRUE(points)) {
             p <- p + geom_jitter(
-                mapping = aes(color = !!sym("colname")),
+                mapping = aes(color = .data[["colname"]]),
                 show.legend = FALSE
             )
         }
@@ -109,7 +109,7 @@ NULL
         labels[["y"]] <- "log2 fold change"
         p <- p + do.call(what = labs, args = labels)
         ## Color palette.
-        p <- p + autoDiscreteColorScale()
+        p <- p + acid_scale_color_discrete()
         ## Return.
         p
     }

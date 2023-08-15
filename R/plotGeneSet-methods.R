@@ -1,6 +1,6 @@
 #' @name plotGeneSet
 #' @inherit AcidGenerics::plotGeneSet
-#' @note Updated 2023-03-23.
+#' @note Updated 2023-08-15.
 #'
 #' @inheritParams AcidRoxygen::params
 #' @inheritParams params
@@ -107,7 +107,7 @@ NULL
         padj2 <- formatC(padj, format = "e", digits = 2L)
         p <- ggplot(
             data = toPlot,
-            mapping = aes(x = !!sym("x"), y = !!sym("y"))
+            mapping = aes(x = .data[["x"]], y = .data[["y"]])
         ) +
             geom_hline(
                 yintercept = 0L,
@@ -117,9 +117,9 @@ NULL
             geom_segment(
                 data = data.frame(x = pathway),
                 mapping = aes(
-                    x = !!sym("x"),
+                    x = .data[["x"]],
                     y = -diff / 2L,
-                    xend = !!sym("x"),
+                    xend = .data[["x"]],
                     yend = diff / 2L
                 ),
                 color = colors[["ticks"]],

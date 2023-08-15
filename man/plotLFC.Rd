@@ -53,7 +53,7 @@ See \code{ggplot2::labs()} for details.}
 Plot log2 fold change distributions
 }
 \note{
-Updated 2022-04-27.
+Updated 2023-08-15.
 }
 \examples{
 data(fgsea)

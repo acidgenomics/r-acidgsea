@@ -1,6 +1,6 @@
 #' @name plotNES
 #' @inherit AcidGenerics::plotNES
-#' @note Updated 2023-03-23.
+#' @note Updated 2023-08-15.
 #'
 #' @details
 #' Only plots gene sets that pass adjusted *P* value cutoff, defined by
@@ -22,18 +22,20 @@
 #'
 #' ## FGSEAList ====
 #' object <- fgsea
+#' alphaThreshold(object) <- 0.9
 #' contrast <- contrastNames(object)[[1L]]
 #' collection <- collectionNames(object)[[1L]]
 #' plotNES(
 #'     object = object,
 #'     contrast = contrast,
-#'     collection = collection
+#'     collection = collection,
+#'     n = 10L
 #' )
 NULL
 
 
 
-## Updated 2023-03-23.
+## Updated 2023-08-15.
 `plotNES,FGSEAList` <- # nolint
     function(object,
              contrast,
@@ -103,8 +105,8 @@ NULL
         p <- ggplot(
             data = as.data.frame(data),
             mapping = aes(
-                x = reorder(!!sym("pathway"), !!sym("nes")),
-                y = !!sym("nes")
+                x = reorder(.data[["pathway"]], .data[["nes"]]),
+                y = .data[["nes"]]
             )
         ) +
             scale_alpha_identity()
@@ -119,13 +121,13 @@ NULL
                 ) +
                 geom_point(
                     mapping = aes(
-                        color = !!sym("contrast"),
-                        shape = !!sym("isSignificant")
+                        color = .data[["contrast"]],
+                        shape = .data[["isSignificant"]]
                     ),
                     show.legend = TRUE,
                     size = 2L
                 ) +
-                autoDiscreteColorScale() +
+                acid_scale_color_discrete() +
                 scale_shape_manual(
                     values = c(
                         "FALSE" = 1L, # open circle
@@ -136,11 +138,11 @@ NULL
             p <- p +
                 geom_col(
                     mapping = aes(
-                        fill = !!sym("direction")
+                        fill = .data[["direction"]]
                     ),
                     show.legend = FALSE
                 ) +
-                autoDiscreteFillScale()
+                acid_scale_fill_discrete()
         }
         p <- p +
             geom_hline(
