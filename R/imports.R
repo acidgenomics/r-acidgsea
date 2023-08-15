@@ -53,8 +53,8 @@ NULL
 #' txt ul
 #' @importFrom AcidGenomes mapHumanOrthologs
 #' @importFrom AcidMarkdown markdownHeader
-#' @importFrom AcidPlots !! acid_theme_light autoDiscreteColorScale
-#' autoDiscreteFillScale matchLabels sym
+#' @importFrom AcidPlots .data acid_theme_light acid_scale_color_discrete
+#' acid_scale_fill_discrete matchLabels
 #' @importFrom DESeqAnalysis DESeqAnalysis
 #' @importFrom IRanges IntegerList SplitDataFrameList
 #' @importFrom S4Vectors DataFrame SimpleList
