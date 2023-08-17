@@ -2,8 +2,8 @@ Package: AcidGSEA
 Title: Acid Genomics GSEA
 Description: Perform parameterized gene set enrichment analysis (GSEA)
     on multiple differential expression contrasts.
-Version: 0.8.9.9000
-Date: 2023-08-15
+Version: 0.8.9
+Date: 2023-08-17
 Authors@R: c(
     person(
         "Michael", "Steinbaugh",
