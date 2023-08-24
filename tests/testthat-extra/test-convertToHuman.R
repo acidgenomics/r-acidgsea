@@ -1,4 +1,4 @@
-skip_if_not(hasInternet(url = "https://ensembl.org/"))
+skip_if_not(isAnExistingURL("https://ensembl.org/"))
 
 test_that("Human (already)", {
     object <- convertToHuman(deseq)

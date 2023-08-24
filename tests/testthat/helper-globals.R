@@ -16,7 +16,7 @@ data(
 
 ## nolint start
 `rowData<-` <- SummarizedExperiment::`rowData<-`
-hasInternet <- goalie::hasInternet
+isAnExistingURL <- goalie::isAnExistingURL
 methodFormals <- AcidBase::methodFormals
 realpath <- AcidBase::realpath
 rowData <- SummarizedExperiment::rowData
