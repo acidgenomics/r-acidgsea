@@ -1,9 +1,13 @@
+## FIXME Rework this to just use parallel package.
+
+
+
 #' Parameterized fast gene set enrichment analysis (GSEA)
 #'
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @name FGSEAList
-#' @note Updated 2023-03-01.
+#' @note Updated 2023-09-20.
 #'
 #' @inheritParams RankedList
 #' @inheritParams params
