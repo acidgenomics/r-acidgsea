@@ -70,7 +70,7 @@ NULL
 #' @export
 #' @name export
 #' @rdname export
-#' @usage export(object, con, format, ...)
+#' @usage export(object, con, ...)
 NULL
 
 #' @export

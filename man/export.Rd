@@ -2,19 +2,18 @@
 % Please edit documentation in R/AllGenerics.R, R/export-methods.R
 \name{export}
 \alias{export}
-\alias{export,FGSEAList,character,missing-method}
-\title{Export}
+\alias{export,FGSEAList,character-method}
+\title{Export data from R}
 \usage{
-export(object, con, format, ...)
+export(object, con, ...)
 
-\S4method{export}{FGSEAList,character,missing}(
+\S4method{export}{FGSEAList,character}(
   object,
   con,
-  format,
   geneSetResults = FALSE,
-  compress = getOption(x = "acid.export.compress", default = FALSE),
-  overwrite = getOption(x = "acid.overwrite", default = TRUE),
-  quiet = getOption(x = "acid.quiet", default = FALSE)
+  compress = FALSE,
+  overwrite = TRUE,
+  quiet = FALSE
 )
 }
 \arguments{
@@ -22,8 +21,6 @@ export(object, con, format, ...)
 
 \item{con}{\code{character(1)}.
 Directory path.}
-
-\item{format}{\emph{Not currently supported.}}
 
 \item{geneSetResults}{\code{logical(1)} or \code{character}.
 Export per-gene set expression including log fold change values generated
@@ -43,14 +40,13 @@ Perform command quietly, suppressing messages.}
 \item{...}{Additional arguments.}
 }
 \value{
-Invisible \code{character}.
-File path(s).
+Invisible \code{character} or \code{list} of file paths.
 }
 \description{
-Export
+Export data from R
 }
 \note{
-Updated 2022-09-13.
+Updated 2023-09-13.
 }
 \section{On-disk structure}{
 

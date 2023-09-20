@@ -20,6 +20,11 @@ Gene2Symbol(object, ...)
 \description{
 Gene-to-symbol mappings
 }
+\details{
+For some organisms, gene identifiers and gene names do not map 1:1 (e.g.
+\emph{Homo sapiens} and \emph{Mus musculus}). Refer to the \code{format} argument
+here in the documentation for approaches that deal with this issue.
+}
 \note{
 Updated 2022-04-27.
 }
