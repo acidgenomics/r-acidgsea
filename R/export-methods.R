@@ -182,8 +182,7 @@ setMethod(
     f = "export",
     signature = signature(
         object = "FGSEAList",
-        con = "character",
-        format = "missing"
+        con = "character"
     ),
     definition = `export,FGSEAList`
 )

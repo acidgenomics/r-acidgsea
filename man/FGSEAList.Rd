@@ -81,7 +81,7 @@ We recommend using one of the following:
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2023-03-01.
+Updated 2023-09-20.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")
