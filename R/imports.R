@@ -10,10 +10,11 @@ NULL
 #' @importFrom AcidGenerics Gene2Symbol alphaThreshold alphaThreshold<-
 #' as.DESeqDataSet as.DataFrame camelCase collectionNames collectionNames<-
 #' contrastName contrastNames contrastNames<- contrastSamples convertToHuman
-#' enrichedGeneSets geneSet geneSetNames geneSetResults leadingEdge leftJoin
-#' makeNames mapGenesToRownames markdownTables melt nesThreshold nesThreshold<-
-#' plotEnrichedGeneSets plotEnrichedUpset plotGeneSet plotHeatmap plotLFC
-#' plotNES plotUpset results selectIf showHeader snakeCase stripGeneVersions
+#' enrichedGeneSets export geneSet geneSetNames geneSetResults import
+#' leadingEdge leftJoin makeNames mapGenesToRownames markdownTables melt
+#' nesThreshold nesThreshold<- plotEnrichedGeneSets plotEnrichedUpset
+#' plotGeneSet plotHeatmap plotLFC plotNES plotUpset results selectIf showHeader
+#' snakeCase stripGeneVersions
 #' @importFrom BiocGenerics %in% combine lapply order organism sort unique
 #' unlist unsplit updateObject
 #' @importFrom GenomeInfoDb genome seqnames
@@ -22,7 +23,6 @@ NULL
 #' @importFrom SummarizedExperiment rowRanges rowRanges<-
 #' @importFrom fgsea calcGseaStat fgsea
 #' @importFrom methods coerce show
-#' @importFrom pipette export import
 NULL
 
 #' @importMethodsFrom AcidBase showHeader
