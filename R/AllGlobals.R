@@ -4,6 +4,7 @@
 
 
 
+## FIXME Take this out
 ## Updated 2021-02-12.
 .bplapply <- {
     if (isInstalled("BiocParallel")) {

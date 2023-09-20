@@ -1,7 +1,6 @@
 #' @name export
-#'
 #' @inherit pipette::export description return title
-#' @note Updated 2022-09-13.
+#' @note Updated 2023-09-13.
 #'
 #' @section On-disk structure:
 #'
@@ -25,14 +24,8 @@
 #'
 #' @inheritParams AcidExperiment::export
 #'
-#' @param object
-#' Object.
-#'
 #' @param con `character(1)`.
 #' Directory path.
-#'
-#' @param format
-#' *Not currently supported.*
 #'
 #' @param ... Additional arguments.
 #'
@@ -58,31 +51,17 @@ NULL
 
 
 
-## Updated 2022-09-13.
+## Updated 2023-09-20.
 `export,FGSEAList` <- # nolint
     function(object,
              con,
-             format, # missing
              geneSetResults = FALSE,
-             compress = getOption(
-                 x = "acid.export.compress",
-                 default = FALSE
-             ),
-             overwrite = getOption(
-                 x = "acid.overwrite",
-                 default = TRUE
-             ),
-             quiet = getOption(
-                 x = "acid.quiet",
-                 default = FALSE
-             )) {
-        validObject(object)
-        if (missing(format)) {
-            format <- NULL
-        }
+             compress = FALSE,
+             overwrite = TRUE,
+             quiet = FALSE) {
         assert(
+            validObject(object),
             isString(con),
-            is.null(format),
             isFlag(geneSetResults) || isCharacter(geneSetResults),
             isFlag(compress),
             isFlag(overwrite),
