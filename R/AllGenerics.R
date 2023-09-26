@@ -8,9 +8,9 @@ setGeneric(
 )
 
 #' @export
-#' @name Gene2Symbol
-#' @rdname Gene2Symbol
-#' @usage Gene2Symbol(object, ...)
+#' @name GeneToSymbol
+#' @rdname GeneToSymbol
+#' @usage GeneToSymbol(object, ...)
 NULL
 
 #' @export

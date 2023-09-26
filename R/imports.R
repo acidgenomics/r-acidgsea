@@ -7,7 +7,7 @@ NULL
 
 # S4 generics and methods ======================================================
 
-#' @importFrom AcidGenerics Gene2Symbol alphaThreshold alphaThreshold<-
+#' @importFrom AcidGenerics GeneToSymbol alphaThreshold alphaThreshold<-
 #' as.DESeqDataSet as.DataFrame camelCase collectionNames collectionNames<-
 #' contrastName contrastNames contrastNames<- contrastSamples convertToHuman
 #' enrichedGeneSets export geneSet geneSetNames geneSetResults import
@@ -26,7 +26,7 @@ NULL
 NULL
 
 #' @importMethodsFrom AcidBase showHeader
-#' @importMethodsFrom AcidExperiment Gene2Symbol export mapGenesToRownames
+#' @importMethodsFrom AcidExperiment GeneToSymbol export mapGenesToRownames
 #' @importMethodsFrom AcidGenomes stripGeneVersions
 #' @importMethodsFrom AcidPlots plotHeatmap plotUpset
 #' @importMethodsFrom AcidPlyr leftJoin melt selectIf
