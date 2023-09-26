@@ -1,5 +1,5 @@
-#' @name Gene2Symbol
-#' @inherit AcidGenomes::Gene2Symbol
+#' @name GeneToSymbol
+#' @inherit AcidGenomes::GeneToSymbol
 #' @note Updated 2022-04-27.
 #' @inheritParams params
 #' @param ... Additional arguments.
@@ -8,14 +8,14 @@
 #'
 #' ## FGSEAList ====
 #' object <- fgsea
-#' g2s <- Gene2Symbol(object)
+#' g2s <- GeneToSymbol(object)
 #' print(g2s)
 NULL
 
 
 
 ## Updated 2022-04-27.
-`Gene2Symbol,FGSEAList` <- # nolint
+`GeneToSymbol,FGSEAList` <- # nolint
     function(object) {
         validObject(object)
         assert(
@@ -27,7 +27,7 @@ NULL
         )
         deseq <- metadata(object)[["deseq"]]
         suppressMessages({
-            g2s <- Gene2Symbol(
+            g2s <- GeneToSymbol(
                 object = as.DESeqDataSet(deseq),
                 format = "unmodified"
             )
@@ -53,17 +53,17 @@ NULL
         assert(!anyNA(idx))
         g2s <- g2s[idx, , drop = FALSE]
         rownames(g2s) <- NULL
-        assert(is(g2s, "Gene2Symbol"))
+        assert(is(g2s, "GeneToSymbol"))
         validObject(g2s)
         g2s
     }
 
 
 
-#' @rdname Gene2Symbol
+#' @rdname GeneToSymbol
 #' @export
 setMethod(
-    f = "Gene2Symbol",
+    f = "GeneToSymbol",
     signature = signature(object = "FGSEAList"),
-    definition = `Gene2Symbol,FGSEAList`
+    definition = `GeneToSymbol,FGSEAList`
 )

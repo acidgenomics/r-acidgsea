@@ -88,7 +88,7 @@
         isCharacter(genes)
     )
     suppressMessages({
-        g2s <- Gene2Symbol(object)
+        g2s <- GeneToSymbol(object)
     })
     colnames(g2s) <- camelCase(colnames(g2s), strict = TRUE)
     idx <- na.omit(match(x = genes, table = g2s[["geneName"]]))
