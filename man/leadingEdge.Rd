@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/leadingEdge-methods.R
 \name{leadingEdge}
 \alias{leadingEdge}
-\alias{leadingEdge,FGSEAList-method}
+\alias{leadingEdge,FgseaList-method}
 \title{Leading edge genes}
 \usage{
 leadingEdge(object, ...)
 
-\S4method{leadingEdge}{FGSEAList}(object, contrast, collection, set)
+\S4method{leadingEdge}{FgseaList}(object, contrast, collection, set)
 }
 \arguments{
 \item{object}{Object.}
@@ -18,7 +18,7 @@ Contrast name.}
 \item{collection}{\code{character(1)}.
 Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
-Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+Can obtain using \code{collectionNames()} on \code{FgseaList} object.}
 
 \item{set}{\code{character(1)}.
 Gene set name, in a defined \code{collection}.
@@ -39,7 +39,7 @@ Updated 2022-04-27.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 contrast <- contrastNames(object)[[1L]]
 collection <- collectionNames(object)[[1L]]

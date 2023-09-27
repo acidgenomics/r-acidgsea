@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/plotEnrichedUpset-methods.R
 \name{plotEnrichedUpset}
 \alias{plotEnrichedUpset}
-\alias{plotEnrichedUpset,FGSEAList-method}
+\alias{plotEnrichedUpset,FgseaList-method}
 \title{UpSet plot of directional enriched pathway intersections across contrasts}
 \usage{
 plotEnrichedUpset(object, ...)
 
-\S4method{plotEnrichedUpset}{FGSEAList}(object, collection, direction = c("both", "up", "down"))
+\S4method{plotEnrichedUpset}{FgseaList}(object, collection, direction = c("both", "up", "down"))
 }
 \arguments{
 \item{object}{Object.}
@@ -15,7 +15,7 @@ plotEnrichedUpset(object, ...)
 \item{collection}{\code{character(1)}.
 Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
-Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+Can obtain using \code{collectionNames()} on \code{FgseaList} object.}
 
 \item{direction}{\code{character(1)}.
 Include \code{"both"}, \code{"up"}, or \code{"down"} directions.}
@@ -34,7 +34,7 @@ Updated 2022-04-27.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 alphaThreshold(object) <- 0.9
 collection <- collectionNames(object)[[1L]]

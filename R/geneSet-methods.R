@@ -6,7 +6,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' collection <- collectionNames(object)[[1L]]
 #' set <- geneSetNames(object = object, collection = collection)[[1L]]
@@ -21,7 +21,7 @@ NULL
 
 
 ## Updated 2020-09-21.
-`geneSet,FGSEAList` <- # nolint
+`geneSet,FgseaList` <- # nolint
     function(object,
              collection,
              set) {
@@ -42,6 +42,6 @@ NULL
 #' @export
 setMethod(
     f = "geneSet",
-    signature = signature(object = "FGSEAList"),
-    definition = `geneSet,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `geneSet,FgseaList`
 )

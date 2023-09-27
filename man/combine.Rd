@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/combine-methods.R
 \name{combine}
 \alias{combine}
-\alias{combine,FGSEAList,FGSEAList-method}
+\alias{combine,FgseaList,FgseaList-method}
 \title{Combine multiple objects}
 \usage{
 combine(x, y, ...)
 
-\S4method{combine}{FGSEAList,FGSEAList}(x, y)
+\S4method{combine}{FgseaList,FgseaList}(x, y)
 }
 \arguments{
 \item{x}{Object.}
@@ -28,7 +28,7 @@ Updated 2022-04-27.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 x <- fgsea
 y <- fgsea
 contrastNames(x) <- paste0("x_", contrastNames(x))

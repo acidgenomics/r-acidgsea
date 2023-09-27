@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/plotHeatmap-methods.R
 \name{plotHeatmap}
 \alias{plotHeatmap}
-\alias{plotHeatmap,FGSEAList-method}
+\alias{plotHeatmap,FgseaList-method}
 \title{Heatmap}
 \usage{
 plotHeatmap(object, ...)
 
-\S4method{plotHeatmap}{FGSEAList}(
+\S4method{plotHeatmap}{FgseaList}(
   object,
   contrast,
   contrastSamples = TRUE,
@@ -29,7 +29,7 @@ Only visualize the samples defined in the contrast.}
 \item{collection}{\code{character(1)}.
 Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
-Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+Can obtain using \code{collectionNames()} on \code{FgseaList} object.}
 
 \item{set}{\code{character(1)}.
 Gene set name, in a defined \code{collection}.
@@ -53,7 +53,7 @@ Updated 2021-03-16.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 contrast <- contrastNames(object)[[1L]]
 collection <- collectionNames(object)[[1L]]

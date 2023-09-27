@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/enrichedGeneSets-methods.R
 \name{enrichedGeneSets}
 \alias{enrichedGeneSets}
-\alias{enrichedGeneSets,FGSEAList-method}
+\alias{enrichedGeneSets,FgseaList-method}
 \title{Enriched gene sets}
 \usage{
 enrichedGeneSets(object, ...)
 
-\S4method{enrichedGeneSets}{FGSEAList}(object, collection, direction = c("both", "up", "down"))
+\S4method{enrichedGeneSets}{FgseaList}(object, collection, direction = c("both", "up", "down"))
 }
 \arguments{
 \item{object}{Object.}
@@ -15,7 +15,7 @@ enrichedGeneSets(object, ...)
 \item{collection}{\code{character(1)}.
 Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
-Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+Can obtain using \code{collectionNames()} on \code{FgseaList} object.}
 
 \item{direction}{\code{character(1)}.
 Include \code{"both"}, \code{"up"}, or \code{"down"} directions.}
@@ -35,7 +35,7 @@ Updated 2022-04-27.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 alphaThreshold(object) <- 0.7
 collection <- collectionNames(object)[[1L]]

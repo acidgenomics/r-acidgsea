@@ -35,8 +35,8 @@
 #' @export
 #'
 #' @examples
-#' AcidGSEATestsURL
-AcidGSEATestsURL <- # nolint
+#' AcidGseaTestsUrl
+AcidGseaTestsUrl <- # nolint
     paste0(
         "https://r.acidgenomics.com/testdata/acidgsea/",
         "v", .pkgVersion$major, ".", .pkgVersion$minor # nolint

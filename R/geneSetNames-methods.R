@@ -8,7 +8,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' collection <- collectionNames(object)[[1L]]
 #' head(geneSetNames(object = object, collection = collection))
@@ -17,7 +17,7 @@ NULL
 
 
 ## Updated 2022-04-27.
-`geneSetNames,FGSEAList` <- # nolint
+`geneSetNames,FgseaList` <- # nolint
     function(object, collection) {
         validObject(object)
         assert(
@@ -35,6 +35,6 @@ NULL
 #' @export
 setMethod(
     f = "geneSetNames",
-    signature = signature(object = "FGSEAList"),
-    definition = `geneSetNames,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `geneSetNames,FgseaList`
 )

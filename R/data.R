@@ -1,4 +1,4 @@
-#' FGSEAList example data
+#' FgseaList example data
 #'
 #' @author Michael Steinbaugh
 #' @note Updated 2021-06-29.

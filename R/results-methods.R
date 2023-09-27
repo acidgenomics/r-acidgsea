@@ -6,7 +6,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' contrast <- contrastNames(object)[[1L]]
 #' collection <- collectionNames(object)[[1L]]
@@ -24,7 +24,7 @@ NULL
     function(object,
              collection) {
         assert(
-            is(object, "FGSEAList"),
+            is(object, "FgseaList"),
             isString(collection)
         )
         df <- do.call(
@@ -56,7 +56,7 @@ NULL
 
 
 ## Updated 2021-10-19.
-`results,FGSEAList` <- # nolint
+`results,FgseaList` <- # nolint
     function(object,
              contrast,
              collection) {
@@ -71,7 +71,7 @@ NULL
             isSubset("leadingEdge", colnames(data)),
             msg = sprintf(
                 "Failed to extract results for {.cls %s}.",
-                "FGSEAList"
+                "FgseaList"
             )
         )
         data <- as(data, "DFrame")
@@ -93,6 +93,6 @@ NULL
 #' @export
 setMethod(
     f = "results",
-    signature = signature(object = "FGSEAList"),
-    definition = `results,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `results,FgseaList`
 )

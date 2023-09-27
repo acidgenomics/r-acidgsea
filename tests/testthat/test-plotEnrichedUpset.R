@@ -1,4 +1,4 @@
-test_that("FGSEAList", {
+test_that("FgseaList", {
     object <- fgsea
     alphaThreshold(object) <- 0.9
     collection <- collectionNames(object)[[1L]]

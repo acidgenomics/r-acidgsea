@@ -5,7 +5,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' collectionNames(object)
 NULL
@@ -13,7 +13,7 @@ NULL
 
 
 ## Updated 2019-07-24.
-`collectionNames,FGSEAList` <- # nolint
+`collectionNames,FgseaList` <- # nolint
     function(object) {
         names(object)
     }
@@ -21,7 +21,7 @@ NULL
 
 
 ## Updated 2020-09-17.
-`collectionNames<-,FGSEAList,character` <- # nolint
+`collectionNames<-,FgseaList,character` <- # nolint
     function(object, value) {
         assert(
             isCharacter(value),
@@ -40,8 +40,8 @@ NULL
 #' @export
 setMethod(
     f = "collectionNames",
-    signature = signature(object = "FGSEAList"),
-    definition = `collectionNames,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `collectionNames,FgseaList`
 )
 
 #' @rdname collectionNames
@@ -49,8 +49,8 @@ setMethod(
 setMethod(
     f = "collectionNames<-",
     signature = signature(
-        object = "FGSEAList",
+        object = "FgseaList",
         value = "character"
     ),
-    definition = `collectionNames<-,FGSEAList,character`
+    definition = `collectionNames<-,FgseaList,character`
 )

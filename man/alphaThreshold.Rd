@@ -3,16 +3,16 @@
 \name{alphaThreshold}
 \alias{alphaThreshold}
 \alias{alphaThreshold<-}
-\alias{alphaThreshold,FGSEAList-method}
-\alias{alphaThreshold<-,FGSEAList,numeric-method}
+\alias{alphaThreshold,FgseaList-method}
+\alias{alphaThreshold<-,FgseaList,numeric-method}
 \title{Alpha threshold}
 \usage{
 alphaThreshold(object, ...)
 alphaThreshold(object, ...) <- value
 
-\S4method{alphaThreshold}{FGSEAList}(object)
+\S4method{alphaThreshold}{FgseaList}(object)
 
-\S4method{alphaThreshold}{FGSEAList,numeric}(object) <- value
+\S4method{alphaThreshold}{FgseaList,numeric}(object) <- value
 }
 \arguments{
 \item{object}{Object.}
@@ -34,7 +34,7 @@ Updated 2022-04-27.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 alphaThreshold(object) <- 0.1
 alphaThreshold(object)

@@ -3,7 +3,7 @@
 params:
   title: "Gene Set Enrichment Analysis"
   
-  ## Use FGSEAList object as input.
+  ## Use FgseaList object as input.
   ## - Standard: Load from file on disk, either RDS or RDA.
   ## - Advanced: Loop across multiple objects using `rmarkdown::render()`.
   object: !r file.path("rds", Sys.Date(), "object.rds")
@@ -41,9 +41,9 @@ knitr::opts_chunk[["set"]](message = FALSE)
 
 Note that we have switched to MSigDB 7.0 (August 2019) from 6.2.
 
-# Load FGSEAList object
+# Load FgseaList object
 
-Import the `FGSEAList` S4 class object. This single object contains everything we need to visualize the GSEA results.
+Import the `FgseaList` S4 class object. This single object contains everything we need to visualize the GSEA results.
 
 ```{r load-object}
 if (is.character(params[["object"]])) {
@@ -59,7 +59,7 @@ if (is.character(params[["object"]])) {
     name <- params[["name"]]
 }
 stopifnot(
-    is(object, "FGSEAList"),
+    is(object, "FgseaList"),
     isTRUE(nzchar(name))
 )
 invisible(validObject(object))
@@ -68,7 +68,7 @@ print(object)
 
 # Ranked gene list input
 
-A ranked `numeric vector` [gene list](https://github.com/GuangchuangYu/DOSE/wiki/how-to-prepare-your-own-geneList) is used as input for fast, parameterized GSEA. This is stored as a `RankedList` S4 class object by pfgsea, and internally named as `rankedlist` in the `metadata()` slot of the `FGSEAList` object.
+A ranked `numeric vector` [gene list](https://github.com/GuangchuangYu/DOSE/wiki/how-to-prepare-your-own-geneList) is used as input for fast, parameterized GSEA. This is stored as a `RankedList` S4 class object by pfgsea, and internally named as `rankedlist` in the `metadata()` slot of the `FgseaList` object.
 
 It requires three features:
 

@@ -2,10 +2,10 @@
 % Please edit documentation in R/show-methods.R
 \name{show}
 \alias{show}
-\alias{show,FGSEAList-method}
+\alias{show,FgseaList-method}
 \title{Show an object}
 \usage{
-\S4method{show}{FGSEAList}(object)
+\S4method{show}{FgseaList}(object)
 }
 \arguments{
 \item{object}{Object.}
@@ -22,7 +22,7 @@ Updated 2022-08-17.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 show(object)
 }

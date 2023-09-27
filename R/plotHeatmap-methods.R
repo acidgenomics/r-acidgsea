@@ -9,7 +9,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' contrast <- contrastNames(object)[[1L]]
 #' collection <- collectionNames(object)[[1L]]
@@ -25,7 +25,7 @@ NULL
 
 
 ## Updated 2021-03-16.
-`plotHeatmap,FGSEAList` <- # nolint
+`plotHeatmap,FgseaList` <- # nolint
     function(object,
              contrast,
              contrastSamples = TRUE,
@@ -76,6 +76,6 @@ NULL
 #' @export
 setMethod(
     f = "plotHeatmap",
-    signature = signature(object = "FGSEAList"),
-    definition = `plotHeatmap,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `plotHeatmap,FgseaList`
 )

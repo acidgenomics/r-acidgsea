@@ -9,7 +9,7 @@
 #' @param collection `character(1)`.
 #' Gene set collection name.
 #' Typically refers to `h` (hallmark), `c1`-`c7` collections from MSigDb.
-#' Can obtain using `collectionNames()` on `FGSEAList` object.
+#' Can obtain using `collectionNames()` on `FgseaList` object.
 #'
 #' @param contrast `character(1)`.
 #' Contrast name.

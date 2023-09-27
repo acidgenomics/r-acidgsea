@@ -4,7 +4,7 @@
 \alias{RankedList}
 \alias{RankedList,DESeqAnalysis-method}
 \alias{RankedList,DESeqResults-method}
-\alias{RankedList,FGSEAList-method}
+\alias{RankedList,FgseaList-method}
 \title{Ranked list of genes}
 \usage{
 RankedList(object, ...)
@@ -24,7 +24,7 @@ RankedList(object, ...)
   proteinCodingOnly = FALSE
 )
 
-\S4method{RankedList}{FGSEAList}(object)
+\S4method{RankedList}{FgseaList}(object)
 }
 \arguments{
 \item{object}{Object.}
@@ -84,7 +84,7 @@ object <- deseq
 rl <- RankedList(object)
 print(rl)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 rl <- RankedList(object)
 print(rl)

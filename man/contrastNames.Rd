@@ -3,16 +3,16 @@
 \name{contrastNames}
 \alias{contrastNames}
 \alias{contrastNames<-}
-\alias{contrastNames,FGSEAList-method}
-\alias{contrastNames<-,FGSEAList,character-method}
+\alias{contrastNames,FgseaList-method}
+\alias{contrastNames<-,FgseaList,character-method}
 \title{Contrast names}
 \usage{
 contrastNames(object, ...)
 contrastNames(object, ...) <- value
 
-\S4method{contrastNames}{FGSEAList}(object)
+\S4method{contrastNames}{FgseaList}(object)
 
-\S4method{contrastNames}{FGSEAList,character}(object) <- value
+\S4method{contrastNames}{FgseaList,character}(object) <- value
 }
 \arguments{
 \item{object}{Object.}
@@ -33,7 +33,7 @@ Updated 2022-04-27.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 contrastNames(object)
 }

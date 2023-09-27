@@ -1,4 +1,4 @@
-test_that("FGSEAList", {
+test_that("FgseaList", {
     object <- fgsea
     collection <- collectionNames(object)[[1L]]
     output <- capture.output({

@@ -9,7 +9,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' alphaThreshold(object) <- 0.9
 #' collection <- collectionNames(object)[[1L]]
@@ -22,7 +22,7 @@ NULL
 
 
 ## Updated 2021-02-17.
-`plotEnrichedUpset,FGSEAList` <- # nolint
+`plotEnrichedUpset,FgseaList` <- # nolint
     function(object,
              collection,
              direction = c("both", "up", "down")) {
@@ -81,6 +81,6 @@ NULL
 #' @export
 setMethod(
     f = "plotEnrichedUpset",
-    signature = signature(object = "FGSEAList"),
-    definition = `plotEnrichedUpset,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `plotEnrichedUpset,FgseaList`
 )

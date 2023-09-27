@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/results-methods.R
 \name{results}
 \alias{results}
-\alias{results,FGSEAList-method}
+\alias{results,FgseaList-method}
 \title{Results}
 \usage{
 results(object, ...)
 
-\S4method{results}{FGSEAList}(object, contrast, collection)
+\S4method{results}{FgseaList}(object, contrast, collection)
 }
 \arguments{
 \item{object}{Object.}
@@ -18,7 +18,7 @@ Contrast name.}
 \item{collection}{\code{character(1)}.
 Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
-Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+Can obtain using \code{collectionNames()} on \code{FgseaList} object.}
 
 \item{...}{Additional arguments.}
 }
@@ -34,7 +34,7 @@ Updated 2022-04-27.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 contrast <- contrastNames(object)[[1L]]
 collection <- collectionNames(object)[[1L]]

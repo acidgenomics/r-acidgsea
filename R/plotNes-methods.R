@@ -1,5 +1,5 @@
-#' @name plotNES
-#' @inherit AcidGenerics::plotNES
+#' @name plotNes
+#' @inherit AcidGenerics::plotNes
 #' @note Updated 2023-08-15.
 #'
 #' @details
@@ -20,12 +20,12 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' alphaThreshold(object) <- 0.9
 #' contrast <- contrastNames(object)[[1L]]
 #' collection <- collectionNames(object)[[1L]]
-#' plotNES(
+#' plotNes(
 #'     object = object,
 #'     contrast = contrast,
 #'     collection = collection,
@@ -36,7 +36,7 @@ NULL
 
 
 ## Updated 2023-08-15.
-`plotNES,FGSEAList` <- # nolint
+`plotNes,FgseaList` <- # nolint
     function(object,
              contrast,
              collection,
@@ -181,10 +181,10 @@ NULL
 
 
 
-#' @rdname plotNES
+#' @rdname plotNes
 #' @export
 setMethod(
-    f = "plotNES",
-    signature = signature(object = "FGSEAList"),
-    definition = `plotNES,FGSEAList`
+    f = "plotNes",
+    signature = signature(object = "FgseaList"),
+    definition = `plotNes,FgseaList`
 )

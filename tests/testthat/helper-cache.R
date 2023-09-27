@@ -19,7 +19,7 @@ Map(
     },
     file = files,
     MoreArgs = list(
-        "remoteDir" = AcidGSEATestsURL,
+        "remoteDir" = AcidGseaTestsUrl,
         "envir" = environment()
     )
 )

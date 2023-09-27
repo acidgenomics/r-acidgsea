@@ -22,7 +22,7 @@
 #' rl <- RankedList(object)
 #' print(rl)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' rl <- RankedList(object)
 #' print(rl)
@@ -411,7 +411,7 @@ formals(`RankedList,DESeqResults`)[["keyType"]] <- # nolint
 
 
 ## Updated 2021-10-20.
-`RankedList,FGSEAList` <- # nolint
+`RankedList,FgseaList` <- # nolint
     function(object) {
         rl <- metadata(object)[["rankedList"]]
         assert(
@@ -443,6 +443,6 @@ setMethod(
 #' @export
 setMethod(
     f = "RankedList",
-    signature = signature(object = "FGSEAList"),
-    definition = `RankedList,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `RankedList,FgseaList`
 )

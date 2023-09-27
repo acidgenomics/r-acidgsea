@@ -5,9 +5,9 @@ data(
 )
 
 test_that("RankedList", {
-    x <- FGSEAList(
+    x <- FgseaList(
         object = deseq,
         geneSetFiles = c("h" = file.path("cache", "h.all.v7.0.symbols.gmt"))
     )
-    expect_s4_class(x, "FGSEAList")
+    expect_s4_class(x, "FgseaList")
 })

@@ -8,7 +8,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' contrastNames(object)
 NULL
@@ -16,7 +16,7 @@ NULL
 
 
 ## Updated 2019-07-24.
-`contrastNames,FGSEAList` <- # nolint
+`contrastNames,FgseaList` <- # nolint
     function(object) {
         names(object[[1L]])
     }
@@ -24,7 +24,7 @@ NULL
 
 
 ## Updated 2019-07-24.
-`contrastNames<-,FGSEAList,character` <- # nolint
+`contrastNames<-,FgseaList,character` <- # nolint
     function(object, value) {
         ## Loop across the pathway list and update the contrast names.
         listData <- slot(object, "listData")
@@ -46,8 +46,8 @@ NULL
 #' @export
 setMethod(
     f = "contrastNames",
-    signature = signature(object = "FGSEAList"),
-    definition = `contrastNames,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `contrastNames,FgseaList`
 )
 
 #' @rdname contrastNames
@@ -55,8 +55,8 @@ setMethod(
 setMethod(
     f = "contrastNames<-",
     signature = signature(
-        object = "FGSEAList",
+        object = "FgseaList",
         value = "character"
     ),
-    definition = `contrastNames<-,FGSEAList,character`
+    definition = `contrastNames<-,FgseaList,character`
 )

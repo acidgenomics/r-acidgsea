@@ -6,7 +6,7 @@
 #'
 #' Extends the functionality of [fgsea::fgsea()].
 #'
-#' @name FGSEAList
+#' @name FgseaList
 #' @note Updated 2023-09-20.
 #'
 #' @inheritParams RankedList
@@ -14,7 +14,7 @@
 #' @inheritParams AcidRoxygen::params
 #' @param ... Additional arguments.
 #'
-#' @return `FGSEAList`.
+#' @return `FgseaList`.
 #'
 #' @examples
 #' data(deseq, package = "DESeqAnalysis")
@@ -30,7 +30,7 @@
 #'         package = "AcidGSEA"
 #'     )
 #' )
-#' fgsea <- FGSEAList(
+#' fgsea <- FgseaList(
 #'     object = object,
 #'     geneSetFiles = geneSetFiles
 #' )
@@ -40,7 +40,7 @@ NULL
 
 
 ## Updated 2022-05-25.
-`FGSEAList,RankedList` <- # nolint
+`FgseaList,RankedList` <- # nolint
     ## nolint start
     function(object,
              geneSetFiles,
@@ -105,13 +105,13 @@ NULL
             "rankedList" = object,
             "sessionInfo" = sessionInfo
         )
-        new(Class = "FGSEAList", out)
+        new(Class = "FgseaList", out)
     }
 
 
 
 ## Updated 2022-05-25.
-`FGSEAList,DESeqResults` <- # nolint
+`FgseaList,DESeqResults` <- # nolint
     function(object,
              keyType,
              value = c("stat", "log2FoldChange"),
@@ -126,16 +126,16 @@ NULL
             rowRanges = rowRanges,
             proteinCodingOnly = proteinCodingOnly
         )
-        FGSEAList(rl, ...)
+        FgseaList(rl, ...)
     }
 
-formals(`FGSEAList,DESeqResults`)[["keyType"]] <- # nolint
+formals(`FgseaList,DESeqResults`)[["keyType"]] <- # nolint
     .keyType
 
 
 
 ## Updated 2022-05-25.
-`FGSEAList,DESeqAnalysis` <- # nolint
+`FgseaList,DESeqAnalysis` <- # nolint
     function(object,
              keyType,
              value = c("stat", "log2FoldChange"),
@@ -148,36 +148,36 @@ formals(`FGSEAList,DESeqResults`)[["keyType"]] <- # nolint
             value = match.arg(value),
             proteinCodingOnly = proteinCodingOnly
         )
-        out <- FGSEAList(rl, ...)
+        out <- FgseaList(rl, ...)
         metadata(out)[["deseq"]] <- object
         out
     }
 
-formals(`FGSEAList,DESeqAnalysis`)[["keyType"]] <- # nolint
+formals(`FgseaList,DESeqAnalysis`)[["keyType"]] <- # nolint
     .keyType
 
 
 
-#' @rdname FGSEAList
+#' @rdname FgseaList
 #' @export
 setMethod(
-    f = "FGSEAList",
+    f = "FgseaList",
     signature = signature(object = "DESeqAnalysis"),
-    definition = `FGSEAList,DESeqAnalysis`
+    definition = `FgseaList,DESeqAnalysis`
 )
 
-#' @rdname FGSEAList
+#' @rdname FgseaList
 #' @export
 setMethod(
-    f = "FGSEAList",
+    f = "FgseaList",
     signature = signature(object = "DESeqResults"),
-    definition = `FGSEAList,DESeqResults`
+    definition = `FgseaList,DESeqResults`
 )
 
-#' @rdname FGSEAList
+#' @rdname FgseaList
 #' @export
 setMethod(
-    f = "FGSEAList",
+    f = "FgseaList",
     signature = signature(object = "RankedList"),
-    definition = `FGSEAList,RankedList`
+    definition = `FgseaList,RankedList`
 )

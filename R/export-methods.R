@@ -38,7 +38,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' con <- AcidBase::tempdir2()
 #' out <- export(
@@ -52,7 +52,7 @@ NULL
 
 
 ## Updated 2023-09-20.
-`export,FGSEAList` <- # nolint
+`export,FgseaList` <- # nolint
     function(object,
              con,
              geneSetResults = FALSE,
@@ -71,7 +71,7 @@ NULL
         if (isFALSE(quiet)) {
             alert(sprintf(
                 "Exporting {.cls %s} to '{.path %s}'.",
-                "FGSEAList", dir
+                "FgseaList", dir
             ))
         }
         ext <- ".csv"
@@ -181,8 +181,8 @@ NULL
 setMethod(
     f = "export",
     signature = signature(
-        object = "FGSEAList",
+        object = "FgseaList",
         con = "character"
     ),
-    definition = `export,FGSEAList`
+    definition = `export,FgseaList`
 )

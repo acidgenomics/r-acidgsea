@@ -1,5 +1,5 @@
-test_that("FGSEAList", {
+test_that("FgseaList", {
     object <- fgsea
     output <- capture.output(show(object))
-    expect_match(head(output, n = 1L), "FGSEAList")
+    expect_match(head(output, n = 1L), "FgseaList")
 })
