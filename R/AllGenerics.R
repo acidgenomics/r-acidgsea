@@ -1,9 +1,9 @@
 #' @export
-#' @rdname FGSEAList
+#' @rdname FgseaList
 setGeneric(
-    name = "FGSEAList",
+    name = "FgseaList",
     def = function(object, ...) {
-        standardGeneric("FGSEAList")
+        standardGeneric("FgseaList")
     }
 )
 
@@ -137,15 +137,15 @@ NULL
 NULL
 
 #' @export
-#' @name plotLFC
-#' @rdname plotLFC
-#' @usage plotLFC(object, ...)
+#' @name plotLfc
+#' @rdname plotLfc
+#' @usage plotLfc(object, ...)
 NULL
 
 #' @export
-#' @name plotNES
-#' @rdname plotNES
-#' @usage plotNES(object, ...)
+#' @name plotNes
+#' @rdname plotNes
+#' @usage plotNes(object, ...)
 NULL
 
 #' @export

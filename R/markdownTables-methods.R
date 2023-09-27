@@ -14,7 +14,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' alphaThreshold(object) <- 0.9
 #' collection <- collectionNames(object)[[1L]]
@@ -27,7 +27,7 @@ NULL
 
 
 ## Updated 2022-05-24.
-`markdownTables,FGSEAList` <- # nolint
+`markdownTables,FgseaList` <- # nolint
     function(object,
              collection,
              n = 10L,
@@ -132,6 +132,6 @@ NULL
 #' @export
 setMethod(
     f = "markdownTables",
-    signature = signature(object = "FGSEAList"),
-    definition = `markdownTables,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `markdownTables,FgseaList`
 )

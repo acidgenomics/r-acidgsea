@@ -5,7 +5,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' alphaThreshold(object) <- 0.1
 #' alphaThreshold(object)
@@ -14,7 +14,7 @@ NULL
 
 
 ## Updated 2020-08-05.
-`alphaThreshold,FGSEAList` <- # nolint
+`alphaThreshold,FgseaList` <- # nolint
     function(object) {
         value <- metadata(object)[["alpha"]]
         assert(isAlpha(value))
@@ -24,7 +24,7 @@ NULL
 
 
 ## Updated 2020-08-05.
-`alphaThreshold<-,FGSEAList,numeric` <- # nolint
+`alphaThreshold<-,FgseaList,numeric` <- # nolint
     function(object, value) {
         assert(isAlpha(value))
         metadata(object)[["alpha"]] <- value
@@ -37,8 +37,8 @@ NULL
 #' @export
 setMethod(
     f = "alphaThreshold",
-    signature = signature(object = "FGSEAList"),
-    definition = `alphaThreshold,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `alphaThreshold,FgseaList`
 )
 
 #' @rdname alphaThreshold
@@ -46,8 +46,8 @@ setMethod(
 setReplaceMethod(
     f = "alphaThreshold",
     signature = signature(
-        object = "FGSEAList",
+        object = "FgseaList",
         value = "numeric"
     ),
-    definition = `alphaThreshold<-,FGSEAList,numeric`
+    definition = `alphaThreshold<-,FgseaList,numeric`
 )

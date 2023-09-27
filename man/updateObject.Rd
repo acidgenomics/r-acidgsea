@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/updateObject-methods.R
 \name{updateObject}
 \alias{updateObject}
-\alias{updateObject,FGSEAList-method}
+\alias{updateObject,FgseaList-method}
 \title{Update object}
 \usage{
 updateObject(object, ..., verbose = FALSE)
 
-\S4method{updateObject}{FGSEAList}(object, deseq = NULL, alphaThreshold = NULL, ..., verbose = FALSE)
+\S4method{updateObject}{FgseaList}(object, deseq = NULL, alphaThreshold = NULL, ..., verbose = FALSE)
 }
 \arguments{
 \item{object}{Object.}
@@ -38,7 +38,7 @@ Updated 2022-04-27.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 object <- updateObject(object)
 print(object)

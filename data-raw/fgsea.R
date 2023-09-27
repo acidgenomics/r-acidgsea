@@ -64,7 +64,7 @@ geneSetFiles <- prepareGeneSetFiles(
         mustWork = TRUE
     )
 )
-fgsea <- FGSEAList(
+fgsea <- FgseaList(
     object = deseq,
     geneSetFiles = geneSetFiles
 )

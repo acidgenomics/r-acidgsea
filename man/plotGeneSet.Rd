@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/plotGeneSet-methods.R
 \name{plotGeneSet}
 \alias{plotGeneSet}
-\alias{plotGeneSet,FGSEAList-method}
+\alias{plotGeneSet,FgseaList-method}
 \title{Plot gene set enrichment}
 \usage{
 plotGeneSet(object, ...)
 
-\S4method{plotGeneSet}{FGSEAList}(
+\S4method{plotGeneSet}{FgseaList}(
   object,
   collection,
   contrast,
@@ -22,7 +22,7 @@ plotGeneSet(object, ...)
 \item{collection}{\code{character(1)}.
 Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
-Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+Can obtain using \code{collectionNames()} on \code{FgseaList} object.}
 
 \item{contrast}{\code{character(1)}.
 Contrast name.}
@@ -55,7 +55,7 @@ Updated 2023-08-15.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 contrast <- contrastNames(object)[[1L]]
 collection <- collectionNames(object)[[1L]]

@@ -1,5 +1,5 @@
-#' @name plotLFC
-#' @inherit AcidGenerics::plotLFC
+#' @name plotLfc
+#' @inherit AcidGenerics::plotLfc
 #' @note Updated 2023-08-15.
 #'
 #' @inheritParams params
@@ -16,11 +16,11 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' collection <- collectionNames(object)[[1L]]
 #' set <- geneSetNames(object = object, collection = collection)[[1L]]
-#' plotLFC(
+#' plotLfc(
 #'     object = object,
 #'     collection = collection,
 #'     set = set
@@ -30,7 +30,7 @@ NULL
 
 
 ## Updated 2023-08-15.
-`plotLFC,FGSEAList` <- # nolint
+`plotLfc,FgseaList` <- # nolint
     function(object,
              contrast = NULL,
              collection,
@@ -116,10 +116,10 @@ NULL
 
 
 
-#' @rdname plotLFC
+#' @rdname plotLfc
 #' @export
 setMethod(
-    f = "plotLFC",
-    signature = signature(object = "FGSEAList"),
-    definition = `plotLFC,FGSEAList`
+    f = "plotLfc",
+    signature = signature(object = "FgseaList"),
+    definition = `plotLfc,FgseaList`
 )

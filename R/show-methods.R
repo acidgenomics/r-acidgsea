@@ -9,7 +9,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' show(object)
 NULL
@@ -17,7 +17,7 @@ NULL
 
 
 ## Updated 2022-08-17.
-`show,FGSEAList` <- # nolint
+`show,FgseaList` <- # nolint
     function(object) {
         showHeader(object)
         list <- list(
@@ -39,6 +39,6 @@ NULL
 #' @export
 setMethod(
     f = "show",
-    signature = signature(object = "FGSEAList"),
-    definition = `show,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `show,FgseaList`
 )

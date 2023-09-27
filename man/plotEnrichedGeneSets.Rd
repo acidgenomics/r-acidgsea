@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/plotEnrichedGeneSets-methods.R
 \name{plotEnrichedGeneSets}
 \alias{plotEnrichedGeneSets}
-\alias{plotEnrichedGeneSets,FGSEAList-method}
+\alias{plotEnrichedGeneSets,FgseaList-method}
 \title{Plot enriched gene sets}
 \usage{
 plotEnrichedGeneSets(object, ...)
 
-\S4method{plotEnrichedGeneSets}{FGSEAList}(
+\S4method{plotEnrichedGeneSets}{FgseaList}(
   object,
   collection,
   direction = c("both", "up", "down"),
@@ -21,7 +21,7 @@ plotEnrichedGeneSets(object, ...)
 \item{collection}{\code{character(1)}.
 Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
-Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+Can obtain using \code{collectionNames()} on \code{FgseaList} object.}
 
 \item{direction}{\code{character(1)}.
 Include \code{"both"}, \code{"up"}, or \code{"down"} directions.}
@@ -46,7 +46,7 @@ Updated 2022-04-27.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 alphaThreshold(object) <- 0.9
 collection <- collectionNames(object)[[1L]]

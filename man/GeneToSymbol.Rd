@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/GeneToSymbol-methods.R
 \name{GeneToSymbol}
 \alias{GeneToSymbol}
-\alias{GeneToSymbol,FGSEAList-method}
+\alias{GeneToSymbol,FgseaList-method}
 \title{Gene-to-symbol mappings}
 \usage{
 GeneToSymbol(object, ...)
 
-\S4method{GeneToSymbol}{FGSEAList}(object)
+\S4method{GeneToSymbol}{FgseaList}(object)
 }
 \arguments{
 \item{object}{Object.}
@@ -31,7 +31,7 @@ Updated 2022-04-27.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 g2s <- GeneToSymbol(object)
 print(g2s)

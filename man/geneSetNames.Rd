@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/geneSetNames-methods.R
 \name{geneSetNames}
 \alias{geneSetNames}
-\alias{geneSetNames,FGSEAList-method}
+\alias{geneSetNames,FgseaList-method}
 \title{Gene set names}
 \usage{
 geneSetNames(object, ...)
 
-\S4method{geneSetNames}{FGSEAList}(object, collection)
+\S4method{geneSetNames}{FgseaList}(object, collection)
 }
 \arguments{
 \item{object}{Object.}
@@ -15,7 +15,7 @@ geneSetNames(object, ...)
 \item{collection}{\code{character(1)}.
 Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
-Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+Can obtain using \code{collectionNames()} on \code{FgseaList} object.}
 
 \item{...}{Additional arguments.}
 }
@@ -31,7 +31,7 @@ Updated 2022-04-27.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 collection <- collectionNames(object)[[1L]]
 head(geneSetNames(object = object, collection = collection))

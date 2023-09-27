@@ -7,7 +7,7 @@ suppressPackageStartupMessages({
 ## nolint end
 templateFile <- "fgsea.Rmd"
 stopifnot(file.exists(templateFile))
-## Load the FGSEAList objects.
+## Load the FgseaList objects.
 datasets <- c(
     "name1" = "fgsealist1",
     "name2" = "fgsealist2"

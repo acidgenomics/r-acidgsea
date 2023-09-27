@@ -11,7 +11,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' x <- fgsea
 #' y <- fgsea
 #' contrastNames(x) <- paste0("x_", contrastNames(x))
@@ -23,7 +23,7 @@ NULL
 
 
 ## Updated 2020-09-17.
-`combine,FGSEAList` <- # nolint
+`combine,FgseaList` <- # nolint
     function(x, y) {
         validObject(x)
         validObject(y)
@@ -79,8 +79,8 @@ NULL
 setMethod(
     f = "combine",
     signature = signature(
-        x = "FGSEAList",
-        y = "FGSEAList"
+        x = "FgseaList",
+        y = "FgseaList"
     ),
-    definition = `combine,FGSEAList`
+    definition = `combine,FgseaList`
 )

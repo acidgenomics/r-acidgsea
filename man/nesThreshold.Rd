@@ -3,16 +3,16 @@
 \name{nesThreshold}
 \alias{nesThreshold}
 \alias{nesThreshold<-}
-\alias{nesThreshold,FGSEAList-method}
-\alias{nesThreshold<-,FGSEAList,numeric-method}
+\alias{nesThreshold,FgseaList-method}
+\alias{nesThreshold<-,FgseaList,numeric-method}
 \title{Normalized enrichment score (NES) threshold}
 \usage{
 nesThreshold(object, ...)
 nesThreshold(object, ...) <- value
 
-\S4method{nesThreshold}{FGSEAList}(object)
+\S4method{nesThreshold}{FgseaList}(object)
 
-\S4method{nesThreshold}{FGSEAList,numeric}(object) <- value
+\S4method{nesThreshold}{FgseaList,numeric}(object) <- value
 }
 \arguments{
 \item{object}{Object.}
@@ -33,7 +33,7 @@ Updated 2022-04-27.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 nesThreshold(object) <- 0.1
 nesThreshold(object)

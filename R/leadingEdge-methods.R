@@ -6,7 +6,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' contrast <- contrastNames(object)[[1L]]
 #' collection <- collectionNames(object)[[1L]]
@@ -22,7 +22,7 @@ NULL
 
 
 ## Updated 2020-09-21.
-`leadingEdge,FGSEAList` <- # nolint
+`leadingEdge,FgseaList` <- # nolint
     function(object,
              contrast,
              collection,
@@ -57,6 +57,6 @@ NULL
 #' @export
 setMethod(
     f = "leadingEdge",
-    signature = signature(object = "FGSEAList"),
-    definition = `leadingEdge,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `leadingEdge,FgseaList`
 )

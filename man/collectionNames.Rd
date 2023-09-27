@@ -3,16 +3,16 @@
 \name{collectionNames}
 \alias{collectionNames}
 \alias{collectionNames<-}
-\alias{collectionNames,FGSEAList-method}
-\alias{collectionNames<-,FGSEAList,character-method}
+\alias{collectionNames,FgseaList-method}
+\alias{collectionNames<-,FgseaList,character-method}
 \title{Gene set collection names}
 \usage{
 collectionNames(object, ...)
 collectionNames(object, ...) <- value
 
-\S4method{collectionNames}{FGSEAList}(object)
+\S4method{collectionNames}{FgseaList}(object)
 
-\S4method{collectionNames}{FGSEAList,character}(object) <- value
+\S4method{collectionNames}{FgseaList,character}(object) <- value
 }
 \arguments{
 \item{object}{Object.}
@@ -33,7 +33,7 @@ Updated 2022-04-27.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 collectionNames(object)
 }

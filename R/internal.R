@@ -7,13 +7,13 @@
 #' Intentionally error with an informative error message.
 .getDESeqAnalysis <- # nolint
     function(object) {
-        assert(is(object, "FGSEAList"))
+        assert(is(object, "FgseaList"))
         deseq <- metadata(object)[["deseq"]]
         assert(
             is(deseq, "DESeqAnalysis"),
             msg = sprintf(
                 "'%s' does not contain '%s' in '%s' '%s' slot.",
-                "FGSEAList", "DESeqAnalysis", "deseq", "metadata()"
+                "FgseaList", "DESeqAnalysis", "deseq", "metadata()"
             )
         )
         deseq
@@ -83,7 +83,7 @@
 #' @noRd
 .matchGenesToIds <- function(object, set, genes) {
     assert(
-        is(object, "FGSEAList"),
+        is(object, "FgseaList"),
         isString(set),
         isCharacter(genes)
     )

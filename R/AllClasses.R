@@ -5,13 +5,13 @@
 #' @export
 #' @note Updated 2022-08-16.
 #'
-#' @return `FGSEAList`.
+#' @return `FgseaList`.
 setClass(
-    Class = "FGSEAList",
+    Class = "FgseaList",
     contains = "SimpleList"
 )
 setValidity(
-    Class = "FGSEAList",
+    Class = "FgseaList",
     method = function(object) {
         validate(
             is.list(object[[1L]]),

@@ -5,7 +5,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' nesThreshold(object) <- 0.1
 #' nesThreshold(object)
@@ -14,7 +14,7 @@ NULL
 
 
 ## Updated 2020-08-05.
-`nesThreshold,FGSEAList` <- # nolint
+`nesThreshold,FgseaList` <- # nolint
     function(object) {
         value <- metadata(object)[["nesThreshold"]]
         if (is.null(value)) {
@@ -27,7 +27,7 @@ NULL
 
 
 ## Updated 2020-08-05.
-`nesThreshold<-,FGSEAList,numeric` <- # nolint
+`nesThreshold<-,FgseaList,numeric` <- # nolint
     function(object, value) {
         assert(isNumber(value), isNonNegative(value))
         metadata(object)[["nesThreshold"]] <- value
@@ -40,8 +40,8 @@ NULL
 #' @export
 setMethod(
     f = "nesThreshold",
-    signature = signature(object = "FGSEAList"),
-    definition = `nesThreshold,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `nesThreshold,FgseaList`
 )
 
 #' @rdname nesThreshold
@@ -49,8 +49,8 @@ setMethod(
 setReplaceMethod(
     f = "nesThreshold",
     signature = signature(
-        object = "FGSEAList",
+        object = "FgseaList",
         value = "numeric"
     ),
-    definition = `nesThreshold<-,FGSEAList,numeric`
+    definition = `nesThreshold<-,FgseaList,numeric`
 )

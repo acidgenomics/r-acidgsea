@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/markdownTables-methods.R
 \name{markdownTables}
 \alias{markdownTables}
-\alias{markdownTables,FGSEAList-method}
+\alias{markdownTables,FgseaList-method}
 \title{Markdown tables}
 \usage{
 markdownTables(object, ...)
 
-\S4method{markdownTables}{FGSEAList}(object, collection, n = 10L, headerLevel = 3L)
+\S4method{markdownTables}{FgseaList}(object, collection, n = 10L, headerLevel = 3L)
 }
 \arguments{
 \item{object}{Object.}
@@ -15,7 +15,7 @@ markdownTables(object, ...)
 \item{collection}{\code{character(1)}.
 Gene set collection name.
 Typically refers to \code{h} (hallmark), \code{c1}-\code{c7} collections from MSigDb.
-Can obtain using \code{collectionNames()} on \code{FGSEAList} object.}
+Can obtain using \code{collectionNames()} on \code{FgseaList} object.}
 
 \item{n}{\code{integer(1)}.
 Number of significant processes to include.
@@ -45,7 +45,7 @@ Updated 2022-05-24.
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 alphaThreshold(object) <- 0.9
 collection <- collectionNames(object)[[1L]]

@@ -2,12 +2,12 @@
 % Please edit documentation in R/AllGenerics.R, R/export-methods.R
 \name{export}
 \alias{export}
-\alias{export,FGSEAList,character-method}
+\alias{export,FgseaList,character-method}
 \title{Export data from R}
 \usage{
 export(object, con, ...)
 
-\S4method{export}{FGSEAList,character}(
+\S4method{export}{FgseaList,character}(
   object,
   con,
   geneSetResults = FALSE,
@@ -74,7 +74,7 @@ organize by:
 \examples{
 data(fgsea)
 
-## FGSEAList ====
+## FgseaList ====
 object <- fgsea
 con <- AcidBase::tempdir2()
 out <- export(

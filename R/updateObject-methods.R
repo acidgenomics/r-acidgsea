@@ -24,7 +24,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' object <- updateObject(object)
 #' print(object)
@@ -33,7 +33,7 @@ NULL
 
 
 ## Updated 2022-04-27.
-`updateObject,FGSEAList` <- # nolint
+`updateObject,FgseaList` <- # nolint
     function(object,
              deseq = NULL,
              alphaThreshold = NULL,
@@ -119,6 +119,6 @@ NULL
 #' @export
 setMethod(
     f = "updateObject",
-    signature = signature(object = "FGSEAList"),
-    definition = `updateObject,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `updateObject,FgseaList`
 )

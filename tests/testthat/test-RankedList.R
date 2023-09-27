@@ -30,7 +30,7 @@ test_that("Average values for duplicate gene symbols", {
     expect_s4_class(y, "RankedList")
 })
 
-test_that("FGSEAList", {
+test_that("FgseaList", {
     object <- RankedList(fgsea)
     expect_s4_class(object, "RankedList")
     expect_named(

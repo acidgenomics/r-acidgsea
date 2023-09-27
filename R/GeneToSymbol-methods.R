@@ -6,7 +6,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' g2s <- GeneToSymbol(object)
 #' print(g2s)
@@ -15,7 +15,7 @@ NULL
 
 
 ## Updated 2022-04-27.
-`GeneToSymbol,FGSEAList` <- # nolint
+`GeneToSymbol,FgseaList` <- # nolint
     function(object) {
         validObject(object)
         assert(
@@ -64,6 +64,6 @@ NULL
 #' @export
 setMethod(
     f = "GeneToSymbol",
-    signature = signature(object = "FGSEAList"),
-    definition = `GeneToSymbol,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `GeneToSymbol,FgseaList`
 )

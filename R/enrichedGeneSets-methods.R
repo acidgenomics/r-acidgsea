@@ -19,7 +19,7 @@
 #' @examples
 #' data(fgsea)
 #'
-#' ## FGSEAList ====
+#' ## FgseaList ====
 #' object <- fgsea
 #' alphaThreshold(object) <- 0.7
 #' collection <- collectionNames(object)[[1L]]
@@ -121,7 +121,7 @@ NULL
 
 
 ## Updated 2022-04-27.
-`enrichedGeneSets,FGSEAList` <- # nolint
+`enrichedGeneSets,FgseaList` <- # nolint
     function(object,
              collection,
              direction = c("both", "up", "down")) {
@@ -161,6 +161,6 @@ NULL
 #' @export
 setMethod(
     f = "enrichedGeneSets",
-    signature = signature(object = "FGSEAList"),
-    definition = `enrichedGeneSets,FGSEAList`
+    signature = signature(object = "FgseaList"),
+    definition = `enrichedGeneSets,FgseaList`
 )

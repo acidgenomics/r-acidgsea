@@ -25,7 +25,7 @@ NULL
 #' enrichedGeneSets export geneSet geneSetNames geneSetResults import
 #' leadingEdge leftJoin makeNames mapGenesToRownames markdownTables melt
 #' nesThreshold nesThreshold<- plotEnrichedGeneSets plotEnrichedUpset
-#' plotGeneSet plotHeatmap plotLFC plotNES plotUpset results selectIf showHeader
+#' plotGeneSet plotHeatmap plotLfc plotNes plotUpset results selectIf showHeader
 #' snakeCase stripGeneVersions
 #' @importFrom BiocGenerics %in% combine lapply order organism sort unique
 #' unlist unsplit updateObject
