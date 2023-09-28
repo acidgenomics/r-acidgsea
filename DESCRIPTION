@@ -47,6 +47,7 @@ Imports:
     stats,
     utils
 Suggests:
+    AcidDevTools (>= 0.7.0),
     AcidTest (>= 0.7.2),
     BiocParallel (>= 1.34.0),
     basejump (>= 0.17.0),
