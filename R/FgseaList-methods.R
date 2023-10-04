@@ -1,7 +1,3 @@
-## FIXME Rework this to just use parallel package.
-
-
-
 #' Parameterized fast gene set enrichment analysis (GSEA)
 #'
 #' Extends the functionality of [fgsea::fgsea()].
