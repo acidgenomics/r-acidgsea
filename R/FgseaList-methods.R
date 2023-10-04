@@ -3,7 +3,7 @@
 #' Extends the functionality of [fgsea::fgsea()].
 #'
 #' @name FgseaList
-#' @note Updated 2023-09-20.
+#' @note Updated 2023-10-04.
 #'
 #' @inheritParams RankedList
 #' @inheritParams params
