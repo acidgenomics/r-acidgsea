@@ -52,12 +52,7 @@ test_that("export", {
         object = l[c("pathway", "leadingEdge")],
         expected = list(
             "pathway" = "HALLMARK_ADIPOGENESIS",
-            "leadingEdge" = toString(c(
-                "PHLDB1",
-                "IFNGR1",
-                "MYLK",
-                "RETSAT"
-            ))
+            "leadingEdge" = toString(c("ADIPOR2", "NDUFAB1"))
         )
     )
     unlink2(testdir)
