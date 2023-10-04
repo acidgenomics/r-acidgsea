@@ -72,7 +72,7 @@ MSigDB files are recommended by default.}
 Extends the functionality of \code{\link[fgsea:fgsea]{fgsea::fgsea()}}.
 }
 \note{
-Updated 2023-09-20.
+Updated 2023-10-04.
 }
 \examples{
 data(deseq, package = "DESeqAnalysis")
