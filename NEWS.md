@@ -1,5 +1,13 @@
 # Release notes
 
+## AcidGSEA 0.9.0 (2023-10-04)
+
+Major changes:
+
+- Now enforcing strict camel case for all function names.
+- Renamed primary `FGSEAList` class to `FgseaList`.
+- Removed BiocParallel in favor of parallel.
+
 ## AcidGSEA 0.8.9 (2023-08-15)
 
 Minor changes:
