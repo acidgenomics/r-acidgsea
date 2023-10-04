@@ -6,7 +6,7 @@ test_that("Human (already)", {
 })
 
 test_that("Mouse", {
-    mm <- readRDS(file.path("cache", "mm_deseq.rds"))
+    mm <- readRDS(file.path(cacheDir, "mm_deseq.rds"))
     expect_s4_class(mm, "DESeqAnalysis")
     expect_identical(
         object = dim(mm@data),

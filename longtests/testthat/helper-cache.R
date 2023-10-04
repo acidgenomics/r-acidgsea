@@ -1,6 +1,6 @@
 lst <- AcidDevTools::cacheTestFiles(
     pkg = .pkgName,
-    files = "h.all.v7.0.symbols.gmt"
+    files = "mm_deseq.rds"
 )
 cacheDir <- lst[["cacheDir"]]
 rm(lst)
