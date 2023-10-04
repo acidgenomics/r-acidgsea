@@ -26,7 +26,7 @@ FgseaList(object, ...)
   ...
 )
 
-\S4method{FgseaList}{RankedList}(object, geneSetFiles, BPPARAM = BiocParallel::bpparam())
+\S4method{FgseaList}{RankedList}(object, geneSetFiles)
 }
 \arguments{
 \item{object}{Object.}
@@ -64,15 +64,6 @@ rows.}
 \item{geneSetFiles}{\code{character}.
 Gene set file paths (i.e. GMT files).
 MSigDB files are recommended by default.}
-
-\item{BPPARAM}{\code{bpparamClass}.
-BiocParallel parameter to specify the desired processor configuration.\cr
-We recommend using one of the following:
-\itemize{
-\item \link[BiocParallel:register]{bpparam}.
-\item \link[BiocParallel:SerialParam-class]{SerialParam}.
-\item \link[BiocParallel:MulticoreParam-class]{MulticoreParam}.
-}}
 }
 \value{
 \code{FgseaList}.

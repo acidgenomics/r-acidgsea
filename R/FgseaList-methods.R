@@ -39,19 +39,16 @@ NULL
 
 
 
-## Updated 2022-05-25.
+## Updated 2023-10-04.
 `FgseaList,RankedList` <- # nolint
     ## nolint start
     function(object,
-             geneSetFiles,
-             BPPARAM = BiocParallel::bpparam() # nolint
-    ) {
+             geneSetFiles) {
         ## nolint end
         assert(
             validObject(object),
             allAreFiles(geneSetFiles),
-            hasNames(geneSetFiles),
-            isBiocParallelParam(BPPARAM)
+            hasNames(geneSetFiles)
         )
         contrasts <- names(object)
         stats <- as.list(object)
@@ -84,8 +81,7 @@ NULL
                         suppressWarnings({
                             data <- fgsea::fgsea(
                                 pathways = pathways,
-                                stats = stats,
-                                BPPARAM = BPPARAM
+                                stats = stats
                             )
                         })
                         assert(is(data, "data.table"))
