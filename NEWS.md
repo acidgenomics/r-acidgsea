@@ -7,6 +7,8 @@ Major changes:
 - Now enforcing strict camel case for all function names.
 - Renamed primary `FGSEAList` class to `FgseaList`.
 - Removed BiocParallel in favor of parallel.
+- Reworked `export` method to conform to new changes in pipette package.
+  Namely, we have reworked the generic to be simpler than BiocIO variant.
 
 ## AcidGSEA 0.8.9 (2023-08-15)
 
