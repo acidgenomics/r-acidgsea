@@ -4,19 +4,6 @@
 
 
 
-## FIXME Take this out
-## Updated 2021-02-12.
-.bplapply <- {
-    if (isInstalled("BiocParallel")) {
-        x <- quote(BiocParallel::bplapply)
-    } else {
-        x <- quote(lapply)
-    }
-    x
-}
-
-
-
 #' Supported key types for RankedList
 #'
 #' @note Updated 2023-03-01.
@@ -37,7 +24,4 @@
 #' @examples
 #' AcidGseaTestsUrl
 AcidGseaTestsUrl <- # nolint
-    paste0(
-        "https://r.acidgenomics.com/testdata/acidgsea/",
-        "v", .pkgVersion$major, ".", .pkgVersion$minor # nolint
-    )
+    "https://r.acidgenomics.com/testdata/acidgsea"

@@ -76,11 +76,12 @@ NULL
 #' @importFrom goalie allAreAtomic allAreFiles allAreMatchingRegex
 #' areDisjointSets areIntersectingSets areSameLength areSetEqual assert bapply
 #' hasColnames hasDuplicates hasLength hasNames hasNoDuplicates hasRownames
-#' hasRows isADir isAFile isAll isAlpha isAny isBiocParallelParam isCharacter
-#' isFile isFlag isHeaderLevel isInRange isInstalled isInt isMatchingRegex
-#' isNumber isNonNegative isOrganism isScalar isScalarInteger isString isSubset
+#' hasRows isADir isAFile isAll isAlpha isAny isCharacter isFile isFlag
+#' isHeaderLevel isInRange isInstalled isInt isMatchingRegex isNumber
+#' isNonNegative isOrganism isScalar isScalarInteger isString isSubset
 #' requireNamespaces validate
 #' @importFrom methods as is new setAs setGeneric setMethod setValidity slot
 #' slot<- validObject
+#' @importFrom parallel mclapply
 #' @importFrom utils packageName packageVersion sessionInfo
 NULL

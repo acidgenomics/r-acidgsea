@@ -349,8 +349,7 @@ NULL
         )
         assert(is(resultsList, "list"))
         ## Get parameterized GSEA list values for each DESeqResults contrast.
-        bplapply <- eval(.bplapply)
-        list <- bplapply(
+        list <- mclapply(
             X = resultsList,
             FUN = RankedList,
             rowRanges = rowRanges,
