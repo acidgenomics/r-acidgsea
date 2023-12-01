@@ -8,7 +8,7 @@ suppressPackageStartupMessages({
 data(deseq, package = "DESeqAnalysis")
 object <- deseq
 rm(deseq)
-limit <- structure(1e6L, class = "object_size")
+limit <- structure(1e6L, class = "object_size") # nolint
 rr <- makeGRangesFromEnsembl(
     organism = "Mus musculus",
     release = 99L
