@@ -106,7 +106,7 @@ NULL
                 if (hasRows(up)) {
                     print(knitr::kable(as.data.frame(up), digits = 3L))
                 } else {
-                    alertInfo("No upregulated gene sets.") # nocov
+                    alertInfo("No upregulated gene sets.")
                 }
                 ## Downregulated gene sets.
                 markdownHeader(
@@ -120,7 +120,7 @@ NULL
                 if (hasRows(down)) {
                     print(knitr::kable(as.data.frame(down), digits = 3L))
                 } else {
-                    alertInfo("No downregulated gene sets.") # nocov
+                    alertInfo("No downregulated gene sets.")
                 }
             }
         ))
