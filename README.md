@@ -37,6 +37,6 @@ R
 ```
 
 [bioconda]: https://bioconda.github.io/
-[conda]: https://conda.io/
+[conda]: https://docs.conda.io/
 [fgsea]: https://bioconductor.org/packages/fgsea/
 [r]: https://www.r-project.org

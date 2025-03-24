@@ -2,6 +2,8 @@
 % Please edit documentation in R/package.R
 \docType{package}
 \name{AcidGSEA-package}
+\alias{AcidGSEA}
+\alias{AcidGSEA-package}
 \title{AcidGSEA}
 \description{
 Perform parameterized fast gene set enrichment analysis (GSEA) on multiple
