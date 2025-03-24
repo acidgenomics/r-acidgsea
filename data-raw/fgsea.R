@@ -10,7 +10,7 @@ suppressPackageStartupMessages({
 ## nolint end
 load_all()
 ## Restrict to 3 MB.
-limit <- structure(3e6L, class = "object_size")
+limit <- structure(3e6L, class = "object_size") # nolint
 gr <- makeGRangesFromEnsembl(
     organism = "Homo sapiens",
     level = "genes",
