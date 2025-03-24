@@ -1,5 +1,11 @@
 # Release notes
 
+## AcidGSEA 0.9.1 (2025-03-24)
+
+Minor changes:
+
+- Decrease R dependency from 4.3 to 4.0.
+
 ## AcidGSEA 0.9.0 (2023-10-04)
 
 Major changes:
