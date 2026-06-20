@@ -13,7 +13,6 @@
 NULL
 
 
-
 ## Updated 2022-04-27.
 `GeneToSymbol,FgseaList` <- # nolint
     function(object) {
@@ -57,7 +56,6 @@ NULL
         validObject(g2s)
         g2s
     }
-
 
 
 #' @rdname GeneToSymbol

@@ -50,15 +50,16 @@
 NULL
 
 
-
 ## Updated 2023-09-20.
 `export,FgseaList` <- # nolint
-    function(object,
-             con,
-             geneSetResults = FALSE,
-             compress = FALSE,
-             overwrite = TRUE,
-             quiet = FALSE) {
+    function(
+        object,
+        con,
+        geneSetResults = FALSE,
+        compress = FALSE,
+        overwrite = TRUE,
+        quiet = FALSE
+    ) {
         assert(
             validObject(object),
             isString(con),
@@ -71,7 +72,8 @@ NULL
         if (isFALSE(quiet)) {
             alert(sprintf(
                 "Exporting {.cls %s} to '{.path %s}'.",
-                "FgseaList", dir
+                "FgseaList",
+                dir
             ))
         }
         ext <- ".csv"
@@ -134,7 +136,8 @@ NULL
                                         "Exporting results for",
                                         "{.var %s} {.var %s}."
                                     ),
-                                    contrast, collection
+                                    contrast,
+                                    collection
                                 ))
                             }
                             sets <- geneSetNames(
@@ -173,7 +176,6 @@ NULL
         }
         invisible(files)
     }
-
 
 
 #' @rdname export

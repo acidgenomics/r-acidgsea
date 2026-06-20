@@ -13,13 +13,14 @@
             is(deseq, "DESeqAnalysis"),
             msg = sprintf(
                 "'%s' does not contain '%s' in '%s' '%s' slot.",
-                "FgseaList", "DESeqAnalysis", "deseq", "metadata()"
+                "FgseaList",
+                "DESeqAnalysis",
+                "deseq",
+                "metadata()"
             )
         )
         deseq
     }
-
-
 
 
 #' Get the top up- and down-regulated pathways from FGSEA results
@@ -71,7 +72,6 @@
     egs <- unique(c(up, rev(down)))
     egs
 }
-
 
 
 #' Match symbols in gene set to gene IDs (i.e. DESeqDataSet rownames)

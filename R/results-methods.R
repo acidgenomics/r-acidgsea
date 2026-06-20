@@ -18,11 +18,9 @@
 NULL
 
 
-
 ## Updated 2021-10-19.
 .resultsForAllContrasts <-
-    function(object,
-             collection) {
+    function(object, collection) {
         assert(
             is(object, "FgseaList"),
             isString(collection)
@@ -54,12 +52,9 @@ NULL
     }
 
 
-
 ## Updated 2021-10-19.
 `results,FgseaList` <- # nolint
-    function(object,
-             contrast,
-             collection) {
+    function(object, contrast, collection) {
         validObject(object)
         assert(
             isScalar(contrast),
@@ -86,7 +81,6 @@ NULL
         )
         data
     }
-
 
 
 #' @rdname results

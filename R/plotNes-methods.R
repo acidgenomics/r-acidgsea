@@ -34,21 +34,22 @@
 NULL
 
 
-
 ## Updated 2023-08-15.
 `plotNes,FgseaList` <- # nolint
-    function(object,
-             contrast,
-             collection,
-             n = Inf,
-             flip = getOption(
-                 x = "acid.flip",
-                 default = TRUE
-             ),
-             labels = list(
-                 "title" = TRUE,
-                 "subtitle" = TRUE
-             )) {
+    function(
+        object,
+        contrast,
+        collection,
+        n = Inf,
+        flip = getOption(
+            x = "acid.flip",
+            default = TRUE
+        ),
+        labels = list(
+            "title" = TRUE,
+            "subtitle" = TRUE
+        )
+    ) {
         validObject(object)
         assert(
             isScalar(contrast),
@@ -87,7 +88,8 @@ NULL
         data <- data[keep, , drop = FALSE]
         if (is.finite(n)) {
             data <- data[
-                order(data[["padj"]], -abs(data[["nes"]])), ,
+                order(data[["padj"]], -abs(data[["nes"]])),
+                ,
                 drop = FALSE
             ]
             data <- head(data, n = n)
@@ -178,7 +180,6 @@ NULL
         }
         p
     }
-
 
 
 #' @rdname plotNes

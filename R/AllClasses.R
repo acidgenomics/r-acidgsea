@@ -71,7 +71,6 @@ setValidity(
 )
 
 
-
 #' Ranked list of genes
 #'
 #' Class containing parameterized ranked gene lists.

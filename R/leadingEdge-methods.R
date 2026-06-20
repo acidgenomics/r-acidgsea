@@ -20,13 +20,9 @@
 NULL
 
 
-
 ## Updated 2020-09-21.
 `leadingEdge,FgseaList` <- # nolint
-    function(object,
-             contrast,
-             collection,
-             set) {
+    function(object, contrast, collection, set) {
         validObject(object)
         assert(
             isString(contrast),
@@ -50,7 +46,6 @@ NULL
         assert(isCharacter(genes))
         genes
     }
-
 
 
 #' @rdname leadingEdge

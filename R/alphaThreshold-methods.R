@@ -12,7 +12,6 @@
 NULL
 
 
-
 ## Updated 2020-08-05.
 `alphaThreshold,FgseaList` <- # nolint
     function(object) {
@@ -22,7 +21,6 @@ NULL
     }
 
 
-
 ## Updated 2020-08-05.
 `alphaThreshold<-,FgseaList,numeric` <- # nolint
     function(object, value) {
@@ -30,7 +28,6 @@ NULL
         metadata(object)[["alpha"]] <- value
         object
     }
-
 
 
 #' @rdname alphaThreshold

@@ -3,7 +3,6 @@
 .pkgVersion <- packageVersion(.pkgName)
 
 
-
 #' Supported key types for RankedList
 #'
 #' @note Updated 2023-03-01.
@@ -13,7 +12,6 @@
     "ensemblGeneId",
     "ncbiGeneId"
 ))
-
 
 
 #' AcidGSEA test data URL

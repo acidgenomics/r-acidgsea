@@ -31,14 +31,15 @@
 NULL
 
 
-
 ## Updated 2022-04-27.
 `updateObject,FgseaList` <- # nolint
-    function(object,
-             deseq = NULL,
-             alphaThreshold = NULL,
-             ...,
-             verbose = FALSE) {
+    function(
+        object,
+        deseq = NULL,
+        alphaThreshold = NULL,
+        ...,
+        verbose = FALSE
+    ) {
         assert(isFlag(verbose))
         ## Slot DESeqAnalysis object, if necessary.
         if (is.null(metadata(object)[["deseq"]])) {
@@ -49,7 +50,8 @@ NULL
                         "Define required '%s' object using '%s'",
                         "argument to update the object."
                     ),
-                    "DESeqAnalysis", "deseq"
+                    "DESeqAnalysis",
+                    "deseq"
                 )
             )
             metadata(object)[["deseq"]] <- deseq
@@ -96,7 +98,8 @@ NULL
             if (isTRUE(verbose)) {
                 alert(sprintf(
                     "Assigning alpha of {.val %s} into {.fun %s}.",
-                    as.character(alphaThreshold), "alphaThreshold"
+                    as.character(alphaThreshold),
+                    "alphaThreshold"
                 ))
             }
             alphaThreshold(object) <- alphaThreshold
@@ -105,14 +108,14 @@ NULL
         assert(
             is.null(alphaThreshold),
             msg = sprintf(
-                "'%s' is already defined in object.", "alphaThreshold"
+                "'%s' is already defined in object.",
+                "alphaThreshold"
             )
         )
         metadata(object) <- Filter(f = Negate(is.null), x = metadata(object))
         validObject(object)
         object
     }
-
 
 
 #' @rdname updateObject
