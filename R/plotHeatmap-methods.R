@@ -23,16 +23,17 @@
 NULL
 
 
-
 ## Updated 2021-03-16.
 `plotHeatmap,FgseaList` <- # nolint
-    function(object,
-             contrast,
-             contrastSamples = TRUE,
-             collection,
-             set,
-             leadingEdge = FALSE,
-             ...) {
+    function(
+        object,
+        contrast,
+        collection,
+        set,
+        contrastSamples = TRUE,
+        leadingEdge = FALSE,
+        ...
+    ) {
         validObject(object)
         assert(
             isString(contrast),
@@ -69,7 +70,6 @@ NULL
         args <- c(args, list(...))
         do.call(what = plotHeatmap, args = args)
     }
-
 
 
 #' @rdname plotHeatmap

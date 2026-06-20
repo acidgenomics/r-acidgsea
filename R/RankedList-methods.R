@@ -29,7 +29,6 @@
 NULL
 
 
-
 #' Filter row ranges to only contain protein coding genes
 #'
 #' @note Updated 2022-08-31.
@@ -62,7 +61,6 @@ NULL
         }
         rowRanges
     }
-
 
 
 #' Filter row ranges to only keep primary seqnames
@@ -110,7 +108,6 @@ NULL
     }
 
 
-
 #' Unlist and map gene identifiers 1:1
 #'
 #' @note Updated 2022-08-31.
@@ -129,9 +126,7 @@ NULL
 #' rowRanges <- rowRanges(deseq@data)
 #' x <- .unlistGenes(rowRanges = rowRanges, keyType = "ncbiGeneId")
 .unlistGenes <-
-    function(rowRanges,
-             keyType,
-             threshold = 0.25) {
+    function(rowRanges, keyType, threshold = 0.25) {
         assert(
             is(rowRanges, "GRanges"),
             isString(keyType),
@@ -159,7 +154,9 @@ NULL
                     x = round(x = pctKeep * 100L, digits = 2L),
                     scientific = FALSE
                 ),
-                keyType, n1, n2
+                keyType,
+                n1,
+                n2
             ))
             assert(
                 isInRange(x = pctKeep, lower = threshold, upper = 1L),
@@ -168,7 +165,6 @@ NULL
         }
         x
     }
-
 
 
 #' Prepare RankedList
@@ -181,11 +177,7 @@ NULL
 #' object <- results(deseq, i = 1L, lfcShrink = FALSE)
 #' rowRanges <- rowRanges(deseq@data)
 `.RankedList,DFrame` <- # nolint
-    function(object,
-             rowRanges,
-             keyType,
-             value,
-             proteinCodingOnly) {
+    function(object, rowRanges, keyType, value, proteinCodingOnly) {
         assert(
             validObject(object),
             is(object, "DFrame"),
@@ -253,15 +245,18 @@ NULL
                         "Only {.var %s} {.val %s} is supported",
                         "when {.var %s} is {.val %s}."
                     ),
-                    "keyType", "rowname",
-                    "rowRanges", "NULL"
+                    "keyType",
+                    "rowname",
+                    "rowRanges",
+                    "NULL"
                 )
             )
             assert(
                 isFALSE(proteinCodingOnly),
                 msg = sprintf(
                     "{.var %s} for {.var %s}.",
-                    "rowRanges", "proteinCodingOnly"
+                    "rowRanges",
+                    "proteinCodingOnly"
                 )
             )
             keys <- rownames(object)
@@ -324,13 +319,14 @@ NULL
     }
 
 
-
 ## Updated 2022-05-26.
 `RankedList,DESeqAnalysis` <- # nolint
-    function(object,
-             keyType,
-             value = c("stat", "log2FoldChange"),
-             proteinCodingOnly = FALSE) {
+    function(
+        object,
+        keyType,
+        value = c("stat", "log2FoldChange"),
+        proteinCodingOnly = FALSE
+    ) {
         assert(validObject(object))
         keyType <- match.arg(keyType)
         value <- match.arg(value)
@@ -377,14 +373,15 @@ formals(`RankedList,DESeqAnalysis`)[["keyType"]] <- # nolint
     .keyType
 
 
-
 ## Updated 2022-05-25.
 `RankedList,DESeqResults` <- # nolint
-    function(object,
-             rowRanges,
-             keyType,
-             value = c("stat", "log2FoldChange"),
-             proteinCodingOnly = FALSE) {
+    function(
+        object,
+        rowRanges,
+        keyType,
+        value = c("stat", "log2FoldChange"),
+        proteinCodingOnly = FALSE
+    ) {
         assert(validObject(object))
         out <- `.RankedList,DFrame`(
             object = as(object, "DFrame"),
@@ -408,7 +405,6 @@ formals(`RankedList,DESeqResults`)[["keyType"]] <- # nolint
     .keyType
 
 
-
 ## Updated 2021-10-20.
 `RankedList,FgseaList` <- # nolint
     function(object) {
@@ -419,7 +415,6 @@ formals(`RankedList,DESeqResults`)[["keyType"]] <- # nolint
         )
         rl
     }
-
 
 
 #' @rdname RankedList

@@ -23,13 +23,9 @@
 NULL
 
 
-
 ## Updated 2021-03-16.
 `geneSetResults,FgseaList` <- # nolint
-    function(object,
-             contrast,
-             collection,
-             set) {
+    function(object, contrast, collection, set) {
         validObject(object)
         assert(
             isString(contrast),
@@ -59,7 +55,6 @@ NULL
         res <- res[idx, ]
         res
     }
-
 
 
 #' @rdname geneSetResults

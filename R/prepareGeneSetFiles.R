@@ -34,10 +34,12 @@
 #' files <- prepareGeneSetFiles(dir, keyType = "geneName")
 #' print(files)
 prepareGeneSetFiles <-
-    function(dir,
-             keyType = c("geneName", "ncbiGeneId"),
-             ext = "gmt",
-             recursive = FALSE) {
+    function(
+        dir,
+        keyType = c("geneName", "ncbiGeneId"),
+        ext = "gmt",
+        recursive = FALSE
+    ) {
         assert(
             isADir(dir),
             isString(ext),
@@ -74,7 +76,8 @@ prepareGeneSetFiles <-
                 msg1 = "file",
                 msg2 = "files"
             ),
-            "keyType", keyType,
+            "keyType",
+            keyType,
             dir
         ))
         names(files) <- snakeCase(basenameSansExt(files))

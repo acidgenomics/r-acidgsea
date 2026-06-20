@@ -18,7 +18,7 @@ objectFiles <- file.path(
     paste0(datasets, ".rds")
 )
 names(objectFiles) <- names(datasets)
-stopifnot(all(file.exists(objectFiles)))
+stopifnot(file.exists(objectFiles))
 outputDir <- file.path("results", Sys.Date(), "fgsea")
 invisible(Map(
     name = names(objectFiles),
@@ -26,7 +26,8 @@ invisible(Map(
     f = function(name, file) {
         message(sprintf(
             "Rendering '%s'\nFile: %s",
-            name, file
+            name,
+            file
         ))
         render(
             params = list(

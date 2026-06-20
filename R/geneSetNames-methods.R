@@ -15,7 +15,6 @@
 NULL
 
 
-
 ## Updated 2022-04-27.
 `geneSetNames,FgseaList` <- # nolint
     function(object, collection) {
@@ -28,7 +27,6 @@ NULL
         assert(isCharacter(out))
         out
     }
-
 
 
 #' @rdname geneSetNames

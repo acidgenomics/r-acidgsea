@@ -36,6 +36,3 @@ object <- fgsea
 g2s <- GeneToSymbol(object)
 print(g2s)
 }
-\seealso{
-\code{\link[AcidGenomes:makeGeneToSymbol]{makeGeneToSymbol()}}.
-}

@@ -14,13 +14,11 @@
 NULL
 
 
-
 ## Updated 2019-07-24.
 `contrastNames,FgseaList` <- # nolint
     function(object) {
         names(object[[1L]])
     }
-
 
 
 ## Updated 2019-07-24.
@@ -39,7 +37,6 @@ NULL
         validObject(object)
         object
     }
-
 
 
 #' @rdname contrastNames

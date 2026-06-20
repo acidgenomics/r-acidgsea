@@ -21,7 +21,6 @@
 NULL
 
 
-
 ## Updated 2020-09-17.
 `combine,FgseaList` <- # nolint
     function(x, y) {
@@ -71,7 +70,6 @@ NULL
         validObject(out)
         out
     }
-
 
 
 #' @rdname combine

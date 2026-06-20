@@ -20,12 +20,9 @@
 NULL
 
 
-
 ## Updated 2021-02-17.
 `plotEnrichedUpset,FgseaList` <- # nolint
-    function(object,
-             collection,
-             direction = c("both", "up", "down")) {
+    function(object, collection, direction = c("both", "up", "down")) {
         validObject(object)
         direction <- match.arg(direction)
         args <- list(
@@ -74,7 +71,6 @@ NULL
             plotUpset(listInput)
         })
     }
-
 
 
 #' @rdname plotEnrichedUpset
