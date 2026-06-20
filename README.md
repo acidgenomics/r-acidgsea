@@ -1,6 +1,6 @@
 # AcidGSEA
 
-[![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg)](http://bioconda.github.io/recipes/r-acidgsea/README.html) ![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)
+[![Install with Bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg)](https://bioconda.github.io/recipes/r-acidgsea/README.html) ![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)
 
 Perform parameterized gene set enrichment analysis (GSEA) on multiple
 differential expression contrasts. Currently extends the functionality of
@@ -39,4 +39,8 @@ R
 [bioconda]: https://bioconda.github.io/
 [conda]: https://docs.conda.io/
 [fgsea]: https://bioconductor.org/packages/fgsea/
-[r]: https://www.r-project.org
+[r]: https://www.r-project.org/
+
+## License
+
+Apache-2.0 — Copyright 2018 Acid Genomics LLC — see [LICENSE.md](LICENSE.md).
