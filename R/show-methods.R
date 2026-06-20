@@ -15,7 +15,6 @@
 NULL
 
 
-
 ## Updated 2022-08-17.
 `show,FgseaList` <- # nolint
     function(object) {
@@ -32,7 +31,6 @@ NULL
         }
         showSlotInfo(list)
     }
-
 
 
 #' @rdname show

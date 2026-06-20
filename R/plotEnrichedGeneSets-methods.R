@@ -25,14 +25,15 @@
 NULL
 
 
-
 ## Modified 2020-09-21.
 `plotEnrichedGeneSets,FgseaList` <- # nolint
-    function(object,
-             collection,
-             direction = c("both", "up", "down"),
-             n = 10L,
-             headerLevel = 3L) {
+    function(
+        object,
+        collection,
+        direction = c("both", "up", "down"),
+        n = 10L,
+        headerLevel = 3L
+    ) {
         validObject(object)
         assert(
             isString(collection),
@@ -53,12 +54,14 @@ NULL
                 "direction" = direction,
                 "n" = n
             ),
-            f = function(contrast,
-                         data,
-                         alphaThreshold,
-                         nesThreshold,
-                         direction,
-                         n) {
+            f = function(
+                contrast,
+                data,
+                alphaThreshold,
+                nesThreshold,
+                direction,
+                n
+            ) {
                 markdownHeader(
                     text = contrast,
                     level = headerLevel,
@@ -87,10 +90,7 @@ NULL
                         "contrast" = contrast,
                         "headerLevel" = headerLevel + 1L
                     ),
-                    f = function(set,
-                                 collection,
-                                 contrast,
-                                 headerLevel) {
+                    f = function(set, collection, contrast, headerLevel) {
                         markdownHeader(set, level = headerLevel, asis = TRUE)
                         p <- plotGeneSet(
                             object,
@@ -107,7 +107,6 @@ NULL
             }
         ))
     }
-
 
 
 #' @rdname plotEnrichedGeneSets

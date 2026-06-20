@@ -19,12 +19,9 @@
 NULL
 
 
-
 ## Updated 2020-09-21.
 `geneSet,FgseaList` <- # nolint
-    function(object,
-             collection,
-             set) {
+    function(object, collection, set) {
         validObject(object)
         assert(
             isString(collection),
@@ -35,7 +32,6 @@ NULL
         assert(isCharacter(x))
         x
     }
-
 
 
 #' @rdname geneSet

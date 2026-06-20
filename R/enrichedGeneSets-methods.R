@@ -31,7 +31,6 @@
 NULL
 
 
-
 #' Enriched gene sets
 #'
 #' Assuming fgsea input by default currently.
@@ -54,13 +53,14 @@ NULL
 #' )
 .enrichedGeneSets <-
     ## nolint start
-    function(object,
-             alphaThreshold,
-             nesThreshold,
-             direction,
-             idCol, # pathway
-             alphaCol, # padj
-             nesCol # NES
+    function(
+        object,
+        alphaThreshold,
+        nesThreshold,
+        direction,
+        idCol, # pathway
+        alphaCol, # padj
+        nesCol # NES
     ) {
         ## nolint end
         data <- as(object, "DFrame")
@@ -119,12 +119,9 @@ NULL
     }
 
 
-
 ## Updated 2022-04-27.
 `enrichedGeneSets,FgseaList` <- # nolint
-    function(object,
-             collection,
-             direction = c("both", "up", "down")) {
+    function(object, collection, direction = c("both", "up", "down")) {
         validObject(object)
         assert(
             isString(collection),
@@ -154,7 +151,6 @@ NULL
         })
         out
     }
-
 
 
 #' @rdname enrichedGeneSets

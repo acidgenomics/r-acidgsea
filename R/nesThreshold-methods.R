@@ -12,7 +12,6 @@
 NULL
 
 
-
 ## Updated 2020-08-05.
 `nesThreshold,FgseaList` <- # nolint
     function(object) {
@@ -25,7 +24,6 @@ NULL
     }
 
 
-
 ## Updated 2020-08-05.
 `nesThreshold<-,FgseaList,numeric` <- # nolint
     function(object, value) {
@@ -33,7 +31,6 @@ NULL
         metadata(object)[["nesThreshold"]] <- value
         object
     }
-
 
 
 #' @rdname nesThreshold
