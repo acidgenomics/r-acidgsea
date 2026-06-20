@@ -20,7 +20,6 @@
 NULL
 
 
-
 ## Updated 2022-05-25.
 `convertToHuman,DESeqAnalysis` <- # nolint
     function(object, map = NULL) {
@@ -37,10 +36,12 @@ NULL
         ## Don't assume gene identifiers are defined as row names.
         rr <- rowRanges(data)
         ## Enforcing strict camel case, as of 2021-02-16.
-        if (!(identical(
-            colnames(mcols(rr)),
-            camelCase(colnames(mcols(rr)), strict = TRUE)
-        ))) {
+        if (
+            !(identical(
+                colnames(mcols(rr)),
+                camelCase(colnames(mcols(rr)), strict = TRUE)
+            ))
+        ) {
             colnames(mcols(rr)) <- camelCase(colnames(mcols(rr)), strict = TRUE)
         }
         ## Get the organism and Ensembl release from DESeqDataSet.
@@ -51,14 +52,17 @@ NULL
             isInt(rrMeta[["release"]]),
             msg = sprintf(
                 "Internal %s doesn't contain necessary metadata.\nCheck '%s'.",
-                "DESeqDataSet", "metadata(rowRanges(data))"
+                "DESeqDataSet",
+                "metadata(rowRanges(data))"
             )
         )
         organism <- rrMeta[["organism"]]
         ensemblRelease <- rrMeta[["release"]]
         alertInfo(sprintf(
             "{.emph %s} (%s %d) genome detected.",
-            organism, "Ensembl", ensemblRelease
+            organism,
+            "Ensembl",
+            ensemblRelease
         ))
         ## Early return on Homo sapiens.
         if (identical(organism, "Homo sapiens")) {
@@ -71,7 +75,9 @@ NULL
             hasLength(genes),
             msg = sprintf(
                 "'%s' column not defined in %s '%s'.",
-                "geneId", "DESeqDataSet", "rowRanges"
+                "geneId",
+                "DESeqDataSet",
+                "rowRanges"
             )
         )
         ## Note that this step can time out, so we're allowing map passthrough,
@@ -152,7 +158,6 @@ NULL
         metadata(out) <- metadata
         out
     }
-
 
 
 #' @rdname convertToHuman

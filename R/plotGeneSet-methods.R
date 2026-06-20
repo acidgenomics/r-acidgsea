@@ -35,20 +35,21 @@
 NULL
 
 
-
 ## Updated 2023-03-23.
 `plotGeneSet,FgseaList` <- # nolint
-    function(object,
-             collection,
-             contrast,
-             set,
-             colors = c(
-                 "line" = "black",
-                 "min" = AcidPlots::purpleOrange(n = 2L)[[1L]],
-                 "max" = AcidPlots::purpleOrange(n = 2L)[[2L]],
-                 "ticks" = "black",
-                 "yintercept" = "black"
-             )) {
+    function(
+        object,
+        collection,
+        contrast,
+        set,
+        colors = c(
+            "line" = "black",
+            "min" = AcidPlots::purpleOrange(n = 2L)[[1L]],
+            "max" = AcidPlots::purpleOrange(n = 2L)[[2L]],
+            "ticks" = "black",
+            "yintercept" = "black"
+        )
+    ) {
         validObject(object)
         assert(
             isString(collection),
@@ -154,7 +155,6 @@ NULL
             )
         p
     }
-
 
 
 #' @rdname plotGeneSet

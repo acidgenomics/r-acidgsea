@@ -34,12 +34,10 @@
 NULL
 
 
-
 ## Updated 2023-10-04.
 `FgseaList,RankedList` <- # nolint
     ## nolint start
-    function(object,
-             geneSetFiles) {
+    function(object, geneSetFiles) {
         ## nolint end
         assert(
             validObject(object),
@@ -101,15 +99,16 @@ NULL
     }
 
 
-
 ## Updated 2022-05-25.
 `FgseaList,DESeqResults` <- # nolint
-    function(object,
-             keyType,
-             value = c("stat", "log2FoldChange"),
-             rowRanges,
-             proteinCodingOnly = FALSE,
-             ...) {
+    function(
+        object,
+        keyType,
+        rowRanges,
+        value = c("stat", "log2FoldChange"),
+        proteinCodingOnly = FALSE,
+        ...
+    ) {
         assert(validObject(object))
         rl <- RankedList(
             object = object,
@@ -125,14 +124,15 @@ formals(`FgseaList,DESeqResults`)[["keyType"]] <- # nolint
     .keyType
 
 
-
 ## Updated 2022-05-25.
 `FgseaList,DESeqAnalysis` <- # nolint
-    function(object,
-             keyType,
-             value = c("stat", "log2FoldChange"),
-             proteinCodingOnly = FALSE,
-             ...) {
+    function(
+        object,
+        keyType,
+        value = c("stat", "log2FoldChange"),
+        proteinCodingOnly = FALSE,
+        ...
+    ) {
         validObject(object)
         rl <- RankedList(
             object = object,
@@ -147,7 +147,6 @@ formals(`FgseaList,DESeqResults`)[["keyType"]] <- # nolint
 
 formals(`FgseaList,DESeqAnalysis`)[["keyType"]] <- # nolint
     .keyType
-
 
 
 #' @rdname FgseaList

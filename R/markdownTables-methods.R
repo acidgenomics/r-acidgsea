@@ -25,13 +25,9 @@
 NULL
 
 
-
 ## Updated 2022-05-24.
 `markdownTables,FgseaList` <- # nolint
-    function(object,
-             collection,
-             n = 10L,
-             headerLevel = 3L) {
+    function(object, collection, n = 10L, headerLevel = 3L) {
         assert(
             requireNamespaces("knitr"),
             validObject(object),
@@ -74,12 +70,7 @@ NULL
                 "headerLevel" = headerLevel,
                 "n" = n
             ),
-            f = function(name,
-                         data,
-                         up,
-                         down,
-                         n,
-                         headerLevel) {
+            f = function(name, data, up, down, n, headerLevel) {
                 idCol <- "pathway"
                 dropCols <- c("ES", "nMoreExtreme", "pval")
                 markdownHeader(
@@ -125,7 +116,6 @@ NULL
             }
         ))
     }
-
 
 
 #' @rdname markdownTables

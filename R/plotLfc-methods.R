@@ -28,19 +28,20 @@
 NULL
 
 
-
 ## Updated 2023-08-15.
 `plotLfc,FgseaList` <- # nolint
-    function(object,
-             contrast = NULL,
-             collection,
-             set,
-             geom = c("boxplot", "boxplot"),
-             points = TRUE,
-             labels = list(
-                 "title" = "log2 fold change",
-                 "subtitle" = NULL
-             )) {
+    function(
+        object,
+        collection,
+        set,
+        contrast = NULL,
+        geom = c("boxplot", "boxplot"),
+        points = TRUE,
+        labels = list(
+            "title" = "log2 fold change",
+            "subtitle" = NULL
+        )
+    ) {
         validObject(object)
         if (is.null(contrast)) {
             contrast <- contrastNames(object)
@@ -80,29 +81,31 @@ NULL
                 y = .data[["value"]]
             )
         )
-        p <- p + switch(
-            EXPR = geom,
-            "boxplot" = geom_boxplot(
-                mapping = aes(
-                    color = .data[["colname"]]
+        p <- p +
+            switch(
+                EXPR = geom,
+                "boxplot" = geom_boxplot(
+                    mapping = aes(
+                        color = .data[["colname"]]
+                    ),
+                    fill = NA,
+                    outlier.shape = NA,
+                    show.legend = FALSE
                 ),
-                fill = NA,
-                outlier.shape = NA,
-                show.legend = FALSE
-            ),
-            "violin" = geom_violin(
-                mapping = aes(
-                    color = .data[["colname"]]
-                ),
-                fill = NA,
-                show.legend = FALSE
+                "violin" = geom_violin(
+                    mapping = aes(
+                        color = .data[["colname"]]
+                    ),
+                    fill = NA,
+                    show.legend = FALSE
+                )
             )
-        )
         if (isTRUE(points)) {
-            p <- p + geom_jitter(
-                mapping = aes(color = .data[["colname"]]),
-                show.legend = FALSE
-            )
+            p <- p +
+                geom_jitter(
+                    mapping = aes(color = .data[["colname"]]),
+                    show.legend = FALSE
+                )
         }
         ## Labels.
         labels[["x"]] <- "contrast"
@@ -113,7 +116,6 @@ NULL
         ## Return.
         p
     }
-
 
 
 #' @rdname plotLfc

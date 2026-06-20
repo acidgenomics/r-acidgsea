@@ -11,13 +11,11 @@
 NULL
 
 
-
 ## Updated 2019-07-24.
 `collectionNames,FgseaList` <- # nolint
     function(object) {
         names(object)
     }
-
 
 
 ## Updated 2020-09-17.
@@ -33,7 +31,6 @@ NULL
         validObject(object)
         object
     }
-
 
 
 #' @rdname collectionNames
