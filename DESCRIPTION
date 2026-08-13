@@ -16,7 +16,7 @@ Authors@R: c(
         role = c("cph", "fnd")
     ))
 URL:
-    https://r.acidgenomics.com/packages/acidgsea/,
+    https://r.acidgenomics.com/acidgsea/,
     https://github.com/acidgenomics/r-acidgsea/
 BugReports: https://github.com/acidgenomics/r-acidgsea/issues/
 License: Apache License (>= 2)

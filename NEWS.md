@@ -1,5 +1,3 @@
-# Release notes
-
 ## AcidGSEA 0.9.2 (2026-06-19)
 
 License changes:
@@ -524,5 +522,5 @@ Minor changes:
 Initial release.
 
 [Acid Genomics]: https://acidgenomics.com/
-[AcidPlots]: https://r.acidgenomics.com/packages/acidplots/
-[basejump]: https://r.acidgenomics.com/packages/basejump/
+[AcidPlots]: https://r.acidgenomics.com/acidplots/
+[basejump]: https://r.acidgenomics.com/basejump/

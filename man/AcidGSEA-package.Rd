@@ -12,7 +12,7 @@ differential expression contrasts.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://r.acidgenomics.com/packages/acidgsea/}
+  \item \url{https://r.acidgenomics.com/acidgsea/}
   \item \url{https://github.com/acidgenomics/r-acidgsea/}
   \item Report bugs at \url{https://github.com/acidgenomics/r-acidgsea/issues/}
 }
